@@ -72,7 +72,9 @@
 					<Dialog {open} on:close={toggleDialog} persistent>
 					  <div slot="title">App Login Selection</div>
 					  <div class="grid grid-cols-4 grid-rows-4">
-
+						<div>
+							
+						</div>
 					  </div>
 					  <div slot="actions">
 						<Button variant="fill" color="primary">Close</Button>
