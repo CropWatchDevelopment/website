@@ -1,29 +1,206 @@
 <script lang="ts">
-	import { Button } from 'svelte-ux';
-	import greenhouses1 from '$lib/videos/greenhouses1.mp4';
-	import greenhouses2 from '$lib/videos/greenhouse2.mp4';
-	import Typewriter from '$lib/components/typewriter-effect/Typewriter.svelte';
+	import { Button, Card, Header, Avatar, Icon, Shine, Tilt } from 'svelte-ux';
 	import Slides from '$lib/deck/Slides.svelte';
-
-	let videos = [greenhouses1, greenhouses2];
-	let videoIndex: number = 0;
-	$: currentVideo = greenhouses1;
-	let currentTime = 0;
-	$: paused = false;
-	$: displayVideo = true;
-	const nextVideo = () => {
-		videoIndex++;
-		debugger;
-		if (videoIndex >= videos.length) videoIndex = 0;
-		currentVideo = videos[videoIndex];
-		currentTime = 0;
-		displayVideo = false;
-		setTimeout(() => (displayVideo = true), 0);
-		paused = false;
-	};
+	import { mdiBarn, mdiBox, mdiFire, mdiInformation, mdiMeterElectric, mdiPackage, mdiSnowflake, mdiTree, mdiWatch } from '@mdi/js';
+	import SaitoCityFlagImage from '$lib/images/SaitoCity.png';
+	import NishimeraCityFlagImage from '$lib/images/NishimeraCity.jpg';
+	import CropWatchAtGreenhouseImage from '$lib/images/CropWatch-installed-greenhouse.jpg';
+	import TroubleShootingImage from '$lib/images/troubleShooting.jpg';
+	import SmokeDetectorImage from '$lib/images/smoke-detector.png';
+	import SmartWatchImage from '$lib/images/lorawatch.webp';
+	import ColdChainSensorImage from '$lib/images/CropWatch TH Sensor.png';
+	import SeeedTrackerImage from '$lib/images/seeedT1000.webp';
+	import WaterMeterImage from '$lib/images/waterMeter.jpg';
+	import Stats from '$lib/components/stats/Stats.svelte';
 </script>
 
-<main class="grid">
+<main class="flex flex-col overflow-visible">
+	<div class="w-full">
 		<Slides />
-		<h1>Data when and where you need it</h1>
+	</div>
+	<div class="grid w-full">
+		<div class="bg-slate-300  p-16">
+			<h1 class="text-2xl text-center font-extrabold mb-4">
+				Trusted by industry-leading organizations around the world
+			</h1>
+			<div class="grid grid-flow-row grid-cols-5 gap-3">
+				<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto">
+					<Shine>
+						<div class="flex items-center justify-center content-center gap-6">
+							<Tilt class="hover:scale-110 transition duration-500">
+							  <img class="transition ease-out" src={SaitoCityFlagImage} alt="Saito City" />
+							</Tilt>
+						</div>
+					  </Shine>
+					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Saito City</p>
+				</a>
+
+				<a href="https://www.nishimera.jp/" class="mx-auto">
+					<Shine>
+						<div class="flex items-center justify-center content-center gap-6">
+							<Tilt class="hover:scale-110 transition duration-500">
+							  <img class="mx-auto" src={NishimeraCityFlagImage} alt="Nishimera City" />
+							</Tilt>
+						</div>
+					  </Shine>
+					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Nishimera City</p>
+				</a>
+
+				<a href="#">
+					<img src="" alt="Saito City" />
+				</a>
+
+				<a href="#">
+					<img src="" alt="Saito City" />
+				</a>
+
+				<a href="#">
+					<img src="" alt="Saito City" />
+				</a>
+			</div>
+		</div>
+		<div class="md:mx-8 lg:mx-40">
+			<h1 class="font-extrabold from-neutral-700 text-6xl ml-0 lg:ml-8 my-20">
+				IoT For Smarter everything
+			</h1>
+			<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 gap-5">
+				<div>
+					<h2 class="font-bold">Tested for YOU!</h2>
+					<p class="text-slate-700 text-xl leading-1 my-4">
+						CropWatch aims to build hardware and software that can withstand the toughest of
+						environments. Some of our oldest deployed devices have sent over <b class="text-nowrap"
+							>1 million</b
+						> data packets with 100% uptime!
+					</p>
+
+					<div class="grid grid-cols-2 grid-rows-2 text-center gap-4 mt-6 mb-4 text-xl">
+						<div class="p-4 bg-blue-200 rounded-lg">
+							<p class="text-gray-700 font-bold"><u>-18°C</u></p>
+							<b class="text-success font-extrabold">OK!</b>
+						</div>
+
+						<div class="p-4 bg-blue-200 rounded-lg">
+							<p class="text-gray-700 font-bold"><u>10+ Year Battery Life</u></p>
+							<b class="text-success font-extrabold">No Problem!</b>
+						</div>
+
+						<div class="p-4 bg-blue-200 rounded-lg">
+							<p class="text-gray-700 font-bold"><u>30km Range</u></p>
+							<b class="text-success font-extrabold">We have done it!</b>
+						</div>
+
+						<div class="p-4 bg-blue-200 rounded-lg">
+							<p class="text-gray-700 font-bold"><u>Better price?</u></p>
+							<b class="text-success font-extrabold">Of course!</b>
+						</div>
+					</div>
+
+					<Stats />
+
+					<Button variant="fill-light" color="success" size="lg" icon={mdiInformation}>Real-Time / Real Data Demo, Click HERE!</Button>
+				</div>
+				<img
+					src={CropWatchAtGreenhouseImage}
+					class="rounded-xl m-4 elevation-20"
+					alt="CropWatch Install On Greenhouse"
+				/>
+			</div>
+		</div>
+	</div>
+	<div
+		class="mt-20"
+		style="background: rgb(2,0,36); background: linear-gradient(131deg, rgba(2,0,36,1) 0%, rgba(65,65,175,1) 65%, rgba(0,35,42,1) 100%);"
+	>
+		<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 px-8 py-16 gap-10 md:gap-40">
+			<img src={TroubleShootingImage} class="w-full rounded-lg elevation-20" alt="We are here for your questions" />
+			<div>
+				<h2 class="text-5xl text-white mb-8">We will be here to help.</h2>
+				<p class="text-xl text-white">
+					It is way too easy to make mistakes with technology, we know this and understand.
+					We are not a company that is going to sell you a product and walk away, we will assist you with installation,
+					setup, useage and beyond.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="mt-20 p-8 lg:p-16">
+		<h1 class="font-extrabold from-neutral-700 text-6xl ml-0 lg:ml-8 mt-20 mb-5 p-2">
+			Solutions for the <u>Real-World</u>
+		</h1>
+		<h2 class="text-xl text-slate-700">
+			Give yourself the tools <b>YOU</b> need to work smarter with CropWatch's Inovative IoT
+			devices. Our offerings include devices that no one else makes. We have talked to you, we
+			listened.<br />
+			We offer devices you want because they are what people just like you have been asking for.
+		</h2>
+
+		<div class="grid grid-flow-row grid-cols-3 gap-5 pt-4 lg:p-20">
+			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+				<Header title="Smart Farming" subheading="Increase output and decrease work" slot="header">
+					<div slot="avatar">
+						<Avatar class="bg-primary text-primary-content font-bold">
+							<Icon data={mdiBarn} />
+						</Avatar>
+					</div>
+				</Header>
+				<img src="" slot="contents" alt="" />
+			</Card>
+
+			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+				<Header title="Smart Water Metering" subheading="Report water useage faster and more accuratly" slot="header">
+					<div slot="avatar">
+						<Avatar class="bg-primary text-primary-content font-bold">
+							<Icon data={mdiMeterElectric} />
+						</Avatar>
+					</div>
+				</Header>
+				<img src={WaterMeterImage} slot="contents" alt="" />
+			</Card>
+
+			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+				<Header title="Cold Chain" subheading="Protect people by monitoring food safety" slot="header">
+					<div slot="avatar">
+						<Avatar class="bg-primary text-primary-content font-bold">
+							<Icon data={mdiSnowflake} />
+						</Avatar>
+					</div>
+				</Header>
+				<img src={ColdChainSensorImage} slot="contents" alt="" class="mx-auto" style="max-height: 220px;" />
+			</Card>
+
+			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+				<Header title="Asset Tracking" subheading="Know where your assets are and predict problems with delivery" slot="header">
+					<div slot="avatar">
+						<Avatar class="bg-primary text-primary-content font-bold">
+							<Icon data={mdiPackage} />
+						</Avatar>
+					</div>
+				</Header>
+				<img src={SeeedTrackerImage} slot="contents" alt="" class="mx-auto my-auto" style="max-height: 220px;" />
+			</Card>
+
+			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+				<Header title="Smart Fire Detection" subheading="Protect your city by responding to fire faster" slot="header">
+					<div slot="avatar">
+						<Avatar class="bg-primary text-primary-content font-bold">
+							<Icon data={mdiFire} />
+						</Avatar>
+					</div>
+				</Header>
+				<img src={SmokeDetectorImage} slot="contents" alt="" />
+			</Card>
+
+			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+				<Header title="Worker Safety" subheading="Protect Employees with safety insights" slot="header">
+					<div slot="avatar">
+						<Avatar class="bg-primary text-primary-content font-bold">
+							<Icon data={mdiWatch} />
+						</Avatar>
+					</div>
+				</Header>
+				<img src={SmartWatchImage} slot="contents" alt="" />
+			</Card>
+		</div>
+	</div>
 </main>
