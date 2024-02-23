@@ -1,7 +1,17 @@
 <script lang="ts">
 	import { Button, Card, Header, Avatar, Icon, Shine, Tilt } from 'svelte-ux';
 	import Slides from '$lib/deck/Slides.svelte';
-	import { mdiBarn, mdiBox, mdiFire, mdiInformation, mdiMeterElectric, mdiPackage, mdiSnowflake, mdiTree, mdiWatch } from '@mdi/js';
+	import {
+		mdiBarn,
+		mdiBox,
+		mdiFire,
+		mdiInformation,
+		mdiMeterElectric,
+		mdiPackage,
+		mdiSnowflake,
+		mdiTree,
+		mdiWatch
+	} from '@mdi/js';
 	import SaitoCityFlagImage from '$lib/images/SaitoCity.png';
 	import NishimeraCityFlagImage from '$lib/images/NishimeraCity.jpg';
 	import CropWatchAtGreenhouseImage from '$lib/images/CropWatch-installed-greenhouse.jpg';
@@ -19,7 +29,7 @@
 		<Slides />
 	</div>
 	<div class="grid w-full">
-		<div class="bg-slate-300  p-16">
+		<div class="bg-slate-300 p-16">
 			<h1 class="text-2xl text-center font-extrabold mb-4">
 				Trusted by industry-leading organizations around the world
 			</h1>
@@ -28,10 +38,10 @@
 					<Shine>
 						<div class="flex items-center justify-center content-center gap-6">
 							<Tilt class="hover:scale-110 transition duration-500">
-							  <img class="transition ease-out" src={SaitoCityFlagImage} alt="Saito City" />
+								<img class="transition ease-out" src={SaitoCityFlagImage} alt="Saito City" />
 							</Tilt>
 						</div>
-					  </Shine>
+					</Shine>
 					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Saito City</p>
 				</a>
 
@@ -39,10 +49,10 @@
 					<Shine>
 						<div class="flex items-center justify-center content-center gap-6">
 							<Tilt class="hover:scale-110 transition duration-500">
-							  <img class="mx-auto" src={NishimeraCityFlagImage} alt="Nishimera City" />
+								<img class="mx-auto" src={NishimeraCityFlagImage} alt="Nishimera City" />
 							</Tilt>
 						</div>
-					  </Shine>
+					</Shine>
 					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Nishimera City</p>
 				</a>
 
@@ -97,7 +107,9 @@
 
 					<Stats />
 
-					<Button variant="fill-light" color="success" size="lg" icon={mdiInformation}>Real-Time / Real Data Demo, Click HERE!</Button>
+					<Button variant="fill-light" color="success" size="lg" icon={mdiInformation}
+						>Real-Time / Real Data Demo, Click HERE!</Button
+					>
 				</div>
 				<img
 					src={CropWatchAtGreenhouseImage}
@@ -112,20 +124,24 @@
 		style="background: rgb(2,0,36); background: linear-gradient(131deg, rgba(2,0,36,1) 0%, rgba(65,65,175,1) 65%, rgba(0,35,42,1) 100%);"
 	>
 		<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 px-8 py-16 gap-10 md:gap-40">
-			<img src={TroubleShootingImage} class="w-full rounded-lg elevation-20" alt="We are here for your questions" />
+			<img
+				src={TroubleShootingImage}
+				class="w-full rounded-lg elevation-20"
+				alt="We are here for your questions"
+			/>
 			<div>
 				<h2 class="text-5xl text-white mb-8">We will be here to help.</h2>
 				<p class="text-xl text-white">
-					It is way too easy to make mistakes with technology, we know this and understand.
-					We are not a company that is going to sell you a product and walk away, we will assist you with installation,
-					setup, useage and beyond.
+					It is way too easy to make mistakes with technology, we know this and understand. We are
+					not a company that is going to sell you a product and walk away, we will assist you with
+					installation, setup, useage and beyond.
 				</p>
 			</div>
 		</div>
 	</div>
 
-	<div class="mt-20 p-8 lg:p-16">
-		<h1 class="font-extrabold from-neutral-700 text-6xl ml-0 lg:ml-8 mt-20 mb-5 p-2">
+	<div class="p-8 lg:p-16">
+		<h1 class="font-extrabold from-neutral-700 text-center text-6xl ml-0 lg:ml-8 mt-20 mb-5 p-2">
 			Solutions for the <u>Real-World</u>
 		</h1>
 		<h2 class="text-xl text-slate-700">
@@ -135,7 +151,7 @@
 			We offer devices you want because they are what people just like you have been asking for.
 		</h2>
 
-		<div class="grid grid-flow-row grid-cols-3 gap-5 pt-4 lg:p-20">
+		<div class="grid grid-flow-row grid-cols-3 gap-5 pt-4 md:px-20 xl:px-64">
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
 				<Header title="Smart Farming" subheading="Increase output and decrease work" slot="header">
 					<div slot="avatar">
@@ -148,7 +164,11 @@
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header title="Smart Water Metering" subheading="Report water useage faster and more accuratly" slot="header">
+				<Header
+					title="Smart Water Metering"
+					subheading="Report water useage faster and more accuratly"
+					slot="header"
+				>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiMeterElectric} />
@@ -158,30 +178,52 @@
 				<img src={WaterMeterImage} slot="contents" alt="" />
 			</Card>
 
-			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header title="Cold Chain" subheading="Protect people by monitoring food safety" slot="header">
+			<Card class="flex elevation-10 hover:scale-105 transition ease-in-out duration-300">
+				<Header
+					title="Cold Chain"
+					subheading="Protect people by monitoring food safety"
+					slot="header"
+				>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiSnowflake} />
 						</Avatar>
 					</div>
 				</Header>
-				<img src={ColdChainSensorImage} slot="contents" alt="" class="mx-auto" style="max-height: 220px;" />
+				<div slot="contents" class="flex h-full">
+					<img
+						src={ColdChainSensorImage}
+						alt=""
+						class="flex mx-auto self-center"
+						style="max-height: 220px;"
+					/>
+				</div>
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header title="Asset Tracking" subheading="Know where your assets are and predict problems with delivery" slot="header">
+				<Header
+					title="Asset Tracking"
+					subheading="Know where your assets are and predict problems with delivery"
+					slot="header"
+				>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiPackage} />
 						</Avatar>
 					</div>
 				</Header>
-				<img src={SeeedTrackerImage} slot="contents" alt="" class="mx-auto my-auto" style="max-height: 220px;" />
+				<div slot="contents" class="flex h-full">
+					<img src={SeeedTrackerImage} alt="" class="flex mx-auto self-center" style="max-height: 220px;" />
+				</div>
+					
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header title="Smart Fire Detection" subheading="Protect your city by responding to fire faster" slot="header">
+				<Header
+					title="Smart Fire Detection"
+					subheading="Protect your city by responding to fire faster"
+					slot="header"
+				>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiFire} />
@@ -192,7 +234,11 @@
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header title="Worker Safety" subheading="Protect Employees with safety insights" slot="header">
+				<Header
+					title="Worker Safety"
+					subheading="Protect Employees with safety insights"
+					slot="header"
+				>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiWatch} />
@@ -201,6 +247,15 @@
 				</Header>
 				<img src={SmartWatchImage} slot="contents" alt="" />
 			</Card>
+		</div>
+	</div>
+
+	<div class="flex mb-8 bg-teal-500 flex-col align-middle p-4">
+		<h1 class="font-extrabold from-neutral-700 text-center text-6xl ml-0 lg:ml-8 mt-20 mb-5 p-2">
+			Are you ready to get started? We already are!
+		</h1>
+		<div class="mx-auto">
+			<Button variant="fill-light" size="lg" color="danger">Contact Us and join the network today!</Button>
 		</div>
 	</div>
 </main>

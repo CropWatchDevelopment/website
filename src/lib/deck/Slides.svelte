@@ -8,6 +8,7 @@
 
 	import greenhouseVid1 from '$lib/videos/greenhouses1.mp4';
 	import greenhouseVid2 from '$lib/videos/greenhouse2.mp4';
+	import cityVid from '$lib/videos/city.mp4';
 
 	onMount(() => {
 		const reveal = new Reveal().initialize({
@@ -15,7 +16,7 @@
 			embedded: true, // Useful for embedding in a specific container
 			autoPlayMedia: true,
 			autoSlide: 15000,
-			loop: true
+			loop: true,
 		});
 		let type1 = new TypeIt('.LoRaWANForYOU', {
 			lifelike: true,
@@ -23,7 +24,7 @@
 			deleteSpeed: 150,
 			waitUntilVisible: true
 		})
-			.type('LoRaWAN for Smart Farming')
+			.type('LoRaWAN<sup style="font-size:34px;">®</sup> for Smart Farming')
 			.pause(700)
 			.delete(7)
 			.type('Cities')
@@ -41,8 +42,14 @@
 			speed: 120,
 			deleteSpeed: 150,
 			waitUntilVisible: true
-		}).type('Together we can farm from anywhere', { delay: 15100 });
+		}).type('Together we can farm from <u>anywhere</u>', { delay: 15100 });
 
+		let type3 = new TypeIt('.city', {
+			lifelike: true,
+			speed: 120,
+			deleteSpeed: 150,
+			waitUntilVisible: true
+		}).type('And access our data <u>everywhere</u>', { delay: 15100 });
 	});
 </script>
 
@@ -64,7 +71,14 @@
 			>
 				<span class="together text-white font-extrabold text-8xl"></span>
 			</section>
-			<!-- Add more slides as needed -->
+			<section
+				data-background-video={cityVid}
+				data-background-video-muted
+				data-state="next-after-video"
+				data-autoslide="6300"
+			>
+				<span class="city text-white font-extrabold text-8xl"></span>
+			</section>
 		</div>
 	</div>
 </div>
