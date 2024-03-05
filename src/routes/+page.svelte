@@ -32,7 +32,7 @@
 	<div class="grid w-full">
 		<div class="bg-slate-300 p-16">
 			<h1 class="text-2xl text-center font-extrabold mb-4">
-				{$t('home.weWorkedWith')}
+				{$t('home.main_content.title')}
 			</h1>
 			<div class="grid grid-flow-row grid-cols-5 gap-3">
 				<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto flex flex-col">
@@ -79,7 +79,7 @@
 		</div>
 		<div class="md:mx-8 lg:mx-40">
 			<h1 class="font-extrabold from-neutral-700 text-6xl ml-0 lg:ml-8 my-20">
-				{$t('home.section2Header')}
+				{$t('home.section1.title')}
 			</h1>
 			<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 gap-5">
 				<div>

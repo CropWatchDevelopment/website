@@ -1,8 +1,51 @@
 {
-    "weWorkedWith": "Trusted by industry-leading organizations around the world",
-    "text": "Visit <a href=\"{{link}}\">kit.svelte.dev</a> to read the documentation",
-
-    "section2Header": "IoT For Smarter everything",
-    "section2SubHeader": "Tested for YOU!",
-    "section2Text": "CropWatch aims to build hardware and software that can withstand the toughest of environments. Some of our oldest deployed devices have sent over 1 million data packets with 100% uptime!"
+    "main_content": {
+        "title": "Trusted by industry-leading organizations around the world",
+        "content": [
+            "Saito City",
+            "Nishimera City",
+            "Miyazaki Perfecture"
+        ]
+    },
+    "section1": {
+        "title": "Build for you!",
+        "subheader": "{$t('home.section2SubHeader')}",
+        "text": "{$t('home.section2Text')}",
+        "highlights": [
+            "-18\u00b0C OK!",
+            "10+ Year Battery Life No Problem!",
+            "30km Range We have done it!",
+            "Better price? Of course!"
+        ]
+    },
+    "section2": {
+        "title": "We will be here to help.",
+        "text": "It is way too easy to make mistakes with technology, we know this and understand. We are not a company that is going to sell you a product and walk away, we will assist you with installation, setup, useage and beyond."
+    },
+    "section3": {
+        "title": "Solutions for the <u>Real-World</u>",
+        "text": "Give yourself the tools <b>YOU</b> need to work smarter with CropWatch's Inovative IoT devices. Our offerings include devices that no one else makes. We have talked to you, we listened. We offer devices you want because they are what people just like you have been asking for."
+    },
+    "section4": {
+        "section_titles": [
+            "Smart Farming",
+            "Smart Water Metering",
+            "Cold Chain",
+            "Asset Tracking",
+            "Smart Fire Detection",
+            "Worker Safety"
+        ],
+        "subheaders": [
+            "Increase output and decrease work",
+            "Report water useage faster and more accuratly",
+            "Protect people by monitoring food safety",
+            "Know where your assets are and predict problems with delivery",
+            "Protect your city by responding to fire faster",
+            "Protect Employees with safety insights"
+        ]
+    },
+    "section5": {
+        "title": "Are you ready to get started? We already are!",
+        "button_text": "Contact Us and join the network today!"
+    }
 }
