@@ -11,13 +11,21 @@
 		Menu,
 		MenuItem,
 		Dialog,
-
-		Icon
+		Icon,
+		SelectField
 
 	} from 'svelte-ux';
-	import { mdiAccountBadge, mdiAccountLock, mdiAccountLockOpen, mdiDotsGrid, mdiFire, mdiLinkedin, mdiStore } from '@mdi/js';
+	import {
+		mdiAccountBadge,
+		mdiAccountLock,
+		mdiAccountLockOpen,
+		mdiDotsGrid,
+		mdiFire,
+		mdiLinkedin,
+		mdiStore
+	} from '@mdi/js';
 
-	import { page } from '$app/stores';
+	import { t, locale, locales } from '$lib/translations';
 	import '../app.postcss';
 	import Footer from '$lib/components/Footer.svelte';
 	import CropWatchSVG from '$lib/images/cropwatch.svg';
@@ -39,6 +47,11 @@
 			}
 		}
 	});
+
+	const handleChange = ({ currentTarget }) => {
+		const { value } = currentTarget;
+		document.cookie = `lang=${value} ;`;
+	};
 </script>
 
 <AppLayout navWidth={0} classes={{ root: 'elevation-0' }}>
@@ -48,13 +61,15 @@
 			<span class="hidden md:inline-block translate-y-1/4">CropWatch</span>
 		</div>
 		<div slot="actions" class="flex gap-3">
+			<Tooltip>
+				<select bind:value={$locale} on:change={handleChange}>
+					{#each $locales as value}
+						<option {value} selected={$locale === value}>{$t(`lang.${value}`)}</option>
+					{/each}
+				</select>
+			</Tooltip>
 			<Tooltip title="CropWatch Web Store" placement="bottom" offset={2}>
-				<Button
-					icon={mdiStore}
-					href="https://discord.gg/697JhMPD3t"
-					class="p-2"
-					target="_blank"
-				/>
+				<Button icon={mdiStore} href="#" class="p-2" target="_blank" />
 			</Tooltip>
 
 			<Tooltip title="Open LinkedIn" placement="bottom" offset={2}>
@@ -84,18 +99,26 @@
 							App Login Selection
 						</div>
 						<div class="grid grid-cols-3 grid-rows-2 h-40 p-2 gap-2">
-
-							<div class="w-fit h-fit rounded-xl bg-emerald-900 p-2 hover:scale-105" style="min-width: 30px min-height: 30px;">
+							<div
+								class="w-fit h-fit rounded-xl bg-emerald-900 p-2 hover:scale-105"
+								style="min-width: 30px min-height: 30px;"
+							>
 								<img src={CropWatchSVG} class="w-10 mx-auto" />
 								<p class="text-center text-xs mt-1 text-slate-300">CropWatch</p>
 							</div>
 
-							<div class="w-fit h-fit rounded-xl bg-blue-900 p-2 hover:scale-105" style="min-width: 30px min-height: 30px;">
+							<div
+								class="w-fit h-fit rounded-xl bg-blue-900 p-2 hover:scale-105"
+								style="min-width: 30px min-height: 30px;"
+							>
 								<img src={CropWatchSVG} class="w-10 mx-auto" />
 								<p class="text-center text-xs mt-1 text-slate-300">WaterWatch</p>
 							</div>
 
-							<div class="w-fit h-fit rounded-xl bg-red-500 p-2 hover:scale-105" style="min-width: 30px min-height: 30px;">
+							<div
+								class="w-fit h-fit rounded-xl bg-red-500 p-2 hover:scale-105"
+								style="min-width: 30px min-height: 30px;"
+							>
 								<img src={CropWatchSVG} class="w-10 mx-auto" />
 								<p class="text-center text-xs mt-1 text-black-300">FireWatch</p>
 							</div>

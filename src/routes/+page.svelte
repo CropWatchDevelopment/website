@@ -9,7 +9,6 @@
 		mdiMeterElectric,
 		mdiPackage,
 		mdiSnowflake,
-		mdiTree,
 		mdiWatch
 	} from '@mdi/js';
 	import SaitoCityFlagImage from '$lib/images/SaitoCity.png';
@@ -21,7 +20,9 @@
 	import ColdChainSensorImage from '$lib/images/CropWatch TH Sensor.png';
 	import SeeedTrackerImage from '$lib/images/seeedT1000.webp';
 	import WaterMeterImage from '$lib/images/waterMeter.jpg';
+	import MiyazakiFlagImage from '$lib/images/Flag_of_Miyazaki_Prefecture.png';
 	import Stats from '$lib/components/stats/Stats.svelte';
+	import { t } from '$lib/translations';
 </script>
 
 <main class="flex flex-col overflow-visible">
@@ -31,10 +32,10 @@
 	<div class="grid w-full">
 		<div class="bg-slate-300 p-16">
 			<h1 class="text-2xl text-center font-extrabold mb-4">
-				Trusted by industry-leading organizations around the world
+				{$t('home.weWorkedWith')}
 			</h1>
 			<div class="grid grid-flow-row grid-cols-5 gap-3">
-				<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto">
+				<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto flex flex-col">
 					<Shine>
 						<div class="flex items-center justify-center content-center gap-6">
 							<Tilt class="hover:scale-110 transition duration-500">
@@ -45,7 +46,7 @@
 					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Saito City</p>
 				</a>
 
-				<a href="https://www.nishimera.jp/" class="mx-auto">
+				<a href="https://www.nishimera.jp/" class="mx-auto flex flex-col">
 					<Shine>
 						<div class="flex items-center justify-center content-center gap-6">
 							<Tilt class="hover:scale-110 transition duration-500">
@@ -56,8 +57,15 @@
 					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Nishimera City</p>
 				</a>
 
-				<a href="#">
-					<img src="" alt="Saito City" />
+				<a href="https://www.nishimera.jp/" class="mx-auto flex flex-col">
+					<Shine>
+						<div class="flex items-center justify-center content-center gap-6">
+							<Tilt class="hover:scale-110 transition duration-500">
+								<img class="mx-auto" src={MiyazakiFlagImage} alt="Miyazaki Perfecture" />
+							</Tilt>
+						</div>
+					</Shine>
+					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Miyazaki Perfecture</p>
 				</a>
 
 				<a href="#">
@@ -71,16 +79,13 @@
 		</div>
 		<div class="md:mx-8 lg:mx-40">
 			<h1 class="font-extrabold from-neutral-700 text-6xl ml-0 lg:ml-8 my-20">
-				IoT For Smarter everything
+				{$t('home.section2Header')}
 			</h1>
 			<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 gap-5">
 				<div>
-					<h2 class="font-bold">Tested for YOU!</h2>
+					<h2 class="font-bold">{$t('home.section2SubHeader')}</h2>
 					<p class="text-slate-700 text-xl leading-1 my-4">
-						CropWatch aims to build hardware and software that can withstand the toughest of
-						environments. Some of our oldest deployed devices have sent over <b class="text-nowrap"
-							>1 million</b
-						> data packets with 100% uptime!
+						{$t('home.section2Text')}
 					</p>
 
 					<div class="grid grid-cols-2 grid-rows-2 text-center gap-4 mt-6 mb-4 text-xl">

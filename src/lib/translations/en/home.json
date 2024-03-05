@@ -1,0 +1,8 @@
+{
+    "weWorkedWith": "Trusted by industry-leading organizations around the world",
+    "text": "Visit <a href=\"{{link}}\">kit.svelte.dev</a> to read the documentation",
+
+    "section2Header": "IoT For Smarter everything",
+    "section2SubHeader": "Tested for YOU!",
+    "section2Text": "CropWatch aims to build hardware and software that can withstand the toughest of environments. Some of our oldest deployed devices have sent over 1 million data packets with 100% uptime!"
+}
