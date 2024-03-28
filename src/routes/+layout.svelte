@@ -12,8 +12,8 @@
 		MenuItem,
 		Dialog,
 		Icon,
-		SelectField
-
+		SelectField,
+		cls
 	} from 'svelte-ux';
 	import {
 		mdiAccountBadge,
@@ -62,11 +62,33 @@
 		</div>
 		<div slot="actions" class="flex gap-3">
 			<Tooltip>
-				<select bind:value={$locale} on:change={handleChange}>
+				<!-- <select bind:value={$locale} on:change={handleChange}>
 					{#each $locales as value}
 						<option {value} selected={$locale === value}>{$t(`lang.${value}`)}</option>
 					{/each}
-				</select>
+				</select> -->
+
+				<SelectField
+					options={$locales.map((m) => {
+						return { label: m, value: m };
+					})}
+					bind:value={$locale}
+					activeOptionIcon={true}
+				>
+					<div slot="option" let:option let:index let:selected let:highlightIndex>
+						<MenuItem
+							class={cls(
+								index === highlightIndex && 'bg-surface-content/5',
+								option === selected && 'font-semibold',
+								option.group ? 'px-4' : 'px-2'
+							)}
+							scrollIntoView={index === highlightIndex}
+							icon={{ data: (option.value == 'en' ? mdiFire : mdiLinkedin), style: 'color: #0000FF;' }}
+						>
+							{option.label}
+						</MenuItem>
+					</div>
+				</SelectField>
 			</Tooltip>
 			<Tooltip title="CropWatch Web Store" placement="bottom" offset={2}>
 				<Button icon={mdiStore} href="#" class="p-2" target="_blank" />
@@ -99,13 +121,15 @@
 							App Login Selection
 						</div>
 						<div class="grid grid-cols-3 grid-rows-2 h-40 p-2 gap-2">
-							<div
-								class="w-fit h-fit rounded-xl bg-emerald-900 p-2 hover:scale-105"
-								style="min-width: 30px min-height: 30px;"
-							>
-								<img src={CropWatchSVG} class="w-10 mx-auto" />
-								<p class="text-center text-xs mt-1 text-slate-300">CropWatch</p>
-							</div>
+							<a href="https://app.cropwatch.io/auth/login">
+								<div
+									class="w-fit h-fit rounded-xl bg-emerald-900 p-2 hover:scale-105"
+									style="min-width: 30px min-height: 30px;"
+								>
+									<img src={CropWatchSVG} class="w-10 mx-auto" />
+									<p class="text-center text-xs mt-1 text-slate-300">CropWatch</p>
+								</div>
+							</a>
 
 							<div
 								class="w-fit h-fit rounded-xl bg-blue-900 p-2 hover:scale-105"

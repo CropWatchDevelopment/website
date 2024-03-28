@@ -26,6 +26,12 @@ export const config = {
       routes: ['/'],
       loader: async () => (await import('./en/home.json')).default,
     },
+    {
+      locale: 'en',
+      key: 'footer',
+      routes: ['/'],
+      loader: async () => (await import('./en/footer.json')).default,
+    },
 
     // JAPANESE
     {
@@ -35,9 +41,32 @@ export const config = {
     },
     {
       locale: 'ja',
+      key: 'home',
+      loader: async () => (await import('./ja/home.json')).default,
+    },
+    {
+      locale: 'ja',
       key: 'footer',
       routes: ['/'],
       loader: async () => (await import('./ja/footer.json')).default,
+    },
+
+    // FRENCH
+    {
+      locale: 'fr',
+      key: 'header',
+      loader: async () => (await import('./fr/header.json')).default,
+    },
+    {
+      locale: 'fr',
+      key: 'home',
+      loader: async () => (await import('./fr/home.json')).default,
+    },
+    {
+      locale: 'fr',
+      key: 'footer',
+      routes: ['/'],
+      loader: async () => (await import('./fr/footer.json')).default,
     },
   ],
 };

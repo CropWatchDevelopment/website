@@ -9,10 +9,10 @@
     },
     "section1": {
         "title": "Build for you!",
-        "subheader": "{$t('home.section2SubHeader')}",
-        "text": "{$t('home.section2Text')}",
+        "subheader": "asdf",
+        "text": "tttt",
         "highlights": [
-            "-18\u00b0C OK!",
+            "-18°C OK!",
             "10+ Year Battery Life No Problem!",
             "30km Range We have done it!",
             "Better price? Of course!"
@@ -24,7 +24,19 @@
     },
     "section3": {
         "title": "Solutions for the <u>Real-World</u>",
-        "text": "Give yourself the tools <b>YOU</b> need to work smarter with CropWatch's Inovative IoT devices. Our offerings include devices that no one else makes. We have talked to you, we listened. We offer devices you want because they are what people just like you have been asking for."
+        "text": "Give yourself the tools <b>YOU</b> need to work smarter with CropWatch's Inovative IoT devices. Our offerings include devices that no one else makes. We have talked to you, we listened. We offer devices you want because they are what people just like you have been asking for.",
+        "product1Title": "Smart Farming",
+        "product1Subtitle": "Increase output and decrease work",
+        "product2Title": "Smart Water Metering",
+        "product2Subtitle": "Report water useage faster and more accuratly",
+        "product3Title": "Cold Chain",
+        "product3Subtitle": "Protect people by monitoring food safety",
+        "product4Title": "Asset Tracking",
+        "product4Subtitle": "Know where your assets are and predict problems with delivery",
+        "product5Title": "Smart Fire Detection",
+        "product5Subtitle": "Protect your city by responding to fire faster",
+        "product6Title": "Worker Safety",
+        "product6Subtitle": "Protect Employees with safety insights"
     },
     "section4": {
         "section_titles": [

@@ -1,0 +1,63 @@
+{
+    "main_content": {
+        "title": "Fait confiance par des organisations leaders dans le monde entier",
+        "content": [
+            "Ville de Saito",
+            "Ville de Nishimera",
+            "Préfecture de Miyazaki"
+        ]
+    },
+    "section1": {
+        "title": "Construit pour vous !",
+        "subheader": "asdf",
+        "text": "tttt",
+        "highlights": [
+            "-18°C OK !",
+            "Plus de 10 ans de durée de vie de la batterie, pas de problème !",
+            "Portée de 30km, nous l'avons fait !",
+            "Un meilleur prix ? Bien sûr !"
+        ]
+    },
+    "section2": {
+        "title": "Nous serons là pour aider.",
+        "text": "Il est bien trop facile de faire des erreurs avec la technologie, nous le savons et comprenons. Nous ne sommes pas une entreprise qui va vous vendre un produit et partir, nous vous assisterons avec l'installation, la configuration, l'utilisation et au-delà."
+    },
+    "section3": {
+        "title": "Solutions pour le <u>monde réel</u>",
+        "text": "Donnez-vous les outils <b>QUE VOUS</b> avez besoin pour travailler plus intelligemment avec les appareils IoT innovants de CropWatch. Nos offres comprennent des appareils que personne d'autre ne fabrique. Nous vous avons parlé, nous avons écouté. Nous proposons des appareils que vous voulez parce qu'ils sont ce que des personnes comme vous ont demandé.",
+        "product1Title": "Agriculture Intelligente",
+        "product1Subtitle": "Augmenter la production et diminuer le travail",
+        "product2Title": "Comptage d'Eau Intelligent",
+        "product2Subtitle": "Rapporter l'utilisation de l'eau plus rapidement et plus précisément",
+        "product3Title": "Chaîne du Froid",
+        "product3Subtitle": "Protéger les gens en surveillant la sécurité alimentaire",
+        "product4Title": "Suivi des Actifs",
+        "product4Subtitle": "Savoir où se trouvent vos actifs et prévoir les problèmes de livraison",
+        "product5Title": "Détection d'Incendie Intelligente",
+        "product5Subtitle": "Protéger votre ville en répondant plus rapidement aux incendies",
+        "product6Title": "Sécurité des Travailleurs",
+        "product6Subtitle": "Protéger les employés avec des perspectives de sécurité"
+    },
+    "section4": {
+        "section_titles": [
+            "Agriculture Intelligente",
+            "Comptage d'Eau Intelligent",
+            "Chaîne du Froid",
+            "Suivi des Actifs",
+            "Détection d'Incendie Intelligente",
+            "Sécurité des Travailleurs"
+        ],
+        "subheaders": [
+            "Augmenter la production et diminuer le travail",
+            "Rapporter l'utilisation de l'eau plus rapidement et plus précisément",
+            "Protéger les gens en surveillant la sécurité alimentaire",
+            "Savoir où se trouvent vos actifs et prévoir les problèmes de livraison",
+            "Protéger votre ville en répondant plus rapidement aux incendies",
+            "Protéger les employés avec des perspectives de sécurité"
+        ]
+    },
+    "section5": {
+        "title": "Êtes-vous prêt à commencer ? Nous le sommes déjà !",
+        "button_text": "Contactez-nous et rejoignez le réseau aujourd'hui !"
+    }
+}

@@ -83,32 +83,11 @@
 			</h1>
 			<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 gap-5">
 				<div>
-					<h2 class="font-bold">{$t('home.section2SubHeader')}</h2>
+					<h2 class="font-bold">{$t('home.section1.subheader')}</h2>
 					<p class="text-slate-700 text-xl leading-1 my-4">
-						{$t('home.section2Text')}
+						{$t('home.section1.text')}
 					</p>
-
-					<div class="grid grid-cols-2 grid-rows-2 text-center gap-4 mt-6 mb-4 text-xl">
-						<div class="p-4 bg-blue-200 rounded-lg">
-							<p class="text-gray-700 font-bold"><u>-18°C</u></p>
-							<b class="text-success font-extrabold">OK!</b>
-						</div>
-
-						<div class="p-4 bg-blue-200 rounded-lg">
-							<p class="text-gray-700 font-bold"><u>10+ Year Battery Life</u></p>
-							<b class="text-success font-extrabold">No Problem!</b>
-						</div>
-
-						<div class="p-4 bg-blue-200 rounded-lg">
-							<p class="text-gray-700 font-bold"><u>30km Range</u></p>
-							<b class="text-success font-extrabold">We have done it!</b>
-						</div>
-
-						<div class="p-4 bg-blue-200 rounded-lg">
-							<p class="text-gray-700 font-bold"><u>Better price?</u></p>
-							<b class="text-success font-extrabold">Of course!</b>
-						</div>
-					</div>
+					{JSON.stringify($t('home.section1.text'))}
 
 					<Stats />
 
@@ -135,11 +114,9 @@
 				alt="We are here for your questions"
 			/>
 			<div>
-				<h2 class="text-5xl text-white mb-8">We will be here to help.</h2>
+				<h2 class="text-5xl text-white mb-8">{$t('home.section2.title')}</h2>
 				<p class="text-xl text-white">
-					It is way too easy to make mistakes with technology, we know this and understand. We are
-					not a company that is going to sell you a product and walk away, we will assist you with
-					installation, setup, useage and beyond.
+					{$t('home.section2.text')}
 				</p>
 			</div>
 		</div>
@@ -147,18 +124,15 @@
 
 	<div class="p-8 lg:p-16">
 		<h1 class="font-extrabold from-neutral-700 text-center text-6xl ml-0 lg:ml-8 mt-20 mb-5 p-2">
-			Solutions for the <u>Real-World</u>
+			{$t('home.section3.title')}
 		</h1>
 		<h2 class="text-xl text-slate-700">
-			Give yourself the tools <b>YOU</b> need to work smarter with CropWatch's Inovative IoT
-			devices. Our offerings include devices that no one else makes. We have talked to you, we
-			listened.<br />
-			We offer devices you want because they are what people just like you have been asking for.
+			{$t('home.section3.text')}
 		</h2>
 
 		<div class="grid grid-flow-row grid-cols-3 gap-5 pt-4 md:px-20 xl:px-64">
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header title="Smart Farming" subheading="Increase output and decrease work" slot="header">
+				<Header title="{$t('home.section3.product1Title')}" subheading="{$t('home.section3.product2Title')}" slot="header">
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiBarn} />
@@ -169,11 +143,7 @@
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					title="Smart Water Metering"
-					subheading="Report water useage faster and more accuratly"
-					slot="header"
-				>
+				<Header title="{$t('home.section3.product2Title')}" subheading="{$t('home.section3.product2Title')}" slot="header">
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiMeterElectric} />
@@ -184,11 +154,7 @@
 			</Card>
 
 			<Card class="flex elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					title="Cold Chain"
-					subheading="Protect people by monitoring food safety"
-					slot="header"
-				>
+				<Header title="{$t('home.section3.product3Title')}" subheading="{$t('home.section3.product3Title')}" slot="header">
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiSnowflake} />
@@ -206,11 +172,7 @@
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					title="Asset Tracking"
-					subheading="Know where your assets are and predict problems with delivery"
-					slot="header"
-				>
+				<Header title="{$t('home.section3.product4Title')}" subheading="{$t('home.section3.product4Title')}" slot="header">
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiPackage} />
@@ -224,11 +186,7 @@
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					title="Smart Fire Detection"
-					subheading="Protect your city by responding to fire faster"
-					slot="header"
-				>
+				<Header title="{$t('home.section3.product5Title')}" subheading="{$t('home.section3.product5Title')}" slot="header">
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiFire} />
@@ -239,11 +197,7 @@
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					title="Worker Safety"
-					subheading="Protect Employees with safety insights"
-					slot="header"
-				>
+				<Header title="{$t('home.section3.product6Title')}" subheading="{$t('home.section3.product6Title')}" slot="header">
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiWatch} />
@@ -257,10 +211,10 @@
 
 	<div class="flex mb-8 bg-teal-500 flex-col align-middle p-4">
 		<h1 class="font-extrabold from-neutral-700 text-center text-6xl ml-0 lg:ml-8 mt-20 mb-5 p-2">
-			Are you ready to get started? We already are!
+			{$t('home.section5.title')}
 		</h1>
 		<div class="mx-auto">
-			<Button variant="fill-light" size="lg" color="danger">Contact Us and join the network today!</Button>
+			<Button variant="fill-light" size="lg" color="danger">{$t('home.section5.button_text')}</Button>
 		</div>
 	</div>
 </main>
