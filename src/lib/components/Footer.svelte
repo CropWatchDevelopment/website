@@ -8,25 +8,25 @@
     <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
       <div class="xl:grid xl:grid-cols-3 xl:gap-8">
         <div class="space-y-8">
-          <img class="h-7" src={CropWatchSVG} alt="CropWatch LLC Logo">
-          <p class="text-sm leading-6 text-gray-300">Making the world a better place through constructing elegant hierarchies.</p>
+          <p class="text-sm lg:text-xl leading-10 text-gray-300 lg:leading-10 flex">
+            <img class="h-9 lg:h-16 mr-5" src={CropWatchSVG} alt="CropWatch LLC Logo"> IoT for Everyone with CropWatch</p>
           <div class="flex space-x-6">
-            <a href="#" class="text-gray-200 hover:text-gray-400">
+            <!-- <a href="#" class="text-gray-200 hover:text-gray-400">
               <span class="sr-only">Facebook</span>
               <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
               </svg>
-            </a>
+            </a> -->
             <a href="https://www.linkedin.com/company/cropwatch-system/" class="text-gray-200 hover:text-gray-400">
               <span class="sr-only">LinkedIn</span>
               <Icon data={mdiLinkedin} />
             </a>
-            <a href="#" class="text-gray-200 hover:text-gray-400">
+            <!-- <a href="#" class="text-gray-200 hover:text-gray-400">
               <span class="sr-only">X</span>
               <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
               </svg>
-            </a>
+            </a> -->
             <a href="https://github.com/CropWatchDevelopment/" class="text-gray-200 hover:text-gray-400">
               <span class="sr-only">GitHub</span>
               <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -43,7 +43,7 @@
         </div>
         <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
           <div class="md:grid md:grid-cols-1 md:gap-8">
-            <div class="mt-10 md:mt-0">
+            <div class="md:mt-0">
               <h3 class="text-sm font-semibold leading-6 text-white">Support</h3>
               <ul role="list" class="mt-6 space-y-4">
                 <li>
@@ -60,7 +60,22 @@
                 </li>
               </ul>
             </div>
+            <div class="mt-10 md:mt-0">
+              <h3 class="text-sm font-semibold leading-6 text-white">Legal</h3>
+              <ul role="list" class="mt-6 space-y-4">
+                <li>
+                  <a href="/legal/EULA" class="text-sm leading-6 text-gray-300 hover:text-white">EULA</a>
+                </li>
+                <li>
+                  <a href="/legal/Privacy-Policy" class="text-sm leading-6 text-gray-300 hover:text-white">Privacy</a>
+                </li>
+                <li>
+                  <a href="/legal/Terms-of-Use" class="text-sm leading-6 text-gray-300 hover:text-white">Terms</a>
+                </li>
+              </ul>
+            </div>
           </div>
+          
           <div class="md:grid md:grid-cols-2 md:gap-8">
             <div>
               <h3 class="text-sm font-semibold leading-6 text-white">Company</h3>
@@ -79,20 +94,6 @@
                 </li>
                 <li>
                   <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Partners</a>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-10 md:mt-0">
-              <h3 class="text-sm font-semibold leading-6 text-white">Legal</h3>
-              <ul role="list" class="mt-6 space-y-4">
-                <li>
-                  <a href="/legal/EULA" class="text-sm leading-6 text-gray-300 hover:text-white">EULA</a>
-                </li>
-                <li>
-                  <a href="/legal/Privacy-Policy" class="text-sm leading-6 text-gray-300 hover:text-white">Privacy</a>
-                </li>
-                <li>
-                  <a href="/legal/Terms-of-Use" class="text-sm leading-6 text-gray-300 hover:text-white">Terms</a>
                 </li>
               </ul>
             </div>

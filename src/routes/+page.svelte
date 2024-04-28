@@ -21,7 +21,8 @@
 	import SeeedTrackerImage from '$lib/images/seeedT1000.webp';
 	import CropWatchWaterMeterImage from '$lib/images/CropWatch_WaterMeter.png';
 	import AxisCameraImage from '$lib/images/axis-camera.jpg';
-	import WaterMeterImage from '$lib/images/waterMeter.jpg';
+	import SakuraFarmImage from '$lib/images/sakuraFarm.png';
+	import KokokaraImage from '$lib/images/kokokara.webp';
 	import MiyazakiFlagImage from '$lib/images/Flag_of_Miyazaki_Prefecture.png';
 	import { _ } from 'svelte-i18n';
 </script>
@@ -31,11 +32,11 @@
 		<Slides />
 	</div>
 	<div class="grid w-full">
-		<div class="bg-slate-300 p-16">
-			<h1 class="text-2xl text-center font-extrabold mb-4">
+		<div class="bg-slate-300 p-2 md:p-16">
+			<h1 class="text-4xl font-bold text-center mb-8">
 				{$_('mainTitle')}
 			</h1>
-			<div class="grid grid-flow-row grid-cols-3 gap-3">
+			<div class="grid grid-cols-3 gap-2 1md:gap-8">
 				<a href="https://www.nishimera.jp/" class="mx-auto flex flex-col">
 					<Shine>
 						<div class="flex items-center justify-center content-center gap-6">
@@ -51,7 +52,7 @@
 					<Shine>
 						<div class="flex items-center justify-center content-center gap-6">
 							<Tilt class="hover:scale-110 transition duration-500">
-								<img class="transition ease-out" src={SaitoCityFlagImage} alt="Saito City" />
+								<img class="mx-auto" src={SaitoCityFlagImage} alt="Miyazaki Perfecture" />
 							</Tilt>
 						</div>
 					</Shine>
@@ -69,27 +70,45 @@
 					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Miyazaki Perfecture</p>
 				</a>
 			</div>
+
+			<!-- <div class="grid grid-cols-2 gap-2 1md:gap-8">
+				<a href="http://yano-kougyou.co.jp/bio-gijyutsukenkyusyo/#service" class="mx-auto flex flex-col">
+					<Shine>
+						<div class="flex items-center justify-center content-center gap-6">
+							<Tilt class="hover:scale-110 transition duration-500">
+								<img class="mx-auto" src={SakuraFarmImage} alt="Sakura Farm" />
+							</Tilt>
+						</div>
+					</Shine>
+					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Nishimera City</p>
+				</a>
+
+				<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto flex flex-col">
+					<Shine>
+						<div class="flex items-center justify-center content-center gap-6">
+							<Tilt class="hover:scale-110 transition duration-500">
+								<img class="mx-auto" src={KokokaraImage} alt="Miyazaki Perfecture" />
+							</Tilt>
+						</div>
+					</Shine>
+					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Saito City</p>
+				</a>
+			</div> -->
 		</div>
-		<div class="md:mx-8 lg:mx-40">
-			<h1 class="font-extrabold text-gray-700 text-6xl ml-0 my-20 whitespace-nowrap">
+		<div class="md:mx-8 lg:mx-40 px-8">
+			<h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 mt-20 mb-10">
 				{$_('home.section1.title')}
 			</h1>
-			
-			<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 gap-5">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<div>
-					<!-- <h2 class="font-semibold text-2xl text-gray-800 mb-4">{$_('home.section1.subheader')}</h2> -->
-					<p class="text-slate-700 text-lg leading-7 mb-6 first-line:pl-4">
+					<p class="text-lg text-gray-700 mb-4 first-line:pl-4">
 						{$_('home.section1.text')}
 					</p>
-
-					<p class="text-slate-700 text-lg leading-7 mb-6 first-line:pl-4">
+					<p class="text-lg text-gray-700 mb-6 first-line:pl-4">
 						{$_('home.section1.text2')}
 					</p>
-
-					<!-- Stats component here, if you decide to include it -->
-
 					<button
-						class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg text-lg transition duration-150 ease-in-out flex items-center justify-center space-x-2"
+						class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition duration-300"
 					>
 						<svg
 							class="w-5 h-5"
@@ -111,33 +130,30 @@
 
 				<img
 					src={CropWatchAtGreenhouseImage}
-					class="rounded-xl m-4 elevation-20"
+					class="rounded-lg shadow-lg"
 					alt="CropWatch Install On Greenhouse"
 				/>
 			</div>
 		</div>
 	</div>
-	<div
-		class="mt-20"
-		style="background: rgb(2,0,36); background: linear-gradient(131deg, rgba(2,0,36,1) 0%, rgba(65,65,175,1) 65%, rgba(0,35,42,1) 100%);"
-	>
-		<div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 px-8 py-16 gap-10 md:gap-40">
+	<div class="mt-20 bg-gradient-to-br from-blue-900 to-teal-800 text-white">
+		<div class="grid grid-cols-1 md:grid-cols-2 px-8 py-16 gap-10 md:gap-20">
 			<img
 				src={TroubleShootingImage}
-				class="w-full rounded-lg elevation-20"
+				class="w-full rounded-lg shadow-lg"
 				alt="We are here for your questions"
 			/>
 			<div>
-				<h2 class="text-5xl text-white mb-8">{$_('home.section2.title')}</h2>
-				<p class="text-xl text-white">
+				<h2 class="text-4xl font-bold mb-6">
+					{$_('home.section2.title')}
+				</h2>
+				<p class="text-lg mb-4">
 					{$_('home.section2.text1')}
 				</p>
-
-				<p class="text-xl text-white pt-2">
+				<p class="text-lg mb-4">
 					{$_('home.section2.text2')}
 				</p>
-
-				<p class="text-xl text-white">
+				<p class="text-lg">
 					{$_('home.section2.text3')}
 				</p>
 			</div>
@@ -145,20 +161,23 @@
 	</div>
 
 	<div class="p-8 lg:p-16">
-		<h1 class="font-extrabold from-neutral-700 text-center text-6xl ml-0 lg:ml-8 mt-20 mb-5 p-2">
+		<h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 text-center mt-20 mb-8">
 			{$_('home.section3.title')}
 		</h1>
-		<h2 class="text-xl text-slate-700">
+		<h2 class="text-xl text-gray-700 text-center mb-8">
 			{$_('home.section3.text')}
 		</h2>
 
-		<div class="grid grid-flow-row grid-cols-3 gap-5 pt-4 md:px-20 xl:px-64">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
 				<Header
 					title={$_('home.agriWatchTitle')}
 					subheading={$_('home.agriWatchSubtitle')}
 					slot="header"
 				>
+				<div slot="title" class="text-md lg:text-2xl">
+					{$_('home.agriWatchTitle')}
+				</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiBarn} />
@@ -177,10 +196,12 @@
 
 			<Card class="flex elevation-10 hover:scale-105 transition ease-in-out duration-300">
 				<Header
-					title={$_('home.tempWatchTitle')}
 					subheading={$_('home.tempWatchSubtitle')}
 					slot="header"
 				>
+				<div slot="title" class="text-md lg:text-2xl">
+					{$_('home.tempWatchTitle')}
+				</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiSnowflake} />
@@ -199,10 +220,12 @@
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
 				<Header
-					title={$_('home.wellWatchTitle')}
 					subheading={$_('home.wellWatchSubtitle')}
 					slot="header"
 				>
+				<div slot="title" class="text-md lg:text-2xl">
+					{$_('home.wellWatchTitle')}
+				</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiWatch} />
@@ -214,10 +237,12 @@
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
 				<Header
-					title={$_('home.smartCityTitle')}
 					subheading={$_('home.smokeDetectorTitle')}
 					slot="header"
 				>
+				<div slot="title" class="text-md lg:text-2xl">
+					{$_('home.smartCityTitle')}
+				</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiFire} />
@@ -227,13 +252,14 @@
 				<img src={SmokeDetectorImage} slot="contents" alt="" />
 			</Card>
 
-
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
 				<Header
-				title={$_('home.smartCityTitle')}
 					subheading={$_('home.edgeAICameraTitle')}
 					slot="header"
 				>
+				<div slot="title" class="text-md lg:text-2xl">
+					{$_('home.smartCityTitle')}
+				</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiMeterElectric} />
@@ -243,13 +269,14 @@
 				<img src={AxisCameraImage} class="w-8/12 mx-auto mt-14" slot="contents" alt="" />
 			</Card>
 
-
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
 				<Header
-				title={$_('home.smartCityTitle')}
 					subheading={$_('home.assetTrackingTitle')}
 					slot="header"
 				>
+				<div slot="title" class="text-md lg:text-2xl">
+					{$_('home.smartCityTitle')}
+				</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiPackage} />
@@ -265,21 +292,17 @@
 					/>
 				</div>
 			</Card>
-
-			
-
-			
 		</div>
 	</div>
 
-	<div class="flex mb-8 bg-teal-500 flex-col align-middle p-4">
-		<h1 class="font-extrabold text-white text-center text-6xl ml-0 lg:ml-8 mt-20 mb-5 p-2">
+	<div class="bg-teal-600 text-white flex flex-col items-center p-8">
+		<h1 class="text-4xl font-bold mb-6">
 			{$_('home.contactUsTitle')}
 		</h1>
-		<div class="mx-auto">
-			<button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg text-lg transition duration-150 ease-in-out">
-				{$_('home.contactUsButton')}
-			</button>
-		</div>
+		<button
+			class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
+		>
+			{$_('home.contactUsButton')}
+		</button>
 	</div>
 </main>

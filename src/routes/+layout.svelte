@@ -89,9 +89,9 @@
 					</div>
 				</SelectField> -->
 			</Tooltip>
-			<Tooltip title="CropWatch Web Store" placement="bottom" offset={2}>
+			<!-- <Tooltip title="CropWatch Web Store" placement="bottom" offset={2}>
 				<Button icon={mdiStore} href="#" class="p-2" target="_blank" />
-			</Tooltip>
+			</Tooltip> -->
 
 			<Tooltip title="Open LinkedIn" placement="bottom" offset={2}>
 				<Button
@@ -119,18 +119,18 @@
 							<Icon data={mdiAccountLockOpen} />
 							App Login Selection
 						</div>
-						<div class="grid grid-cols-3 grid-rows-2 h-40 p-2 gap-2">
+						<div class="grid grid-cols-1 grid-rows-2 h-40 p-2 gap-2">
 							<a href="https://app.cropwatch.io/auth/login">
 								<div
 									class="w-fit h-fit rounded-xl bg-emerald-900 p-2 hover:scale-105"
 									style="min-width: 30px min-height: 30px;"
 								>
 									<img src={CropWatchSVG} class="w-10 mx-auto" />
-									<p class="text-center text-xs mt-1 text-slate-300">CropWatch</p>
+									<p class="text-center text-xs mt-1 text-slate-300">Agri-Watch</p>
 								</div>
 							</a>
 
-							<div
+							<!-- <div
 								class="w-fit h-fit rounded-xl bg-blue-900 p-2 hover:scale-105"
 								style="min-width: 30px min-height: 30px;"
 							>
@@ -144,7 +144,7 @@
 							>
 								<img src={CropWatchSVG} class="w-10 mx-auto" />
 								<p class="text-center text-xs mt-1 text-black-300">FireWatch</p>
-							</div>
+							</div> -->
 						</div>
 						<div slot="actions">
 							<Button variant="fill" color="primary">Close</Button>
