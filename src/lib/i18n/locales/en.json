@@ -1,0 +1,33 @@
+{
+  "mainTitle": "Who we work with",
+  "home": {
+    "section1": {
+      "title": "Reliable Data Connectivity Where Conventional Signals Fail",
+      "text": "At CropWatch, we specialize in harnessing the power of LoRaWAN technology to deliver robust data connectivity in environments where traditional signal technologies falter. Whether it's remote agricultural fields, metal-clad industrial buildings, or any challenging location, our sensors ensure uninterrupted data transmission around the clock. Unlike WiFi or LTE, which struggle with signal penetration and stability in such areas, our solutions thrive in the most demanding conditions.",
+      "text2": "Our devices are not only innovative in their reach but also in their operational efficiency. Each sensor is battery-powered with an impressive lifespan of up to 10 years, eliminating the need for frequent replacements and reducing operational costs. Designed for low to no maintenance, our devices ensure that you won't need to renovate or alter your installation sites. This plug-and-play approach is perfect for businesses looking for hassle-free installations with minimal downtime.",
+      "demo": "Real-Time / Real Data Demo, Click HERE! (Coming soon!)"
+    },
+    "section2": {
+      "title": "We're Here to Help!",
+      "text1": "Our commitment to your success is evident from the first consultation to the final implementation. Our team of experts is dedicated to ensuring that every aspect of your LoRaWAN deployment is seamless, efficient, and fully optimized. Here's how we support you every step of the way. Understanding that each installation is unique, we begin by helping you size your system appropriately. Our expertise allows us to evaluate your specific needs and environmental challenges, ensuring that we propose the most effective configuration of gateways and sensors.",
+      "text2": "Before we start a job, we conduct extensive field tests to validate the functionality and efficiency of the network. This step is crucial to guarantee that your system operates flawlessly from day one.",
+      "text3": "Once operational, our system not only collects data reliably but also ensures that it is accessible and actionable. We provide comprehensive data management solutions that allow you to leverage this information to make informed decisions for your business."
+    },
+    "section3": {
+      "title": "Our products and services",
+      "text": "Crafted with precision in Japan, our devices are built to the highest standards of quality to withstand adverse conditions. They are particularly resilient against power losses, electromagnetic interference (EMI), and other disturbances that commonly disrupt other types of signals. Each device features a conformal coating on its PCB, safeguarding the electronics from environmental factors and ensuring reliable operation throughout its lifecycle."
+    },
+    "agriWatchTitle": "Agri-Watch",
+    "agriWatchSubtitle": "Smart Farming",
+    "tempWatchTitle": "Temp-Watch",
+    "tempWatchSubtitle": "Temperature Management",
+    "wellWatchTitle": "Well-Watch",
+    "wellWatchSubtitle": "Worker Safety",
+    "smartCityTitle": "Smart City",
+    "smokeDetectorTitle": "Smoke Detector",
+    "edgeAICameraTitle": "Pedestrian / Vehicle Counting",
+    "assetTrackingTitle": "Asset Tracking",
+    "contactUsTitle": "Want to Know More?",
+    "contactUsButton": "✉️ Send us a message today!"
+  }
+}

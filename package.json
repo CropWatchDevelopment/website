@@ -49,6 +49,7 @@
 		"@types/reveal.js": "^4.4.8",
 		"dotenv": "16.4.2",
 		"reveal.js": "^5.0.4",
+		"svelte-i18n": "^4.0.0",
 		"typeit": "5.3.0"
 	}
 }

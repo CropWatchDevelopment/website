@@ -25,7 +25,6 @@
 		mdiStore
 	} from '@mdi/js';
 
-	import { t, locale, locales } from '$lib/translations';
 	import '../app.postcss';
 	import Footer from '$lib/components/Footer.svelte';
 	import CropWatchSVG from '$lib/images/cropwatch.svg';
@@ -68,7 +67,7 @@
 					{/each}
 				</select> -->
 
-				<SelectField
+				<!-- <SelectField
 					options={$locales.map((m) => {
 						return { label: m, value: m };
 					})}
@@ -88,7 +87,7 @@
 							{option.label}
 						</MenuItem>
 					</div>
-				</SelectField>
+				</SelectField> -->
 			</Tooltip>
 			<Tooltip title="CropWatch Web Store" placement="bottom" offset={2}>
 				<Button icon={mdiStore} href="#" class="p-2" target="_blank" />
