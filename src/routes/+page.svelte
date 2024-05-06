@@ -168,7 +168,7 @@
 			{$_('home.section3.text')}
 		</h2>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4 lg:mx-40">
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
 				<Header
 					title={$_('home.agriWatchTitle')}
