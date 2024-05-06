@@ -54,7 +54,7 @@
 </script>
 
 <AppLayout navWidth={0} classes={{ root: 'elevation-0' }}>
-	<AppBar>
+	<AppBar menuIcon={null}>
 		<div slot="title" class="flex">
 			<img src={CropWatchSVG} class="mr-3 h-6 sm:h-9" alt="CropWatch Company Icon" />
 			<span class="hidden md:inline-block translate-y-1/4">CropWatch</span>

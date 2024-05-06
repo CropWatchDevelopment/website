@@ -88,7 +88,7 @@ importers:
         specifier: ^3.7.0
         version: 3.7.0(postcss-load-config@5.1.0(jiti@1.21.0)(postcss@8.4.38))(postcss@8.4.38)(svelte@4.2.15)
       svelte-ux:
-        specifier: latest
+        specifier: ^0.62.9
         version: 0.62.9(postcss-load-config@5.1.0(jiti@1.21.0)(postcss@8.4.38))(postcss@8.4.38)(svelte@4.2.15)
       sveltekit-i18n:
         specifier: ^2.4.2

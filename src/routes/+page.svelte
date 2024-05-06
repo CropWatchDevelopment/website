@@ -1,30 +1,46 @@
 <script lang="ts">
-	import { Button, Card, Header, Avatar, Icon, Shine, Tilt } from 'svelte-ux';
+	import { Button, Card, Header, Avatar, Icon, Shine, Tilt, Dialog, TextField } from 'svelte-ux';
 	import Slides from '$lib/deck/Slides.svelte';
 	import {
 		mdiBarn,
 		mdiBox,
+		mdiClose,
+		mdiEmail,
 		mdiFire,
+		mdiForum,
+		mdiGithub,
 		mdiInformation,
+		mdiLinkedin,
 		mdiMeterElectric,
 		mdiPackage,
+		mdiPhone,
+		mdiSend,
 		mdiSnowflake,
-		mdiWatch
+		mdiStackOverflow,
+		mdiWatch,
+		mdiWeb
 	} from '@mdi/js';
 	import SaitoCityFlagImage from '$lib/images/SaitoCity.png';
 	import NishimeraCityFlagImage from '$lib/images/NishimeraCity.jpg';
 	import CropWatchAtGreenhouseImage from '$lib/images/CropWatch-installed-greenhouse.jpg';
 	import TroubleShootingImage from '$lib/images/troubleShooting.jpg';
 	import SmokeDetectorImage from '$lib/images/smoke-detector.png';
-	import SmartWatchImage from '$lib/images/lorawatch.webp';
-	import ColdChainSensorImage from '$lib/images/CropWatch TH Sensor.png';
 	import SeeedTrackerImage from '$lib/images/seeedT1000.webp';
-	import CropWatchWaterMeterImage from '$lib/images/CropWatch_WaterMeter.png';
 	import AxisCameraImage from '$lib/images/axis-camera.jpg';
-	import SakuraFarmImage from '$lib/images/sakuraFarm.png';
-	import KokokaraImage from '$lib/images/kokokara.webp';
+	import farmingImage from '$lib/images/tractor-spraying-pesticides-soybean-green-field-generative-ai_849906-11911.avif';
+	import coldChain from '$lib/images/cold-chain.webp';
+	import workerSafetyImage from '$lib/images/workerSafety.webp';
+	import TractorImage from '$lib/images/tractor.svg';
+	import kevin from '$lib/images/kevin.jpg';
+	import sayaka from '$lib/images/sayaka.jpg';
+	import jose from '$lib/images/jose.jpg';
+
 	import MiyazakiFlagImage from '$lib/images/Flag_of_Miyazaki_Prefecture.png';
 	import { _ } from 'svelte-i18n';
+
+	let openEmailDialog: boolean = false;
+	let messageValue: string = '';
+	let emailValue: string = '';
 </script>
 
 <main class="flex flex-col overflow-visible">
@@ -70,44 +86,22 @@
 					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Miyazaki Perfecture</p>
 				</a>
 			</div>
-
-			<!-- <div class="grid grid-cols-2 gap-2 1md:gap-8">
-				<a href="http://yano-kougyou.co.jp/bio-gijyutsukenkyusyo/#service" class="mx-auto flex flex-col">
-					<Shine>
-						<div class="flex items-center justify-center content-center gap-6">
-							<Tilt class="hover:scale-110 transition duration-500">
-								<img class="mx-auto" src={SakuraFarmImage} alt="Sakura Farm" />
-							</Tilt>
-						</div>
-					</Shine>
-					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Nishimera City</p>
-				</a>
-
-				<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto flex flex-col">
-					<Shine>
-						<div class="flex items-center justify-center content-center gap-6">
-							<Tilt class="hover:scale-110 transition duration-500">
-								<img class="mx-auto" src={KokokaraImage} alt="Miyazaki Perfecture" />
-							</Tilt>
-						</div>
-					</Shine>
-					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Saito City</p>
-				</a>
-			</div> -->
 		</div>
 		<div class="md:mx-8 lg:mx-40 px-8">
 			<h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 mt-20 mb-10">
 				{$_('home.section1.title')}
 			</h1>
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-				<div>
+				<div class="flex flex-col">
 					<p class="text-lg text-gray-700 mb-4 first-line:pl-4">
 						{$_('home.section1.text')}
 					</p>
 					<p class="text-lg text-gray-700 mb-6 first-line:pl-4">
 						{$_('home.section1.text2')}
 					</p>
+					<span class="flex-1" />
 					<button
+						disabled
 						class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition duration-300"
 					>
 						<svg
@@ -143,7 +137,7 @@
 				class="w-full rounded-lg shadow-lg"
 				alt="We are here for your questions"
 			/>
-			<div>
+			<div class="flex flex-col">
 				<h2 class="text-4xl font-bold mb-6">
 					{$_('home.section2.title')}
 				</h2>
@@ -156,6 +150,58 @@
 				<p class="text-lg">
 					{$_('home.section2.text3')}
 				</p>
+
+				<span class="flex-1" />
+				<div>
+					<h2 class="text-4xl mb-2">Our Amazing team:</h2>
+					<div class="flex flex-row gap-4">
+						<div class="flex flex-col items-center">
+							<img src={kevin} alt="Kevin Cantrell" class="w-24 h-24" />
+							<p class="text-center font-light mt-4">Kevin Cantrell</p>
+							<p class="text-center font-light">Founder/Developer</p>
+							<p class="text-center font-light">
+								<a href="https://www.linkedin.com/in/cropwatch/" target="_blank">
+									<Icon data={mdiLinkedin} class="text-blue-500" />
+								</a>
+								<a href="https://github.com/kevin192291" target="_blank">
+									<Icon data={mdiGithub} class="text-black" />
+								</a>
+								<a href="https://stackoverflow.com/users/3740673/kevin192291" target="_blank">
+									<Icon data={mdiStackOverflow} class="text-black" />
+								</a>
+								<a href="https://kevincantrell.x" target="_blank">
+									<Icon data={mdiWeb} class="text-yellow-500" />
+								</a>
+							</p>
+						</div>
+						<div class="flex flex-col items-center">
+							<img src={sayaka} alt="Sayaka Cantrell" class="w-24 h-24" />
+							<p class="text-center font-light mt-4">Sayaka Cantrell</p>
+							<p class="text-center font-light">Co-Founder/Business OPs</p>
+							<p class="text-center font-light">
+								<a href="https://www.linkedin.com/in/sayaka-ikemizu-694b17276/" target="_blank">
+									<Icon data={mdiLinkedin} class="text-blue-500" />
+								</a>
+							</p>
+						</div>
+						<div class="flex flex-col items-center">
+							<img src={jose} alt="Jose Ramiro Zuñiga" class="w-24 h-24" />
+							<p class="text-center font-light mt-4">Jose Ramiro Zuñiga</p>
+							<p class="text-center font-light">UI/UX Developer</p>
+							<p class="text-center font-light">
+								<a href="https://www.linkedin.com/in/jose-zuniga-115a68155/" target="_blank">
+									<Icon data={mdiLinkedin} class="text-blue-500" />
+								</a>
+								<a href="https://github.com/jramiroz98" target="_blank">
+									<Icon data={mdiGithub} class="text-black" />
+								</a>
+								<a href="https://jramiroz98.github.io/my-portfolio/" target="_blank">
+									<Icon data={mdiWeb} class="text-yellow-500" />
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -175,9 +221,9 @@
 					subheading={$_('home.agriWatchSubtitle')}
 					slot="header"
 				>
-				<div slot="title" class="text-md lg:text-2xl">
-					{$_('home.agriWatchTitle')}
-				</div>
+					<div slot="title" class="text-md lg:text-2xl">
+						{$_('home.agriWatchTitle')}
+					</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiBarn} />
@@ -186,22 +232,19 @@
 				</Header>
 				<div slot="contents" class="flex h-full">
 					<img
-						src={CropWatchWaterMeterImage}
+						src={farmingImage}
 						alt=""
-						class="flex mx-auto self-center"
+						class="flex w-full h-full rounded-lg"
 						style="max-height: 220px;"
 					/>
 				</div>
 			</Card>
 
 			<Card class="flex elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					subheading={$_('home.tempWatchSubtitle')}
-					slot="header"
-				>
-				<div slot="title" class="text-md lg:text-2xl">
-					{$_('home.tempWatchTitle')}
-				</div>
+				<Header subheading={$_('home.tempWatchSubtitle')} slot="header">
+					<div slot="title" class="text-md lg:text-2xl">
+						{$_('home.tempWatchTitle')}
+					</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiSnowflake} />
@@ -210,39 +253,33 @@
 				</Header>
 				<div slot="contents" class="flex h-full">
 					<img
-						src={ColdChainSensorImage}
+						src={coldChain}
 						alt=""
-						class="flex mx-auto self-center"
+						class="flex w-full h-full rounded-lg"
 						style="max-height: 220px;"
 					/>
 				</div>
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					subheading={$_('home.wellWatchSubtitle')}
-					slot="header"
-				>
-				<div slot="title" class="text-md lg:text-2xl">
-					{$_('home.wellWatchTitle')}
-				</div>
+				<Header subheading={$_('home.wellWatchSubtitle')} slot="header">
+					<div slot="title" class="text-md lg:text-2xl">
+						{$_('home.wellWatchTitle')}
+					</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiWatch} />
 						</Avatar>
 					</div>
 				</Header>
-				<img src={SmartWatchImage} slot="contents" alt="" />
+				<img src={workerSafetyImage} slot="contents" alt="" class=" w-full h-full rounded-lg" />
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					subheading={$_('home.smokeDetectorTitle')}
-					slot="header"
-				>
-				<div slot="title" class="text-md lg:text-2xl">
-					{$_('home.smartCityTitle')}
-				</div>
+				<Header subheading={$_('home.smokeDetectorTitle')} slot="header">
+					<div slot="title" class="text-md lg:text-2xl">
+						{$_('home.smartCityTitle')}
+					</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiFire} />
@@ -253,13 +290,10 @@
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					subheading={$_('home.edgeAICameraTitle')}
-					slot="header"
-				>
-				<div slot="title" class="text-md lg:text-2xl">
-					{$_('home.smartCityTitle')}
-				</div>
+				<Header subheading={$_('home.edgeAICameraTitle')} slot="header">
+					<div slot="title" class="text-md lg:text-2xl">
+						{$_('home.smartCityTitle')}
+					</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiMeterElectric} />
@@ -270,13 +304,10 @@
 			</Card>
 
 			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					subheading={$_('home.assetTrackingTitle')}
-					slot="header"
-				>
-				<div slot="title" class="text-md lg:text-2xl">
-					{$_('home.smartCityTitle')}
-				</div>
+				<Header subheading={$_('home.assetTrackingTitle')} slot="header">
+					<div slot="title" class="text-md lg:text-2xl">
+						{$_('home.smartCityTitle')}
+					</div>
 					<div slot="avatar">
 						<Avatar class="bg-primary text-primary-content font-bold">
 							<Icon data={mdiPackage} />
@@ -301,8 +332,41 @@
 		</h1>
 		<button
 			class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
+			on:click={() => (openEmailDialog = true)}
 		>
 			{$_('home.contactUsButton')}
 		</button>
 	</div>
 </main>
+
+<Dialog bind:open={openEmailDialog}>
+	<div slot="title">
+		<Icon data={mdiForum} />
+		Lets get in touch!
+	</div>
+	<form>
+		<div class="flex flex-col gap-4 p-4 w-full">
+			<TextField label="E-Mail *" type="email" name="email" bind:value={emailValue}>
+				<div slot="prepend">
+					<Icon data={mdiEmail} class="text-surface-content/50 mr-2" />
+				</div>
+			</TextField>
+			<TextField label="Telephone Number" type="text" name="phone">
+				<div slot="prepend">
+					<Icon data={mdiPhone} class="text-surface-content/50 mr-2" />
+				</div>
+			</TextField>
+			<TextField label="Message *" multiline required bind:value={messageValue} />
+		</div>
+
+		<div class="w-full flex flex-row justify-between p-4">
+			<Button variant="fill" icon={mdiClose} color="primary">Close</Button>
+			<Button
+				variant="fill"
+				icon={mdiSend}
+				color="success"
+				disabled={messageValue == '' || emailValue == '' || messageValue.length < 10}>SEND!</Button
+			>
+		</div>
+	</form>
+</Dialog>
