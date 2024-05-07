@@ -57,7 +57,7 @@
 					dataLayer.push(arguments);
 				}
 				gtag('js', new Date());
-				gtag('config', G-V65DJ4TTV1);
+				gtag('config', 'G-V65DJ4TTV1');
 			}
 			console.log('Google analytics setup successfull');
 		} catch (err) {
