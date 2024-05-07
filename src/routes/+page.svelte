@@ -165,12 +165,12 @@
 
 				<span class="flex-1" />
 				<div>
-					<h2 class="text-4xl mb-2">Our Amazing team:</h2>
+					<h2 class="text-4xl mb-2">{$_('home.our team')}:</h2>
 					<div class="flex flex-row gap-5 flex-wrap justify-center">
 						<div class="flex flex-col items-center">
 							<img src={kevin} alt="Kevin Cantrell" class="w-24 h-24 rounded" />
 							<p class="text-center font-light mt-4">Kevin Cantrell</p>
-							<p class="text-center font-light">Founder/Developer</p>
+							<p class="text-center font-light">{$_('home.kevin title')}</p>
 							<p class="text-center font-light">
 								<a href="https://www.linkedin.com/in/cropwatch/" target="_blank">
 									<Icon data={mdiLinkedin} class="text-blue-500" />
@@ -189,7 +189,7 @@
 						<div class="flex flex-col items-center">
 							<img src={sayaka} alt="Sayaka Cantrell" class="w-24 h-24 rounded" />
 							<p class="text-center font-light mt-4">{$_('home.sayaka')}</p>
-							<p class="text-center font-light">Co-Founder/Business OPs</p>
+							<p class="text-center font-light">{$_('home.sayaka title')}</p>
 							<p class="text-center font-light">
 								<a href="https://www.linkedin.com/in/sayaka-ikemizu-694b17276/" target="_blank">
 									<Icon data={mdiLinkedin} class="text-blue-500" />
@@ -199,7 +199,7 @@
 						<div class="flex flex-col items-center">
 							<img src={jose} alt="Jose Ramiro Zuñiga" class="w-24 h-24 rounded" />
 							<p class="text-center font-light mt-4">Jose Ramiro Zuñiga</p>
-							<p class="text-center font-light">UI/UX Developer</p>
+							<p class="text-center font-light">{$_('home.jose title')}</p>
 							<p class="text-center font-light">
 								<a href="https://www.linkedin.com/in/jose-zuniga-115a68155/" target="_blank">
 									<Icon data={mdiLinkedin} class="text-blue-500" />
@@ -215,7 +215,7 @@
 						<div class="flex flex-col items-center">
 							<img src={sigurd} alt="Sigurd Øyen" class="w-24 h-24 rounded" />
 							<p class="text-center font-light mt-4">Sigurd Øyen</p>
-							<p class="text-center font-light">Electronics Engineer</p>
+							<p class="text-center font-light">{$_('home.sigurd title')}</p>
 							<p class="text-center font-light">
 								<a href="https://www.linkedin.com/in/sigurd-%C3%B8yen-78688899/" target="_blank">
 									<Icon data={mdiLinkedin} class="text-blue-500" />
@@ -225,7 +225,7 @@
 						<div class="flex flex-col items-center">
 							<img src={abay} alt="Sigurd Øyen" class="w-24 h-24 rounded" />
 							<p class="text-center font-light mt-4">Abay Bektursun</p>
-							<p class="text-center font-light">Autonomous AI Expert</p>
+							<p class="text-center font-light">{$_('home.abay title')}</p>
 							<!-- <p class="text-center font-light">
 								<a href="" target="_blank">
 									<Icon data={mdiLinkedin} class="text-blue-500" />
