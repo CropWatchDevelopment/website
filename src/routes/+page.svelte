@@ -61,18 +61,18 @@
 							</Tilt>
 						</div>
 					</Shine>
-					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Nishimera City</p>
+					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">{$_('home.nisimera')}</p>
 				</a>
 
 				<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto flex flex-col">
 					<Shine>
 						<div class="flex items-center justify-center content-center gap-6">
 							<Tilt class="hover:scale-110 transition duration-500">
-								<img class="mx-auto" src={SaitoCityFlagImage} alt="Miyazaki Perfecture" />
+								<img class="mx-auto" src={SaitoCityFlagImage} alt="Saito City" />
 							</Tilt>
 						</div>
 					</Shine>
-					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Saito City</p>
+					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">{$_('home.saito')}</p>
 				</a>
 
 				<a href="https://www.nishimera.jp/" class="mx-auto flex flex-col">
@@ -83,7 +83,7 @@
 							</Tilt>
 						</div>
 					</Shine>
-					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">Miyazaki Perfecture</p>
+					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">{$_('home.miyazaki')}</p>
 				</a>
 			</div>
 		</div>
