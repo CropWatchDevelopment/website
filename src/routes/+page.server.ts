@@ -1,6 +1,5 @@
 import nodemailer from 'nodemailer';
 import dotenv from "dotenv";
-import Mail from 'nodemailer/lib/mailer';
 dotenv.config();
 
 
@@ -27,7 +26,7 @@ export const actions = {
 
 
 
-export const sendMail = async (text: string) => {
+const sendMail = async (text: string) => {
     const transporter = nodemailer.createTransport({
         host: 'smtp.office365.com',
         secure: false,
