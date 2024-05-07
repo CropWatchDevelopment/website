@@ -34,9 +34,21 @@
 	import kevin from '$lib/images/kevin.jpg';
 	import sayaka from '$lib/images/sayaka.jpg';
 	import jose from '$lib/images/jose.jpg';
+	import sigurd from '$lib/images/sigurd.jpg';
+	import abay from '$lib/images/abay.png';
 
 	import MiyazakiFlagImage from '$lib/images/Flag_of_Miyazaki_Prefecture.png';
 	import { _ } from 'svelte-i18n';
+	import { analyticsStore } from '$lib/components/analytics/analyticsStore';
+	import { browser } from '$app/environment';
+
+	const new_event = {
+		id: browser ? crypto.randomUUID() : 'sse',
+		data: {}, //anything you want to send to GA,
+		event: 'page-access',
+		type: 'event'
+	};
+	analyticsStore.update((existing_events) => [...existing_events, new_event]);
 
 	let openEmailDialog: boolean = false;
 	let messageValue: string = '';
@@ -154,9 +166,9 @@
 				<span class="flex-1" />
 				<div>
 					<h2 class="text-4xl mb-2">Our Amazing team:</h2>
-					<div class="flex flex-row gap-4">
+					<div class="flex flex-row gap-5 flex-wrap justify-center">
 						<div class="flex flex-col items-center">
-							<img src={kevin} alt="Kevin Cantrell" class="w-24 h-24" />
+							<img src={kevin} alt="Kevin Cantrell" class="w-24 h-24 rounded" />
 							<p class="text-center font-light mt-4">Kevin Cantrell</p>
 							<p class="text-center font-light">Founder/Developer</p>
 							<p class="text-center font-light">
@@ -175,7 +187,7 @@
 							</p>
 						</div>
 						<div class="flex flex-col items-center">
-							<img src={sayaka} alt="Sayaka Cantrell" class="w-24 h-24" />
+							<img src={sayaka} alt="Sayaka Cantrell" class="w-24 h-24 rounded" />
 							<p class="text-center font-light mt-4">Sayaka Cantrell</p>
 							<p class="text-center font-light">Co-Founder/Business OPs</p>
 							<p class="text-center font-light">
@@ -185,7 +197,7 @@
 							</p>
 						</div>
 						<div class="flex flex-col items-center">
-							<img src={jose} alt="Jose Ramiro Zuñiga" class="w-24 h-24" />
+							<img src={jose} alt="Jose Ramiro Zuñiga" class="w-24 h-24 rounded" />
 							<p class="text-center font-light mt-4">Jose Ramiro Zuñiga</p>
 							<p class="text-center font-light">UI/UX Developer</p>
 							<p class="text-center font-light">
@@ -199,6 +211,26 @@
 									<Icon data={mdiWeb} class="text-yellow-500" />
 								</a>
 							</p>
+						</div>
+						<div class="flex flex-col items-center">
+							<img src={sigurd} alt="Sigurd Øyen" class="w-24 h-24 rounded" />
+							<p class="text-center font-light mt-4">Sigurd Øyen</p>
+							<p class="text-center font-light">Electronics Engineer</p>
+							<p class="text-center font-light">
+								<a href="https://www.linkedin.com/in/sigurd-%C3%B8yen-78688899/" target="_blank">
+									<Icon data={mdiLinkedin} class="text-blue-500" />
+								</a>
+							</p>
+						</div>
+						<div class="flex flex-col items-center">
+							<img src={abay} alt="Sigurd Øyen" class="w-24 h-24 rounded" />
+							<p class="text-center font-light mt-4">Abay Bektursun</p>
+							<p class="text-center font-light">Autonomous AI Expert</p>
+							<!-- <p class="text-center font-light">
+								<a href="" target="_blank">
+									<Icon data={mdiLinkedin} class="text-blue-500" />
+								</a>
+							</p> -->
 						</div>
 					</div>
 				</div>
@@ -344,7 +376,7 @@
 		<Icon data={mdiForum} />
 		Lets get in touch!
 	</div>
-	<form>
+	<form method="POST" action="?/handleContactRequestMessage">
 		<div class="flex flex-col gap-4 p-4 w-full">
 			<TextField label="E-Mail *" type="email" name="email" bind:value={emailValue}>
 				<div slot="prepend">
@@ -356,13 +388,23 @@
 					<Icon data={mdiPhone} class="text-surface-content/50 mr-2" />
 				</div>
 			</TextField>
-			<TextField label="Message *" multiline required bind:value={messageValue} />
+			<TextField
+				label="Message *"
+				name="message"
+				id="message"
+				multiline
+				required
+				bind:value={messageValue}
+			/>
 		</div>
 
 		<div class="w-full flex flex-row justify-between p-4">
 			<Button variant="fill" icon={mdiClose} color="primary">Close</Button>
 			<Button
-				variant="fill"
+				type="submit"
+				variant={messageValue == '' || emailValue == '' || messageValue.length < 10
+					? 'outline'
+					: 'fill'}
 				icon={mdiSend}
 				color="success"
 				disabled={messageValue == '' || emailValue == '' || messageValue.length < 10}>SEND!</Button

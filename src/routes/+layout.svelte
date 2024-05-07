@@ -24,6 +24,7 @@
 		mdiLinkedin,
 		mdiStore
 	} from '@mdi/js';
+	import Analytics from '$lib/components/analytics/Analytics.svelte';
 
 	import '../app.postcss';
 	import Footer from '$lib/components/Footer.svelte';
@@ -158,5 +159,6 @@
 	<div>
 		<slot />
 		<Footer />
+		<Analytics />
 	</div>
 </AppLayout>
