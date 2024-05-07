@@ -36,9 +36,10 @@
 	import jose from '$lib/images/jose.jpg';
 	import sigurd from '$lib/images/sigurd.jpg';
 	import abay from '$lib/images/abay.png';
+	import tractor from '$lib/images/tractor.svg';
 
 	import MiyazakiFlagImage from '$lib/images/Flag_of_Miyazaki_Prefecture.png';
-	import { _ } from 'svelte-i18n';
+	import { _, isLoading } from 'svelte-i18n';
 	import { analyticsStore } from '$lib/components/analytics/analyticsStore';
 	import { browser } from '$app/environment';
 
@@ -53,115 +54,125 @@
 	let openEmailDialog: boolean = false;
 	let messageValue: string = '';
 	let emailValue: string = '';
+
 </script>
 
-<main class="flex flex-col overflow-visible">
-	<div class="w-full">
-		<Slides />
-	</div>
-	<div class="grid w-full">
-		<div class="bg-slate-300 p-2 md:p-16">
-			<h1 class="text-4xl font-bold text-center mb-8">
-				{$_('mainTitle')}
-			</h1>
-			<div class="grid grid-cols-3 gap-2 1md:gap-8">
-				<a href="https://www.nishimera.jp/" class="mx-auto flex flex-col">
-					<Shine>
-						<div class="flex items-center justify-center content-center gap-6">
-							<Tilt class="hover:scale-110 transition duration-500">
-								<img class="mx-auto" src={NishimeraCityFlagImage} alt="Nishimera City" />
-							</Tilt>
-						</div>
-					</Shine>
-					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">{$_('home.nisimera')}</p>
-				</a>
-
-				<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto flex flex-col">
-					<Shine>
-						<div class="flex items-center justify-center content-center gap-6">
-							<Tilt class="hover:scale-110 transition duration-500">
-								<img class="mx-auto" src={SaitoCityFlagImage} alt="Saito City" />
-							</Tilt>
-						</div>
-					</Shine>
-					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">{$_('home.saito')}</p>
-				</a>
-
-				<a href="https://www.nishimera.jp/" class="mx-auto flex flex-col">
-					<Shine>
-						<div class="flex items-center justify-center content-center gap-6">
-							<Tilt class="hover:scale-110 transition duration-500">
-								<img class="mx-auto" src={MiyazakiFlagImage} alt="Miyazaki Perfecture" />
-							</Tilt>
-						</div>
-					</Shine>
-					<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">{$_('home.miyazaki')}</p>
-				</a>
-			</div>
+{#if $isLoading}
+<div class="flex flex-col w-screen h-screen text-center justify-center">
+	<img src={tractor} alt="loading..." class="w-14 mx-auto" /> loading translations...
+</div>
+{:else}
+	<main class="flex flex-col overflow-visible">
+		<div class="w-full">
+			<Slides />
 		</div>
-		<div class="md:mx-8 lg:mx-40 px-8">
-			<h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 mt-20 mb-10">
-				{$_('home.section1.title')}
-			</h1>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-				<div class="flex flex-col">
-					<p class="text-lg text-gray-700 mb-4 first-line:pl-4">
-						{$_('home.section1.text')}
-					</p>
-					<p class="text-lg text-gray-700 mb-6 first-line:pl-4">
-						{$_('home.section1.text2')}
-					</p>
-					<span class="flex-1" />
-					<button
-						disabled
-						class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition duration-300"
-					>
-						<svg
-							class="w-5 h-5"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							xmlns="http://www.w3.org/2000/svg"
-							><path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M13 16h-1v-4h-1m2-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-							></path></svg
-						>
+		<div class="grid w-full">
+			<div class="bg-slate-300 p-2 md:p-16">
+				<h1 class="text-4xl font-bold text-center mb-8">
+					{$_('mainTitle')}
+				</h1>
+				<div class="grid grid-cols-3 gap-2 1md:gap-8">
+					<a href="https://www.nishimera.jp/" class="mx-auto flex flex-col">
+						<Shine>
+							<div class="flex items-center justify-center content-center gap-6">
+								<Tilt class="hover:scale-110 transition duration-500">
+									<img class="mx-auto" src={NishimeraCityFlagImage} alt="Nishimera City" />
+								</Tilt>
+							</div>
+						</Shine>
+						<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">
+							{$_('home.nisimera')}
+						</p>
+					</a>
 
-						<span>{$_('home.section1.demo')}</span>
-					</button>
+					<a href="http://www.city.saito.miyazaki.jp/" class="mx-auto flex flex-col">
+						<Shine>
+							<div class="flex items-center justify-center content-center gap-6">
+								<Tilt class="hover:scale-110 transition duration-500">
+									<img class="mx-auto" src={SaitoCityFlagImage} alt="Saito City" />
+								</Tilt>
+							</div>
+						</Shine>
+						<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">{$_('home.saito')}</p>
+					</a>
+
+					<a href="https://www.nishimera.jp/" class="mx-auto flex flex-col">
+						<Shine>
+							<div class="flex items-center justify-center content-center gap-6">
+								<Tilt class="hover:scale-110 transition duration-500">
+									<img class="mx-auto" src={MiyazakiFlagImage} alt="Miyazaki Perfecture" />
+								</Tilt>
+							</div>
+						</Shine>
+						<p class="text-center mt-3 text-cyan-950 text-xl font-semibold">
+							{$_('home.miyazaki')}
+						</p>
+					</a>
 				</div>
+			</div>
+			<div class="md:mx-8 lg:mx-40 px-8">
+				<h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 mt-20 mb-10">
+					{$_('home.section1.title')}
+				</h1>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+					<div class="flex flex-col">
+						<p class="text-lg text-gray-700 mb-4 first-line:pl-4">
+							{$_('home.section1.text')}
+						</p>
+						<p class="text-lg text-gray-700 mb-6 first-line:pl-4">
+							{$_('home.section1.text2')}
+						</p>
+						<span class="flex-1" />
+						<button
+							disabled
+							class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition duration-300"
+						>
+							<svg
+								class="w-5 h-5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+								><path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M13 16h-1v-4h-1m2-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+								></path></svg
+							>
 
-				<img
-					src={CropWatchAtGreenhouseImage}
-					class="rounded-lg shadow-lg"
-					alt="CropWatch Install On Greenhouse"
-				/>
+							<span>{$_('home.section1.demo')}</span>
+						</button>
+					</div>
+
+					<img
+						src={CropWatchAtGreenhouseImage}
+						class="rounded-lg shadow-lg"
+						alt="CropWatch Install On Greenhouse"
+					/>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="mt-20 bg-gradient-to-br from-blue-900 to-teal-800 text-white">
-		<div class="grid grid-cols-1 md:grid-cols-2 px-8 py-16 gap-10 md:gap-20">
-			<img
-				src={TroubleShootingImage}
-				class="w-full rounded-lg shadow-lg"
-				alt="We are here for your questions"
-			/>
-			<div class="flex flex-col">
-				<h2 class="text-4xl font-bold mb-6">
-					{$_('home.section2.title')}
-				</h2>
-				<p class="text-lg mb-4">
-					{$_('home.section2.text1')}
-				</p>
-				<p class="text-lg mb-4">
-					{$_('home.section2.text2')}
-				</p>
-				<p class="text-lg">
-					{$_('home.section2.text3')}
-				</p>
+		<div class="mt-20 bg-gradient-to-br from-blue-900 to-teal-800 text-white">
+			<div class="grid grid-cols-1 md:grid-cols-2 px-8 py-16 gap-10 md:gap-20">
+				<img
+					src={TroubleShootingImage}
+					class="w-full rounded-lg shadow-lg"
+					alt="We are here for your questions"
+				/>
+				<div class="flex flex-col">
+					<h2 class="text-4xl font-bold mb-6">
+						{$_('home.section2.title')}
+					</h2>
+					<p class="text-lg mb-4">
+						{$_('home.section2.text1')}
+					</p>
+					<p class="text-lg mb-4">
+						{$_('home.section2.text2')}
+					</p>
+					<p class="text-lg">
+						{$_('home.section2.text3')}
+					</p>
 
 				<span class="flex-1" />
 				<div>
@@ -231,184 +242,186 @@
 									<Icon data={mdiLinkedin} class="text-blue-500" />
 								</a>
 							</p> -->
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="p-8 lg:p-16">
-		<h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 text-center mt-20 mb-8">
-			{$_('home.section3.title')}
-		</h1>
-		<h2 class="text-xl text-gray-700 text-center mb-8">
-			{$_('home.section3.text')}
-		</h2>
+		<div class="p-8 lg:p-16">
+			<h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 text-center mt-20 mb-8">
+				{$_('home.section3.title')}
+			</h1>
+			<h2 class="text-xl text-gray-700 text-center mb-8">
+				{$_('home.section3.text')}
+			</h2>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4 lg:mx-40">
-			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header
-					title={$_('home.agriWatchTitle')}
-					subheading={$_('home.agriWatchSubtitle')}
-					slot="header"
-				>
-					<div slot="title" class="text-md lg:text-2xl">
-						{$_('home.agriWatchTitle')}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4 lg:mx-40">
+				<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+					<Header
+						title={$_('home.agriWatchTitle')}
+						subheading={$_('home.agriWatchSubtitle')}
+						slot="header"
+					>
+						<div slot="title" class="text-md lg:text-2xl">
+							{$_('home.agriWatchTitle')}
+						</div>
+						<div slot="avatar">
+							<Avatar class="bg-primary text-primary-content font-bold">
+								<Icon data={mdiBarn} />
+							</Avatar>
+						</div>
+					</Header>
+					<div slot="contents" class="flex h-full">
+						<img
+							src={farmingImage}
+							alt=""
+							class="flex w-full h-full rounded-lg"
+							style="max-height: 220px;"
+						/>
 					</div>
-					<div slot="avatar">
-						<Avatar class="bg-primary text-primary-content font-bold">
-							<Icon data={mdiBarn} />
-						</Avatar>
-					</div>
-				</Header>
-				<div slot="contents" class="flex h-full">
-					<img
-						src={farmingImage}
-						alt=""
-						class="flex w-full h-full rounded-lg"
-						style="max-height: 220px;"
-					/>
-				</div>
-			</Card>
+				</Card>
 
-			<Card class="flex elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header subheading={$_('home.tempWatchSubtitle')} slot="header">
-					<div slot="title" class="text-md lg:text-2xl">
-						{$_('home.tempWatchTitle')}
+				<Card class="flex elevation-10 hover:scale-105 transition ease-in-out duration-300">
+					<Header subheading={$_('home.tempWatchSubtitle')} slot="header">
+						<div slot="title" class="text-md lg:text-2xl">
+							{$_('home.tempWatchTitle')}
+						</div>
+						<div slot="avatar">
+							<Avatar class="bg-primary text-primary-content font-bold">
+								<Icon data={mdiSnowflake} />
+							</Avatar>
+						</div>
+					</Header>
+					<div slot="contents" class="flex h-full">
+						<img
+							src={coldChain}
+							alt=""
+							class="flex w-full h-full rounded-lg"
+							style="max-height: 220px;"
+						/>
 					</div>
-					<div slot="avatar">
-						<Avatar class="bg-primary text-primary-content font-bold">
-							<Icon data={mdiSnowflake} />
-						</Avatar>
-					</div>
-				</Header>
-				<div slot="contents" class="flex h-full">
-					<img
-						src={coldChain}
-						alt=""
-						class="flex w-full h-full rounded-lg"
-						style="max-height: 220px;"
-					/>
-				</div>
-			</Card>
+				</Card>
 
-			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header subheading={$_('home.wellWatchSubtitle')} slot="header">
-					<div slot="title" class="text-md lg:text-2xl">
-						{$_('home.wellWatchTitle')}
-					</div>
-					<div slot="avatar">
-						<Avatar class="bg-primary text-primary-content font-bold">
-							<Icon data={mdiWatch} />
-						</Avatar>
-					</div>
-				</Header>
-				<img src={workerSafetyImage} slot="contents" alt="" class=" w-full h-full rounded-lg" />
-			</Card>
+				<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+					<Header subheading={$_('home.wellWatchSubtitle')} slot="header">
+						<div slot="title" class="text-md lg:text-2xl">
+							{$_('home.wellWatchTitle')}
+						</div>
+						<div slot="avatar">
+							<Avatar class="bg-primary text-primary-content font-bold">
+								<Icon data={mdiWatch} />
+							</Avatar>
+						</div>
+					</Header>
+					<img src={workerSafetyImage} slot="contents" alt="" class=" w-full h-full rounded-lg" />
+				</Card>
 
-			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header subheading={$_('home.smokeDetectorTitle')} slot="header">
-					<div slot="title" class="text-md lg:text-2xl">
-						{$_('home.smartCityTitle')}
-					</div>
-					<div slot="avatar">
-						<Avatar class="bg-primary text-primary-content font-bold">
-							<Icon data={mdiFire} />
-						</Avatar>
-					</div>
-				</Header>
-				<img src={SmokeDetectorImage} slot="contents" alt="" />
-			</Card>
+				<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+					<Header subheading={$_('home.smokeDetectorTitle')} slot="header">
+						<div slot="title" class="text-md lg:text-2xl">
+							{$_('home.smartCityTitle')}
+						</div>
+						<div slot="avatar">
+							<Avatar class="bg-primary text-primary-content font-bold">
+								<Icon data={mdiFire} />
+							</Avatar>
+						</div>
+					</Header>
+					<img src={SmokeDetectorImage} slot="contents" alt="" />
+				</Card>
 
-			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header subheading={$_('home.edgeAICameraTitle')} slot="header">
-					<div slot="title" class="text-md lg:text-2xl">
-						{$_('home.smartCityTitle')}
-					</div>
-					<div slot="avatar">
-						<Avatar class="bg-primary text-primary-content font-bold">
-							<Icon data={mdiMeterElectric} />
-						</Avatar>
-					</div>
-				</Header>
-				<img src={AxisCameraImage} class="w-8/12 mx-auto mt-14" slot="contents" alt="" />
-			</Card>
+				<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+					<Header subheading={$_('home.edgeAICameraTitle')} slot="header">
+						<div slot="title" class="text-md lg:text-2xl">
+							{$_('home.smartCityTitle')}
+						</div>
+						<div slot="avatar">
+							<Avatar class="bg-primary text-primary-content font-bold">
+								<Icon data={mdiMeterElectric} />
+							</Avatar>
+						</div>
+					</Header>
+					<img src={AxisCameraImage} class="w-8/12 mx-auto mt-14" slot="contents" alt="" />
+				</Card>
 
-			<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
-				<Header subheading={$_('home.assetTrackingTitle')} slot="header">
-					<div slot="title" class="text-md lg:text-2xl">
-						{$_('home.smartCityTitle')}
+				<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
+					<Header subheading={$_('home.assetTrackingTitle')} slot="header">
+						<div slot="title" class="text-md lg:text-2xl">
+							{$_('home.smartCityTitle')}
+						</div>
+						<div slot="avatar">
+							<Avatar class="bg-primary text-primary-content font-bold">
+								<Icon data={mdiPackage} />
+							</Avatar>
+						</div>
+					</Header>
+					<div slot="contents" class="flex h-full">
+						<img
+							src={SeeedTrackerImage}
+							alt=""
+							class="flex mx-auto self-center"
+							style="max-height: 220px;"
+						/>
 					</div>
-					<div slot="avatar">
-						<Avatar class="bg-primary text-primary-content font-bold">
-							<Icon data={mdiPackage} />
-						</Avatar>
-					</div>
-				</Header>
-				<div slot="contents" class="flex h-full">
-					<img
-						src={SeeedTrackerImage}
-						alt=""
-						class="flex mx-auto self-center"
-						style="max-height: 220px;"
-					/>
-				</div>
-			</Card>
-		</div>
-	</div>
-
-	<div class="bg-teal-600 text-white flex flex-col items-center p-8">
-		<h1 class="text-4xl font-bold mb-6">
-			{$_('home.contactUsTitle')}
-		</h1>
-		<button
-			class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
-			on:click={() => (openEmailDialog = true)}
-		>
-			{$_('home.contactUsButton')}
-		</button>
-	</div>
-</main>
-
-<Dialog bind:open={openEmailDialog}>
-	<div slot="title">
-		<Icon data={mdiForum} />
-		Lets get in touch!
-	</div>
-	<form method="POST" action="?/handleContactRequestMessage">
-		<div class="flex flex-col gap-4 p-4 w-full">
-			<TextField label="E-Mail *" type="email" name="email" bind:value={emailValue}>
-				<div slot="prepend">
-					<Icon data={mdiEmail} class="text-surface-content/50 mr-2" />
-				</div>
-			</TextField>
-			<TextField label="Telephone Number" type="text" name="phone">
-				<div slot="prepend">
-					<Icon data={mdiPhone} class="text-surface-content/50 mr-2" />
-				</div>
-			</TextField>
-			<TextField
-				label="Message *"
-				name="message"
-				id="message"
-				multiline
-				required
-				bind:value={messageValue}
-			/>
+				</Card>
+			</div>
 		</div>
 
-		<div class="w-full flex flex-row justify-between p-4">
-			<Button variant="fill" icon={mdiClose} color="primary">Close</Button>
-			<Button
-				type="submit"
-				variant={messageValue == '' || emailValue == '' || messageValue.length < 10
-					? 'outline'
-					: 'fill'}
-				icon={mdiSend}
-				color="success"
-				disabled={messageValue == '' || emailValue == '' || messageValue.length < 10}>SEND!</Button
+		<div class="bg-teal-600 text-white flex flex-col items-center p-8">
+			<h1 class="text-4xl font-bold mb-6">
+				{$_('home.contactUsTitle')}
+			</h1>
+			<button
+				class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
+				on:click={() => (openEmailDialog = true)}
 			>
+				{$_('home.contactUsButton')}
+			</button>
 		</div>
-	</form>
-</Dialog>
+	</main>
+
+	<Dialog bind:open={openEmailDialog}>
+		<div slot="title">
+			<Icon data={mdiForum} />
+			Lets get in touch!
+		</div>
+		<form method="POST" action="?/handleContactRequestMessage">
+			<div class="flex flex-col gap-4 p-4 w-full">
+				<TextField label="E-Mail *" type="email" name="email" bind:value={emailValue}>
+					<div slot="prepend">
+						<Icon data={mdiEmail} class="text-surface-content/50 mr-2" />
+					</div>
+				</TextField>
+				<TextField label="Telephone Number" type="text" name="phone">
+					<div slot="prepend">
+						<Icon data={mdiPhone} class="text-surface-content/50 mr-2" />
+					</div>
+				</TextField>
+				<TextField
+					label="Message *"
+					name="message"
+					id="message"
+					multiline
+					required
+					bind:value={messageValue}
+				/>
+			</div>
+
+			<div class="w-full flex flex-row justify-between p-4">
+				<Button variant="fill" icon={mdiClose} color="primary">Close</Button>
+				<Button
+					type="submit"
+					variant={messageValue == '' || emailValue == '' || messageValue.length < 10
+						? 'outline'
+						: 'fill'}
+					icon={mdiSend}
+					color="success"
+					disabled={messageValue == '' || emailValue == '' || messageValue.length < 10}
+					>SEND!</Button
+				>
+			</div>
+		</form>
+	</Dialog>
+{/if}

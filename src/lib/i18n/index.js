@@ -10,5 +10,5 @@ register('jp', () => import('./locales/jp.json'))
 console.log('loading languages')
 init({
 	fallbackLocale: defaultLocale,
-	initialLocale: browser ? window.navigator.language : defaultLocale,
+	initialLocale: 'jp',
 })

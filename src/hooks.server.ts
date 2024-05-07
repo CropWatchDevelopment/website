@@ -2,10 +2,9 @@ import type { Handle } from '@sveltejs/kit'
 import { locale } from 'svelte-i18n'
 
 export const handle: Handle = async ({ event, resolve }) => {
-    console.log('finding your langaugage')
 	const lang = event.request.headers.get('accept-language')?.split(',')[0]
 	if (lang) {
-		locale.set(lang)
+		await locale.set(lang)
 	}
 	return resolve(event)
 }
