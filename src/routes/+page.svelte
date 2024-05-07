@@ -36,6 +36,7 @@
 	import jose from '$lib/images/jose.jpg';
 	import sigurd from '$lib/images/sigurd.jpg';
 	import abay from '$lib/images/abay.png';
+	import tractor from '$lib/images/tractor.svg';
 
 	import MiyazakiFlagImage from '$lib/images/Flag_of_Miyazaki_Prefecture.png';
 	import { _, isLoading } from 'svelte-i18n';
@@ -57,11 +58,9 @@
 </script>
 
 {#if $isLoading}
-	<div class="flex flex-col items-center justify-center h-screen">
-		<div
-			class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-64 w-64"
-		></div>
-	</div>
+<div class="flex flex-col w-screen h-screen text-center justify-center">
+	<img src={tractor} alt="loading..." class="w-14 mx-auto" /> loading translations...
+</div>
 {:else}
 	<main class="flex flex-col overflow-visible">
 		<div class="w-full">
