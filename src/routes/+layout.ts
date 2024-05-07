@@ -5,8 +5,8 @@ import { browser } from '$app/environment'
 
 export const load: LayoutLoad = async () => {
 	if (browser) {
-		console.log('setting language')
 		locale.set(window.navigator.language);
+		console.log('setting language')
 		
 	}
 	await waitLocale()

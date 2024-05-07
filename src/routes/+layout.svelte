@@ -159,6 +159,6 @@
 	<div>
 		<slot />
 		<Footer />
-		<Analytics />
+		<!-- <Analytics /> -->
 	</div>
 </AppLayout>
