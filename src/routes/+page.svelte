@@ -188,7 +188,7 @@
 						</div>
 						<div class="flex flex-col items-center">
 							<img src={sayaka} alt="Sayaka Cantrell" class="w-24 h-24 rounded" />
-							<p class="text-center font-light mt-4">Sayaka Cantrell</p>
+							<p class="text-center font-light mt-4">{$_('home.sayaka')}</p>
 							<p class="text-center font-light">Co-Founder/Business OPs</p>
 							<p class="text-center font-light">
 								<a href="https://www.linkedin.com/in/sayaka-ikemizu-694b17276/" target="_blank">
