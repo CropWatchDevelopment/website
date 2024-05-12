@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CropWatchSVG from '$lib/images/cropwatch.svg';
 	import { mdiLinkedin } from '@mdi/js';
-	import { locale } from 'svelte-i18n';
+	import { isLoading, locale } from 'svelte-i18n';
 	import { Icon, SelectField } from 'svelte-ux';
 </script>
 
@@ -49,18 +49,22 @@
 						</svg>
 					</a>
 				</div>
-				<SelectField
-          bind:value={$locale}
-          label="Language"
-					options={[
-						{ value: 'ja', label: '日本語' },
-						{ value: 'en', label: 'English' },
-						{ value: 'es', label: 'Español' }
-					]}
-					on:change={(e) => {
-						locale.set(e.detail.value);
-					}}
-				/>
+				{#if isLoading}
+					<p>Loading...</p>
+				{:else}
+					<SelectField
+						bind:value={$locale}
+						label="Language"
+						options={[
+							{ value: 'ja', label: '日本語' },
+							{ value: 'en', label: 'English' },
+							{ value: 'es', label: 'Español' }
+						]}
+						on:change={(e) => {
+							locale.set(e.detail.value);
+						}}
+					/>
+				{/if}
 			</div>
 			<div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
 				<div class="md:grid md:grid-cols-1 md:gap-8">
