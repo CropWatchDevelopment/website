@@ -15,7 +15,7 @@ register('en', () => import('$lib/i18n/locales/en.json'))
 register('ja', () => import('$lib/i18n/locales/ja.json'))
 
 console.log('loading languages')
-await init({
+init({
 	fallbackLocale: 'ja',
 	initialLocale: browser ? window.navigator.language : defaultLocale,
 })
