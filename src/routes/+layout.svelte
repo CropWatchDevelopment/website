@@ -1,34 +1,12 @@
 <script lang="ts">
-	import {
-		AppBar,
-		AppLayout,
-		Card,
-		Button,
-		NavItem,
-		Tooltip,
-		settings,
-		Toggle,
-		Menu,
-		MenuItem,
-		Dialog,
-		Icon,
-		SelectField,
-		cls
-	} from 'svelte-ux';
-	import {
-		mdiAccountBadge,
-		mdiAccountLock,
-		mdiAccountLockOpen,
-		mdiDotsGrid,
-		mdiFire,
-		mdiLinkedin,
-		mdiStore
-	} from '@mdi/js';
-	import Analytics from '$lib/components/analytics/Analytics.svelte';
+	import { AppBar, AppLayout, Button, Tooltip, settings, Toggle, Dialog, Icon } from 'svelte-ux';
+	import { mdiAccountLockOpen, mdiDotsGrid, mdiLinkedin } from '@mdi/js';
+	import { _, isLoading } from 'svelte-i18n';
 
 	import '../app.postcss';
 	import Footer from '$lib/components/Footer.svelte';
 	import CropWatchSVG from '$lib/images/cropwatch.svg';
+	import tractor from '$lib/images/tractor.svg';
 
 	settings({
 		components: {
@@ -61,39 +39,7 @@
 			<span class="hidden md:inline-block translate-y-1/4">CropWatch</span>
 		</div>
 		<div slot="actions" class="flex gap-3">
-			<Tooltip>
-				<!-- <select bind:value={$locale} on:change={handleChange}>
-					{#each $locales as value}
-						<option {value} selected={$locale === value}>{$t(`lang.${value}`)}</option>
-					{/each}
-				</select> -->
-
-				<!-- <SelectField
-					options={$locales.map((m) => {
-						return { label: m, value: m };
-					})}
-					bind:value={$locale}
-					activeOptionIcon={true}
-				>
-					<div slot="option" let:option let:index let:selected let:highlightIndex>
-						<MenuItem
-							class={cls(
-								index === highlightIndex && 'bg-surface-content/5',
-								option === selected && 'font-semibold',
-								option.group ? 'px-4' : 'px-2'
-							)}
-							scrollIntoView={index === highlightIndex}
-							icon={{ data: (option.value == 'en' ? mdiFire : mdiLinkedin), style: 'color: #0000FF;' }}
-						>
-							{option.label}
-						</MenuItem>
-					</div>
-				</SelectField> -->
-			</Tooltip>
-			<!-- <Tooltip title="CropWatch Web Store" placement="bottom" offset={2}>
-				<Button icon={mdiStore} href="#" class="p-2" target="_blank" />
-			</Tooltip> -->
-
+			<Tooltip></Tooltip>
 			<Tooltip title="Open LinkedIn" placement="bottom" offset={2}>
 				<Button
 					icon={mdiLinkedin}
@@ -130,22 +76,6 @@
 									<p class="text-center text-xs mt-1 text-slate-300">Agri-Watch</p>
 								</div>
 							</a>
-
-							<!-- <div
-								class="w-fit h-fit rounded-xl bg-blue-900 p-2 hover:scale-105"
-								style="min-width: 30px min-height: 30px;"
-							>
-								<img src={CropWatchSVG} class="w-10 mx-auto" />
-								<p class="text-center text-xs mt-1 text-slate-300">WaterWatch</p>
-							</div>
-
-							<div
-								class="w-fit h-fit rounded-xl bg-red-500 p-2 hover:scale-105"
-								style="min-width: 30px min-height: 30px;"
-							>
-								<img src={CropWatchSVG} class="w-10 mx-auto" />
-								<p class="text-center text-xs mt-1 text-black-300">FireWatch</p>
-							</div> -->
 						</div>
 						<div slot="actions">
 							<Button variant="fill" color="primary">Close</Button>
@@ -156,9 +86,18 @@
 		</div>
 	</AppBar>
 
-	<div>
-		<slot />
+	<div class="flex flex-col">
+		<main class="flex flex-col overflow-visible">
+			{#if !$isLoading}
+				<slot />
+			{:else}
+			<div class="flex flex-col w-screen h-screen text-center justify-center">
+				<img src={tractor} alt="loading..." class="w-14 mx-auto" /> loading...
+		</div>
+			{/if}
+		</main>
+
+		<span class="flex-grow" />
 		<Footer />
-		<!-- <Analytics /> -->
 	</div>
 </AppLayout>

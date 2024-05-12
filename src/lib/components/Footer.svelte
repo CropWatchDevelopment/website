@@ -53,7 +53,7 @@
           bind:value={$locale}
           label="Language"
 					options={[
-						{ value: 'jp', label: '日本語' },
+						{ value: 'ja', label: '日本語' },
 						{ value: 'en', label: 'English' },
 						{ value: 'es', label: 'Español' }
 					]}

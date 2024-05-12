@@ -4,7 +4,7 @@ import { locale } from 'svelte-i18n'
 export const handle: Handle = async ({ event, resolve }) => {
 	const lang = event.request.headers.get('accept-language')?.split(',')[0]
 	if (lang) {
-		await locale.set(lang)
+		await locale.set(lang);
 	}
 	return resolve(event)
 }

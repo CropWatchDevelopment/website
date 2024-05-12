@@ -40,29 +40,14 @@
 
 	import MiyazakiFlagImage from '$lib/images/Flag_of_Miyazaki_Prefecture.png';
 	import { _, isLoading } from 'svelte-i18n';
-	import { analyticsStore } from '$lib/components/analytics/analyticsStore';
-	import { browser } from '$app/environment';
-
-	const new_event = {
-		id: browser ? crypto.randomUUID() : 'sse',
-		data: {}, //anything you want to send to GA,
-		event: 'page-access',
-		type: 'event'
-	};
-	analyticsStore.update((existing_events) => [...existing_events, new_event]);
+	import { goto } from '$app/navigation';
 
 	let openEmailDialog: boolean = false;
 	let messageValue: string = '';
 	let emailValue: string = '';
-
 </script>
 
-{#if $isLoading}
-<div class="flex flex-col w-screen h-screen text-center justify-center">
-	<img src={tractor} alt="loading..." class="w-14 mx-auto" /> loading translations...
-</div>
-{:else}
-	<main class="flex flex-col overflow-visible">
+
 		<div class="w-full">
 			<Slides />
 		</div>
@@ -276,10 +261,20 @@
 					<div slot="contents" class="flex h-full">
 						<img
 							src={farmingImage}
-							alt=""
+							alt="Smart Farming"
 							class="flex w-full h-full rounded-lg"
 							style="max-height: 220px;"
 						/>
+					</div>
+					<div slot="actions">
+						<Button
+							variant="fill"
+							color="primary"
+							on:click={() => goto('smart-farming')}
+							class="w-full"
+						>
+							{$_('home.viewDevices')}
+						</Button>
 					</div>
 				</Card>
 
@@ -302,6 +297,16 @@
 							style="max-height: 220px;"
 						/>
 					</div>
+					<div slot="actions">
+						<Button
+							variant="fill"
+							color="primary"
+							on:click={() => goto('smart-farming')}
+							class="w-full"
+						>
+							{$_('home.viewDevices')}
+						</Button>
+					</div>
 				</Card>
 
 				<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
@@ -316,6 +321,16 @@
 						</div>
 					</Header>
 					<img src={workerSafetyImage} slot="contents" alt="" class=" w-full h-full rounded-lg" />
+					<div slot="actions">
+						<Button
+							variant="fill"
+							color="primary"
+							on:click={() => goto('smart-farming')}
+							class="w-full"
+						>
+							{$_('home.viewDevices')}
+						</Button>
+					</div>
 				</Card>
 
 				<Card class="elevation-10 hover:scale-105 transition ease-in-out duration-300">
@@ -380,7 +395,7 @@
 				{$_('home.contactUsButton')}
 			</button>
 		</div>
-	</main>
+
 
 	<Dialog bind:open={openEmailDialog}>
 		<div slot="title">
@@ -424,4 +439,3 @@
 			</div>
 		</form>
 	</Dialog>
-{/if}
