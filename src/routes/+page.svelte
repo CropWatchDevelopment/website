@@ -422,10 +422,8 @@
 				required
 				bind:value={messageValue}
 			/>
-			{#if messageValue.length < minMessageLength}
-				<div class="text-red-500 text-sm">
-					{$_('home.messageMinLength')} {minMessageLength} ({messageValue.length} / {minMessageLength})
-				</div>
+			{#if !messageValue || (messageValue.length < minMessageLength)}
+			{messageValue?.length ?? 0} / {minMessageLength}
 			{/if}
 		</div>
 
@@ -440,13 +438,11 @@
 			>
 			<Button
 				type="submit"
-				variant={messageValue == '' || emailValue == '' || messageValue.length < minMessageLength
-					? 'outline'
-					: 'fill'}
+				variant={!messageValue || (messageValue.length < minMessageLength) ? 'outline' : 'fill'}
 				icon={mdiSend}
 				color="success"
 				loading={messageSent}
-				disabled={messageSent || messageValue == '' || emailValue == '' || messageValue.length < minMessageLength}
+				disabled={!emailValue || !messageValue || (messageValue.length < minMessageLength)}
 				>SEND!</Button
 			>
 		</div>
