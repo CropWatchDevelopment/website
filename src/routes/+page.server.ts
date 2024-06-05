@@ -15,13 +15,13 @@ export const actions = {
         const email = contactRequest.get('email');
         const phone = contactRequest.get('phone');
 
-        await sendMail(`RECEIVED A MESSAGE FROM Email: ${email} \n\n Phone Number: ${phone} \n\n ${message}`);
+        const response = await sendMail(`RECEIVED A MESSAGE FROM Email: ${email} \n\n Phone Number: ${phone} \n\n ${message}`);
 
-		return { success: true };
+		return { success: response };
 	},
 };
 
-const sendMail = async (text: string) => {
+const sendMail = async (text: string): Promise<boolean> => {
     const transporter = nodemailer.createTransport({
         host: 'smtp.office365.com',
         secure: false,
@@ -53,7 +53,9 @@ const sendMail = async (text: string) => {
     try {
         const info = await transporter.sendMail(mailOptions);
         console.log('Email sent: ' + info.response);
+        return true;
     } catch (error) {
         console.error('Error sending email: ', error);
+        return false;
     }
 };

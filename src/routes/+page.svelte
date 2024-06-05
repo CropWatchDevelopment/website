@@ -34,11 +34,13 @@
 	import MiyazakiFlagImage from '$lib/images/Flag_of_Miyazaki_Prefecture.png';
 	import { _ } from 'svelte-i18n';
 	import { goto } from '$app/navigation';
+	import { enhance } from '$app/forms';
 
 	let openEmailDialog: boolean = false;
 	let messageValue: string = '';
 	let phoneValue: string = '';
 	let emailValue: string = '';
+	let messageSent: boolean = false;
 </script>
 
 <div class="w-full">
@@ -376,7 +378,30 @@
 		<Icon data={mdiForum} />
 		Lets get in touch!
 	</div>
-	<form method="POST" action="?/handleContactRequestMessage">
+	<form
+		method="POST"
+		action="?/handleContactRequestMessage"
+		use:enhance={({ formElement, formData, action, cancel, submitter }) => {
+			// `formElement` is this `<form>` element
+			// `formData` is its `FormData` object that's about to be submitted
+			// `action` is the URL to which the form is posted
+			// calling `cancel()` will prevent the submission
+			// `submitter` is the `HTMLElement` that caused the form to be submitted
+			messageSent = true;
+
+			return async ({ result, update }) => {
+				// `result` is an `ActionResult` object
+				// `update` is a function which triggers the default logic that would be triggered if this callback wasn't set
+				messageSent = false;
+				if (result.data.success) {
+					openEmailDialog = false;
+					alert('Thank you for your message! We will get back to you as soon as possible.');
+				} else {
+					alert('There was an error sending your message. Please try again later.');
+				}
+			};
+		}}
+	>
 		<div class="flex flex-col gap-4 p-4 w-full">
 			<TextField label="E-Mail *" type="email" name="email" bind:value={emailValue}>
 				<div slot="prepend">
@@ -399,7 +424,14 @@
 		</div>
 
 		<div class="w-full flex flex-row justify-between p-4">
-			<Button variant="fill" icon={mdiClose} color="primary" on:click={() => {openEmailDialog = false}}>Close</Button>
+			<Button
+				variant="fill"
+				icon={mdiClose}
+				color="primary"
+				on:click={() => {
+					openEmailDialog = false;
+				}}>Close</Button
+			>
 			<Button
 				type="submit"
 				variant={messageValue == '' || emailValue == '' || messageValue.length < 10
@@ -407,7 +439,9 @@
 					: 'fill'}
 				icon={mdiSend}
 				color="success"
-				disabled={messageValue == '' || emailValue == '' || messageValue.length < 10}>SEND!</Button
+				loading={messageSent}
+				disabled={messageSent || messageValue == '' || emailValue == '' || messageValue.length < 10}
+				>SEND!</Button
 			>
 		</div>
 	</form>
