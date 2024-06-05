@@ -15,7 +15,7 @@
 			},
 			AppLayout: {
 				classes: {
-					nav: 'bg-neutral-800'
+					nav: 'bg-neutral-200'
 				}
 			},
 			NavItem: {
@@ -25,11 +25,7 @@
 			}
 		}
 	});
-
-	const handleChange = ({ currentTarget }) => {
-		const { value } = currentTarget;
-		document.cookie = `lang=${value} ;`;
-	};
+	
 </script>
 
 <AppLayout navWidth={0} classes={{ root: 'elevation-0' }}>
@@ -72,7 +68,7 @@
 									class="w-fit h-fit rounded-xl bg-emerald-900 p-2 hover:scale-105"
 									style="min-width: 30px min-height: 30px;"
 								>
-									<img src={CropWatchSVG} class="w-10 mx-auto" />
+									<img src={CropWatchSVG} class="w-10 mx-auto" alt="CropWatch Logo" />
 									<p class="text-center text-xs mt-1 text-slate-300">Agri-Watch</p>
 								</div>
 							</a>

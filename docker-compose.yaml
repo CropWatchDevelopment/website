@@ -1,0 +1,24 @@
+version: "3"
+services:
+  directus:
+    image: directus/directus:10.11.1
+    ports:
+      - 8055:8055
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    environment:
+      KEY: "255d861b-5ea1-5996-9aa3-922530ec40b1"
+      SECRET: "6116487b-cda1-52c2-b5b5-c8022c45e263"
+
+      DB_CLIENT: "postgres"
+      DB_HOST: "aws-0-us-west-1.pooler.supabase.com"
+      DB_PORT: "5432"
+      DB_DATABASE: "postgres"
+      DB_USER: "postgres.xendbqklkiuwivdgknvg"
+      DB_PASSWORD: "GZxzEGcn57g2FUvC"
+
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "d1r3ctu5"
+
+      WEBSOCKETS_ENABLED: "true"

@@ -9,10 +9,7 @@
 		mdiFire,
 		mdiForum,
 		mdiGithub,
-		mdiInformation,
 		mdiLinkedin,
-		mdiMeterElectric,
-		mdiPackage,
 		mdiPhone,
 		mdiSend,
 		mdiSnowflake,
@@ -40,6 +37,7 @@
 
 	let openEmailDialog: boolean = false;
 	let messageValue: string = '';
+	let phoneValue: string = '';
 	let emailValue: string = '';
 </script>
 
@@ -48,7 +46,7 @@
 </div>
 <div class="grid w-full">
 	<div class="bg-slate-300 p-2 md:p-16">
-		<h1 class="text-4xl font-bold text-center mb-8">
+		<h1 class="text-4xl text-cyan-950 font-bold text-center mb-8">
 			{$_('mainTitle')}
 		</h1>
 		<div class="grid grid-cols-3 gap-2 1md:gap-8">
@@ -385,7 +383,7 @@
 					<Icon data={mdiEmail} class="text-surface-content/50 mr-2" />
 				</div>
 			</TextField>
-			<TextField label="Telephone Number" type="text" name="phone">
+			<TextField label="Telephone Number" type="text" bind:value={phoneValue} name="phone">
 				<div slot="prepend">
 					<Icon data={mdiPhone} class="text-surface-content/50 mr-2" />
 				</div>
@@ -401,7 +399,7 @@
 		</div>
 
 		<div class="w-full flex flex-row justify-between p-4">
-			<Button variant="fill" icon={mdiClose} color="primary">Close</Button>
+			<Button variant="fill" icon={mdiClose} color="primary" on:click={() => {openEmailDialog = false}}>Close</Button>
 			<Button
 				type="submit"
 				variant={messageValue == '' || emailValue == '' || messageValue.length < 10
