@@ -37,6 +37,6 @@
     "jose title": "UI/UX ディベロッパー",
     "sigurd title": "電子工学技術者",
     "abay title": "AIエキスパート",
-    "messageMinLength": "aaa"
+    "messageMinLength": "メッセージは10文字以上で入力してください"
   }
 }
