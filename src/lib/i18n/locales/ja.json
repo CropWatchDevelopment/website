@@ -36,6 +36,7 @@
     "sayaka title": "代表社員",
     "jose title": "UI/UX ディベロッパー",
     "sigurd title": "電子工学技術者",
-    "abay title": "AIエキスパート"
+    "abay title": "AIエキスパート",
+    "messageMinLength": "aaa"
   }
 }

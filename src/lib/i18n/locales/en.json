@@ -39,6 +39,7 @@
     "jose title": "UI/UX Developer",
     "sigurd title": "Electronics Engineer",
     "abay title": "Autonomous AI Expert",
-    "viewDevices": "View Devices"
+    "viewDevices": "View Devices",
+    "messageMinLength": "Message must be longer than "
   }
 }

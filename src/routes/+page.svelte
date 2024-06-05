@@ -41,6 +41,7 @@
 	let phoneValue: string = '';
 	let emailValue: string = '';
 	let messageSent: boolean = false;
+	let minMessageLength: number = 10;
 </script>
 
 <div class="w-full">
@@ -421,6 +422,11 @@
 				required
 				bind:value={messageValue}
 			/>
+			{#if messageValue.length < minMessageLength}
+				<div class="text-red-500 text-sm">
+					{$_('home.messageMinLength')} {minMessageLength} ({messageValue.length} / {minMessageLength})
+				</div>
+			{/if}
 		</div>
 
 		<div class="w-full flex flex-row justify-between p-4">
@@ -434,13 +440,13 @@
 			>
 			<Button
 				type="submit"
-				variant={messageValue == '' || emailValue == '' || messageValue.length < 10
+				variant={messageValue == '' || emailValue == '' || messageValue.length < minMessageLength
 					? 'outline'
 					: 'fill'}
 				icon={mdiSend}
 				color="success"
 				loading={messageSent}
-				disabled={messageSent || messageValue == '' || emailValue == '' || messageValue.length < 10}
+				disabled={messageSent || messageValue == '' || emailValue == '' || messageValue.length < minMessageLength}
 				>SEND!</Button
 			>
 		</div>
