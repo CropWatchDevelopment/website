@@ -431,19 +431,10 @@ div.logo-bar .navigation {
 	bottom: 0;
 	content: "";
 	left: 0;
-	opacity: 0.4;
+	opacity: 0.3;
 	position: absolute;
 	right: 0;
 	top: 0;
-}
-.fade-carousel .slides .slide-1 {
-	background-image: url(https://placeholdit.imgix.net/~text?txtsize=80&bg=333&txtclr=fff&txt=1920%C3%97500&w=1920&h=500);
-}
-.fade-carousel .slides .slide-2 {
-	background-image: url(https://placeholdit.imgix.net/~text?txtsize=80&bg=333&txtclr=fff&txt=1920%C3%97500&w=1920&h=500);
-}
-.fade-carousel .slides .slide-3 {
-	background-image: url(https://placeholdit.imgix.net/~text?txtsize=80&bg=333&txtclr=fff&txt=1920%C3%97500&w=1920&h=500);
 }
 /*
 ================================================
