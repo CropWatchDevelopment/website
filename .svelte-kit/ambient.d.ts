@@ -26,6 +26,8 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const STRIPE_PUBLIC_KEY: string;
+	export const STRIPE_SECRET_KEY_LIVE: string;
 	export const LESSOPEN: string;
 	export const npm_package_devDependencies_vitest: string;
 	export const LANGUAGE: string;
@@ -178,6 +180,8 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		STRIPE_PUBLIC_KEY: string;
+		STRIPE_SECRET_KEY_LIVE: string;
 		LESSOPEN: string;
 		npm_package_devDependencies_vitest: string;
 		LANGUAGE: string;
