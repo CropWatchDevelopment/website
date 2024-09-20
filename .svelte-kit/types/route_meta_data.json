@@ -3,7 +3,12 @@
 		"src/routes/+page.ts"
 	],
 	"/about-us": [],
+	"/(api)/api/v1/stripe/products": [
+		"src/routes/(api)/api/v1/stripe/products/+server.ts"
+	],
 	"/blog": [],
 	"/blog/[post_id]": [],
-	"/contact-us": []
+	"/contact-us": [],
+	"/shop/cart": [],
+	"/shop/products": []
 }

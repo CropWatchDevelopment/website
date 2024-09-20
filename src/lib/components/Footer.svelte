@@ -4,6 +4,7 @@
 		<div class="col-md-2">
 			<h2>Quick Links</h2>
 			<a href="/contact-us" class="btn btn-primary one">Contact Us</a>
+			<a href="/shop/products" class="btn btn-primary two">Shop</a>
 			<a href="/blog" class="btn btn-primary two">Blog</a>
 		</div>
 		<div class="col-md-6 news">
