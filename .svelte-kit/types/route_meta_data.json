@@ -6,9 +6,13 @@
 	"/(api)/api/v1/stripe/products": [
 		"src/routes/(api)/api/v1/stripe/products/+server.ts"
 	],
+	"/(api)/api/v1/stripe/products/price/[price_id]": [
+		"src/routes/(api)/api/v1/stripe/products/price/[price_id]/+server.ts"
+	],
 	"/blog": [],
 	"/blog/[post_id]": [],
 	"/contact-us": [],
 	"/shop/cart": [],
-	"/shop/products": []
+	"/shop/products": [],
+	"/shop/products/[product_id]": []
 }

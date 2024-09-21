@@ -1,7 +1,12 @@
 <script lang="ts">
+    import { CurrencyToSymbol } from "$lib/helpers/currencyToSymbol";
     import { onMount } from "svelte";
+    import PRODUCT_IMAGE_COMING_SOON from "$lib/images/Product-Image-Coming-Soon.jpg";
+    import ProductSearch from "$lib/components/ProductSearch.svelte";
 
     let products = [];
+    let loading: boolean = true;
+    let searchText: string = "";
 
     onMount(() => {
         fetch("/api/v1/stripe/products")
@@ -10,107 +15,302 @@
                 console.log(data);
                 if (data) {
                     products = data.data;
+                    for (let product of products) {
+                        getProductPrice(product);
+                    }
+                    products = products;
                 }
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() => {
+                loading = false;
             });
     });
+
+    const getProductPrice = (product) => {
+        return fetch(`/api/v1/stripe/products/price/${product.default_price}`)
+            .then((res) => res.json())
+            .then((data) => {
+                product["price"] = data;
+            })
+            .finally(() => {
+                products = products;
+            });
+    };
+
+    function handleSearchInput(event) {
+        searchText = event.detail;  // Update the searchText with input value
+    }
 </script>
 
-<div class="container mt-5 mb-5">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-10">
-            {#each products as product}
-                <div class="row p-2 bg-white border rounded">
-                    <div class="col-md-3 mt-1">
-                        <img
-                            class="img-fluid img-responsive rounded product-image"
-                            src="https://i.imgur.com/QpjAiHq.jpg"
-                        />
-                    </div>
-                    <div class="col-md-6 mt-1">
-                        <h5>{product.name}</h5>
-                        <div class="d-flex flex-row">
-                            <div class="ratings mr-2">
-                                <i class="fa fa-star"></i><i class="fa fa-star"
-                                ></i><i class="fa fa-star"></i><i
-                                    class="fa fa-star"
-                                ></i>
+{#if loading}
+    <div id="dvLoading" />
+{/if}
+
+<ProductSearch {searchText} on:input={handleSearchInput} />
+
+<section class="inner-wrapper">
+    <div class="container">
+        {#each products.filter(f => f.name.toLowerCase().includes(searchText.toLowerCase())) as product}
+            <div class="card">
+                <div class="container-fliud">
+                    <div class="wrapper row">
+                        <div class="preview col-md-6">
+                            <div class="preview-pic tab-content">
+                                <div class="tab-pane active" id="pic-1">
+                                    <img
+                                        src={product.images.length > 0
+                                            ? product.images[0]
+                                            : PRODUCT_IMAGE_COMING_SOON}
+                                        alt="product"
+                                    />
+                                </div>
                             </div>
-                            <span>310</span>
                         </div>
-                        <div class="mt-1 mb-1 spec-1">
-                            <span>100% cotton</span><span class="dot"
-                            ></span><span>Light weight</span><span class="dot"
-                            ></span><span>Best finish<br /></span>
-                        </div>
-                        <div class="mt-1 mb-1 spec-1">
-                            <span>Unique design</span><span class="dot"
-                            ></span><span>For men</span><span class="dot"
-                            ></span><span>Casual<br /></span>
-                        </div>
-                        <p class="text-justify text-truncate para mb-0">
-                            There are many variations of passages of Lorem Ipsum
-                            available, but the majority have suffered alteration
-                            in some form, by injected humour, or randomised
-                            words which don't look even slightly believable.<br
-                            /><br />
-                        </p>
-                    </div>
-                    <div
-                        class="align-items-center align-content-center col-md-3 border-left mt-1"
-                    >
-                        <div class="d-flex flex-row align-items-center">
-                            <h4 class="mr-1">$13.99</h4>
-                            <span class="strike-text">$20.99</span>
-                        </div>
-                        <h6 class="text-success">Free shipping</h6>
-                        <div class="d-flex flex-column mt-4">
-                            <button class="btn btn-primary btn-sm" type="button"
-                                >Details</button
-                            ><button
-                                class="btn btn-outline-primary btn-sm mt-2"
-                                type="button">Add to wishlist</button
-                            >
+                        <div class="details col-md-6">
+                            <h3 class="product-title">{product.name}</h3>
+                            <div class="rating">
+                                <div class="stars">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <span class="review-no">41 reviews</span>
+                            </div>
+                            <p class="product-description">
+                                {product.description ??
+                                    "More info coming soon!"}
+                            </p>
+                            <h4 class="price">
+                                current price: <span
+                                    >{product.price?.unit_amount
+                                        ? product.price?.unit_amount
+                                              .toString()
+                                              .replace(
+                                                  /\B(?=(\d{3})+(?!\d))/g,
+                                                  ",",
+                                              )
+                                        : "Call for pricing!"}
+                                    {CurrencyToSymbol(
+                                        product.price?.currency,
+                                    )}</span
+                                >
+                            </h4>
+                            <p class="vote">
+                                <strong>91%</strong> of buyers enjoyed this
+                                product!
+                                <strong>(87 votes)</strong>
+                            </p>
+                            <div class="action">
+                                <button
+                                    class="add-to-cart btn btn-default"
+                                    type="button">add to cart</button
+                                >
+                                <a
+                                    class="btn btn-default"
+                                    type="button"
+                                    href={`/shop/products/${product.id}`}
+                                    ><span class="fa fa-eye"></span> View Details</a
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>
-            {/each}
-        </div>
+            </div>
+        {/each}
     </div>
-</div>
+</section>
 
 <style>
-    .ratings i {
-        font-size: 16px;
-        color: red;
+    img {
+        max-width: 50%;
     }
-    .strike-text {
-        color: red;
-        text-decoration: line-through;
+
+    .preview {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
     }
-    .product-image {
+    @media screen and (max-width: 996px) {
+        .preview {
+            margin-bottom: 20px;
+        }
+    }
+
+    .preview-pic {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+
+    .tab-content {
+        overflow: hidden;
+    }
+    .tab-content img {
         width: 100%;
+        -webkit-animation-name: opacity;
+        animation-name: opacity;
+        -webkit-animation-duration: 0.3s;
+        animation-duration: 0.3s;
     }
-    .dot {
-        height: 7px;
-        width: 7px;
-        margin-left: 6px;
-        margin-right: 6px;
-        margin-top: 3px;
-        background-color: blue;
-        border-radius: 50%;
+
+    .card {
+        margin-top: 50px;
+        background: #eee;
+        padding: 3em;
+        line-height: 1.5em;
+    }
+
+    @media screen and (min-width: 997px) {
+        .wrapper {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+    }
+
+    .details {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .colors {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+
+    .product-title,
+    .price,
+    .sizes,
+    .colors {
+        text-transform: UPPERCASE;
+        font-weight: bold;
+    }
+
+    .checked,
+    .price span {
+        color: #ff9f1a;
+    }
+
+    .product-title,
+    .rating,
+    .product-description,
+    .price,
+    .vote,
+    .sizes {
+        margin-bottom: 15px;
+    }
+
+    .product-title {
+        margin-top: 0;
+    }
+
+    .size {
+        margin-right: 10px;
+    }
+    .size:first-of-type {
+        margin-left: 40px;
+    }
+
+    .color {
         display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        height: 2em;
+        width: 2em;
+        border-radius: 2px;
     }
-    .spec-1 {
-        color: #938787;
-        font-size: 15px;
+    .color:first-of-type {
+        margin-left: 20px;
     }
-    h5 {
-        font-weight: 400;
+
+    .add-to-cart,
+    .like {
+        background: #ff9f1a;
+        padding: 1.2em 1.5em;
+        border: none;
+        text-transform: UPPERCASE;
+        font-weight: bold;
+        color: #fff;
+        -webkit-transition: background 0.3s ease;
+        transition: background 0.3s ease;
     }
-    .para {
-        font-size: 16px;
+    .add-to-cart:hover,
+    .like:hover {
+        background: #b36800;
+        color: #fff;
+    }
+
+    .not-available {
+        text-align: center;
+        line-height: 2em;
+    }
+    .not-available:before {
+        font-family: fontawesome;
+        content: "\f00d";
+        color: #fff;
+    }
+
+    .orange {
+        background: #ff9f1a;
+    }
+
+    .green {
+        background: #85ad00;
+    }
+
+    .blue {
+        background: #0076ad;
+    }
+
+    .tooltip-inner {
+        padding: 1.3em;
+    }
+
+    @-webkit-keyframes opacity {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale(3);
+            transform: scale(3);
+        }
+        100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    @keyframes opacity {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale(3);
+            transform: scale(3);
+        }
+        100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
     }
 </style>

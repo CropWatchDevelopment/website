@@ -149,7 +149,7 @@
 							</li>
 							<li class="dropdown">
 								<a
-									href="/store"
+									href="/shop/products"
 									data-toggle="dropdown"
 									role="button"
 									aria-haspopup="true"
