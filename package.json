@@ -39,6 +39,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@directus/sdk": "^17.0.1",
+		"moment": "^2.30.1",
 		"stripe": "^16.12.0"
 	}
 }

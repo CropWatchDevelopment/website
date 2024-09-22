@@ -10,7 +10,7 @@
     }
 </script>
 
-<div class="theme-bg no-padding typo-light">
+<div class="theme-bg no-padding">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

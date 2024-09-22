@@ -1,3 +1,7 @@
+<script lang="ts">
+</script>
+
+
 <div class="theme-bg no-padding typo-light">
 	<div class="container">
 		<div class="row">

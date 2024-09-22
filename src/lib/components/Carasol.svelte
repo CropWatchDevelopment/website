@@ -25,6 +25,7 @@
 			<li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
 			<li data-target="#bs-carousel" data-slide-to="1"></li>
 			<li data-target="#bs-carousel" data-slide-to="2"></li>
+			<li data-target="#bs-carousel" data-slide-to="3"></li>
 		</ol>
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
@@ -48,7 +49,15 @@
 				<div class="slide-3" style="background-image: url('images/potatos.jpg');" />
 				<div class="hero">
 					<h1 class="animated1">Cold Chain Monitoring</h1>
-					<h3 class="animated2">Get data from the toughest places</h3>
+					<h3 class="animated2">Get data from inside of metal containers and refridgerators</h3>
+					<button class="btn btn-hero btn-lg animated3">About Us</button>
+				</div>
+			</div>
+			<div class="item slides">
+				<div class="slide-3" style="background-image: url('images/pepperfield.jpg');" />
+				<div class="hero">
+					<h1 class="animated1">Long Distance Data</h1>
+					<h3 class="animated2">We can get data from the most remote places</h3>
 					<button class="btn btn-hero btn-lg animated3">About Us</button>
 				</div>
 			</div>

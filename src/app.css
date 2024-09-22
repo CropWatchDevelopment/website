@@ -10,3 +10,7 @@ h1 {
 h2 {
     font-size: 30px;
 }
+input[type=text] {
+    color: black;
+    font-weight: bold;
+}

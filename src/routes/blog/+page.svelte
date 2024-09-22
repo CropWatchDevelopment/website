@@ -1,42 +1,54 @@
+<script lang="ts">
+	import { PUBLIC_APIURL } from "$env/static/public";
+    import moment from "moment";
+
+	export let data;
+	console.log(data.articles);
+</script>
+
 <section class="inner-wrapper">
 	<div class="container">
+		{#if data.articles.length == 0}
+			<div class="inner-wrapper-main oops">
+				<p>No posts found, check back later for updates!</p>
+				<a href="/" class="btn-home">Home</a>
+			</div>
+		{/if}
 		<div class="row">
-			<div class="col-md-6">
-				<div class="thumbnail">
-					<a class="hover-img" href="/8">
-						<img
-							alt="image"
-							src="https://placehold.co/600x400"
-						/>
-					</a>
-					<div class="date">
-						<span>Aug 22, 2016</span>
-						<!-- <span>by<a href="javascript:void(0)">Admin</a></span> -->
-						<!-- <span>3 comment</span> -->
-					</div>
-					<div class="caption">
-						<h3><a href="/blog/8">Lorem Ipsum is simply dummy</a></h3>
-						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-							has been the industry's standard dummy text ever since the 1500s, when an unknown
-							printer took a galley of type and scrambled it to make a type specimen book. <a
-								href="404.html"
-								class="readmore">Read more</a
-							>
-						</p>
-						<ul class="list-inline">
-							<!-- <li><a class="fa fa-facebook" href="javascript:void(0)"></a></li> -->
-							<!-- <li><a class="fa fa-google-plus" href="javascript:void(0)"></a></li> -->
-							<li>
-								<a class="fa fa-linkedin" href="https://www.linkedin.com/feed/"></a>
-							</li>
-							<li>
-								<a class="fa fa-youtube-play" href="https://www.youtube.com/@cropwatch4407"></a>
-							</li>
-						</ul>
+			{#each data.articles as article}
+				<div class="col-md-6">
+					<div class="thumbnail">
+						<a class="hover-img" href={`/blog/${article.id}`}>
+							<img
+								alt={`${article.title} Thumbnail`}
+								src={`${PUBLIC_APIURL}/assets/${article.image}?width=600`}
+							/>
+						</a>
+						<div class="date">
+							<span>{moment(article.date_created).format('YYYY MMM DD')}</span>
+							<!-- <span>by<a href="javascript:void(0)">Admin</a></span> -->
+							<!-- <span>3 comment</span> -->
+						</div>
+						<div class="caption">
+							<h3>
+								<a href={`/blog/${article.id}`}
+									>{article.tagline}</a
+								>
+							</h3>
+							<p>
+								<a href={`/blog/${article.id}`} class="readmore"
+									>Read more...</a
+								>
+							</p>
+							{#each article.attributes as arrtibute}
+								<span class="badge badge-primary tw-mr-2"
+									>{arrtibute}</span
+								>
+							{/each}
+						</div>
 					</div>
 				</div>
-			</div>
+			{/each}
 		</div>
 	</div>
 </section>

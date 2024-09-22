@@ -1,6 +1,7 @@
 {
 	"/": [
-		"src/routes/+page.ts"
+		"src/routes/+page.ts",
+		"src/routes/+page.server.ts"
 	],
 	"/about-us": [],
 	"/(api)/api/v1/stripe/products": [
@@ -9,8 +10,12 @@
 	"/(api)/api/v1/stripe/products/price/[price_id]": [
 		"src/routes/(api)/api/v1/stripe/products/price/[price_id]/+server.ts"
 	],
-	"/blog": [],
-	"/blog/[post_id]": [],
+	"/blog": [
+		"src/routes/blog/+page.server.ts"
+	],
+	"/blog/[post_id]": [
+		"src/routes/blog/[post_id]/+page.server.ts"
+	],
 	"/contact-us": [],
 	"/shop/cart": [],
 	"/shop/products": [],

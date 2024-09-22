@@ -26,7 +26,6 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const STRIPE_PUBLIC_KEY: string;
 	export const STRIPE_SECRET_KEY_LIVE: string;
 	export const LESSOPEN: string;
 	export const npm_package_devDependencies_vitest: string;
@@ -64,9 +63,11 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies_tailwindcss: string;
 	export const npm_package_devDependencies_typescript: string;
 	export const NVM_DIR: string;
+	export const QT_QPA_PLATFORMTHEME: string;
 	export const npm_package_scripts_dev: string;
 	export const npm_package_devDependencies__playwright_test: string;
 	export const npm_package_devDependencies_prettier: string;
+	export const GTK_IM_MODULE: string;
 	export const LOGNAME: string;
 	export const npm_package_type: string;
 	export const _: string;
@@ -75,7 +76,6 @@ declare module '$env/static/private' {
 	export const XDG_SESSION_CLASS: string;
 	export const npm_package_scripts_lint: string;
 	export const npm_config_registry: string;
-	export const STM32_PRG_PATH: string;
 	export const TERM: string;
 	export const XDG_SESSION_ID: string;
 	export const npm_package_dependencies_stripe: string;
@@ -100,6 +100,7 @@ declare module '$env/static/private' {
 	export const XDG_CURRENT_DESKTOP: string;
 	export const LC_TELEPHONE: string;
 	export const npm_package_devDependencies_eslint: string;
+	export const XMODIFIERS: string;
 	export const XDG_SESSION_DESKTOP: string;
 	export const XAUTHORITY: string;
 	export const LS_COLORS: string;
@@ -128,11 +129,14 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies_globals: string;
 	export const VSCODE_INSPECTOR_OPTIONS: string;
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
+	export const QT_IM_MODULE: string;
 	export const XDG_VTNR: string;
 	export const npm_package_scripts_format: string;
+	export const npm_package_dependencies__directus_sdk: string;
 	export const PWD: string;
 	export const npm_execpath: string;
 	export const XDG_CONFIG_DIRS: string;
+	export const CLUTTER_IM_MODULE: string;
 	export const NVM_CD_FLAGS: string;
 	export const XDG_DATA_DIRS: string;
 	export const LC_NUMERIC: string;
@@ -161,7 +165,7 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-	
+	export const PUBLIC_APIURL: string;
 }
 
 /**
@@ -180,7 +184,6 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		STRIPE_PUBLIC_KEY: string;
 		STRIPE_SECRET_KEY_LIVE: string;
 		LESSOPEN: string;
 		npm_package_devDependencies_vitest: string;
@@ -218,9 +221,11 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies_tailwindcss: string;
 		npm_package_devDependencies_typescript: string;
 		NVM_DIR: string;
+		QT_QPA_PLATFORMTHEME: string;
 		npm_package_scripts_dev: string;
 		npm_package_devDependencies__playwright_test: string;
 		npm_package_devDependencies_prettier: string;
+		GTK_IM_MODULE: string;
 		LOGNAME: string;
 		npm_package_type: string;
 		_: string;
@@ -229,7 +234,6 @@ declare module '$env/dynamic/private' {
 		XDG_SESSION_CLASS: string;
 		npm_package_scripts_lint: string;
 		npm_config_registry: string;
-		STM32_PRG_PATH: string;
 		TERM: string;
 		XDG_SESSION_ID: string;
 		npm_package_dependencies_stripe: string;
@@ -254,6 +258,7 @@ declare module '$env/dynamic/private' {
 		XDG_CURRENT_DESKTOP: string;
 		LC_TELEPHONE: string;
 		npm_package_devDependencies_eslint: string;
+		XMODIFIERS: string;
 		XDG_SESSION_DESKTOP: string;
 		XAUTHORITY: string;
 		LS_COLORS: string;
@@ -282,11 +287,14 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies_globals: string;
 		VSCODE_INSPECTOR_OPTIONS: string;
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
+		QT_IM_MODULE: string;
 		XDG_VTNR: string;
 		npm_package_scripts_format: string;
+		npm_package_dependencies__directus_sdk: string;
 		PWD: string;
 		npm_execpath: string;
 		XDG_CONFIG_DIRS: string;
+		CLUTTER_IM_MODULE: string;
 		NVM_CD_FLAGS: string;
 		XDG_DATA_DIRS: string;
 		LC_NUMERIC: string;
@@ -322,6 +330,7 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
+		PUBLIC_APIURL: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }
