@@ -59,6 +59,7 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies__fontsource_fira_mono: string;
 	export const CINNAMON_VERSION: string;
 	export const DBUS_SESSION_BUS_ADDRESS: string;
+	export const npm_package_dependencies_moment: string;
 	export const COLORTERM: string;
 	export const npm_package_devDependencies_tailwindcss: string;
 	export const npm_package_devDependencies_typescript: string;
@@ -76,6 +77,7 @@ declare module '$env/static/private' {
 	export const XDG_SESSION_CLASS: string;
 	export const npm_package_scripts_lint: string;
 	export const npm_config_registry: string;
+	export const STM32_PRG_PATH: string;
 	export const TERM: string;
 	export const XDG_SESSION_ID: string;
 	export const npm_package_dependencies_stripe: string;
@@ -119,6 +121,7 @@ declare module '$env/static/private' {
 	export const npm_lifecycle_event: string;
 	export const NODE_PATH: string;
 	export const QT_ACCESSIBILITY: string;
+	export const NO_AT_BRIDGE: string;
 	export const GDMSESSION: string;
 	export const npm_package_scripts_build: string;
 	export const npm_package_devDependencies_svelte: string;
@@ -217,6 +220,7 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies__fontsource_fira_mono: string;
 		CINNAMON_VERSION: string;
 		DBUS_SESSION_BUS_ADDRESS: string;
+		npm_package_dependencies_moment: string;
 		COLORTERM: string;
 		npm_package_devDependencies_tailwindcss: string;
 		npm_package_devDependencies_typescript: string;
@@ -234,6 +238,7 @@ declare module '$env/dynamic/private' {
 		XDG_SESSION_CLASS: string;
 		npm_package_scripts_lint: string;
 		npm_config_registry: string;
+		STM32_PRG_PATH: string;
 		TERM: string;
 		XDG_SESSION_ID: string;
 		npm_package_dependencies_stripe: string;
@@ -277,6 +282,7 @@ declare module '$env/dynamic/private' {
 		npm_lifecycle_event: string;
 		NODE_PATH: string;
 		QT_ACCESSIBILITY: string;
+		NO_AT_BRIDGE: string;
 		GDMSESSION: string;
 		npm_package_scripts_build: string;
 		npm_package_devDependencies_svelte: string;

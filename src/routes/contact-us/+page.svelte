@@ -6,14 +6,22 @@
 					<div class="address">
 						<h3>Contact <span>info</span></h3>
 						<p>
-							Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-							piece of classical Latin literature from 45 BC, making it over 200 years old. Richard
-							McClintock, a Latin professor.
+							Contrary to popular belief, Lorem Ipsum is not
+							simply random text. It has roots in a piece of
+							classical Latin literature from 45 BC, making it
+							over 200 years old. Richard McClintock, a Latin
+							professor.
 						</p>
 						<ul class="list-ul">
-							<li><i class="fa fa-home"></i>300 E-Block Building, USA</li>
-							<li><i class="fa fa-phone"></i>0800 123 46 0000</li>
-							<li><i class="fa fa-envelope"></i>worldedu@gmail.com</li>
+							<li>
+								<i class="fa fa-home"></i>Saito Minamikata
+								806-5, Miyazaki
+							</li>
+							<li><i class="fa fa-phone"></i>+-- --- --- ----</li>
+							<li>
+								<i class="fa fa-envelope" />
+								<a href="mailto: sayaka@cropwatch.io">Sayaka@CropWatch.io</a>
+							</li>
 						</ul>
 						<form>
 							<h3>Contact <span>form</span></h3>
@@ -52,7 +60,8 @@
 									class="form-control form-item"
 								></textarea>
 							</div>
-							<button class="btn btn-1" type="submit">Send</button>
+							<button class="btn btn-1" type="submit">Send</button
+							>
 						</form>
 					</div>
 				</div>

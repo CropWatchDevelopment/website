@@ -6,6 +6,14 @@ export async function GET(event) {
     // ... endpoint logic
     var stripe = new Stripe(STRIPE_SECRET_KEY_LIVE);
 
-    const products = await stripe.products.list();
+    const params: Stripe.ProductListParams = {
+        active: true,
+    };
+    const options: Stripe.RequestOptions = {
+
+    };
+    const products = await stripe.products.list({
+        limit: 100,
+    });
     return json(products);
 }
