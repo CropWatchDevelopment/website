@@ -1,5 +1,4 @@
 export const CurrencyToSymbol = (currency: string): string => {
-    debugger;
     if(!currency) return '';
     switch (currency?.toLowerCase()) {
         case 'usd':

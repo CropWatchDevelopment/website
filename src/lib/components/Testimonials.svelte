@@ -1,22 +1,23 @@
 <script lang="ts">
 	export let testimonials;
+	export let testimonial_section;
+	debugger
 </script>
 
 <div class="testimonials-wrapper">
 	<div class="title">
-		<h2>Our <span>Testimonials</span></h2>
+		<h2>{testimonial_section.translations[0].title }</h2>
 		<span class="title-border-white"></span>
 	</div>
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<!-- Testimonials Indicators -->
 			<ol class="carousel-indicators">
 				<li
 					data-target="#myCarousel"
 					data-slide-to="0"
 					class="active"
 				></li>
-				{#each testimonials?.testimonials as _, i}
+				{#each testimonials as _, i}
 					<li data-target="#myCarousel" data-slide-to={i + 1}></li>
 				{/each}
 			</ol>
@@ -39,7 +40,7 @@
 					</blockquote>
 				</div>
 
-				{#each testimonials?.testimonials as testimonial}
+				{#each testimonials as testimonial}
 					<div class="item">
 						<blockquote class="tw-flex tw-flex-col tw-items-center">
 							<img
@@ -48,11 +49,11 @@
 								class="tw-mx-auto"
 							/>
 							<p>
-								{@html testimonial.description}
+								{@html testimonial.translations[0]?.description ?? ''}
 							</p>
 							<h3>
 								- {testimonial.person_name}
-								<span>{testimonial.person_position}</span>
+								<span>{testimonial.translations[0]?.person_position ?? ''}</span>
 							</h3>
 						</blockquote>
 					</div>

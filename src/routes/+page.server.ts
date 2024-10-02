@@ -5,24 +5,86 @@ import { readItem, readItems, readSingleton } from '@directus/sdk';
 export async function load({ fetch }) {
     try {
         const directus = getDirectusInstance(fetch);
-        const callout = await directus.request(readItems('Callouts_Section', {
-            fields: ['*', "Callouts.*"],  // Fetch all fields from Callouts_Section and related Callout items
-            deep: { Callout: '*' }
-        }));
 
-        const testimonials = await directus.request(readItems('Testimonial_section', {
-            fields: ['*', "testimonials.*"],  // Fetch all fields from Callouts_Section and related Callout items
-            deep: { testimonials: '*' }
-        }));
+        const languageCode = 'ja-JP';
 
-        const prices = await directus.request(readItems('prices', {
-            fields: ['*']
-        }));
+        const callout = await directus.request(
+            readItems('callout_section', {
+                fields: ['*', { translations: ['*'] }],
+                deep: {
+                    translations: {
+                        _filter: {
+                            _and: [
+                                {
+                                    languages_code: { _eq: languageCode },
+                                },
+                            ],
+                        },
+                    },
+                }
+            }
+            )
+        );
+
+        const callouts = await directus.request(
+            readItems('callouts', {
+                fields: ['*', { translations: ['*'] }],
+                deep: {
+                    translations: {
+                        _filter: {
+                            _and: [
+                                {
+                                    languages_code: { _eq: languageCode },
+                                },
+                            ],
+                        },
+                    },
+                }
+            }
+            )
+        );
+
+        const testimonial_section = await directus.request(
+            readItems('testimonial_section', {
+                fields: ['*', { translations: ['*'] }],
+                deep: {
+                    translations: {
+                        _filter: {
+                            _and: [
+                                {
+                                    languages_code: { _eq: languageCode },
+                                },
+                            ],
+                        },
+                    },
+                }
+            }
+            )
+        );
+
+        const testimonials = await directus.request(
+            readItems('testimonial', {
+                fields: ['*', { translations: ['*'] }],
+                deep: {
+                    translations: {
+                        _filter: {
+                            _and: [
+                                {
+                                    languages_code: { _eq: languageCode },
+                                },
+                            ],
+                        },
+                    },
+                }
+            }
+            )
+        );
 
         return {
             callout,
-            testimonials,
-            prices
+            callouts,
+            testimonial_section: testimonial_section,
+            testimonials: testimonials
         };
     } catch (error) {
         return {

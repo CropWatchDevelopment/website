@@ -27,6 +27,15 @@
  */
 declare module '$env/static/private' {
 	export const STRIPE_SECRET_KEY_LIVE: string;
+	export const SECRET: string;
+	export const DB_CLIENT: string;
+	export const DB_HOST: string;
+	export const DB_PORT: string;
+	export const DB_DATABASE: string;
+	export const DB_USER: string;
+	export const DB_PASSWORD: string;
+	export const ADMIN_EMAIL: string;
+	export const ADMIN_PASSWORD: string;
 	export const LESSOPEN: string;
 	export const npm_package_devDependencies_vitest: string;
 	export const LANGUAGE: string;
@@ -188,6 +197,15 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		STRIPE_SECRET_KEY_LIVE: string;
+		SECRET: string;
+		DB_CLIENT: string;
+		DB_HOST: string;
+		DB_PORT: string;
+		DB_DATABASE: string;
+		DB_USER: string;
+		DB_PASSWORD: string;
+		ADMIN_EMAIL: string;
+		ADMIN_PASSWORD: string;
 		LESSOPEN: string;
 		npm_package_devDependencies_vitest: string;
 		LANGUAGE: string;
