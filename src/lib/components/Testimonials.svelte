@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let testimonials;
 	export let testimonial_section;
-	debugger
 </script>
 
 <div class="testimonials-wrapper">
@@ -49,7 +48,7 @@
 								class="tw-mx-auto"
 							/>
 							<p>
-								{@html testimonial.translations[0]?.description ?? ''}
+								{testimonial.translations[0]?.description ?? ''}
 							</p>
 							<h3>
 								- {testimonial.person_name}

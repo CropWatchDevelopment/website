@@ -62,6 +62,24 @@ export async function load({ fetch }) {
             )
         );
 
+        const pricing = await directus.request(
+            readItems('pricing', {
+                fields: ['*', { translations: ['*'] }],
+                deep: {
+                    translations: {
+                        _filter: {
+                            _and: [
+                                {
+                                    languages_code: { _eq: languageCode },
+                                },
+                            ],
+                        },
+                    },
+                }
+            }
+            )
+        );
+
         const testimonials = await directus.request(
             readItems('testimonial', {
                 fields: ['*', { translations: ['*'] }],
@@ -84,7 +102,8 @@ export async function load({ fetch }) {
             callout,
             callouts,
             testimonial_section: testimonial_section,
-            testimonials: testimonials
+            testimonials: testimonials,
+            pricing: pricing,
         };
     } catch (error) {
         return {

@@ -16,7 +16,7 @@
 <Carasol />
 <Callout callout={data.callout} callouts={data.callouts}/>
 <Stats />
-<!-- <Pricing prices={data.prices} /> -->
+<Pricing prices={data.pricing} />
 <Testimonials testimonial_section={data.testimonial_section} testimonials={data.testimonials} />
 
 <div class="signup-wrapper bm-remove animate fadeInDown" data-anim-type="fadeInDown">

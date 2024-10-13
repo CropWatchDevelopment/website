@@ -13,7 +13,7 @@
 			<p>Gateways under management</p>
 		</div>
 		<div class="col-sm-6 col-md-2 counter">
-			<div class="number animateNumber" data-num="564325"><span>564325</span></div>
+			<div class="number animateNumber" data-num="564325"><span>200+</span></div>
 			<p>Deployed Devices</p>
 		</div>
 		<div class="col-sm-6 col-md-2 counter">
@@ -21,8 +21,8 @@
 			<p>Active Users</p>
 		</div>
 		<div class="col-sm-6 col-md-2 counter">
-			<div class="number animateNumber" data-num="245"><span>245</span></div>
-			<p>Awards Won</p>
+			<div class="number animateNumber" data-num="150"><span>150km²</span></div>
+			<p>Area Covered</p>
 		</div>
 	</div>
 </div>
