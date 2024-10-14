@@ -17,6 +17,7 @@
 		"src/routes/blog/[post_id]/+page.server.ts"
 	],
 	"/contact-us": [],
+	"/page": [],
 	"/page/[lang]/[slug]": [
 		"src/routes/page/[lang]/[slug]/+page.server.ts"
 	],

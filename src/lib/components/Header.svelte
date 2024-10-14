@@ -5,10 +5,10 @@
 				<ul>
 					<li>
 						<a href="mailto:support@CropWatch.io"
-							><i class="fa fa-envelope-o" aria-hidden="true"></i>support@CropWatch.io</a
+							><i class="fa fa-envelope-o" aria-hidden="true"></i>Sayaka@CropWatch.io</a
 						>
 					</li>
-					<li><i class="fa fa-phone" aria-hidden="true"></i>+1-0123-456-789</li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i>080-4284-3390</li>
 				</ul>
 			</div>
 			<div class="col-md-8 col-sm-6">

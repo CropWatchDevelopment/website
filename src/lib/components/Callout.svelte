@@ -1,8 +1,14 @@
 <script lang="ts">
     import { PUBLIC_APIURL } from "$env/static/public";
+    import { language } from "$lib/stores/language.store";
 
     export let callout;
     export let callouts: any = [];
+
+    let lang = "ja-JP";
+    language.subscribe((current) => {
+        lang = current;
+    });
 </script>
 
 {#if callout}
@@ -23,11 +29,11 @@
                         data-wow-duration="1.5s"
                     >
                         {#if item.translations[0].image}
-                                <img
-                                    src={`${PUBLIC_APIURL}/assets/${item.translations[0].image}`}
-                                    alt={item.translations[0]?.title}
-                                    class="tw-w-36 tw-h-36 tw-rounded-full"
-                                />
+                            <img
+                                src={`${PUBLIC_APIURL}/assets/${item.translations[0].image}`}
+                                alt={item.translations[0]?.title}
+                                class="tw-w-36 tw-h-36 tw-rounded-full"
+                            />
                         {:else}
                             <i class="fa fa-image circle" />
                         {/if}
@@ -37,7 +43,7 @@
                         <p>
                             {@html item.translations[0]?.description ?? ""}
                         </p>
-                        <a href="javascript:void(0)" class="btn"
+                        <a href={`/page/${lang}/${item.slug}`} class="btn"
                             >{item.translations[0]?.button_text ??
                                 "Read More"}</a
                         >
