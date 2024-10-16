@@ -1,27 +1,26 @@
 <!doctype html>
-<html lang="ja" notranslate>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
-	<link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<!-- <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
-	<link href="/assets/fontawesome-6.6.0/css/all.min.css" rel="stylesheet">
-	<link href="/css/style.css" rel="stylesheet">
-	<link href="/assets/animate/animate.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="stylesheet" href="/css/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	%sveltekit.head%
 </head>
 
 <body data-sveltekit-preload-data="hover">
-	<div>%sveltekit.body%</div>
-	<script src="/assets/jquery/jquery-3.1.1.min.js"></script>
-	<script src="/assets/jquery/jquery.animateNumber.min.js"></script>
-	<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/assets/wow/wow.min.js"></script>
-	<script src="/js/custom.js"></script>
+	<div style="display: contents">%sveltekit.body%</div>
 </body>
+
+<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+
+	gtag('config', 'G-V65DJ4TTV1');
+</script>
 
 </html>

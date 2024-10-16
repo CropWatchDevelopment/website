@@ -3,25 +3,11 @@
 		"src/routes/+page.ts",
 		"src/routes/+page.server.ts"
 	],
-	"/about-us": [],
-	"/(api)/api/v1/stripe/products": [
-		"src/routes/(api)/api/v1/stripe/products/+server.ts"
+	"/about": [
+		"src/routes/about/+page.ts"
 	],
-	"/(api)/api/v1/stripe/products/price/[price_id]": [
-		"src/routes/(api)/api/v1/stripe/products/price/[price_id]/+server.ts"
-	],
-	"/blog": [
-		"src/routes/blog/+page.server.ts"
-	],
-	"/blog/[post_id]": [
-		"src/routes/blog/[post_id]/+page.server.ts"
-	],
-	"/contact-us": [],
 	"/page": [],
-	"/page/[lang]/[slug]": [
-		"src/routes/page/[lang]/[slug]/+page.server.ts"
-	],
-	"/shop/cart": [],
-	"/shop/products": [],
-	"/shop/products/[product_id]": []
+	"/page/[slug]": [
+		"src/routes/page/[slug]/+page.server.ts"
+	]
 }

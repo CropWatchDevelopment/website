@@ -24,11 +24,11 @@
     <div class="inner-banner">
       <div class="container">
         <div class="inner-banner-design">
-          <div class="inner-banner-heading col-md-4 col-sm-4">
-            <!-- Safely display the last crumb's label -->
+          <div class="inner-banner-heading">
             <h3>{crumbs.at(-1)?.label ?? ''}</h3>
           </div>
-          <div class="inner-breadcrumb hidden-xs col-md-8">
+          <div class="inner-breadcrumb hidden sm:flex sm:flex-row">
+            <span class="flex-auto" />
             <ul>
               {#each crumbs as crumb}
                 <li><a href={crumb.href}>{crumb.label}</a></li>

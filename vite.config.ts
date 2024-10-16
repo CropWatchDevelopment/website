@@ -5,5 +5,10 @@ export default defineConfig({
 	plugins: [sveltekit()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
-	}
+	},
+	resolve: {
+		alias: {
+			'@splidejs/svelte-splide': '/node_modules/@splidejs/svelte-splide',
+		},
+	},
 });

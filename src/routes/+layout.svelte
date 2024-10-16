@@ -1,20 +1,26 @@
 <script>
-	import "../app.css";
-	import Footer from "$lib/components/Footer.svelte";
-	import Header from "$lib/components/Header.svelte";
-	import Copywrite from "$lib/components/Copywrite.svelte";
-	import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
-	import { page } from "$app/stores";
+	import Header from '../lib/components/Header.svelte';
+	import '../app.css';
+	import TopBar from '$lib/components/TopBar.svelte';
+	import '@fortawesome/fontawesome-free/css/all.min.css';
+	import { library } from '@fortawesome/fontawesome-svg-core';
+	import { fas } from '@fortawesome/free-solid-svg-icons';
+	import { page } from '$app/stores';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	library.add(fas); // Add the entire Solid icon set
 </script>
 
-<div class="app tw-flex tw-flex-col tw-min-h-screen">
+<div class="app h-full flex flex-col">
+	<TopBar />
 	<Header />
-	<main class="tw-flex-1">
-		{#if $page.url.pathname !== "/" && $page.url.pathname !== "error"}
+	<main class="flex flex-col">
+		{#if $page.url.pathname !== '/' && $page.url.pathname !== 'error'}
 			<Breadcrumbs />
 		{/if}
-		<slot />
+		<slot></slot>
+		<span class="flex-grow" />
 	</main>
+	<span class="flex-grow" />
 	<Footer />
-	<Copywrite />
 </div>

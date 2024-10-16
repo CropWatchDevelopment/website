@@ -26,9 +26,37 @@ export async function load({ fetch }) {
             )
         );
 
+        const slides = await directus.request(
+            readItems('slides', {
+                fields: ['*', { translations: ['*'] }],
+                filter: {
+                    status: {
+                        _in: ['published']
+                    },
+                },
+                deep: {
+                    translations: {
+                        _filter: {
+                            _and: [
+                                {
+                                    languages_code: { _eq: languageCode },
+                                },
+                            ],
+                        },
+                    },
+                }
+            }
+            )
+        );
+
         const callouts = await directus.request(
             readItems('callouts', {
                 fields: ['*', { translations: ['*'] }],
+                filter: {
+                    status: {
+                        _in: ['published']
+                    },
+                },
                 deep: {
                     translations: {
                         _filter: {
@@ -104,6 +132,7 @@ export async function load({ fetch }) {
             testimonial_section: testimonial_section,
             testimonials: testimonials,
             pricing: pricing,
+            slides,
         };
     } catch (error) {
         return {

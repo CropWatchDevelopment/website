@@ -10,10 +10,4 @@ declare global {
 	}
 }
 
-export { };
-
-declare global {
-	interface Window {
-		$: any;
-	}
-}
+export {};

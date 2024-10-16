@@ -1,41 +1,49 @@
-<span class="flex flex-1" />
+<span class="flex flex-1"></span>
 <footer>
-	<div class="container">
-		<div class="col-md-2">
+	<div class="container flex flex-wrap">
+		<div class="grid-row grid w-full md:w-1/6">
 			<h2>Quick Links</h2>
-			<a href="/contact-us" class="btn btn-primary one">Contact Us</a>
-			<a href="/shop/products" class="btn btn-primary two">Shop</a>
-			<a href="/blog" class="btn btn-primary two">Blog</a>
+			<div class="flex flex-row gap-5 lg:flex-col">
+				<a href="/contact-us" class="btn btn-primary one w-fit text-nowrap">Contact Us</a>
+				<a href="/shop/products" class="btn btn-primary two w-fit text-nowrap">Shop</a>
+				<a href="/blog" class="btn btn-primary two w-fit text-nowrap">Blog</a>
+			</div>
 		</div>
-		<div class="col-md-6 news">
+		<div class="news w-full md:w-1/2">
 			<h2>Latest News & Updates</h2>
 			<ul>
 				<li>
 					<a
 						>Lorem Ipsum is simply dummy text of the printing and typesetting industry. printing and
 						typesetting industry. 2</a
-					> <small>29 June 2016</small>
+					>
+					<small>29 June 2016</small>
 				</li>
 				<li>
 					<a
 						>Lorem Ipsum is simply dummy text of the printing and typesetting industry. printing and
 						typesetting industry. 2</a
-					> <small>14 August 2016</small>
+					>
+					<small>14 August 2016</small>
 				</li>
 			</ul>
 		</div>
-		<div class="col-md-4 subscirbe">
+		<div class="subscirbe w-full md:w-1/3">
 			<p class="sub">
 				<span>Subscribe</span> to Our Newsletter to get Important Blog Posts &amp; Inside Scoops:
 			</p>
-			<div class="form">
+			<div class="form flex">
 				<input
-					type="text"
+					type="email"
 					placeholder="Enter your Email"
 					id="exampleInputName"
-					class="form-control first"
+					class="mb-4 h-9 w-2/3 rounded-l border border-black bg-[#2d2e2e64] pl-3 font-normal leading-9 text-gray-600"
 				/>
-				<input type="text" class="bttn" value="Subscribe" />
+				<button
+					type="submit"
+					class="bttn mb-4 h-9 w-1/3 rounded-r border border-[#16a085] bg-[#1abc9c] font-normal leading-9 text-white"
+					>Subscribe</button
+				>
 			</div>
 			<div class="social">
 				<ul>
@@ -51,9 +59,15 @@
 						Join us <span>on Github</span>
 					</li>
 					<li>
-						<a class="discourse" title="Discourse" target="_blank" href="https://forum.cropwatch.io/">
+						<a
+							class="discourse"
+							title="Discourse"
+							target="_blank"
+							href="https://forum.cropwatch.io/"
+						>
 							<i class="fa-brands fa-discourse"></i>
-						</a>Talk to us <span>on our Forum</span>
+						</a>
+						Talk to us <span>on our Forum</span>
 					</li>
 					<li>
 						<a

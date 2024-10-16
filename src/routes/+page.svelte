@@ -1,28 +1,27 @@
-<script>
-    import Callout from '$lib/components/Callout.svelte';
-	import Carasol from '$lib/components/Carasol.svelte';
+<script lang="ts">
+	import Callouts from '$lib/components/Callouts.svelte';
+	import Cta from '$lib/components/CTA.svelte';
+	import Cta2 from '$lib/components/CTA2.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	import Pricing from '$lib/components/Pricing.svelte';
-	import Stats from '$lib/components/Stats.svelte';
-	import Testimonials from '$lib/components/Testimonials.svelte';
+	import Slider from '$lib/components/Slider.svelte';
+	import Statistics from '$lib/components/Statistics.svelte';
 
 	export let data;
+	const calloutSection = data.callout.translations[0];
+	const callouts = data.callouts;
+
+	const slides = data.slides;
 </script>
 
 <svelte:head>
-	<title>CropWatch</title>
+	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<Carasol />
-<Callout callout={data.callout} callouts={data.callouts}/>
-<Stats />
-<Pricing prices={data.pricing} />
-<Testimonials testimonial_section={data.testimonial_section} testimonials={data.testimonials} />
-
-<div class="signup-wrapper bm-remove animate fadeInDown" data-anim-type="fadeInDown">
-	<div class="container">
-		<h2>Sign Up our Website today!</h2>
-		<p>excepteur sint occaecat cupidatat non proiden deserunt mollit anim laborum.</p>
-		<a href="javascript:void(0)">Sign up now!</a>
-	</div>
-</div>
+<Slider {slides} />
+<Cta />
+<Callouts {calloutSection} {callouts} />
+<Statistics />
+<Pricing />
+<Cta2 />

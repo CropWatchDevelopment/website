@@ -1,185 +1,116 @@
-<header class="wow fadeInDown" data-offset-top="197" data-spy="affix">
-	<div class="top-wrapper">
-		<div class="container">
-			<div class="col-md-4 col-sm-6 hidden-xs top-wraper-left no-padding">
-				<ul>
-					<li>
-						<a href="mailto:support@CropWatch.io"
-							><i class="fa fa-envelope-o" aria-hidden="true"></i>Sayaka@CropWatch.io</a
-						>
-					</li>
-					<li><i class="fa fa-phone" aria-hidden="true"></i>080-4284-3390</li>
-				</ul>
-			</div>
-			<div class="col-md-8 col-sm-6">
-				<ul class="pull-right">
-					<li>
-						<ul class="header-social-icons">
-							<li class="app login">
-								<a href="https://app.cropwatch.io" target="_blank"><i class="fa fa-sign-in" aria-hidden="true"></i> App Login</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="logo-bar">
-		<div class="container">
-			<!-- Logo -->
-			<!-- Navigation -->
-			<div class="col-md-12 col-sm-12 col-xs-12 navigation">
-				<nav class="navbar navbar-default">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-						<button
-							type="button"
-							class="navbar-toggle collapsed"
-							data-toggle="collapse"
-							data-target="#bs-example-navbar-collapse-1"
-							aria-expanded="false"
-						>
-							<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
-							<span class="icon-bar"></span> <span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand tw-flex tw-flex-row tw-items-center" href="/">
-							<img
-								src="/images/cropwatch_static.svg"
-								alt="CropWatch"
-								class="tw-mr-4"
-								style="max-height: 40px;"
-							/>
-							<h1 class="tw-font-bold">CropWatch</h1>
-						</a>
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="/">Home</a></li>
-							<li class="dropdown mega-menu">
-								<a
-									href="javascript:void(0)"
-									class="dropdown-toggle"
-									data-toggle="dropdown"
-									role="button"
-									aria-haspopup="true"
-									aria-expanded="false">Portfolio <i class="fa fa-angle-down"></i></a
-								>
-								<ul class="dropdown-menu">
-									<li>
-										<div class="row">
-											<div class="col-md-2 col-md-offset-1">
-												<ul class="list-unstyled">
-													<li><span>Eliments</span></li>
-													<li>
-														<a href="grid.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Grid</a
-														>
-													</li>
-													<li>
-														<a href="table.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Tables</a
-														>
-													</li>
-													<li>
-														<a href="tabs.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Tabs</a
-														>
-													</li>
-													<li>
-														<a href="accordions.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Accordions</a
-														>
-													</li>
-													<li>
-														<a href="forms.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Forms</a
-														>
-													</li>
-													<li>
-														<a href="buttons.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Buttons</a
-														>
-													</li>
-													<li>
-														<a href="typography.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Typography</a
-														>
-													</li>
-												</ul>
-											</div>
-											<div class="col-md-2">
-												<ul class="list-unstyled">
-													<li><span>Blog</span></li>
-													<li>
-														<a href="blog-2-column.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>2 Column</a
-														>
-													</li>
-													<li>
-														<a href="blog-3-column.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>3 Column</a
-														>
-													</li>
-													<li>
-														<a href="blog-4-column.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>4 Column</a
-														>
-													</li>
-													<li>
-														<a href="blog-full-width.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Full Width</a
-														>
-													</li>
-													<li>
-														<a href="single-post.html"
-															><span class="fa fa-check-circle-o menu-icon"></span>Single Post</a
-														>
-													</li>
-												</ul>
-											</div>
-											<div class="col-md-2">
-												<ul class="list-unstyled">
-													<li><span>Contact Us</span></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a
-									href="/shop/products"
-									data-toggle="dropdown"
-									role="button"
-									aria-haspopup="true"
-									aria-expanded="false">Shop</a
-								>
-							</li>
-							<li class="dropdown">
-								<a
-									href="/blog"
-									data-toggle="dropdown"
-									role="button"
-									aria-haspopup="true"
-									aria-expanded="false">Blog</a
-								>
-							</li>
-							<li class="dropdown">
-								<a
-									href="/contact-us"
-									class="dropdown-toggle"
-									data-toggle="dropdown"
-									role="button"
-									aria-haspopup="true"
-									aria-expanded="false">Contact Us</a
-								>
-							</li>
-						</ul>
-					</div>
-					<!-- /.navbar-collapse -->
-				</nav>
+<script lang="ts">
+	import CROPWATCH_IMAGE from '$lib/images/cropwatch_static.svg';
+	let sidebarOpen: boolean = false;
+
+	const links = [
+		{ name: 'Product', href: '#' },
+		{ name: 'Features', href: '#' },
+		{ name: 'Marketplace', href: '#' },
+		{ name: 'Company', href: '#' },
+		{ name: 'Log in', href: '#' }
+	];
+</script>
+
+<header class="bg-white">
+	<nav
+		class="mx-auto flex w-2/3 max-w-7xl items-center justify-between py-4 lg:px-8"
+		aria-label="Global"
+	>
+		<div class="flex items-center gap-x-12">
+			<a href="/" class="-m-1.5 flex flex-row items-center p-1">
+				<img style="max-height: 40px;" class="mr-2 w-auto" src={CROPWATCH_IMAGE} alt="" />
+				<h1 class="text-[23.4px] font-bold text-[#767676]">CropWatch</h1>
+			</a>
+			<div class="hidden lg:flex lg:gap-x-12">
+				{#each links as { name, href }}
+					<a {href} class="text-sm font-semibold leading-6 text-gray-900">{name}</a>
+				{/each}
 			</div>
 		</div>
-	</div>
+		<div class="flex lg:hidden">
+			<button
+				type="button"
+				on:click={() => (sidebarOpen = !sidebarOpen)}
+				class="border-1 -m-2.5 inline-flex items-center justify-center rounded-md border border-solid border-gray-200 p-2.5 text-gray-700 hover:bg-[#ddd]"
+			>
+				<span class="sr-only">Open main menu</span>
+				<svg
+					class="h-6 w-6"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					aria-hidden="true"
+					data-slot="icon"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+					/>
+				</svg>
+			</button>
+		</div>
+	</nav>
+
+	{#if sidebarOpen}
+		<div class="lg:hidden" role="dialog" aria-modal="true">
+			<div class="fixed inset-0 z-50"></div>
+			<div
+				class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+			>
+				<div class="flex items-center justify-between">
+					<a href="/" class="-m-1.5 p-1.5">
+						<span class="sr-only">CropWatch</span>
+						<img class="h-8 w-auto" src={CROPWATCH_IMAGE} alt="CropWatch" />
+					</a>
+					<button
+						type="button"
+						on:click={() => (sidebarOpen = !sidebarOpen)}
+						class="-m-2.5 rounded-md p-2.5 text-gray-700"
+					>
+						<span class="sr-only">Close menu</span>
+						<svg
+							class="h-6 w-6"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke-width="1.5"
+							stroke="currentColor"
+							aria-hidden="true"
+							data-slot="icon"
+						>
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+						</svg>
+					</button>
+				</div>
+				<div class="mt-6 flow-root">
+					<div class="-my-6 divide-y divide-gray-500/10">
+						<div class="space-y-2 py-6">
+							{#each links as { name, href }}
+								<a
+									{href}
+									class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+									>{name}</a
+								>
+							{/each}
+						</div>
+						<div class="py-6">
+							<a
+								href="https://app.cropwatch.io"
+								class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+								>Log in</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{/if}
 </header>
+
+<style>
+	h1 {
+		font-family: 'font-awesome';
+		font-weight: 900;
+	}
+</style>
