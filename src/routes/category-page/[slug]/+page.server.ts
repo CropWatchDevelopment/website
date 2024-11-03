@@ -1,6 +1,6 @@
 /** @type {import('./$types').PageLoad} */
 import getDirectusInstance from '$lib/directus';
-import { readItem, readItems } from '@directus/sdk';
+import { readItems } from '@directus/sdk';
 import { error } from '@sveltejs/kit';
 
 export async function load({ fetch, params }) {
@@ -10,14 +10,10 @@ export async function load({ fetch, params }) {
         const languageCode = 'ja-JP';
         const slug = params.slug;
 
-        const pageData = await directus.request(
+        // Fetch all items and filter in JavaScript
+        const allPageData = await directus.request(
             readItems('page', {
                 fields: ['*', { translations: ['*'] }],
-                filter: {
-                    slug: {
-                        _eq: slug
-                    },
-                },
                 deep: {
                     translations: {
                         _filter: {
@@ -29,23 +25,19 @@ export async function load({ fetch, params }) {
                         },
                     },
                 }
-            }
-            )
+            })
         );
 
+        // Filter results based on the 'categories' array containing the 'slug'
+        const pageData = allPageData.filter(page => page.categories && page.categories.includes(slug));
+
         if (pageData.length === 0) {
-            error(404, 'Page not found');
+            throw error(404, 'Page not found');
         }
 
-        if (pageData[0].translations.length === 0) {
-            return {
-                status: 404,
-                error: new Error('Page translation not found'),
-            };
-        }
-
-        return pageData[0].translations[0];
-    } catch (error) {
-        console.error(error);
+        return { pages: pageData };
+    } catch (err) {
+        console.error(err);
+        throw error(500, 'Failed to load page data');
     }
 }
