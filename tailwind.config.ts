@@ -7,7 +7,7 @@ export default {
 		extend: {},
 		fontFamily: {
 			awesome: ['"font-awesome"'],
-		  },
+		},
 	},
 
 	plugins: [require('@tailwindcss/typography')]

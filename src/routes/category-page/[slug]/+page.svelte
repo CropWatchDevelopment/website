@@ -26,14 +26,14 @@
         <!-- Content Section -->
         <div>
           <h3 class="text-base font-semibold text-gray-900">{device.translations[0]?.page_title}</h3>
-          <div class="mt-2 max-w-xl text-sm text-gray-500">
+          <div class="mt-2 max-w-xl text-sm text-gray-500 list-disc">
 
-                {@html device.translations[0]?.description}
+                {@html device.translations[0]?.thumbnail_description}
 
           </div>
           <div class="mt-6 text-sm/6">
             <a href={`/detail-page/${device.slug}`} class="font-semibold text-indigo-600 hover:text-indigo-500">
-              Learn more about our CI features
+              Learn more
               <span aria-hidden="true"> &rarr;</span>
             </a>
           </div>
@@ -43,3 +43,14 @@
     {/each}
   </div>
   
+  <style>
+    ul, ol {
+      list-style-type: disc !important;
+      list-style: square !important;
+    }
+    li {
+      margin-left: 1.5em;
+      list-style-type: disc;
+      list-style: square;
+    }
+  </style>

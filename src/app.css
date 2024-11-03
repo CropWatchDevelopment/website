@@ -9,6 +9,12 @@ html, body {
 }
 
 @layer base {
+
+    ul {
+        list-style-type: disc;
+        list-style: disc;
+        margin-left: 1.5rem;
+    }
     /* body {
         font-family: "font-awesome";
         font-weight: 900;
@@ -23,6 +29,7 @@ html, body {
 
 .container {
     @apply mx-auto;
+    @apply list-disc;
 }
 
 /* h1 {
