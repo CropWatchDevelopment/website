@@ -1,6 +1,7 @@
 /** @type {import('./$types').PageLoad} */
 import getDirectusInstance from '$lib/directus';
 import { readItem, readItems } from '@directus/sdk';
+import { error } from '@sveltejs/kit';
 
 export async function load({ fetch, params }) {
     try {
@@ -33,10 +34,7 @@ export async function load({ fetch, params }) {
         );
 
         if (pageData.length === 0) {
-            return {
-                status: 404,
-                error: new Error('Page not found'),
-            };
+            error(404, 'Page not found');
         }
 
         if (pageData[0].translations.length === 0) {

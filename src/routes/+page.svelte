@@ -2,13 +2,13 @@
 	import Callouts from '$lib/components/Callouts.svelte';
 	import Cta from '$lib/components/CTA.svelte';
 	import Cta2 from '$lib/components/CTA2.svelte';
-	import Footer from '$lib/components/Footer.svelte';
 	import Pricing from '$lib/components/Pricing.svelte';
 	import Slider from '$lib/components/Slider.svelte';
 	import Statistics from '$lib/components/Statistics.svelte';
 
+
 	export let data;
-	const calloutSection = data.callout.translations[0];
+	const calloutSection = data.callout?.translations[0];
 	const callouts = data.callouts;
 
 	const slides = data.slides;
@@ -20,8 +20,8 @@
 </svelte:head>
 
 <Slider {slides} />
-<Cta />
+<Cta cta={data.cta} />
 <Callouts {calloutSection} {callouts} />
 <Statistics />
-<Pricing />
+<Pricing pricing={data.pricing} section={data.pricingSection} />
 <Cta2 />

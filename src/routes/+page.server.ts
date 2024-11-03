@@ -108,8 +108,44 @@ export async function load({ fetch }) {
             )
         );
 
+        const pricingSection = await directus.request(
+            readItems('pricing_section', {
+                fields: ['*', { translations: ['*'] }],
+                deep: {
+                    translations: {
+                        _filter: {
+                            _and: [
+                                {
+                                    languages_code: { _eq: languageCode },
+                                },
+                            ],
+                        },
+                    },
+                }
+            }
+            )
+        );
+
         const testimonials = await directus.request(
             readItems('testimonial', {
+                fields: ['*', { translations: ['*'] }],
+                deep: {
+                    translations: {
+                        _filter: {
+                            _and: [
+                                {
+                                    languages_code: { _eq: languageCode },
+                                },
+                            ],
+                        },
+                    },
+                }
+            }
+            )
+        );
+
+        const cta = await directus.request(
+            readItems('callToAction', {
                 fields: ['*', { translations: ['*'] }],
                 deep: {
                     translations: {
@@ -132,7 +168,9 @@ export async function load({ fetch }) {
             testimonial_section: testimonial_section,
             testimonials: testimonials,
             pricing: pricing,
+            pricingSection: pricingSection,
             slides,
+            cta,
         };
     } catch (error) {
         return {

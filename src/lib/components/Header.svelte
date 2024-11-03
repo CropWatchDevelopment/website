@@ -3,11 +3,10 @@
 	let sidebarOpen: boolean = false;
 
 	const links = [
-		{ name: 'Product', href: '#' },
-		{ name: 'Features', href: '#' },
-		{ name: 'Marketplace', href: '#' },
-		{ name: 'Company', href: '#' },
-		{ name: 'Log in', href: '#' }
+		{ name: 'Home', href: '/' },
+		{ name: 'Knowledge Base', href: 'https://kb.cropwatch.io', newTab: true },
+		{ name: 'Blog', href: '/blog' },
+		{ name: 'Contact Us', href: '/contact-us' },
 	];
 </script>
 
@@ -16,14 +15,22 @@
 		class="mx-auto flex w-2/3 max-w-7xl items-center justify-between py-4 lg:px-8"
 		aria-label="Global"
 	>
-		<div class="flex items-center gap-x-12">
+		<div class="flex items-center flex-row gap-x-12 w-full">
 			<a href="/" class="-m-1.5 flex flex-row items-center p-1">
 				<img style="max-height: 40px;" class="mr-2 w-auto" src={CROPWATCH_IMAGE} alt="" />
 				<h1 class="text-[23.4px] font-bold text-[#767676]">CropWatch</h1>
 			</a>
+			<span class="lg:flex-1" />
 			<div class="hidden lg:flex lg:gap-x-12">
-				{#each links as { name, href }}
-					<a {href} class="text-sm font-semibold leading-6 text-gray-900">{name}</a>
+				{#each links as { name, href, newTab }}
+					<a
+						{href}
+						rel={newTab ? 'noopener noreferrer' : undefined}
+						target={newTab ? '_blank' : undefined}
+						class="text-sm font-semibold leading-6 text-gray-900"
+					>
+						{name}
+					</a>
 				{/each}
 			</div>
 		</div>

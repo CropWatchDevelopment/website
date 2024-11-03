@@ -22,6 +22,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@tailwindcss/typography": "^0.5.14",
 		"@types/eslint": "^9.6.0",
+		"@types/node": "^22.7.7",
 		"@types/reveal.js": "^5.0.4",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.0.0",
@@ -48,6 +49,7 @@
 		"@fortawesome/svelte-fontawesome": "^0.2.2",
 		"@splidejs/svelte-splide": "^0.2.9",
 		"reveal.js": "^5.1.0",
+		"svelte-i18n": "^4.0.0",
 		"typeit": "^8.8.5"
 	}
 }

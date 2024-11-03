@@ -1,13 +1,19 @@
 {
 	"/": [
 		"src/routes/+page.ts",
-		"src/routes/+page.server.ts"
+		"src/routes/+page.server.ts",
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
 	],
-	"/about": [
-		"src/routes/about/+page.ts"
+	"/category-page/[slug]": [
+		"src/routes/category-page/[slug]/+page.server.ts",
+		"src/routes/+layout.ts"
 	],
-	"/page": [],
-	"/page/[slug]": [
-		"src/routes/page/[slug]/+page.server.ts"
+	"/detail-page": [
+		"src/routes/+layout.ts"
+	],
+	"/detail-page/[slug]": [
+		"src/routes/detail-page/[slug]/+page.server.ts",
+		"src/routes/+layout.ts"
 	]
 }

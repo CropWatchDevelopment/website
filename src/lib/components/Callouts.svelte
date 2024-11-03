@@ -33,7 +33,7 @@
 						</p>
 						<!-- Spacer to push the button to the bottom -->
 						<div class="flex-grow"></div>
-						<a href={`/page/${callout.slug}`} class="btn mt-auto">Read more</a>
+						<a href={`/page/${callout.slug}`} class="btn mt-auto">{callout.translations[0]?.button_text ?? 'Read More'}</a>
 					</div>
 				</div>
 			{/each}

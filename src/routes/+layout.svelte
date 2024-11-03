@@ -11,10 +11,10 @@
 	library.add(fas); // Add the entire Solid icon set
 </script>
 
-<div class="app h-full flex flex-col">
+<div class="app h-full w-full flex flex-col">
 	<TopBar />
 	<Header />
-	<main class="flex flex-col">
+	<main class="flex flex-col w-full">
 		{#if $page.url.pathname !== '/' && $page.url.pathname !== 'error'}
 			<Breadcrumbs />
 		{/if}
