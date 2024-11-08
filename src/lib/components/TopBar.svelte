@@ -2,7 +2,7 @@
 	class="border-1 box-border flex flex-row border-solid border-gray-300 bg-[#1abc9c] py-2.5 text-sm text-white"
 >
 	<div class="mx-auto flex w-2/3 max-w-7xl flex-row gap-5 lg:px-8">
-		<ul class="hidden w-full flex-row gap-4 text-nowrap md:flex">
+		<ul class="hidden w-full list-none flex-row gap-4 text-nowrap md:flex">
 			<li>
 				<a href="mailto:support@CropWatch.io"
 					><i class="fa fa-envelope-o" aria-hidden="true"></i>Sayaka@CropWatch.io</a
