@@ -1,12 +1,29 @@
 /** @type {import('./$types').PageLoad} */
 import getDirectusInstance from '$lib/directus';
 import { readItem, readItems, readSingleton } from '@directus/sdk';
+import { locale, locales } from 'svelte-i18n';
 
-export async function load({ fetch }) {
+export async function load({ fetch, request }) {
     try {
         const directus = getDirectusInstance(fetch);
 
-        const languageCode = 'ja-JP';
+        const lang = request.headers.get('accept-language')?.split(',')[0]
+        let languageCode = 'en-US';
+        switch (lang) {
+            case 'es':
+                languageCode = 'es-ES';
+                break;
+            case 'en':
+                languageCode = 'en-US';
+                break;
+            case 'ja':
+                languageCode = 'ja-JP';
+                break;
+            default:
+                languageCode = 'en-US';
+                break;
+        }
+        console.log(lang);
 
         const callout = await directus.request(
             readItems('callout_section', {

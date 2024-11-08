@@ -12,6 +12,10 @@
 		"src/routes/+layout.ts",
 		"src/routes/+layout.server.ts"
 	],
+	"/contact-us": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.server.ts"
+	],
 	"/detail-page": [
 		"src/routes/+layout.ts",
 		"src/routes/+layout.server.ts"

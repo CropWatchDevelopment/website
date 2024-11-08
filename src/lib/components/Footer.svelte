@@ -18,7 +18,7 @@
 		<div class="news w-full md:w-1/2">
 			<h2>Latest News & Updates</h2>
 			<ul>
-				{#if news.news.length > 0}
+				{#if news && news.news && news.news.length > 0}
 				{#each news.news as item}
 				<li>
 					<a href={`/news/${item.id}`}>{item.title}</a>
@@ -56,7 +56,7 @@
 						>
 							<i class="fa-brands fa-github"></i>
 						</a>
-						Join us <span>on Github</span>
+						Fork us <span>on Github</span>
 					</li>
 					<li>
 						<a
