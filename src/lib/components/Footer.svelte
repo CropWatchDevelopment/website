@@ -1,3 +1,9 @@
+<script lang="ts">
+	import moment from "moment";
+
+	export let news;
+</script>
+
 <span class="flex flex-1"></span>
 <footer>
 	<div class="container flex flex-wrap">
@@ -6,31 +12,25 @@
 			<div class="flex flex-row gap-5 lg:flex-col">
 				<a href="/contact-us" class="btn btn-primary one w-fit text-nowrap">Contact Us</a>
 				<a href="/shop/products" class="btn btn-primary two w-fit text-nowrap">Shop</a>
-				<a href="/blog" class="btn btn-primary two w-fit text-nowrap">Blog</a>
+				<a href="/news" class="btn btn-primary two w-fit text-nowrap">News</a>
 			</div>
 		</div>
 		<div class="news w-full md:w-1/2">
 			<h2>Latest News & Updates</h2>
 			<ul>
+				{#if news.news.length > 0}
+				{#each news.news as item}
 				<li>
-					<a
-						>Lorem Ipsum is simply dummy text of the printing and typesetting industry. printing and
-						typesetting industry. 2</a
-					>
-					<small>29 June 2016</small>
+					<a href={`/news/${item.id}`}>{item.title}</a>
+					<small>{moment(item.created_date).format('YYYY MMM DD')}</small>
 				</li>
-				<li>
-					<a
-						>Lorem Ipsum is simply dummy text of the printing and typesetting industry. printing and
-						typesetting industry. 2</a
-					>
-					<small>14 August 2016</small>
-				</li>
+				{/each}
+				{/if}
 			</ul>
 		</div>
 		<div class="subscirbe w-full md:w-1/3">
 			<p class="sub">
-				<span>Subscribe</span> to Our Newsletter to get Important Blog Posts &amp; Inside Scoops:
+				<span>Subscribe</span> to Our Newsletter to get Important News Posts &amp; Inside Scoops:
 			</p>
 			<div class="form flex">
 				<input

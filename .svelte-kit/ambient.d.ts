@@ -71,6 +71,7 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies__fontsource_fira_mono: string;
 	export const CINNAMON_VERSION: string;
 	export const DBUS_SESSION_BUS_ADDRESS: string;
+	export const npm_package_dependencies_moment: string;
 	export const npm_config_engine_strict: string;
 	export const COLORTERM: string;
 	export const npm_package_devDependencies_tailwindcss: string;
@@ -137,7 +138,6 @@ declare module '$env/static/private' {
 	export const npm_lifecycle_event: string;
 	export const NODE_PATH: string;
 	export const QT_ACCESSIBILITY: string;
-	export const NO_AT_BRIDGE: string;
 	export const GDMSESSION: string;
 	export const npm_package_scripts_build: string;
 	export const npm_package_devDependencies_svelte: string;
@@ -251,6 +251,7 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies__fontsource_fira_mono: string;
 		CINNAMON_VERSION: string;
 		DBUS_SESSION_BUS_ADDRESS: string;
+		npm_package_dependencies_moment: string;
 		npm_config_engine_strict: string;
 		COLORTERM: string;
 		npm_package_devDependencies_tailwindcss: string;
@@ -317,7 +318,6 @@ declare module '$env/dynamic/private' {
 		npm_lifecycle_event: string;
 		NODE_PATH: string;
 		QT_ACCESSIBILITY: string;
-		NO_AT_BRIDGE: string;
 		GDMSESSION: string;
 		npm_package_scripts_build: string;
 		npm_package_devDependencies_svelte: string;

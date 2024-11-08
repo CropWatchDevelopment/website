@@ -3,17 +3,32 @@
 		"src/routes/+page.ts",
 		"src/routes/+page.server.ts",
 		"src/routes/+layout.ts",
-		"src/routes/+layout.ts"
+		"src/routes/+layout.server.ts",
+		"src/routes/+layout.ts",
+		"src/routes/+layout.server.ts"
 	],
 	"/category-page/[slug]": [
 		"src/routes/category-page/[slug]/+page.server.ts",
-		"src/routes/+layout.ts"
+		"src/routes/+layout.ts",
+		"src/routes/+layout.server.ts"
 	],
 	"/detail-page": [
-		"src/routes/+layout.ts"
+		"src/routes/+layout.ts",
+		"src/routes/+layout.server.ts"
 	],
 	"/detail-page/[slug]": [
 		"src/routes/detail-page/[slug]/+page.server.ts",
-		"src/routes/+layout.ts"
+		"src/routes/+layout.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/news": [
+		"src/routes/news/+page.server.ts",
+		"src/routes/+layout.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/news/[id]": [
+		"src/routes/news/[id]/+page.server.ts",
+		"src/routes/+layout.ts",
+		"src/routes/+layout.server.ts"
 	]
 }

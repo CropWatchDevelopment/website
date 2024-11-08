@@ -23,5 +23,5 @@
 <Cta cta={data.cta} />
 <Callouts {calloutSection} {callouts} />
 <Statistics />
-<Pricing pricing={data.pricing} section={data.pricingSection} />
+<!-- <Pricing pricing={data.pricing} section={data.pricingSection} /> -->
 <Cta2 />

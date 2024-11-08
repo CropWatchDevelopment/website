@@ -44,7 +44,9 @@ export async function load({ fetch, params }) {
             };
         }
 
-        return pageData[0].translations[0];
+        return {
+            page: pageData[0],
+        }
     } catch (error) {
         console.error(error);
     }

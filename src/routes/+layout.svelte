@@ -9,6 +9,8 @@
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	library.add(fas); // Add the entire Solid icon set
+	export let data;
+	const news = data || [];
 </script>
 
 <div class="app h-full w-full flex flex-col">
@@ -22,5 +24,5 @@
 		<span class="flex-grow" />
 	</main>
 	<span class="flex-grow" />
-	<Footer />
+	<Footer {news}/>
 </div>

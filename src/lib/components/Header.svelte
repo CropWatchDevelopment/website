@@ -5,7 +5,7 @@
 	const links = [
 		{ name: 'Home', href: '/' },
 		{ name: 'Knowledge Base', href: 'https://kb.cropwatch.io', newTab: true },
-		{ name: 'Blog', href: '/blog' },
+		{ name: 'News', href: '/news' },
 		{ name: 'Contact Us', href: '/contact-us' },
 	];
 </script>
