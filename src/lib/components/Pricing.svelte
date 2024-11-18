@@ -1,7 +1,5 @@
 <script lang="ts">
 	import DashboardCard from "./DashboardCard.svelte";
-	import LEFT_IMAGE from "$lib/images/desktopCard-left.png";
-	import RIGHT_IMAGE from "$lib/images/desktopCard-right.png";
 </script>
 
 <div class="bg-white py-24 sm:py-32">
@@ -16,15 +14,7 @@
 		</div>
 
 		<div class="relative flex items-center justify-center">
-			<div class="hidden lg:block relative h-full w-1/4">
-				<img src={LEFT_IMAGE} alt="Left side image" style="float:right;" class="fade-left h-full object-cover" />
-			</div>
-
-			<DashboardCard class="relative z-10" />
-
-			<div class="hidden lg:block relative h-full w-1/4">
-				<img src={RIGHT_IMAGE} alt="Right side image" class="fade-right h-full object-cover" />
-			</div>
+			<DashboardCard />
 		</div>
 	</div>
 </div>
@@ -53,6 +43,8 @@
 	.fade-left::after {
 		left: 80%; /* Bring the gradient closer to the DashboardCard */
 		transform: translateX(-100%);
+    transform: skewY(10deg);
+    margin-bottom: 30px;
 	}
 	
 	.fade-right::after {

@@ -27,7 +27,9 @@
 			</h1>
 			<div class="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
 				<p class="text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-					{@html data.page_content}
+					{#if data.page_content}
+						{@html data.page_content}
+					{/if}
 				</p>
 				<div class="mt-10 flex items-center gap-x-6">
 					<a
@@ -109,7 +111,11 @@
 	</div>
 </div>
 
-<div class="mx-auto grid max-w-[calc(1320px+20px)] grid-cols-1 gap-5 p-5 md:grid-cols-3">
+<div
+	class="mx-auto grid max-w-[calc(1320px+20px)] grid-cols-1 gap-5 p-5 {data?.sensor_infomation
+		? 'md:grid-cols-4'
+		: 'md:grid-cols-3'}"
+>
 	<!-- First Column -->
 	<div
 		class="bg-gradient-to-b from-slate-100/20 bg-cover p-5 shadow-md"
@@ -140,7 +146,10 @@
 	</div>
 
 	<!-- Second Column -->
-	<div class="bg-gradient-to-b from-indigo-100/20 bg-cover p-5 shadow-md" style="background-color: #ffffff38">
+	<div
+		class="bg-gradient-to-b from-indigo-100/20 bg-cover p-5 shadow-md"
+		style="background-color: #ffffff38"
+	>
 		<div class="mb-5 text-left">
 			<h4 class="text-lg font-extrabold uppercase text-blue-500">Technical Characteristics</h4>
 		</div>
@@ -156,7 +165,29 @@
 		</div>
 	</div>
 
-	<!-- Third Column with Images and Buttons -->
+	<!-- Third Column -->
+	{#if data?.sensor_infomation}
+		<div
+			class="bg-gradient-to-b from-indigo-100/20 bg-cover p-5 shadow-md"
+			style="background-color: #ffffff38"
+		>
+			<div class="mb-5 text-left">
+				<h4 class="text-lg font-extrabold uppercase text-blue-500">Sensor Characteristics</h4>
+			</div>
+			<div class="grid grid-cols-2 gap-4">
+				{#each data?.sensor_infomation || [] as item}
+					<div class="text-sm text-[rgba(12,12,12,0.4)]">
+						<h4 class="font-extrabold uppercase">{item.title}</h4>
+						<p class="font-semibold text-[var(--awb-custom_color_2)]">
+							{item.detail}
+						</p>
+					</div>
+				{/each}
+			</div>
+		</div>
+	{/if}
+
+	<!-- Forth Column with Images and Buttons -->
 	<div
 		class="flex flex-col items-center space-y-4 bg-gradient-to-b from-indigo-100/20 bg-cover p-5 shadow-md"
 		style="background-color: #ffffff38"

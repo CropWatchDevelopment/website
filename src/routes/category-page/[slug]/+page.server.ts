@@ -1,4 +1,5 @@
 /** @type {import('./$types').PageLoad} */
+import { page } from '$app/stores';
 import getDirectusInstance from '$lib/directus';
 import { readItems } from '@directus/sdk';
 import { error } from '@sveltejs/kit';
@@ -29,7 +30,8 @@ export async function load({ fetch, params }) {
         );
 
         // Filter results based on the 'categories' array containing the 'slug'
-        const pageData = allPageData.filter(page => page.categories && page.categories.includes(slug));
+        let pageData = allPageData.filter(page => page.categories && page.categories.includes(slug));
+        pageData = pageData.sort((a, b) => a.order - b.order);
 
         if (pageData.length === 0) {
             throw error(404, 'Page not found');
