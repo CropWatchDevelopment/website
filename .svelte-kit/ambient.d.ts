@@ -176,6 +176,7 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies__types_eslint: string;
 	export const INIT_CWD: string;
 	export const NODE_ENV: string;
+	export const NODE_TLS_REJECT_UNAUTHORIZED: string;
 }
 
 /**
@@ -357,6 +358,7 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies__types_eslint: string;
 		INIT_CWD: string;
 		NODE_ENV: string;
+		NODE_TLS_REJECT_UNAUTHORIZED: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
