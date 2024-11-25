@@ -21,4 +21,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # db
-data/*
+data/database/*
