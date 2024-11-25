@@ -1,7 +1,6 @@
 /** @type {import('./$types').PageLoad} */
 import getDirectusInstance from '$lib/directus';
-import { readItem, readItems, readSingleton } from '@directus/sdk';
-import { locale, locales } from 'svelte-i18n';
+import { readItems } from '@directus/sdk';
 
 export async function load({ fetch, request }) {
     try {
@@ -188,6 +187,7 @@ export async function load({ fetch, request }) {
             pricingSection: pricingSection,
             slides,
             cta,
+            language: lang,
         };
     } catch (error) {
         return {
