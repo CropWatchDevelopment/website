@@ -6,7 +6,7 @@ export async function load({ fetch, request }) {
     try {
         const directus = getDirectusInstance(fetch);
 
-        const lang = request.headers.get('accept-language')?.split(',')[0]
+        const lang = request.headers.get('accept-language')?.split(',')[0] ?? 'ja-JP'
         let languageCode = 'ja-JP';
         switch (lang) {
             case 'es':
@@ -19,7 +19,7 @@ export async function load({ fetch, request }) {
                 languageCode = 'ja-JP';
                 break;
             default:
-                languageCode = 'en-US';
+                languageCode = 'ja-JP';
                 break;
         }
         console.log(lang);
