@@ -5,9 +5,9 @@
 /// <reference types="@sveltejs/kit" />
 
 /**
- * Environment variables [loaded by Vite](https://vitejs.dev/guide/env-and-mode.html#env-files) from `.env` files and `process.env`. Like [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), this module cannot be imported into client-side code. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) _and do_ start with [`config.kit.env.privatePrefix`](https://kit.svelte.dev/docs/configuration#env) (if configured).
+ * Environment variables [loaded by Vite](https://vitejs.dev/guide/env-and-mode.html#env-files) from `.env` files and `process.env`. Like [`$env/dynamic/private`](https://svelte.dev/docs/kit/$env-dynamic-private), this module cannot be imported into client-side code. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://svelte.dev/docs/kit/configuration#env) _and do_ start with [`config.kit.env.privatePrefix`](https://svelte.dev/docs/kit/configuration#env) (if configured).
  * 
- * _Unlike_ [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), the values exported from this module are statically injected into your bundle at build time, enabling optimisations like dead code elimination.
+ * _Unlike_ [`$env/dynamic/private`](https://svelte.dev/docs/kit/$env-dynamic-private), the values exported from this module are statically injected into your bundle at build time, enabling optimisations like dead code elimination.
  * 
  * ```ts
  * import { API_KEY } from '$env/static/private';
@@ -26,14 +26,12 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const STRIPE_SECRET_KEY_LIVE: string;
 	export const LESSOPEN: string;
-	export const npm_package_devDependencies__types_node: string;
-	export const npm_package_dependencies_svelte_i18n: string;
+	export const npm_package_devDependencies__eslint_compat: string;
+	export const npm_package_devDependencies__sveltejs_adapter_vercel: string;
 	export const npm_package_devDependencies_vitest: string;
 	export const LANGUAGE: string;
 	export const USER: string;
-	export const npm_package_dependencies__mdi_js: string;
 	export const npm_config_user_agent: string;
 	export const XDG_SEAT: string;
 	export const XDG_SESSION_TYPE: string;
@@ -45,13 +43,13 @@ declare module '$env/static/private' {
 	export const HOME: string;
 	export const CHROME_DESKTOP: string;
 	export const OLDPWD: string;
+	export const npm_package_devDependencies__eslint_js: string;
 	export const TERM_PROGRAM_VERSION: string;
 	export const DESKTOP_SESSION: string;
 	export const NVM_BIN: string;
 	export const npm_package_devDependencies_eslint_config_prettier: string;
 	export const npm_package_devDependencies_eslint_plugin_svelte: string;
 	export const NVM_INC: string;
-	export const npm_package_dependencies__splidejs_svelte_splide: string;
 	export const GTK_MODULES: string;
 	export const XDG_SEAT_PATH: string;
 	export const VSCODE_GIT_ASKPASS_MAIN: string;
@@ -62,13 +60,14 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies__fontsource_fira_mono: string;
 	export const CINNAMON_VERSION: string;
 	export const DBUS_SESSION_BUS_ADDRESS: string;
-	export const npm_package_dependencies_moment: string;
 	export const npm_config_engine_strict: string;
 	export const COLORTERM: string;
+	export const npm_package_devDependencies__tailwindcss_forms: string;
 	export const npm_package_devDependencies_tailwindcss: string;
 	export const npm_package_devDependencies_typescript: string;
-	export const npm_package_dependencies__fortawesome_free_solid_svg_icons: string;
+	export const INSIDE_NEMO_PYTHON: string;
 	export const NVM_DIR: string;
+	export const npm_package_dependencies__inlang_paraglide_sveltekit: string;
 	export const QT_QPA_PLATFORMTHEME: string;
 	export const npm_package_scripts_dev: string;
 	export const npm_package_devDependencies__playwright_test: string;
@@ -77,6 +76,7 @@ declare module '$env/static/private' {
 	export const LOGNAME: string;
 	export const npm_package_type: string;
 	export const _: string;
+	export const npm_package_private: string;
 	export const npm_package_scripts_check_watch: string;
 	export const npm_package_devDependencies_autoprefixer: string;
 	export const XDG_SESSION_CLASS: string;
@@ -99,7 +99,7 @@ declare module '$env/static/private' {
 	export const GNOME_TERMINAL_SCREEN: string;
 	export const XDG_RUNTIME_DIR: string;
 	export const GDK_BACKEND: string;
-	export const npm_package_scripts_test_integration: string;
+	export const npm_package_scripts_test_e2e: string;
 	export const npm_config_frozen_lockfile: string;
 	export const DISPLAY: string;
 	export const npm_package_scripts_test_unit: string;
@@ -121,19 +121,16 @@ declare module '$env/static/private' {
 	export const npm_package_scripts_test: string;
 	export const npm_package_devDependencies__sveltejs_kit: string;
 	export const npm_package_devDependencies__tailwindcss_typography: string;
-	export const npm_package_devDependencies__types_reveal_js: string;
-	export const npm_package_dependencies_typeit: string;
 	export const SHELL: string;
 	export const LC_NAME: string;
+	export const NODE_PATH: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
-	export const NODE_PATH: string;
 	export const QT_ACCESSIBILITY: string;
 	export const NO_AT_BRIDGE: string;
 	export const GDMSESSION: string;
 	export const npm_package_scripts_build: string;
 	export const npm_package_devDependencies_svelte: string;
-	export const npm_package_dependencies__fortawesome_fontawesome_free: string;
 	export const LESSCLOSE: string;
 	export const LC_MEASUREMENT: string;
 	export const GPG_AGENT_INFO: string;
@@ -143,18 +140,14 @@ declare module '$env/static/private' {
 	export const QT_IM_MODULE: string;
 	export const XDG_VTNR: string;
 	export const npm_package_scripts_format: string;
-	export const npm_package_dependencies__directus_sdk: string;
 	export const PWD: string;
 	export const npm_execpath: string;
 	export const XDG_CONFIG_DIRS: string;
 	export const CLUTTER_IM_MODULE: string;
 	export const NVM_CD_FLAGS: string;
 	export const XDG_DATA_DIRS: string;
-	export const npm_package_dependencies_svelte_ux: string;
 	export const LC_NUMERIC: string;
 	export const npm_package_devDependencies__neoconfetti_svelte: string;
-	export const npm_package_devDependencies__sveltejs_adapter_auto: string;
-	export const npm_package_dependencies__fortawesome_svelte_fontawesome: string;
 	export const npm_command: string;
 	export const PNPM_SCRIPT_SRC_DIR: string;
 	export const LC_PAPER: string;
@@ -162,16 +155,13 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies_prettier_plugin_svelte: string;
 	export const PNPM_HOME: string;
 	export const VTE_VERSION: string;
-	export const npm_package_dependencies__fortawesome_fontawesome_svg_core: string;
-	export const npm_package_dependencies_reveal_js: string;
-	export const npm_package_devDependencies__types_eslint: string;
+	export const npm_package_devDependencies__tailwindcss_container_queries: string;
 	export const INIT_CWD: string;
 	export const NODE_ENV: string;
-	export const NODE_TLS_REJECT_UNAUTHORIZED: string;
 }
 
 /**
- * Similar to [`$env/static/private`](https://kit.svelte.dev/docs/modules#$env-static-private), except that it only includes environment variables that begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) (which defaults to `PUBLIC_`), and can therefore safely be exposed to client-side code.
+ * Similar to [`$env/static/private`](https://svelte.dev/docs/kit/$env-static-private), except that it only includes environment variables that begin with [`config.kit.env.publicPrefix`](https://svelte.dev/docs/kit/configuration#env) (which defaults to `PUBLIC_`), and can therefore safely be exposed to client-side code.
  * 
  * Values are replaced statically at build time.
  * 
@@ -180,11 +170,11 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-	export const PUBLIC_APIURL: string;
+	
 }
 
 /**
- * This module provides access to runtime environment variables, as defined by the platform you're running on. For example if you're using [`adapter-node`](https://github.com/sveltejs/kit/tree/main/packages/adapter-node) (or running [`vite preview`](https://kit.svelte.dev/docs/cli)), this is equivalent to `process.env`. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) _and do_ start with [`config.kit.env.privatePrefix`](https://kit.svelte.dev/docs/configuration#env) (if configured).
+ * This module provides access to runtime environment variables, as defined by the platform you're running on. For example if you're using [`adapter-node`](https://github.com/sveltejs/kit/tree/main/packages/adapter-node) (or running [`vite preview`](https://svelte.dev/docs/kit/cli)), this is equivalent to `process.env`. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://svelte.dev/docs/kit/configuration#env) _and do_ start with [`config.kit.env.privatePrefix`](https://svelte.dev/docs/kit/configuration#env) (if configured).
  * 
  * This module cannot be imported into client-side code.
  * 
@@ -199,14 +189,12 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		STRIPE_SECRET_KEY_LIVE: string;
 		LESSOPEN: string;
-		npm_package_devDependencies__types_node: string;
-		npm_package_dependencies_svelte_i18n: string;
+		npm_package_devDependencies__eslint_compat: string;
+		npm_package_devDependencies__sveltejs_adapter_vercel: string;
 		npm_package_devDependencies_vitest: string;
 		LANGUAGE: string;
 		USER: string;
-		npm_package_dependencies__mdi_js: string;
 		npm_config_user_agent: string;
 		XDG_SEAT: string;
 		XDG_SESSION_TYPE: string;
@@ -218,13 +206,13 @@ declare module '$env/dynamic/private' {
 		HOME: string;
 		CHROME_DESKTOP: string;
 		OLDPWD: string;
+		npm_package_devDependencies__eslint_js: string;
 		TERM_PROGRAM_VERSION: string;
 		DESKTOP_SESSION: string;
 		NVM_BIN: string;
 		npm_package_devDependencies_eslint_config_prettier: string;
 		npm_package_devDependencies_eslint_plugin_svelte: string;
 		NVM_INC: string;
-		npm_package_dependencies__splidejs_svelte_splide: string;
 		GTK_MODULES: string;
 		XDG_SEAT_PATH: string;
 		VSCODE_GIT_ASKPASS_MAIN: string;
@@ -235,13 +223,14 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies__fontsource_fira_mono: string;
 		CINNAMON_VERSION: string;
 		DBUS_SESSION_BUS_ADDRESS: string;
-		npm_package_dependencies_moment: string;
 		npm_config_engine_strict: string;
 		COLORTERM: string;
+		npm_package_devDependencies__tailwindcss_forms: string;
 		npm_package_devDependencies_tailwindcss: string;
 		npm_package_devDependencies_typescript: string;
-		npm_package_dependencies__fortawesome_free_solid_svg_icons: string;
+		INSIDE_NEMO_PYTHON: string;
 		NVM_DIR: string;
+		npm_package_dependencies__inlang_paraglide_sveltekit: string;
 		QT_QPA_PLATFORMTHEME: string;
 		npm_package_scripts_dev: string;
 		npm_package_devDependencies__playwright_test: string;
@@ -250,6 +239,7 @@ declare module '$env/dynamic/private' {
 		LOGNAME: string;
 		npm_package_type: string;
 		_: string;
+		npm_package_private: string;
 		npm_package_scripts_check_watch: string;
 		npm_package_devDependencies_autoprefixer: string;
 		XDG_SESSION_CLASS: string;
@@ -272,7 +262,7 @@ declare module '$env/dynamic/private' {
 		GNOME_TERMINAL_SCREEN: string;
 		XDG_RUNTIME_DIR: string;
 		GDK_BACKEND: string;
-		npm_package_scripts_test_integration: string;
+		npm_package_scripts_test_e2e: string;
 		npm_config_frozen_lockfile: string;
 		DISPLAY: string;
 		npm_package_scripts_test_unit: string;
@@ -294,19 +284,16 @@ declare module '$env/dynamic/private' {
 		npm_package_scripts_test: string;
 		npm_package_devDependencies__sveltejs_kit: string;
 		npm_package_devDependencies__tailwindcss_typography: string;
-		npm_package_devDependencies__types_reveal_js: string;
-		npm_package_dependencies_typeit: string;
 		SHELL: string;
 		LC_NAME: string;
+		NODE_PATH: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
-		NODE_PATH: string;
 		QT_ACCESSIBILITY: string;
 		NO_AT_BRIDGE: string;
 		GDMSESSION: string;
 		npm_package_scripts_build: string;
 		npm_package_devDependencies_svelte: string;
-		npm_package_dependencies__fortawesome_fontawesome_free: string;
 		LESSCLOSE: string;
 		LC_MEASUREMENT: string;
 		GPG_AGENT_INFO: string;
@@ -316,18 +303,14 @@ declare module '$env/dynamic/private' {
 		QT_IM_MODULE: string;
 		XDG_VTNR: string;
 		npm_package_scripts_format: string;
-		npm_package_dependencies__directus_sdk: string;
 		PWD: string;
 		npm_execpath: string;
 		XDG_CONFIG_DIRS: string;
 		CLUTTER_IM_MODULE: string;
 		NVM_CD_FLAGS: string;
 		XDG_DATA_DIRS: string;
-		npm_package_dependencies_svelte_ux: string;
 		LC_NUMERIC: string;
 		npm_package_devDependencies__neoconfetti_svelte: string;
-		npm_package_devDependencies__sveltejs_adapter_auto: string;
-		npm_package_dependencies__fortawesome_svelte_fontawesome: string;
 		npm_command: string;
 		PNPM_SCRIPT_SRC_DIR: string;
 		LC_PAPER: string;
@@ -335,19 +318,16 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies_prettier_plugin_svelte: string;
 		PNPM_HOME: string;
 		VTE_VERSION: string;
-		npm_package_dependencies__fortawesome_fontawesome_svg_core: string;
-		npm_package_dependencies_reveal_js: string;
-		npm_package_devDependencies__types_eslint: string;
+		npm_package_devDependencies__tailwindcss_container_queries: string;
 		INIT_CWD: string;
 		NODE_ENV: string;
-		NODE_TLS_REJECT_UNAUTHORIZED: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
 }
 
 /**
- * Similar to [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), but only includes variables that begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) (which defaults to `PUBLIC_`), and can therefore safely be exposed to client-side code.
+ * Similar to [`$env/dynamic/private`](https://svelte.dev/docs/kit/$env-dynamic-private), but only includes variables that begin with [`config.kit.env.publicPrefix`](https://svelte.dev/docs/kit/configuration#env) (which defaults to `PUBLIC_`), and can therefore safely be exposed to client-side code.
  * 
  * Note that public dynamic environment variables must all be sent from the server to the client, causing larger network requests — when possible, use `$env/static/public` instead.
  * 
@@ -360,7 +340,6 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
-		PUBLIC_APIURL: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }

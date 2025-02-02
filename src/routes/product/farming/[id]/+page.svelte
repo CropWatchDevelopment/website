@@ -1,0 +1,145 @@
+<script lang="ts">
+	import { page } from '$app/state';
+
+	let device = $state(null);
+	let loading = $state(true);
+	let error = $state(false);
+
+	// Fetch the device configuration
+	fetch(`/config/${page.params.id}.json`)
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(data);
+			device = data;
+			loading = false;
+		})
+		.catch((err) => {
+			console.error(err);
+			error = true;
+			loading = false;
+		});
+</script>
+
+{#if loading}
+	<!-- Loading Spinner -->
+	<div class="min-h-screen flex flex-col items-center justify-center">
+		<svg class="animate-spin h-12 w-12 text-blue-600" viewBox="0 0 24 24">
+			<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+			<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+		</svg>
+		<p class="mt-4 text-lg">Loading Device Details</p>
+	</div>
+{:else if error}
+	<!-- Error Message -->
+	<div class="min-h-screen flex flex-col items-center justify-center">
+		<svg class="h-12 w-12 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+		</svg>
+		<p class="mt-4 text-lg text-red-600">Something has gone wrong, Please check back later</p>
+	</div>
+{:else}
+	<!-- Device and Page Content -->
+	<section class="bg-gradient-to-r from-green-600 to-green-400 py-16 text-white">
+		<div class="container mx-auto text-center">
+			<h1 class="text-5xl font-extrabold">{device.name}</h1>
+			<p class="mt-4 text-lg">A brief tagline or description of the device.</p>
+		</div>
+	</section>
+    <div class="w-full">
+        <img
+            src={device.image}
+            alt={device.name}
+            class="w-full rounded-lg shadow-lg"
+        />
+    </div>
+
+	<!-- Sensor Details & Strengths -->
+	<section class="py-20">
+		<div class="container mx-auto">
+			<h2 class="text-center text-3xl font-bold text-gray-800">Sensor Details & Strengths</h2>
+			<p class="mt-4 text-center text-gray-600">
+				Discover the key features and benefits of this sensor that set it apart.
+			</p>
+			<div class="mt-12 max-w-4xl mx-auto">
+				<!-- If your device configuration has a description, use it; otherwise, include your own text -->
+				<p class="text-lg text-gray-700">
+					{device.description || "This sensor is engineered for high performance in challenging environments. It offers precise measurements, robust construction, and seamless integration into existing systems, ensuring you get the most reliable data for your applications."}
+				</p>
+				<ul class="mt-6 list-disc list-inside text-gray-700">
+					<li><strong>High Accuracy:</strong> Provides reliable data for precise decision-making.</li>
+					<li><strong>Long Battery Life:</strong> Ensures extended operation with minimal maintenance.</li>
+					<li><strong>Robust Design:</strong> Built to withstand harsh environmental conditions.</li>
+					<li><strong>Easy Integration:</strong> Seamlessly fits into your existing system architecture.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Specifications Section -->
+	<section class="bg-gray-100 py-20">
+		<div class="container mx-auto">
+			<h2 class="text-center text-3xl font-bold text-gray-800">Specifications</h2>
+			<div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+                {#each device.specifications as specification}
+				<div class="rounded-lg bg-white p-6 shadow-lg">
+                    <h3 class="text-xl font-bold">{specification.title}</h3>
+					<p class="text-gray-600">{specification.value_title}: {specification.value}</p>
+				</div>
+                {/each}
+			</div>
+		</div>
+	</section>
+
+	<!-- Features Section -->
+	<section class="bg-gray-200 py-20">
+		<div class="container mx-auto">
+			<h2 class="text-center text-3xl font-bold text-gray-800">Features</h2>
+			<div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				<div class="rounded-lg bg-white p-6 shadow-lg">
+					<h3 class="text-xl font-bold">バッテリー寿命</h3>
+					<p class="text-gray-600">
+						ユーザー側で交換可能なバッテリーを使用し、30分ごとの更新で約6年間稼働します。
+					</p>
+				</div>
+				<div class="rounded-lg bg-white p-6 shadow-lg">
+					<h3 class="text-xl font-bold">通信距離</h3>
+					<p class="text-gray-600">通常の環境では約5km、最適な条件では15km以上の通信が可能です。</p>
+				</div>
+				<div class="rounded-lg bg-white p-6 shadow-lg">
+					<h3 class="text-xl font-bold">サポートと保証</h3>
+					<p class="text-gray-600">
+						手厚いサポートと1年間の製品保証で理想の環境づくりをお手伝いします。
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Datasheet Section -->
+	<section class="bg-white py-20">
+		<div class="container mx-auto text-center">
+			<h2 class="text-3xl font-bold text-gray-800">Datasheet</h2>
+			<p class="mt-4 text-gray-600">Download the detailed datasheet for this device.</p>
+			<a
+				href="placeholder-datasheet.pdf"
+				class="mt-6 inline-block rounded bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
+				>Download Datasheet</a
+			>
+		</div>
+	</section>
+
+	<!-- Contact Us Call to Action -->
+	<section class="bg-blue-600 py-20 text-white">
+		<div class="container mx-auto text-center">
+			<h2 class="text-3xl font-bold">Have Questions or Need Assistance?</h2>
+			<p class="mt-4">
+				Contact us to learn more about this device or to get a personalized recommendation.
+			</p>
+			<a
+				href="contact.html"
+				class="mt-6 inline-block rounded bg-white px-6 py-3 text-blue-600 hover:bg-gray-200"
+				>Contact Us</a
+			>
+		</div>
+	</section>
+{/if}
