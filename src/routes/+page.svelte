@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PLANT_IMAGE from '$lib/images/plant.webp';
+	import PLANT_IMAGE from '$lib/images/plant.avif';
 	import COLD_STORAGE_IMAGE from '$lib/images/cold-storage.webp';
 	import SectionCard from '$lib/components/UI/Section-Card.svelte';
 	import FACTORY_IMAGE from '$lib/images/factory.webp';
