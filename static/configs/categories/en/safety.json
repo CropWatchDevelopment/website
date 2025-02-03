@@ -1,0 +1,44 @@
+{
+    "title": "Safety & Risk Mitigation",
+    "subtitle": "Safety and risk mitigation are critical in any industry. Our sensors help you monitor environmental conditions to prevent accidents and ensure compliance with safety regulations. We offer a range of sensors to monitor temperature, humidity, CO2 levels, and other important parameters.",
+    "categories": [
+        {
+            "name": "Personal Safety Sensors",
+            "products": [
+                {
+                    "image": "/images/image_1.webp",
+                    "name": "[CROPWATCH] LoRaWATCH",
+                    "description": "The LoRaWATCH is a smartwatch that monitors personal data. It can detect temperature, heart-rate, and blood oxigen levels. It is designed to help you stay safe and healthy in hot, working environments.",
+                    "price": "$199",
+                    "link": "device-details.html"
+                },
+                {
+                    "image": "/images/CHICKADEE-ISO2-768x768.webp",
+                    "name": "[TEKTELIC] Personal Badge Tracker",
+                    "description": "Wearable Badge Style Device for Indoor & Outdoor Personnel and Asset Tracking and Monitoring",
+                    "price": "$199",
+                    "link": "/product/tektelic-chickadee"
+                }
+            ]
+        },
+        {
+            "name": "Environmental Safety Sensors",
+            "products": [
+                {
+                    "image": "/images/breeze-solution-768x768.webp",
+                    "name": "[TEKTELIC] Breeze-v",
+                    "description": "This intelligent sensor actively monitors and manages crucial factors, including CO2 levels, temperature, humidity, and occupancy. By promoting superior air quality, BREEZE-V creates a comfortable and productive atmosphere,",
+                    "price": "$199",
+                    "link": "/product/breeze-v"
+                },
+                {
+                    "image": "/images/RA02A Wireless Smoke Detector.webp",
+                    "name": "[NETVOX] Smoke Detector",
+                    "description": "The Netvox RA02A is a smoke detection alarm. The RA02A has a built-in photoelectric smoke detector and buzzer. It can detect the smoke density in the environment and sound an alarm when the smoke density exceeds the safe/default value.",
+                    "price": "$199",
+                    "link": "/product/netvox-ra02a"
+                }
+            ]
+        }
+    ]
+}

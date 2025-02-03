@@ -1,0 +1,63 @@
+{
+    "name": "SenseCAP S2103",
+    "tagline": "High-performance LoRaWAN® CO2 Sensor for Harsh Environments",
+    "image": "/images/SEEED_SenseCapS2103.webp",
+    "description": "SenseCAP S2103 is a robust CO2 sensor designed for outdoor and harsh environments. Compatible with worldwide LoRaWAN® networks, it offers an ultra-wide transmission range of up to 2 km in urban settings and 10 km in line-of-sight scenarios. Powered by a standard D-size SOCl2 battery (type: ER34615) with up to 10 years of battery life, it features an IP66-rated enclosure and an operating temperature range from -40℃ to +85℃. With simple no-code configuration via the SenseCAP Mate App and a series of rigorous reliability tests ensuring high performance under extreme conditions, the S2103 is engineered for demanding applications.",
+    "specifications": [
+      {
+        "title": "CO2",
+        "value_title": "Range & Accuracy",
+        "value": "400 to 10,000 ppm; ±(30 ppm + 3% of reading) (extended range ±10% of reading); 1 ppm resolution"
+      },
+      {
+        "title": "Air Temperature",
+        "value_title": "Range & Accuracy",
+        "value": "-40 to +85 °C; ±0.2 °C accuracy; 0.01 °C resolution; <0.03 °C/year drift"
+      },
+      {
+        "title": "Air Humidity",
+        "value_title": "Range & Accuracy",
+        "value": "0 to 100 %RH; ±1.8 %RH accuracy; 0.01 %RH resolution; <0.25 %RH/year drift"
+      },
+      {
+        "title": "LoRaWAN Support",
+        "value_title": "Protocol",
+        "value": "LoRaWAN v1.0.3 Class A (supports 7 frequency plans)"
+      },
+      {
+        "title": "Wireless Performance",
+        "value_title": "Transmission & Sensitivity",
+        "value": "Max transmitted power 19 dBm; Sensitivity -136 dBm @ SF12 BW=125KHz; Communication distance 2-10 km"
+      },
+      {
+        "title": "Enclosure & Operating Conditions",
+        "value_title": "Rating & Range",
+        "value": "IP66-rated; Effective CO2 measurement temperature 0 to +50 °C; Operating temperature for sensor module -40 to +85 °C; Operating humidity 0 to 90 %RH (non-condensing)"
+      },
+      {
+        "title": "Battery",
+        "value_title": "Life & Type",
+        "value": "Up to 10 years; Standard D-size SOCl2 battery (19Ah, non-rechargeable)"
+      },
+      {
+        "title": "Microcontroller",
+        "value_title": "Type",
+        "value": "Wio-E5"
+      }
+    ],
+    "features": [
+      "Compatible with worldwide LoRaWAN® networks (863MHz ~928MHz)",
+      "Ultra-wide transmission range: 2 km (urban) / 10 km (line-of-sight)",
+      "Long battery life up to 10 years with easily replaceable battery",
+      "Designed for harsh environments: Operating temperature -40℃ to +85℃ and IP66-rated enclosure",
+      "Simple no-code configuration via SenseCAP Mate App",
+      "High-performance guarantee with extensive reliability testing"
+    ],
+    "worksBestFor": [
+      "Outdoor Air Quality Monitoring",
+      "Industrial and Harsh Environmental Applications",
+      "Smart City Deployments",
+      "Remote Environmental Sensing"
+    ]
+  }
+  

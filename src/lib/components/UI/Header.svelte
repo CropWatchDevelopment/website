@@ -8,27 +8,30 @@
 	<!-- Desktop & Tablet Header -->
 	<div class="container mx-auto flex items-center justify-between px-6 py-4">
 		<!-- Left: Logo and Site Name -->
-		<div class="flex items-center gap-2">
-			<a href="/">
-				<img src={CropWatchLogo} alt="CropWatch Logo" class="h-10" width="40px" height="40px" />
-			</a>
+		<a href="/" class="flex flex-row items-center gap-2">
+			<img src={CropWatchLogo} alt="CropWatch Logo" class="h-10" width="40px" height="40px" />
 			<h1 class="text-xl font-bold">
 				CropWatch<sup><small>®</small></sup>
 			</h1>
-		</div>
+		</a>
 
 		<!-- Center: Navigation Menu Items (hidden on mobile) -->
-		<nav class="hidden md:flex flex-1 justify-center space-x-4">
+		<nav class="hidden flex-1 justify-center space-x-4 md:flex">
 			<a href="/" class="hover:text-blue-600">Home</a>
 			<a href="/about-us" class="hover:text-blue-600">About Us</a>
-			<a href="#pricing" class="hover:text-blue-600">Pricing</a>
+			<!-- <a href="#pricing" class="hover:text-blue-600">Pricing</a> -->
 			<a href="/contact-us" class="hover:text-blue-600">Contact Us</a>
 		</nav>
 
 		<!-- Right: App Login Button and LanguagePicker (hidden on mobile) -->
-		<div class="hidden md:flex items-center gap-4">
-			<a href="#contact" class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-				App Login
+		<div class="hidden items-center gap-4 md:flex">
+			<a
+				href="https://app.cropwatch.io"
+				target="_blank"
+				rel="noopener"
+				class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+			>
+				🔒 App Login
 			</a>
 			<LanguagePicker />
 		</div>
@@ -66,12 +69,14 @@
 		<nav class="bg-white shadow-md md:hidden">
 			<div class="space-y-2 px-6 py-4 text-center">
 				<a href="#home" class="block hover:text-blue-600">Home</a>
-				<a href="about-us" class="block hover:text-blue-600">About Us</a>
+				<!-- <a href="about-us" class="block hover:text-blue-600">About Us</a> -->
 				<a href="solutions" class="block hover:text-blue-600">Solutions</a>
-				<a href="#pricing" class="block hover:text-blue-600">Pricing</a>
+				<!-- <a href="#pricing" class="block hover:text-blue-600">Pricing</a> -->
 				<a href="contact-us" class="block hover:text-blue-600">Contact Us</a>
 				<a
-					href="#contact"
+					href="https://app.cropwatch.io"
+					target="_blank"
+					rel="noopener"
 					class="block rounded bg-blue-600 px-4 py-2 text-center text-white hover:bg-blue-700"
 				>
 					App Login

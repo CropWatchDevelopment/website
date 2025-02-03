@@ -1,0 +1,58 @@
+{
+  "title": "Farming",
+  "subtitle": "Agriculture is the backbone of the economy. With the help of IoT, farmers can now monitor and manage their crops more efficiently. Our sensors help farmers to monitor soil moisture, temperature, pH, and other important parameters. We also offer air sensors to monitor CO2, temperature, and humidity.",
+  "categories": [
+    {
+      "name": "土壌センサー",
+      "products": [
+        {
+          "image": "/images/CW-SS-TMEPNPK.webp",
+          "name": "[CropWatch] 温度、湿度、EC、およびpH 土壌センサー",
+          "description": "このセンサーはチネシウムで作られている……つまり、多少性能は劣るが安価です。土壌の温度、湿度、電気伝導度、pH、窒素、リン、カリウムレベルを測定します。農家や農業研究者が土壌管理と作物生産について情報に基づいた決定を下すのを支援するために設計されています。",
+          "price": "$299",
+          "link": "/product/farming/CW-SS-TMEPNPK"
+        },
+        {
+          "image": "/images/CW-SS-PH.webp",
+          "name": "[CropWatch] ISFET pH 土壌センサー",
+          "description": "農業用のISFET pHメーターは、農家や農業研究者にとって革新的な製品です。迅速で正確かつ信頼性のあるpH測定を提供し、より良い土壌管理と作物収穫を実現します。広いpH範囲、汚染物質や電解質への耐性、そしてコスト効率性を兼ね備えています。",
+          "price": "$299",
+          "link": "/product/farming/CW-SS-PH"
+        },
+        {
+          "image": "/images/CW-SS-TME.webp",
+          "name": "[CropWatch] 温度、湿度、& EC 土壌センサー",
+          "description": "農業用のISFET pHメーターは、農家や農業研究者にとって革新的な製品です。迅速で正確かつ信頼性のあるpH測定を提供し、より良い土壌管理と作物収穫を実現します。広いpH範囲、汚染物質や電解質への耐性、そしてコスト効率性を兼ね備えています。",
+          "price": "$299",
+          "link": "/product/farming/CW-SS-TME"
+        }
+      ]
+    },
+    {
+      "name": "空気センサー",
+      "products": [
+        {
+          "image": "/images/Milesight_EM500-co2.webp",
+          "name": "[Milesight] CO₂、温度および湿度センサー",
+          "description": "EM500-CO2は、過酷な環境下での気体状二酸化炭素（CO₂）濃度を測定するために設計されています。温室、建物の換気、果物や野菜の保管など、CO₂レベルの把握が重要な用途に役立ちます。",
+          "price": "$199",
+          "link": "/product/milesight-em500-co2"
+        },
+        {
+          "image": "/images/seeed.webp",
+          "name": "[SEEED] 8-in-1 ウェザーステーション",
+          "description": "SenseCAP LoRaWAN S2120 ウェザーステーションは、世界中のLoRaWANネットワークを利用して、気温、湿度、風速/風向、降雨強度、光強度、UV指数、および気圧のデータを収集し、アップロードします。",
+          "price": "$199",
+          "link": "device-details.html"
+        },
+        {
+          "image": "/images/TUNDRA-ISO-2000x2000.webp",
+          "name": "[Tektelic] 温度および湿度センサー",
+          "description": "TUNDRAセンサーは、最適な保管条件を実現し、保管製品の性能と安全性を向上させるための鍵となります。より健康的で効率的な結果を得るために、保管環境を向上させましょう。",
+          "price": "$199",
+          "link": "device-details.html"
+        }
+      ]
+    }
+  ]
+}

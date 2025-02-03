@@ -1,0 +1,59 @@
+{
+    "title": "Farming",
+    "subtitle": "Agriculture is the backbone of the economy. With the help of IoT, farmers can now monitor and manage their crops more efficiently. Our sensors help farmers to monitor soil moisture, temperature, pH, and other important parameters. We also offer air sensors to monitor CO2, temperature, and humidity.",
+    "categories": [
+      {
+        "name": "Soil Sensors",
+        "products": [
+          {
+            "image": "/images/CW-SS-TMEPNPK.webp",
+            "name": "[CropWatch] Temperature, Moisture, EC, & pH Soil Sensor",
+            "description": "The sensor is made from chinesium.... soooo it kinda sucks, but it's cheap. It measures soil temperature, moisture, electrical conductivity, pH, nitrogen, phosphorus, and potassium levels. It is designed to help farmers and agricultural researchers make informed decisions about soil management and crop production.",
+            "price": "$299",
+            "link": "/product/CW-SS-TMEPNPK"
+          },
+          {
+            "image": "/images/CW-SS-PH.webp",
+            "name": "[CropWatch] ISFET pH Soil Sensor",
+            "description": "The ISFET pH meter for agriculture use is a game-changer for farmers and agricultural researchers. It provides fast, accurate, and reliable pH readings, leading to better soil management and crop yields. With its wider pH range, resistance to contaminants and electrolytes, and cost-effectiveness",
+            "price": "$299",
+            "link": "/product/CW-SS-PH"
+          },
+          {
+            "image": "/images/CW-SS-TME.webp",
+            "name": "[CropWatch] Temperature, Moisture, & EC Soil Sensor",
+            "description": "The ISFET pH meter for agriculture use is a game-changer for farmers and agricultural researchers. It provides fast, accurate, and reliable pH readings, leading to better soil management and crop yields. With its wider pH range, resistance to contaminants and electrolytes, and cost-effectiveness",
+            "price": "$299",
+            "link": "/product/CW-SS-TME"
+          }
+        ]
+      },
+      {
+        "name": "Air Sensors",
+        "products": [
+          {
+            "image": "/images/Milesight_EM500-co2.webp",
+            "name": "[Milesight] CO₂, Temperature & Humidity Sensor",
+            "description": "EM500-CO2 is designed for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. It is useful in the application where knowing CO2 level is important like greenhouse, building ventilation, fruit and vegetable storage",
+            "price": "$199",
+            "link": "/product/milesight-em500-co2"
+          },
+          {
+            "image": "/images/seeed.webp",
+            "name": "[SEEED] 8-in-1 Weather Station",
+            "description": "SenseCAP LoRaWAN S2120 Weather Station collects and uploads air temperature, humidity, wind speed/direction, Rainfall Intensity, light intensity, UV index, and barometric pressure data supported by worldwide LoRaWAN networks.",
+            "price": "$199",
+            "link": "/product/seed-weatherstation"
+          },
+          {
+            "image": "/images/TUNDRA-ISO-2000x2000.webp",
+            "name": "[Tektelic] Temperature & Humidity Sensor",
+            "description": "The TUNDRA Sensor is your key to achieving optimal storage conditions and enhancing the performance and safety of stored products. Elevate your storage environment for healthier and more efficient outcomes.",
+            "price": "$199",
+            "link": "/product/tundra"
+          }
+        ]
+      }
+    ]
+  }
+  

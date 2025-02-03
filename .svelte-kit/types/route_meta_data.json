@@ -5,14 +5,13 @@
 	"/about-us": [
 		"src/routes/about-us/+page.ts"
 	],
-	"/contact-us": [],
+	"/contact-us": [
+		"src/routes/contact-us/+page.server.ts"
+	],
 	"/demo": [],
 	"/demo/paraglide": [],
 	"/privacy-policy": [],
-	"/product/categories/cold-storage": [],
-	"/product/categories/farming": [],
-	"/product/categories/safety": [],
-	"/product/categories/smart-cities": [],
-	"/product/farming/[id]": [],
+	"/product/categories/[id]": [],
+	"/product/[id]": [],
 	"/terms-of-service": []
 }

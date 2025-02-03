@@ -11,17 +11,17 @@
         {
             image: '/images/CW-SS-TMEPNPK.webp',
             text: 'CropWatch Soil Sensor',
-            link: '#',
+            link: "/product/CW-SS-TMEPNPK"
         },
         {
             image: '/images/Milesight_EM500-co2.webp',
             text: 'MileSight CO2 Sensor',
-            link: '#',
+            link: "/product/milesight-em500-co2"
         },
         {
             image: '/images/RA02A Wireless Smoke Detector.webp',
             text: 'Netvox Smoke Detector',
-            link: '#',
+            link: "/product/netvox-ra02a"
         },
         {
             image: '/images/CW-SS-TMEPNPK.webp',
@@ -31,17 +31,17 @@
         {
             image: '/images/seeed.webp',
             text: 'SEEED Weather Station',
-            link: '#',
+            link: "/product/seed-weatherstation"
         },
         {
             image: '/images/TUNDRA-ISO-2000x2000.webp',
             text: 'Tundra Temperature Sensor',
-            link: '#',
+            link: "/product/tundra"
         },
         {
             image: '/images/breeze-solution-768x768.webp',
             text: 'Tektelic Breeze',
-            link: '#',
+            link: "/product/breeze-v"
         },
         {
             image: '/images/image_1.webp',
@@ -50,8 +50,8 @@
         },
         {
             image: '/images/CHICKADEE-ISO2-768x768.webp',
-            text: 'Tektelic Display',
-            link: '#',
+            text: 'Tektelic Personal Tracker',
+            link: '/product/tektelic-chickadee',
         },
         {
             image: '/images/AI_canera_1.webp',

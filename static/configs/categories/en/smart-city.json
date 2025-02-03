@@ -1,0 +1,37 @@
+{
+    "title": "Smart-Cities",
+    "subtitle": "Smart cities use IoT technology to improve the quality of life for residents. Our sensors help you monitor environmental conditions, traffic, and other important parameters to ensure the safety and well-being of citizens. We offer a range of sensors to monitor air quality, temperature, humidity, and other important parameters.",
+    "categories": [
+        {
+            "name": "City Outdoor Environment Sensors",
+            "products": [
+                {
+                    "image": "/images/AI_canera_1.webp",
+                    "name": "[CROPWATCH] AI-Traffic",
+                    "description": "The CropWatch AI Traffic counting, monitoring and reporting system is a smart solution for traffic management. It uses AI to count and monitor traffic flow, and provides real-time reports to help you make informed decisions about traffic management.",
+                    "price": "$199",
+                    "link": "device-details.html"
+                },
+                {
+                    "image": "/images/seeed.webp",
+                    "name": "[SEEED] 8-in-1 Weather Station",
+                    "description": "SenseCAP LoRaWAN S2120 Weather Station collects and uploads air temperature, humidity, wind speed/direction, Rainfall Intensity, light intensity, UV index, and barometric pressure data supported by worldwide LoRaWAN networks.",
+                    "price": "$199",
+                    "link": "device-details.html"
+                }
+            ]
+        },
+        {
+            "name": "City Indoor Environment Sensors",
+            "products": [
+                {
+                    "image": "/images/breeze-solution-768x768.webp",
+                    "name": "[TEKTELIC] Breeze-v",
+                    "description": "This intelligent sensor actively monitors and manages crucial factors, including CO2 levels, temperature, humidity, and occupancy. By promoting superior air quality, BREEZE-V creates a comfortable and productive atmosphere,",
+                    "price": "$199",
+                    "link": "/product/breeze-v"
+                }
+            ]
+        }
+    ]
+}

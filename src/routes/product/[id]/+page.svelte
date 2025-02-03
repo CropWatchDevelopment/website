@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { languageTag } from '$lib/paraglide/runtime';
 
 	let device = $state(null);
 	let loading = $state(true);
 	let error = $state(false);
 
 	// Fetch the device configuration
-	fetch(`/config/${page.params.id}.json`)
+	fetch(`/configs/product/${languageTag()}/${page.params.id}.json`)
 		.then((res) => res.json())
 		.then((data) => {
 			console.log(data);
@@ -45,12 +46,14 @@
 			<p class="mt-4 text-lg">A brief tagline or description of the device.</p>
 		</div>
 	</section>
-    <div class="w-full">
+    <div class="flex flex-row items-center justify-center w-full mt-6">
         <img
             src={device.image}
             alt={device.name}
+            width="400"
+            height="400"
 			loading="lazy"
-            class="w-full rounded-lg shadow-lg"
+            class="rounded-lg shadow-lg"
         />
     </div>
 
@@ -66,12 +69,6 @@
 				<p class="text-lg text-gray-700">
 					{device.description || "This sensor is engineered for high performance in challenging environments. It offers precise measurements, robust construction, and seamless integration into existing systems, ensuring you get the most reliable data for your applications."}
 				</p>
-				<ul class="mt-6 list-disc list-inside text-gray-700">
-					<li><strong>High Accuracy:</strong> Provides reliable data for precise decision-making.</li>
-					<li><strong>Long Battery Life:</strong> Ensures extended operation with minimal maintenance.</li>
-					<li><strong>Robust Design:</strong> Built to withstand harsh environmental conditions.</li>
-					<li><strong>Easy Integration:</strong> Seamlessly fits into your existing system architecture.</li>
-				</ul>
 			</div>
 		</div>
 	</section>
@@ -96,22 +93,12 @@
 		<div class="container mx-auto">
 			<h2 class="text-center text-3xl font-bold text-gray-800">Features</h2>
 			<div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{#each device.features as feature}
 				<div class="rounded-lg bg-white p-6 shadow-lg">
-					<h3 class="text-xl font-bold">バッテリー寿命</h3>
-					<p class="text-gray-600">
-						ユーザー側で交換可能なバッテリーを使用し、30分ごとの更新で約6年間稼働します。
-					</p>
+					<!-- <h3 class="text-xl font-bold">通信距離</h3> -->
+					<p class="text-gray-600">{feature}</p>
 				</div>
-				<div class="rounded-lg bg-white p-6 shadow-lg">
-					<h3 class="text-xl font-bold">通信距離</h3>
-					<p class="text-gray-600">通常の環境では約5km、最適な条件では15km以上の通信が可能です。</p>
-				</div>
-				<div class="rounded-lg bg-white p-6 shadow-lg">
-					<h3 class="text-xl font-bold">サポートと保証</h3>
-					<p class="text-gray-600">
-						手厚いサポートと1年間の製品保証で理想の環境づくりをお手伝いします。
-					</p>
-				</div>
+                {/each}
 			</div>
 		</div>
 	</section>

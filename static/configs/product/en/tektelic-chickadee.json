@@ -1,0 +1,51 @@
+{
+    "name": "CHICKADEE",
+    "tagline": "Cutting-edge LoRaWAN® Device for Tracking People and Assets",
+    "image": "/images/CHICKADEE-ISO2-768x768.webp",
+    "description": "CHICKADEE is a state-of-the-art LoRaWAN® device designed to revolutionize personnel and asset tracking. Utilizing low-power positioning capabilities via LoRa Edge™, it offers precise GPS, BLE, and Wi-Fi positioning for both outdoor and indoor environments. Seamlessly integrating into existing LoRaWAN® networks, CHICKADEE enhances security and operational efficiency by providing real-time location information and instant alerts, making it ideal for securing construction sites, warehouses, manufacturing facilities, and multi-building campuses.",
+    "specifications": [
+        {
+            "title": "Battery Life",
+            "value_title": "Duration",
+            "value": "6+ Months Rechargeable (Optional 12V External Power)"
+        },
+        {
+            "title": "Positioning Technologies",
+            "value_title": "Methods",
+            "value": "GPS, BLE, Wi-Fi, Low-Power GNSS"
+        },
+        {
+            "title": "Form Factor",
+            "value_title": "Design",
+            "value": "Badge form factor for versatile deployment on clothing, equipment, or assets"
+        },
+        {
+            "title": "Connectivity",
+            "value_title": "Protocol",
+            "value": "LoRaWAN® with support for all Global ISM Bands"
+        },
+        {
+            "title": "Additional Features",
+            "value_title": "Capabilities",
+            "value": "Accelerometer, Passive RFID, Configurable Button for Event-Based Uplinks (SOS)"
+        }
+    ],
+    "features": [
+        "6+ Months Rechargeable Battery Life",
+        "Optional 12V External Power",
+        "Accelerometer and Passive RFID",
+        "Bluetooth Low Energy Functionality",
+        "Outdoor Positioning via GPS and Low-Power GNSS",
+        "Indoor Positioning via BLE and Wi-Fi Sniffing",
+        "Configurable Button for Event-Based Uplinks",
+        "Badge Form Factor for seamless deployment",
+        "Internal Antenna",
+        "Supports All Global ISM Bands"
+    ],
+    "worksBestFor": [
+        "Construction Sites",
+        "Warehouses",
+        "Manufacturing Facilities",
+        "Multi-Building Campuses"
+    ]
+}

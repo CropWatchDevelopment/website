@@ -1,0 +1,48 @@
+{
+    "name": "TUNDRA COLD ROOM TEMPERATURE & HUMIDITY SENSOR",
+    "tagline": "Monitor and Maintain Optimal Temperatures",
+    "image": "/images/TUNDRA-ISO-2000x2000.webp",
+    "description": "The TUNDRA Sensor is your key to achieving optimal storage conditions and enhancing the performance and safety of stored products. Elevate your storage environment for healthier and more efficient outcomes.",
+    "color": "red",
+    "specifications": [
+        {
+            "title": "Operational Temperature",
+            "value_title": "Parameters",
+            "value": "-40°C to +70°C"
+        },
+        {
+            "title": "Ingress Protection",
+            "value_title": "Rating",
+            "value": "IP67"
+        },
+        {
+            "title": "Battery Life",
+            "value_title": "Duration",
+            "value": "15 Years"
+        },
+        {
+            "title": "Dimension",
+            "value_title": "Measurement",
+            "value": "67 x 43 x 36 mm"
+        },
+        {
+            "title": "RF Power",
+            "value_title": "Up to",
+            "value": "20 dBm"
+        }
+    ],
+    "features": [
+        "15 Year Battery Life",
+        "125 Days/3000 Entries of Stored Data",
+        "All Global ISM Bands",
+        "Small Form Factor for Diverse Deployments",
+        "Easily Integrated into LoRaWAN® Networks",
+        "Internal Antenna"
+    ],
+    "worksBestFor": [
+        "Smart Home & Office",
+        "Schools & Universities",
+        "Retail",
+        "Public Buildings"
+    ]
+}

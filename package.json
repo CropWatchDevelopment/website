@@ -27,6 +27,7 @@
 		"@tailwindcss/container-queries": "^0.1.1",
 		"@tailwindcss/forms": "^0.5.10",
 		"@tailwindcss/typography": "^0.5.16",
+		"@types/nodemailer": "^6.4.17",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -44,6 +45,8 @@
 		"vitest": "^2.1.8"
 	},
 	"dependencies": {
-		"@inlang/paraglide-sveltekit": "^0.15.5"
+		"@inlang/paraglide-sveltekit": "^0.15.5",
+		"nodemailer": "^6.10.0",
+		"recaptcha-v3": "^1.11.3"
 	}
 }
