@@ -13,5 +13,6 @@
 	"/privacy-policy": [],
 	"/product/categories/[id]": [],
 	"/product/[id]": [],
-	"/terms-of-service": []
+	"/terms-of-service": [],
+	"/use-cases": []
 }

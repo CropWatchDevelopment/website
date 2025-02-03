@@ -10,7 +10,7 @@
                     "name": "[CROPWATCH] LoRaWATCH",
                     "description": "The LoRaWATCH is a smartwatch that monitors personal data. It can detect temperature, heart-rate, and blood oxigen levels. It is designed to help you stay safe and healthy in hot, working environments.",
                     "price": "$199",
-                    "link": "device-details.html"
+                    "link": "/product/CW-LW-1"
                 },
                 {
                     "image": "/images/CHICKADEE-ISO2-768x768.webp",

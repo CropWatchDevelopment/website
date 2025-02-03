@@ -95,8 +95,9 @@
 			<p class="mb-4">
 				<span class="font-bold">Address:</span> 123 CropWatch Lane, AgriCity, AG 45678
 			</p>
-			<p class="mb-4"><span class="font-bold">Phone:</span> +1 (123) 456-7890</p>
-			<p class="mb-4"><span class="font-bold">Email:</span> contact@cropwatch.com</p>
+			<span class="flex flex-row"><p class="mb-4">Japan Phone:</p><img src="/images/japan-phone.png" alt="Japanese Phone number hidden" /></span>
+			<span class="flex flex-row"><p class="mb-4">USA Phone:</p><img src="/images/usa-phone.png" alt="United States Phone number hidden" /></span>
+			
 			<p class="mb-4"><span class="font-bold">Business Hours:</span> Mon - Fri, 9 AM - 5 PM</p>
 		</div>
 

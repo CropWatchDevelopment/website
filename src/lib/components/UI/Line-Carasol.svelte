@@ -46,7 +46,7 @@
         {
             image: '/images/image_1.webp',
             text: 'CropWatch Safety Monitor Watch',
-            link: '#',
+            link: '/product/CW-LW-1',
         },
         {
             image: '/images/CHICKADEE-ISO2-768x768.webp',

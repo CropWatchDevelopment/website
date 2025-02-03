@@ -80,7 +80,7 @@
 			{m.home_hero_subtitle()}
 		</p>
 		<div class="mt-6">
-			<a href="#solutions" class="rounded bg-white px-6 py-3 text-blue-600 hover:bg-gray-200">
+			<a href="/use-cases" class="rounded bg-white px-6 py-3 text-blue-600 hover:bg-gray-200">
 				{m.home_hero_button_label()}
 			</a>
 		</div>

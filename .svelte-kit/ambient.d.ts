@@ -55,7 +55,6 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies_eslint_config_prettier: string;
 	export const npm_package_devDependencies_eslint_plugin_svelte: string;
 	export const NVM_INC: string;
-	export const NODE_OPTIONS: string;
 	export const GTK_MODULES: string;
 	export const XDG_SEAT_PATH: string;
 	export const VSCODE_GIT_ASKPASS_MAIN: string;
@@ -145,7 +144,6 @@ declare module '$env/static/private' {
 	export const GPG_AGENT_INFO: string;
 	export const LC_IDENTIFICATION: string;
 	export const npm_package_devDependencies_globals: string;
-	export const VSCODE_INSPECTOR_OPTIONS: string;
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const QT_IM_MODULE: string;
 	export const XDG_VTNR: string;
@@ -228,7 +226,6 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies_eslint_config_prettier: string;
 		npm_package_devDependencies_eslint_plugin_svelte: string;
 		NVM_INC: string;
-		NODE_OPTIONS: string;
 		GTK_MODULES: string;
 		XDG_SEAT_PATH: string;
 		VSCODE_GIT_ASKPASS_MAIN: string;
@@ -318,7 +315,6 @@ declare module '$env/dynamic/private' {
 		GPG_AGENT_INFO: string;
 		LC_IDENTIFICATION: string;
 		npm_package_devDependencies_globals: string;
-		VSCODE_INSPECTOR_OPTIONS: string;
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		QT_IM_MODULE: string;
 		XDG_VTNR: string;

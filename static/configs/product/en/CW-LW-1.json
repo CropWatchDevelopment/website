@@ -1,0 +1,46 @@
+{
+    "id": "CropWatch® LoRaWATCH",
+    "name": "CropWatch® LoRaWATCH",
+    "tagline": "Efficiently monitor CO2 and occupancy for enhanced productivity, health, and well-being",
+    "image": "/images/image_1.webp",
+    "description": "This is our very own personal safety watch. Optimized for signal distance, and battery life, our watch can monitor your vitals, and location. It is designed to be worn throughout your work day, and can be charged. It is also water resistant.",
+    "applications": [
+        {
+            "image": "",
+            "title": "Soil Moisture",
+            "description": "asdfasdf"
+        },
+        {
+            "image": "",
+            "title": "Soil Moisture",
+            "description": "asdfasdf"
+        }
+    ],
+    "specifications": [
+        {
+            "title": "Ingress Protection",
+            "value_title": "Rating",
+            "value": "IP67"
+        },
+        {
+            "title": "Battery Life",
+            "value_title": "Duration",
+            "value": "5 Days"
+        }
+    ],
+    "features": [
+        "User Temperature",
+        "User Heart Rate",
+        "User GPS Location (outdoors)",
+        "GPS Geo Fencing",
+        "User SOS Button",
+        "User Replaceable Battery",
+        "Remote Configuration"
+    ],
+    "downloads": [
+        {
+            "title": "asdf",
+            "url": "asdf"
+        }
+    ]
+}
