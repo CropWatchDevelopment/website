@@ -6,7 +6,14 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
     preprocess: vitePreprocess(),
     kit: {
-        adapter: adapter(),
+        adapter: adapter({
+            images: {
+                sizes: [640, 828, 1200, 1920, 3840],
+                formats: ['image/avif', 'image/webp'],
+                minimumCacheTTL: 300,
+                domains: ['cropwatch.io','website-five-weld-27.vercel.app'],
+            }
+        }),
         csp: {
             directives: {
                 'script-src': [
