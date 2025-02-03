@@ -9,54 +9,54 @@
 
 	const products = [
         {
-            image: '/images/CW-SS-TMEPNPK.png',
+            image: '/images/CW-SS-TMEPNPK.webp',
             text: 'CropWatch Soil Sensor',
-            link: '/products/1',
+            link: '#',
         },
         {
             image: '/images/Milesight_EM500-co2.webp',
             text: 'MileSight CO2 Sensor',
-            link: '/products/2',
+            link: '#',
         },
         {
-            image: '/images/RA02A Wireless Smoke Detector.png',
+            image: '/images/RA02A Wireless Smoke Detector.webp',
             text: 'Netvox Smoke Detector',
-            link: '/products/3',
+            link: '#',
         },
         {
-            image: '/images/CW-SS-TMEPNPK.png',
+            image: '/images/CW-SS-TMEPNPK.webp',
             text: 'CropWatch Soil Sensor',
-            link: '/products/5',
+            link: '#',
         },
         {
             image: '/images/seeed.webp',
             text: 'SEEED Weather Station',
-            link: '/products/6',
+            link: '#',
         },
         {
-            image: '/images/TUNDRA-ISO-2000x2000.png',
+            image: '/images/TUNDRA-ISO-2000x2000.webp',
             text: 'Tundra Temperature Sensor',
-            link: '/products/7',
+            link: '#',
         },
         {
             image: '/images/breeze-solution-768x768.webp',
             text: 'Tektelic Breeze',
-            link: '/products/8',
+            link: '#',
         },
         {
             image: '/images/image_1.webp',
             text: 'CropWatch Safety Monitor Watch',
-            link: '/products/8',
+            link: '#',
         },
         {
-            image: '/images/CHICKADEE-ISO2-768x768.png',
+            image: '/images/CHICKADEE-ISO2-768x768.webp',
             text: 'Tektelic Display',
-            link: '/products/8',
+            link: '#',
         },
         {
             image: '/images/AI_canera_1.webp',
             text: 'CropWatch AI Traffic Counting',
-            link: '/products/8',
+            link: '#',
         },
     ];
 
@@ -128,7 +128,7 @@
 				class="carousel-slide flex-shrink-0 w-1/3 text-center bg-slate-500 hover:bg-slate-500/50 p-1 hover:p-0 shadow-lg z-10"
 				aria-label={text}
 			>
-				<img src={image} alt={text} class="mx-auto h-64 object-cover rounded-lg" />
+				<img src={image} alt={text} class="mx-auto h-64 object-cover rounded-lg" height="256px" width="255px" loading="lazy" />
 				<p class="mt-4 text-lg font-bold">{text}</p>
 			</a>
 		{/each}

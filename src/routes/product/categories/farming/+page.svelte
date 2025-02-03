@@ -18,14 +18,14 @@
 			<div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Device Card -->
 				<ProductCard
-					image="/images/CW-SS-TMEPNPK.png"
+					image="/images/CW-SS-TMEPNPK.webp"
 					name="[CropWatch] Temperature, Moisture, EC, & pH Soil Sensor"
 					description="The sensor is made from chinesium.... soooo it kinda sucks, but it's cheap. It measures soil temperature, moisture, electrical conductivity, pH, nitrogen, phosphorus, and potassium levels. It is designed to help farmers and agricultural researchers make informed decisions about soil management and crop production."
 					price="$299"
 					link="/product/farming/CW-SS-TMEPNPK"
 				/>
         <ProductCard
-					image="/images/CW-SS-PH.png"
+					image="/images/CW-SS-PH.webp"
 					name="[CropWatch] ISFET pH Soil Sensor"
 					description="The ISFET pH meter for agriculture use is a game-changer for farmers and agricultural researchers. It provides fast, accurate, and reliable pH readings, leading to better soil management and crop yields. With its wider pH range, resistance to contaminants and electrolytes, and cost-effectiveness"
 					price="$299"
@@ -61,7 +61,7 @@
 					link="device-details.html"
 				/>
         <ProductCard
-					image="/images/TUNDRA-ISO-2000x2000.png"
+					image="/images/TUNDRA-ISO-2000x2000.webp"
 					name="[Tektelic] Temperature & Humidity Sensor"
 					description="The TUNDRA Sensor is your key to achieving optimal storage conditions and enhancing the performance and safety of stored products. Elevate your storage environment for healthier and more efficient outcomes."
 					price="$199"

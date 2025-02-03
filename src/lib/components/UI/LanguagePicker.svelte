@@ -3,11 +3,10 @@
 	import { page } from '$app/state';
 	import { i18n } from '$lib/i18n';
 	import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
-	import { onMount } from 'svelte';
 
-	let dropdownOpen = false;
-	let selectedLanguage = 'ja';
-	const languages = ['ja', 'en', 'es', 'fr'];
+	let dropdownOpen = $state(false);
+	let selectedLanguage = $state('ja');
+	const languages: AvailableLanguageTag = ['ja', 'en', 'es', 'fr'];
 	const languageFlags = {
 		ja: '🇯🇵',
 		en: '🇺🇸',
@@ -16,7 +15,7 @@
 	};
 
 	// On component mount, retrieve the saved language from localStorage
-	onMount(() => {
+	$effect(() => {
 		const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
 		selectedLanguage = savedLanguage;
 	});
@@ -39,7 +38,7 @@
 <div class="relative inline-block text-left">
 	<!-- Main button to toggle dropdown -->
 	<button
-		on:click={toggleDropdown}
+		onclick={toggleDropdown}
 		type="button"
 		class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-black shadow-sm hover:bg-gray-50 focus:outline-none"
 	>
@@ -67,7 +66,7 @@
 			<div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 				{#each languages as lang}
 					<button
-						on:click={() => {
+						onclick={() => {
 							switchToLanguage(lang);
 							dropdownOpen = false;
 						}}

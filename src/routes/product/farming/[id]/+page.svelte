@@ -49,6 +49,7 @@
         <img
             src={device.image}
             alt={device.name}
+			loading="lazy"
             class="w-full rounded-lg shadow-lg"
         />
     </div>

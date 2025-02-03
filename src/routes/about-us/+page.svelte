@@ -55,17 +55,17 @@
       <p class="mt-4 text-gray-600">The people behind the innovation and success of CropWatch LLC.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
         <div class="bg-white shadow-lg rounded-lg p-6">
-          <img src="placeholder-team1.jpg" alt="Team Member 1" class="w-32 h-32 mx-auto rounded-full">
+          <img src="placeholder-team1.jpg" loading="lazy" alt="Team Member 1" class="w-32 h-32 mx-auto rounded-full">
           <h3 class="mt-4 text-xl font-bold">John Doe</h3>
           <p class="mt-2 text-gray-600">CEO & Founder</p>
         </div>
         <div class="bg-white shadow-lg rounded-lg p-6">
-          <img src="placeholder-team2.jpg" alt="Team Member 2" class="w-32 h-32 mx-auto rounded-full">
+          <img src="placeholder-team2.jpg" loading="lazy" alt="Team Member 2" class="w-32 h-32 mx-auto rounded-full">
           <h3 class="mt-4 text-xl font-bold">Jane Smith</h3>
           <p class="mt-2 text-gray-600">CTO</p>
         </div>
         <div class="bg-white shadow-lg rounded-lg p-6">
-          <img src="placeholder-team3.jpg" alt="Team Member 3" class="w-32 h-32 mx-auto rounded-full">
+          <img src="placeholder-team3.jpg" loading="lazy" alt="Team Member 3" class="w-32 h-32 mx-auto rounded-full">
           <h3 class="mt-4 text-xl font-bold">Alex Johnson</h3>
           <p class="mt-2 text-gray-600">Head of Operations</p>
         </div>

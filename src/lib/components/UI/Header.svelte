@@ -10,7 +10,7 @@
 		<!-- Left: Logo and Site Name -->
 		<div class="flex items-center gap-2">
 			<a href="/">
-				<img src={CropWatchLogo} alt="CropWatch Logo" class="h-10" />
+				<img src={CropWatchLogo} alt="CropWatch Logo" class="h-10" width="40px" height="40px" />
 			</a>
 			<h1 class="text-xl font-bold">
 				CropWatch<sup><small>®</small></sup>
@@ -21,7 +21,6 @@
 		<nav class="hidden md:flex flex-1 justify-center space-x-4">
 			<a href="/" class="hover:text-blue-600">Home</a>
 			<a href="/about-us" class="hover:text-blue-600">About Us</a>
-			<a href="solutions" class="hover:text-blue-600">Solutions</a>
 			<a href="#pricing" class="hover:text-blue-600">Pricing</a>
 			<a href="/contact-us" class="hover:text-blue-600">Contact Us</a>
 		</nav>

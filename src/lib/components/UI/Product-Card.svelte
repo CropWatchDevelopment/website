@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex flex-col rounded bg-white p-6 shadow-md">
-	<img src={image ?? NO_IMAGE} alt={name} class="h-40 w-full object-contain" />
+	<img src={image ?? NO_IMAGE} alt={name} loading="lazy" class="h-40 w-full object-contain" />
 	<h3 class="mt-4 text-xl font-bold">{name ?? 'Product Name Not available'}</h3>
 	<p class="mt-2 text-gray-600">{description}</p>
 	<p class="mt-4 text-lg font-bold text-blue-600">{price}</p>
