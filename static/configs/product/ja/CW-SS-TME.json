@@ -1,0 +1,62 @@
+{
+    "id": "CropWatch® Temperature, Moisture, & EC Soil Sensor",
+    "name": "CropWatch® 温度・湿度・EC土壌センサー",
+    "tagline": "生産性、健康、ウェルビーング向上のためにCO2と占有状況を効率的にモニタリング",
+    "image": "/images/CropWatch-SS-field.webp",
+    "description": "CropWatch® 土壌センサーシリーズは、可能な限り最高の接続性を提供するために設計されています。最も過酷な環境で動作できるよう、センサーの堅牢性と長いバッテリー寿命に注力しており、このセンサーは長期間設置したまま運用することを前提としています。また、農家と協力して最適なセンサーを決定し、実験室外でもできるだけ正確かつ信頼性の高い測定を実現することを目指しています。",
+    "applications": [
+      {
+        "image": "",
+        "title": "土壌水分",
+        "description": "asdfasdf"
+      },
+      {
+        "image": "",
+        "title": "土壌水分",
+        "description": "asdfasdf"
+      }
+    ],
+    "specifications": [
+      {
+        "title": "土壌温度",
+        "value_title": "最小/最大",
+        "value": "-40°C 〜 80°C"
+      },
+      {
+        "title": "土壌水分",
+        "value_title": "最小/最大",
+        "value": "0% 〜 100%"
+      },
+      {
+        "title": "土壌EC",
+        "value_title": "最小/最大",
+        "value": "0-10000us/cm"
+      },
+      {
+        "title": "防塵・防水等級",
+        "value_title": "評価",
+        "value": "IP67"
+      },
+      {
+        "title": "バッテリー寿命",
+        "value_title": "持続時間",
+        "value": "5〜10年"
+      }
+    ],
+    "features": [
+      "ユーザーが設定可能なパラメーターと閾値",
+      "高湿度・多湿環境向けに設計",
+      "信号強度向上のために延長可能な外部アンテナ",
+      "ユーザー交換可能なバッテリー",
+      "リモート設定",
+      "再配置が可能な統合GPS",
+      "破損時に交換可能なセンサー"
+    ],
+    "downloads": [
+      {
+        "title": "asdf",
+        "url": "asdf"
+      }
+    ]
+  }
+  

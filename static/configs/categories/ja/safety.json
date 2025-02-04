@@ -1,0 +1,45 @@
+{
+    "title": "安全とリスク軽減",
+    "subtitle": "どの業界においても、安全とリスク軽減は非常に重要です。当社のセンサーは、環境条件を監視して事故を防ぎ、安全規制への準拠を確保するのに役立ちます。温度、湿度、CO₂レベル、その他の重要なパラメータを監視するためのさまざまなセンサーを提供しています。",
+    "categories": [
+      {
+        "name": "個人用安全センサー",
+        "products": [
+          {
+            "image": "/images/image_1.webp",
+            "name": "[CROPWATCH] LoRaWATCH",
+            "description": "LoRaWATCHは、個人データを監視するスマートウォッチです。温度、心拍数、血中酸素レベルを検出できます。高温な作業環境で安全かつ健康を維持するために設計されています。",
+            "price": "$199",
+            "link": "/product/CW-LW-1"
+          },
+          {
+            "image": "/images/CHICKADEE-ISO2-768x768.webp",
+            "name": "[TEKTELIC] Personal Badge Tracker",
+            "description": "屋内外の人員および資産の追跡と監視のための着用可能なバッジ型デバイス",
+            "price": "$199",
+            "link": "/product/tektelic-chickadee"
+          }
+        ]
+      },
+      {
+        "name": "環境安全センサー",
+        "products": [
+          {
+            "image": "/images/breeze-solution-768x768.webp",
+            "name": "[TEKTELIC] Breeze-v",
+            "description": "このインテリジェントセンサーは、CO₂レベル、温度、湿度、占有状況などの重要な要因を積極的に監視および管理します。優れた空気品質を促進することで、BREEZE-Vは快適で生産的な環境を作り出します。",
+            "price": "$199",
+            "link": "/product/breeze-v"
+          },
+          {
+            "image": "/images/RA02A Wireless Smoke Detector.webp",
+            "name": "[NETVOX] Smoke Detector",
+            "description": "Netvox RA02Aは煙検知警報器です。内蔵の光電式煙感知器とブザーにより、環境中の煙の濃度を検出し、煙の濃度が安全な値を超えた場合に警報を発します。",
+            "price": "$199",
+            "link": "/product/netvox-ra02a"
+          }
+        ]
+      }
+    ]
+  }
+  

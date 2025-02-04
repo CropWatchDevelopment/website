@@ -1,0 +1,59 @@
+{
+    "name": "EM500-CO2",
+    "tagline": "Sensor de Dióxido de Carbono LoRaWAN® (4 en 1) para Exteriores y Entornos Hostiles",
+    "image": "/images/Milesight_EM500-co2.webp",
+    "description": "El EM500-CO2 está diseñado para monitorear la concentración de CO2, la temperatura, la humedad y la presión barométrica en escenarios al aire libre. Más que un sensor de dióxido de carbono, cuenta con 4 sensores en 1 y mide niveles de CO2 de 400 ppm a 5,000 ppm. Con una carcasa ultra resistente y una clasificación IP65, está construido para soportar entornos adversos. El dispositivo ofrece despliegue inalámbrico LoRaWAN® con bajo consumo de energía, una duración de batería de hasta 10 años y configuración fácil a través de NFC. Es ideal para aplicaciones como invernaderos, ventilación de edificios, bodegas y detección de incendios forestales.",
+    "specifications": [
+      {
+        "title": "Rango de Medición de CO2",
+        "value_title": "Rango",
+        "value": "400 ppm a 5,000 ppm"
+      },
+      {
+        "title": "Configuración del Sensor",
+        "value_title": "Cantidad",
+        "value": "4 en 1"
+      },
+      {
+        "title": "Protección de Ingreso",
+        "value_title": "Clasificación",
+        "value": "IP65"
+      },
+      {
+        "title": "Duración de la Batería",
+        "value_title": "Duración",
+        "value": "Hasta 10 años"
+      },
+      {
+        "title": "Tecnología Inalámbrica",
+        "value_title": "Protocolo",
+        "value": "LoRaWAN®"
+      },
+      {
+        "title": "Alcance de Conectividad",
+        "value_title": "Distancia",
+        "value": "Hasta 2 km (urbano) / 15 km (rural)"
+      },
+      {
+        "title": "Configuración",
+        "value_title": "Método",
+        "value": "Fácil vía NFC"
+      }
+    ],
+    "features": [
+      "Monitorea CO2, Temperatura, Humedad y Presión Barométrica",
+      "4 Sensores en 1 para un uso versátil en exteriores",
+      "Carcasa Ultra Resistente para Entornos Hostiles",
+      "Despliegue Inalámbrico LoRaWAN® con Bajo Consumo de Energía",
+      "Integridad de Datos y Gestión Sencilla",
+      "Larga Duración de la Batería",
+      "Fácil Configuración vía NFC"
+    ],
+    "worksBestFor": [
+      "Invernaderos",
+      "Ventilación de Edificios",
+      "Bodegas",
+      "Detección de Incendios Forestales"
+    ]
+  }
+  

@@ -1,0 +1,52 @@
+{
+    "name": "SenseCAP LoRaWAN S2120 Weather Station",
+    "tagline": "Configuración fácil y monitoreo meteorológico integral",
+    "image": "/images/seeed.webp",
+    "description": "La estación meteorológica SenseCAP LoRaWAN S2120 recopila y carga datos de temperatura del aire, humedad, velocidad/dirección del viento, intensidad de la lluvia, intensidad de la luz, índice UV y presión barométrica a través de redes LoRaWAN en todo el mundo. Adecuada para aplicaciones en jardines, agricultura, meteorología y monitoreo ambiental urbano, garantiza bajos costos de mantenimiento con un consumo de energía ultra bajo y un rendimiento confiable. Con la simplicidad de Scan-and-Play y una configuración sencilla mediante Bluetooth integrado, los usuarios pueden iniciar rápidamente la detección meteorológica y beneficiarse de la configuración OTA y la gestión remota de dispositivos a través de la poderosa aplicación SenseCAP Mate.",
+    "specifications": [
+      {
+        "title": "Mediciones del Sensor",
+        "value_title": "Parámetros",
+        "value": "Temperatura del aire, Humedad, Velocidad del viento, Dirección del viento, Intensidad de la lluvia, Intensidad de la luz, Índice UV, Presión barométrica"
+      },
+      {
+        "title": "Duración de la Batería",
+        "value_title": "Duración",
+        "value": "Hasta 2 años (Panel solar + 6 baterías AA)"
+      },
+      {
+        "title": "Bluetooth Integrado",
+        "value_title": "Función",
+        "value": "Configuración OTA y gestión remota de dispositivos"
+      },
+      {
+        "title": "LoRaWAN",
+        "value_title": "Soporte",
+        "value": "v1.0.3 Clase A"
+      },
+      {
+        "title": "Microcontrolador",
+        "value_title": "Tipo",
+        "value": "WM-LR1110"
+      },
+      {
+        "title": "Temperatura de Operación",
+        "value_title": "Rango",
+        "value": "-40.0 ~ 80.0 ℃"
+      }
+    ],
+    "features": [
+      "Estación meteorológica 8 en 1",
+      "Configuración por Bluetooth en 1 minuto y gestión remota",
+      "Consumo de energía ultra bajo con panel solar y baterías AA",
+      "Rendimiento confiable en entornos exteriores adversos",
+      "Despliegue integral y diseño flexible"
+    ],
+    "worksBestFor": [
+      "Patio y jardín",
+      "Agricultura inteligente",
+      "Meteorología",
+      "Clima urbano"
+    ]
+  }
+  

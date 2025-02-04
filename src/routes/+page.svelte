@@ -159,22 +159,12 @@
 					'APIアクセス'
 				]}
 				link="#"
+				color="bg-green-500"
+				buttonLabel={m.home_pricing_get_started()}
 			/>
 
 			<PriceCard
-				title="LoRaWAN Gateway"
-				description="📞"
-				features={[
-					'Contact us for pricing with large amounts of devices',
-					'Customized solutions',
-					'Priority support',
-					'Custom SLA'
-				]}
-				link="#"
-			/>
-
-			<PriceCard
-				title="AI"
+				title="Edge AI(cv)"
 				description="¥11,000/機 （税込）"
 				features={[
 					'データ2年分保存（データベース）',
@@ -188,18 +178,26 @@
 					'APIアクセス'
 				]}
 				link="#"
+				color="bg-red-500"
+				buttonLabel={m.home_pricing_get_started()}
 			/>
 
 			<PriceCard
-				title="Volume Agreement"
-				description="📞"
+				title={m.home_pricing_volume_agreement()}
+				description="Let's Talk!"
 				features={[
-					'Contact us for pricing with large amounts of devices',
+					'Negotiate on large amounts of devices',
+					'3rd part distribution agreements',
+					'Device & gateway rental bundles',
+					'Partnerships & collaborations',
+					'One-off projects and experiments',
 					'Customized solutions',
 					'Priority support',
 					'Custom SLA'
 				]}
-				link="#"
+				link="/contact-us"
+				color="bg-yellow-300"
+				buttonLabel={m.home_pricing_contact_us_options()}
 			/>
 		</div>
 	</div>

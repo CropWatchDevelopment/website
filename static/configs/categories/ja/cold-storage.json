@@ -1,0 +1,38 @@
+{
+    "title": "コールドチェーン監視",
+    "subtitle": "コールドチェーン監視は、保管および輸送中の生鮮食品の品質と安全性を確保するために不可欠です。当社のセンサーは、温度、湿度、およびその他の環境条件を監視し、食品の劣化を防ぎ、業界規制への準拠を確実にするのに役立ちます。",
+    "categories": [
+      {
+        "name": "冷蔵センサー",
+        "products": [
+          {
+            "image": "/images/TUNDRA-ISO-2000x2000.webp",
+            "name": "[Tektelic] 温度・湿度センサー",
+            "description": "TUNDRAセンサーは、最適な保管条件の達成と保管製品の性能および安全性の向上に不可欠です。より健康的で効率的な成果を得るために、保管環境を向上させましょう。",
+            "price": "$199",
+            "link": "/product/tundra"
+          }
+        ]
+      },
+      {
+        "name": "保管センサー",
+        "products": [
+          {
+            "image": "/images/Milesight_EM500-co2.webp",
+            "name": "[Milesight] CO₂、温度、湿度センサー",
+            "description": "EM500-CO2は、過酷な環境下での気体状二酸化炭素（CO₂）の濃度を測定するために設計されています。温室、建物の換気、果物や野菜の保管など、CO₂レベルの把握が重要な用途に適しています。",
+            "price": "$199",
+            "link": "/product/milesight-em500-co2"
+          },
+          {
+            "image": "/images/SEEED_SenseCapS2103.webp",
+            "name": "[SEEED Studio] CO₂、温度、湿度センサー",
+            "description": "SenseCAP ワイヤレスCO₂センサーは、NDIR CO₂センサーとカスタムバッテリーを搭載し、大気中のCO₂排出レベルを測定します。防塵設計により、ほこりの多い屋内環境でも信頼性の高いデータ収集が可能です。",
+            "price": "$179",
+            "link": "/product/seeed-s2103"
+          }
+        ]
+      }
+    ]
+  }
+  

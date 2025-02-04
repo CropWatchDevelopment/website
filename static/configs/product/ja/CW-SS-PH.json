@@ -1,0 +1,47 @@
+{
+    "id": "CropWatch® pH Soil Sensor",
+    "name": "CropWatch® pH Soil Sensor",
+    "tagline": "生産性、健康、ウェルビーング向上のためにCO2と占有状況を効率的にモニタリング",
+    "image": "/images/CropWatch-SS-field.webp",
+    "description": "CropWatch® 土壌センサーシリーズは、可能な限り最高の接続性を提供するために設計されています。土壌のpH測定は、地中に埋設されたセンサーで行うのが非常に困難です。私たちは日本の宮崎県の実際の農家と協力し、長期間地中に埋設しても実験室での試験にできるだけ近い正確で信頼性の高いデータを提供できる最適なセンサーを見つけました。",
+    "applications": [
+      {
+        "image": "",
+        "title": "土壌水分",
+        "description": "asdfasdf"
+      },
+      {
+        "image": "",
+        "title": "土壌水分",
+        "description": "asdfasdf"
+      }
+    ],
+    "specifications": [
+      {
+        "title": "防塵・防水等級",
+        "value_title": "評価",
+        "value": "IP67"
+      },
+      {
+        "title": "バッテリー寿命",
+        "value_title": "持続時間",
+        "value": "5年以上"
+      }
+    ],
+    "features": [
+      "ユーザーが設定可能なパラメーターと閾値",
+      "高湿度・多湿環境向けに設計",
+      "信号強度向上のために延長可能な外部アンテナ",
+      "ユーザー交換可能なバッテリー",
+      "リモート設定",
+      "再配置が可能な統合GPS",
+      "破損時に交換可能なセンサー"
+    ],
+    "downloads": [
+      {
+        "title": "asdf",
+        "url": "asdf"
+      }
+    ]
+  }
+  

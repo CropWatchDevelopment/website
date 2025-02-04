@@ -1,30 +1,30 @@
 {
-  "title": "Farming",
-  "subtitle": "Agriculture is the backbone of the economy. With the help of IoT, farmers can now monitor and manage their crops more efficiently. Our sensors help farmers to monitor soil moisture, temperature, pH, and other important parameters. We also offer air sensors to monitor CO2, temperature, and humidity.",
+  "title": "農業",
+  "subtitle": "農業は経済の基盤です。IoTの助けを借りて、農家は作物をより効率的に監視および管理できるようになりました。当社のセンサーは、土壌の水分、温度、pH、その他の重要なパラメータを監視するのに役立ちます。また、CO₂、温度、湿度を監視するための空気センサーも提供しています。",
   "categories": [
     {
       "name": "土壌センサー",
       "products": [
         {
           "image": "/images/CW-SS-TMEPNPK.webp",
-          "name": "[CropWatch] 温度、湿度、EC、およびpH 土壌センサー",
-          "description": "このセンサーはチネシウムで作られている……つまり、多少性能は劣るが安価です。土壌の温度、湿度、電気伝導度、pH、窒素、リン、カリウムレベルを測定します。農家や農業研究者が土壌管理と作物生産について情報に基づいた決定を下すのを支援するために設計されています。",
+          "name": "[CropWatch] 温度・水分・ECおよびpH土壌センサー",
+          "description": "このセンサーは中国製の素材で作られているため、性能はあまり期待できませんが、価格は安価です。土壌の温度、水分、電気伝導率、pH、窒素、リン、カリウムのレベルを測定します。農家や農業研究者が土壌管理や作物生産に関する情報に基づいた意思決定を行うのに役立つよう設計されています。",
           "price": "$299",
-          "link": "/product/farming/CW-SS-TMEPNPK"
+          "link": "/product/CW-SS-TMEPNPK"
         },
         {
           "image": "/images/CW-SS-PH.webp",
-          "name": "[CropWatch] ISFET pH 土壌センサー",
-          "description": "農業用のISFET pHメーターは、農家や農業研究者にとって革新的な製品です。迅速で正確かつ信頼性のあるpH測定を提供し、より良い土壌管理と作物収穫を実現します。広いpH範囲、汚染物質や電解質への耐性、そしてコスト効率性を兼ね備えています。",
+          "name": "[CropWatch] ISFET pH土壌センサー",
+          "description": "農業用ISFET pHメーターは、農家や農業研究者にとって画期的な製品です。迅速かつ正確で信頼性の高いpH測定を提供し、より良い土壌管理と作物収穫につながります。広いpH測定範囲、汚染物質や電解質への耐性、そしてコストパフォーマンスに優れています。",
           "price": "$299",
-          "link": "/product/farming/CW-SS-PH"
+          "link": "/product/CW-SS-PH"
         },
         {
           "image": "/images/CW-SS-TME.webp",
-          "name": "[CropWatch] 温度、湿度、& EC 土壌センサー",
-          "description": "農業用のISFET pHメーターは、農家や農業研究者にとって革新的な製品です。迅速で正確かつ信頼性のあるpH測定を提供し、より良い土壌管理と作物収穫を実現します。広いpH範囲、汚染物質や電解質への耐性、そしてコスト効率性を兼ね備えています。",
+          "name": "[CropWatch] 温度・水分・EC土壌センサー",
+          "description": "農業用ISFET pHメーターは、農家や農業研究者にとって画期的な製品です。迅速かつ正確で信頼性の高いpH測定を提供し、より良い土壌管理と作物収穫につながります。広いpH測定範囲、汚染物質や電解質への耐性、そしてコストパフォーマンスに優れています。",
           "price": "$299",
-          "link": "/product/farming/CW-SS-TME"
+          "link": "/product/CW-SS-TME"
         }
       ]
     },
@@ -33,24 +33,24 @@
       "products": [
         {
           "image": "/images/Milesight_EM500-co2.webp",
-          "name": "[Milesight] CO₂、温度および湿度センサー",
-          "description": "EM500-CO2は、過酷な環境下での気体状二酸化炭素（CO₂）濃度を測定するために設計されています。温室、建物の換気、果物や野菜の保管など、CO₂レベルの把握が重要な用途に役立ちます。",
+          "name": "[Milesight] CO₂、温度、湿度センサー",
+          "description": "EM500-CO2は、過酷な環境下での気体状二酸化炭素（CO₂）の濃度を測定するために設計されています。温室、建物の換気、果物や野菜の保管など、CO₂レベルの把握が重要な用途に適しています。",
           "price": "$199",
           "link": "/product/milesight-em500-co2"
         },
         {
           "image": "/images/seeed.webp",
-          "name": "[SEEED] 8-in-1 ウェザーステーション",
-          "description": "SenseCAP LoRaWAN S2120 ウェザーステーションは、世界中のLoRaWANネットワークを利用して、気温、湿度、風速/風向、降雨強度、光強度、UV指数、および気圧のデータを収集し、アップロードします。",
+          "name": "[SEEED] 8-in-1ウェザーステーション",
+          "description": "SenseCAP LoRaWAN S2120ウェザーステーションは、世界中のLoRaWANネットワークに対応し、気温、湿度、風速/風向、降雨強度、光強度、UV指数、および気圧データを収集してアップロードします。",
           "price": "$199",
-          "link": "device-details.html"
+          "link": "/product/seed-weatherstation"
         },
         {
           "image": "/images/TUNDRA-ISO-2000x2000.webp",
-          "name": "[Tektelic] 温度および湿度センサー",
-          "description": "TUNDRAセンサーは、最適な保管条件を実現し、保管製品の性能と安全性を向上させるための鍵となります。より健康的で効率的な結果を得るために、保管環境を向上させましょう。",
+          "name": "[Tektelic] 温度・湿度センサー",
+          "description": "TUNDRAセンサーは、最適な保管条件の達成と保管製品の性能および安全性の向上に不可欠です。より健康的で効率的な成果を得るために、保管環境を向上させましょう。",
           "price": "$199",
-          "link": "device-details.html"
+          "link": "/product/tundra"
         }
       ]
     }

@@ -1,0 +1,86 @@
+{
+  "name": "BREEZE-V SENSOR DE CALIDAD DE AIRE INTERIOR, CO2 Y OCUPACIÓN",
+  "tagline": "Monitorea eficientemente el CO2 y la ocupación para mejorar la productividad, la salud y el bienestar",
+  "image": "/images/breeze-solution-768x768.webp",
+  "description": "Calidad de aire interior optimizada para el hogar y la oficina. Este sensor inteligente monitorea y gestiona activamente factores cruciales, incluidos los niveles de CO2, la temperatura, la humedad y la ocupación. Al promover una calidad de aire superior, BREEZE-V crea un ambiente cómodo y productivo tanto en espacios residenciales como de oficina.",
+  "specifications": [
+    {
+      "title": "Mediciones del Sensor",
+      "value_title": "Parámetros",
+      "value": "Concentración de CO2, Luz, Temperatura, Humedad, Presión barométrica"
+    },
+    {
+      "title": "Protección de Ingreso",
+      "value_title": "Clasificación",
+      "value": "IP30"
+    },
+    {
+      "title": "Vida de la Batería",
+      "value_title": "Duración",
+      "value": "Más de 5 años"
+    },
+    {
+      "title": "Temperatura de Operación",
+      "value_title": "Rango",
+      "value": "0°C a 60°C"
+    },
+    {
+      "title": "Potencia RF",
+      "value_title": "Salida",
+      "value": "15 dBm"
+    },
+    {
+      "title": "Clase de Dispositivo LoRa",
+      "value_title": "Clase",
+      "value": "Clase A"
+    },
+    {
+      "title": "Tipo de Batería",
+      "value_title": "Configuración",
+      "value": "2x AA LTC"
+    },
+    {
+      "title": "Antena",
+      "value_title": "Tipo",
+      "value": "Interna"
+    },
+    {
+      "title": "Peso",
+      "value_title": "Masa",
+      "value": "91 g"
+    },
+    {
+      "title": "Sensibilidad RF",
+      "value_title": "Umbral",
+      "value": "hasta -137 dBm"
+    },
+    {
+      "title": "Bandas ISM",
+      "value_title": "Compatibilidad",
+      "value": "Todas las bandas ISM globales"
+    },
+    {
+      "title": "Dimensiones",
+      "value_title": "Tamaño",
+      "value": "80 x 80 x 33 mm"
+    }
+  ],
+  "features": [
+    "Parámetros y umbrales configurables por el usuario",
+    "Diseñado para una duración óptima de la batería",
+    "Múltiples opciones de enmascaramiento PIR",
+    "Emparejable con pantalla E-Ink",
+    "Configuraciones para montaje en pared, techo o mesa",
+    "Despliegue sencillo",
+    "Diseño elegante y sin obstrucciones",
+    "Monitoreo del ambiente interior",
+    "Auto calibración",
+    "Alta precisión y fiabilidad"
+  ],
+  "worksBestFor": [
+    "Hogar y oficina inteligentes",
+    "Escuelas y universidades",
+    "Comercio minorista",
+    "Edificios públicos"
+  ]
+}

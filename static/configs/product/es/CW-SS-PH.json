@@ -1,0 +1,47 @@
+{
+    "id": "CropWatch® pH Soil Sensor",
+    "name": "CropWatch® pH Soil Sensor",
+    "tagline": "Monitorea de forma eficiente el CO2 y la ocupación para mejorar la productividad, la salud y el bienestar",
+    "image": "/images/CropWatch-SS-field.webp",
+    "description": "La serie de sensores de suelo CropWatch® está diseñada para proporcionar el mayor nivel de conectividad posible. Medir el pH del suelo puede ser increíblemente desafiante con un sensor enterrado en la tierra. Hemos trabajado con agricultores reales en toda Miyazaki, Japón, para encontrar el sensor óptimo que ofrezca datos precisos y confiables, lo más cercanos posible a los análisis de laboratorio, mientras se mantiene enterrado en el suelo durante años.",
+    "applications": [
+      {
+        "image": "",
+        "title": "Humedad del suelo",
+        "description": "asdfasdf"
+      },
+      {
+        "image": "",
+        "title": "Humedad del suelo",
+        "description": "asdfasdf"
+      }
+    ],
+    "specifications": [
+      {
+        "title": "Protección de Ingreso",
+        "value_title": "Clasificación",
+        "value": "IP67"
+      },
+      {
+        "title": "Duración de la Batería",
+        "value_title": "Duración",
+        "value": "Más de 5 años"
+      }
+    ],
+    "features": [
+      "Parámetros y umbrales configurables por el usuario",
+      "Diseñado para entornos húmedos",
+      "Antena externa que se puede extender para una mejor señal",
+      "Batería reemplazable por el usuario",
+      "Configuración remota",
+      "GPS integrado que permite reubicarlo",
+      "Sensor reemplazable en caso de daño"
+    ],
+    "downloads": [
+      {
+        "title": "asdf",
+        "url": "asdf"
+      }
+    ]
+  }
+  

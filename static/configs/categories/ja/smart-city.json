@@ -1,0 +1,38 @@
+{
+    "title": "スマートシティ",
+    "subtitle": "スマートシティは、IoT技術を活用して市民の生活の質を向上させます。当社のセンサーは、環境条件、交通量、その他の重要なパラメータを監視し、市民の安全と福祉を確保するのに役立ちます。空気品質、温度、湿度、その他の重要なパラメータを監視するためのさまざまなセンサーを提供しています。",
+    "categories": [
+      {
+        "name": "都市屋外環境センサー",
+        "products": [
+          {
+            "image": "/images/AI_canera_1.webp",
+            "name": "[CROPWATCH] AI-Traffic",
+            "description": "CropWatch AI Traffic の交通カウント、監視、および報告システムは、交通管理のためのスマートなソリューションです。AIを用いて交通量をカウントおよび監視し、リアルタイムで報告することで、交通管理に関する情報に基づいた意思決定をサポートします。",
+            "price": "$199",
+            "link": "device-details.html"
+          },
+          {
+            "image": "/images/seeed.webp",
+            "name": "[SEEED] 8-in-1ウェザーステーション",
+            "description": "SenseCAP LoRaWAN S2120 ウェザーステーションは、世界中のLoRaWANネットワークに対応し、気温、湿度、風速/風向、降雨強度、光強度、UV指数、気圧データを収集してアップロードします。",
+            "price": "$199",
+            "link": "device-details.html"
+          }
+        ]
+      },
+      {
+        "name": "都市屋内環境センサー",
+        "products": [
+          {
+            "image": "/images/breeze-solution-768x768.webp",
+            "name": "[TEKTELIC] Breeze-v",
+            "description": "このインテリジェントセンサーは、CO₂レベル、温度、湿度、占有状況などの重要な要因を積極的に監視および管理します。優れた空気品質を促進することで、BREEZE-Vは快適で生産的な環境を作り出します。",
+            "price": "$199",
+            "link": "/product/breeze-v"
+          }
+        ]
+      }
+    ]
+  }
+  

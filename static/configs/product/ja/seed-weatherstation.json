@@ -1,0 +1,52 @@
+{
+    "name": "SenseCAP LoRaWAN S2120 Weather Station",
+    "tagline": "簡単セットアップと包括的な気象モニタリング",
+    "image": "/images/seeed.webp",
+    "description": "SenseCAP LoRaWAN S2120 気象ステーションは、世界中の LoRaWAN ネットワークを介して、気温、湿度、風速・風向、降雨強度、光強度、UV指数、気圧データを収集・アップロードします。庭、農業、気象、都市環境モニタリングなどの用途に適しており、超低消費電力と信頼性の高い性能により、低メンテナンスコストを実現します。Scan-and-Play のシンプルさと内蔵 Bluetooth による簡単な設定により、ユーザーは迅速に気象検知を開始でき、強力な SenseCAP Mate アプリを通じた OTA 設定とリモートデバイス管理の恩恵を受けることができます。",
+    "specifications": [
+      {
+        "title": "センサー測定項目",
+        "value_title": "パラメーター",
+        "value": "気温、湿度、風速、風向、降雨強度、光強度、UV指数、気圧"
+      },
+      {
+        "title": "バッテリー寿命",
+        "value_title": "持続時間",
+        "value": "最大2年（ソーラーパネル＋6xAA電池）"
+      },
+      {
+        "title": "内蔵 Bluetooth",
+        "value_title": "機能",
+        "value": "OTA 設定およびリモートデバイス管理"
+      },
+      {
+        "title": "LoRaWAN",
+        "value_title": "サポート",
+        "value": "v1.0.3 クラスA"
+      },
+      {
+        "title": "マイコン",
+        "value_title": "タイプ",
+        "value": "WM-LR1110"
+      },
+      {
+        "title": "動作温度",
+        "value_title": "範囲",
+        "value": "-40.0 ～ 80.0 ℃"
+      }
+    ],
+    "features": [
+      "8 in 1 気象ステーション",
+      "1分以内の Bluetooth 設定とリモート管理",
+      "ソーラーパネルとAA電池による超低消費電力",
+      "過酷な屋外環境でも信頼性の高い性能",
+      "ワンストップ展開と柔軟なレイアウト"
+    ],
+    "worksBestFor": [
+      "裏庭および庭園",
+      "スマート農業",
+      "気象学",
+      "都市気象"
+    ]
+  }
+  

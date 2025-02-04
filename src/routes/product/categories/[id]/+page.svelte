@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ProductCard from '$lib/components/UI/Product-Card.svelte';
 	import { languageTag } from '$lib/paraglide/runtime.js';
+	import * as m from '$lib/paraglide/messages.js';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 
@@ -67,6 +68,7 @@
 								description={product.description}
 								price={product.price}
 								link={product.link}
+								buttonLabel={m.view_details()}
 							/>
 						{/each}
 					</div>

@@ -30,5 +30,22 @@
 	"footer_terms_of_service": "Terms of Service",
 	"footer_rights_reserved": "All Rights Reserved",
 	"home_hero_button_label": "Explore Solutions",
-	"home_pricing_disclaimer_1": " "
+	"home_pricing_disclaimer_1": " ",
+	"home_pricing_contact_us_options": "Contact Us for options",
+	"home_pricing_get_started": "Get Started",
+	"home_pricing_volume_agreement": "Rental & Volume Agrements",
+	"home_pricing_iot_features": "<ul><li>データ2年分保存（データベース）</li><li>データの一元管理（アプリケーションサーバー）</li><li>LoRaWANサーバー</li><li>アラート通知※1</li><li>データダウンロード</li><li>レポート作成・自動配信</li><li>権限付与</li><li>無制限ログイン</li><li>APIアクセス</li></ul>",
+	"view_details": "View Details",
+	"product_details_strengths": "Sensor Details & Strengths",
+	"product_details_strengths_subtitle": "Discover the key features and benefits of this sensor that set it apart.",
+	"product_specifications": "Specifications",
+	"product_features": "Features",
+	"product_datasheet": "Datasheet",
+	"product_datasheet_subtitle": "Download the datasheet for more information.",
+	"product_datasheet_button_text": "Download Datasheet",
+	"product_have_questions": "Have Questions or Need Assistance?",
+	"product_have_questions_subtitle": "Contact us to learn more about this device or to get a personalized recommendation.",
+	"product_contact_us": "Contact Us",
+	"product_contact_us_subtitle": "Contact us to learn more about this device or to get a personalized recommendation.",
+	"contact_us": "Contact Us"
 }

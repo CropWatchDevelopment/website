@@ -1,6 +1,6 @@
 <script lang="ts">
 	import NO_IMAGE from '$lib/images/no_image_placeholder.png';
-	const { image, name, description, price, link } = $props();
+	const { image, name, description, price, link, buttonLabel } = $props();
 </script>
 
 <div class="flex flex-col rounded bg-white p-6 shadow-md">
@@ -12,6 +12,6 @@
 	<a
 		href={link}
 		class="mt-4 block rounded bg-blue-600 px-4 py-2 text-center text-white hover:bg-blue-700"
-		>View Details</a
+		>{buttonLabel}</a
 	>
 </div>

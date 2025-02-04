@@ -1,0 +1,62 @@
+{
+    "id": "CropWatch® Temperature, Moisture, & EC Soil Sensor",
+    "name": "CropWatch® Temperature, Moisture, & EC Soil Sensor",
+    "tagline": "Monitorea de forma eficiente el CO2 y la ocupación para mejorar la productividad, la salud y el bienestar",
+    "image": "/images/CropWatch-SS-field.webp",
+    "description": "La serie de sensores de suelo CropWatch® está diseñada para proporcionar el mayor nivel de conectividad posible. Nos hemos centrado en la robustez del sensor para operar en los entornos más difíciles, además de contar con una larga duración de batería; este sensor está pensado para configurarse y dejarse trabajando durante años. También hemos colaborado con agricultores para determinar los sensores óptimos y buscamos ofrecer la mayor precisión y fiabilidad posible fuera de un entorno de laboratorio.",
+    "applications": [
+      {
+        "image": "",
+        "title": "Humedad del suelo",
+        "description": "asdfasdf"
+      },
+      {
+        "image": "",
+        "title": "Humedad del suelo",
+        "description": "asdfasdf"
+      }
+    ],
+    "specifications": [
+      {
+        "title": "Temperatura del Suelo",
+        "value_title": "Mín/Máx",
+        "value": "-40°C a 80°C"
+      },
+      {
+        "title": "Humedad del Suelo",
+        "value_title": "Mín/Máx",
+        "value": "0% a 100%"
+      },
+      {
+        "title": "EC del Suelo",
+        "value_title": "Mín/Máx",
+        "value": "0-10000us/cm"
+      },
+      {
+        "title": "Protección de Ingreso",
+        "value_title": "Clasificación",
+        "value": "IP67"
+      },
+      {
+        "title": "Duración de la Batería",
+        "value_title": "Duración",
+        "value": "5-10 Años"
+      }
+    ],
+    "features": [
+      "Parámetros y umbrales configurables por el usuario",
+      "Diseñado para entornos húmedos",
+      "Antena externa que se puede extender para una mejor señal",
+      "Batería reemplazable por el usuario",
+      "Configuración remota",
+      "GPS integrado que permite reubicarlo",
+      "Sensor reemplazable en caso de daño"
+    ],
+    "downloads": [
+      {
+        "title": "asdf",
+        "url": "asdf"
+      }
+    ]
+  }
+  

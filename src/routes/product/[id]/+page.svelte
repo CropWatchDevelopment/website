@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { languageTag } from '$lib/paraglide/runtime';
+	import * as m from '$lib/paraglide/messages.js';
 
 	let device = $state(null);
 	let loading = $state(true);
@@ -43,7 +44,6 @@
 	<section class="bg-gradient-to-r from-green-600 to-green-400 py-16 text-white">
 		<div class="container mx-auto text-center">
 			<h1 class="text-5xl font-extrabold">{device.name}</h1>
-			<p class="mt-4 text-lg">A brief tagline or description of the device.</p>
 		</div>
 	</section>
     <div class="flex flex-row items-center justify-center w-full mt-6">
@@ -60,7 +60,7 @@
 	<!-- Sensor Details & Strengths -->
 	<section class="py-20">
 		<div class="container mx-auto">
-			<h2 class="text-center text-3xl font-bold text-gray-800">Sensor Details & Strengths</h2>
+			<h2 class="text-center text-3xl font-bold text-gray-800">{m.product_details_strengths_subtitle()}</h2>
 			<p class="mt-4 text-center text-gray-600">
 				Discover the key features and benefits of this sensor that set it apart.
 			</p>
@@ -106,12 +106,12 @@
 	<!-- Datasheet Section -->
 	<section class="bg-white py-20">
 		<div class="container mx-auto text-center">
-			<h2 class="text-3xl font-bold text-gray-800">Datasheet</h2>
-			<p class="mt-4 text-gray-600">Download the detailed datasheet for this device.</p>
+			<h2 class="text-3xl font-bold text-gray-800">{m.product_datasheet()}</h2>
+			<p class="mt-4 text-gray-600">{m.product_datasheet_subtitle()}</p>
 			<a
 				href="placeholder-datasheet.pdf"
 				class="mt-6 inline-block rounded bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
-				>Download Datasheet</a
+				>{m.product_datasheet_button_text()}</a
 			>
 		</div>
 	</section>
@@ -119,15 +119,15 @@
 	<!-- Contact Us Call to Action -->
 	<section class="bg-blue-600 py-20 text-white">
 		<div class="container mx-auto text-center">
-			<h2 class="text-3xl font-bold">Have Questions or Need Assistance?</h2>
+			<h2 class="text-3xl font-bold">{m.product_contact_us()}</h2>
 			<p class="mt-4">
-				Contact us to learn more about this device or to get a personalized recommendation.
+				{m.product_contact_us_subtitle()}
 			</p>
 			<a
 				href="contact.html"
 				class="mt-6 inline-block rounded bg-white px-6 py-3 text-blue-600 hover:bg-gray-200"
-				>Contact Us</a
 			>
+			{m.contact_us()}
 		</div>
 	</section>
 {/if}
