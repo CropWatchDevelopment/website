@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CropWatchLogo from '$lib/images/favicon.svg';
 	import LanguagePicker from './LanguagePicker.svelte';
+	import * as m from '$lib/paraglide/messages.js';
 	let isMenuOpen = false;
 </script>
 
@@ -17,10 +18,10 @@
 
 		<!-- Center: Navigation Menu Items (hidden on mobile) -->
 		<nav class="hidden flex-1 justify-center space-x-4 md:flex">
-			<a href="/" class="hover:text-blue-600">Home</a>
-			<a href="/about-us" class="hover:text-blue-600">About Us</a>
+			<!-- <a href="/" class="hover:text-blue-600">{m.header_home()}</a> -->
+			<!-- <a href="/about-us" class="hover:text-blue-600">About Us</a> -->
 			<!-- <a href="#pricing" class="hover:text-blue-600">Pricing</a> -->
-			<a href="/contact-us" class="hover:text-blue-600">Contact Us</a>
+			<!-- <a href="/contact-us" class="hover:text-blue-600">{m.contact_us()}</a> -->
 		</nav>
 
 		<!-- Right: App Login Button and LanguagePicker (hidden on mobile) -->
@@ -31,7 +32,7 @@
 				rel="noopener"
 				class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
 			>
-				🔒 App Login
+				{m.app_login()}
 			</a>
 			<LanguagePicker />
 		</div>
@@ -68,11 +69,11 @@
 	{#if isMenuOpen}
 		<nav class="bg-white shadow-md md:hidden">
 			<div class="space-y-2 px-6 py-4 text-center">
-				<a href="#home" class="block hover:text-blue-600">Home</a>
+				<a href="#home" class="block hover:text-blue-600">{m.header_home()}</a>
 				<!-- <a href="about-us" class="block hover:text-blue-600">About Us</a> -->
 				<a href="solutions" class="block hover:text-blue-600">Solutions</a>
 				<!-- <a href="#pricing" class="block hover:text-blue-600">Pricing</a> -->
-				<a href="contact-us" class="block hover:text-blue-600">Contact Us</a>
+				<a href="contact-us" class="block hover:text-blue-600">{m.contact_us()}</a>
 				<a
 					href="https://app.cropwatch.io"
 					target="_blank"

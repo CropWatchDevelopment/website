@@ -219,7 +219,7 @@
 		<li>
 			<sm>※1</sm>
 			{m.home_disclaimer_1()}
-			<a class="text-blue cursor-pointer" href="https://discord.com/">Discord</a>
+			<a class="text-blue-900 font-bold underline cursor-pointer" href="https://discord.com/">Discord</a>
 		</li>
 	</ol>
 </section>

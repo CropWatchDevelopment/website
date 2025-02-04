@@ -1,0 +1,119 @@
+{
+    "usecases": [
+      {
+        "title": "Habitación de hotel",
+        "image": "https://www.usatoday.com/gcdn/authoring/authoring-images/2024/05/26/USAT/73865433007-tempoby-hilton-nashville-standard-king.jpg?width=1733&height=1176&fit=crop&format=pjpg&auto=webp",
+        "alt": "Caso de uso 1",
+        "challenges": "Detallando los desafíos enfrentados en este escenario, incluidos los obstáculos y puntos críticos.",
+        "solution": "Explicando nuestro enfoque para superar estos desafíos con soluciones innovadoras.",
+        "button": {
+          "text": "Leer más",
+          "link": "/readmore"
+        }
+      },
+      {
+        "title": "Supermercado",
+        "image": "https://s.yimg.com/ny/api/res/1.2/ip1CHmVMTvxcRzO4Ar8Mew--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://media.zenfs.com/en/insidermonkey.com/efdfeb0a3401696fb2fc224def7e8348",
+        "alt": "Caso de uso 2",
+        "challenges": "Explorando los problemas comunes y complicaciones que se encuentran en esta área.",
+        "solution": "Cómo nuestras soluciones abordan y resuelven estos problemas de manera eficiente."
+      },
+      {
+        "title": "Escuela/Clase",
+        "image": "https://www.acs.org/content/acs/en/education/policies/middle-and-high-school-chemistry/classroom/_jcr_content/bottomContent/columnsbootstrap/column1/image.scale.medium.1399.jpg/1574355187340.jpg",
+        "alt": "Caso de uso 3",
+        "challenges": "Una visión general de los desafíos específicos encontrados en este escenario.",
+        "solution": "Cómo nuestra estrategia aborda eficazmente los desafíos identificados.",
+        "button": {
+          "text": "Ver en YouTube",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "Cuidado de ancianos",
+        "image": "https://cdn.britannica.com/65/199365-050-3D2AB9D0/Residents-nursing-home-meal.jpg",
+        "alt": "Caso de uso 3",
+        "challenges": "Una visión general de los desafíos específicos encontrados en este escenario.",
+        "solution": "Cómo nuestra estrategia aborda eficazmente los desafíos identificados.",
+        "button": {
+          "text": "Ver en YouTube",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "Granja avícola",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8XmHx8QUxn1bkB5ip4kv5Y2gNIpDpQcMtuw&s",
+        "alt": "Caso de uso 3",
+        "challenges": "Una visión general de los desafíos específicos encontrados en este escenario.",
+        "solution": "Cómo nuestra estrategia aborda eficazmente los desafíos identificados.",
+        "button": {
+          "text": "Ver en YouTube",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "Instalación de refrigeración",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSakBYbr0IW28wFSAh7sFi3Pgvz8muUfiMiavvrt5OzWkvu0qEPqYD_oyyeWD4h7TLBea4&usqp=CAU",
+        "alt": "Caso de uso 3",
+        "challenges": "Una visión general de los desafíos específicos encontrados en este escenario.",
+        "solution": "Cómo nuestra estrategia aborda eficazmente los desafíos identificados.",
+        "button": {
+          "text": "Ver en YouTube",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "Silvicultura y seguridad",
+        "image": "https://i.ytimg.com/vi/p_gfKiQmVMw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAD20fdjxTkI_HhKMNRjHySw0IMwA",
+        "alt": "Caso de uso 3",
+        "challenges": "Una visión general de los desafíos específicos encontrados en este escenario.",
+        "solution": "Cómo nuestra estrategia aborda eficazmente los desafíos identificados.",
+        "button": {
+          "text": "Ver en YouTube",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "Seguridad en la fábrica",
+        "image": "https://www.arup.com/globalassets/images/insights/publications/rethinking-the-factory-banner.jpg?width=760&quality=80",
+        "alt": "Caso de uso 3",
+        "challenges": "Una visión general de los desafíos específicos encontrados en este escenario.",
+        "solution": "Cómo nuestra estrategia aborda eficazmente los desafíos identificados.",
+        "button": {
+          "text": "Ver en YouTube",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "Agricultura y monitoreo de suelos",
+        "image": "https://www.tanyo.jp/wp/wp-content/themes/tanyo/assets/images/product/greenhouse/img_features-02.jpg",
+        "alt": "Caso de uso 3",
+        "challenges": "Una visión general de los desafíos específicos encontrados en este escenario.",
+        "solution": "Cómo nuestra estrategia aborda eficazmente los desafíos identificados.",
+        "button": {
+          "text": "Ver en YouTube",
+          "link": "https://www.youtube.com/watch?v=pa2iiDZOATY",
+          "external": true
+        }
+      },
+      {
+        "title": "Monitor de humo y fuego",
+        "image": "https://www.onithome.com/wp-content/uploads/2021/06/home-smoke-detector.jpg",
+        "alt": "Caso de uso 3",
+        "challenges": "Aunque casi todos los edificios públicos cuentan con un sistema contra incendios que puede contactar automáticamente a los bomberos, casi ninguna casa dispone de esa misma medida de seguridad.",
+        "solution": "Ofrecemos una solución que se puede instalar en cualquier hogar, y que puede contactar a usted y a otros cuando se detecta humo o fuego, reduciendo el tiempo de espera entre la detección y la llegada de ayuda, lo que resulta en una mejor protección para usted, su familia, sus mascotas y su propiedad.",
+        "button": {
+          "text": "Ver en YouTube",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      }
+    ]
+  }
+  

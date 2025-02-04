@@ -61,9 +61,9 @@
 	<section class="py-20">
 		<div class="container mx-auto">
 			<h2 class="text-center text-3xl font-bold text-gray-800">{m.product_details_strengths_subtitle()}</h2>
-			<p class="mt-4 text-center text-gray-600">
+			<!-- <p class="mt-4 text-center text-gray-600">
 				Discover the key features and benefits of this sensor that set it apart.
-			</p>
+			</p> -->
 			<div class="mt-12 max-w-4xl mx-auto">
 				<!-- If your device configuration has a description, use it; otherwise, include your own text -->
 				<p class="text-lg text-gray-700">

@@ -1,4 +1,5 @@
 <script>
+	import * as m from '$lib/paraglide/messages.js';
 	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 
 	let email = $state('');
@@ -78,92 +79,114 @@
 <!-- Contact Us Section -->
 <section class="bg-blue-600 py-16 text-white">
 	<div class="container mx-auto text-center">
-		<h1 class="text-4xl font-bold">Contact Us</h1>
+		<h1 class="text-4xl font-bold">{m.contact_us()}</h1>
 		<p class="mt-4">
-			We would love to hear from you! Reach out to us through any of the methods below or fill out
-			the contact form.
+			{m.contact_intro()}
 		</p>
 	</div>
 </section>
 
 <section class="py-16">
 	{#if !messageSent}
-	<div class="container mx-auto grid grid-cols-1 gap-12 md:grid-cols-2">
-		<!-- Contact Info -->
-		<div>
-			<h2 class="mb-6 text-2xl font-bold">Our Contact Details</h2>
-			<p class="mb-4">
-				<span class="font-bold">Address:</span> 123 CropWatch Lane, AgriCity, AG 45678
-			</p>
-			<span class="flex flex-row"><p class="mb-4">Japan Phone:</p><img src="/images/japan-phone.png" alt="Japanese Phone number hidden" /></span>
-			<span class="flex flex-row"><p class="mb-4">USA Phone:</p><img src="/images/usa-phone.png" alt="United States Phone number hidden" /></span>
-			
-			<p class="mb-4"><span class="font-bold">Business Hours:</span> Mon - Fri, 9 AM - 5 PM</p>
-		</div>
+		<div class="container mx-auto grid grid-cols-1 gap-12 md:grid-cols-2">
+			<!-- Contact Info -->
+			<div>
+				<h2 class="mb-6 text-2xl font-bold">{m.contact_details_title()}</h2>
+				<p class="mb-4">
+					<span class="font-bold">{m.contact_address_label()}</span>
+					{m.contact_address_value()}
+				</p>
+				<span class="flex flex-row">
+					<p class="mb-4">{m.contact_japan_phone_label()}</p>
+					<img src="/images/japan-phone.png" alt={m.contact_alt_japan_phone()} />
+				</span>
+				<span class="flex flex-row">
+					<p class="mb-4">{m.contact_usa_phone_label()}</p>
+					<img src="/images/usa-phone.png" alt={m.contact_alt_usa_phone()} />
+				</span>
+				<p class="mb-4">
+					<span class="font-bold">{m.contact_business_hours_label()}</span>
+					{m.contact_business_hours_value()}
+				</p>
+			</div>
 
-		<!-- Contact Form -->
-		<div>
-			<h2 class="mb-6 text-2xl font-bold">Send Us a Message</h2>
-			<form class="space-y-4" method="POST">
-				<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" value={token} />
-				<div>
-					<label for="name" class="block font-bold text-gray-700">Your Name</label>
+			<!-- Contact Form -->
+			<div>
+				<h2 class="mb-6 text-2xl font-bold">{m.contact_form_title()}</h2>
+				<form class="space-y-4" method="POST">
 					<input
-						bind:value={name}
-						type="text"
-						id="name"
-						name="name"
-						class="w-full rounded border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+						type="hidden"
+						name="g-recaptcha-response"
+						id="g-recaptcha-response"
+						value={token}
 					/>
-				</div>
-				<div>
-					<label for="email" class="block font-bold text-gray-700">Your Email</label>
-					<input
-						bind:value={email}
-						type="email"
-						id="email"
-						name="email"
-						class="w-full rounded border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-					/>
-				</div>
-				<div>
-					<label for="subject" class="block font-bold text-gray-700">Subject</label>
-					<input
-						bind:value={subject}
-						type="text"
-						id="subject"
-						name="subject"
-						class="w-full rounded border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-					/>
-				</div>
-				<div>
-					<label for="message" class="block font-bold text-gray-700">Message</label>
-					<textarea
-						bind:value={message}
-						id="message"
-						name="message"
-						rows="5"
-						class="w-full rounded border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-					></textarea>
-				</div>
+					<div>
+						<label for="name" class="block font-bold text-gray-700"
+							>{m.contact_form_name_label()}</label
+						>
+						<input
+							bind:value={name}
+							type="text"
+							id="name"
+							name="name"
+							class="w-full rounded border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+						/>
+					</div>
+					<div>
+						<label for="email" class="block font-bold text-gray-700"
+							>{m.contact_form_email_label()}</label
+						>
+						<input
+							bind:value={email}
+							type="email"
+							id="email"
+							name="email"
+							class="w-full rounded border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+						/>
+					</div>
+					<div>
+						<label for="subject" class="block font-bold text-gray-700"
+							>{m.contact_form_subject_label()}</label
+						>
+						<input
+							bind:value={subject}
+							type="text"
+							id="subject"
+							name="subject"
+							class="w-full rounded border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+						/>
+					</div>
+					<div>
+						<label for="message" class="block font-bold text-gray-700"
+							>{m.contact_form_message_label()}</label
+						>
+						<textarea
+							bind:value={message}
+							id="message"
+							name="message"
+							rows="5"
+							class="w-full rounded border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+						></textarea>
+					</div>
 
-				<button
-					type="button"
-					onclick={() => onSubmit()}
-					data-sitekey="reCAPTCHA_site_key"
-					data-callback="onSubmit"
-					data-action="submit"
-					class="w-full rounded bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
-					>Send Message</button
-				>
-			</form>
+					<button
+						type="button"
+						onclick={() => onSubmit()}
+						data-sitekey="reCAPTCHA_site_key"
+						data-callback="onSubmit"
+						data-action="submit"
+						class="w-full rounded bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
+					>
+						{m.contact_form_submit_button()}
+					</button>
+				</form>
+			</div>
 		</div>
-	</div>
 	{:else}
 		<div class="container mx-auto text-center">
-			<h2 class="text-2xl font-bold">Thank you for contacting us!</h2>
+			<h2 class="text-2xl font-bold">{m.contact_thank_you_title()}</h2>
 			<p class="mt-4">
-				We have received your message and will get back to you as soon as possible.
+				{m.contact_thank_you_message()}
 			</p>
 		</div>
 	{/if}

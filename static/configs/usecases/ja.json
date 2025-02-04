@@ -1,0 +1,119 @@
+{
+    "usecases": [
+      {
+        "title": "ホテルの部屋",
+        "image": "https://www.usatoday.com/gcdn/authoring/authoring-images/2024/05/26/USAT/73865433007-tempoby-hilton-nashville-standard-king.jpg?width=1733&height=1176&fit=crop&format=pjpg&auto=webp",
+        "alt": "ユースケース 1",
+        "challenges": "このシナリオで直面する課題の詳細、障害や主要な痛点を含む。",
+        "solution": "これらの課題を革新的なソリューションで克服するための私たちのアプローチを説明する。",
+        "button": {
+          "text": "続きを読む",
+          "link": "/readmore"
+        }
+      },
+      {
+        "title": "スーパーマーケット",
+        "image": "https://s.yimg.com/ny/api/res/1.2/ip1CHmVMTvxcRzO4Ar8Mew--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://media.zenfs.com/en/insidermonkey.com/efdfeb0a3401696fb2fc224def7e8348",
+        "alt": "ユースケース 2",
+        "challenges": "この分野でよく遭遇する問題や複雑さを探る。",
+        "solution": "私たちのソリューションがこれらの問題にどのように対処し、効率的に解決するか。"
+      },
+      {
+        "title": "学校/教室",
+        "image": "https://www.acs.org/content/acs/en/education/policies/middle-and-high-school-chemistry/classroom/_jcr_content/bottomContent/columnsbootstrap/column1/image.scale.medium.1399.jpg/1574355187340.jpg",
+        "alt": "ユースケース 3",
+        "challenges": "このシナリオで直面する特定の課題の概要。",
+        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "button": {
+          "text": "YouTubeで見る",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "高齢者ケア",
+        "image": "https://cdn.britannica.com/65/199365-050-3D2AB9D0/Residents-nursing-home-meal.jpg",
+        "alt": "ユースケース 3",
+        "challenges": "このシナリオで直面する特定の課題の概要。",
+        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "button": {
+          "text": "YouTubeで見る",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "養鶏場",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8XmHx8QUxn1bkB5ip4kv5Y2gNIpDpQcMtuw&s",
+        "alt": "ユースケース 3",
+        "challenges": "このシナリオで直面する特定の課題の概要。",
+        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "button": {
+          "text": "YouTubeで見る",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "冷蔵施設",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSakBYbr0IW28wFSAh7sFi3Pgvz8muUfiMiavvrt5OzWkvu0qEPqYD_oyyeWD4h7TLBea4&usqp=CAU",
+        "alt": "ユースケース 3",
+        "challenges": "このシナリオで直面する特定の課題の概要。",
+        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "button": {
+          "text": "YouTubeで見る",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "林業と安全",
+        "image": "https://i.ytimg.com/vi/p_gfKiQmVMw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAD20fdjxTkI_HhKMNRjHySw0IMwA",
+        "alt": "ユースケース 3",
+        "challenges": "このシナリオで直面する特定の課題の概要。",
+        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "button": {
+          "text": "YouTubeで見る",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "工場の安全",
+        "image": "https://www.arup.com/globalassets/images/insights/publications/rethinking-the-factory-banner.jpg?width=760&quality=80",
+        "alt": "ユースケース 3",
+        "challenges": "このシナリオで直面する特定の課題の概要。",
+        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "button": {
+          "text": "YouTubeで見る",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      },
+      {
+        "title": "農業と土壌監視",
+        "image": "https://www.tanyo.jp/wp/wp-content/themes/tanyo/assets/images/product/greenhouse/img_features-02.jpg",
+        "alt": "ユースケース 3",
+        "challenges": "このシナリオで直面する特定の課題の概要。",
+        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "button": {
+          "text": "YouTubeで見る",
+          "link": "https://www.youtube.com/watch?v=pa2iiDZOATY",
+          "external": true
+        }
+      },
+      {
+        "title": "煙/火災モニター",
+        "image": "https://www.onithome.com/wp-content/uploads/2021/06/home-smoke-detector.jpg",
+        "alt": "ユースケース 3",
+        "challenges": "ほとんどの公共施設には火災時に自動的に消防署に連絡できるシステムが備わっていますが、ほとんどの住宅にはそのような安全対策がありません。",
+        "solution": "私たちは、どの家庭にも設置可能なソリューションを提供しており、煙や火災が検知された際にあなたや関係者に連絡することで、煙の発生から支援到着までの待機時間を短縮し、あなた、家族、ペット、財産の保護を強化します。",
+        "button": {
+          "text": "YouTubeで見る",
+          "link": "https://youtube.com/somevideo",
+          "external": true
+        }
+      }
+    ]
+  }
+  
