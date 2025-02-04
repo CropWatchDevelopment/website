@@ -10,6 +10,7 @@
 	import LineCarasol from '$lib/components/UI/Line-Carasol.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import PriceCard from '$lib/components/UI/Price-Card.svelte';
+	import { languageTag } from '$lib/paraglide/runtime';
 
 	let canvas;
 	let ctx;
@@ -146,18 +147,30 @@
 		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
 			<PriceCard
 				title="IoT"
-				description="¥550/機 （税込）"
-				features={[
-					'データ2年分保存（データベース）',
-					'データの一元管理（アプリケーションサーバー）',
-					'LoRaWANサーバー',
-					'アラート通知※1',
-					'データダウンロード',
-					'レポート作成・自動配信',
-					'権限付与',
-					'無制限ログイン',
-					'APIアクセス'
-				]}
+				description={m.price_1()}
+				features={languageTag() == 'ja'
+					? [
+							'データ2年分保存（データベース）',
+							'データの一元管理（アプリケーションサーバー）',
+							'LoRaWANサーバー',
+							'アラート通知※1',
+							'データダウンロード',
+							'レポート作成・自動配信',
+							'権限付与',
+							'無制限ログイン',
+							'APIアクセス'
+						]
+					: [
+							'Store data for 2 years (database)',
+							'Centralized data management (application server)',
+							'LoRaWAN Server',
+							'Alert notifications*1',
+							'Data download',
+							'Report generation and automatic distribution',
+							'Permission granting',
+							'Unlimited logins',
+							'API access'
+						]}
 				link="#"
 				color="bg-green-500"
 				buttonLabel={m.home_pricing_get_started()}
@@ -165,18 +178,30 @@
 
 			<PriceCard
 				title="Edge AI(cv)"
-				description="¥11,000/機 （税込）"
-				features={[
-					'データ2年分保存（データベース）',
-					'データの一元管理（アプリケーションサーバー）',
-					'LoRaWANサーバー',
-					'アラート通知',
-					'データダウンロード',
-					'レポート作成・自動配信',
-					'権限付与',
-					'無制限ログイン',
-					'APIアクセス'
-				]}
+				description={m.price_2()}
+				features={languageTag() == 'ja'
+					? [
+							'データ2年分保存（データベース）',
+							'データの一元管理（アプリケーションサーバー）',
+							'LoRaWANサーバー',
+							'アラート通知',
+							'データダウンロード',
+							'レポート作成・自動配信',
+							'権限付与',
+							'無制限ログイン',
+							'APIアクセス'
+						]
+					: [
+							'Store data for 2 years (database)',
+							'Centralized data management (application server)',
+							'LoRaWAN Server',
+							'Alert notifications',
+							'Data download',
+							'Report generation and automatic distribution',
+							'Permission granting',
+							'Unlimited logins',
+							'API access'
+						]}
 				link="#"
 				color="bg-red-500"
 				buttonLabel={m.home_pricing_get_started()}
@@ -184,17 +209,28 @@
 
 			<PriceCard
 				title={m.home_pricing_volume_agreement()}
-				description="Let's Talk!"
-				features={[
-					'Negotiate on large amounts of devices',
-					'3rd part distribution agreements',
-					'Device & gateway rental bundles',
-					'Partnerships & collaborations',
-					'One-off projects and experiments',
-					'Customized solutions',
-					'Priority support',
-					'Custom SLA'
-				]}
+				description={m.price_3()}
+				features={languageTag() == 'ja'
+					? [
+							'大量のデバイスに関する交渉',
+							'第三者流通契約',
+							'デバイス＆ゲートウェイのレンタルパッケージ',
+							'パートナーシップと協業',
+							'単発プロジェクトおよび実験',
+							'カスタマイズされたソリューション',
+							'優先サポート',
+							'カスタムSLA'
+						]
+					: [
+							'Negotiate on large amounts of devices',
+							'3rd part distribution agreements',
+							'Device & gateway rental bundles',
+							'Partnerships & collaborations',
+							'One-off projects and experiments',
+							'Customized solutions',
+							'Priority support',
+							'Custom SLA'
+						]}
 				link="/contact-us"
 				color="bg-yellow-300"
 				buttonLabel={m.home_pricing_contact_us_options()}
@@ -209,7 +245,10 @@
 	<div class="container mx-auto text-center">
 		<h2 class="text-3xl font-bold">{m.home_contact_title()}</h2>
 		<p class="mt-4">{m.home_contact_subtitle()}</p>
-		<a class="mt-6 inline-block rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition" href="contact-us">Contact Us</a>
+		<a
+			class="mt-6 inline-block rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+			href="contact-us">Contact Us</a
+		>
 	</div>
 </section>
 
@@ -219,7 +258,9 @@
 		<li>
 			<sm>※1</sm>
 			{m.home_disclaimer_1()}
-			<a class="text-blue-900 font-bold underline cursor-pointer" href="https://discord.com/">Discord</a>
+			<a class="cursor-pointer font-bold text-blue-900 underline" href="https://discord.com/"
+				>Discord</a
+			>
 		</li>
 	</ol>
 </section>
