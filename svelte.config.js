@@ -34,37 +34,37 @@ const config = {
 				defaultMinimumCacheTTL: 300
 			}
 		}),
-		csp: {
-			// SvelteKit will automatically inject hashes for its own inline scripts.
-			// Your custom inline script in app.html has been manually hashed.
-			mode: 'hash',
-			directives: {
-				"default-src": ["'self'"],
-				"object-src": ["'none'"],
-				"script-src": [
-					"'self'",
-					// Keep the hash for your inline script:
-					"sha256-cIhBwbyaGWCMI6AQsYFg/Lrir4C0+i8QHpjN9iSRJaw=",
-					"https://www.googletagmanager.com/gtag/js",
-					"https://www.google.com/recaptcha/api.js",
-					"https://www.gstatic.com"
-				]
-				// You can also define other directives (like style-src, img-src, etc.) as needed.
-			},
-			reportOnly: {
-				// Report-only version of your CSP directives:
-				"default-src": ["'self'"],
-				"object-src": ["'none'"],
-				"script-src": [
-					"'self'",
-					"sha256-cIhBwbyaGWCMI6AQsYFg/Lrir4C0+i8QHpjN9iSRJaw=",
-					"https://www.googletagmanager.com/gtag/js",
-					"https://www.google.com/recaptcha/api.js",
-					"https://www.gstatic.com"
-				],
-				"report-uri": ["/"]
-			}
-		}
+		// csp: {
+		// 	// SvelteKit will automatically inject hashes for its own inline scripts.
+		// 	// Your custom inline script in app.html has been manually hashed.
+		// 	mode: 'hash',
+		// 	directives: {
+		// 		"default-src": ["'self'"],
+		// 		"object-src": ["'none'"],
+		// 		"script-src": [
+		// 			"'self'",
+		// 			// Keep the hash for your inline script:
+		// 			"sha256-cIhBwbyaGWCMI6AQsYFg/Lrir4C0+i8QHpjN9iSRJaw=",
+		// 			"https://www.googletagmanager.com/gtag/js",
+		// 			"https://www.google.com/recaptcha/api.js",
+		// 			"https://www.gstatic.com"
+		// 		]
+		// 		// You can also define other directives (like style-src, img-src, etc.) as needed.
+		// 	},
+		// 	reportOnly: {
+		// 		// Report-only version of your CSP directives:
+		// 		"default-src": ["'self'"],
+		// 		"object-src": ["'none'"],
+		// 		"script-src": [
+		// 			"'self'",
+		// 			"sha256-cIhBwbyaGWCMI6AQsYFg/Lrir4C0+i8QHpjN9iSRJaw=",
+		// 			"https://www.googletagmanager.com/gtag/js",
+		// 			"https://www.google.com/recaptcha/api.js",
+		// 			"https://www.gstatic.com"
+		// 		],
+		// 		"report-uri": ["/"]
+		// 	}
+		// }
 	}
 };
 
