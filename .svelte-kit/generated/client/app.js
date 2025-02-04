@@ -14,22 +14,24 @@ export const nodes = [
 	() => import('./nodes/8'),
 	() => import('./nodes/9'),
 	() => import('./nodes/10'),
-	() => import('./nodes/11')
+	() => import('./nodes/11'),
+	() => import('./nodes/12')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/about-us": [3],
-		"/contact-us": [~4],
-		"/demo": [5],
-		"/demo/paraglide": [6],
-		"/privacy-policy": [7],
-		"/product/categories/[id]": [9],
-		"/product/[id]": [8],
-		"/terms-of-service": [10],
-		"/use-cases": [11]
+		"/EULA": [3],
+		"/about-us": [4],
+		"/contact-us": [~5],
+		"/demo": [6],
+		"/demo/paraglide": [7],
+		"/privacy-policy": [8],
+		"/product/categories/[id]": [10],
+		"/product/[id]": [9],
+		"/terms-of-service": [11],
+		"/use-cases": [12]
 	};
 
 export const hooks = {

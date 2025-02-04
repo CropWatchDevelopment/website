@@ -2,6 +2,7 @@
 	"/": [
 		"src/routes/+page.ts"
 	],
+	"/EULA": [],
 	"/about-us": [
 		"src/routes/about-us/+page.ts"
 	],
