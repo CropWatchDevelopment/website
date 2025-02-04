@@ -1,6 +1,6 @@
 <script>
-	import { page } from "$app/state";
 	import { languageTag } from "$lib/paraglide/runtime";
+	import * as m from '$lib/paraglide/messages.js';
 
 	// Example use cases array
 	let useCases = $state([]);
@@ -22,7 +22,7 @@
 			<!-- Image container with title overlay -->
 			<div class="relative">
 				<img src={useCase.image} alt={useCase.alt} class="h-52 w-full object-cover" />
-				<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
+				<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 p-2">
 					<h2 class="text-lg font-semibold text-white">{useCase.title}</h2>
 				</div>
 			</div>
@@ -61,6 +61,6 @@
 	{/each}
 
 	<div class="flex items-center justify-center rounded-lg bg-slate-200 p-4 shadow">
-		<span class="text-2xl font-semibold text-gray-500">More coming soon...</span>
+		<span class="text-2xl font-semibold text-gray-500">{m.more_coming_soon()}</span>
 	</div>
 </div>
