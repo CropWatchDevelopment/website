@@ -46,8 +46,20 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="CropWatch - Solving problems using IoT for Farming, Industry, and more" />
+	<!-- Primary Meta Tags -->
+	<title>CropWatch - IoT Monitoring</title>
+	<meta name="title" content="Your Site Title" />
+	<meta
+		name="description"
+		content="CropWatch the best IoT device for remote monitoring for your farm, factory, building or city."
+	/>
+	<meta name="keywords" content="IoT Monitoring, Cold Chain Management, Full service IoT" />
+	<meta name="author" content="Your Company or Author Name" />
+
+	<meta
+		name="description"
+		content="CropWatch - Solving problems using IoT for Farming, Industry, and more"
+	/>
 	<meta name="keywords" content="CropWatch, IoT, Farming, Industry, Smart City" />
 	<meta name="robots" content="index, follow" />
 	<link rel="preload" as="image" href={SAITO_IMAGE} />
@@ -55,15 +67,6 @@
 	<link rel="preload" as="image" href={COLD_STORAGE_IMAGE} />
 	<link rel="preload" as="image" href={FACTORY_IMAGE} />
 	<link rel="preload" as="image" href={BOSTON_IMAGE} />
-	<style>
-		/* Minimal critical styles can be inlined here.
-		   For full optimization, consider extracting above‑the‑fold CSS. */
-		body {
-			margin: 0;
-			font-family: sans-serif;
-		}
-	</style>
-	
 </svelte:head>
 
 <!-- Hero Section -->
