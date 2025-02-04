@@ -47,14 +47,14 @@
 
 <svelte:head>
 	<!-- Primary Meta Tags -->
-	<title>CropWatch - IoT Monitoring</title>
-	<meta name="title" content="Your Site Title" />
+	<title>クロップウォッチ - IoT Monitoring</title>
+	<meta name="title" content="クロップウォッチ" />
 	<meta
 		name="description"
 		content="CropWatch the best IoT device for remote monitoring for your farm 🌱, factory 🏭, building 🏢 or city 🏙️."
 	/>
-	<meta name="keywords" content="IoT Monitoring, Cold Chain Management, Full service IoT" />
-	<meta name="author" content="Your Company or Author Name" />
+	<meta name="keywords" content="IoT Monitoring, クロップウォッチ, Cold Chain Management, Full service IoT" />
+	<meta name="author" content="CropWatch LLC" />
 
 	<meta
 		name="description"
