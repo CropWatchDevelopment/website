@@ -9,7 +9,7 @@
 </script>
 
 <ParaglideJS {i18n}>
-	<div class="flex flex-col min-h-screen">
+	<div class="flex min-h-screen flex-col">
 		<Header />
 		<main class="flex-grow">
 			{@render children()}
@@ -17,4 +17,3 @@
 		<Footer />
 	</div>
 </ParaglideJS>
-

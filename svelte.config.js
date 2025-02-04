@@ -18,14 +18,16 @@ const config = {
             directives: {
                 'script-src': [
                     'self',
+                    'https://www.googletagmanager.com/gtag/js',
                     'https://www.google.com/recaptcha/api.js',
-                    'https://www.gstatic.com' // Allow scripts loaded from gstatic
+                    'https://www.gstatic.com'
                 ]
             },
             reportOnly: {
                 'script-src': [
                     'self',
                     'https://www.google.com/recaptcha/api.js',
+                    'https://www.googletagmanager.com/gtag/js',
                     'https://www.gstatic.com'
                 ],
                 'report-uri': ['/']

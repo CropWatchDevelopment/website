@@ -10,7 +10,6 @@
 	import LineCarasol from '$lib/components/UI/Line-Carasol.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import PriceCard from '$lib/components/UI/Price-Card.svelte';
-	import { goto } from '$app/navigation';
 
 	let canvas;
 	let ctx;
@@ -158,6 +157,18 @@
 					'権限付与',
 					'無制限ログイン',
 					'APIアクセス'
+				]}
+				link="#"
+			/>
+
+			<PriceCard
+				title="LoRaWAN Gateway"
+				description="📞"
+				features={[
+					'Contact us for pricing with large amounts of devices',
+					'Customized solutions',
+					'Priority support',
+					'Custom SLA'
 				]}
 				link="#"
 			/>
