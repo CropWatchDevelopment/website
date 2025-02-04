@@ -247,7 +247,7 @@
 		<p class="mt-4">{m.home_contact_subtitle()}</p>
 		<a
 			class="mt-6 inline-block rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-			href="contact-us">Contact Us</a
+			href="contact-us">{m.contact_us()}</a
 		>
 	</div>
 </section>
