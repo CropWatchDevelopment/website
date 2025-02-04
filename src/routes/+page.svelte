@@ -51,7 +51,7 @@
 	<meta name="title" content="Your Site Title" />
 	<meta
 		name="description"
-		content="CropWatch the best IoT device for remote monitoring for your farm, factory, building or city."
+		content="CropWatch the best IoT device for remote monitoring for your farm 🌱, factory 🏭, building 🏢 or city 🏙️."
 	/>
 	<meta name="keywords" content="IoT Monitoring, Cold Chain Management, Full service IoT" />
 	<meta name="author" content="Your Company or Author Name" />
