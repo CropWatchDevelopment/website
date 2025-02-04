@@ -71,5 +71,7 @@
 	"more_coming_soon": "More coming soon!",
 	"price_1": "$5/seat",
 	"price_2": "$99/seat",
-	"price_3": "Let's Talk!"
+	"price_3": "Let's Talk!",
+	"page_not_found_title": "404 - Page Not Found",
+	"page_not_found_subtitle": "Something went wrong. We apologize for the inconvenience. Please try return to the Home page, or come back later."
 }
