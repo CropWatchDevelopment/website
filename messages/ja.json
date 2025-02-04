@@ -33,7 +33,7 @@
 	"home_pricing_disclaimer_1": " ",
 	"home_pricing_contact_us_options": "オプションについてはお問い合わせください",
 	"home_pricing_get_started": "今すぐ始める",
-	"home_pricing_volume_agreement": "レンタルおよびボリューム契約",
+	"home_pricing_volume_agreement": "ボリューム契約",
 	"home_pricing_iot_features": "<ul><li>データ2年分保存（データベース）</li><li>データの一元管理（アプリケーションサーバー）</li><li>LoRaWANサーバー</li><li>アラート通知※1</li><li>データダウンロード</li><li>レポート作成・自動配信</li><li>権限付与</li><li>無制限ログイン</li><li>APIアクセス</li></ul>",
 	"view_details": "詳細を表示",
 	"product_details_strengths": "センサーの詳細と強み",
@@ -68,5 +68,8 @@
 	"contact_thank_you_message": "メッセージを受領しましたので、できるだけ早くご返信いたします。",
 	"header_home": "家",
 	"app_login": "🔒 アプリログイン",
-	"more_coming_soon": "近日中にさらに追加予定です!"
+	"more_coming_soon": "近日中にさらに追加予定です!",
+	"price_1": "¥550/機 （税込）",
+	"price_2": "¥11,000/機 （税込）",
+	"price_3": "話しましょう！"
 }

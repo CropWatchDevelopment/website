@@ -35,7 +35,7 @@
 	<span class="flex-grow"></span>
 	<a
 		href={link}
-		class="mt-6 inline-block rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+		class="mt-6 inline-block rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 text-nowrap"
 	>
 		{buttonLabel ? buttonLabel : 'Get Started'}
 	</a>

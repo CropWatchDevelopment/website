@@ -12,6 +12,8 @@ const config = {
                 formats: ['image/avif', 'image/webp'],
                 minimumCacheTTL: 300,
                 domains: ['cropwatch.io','website-five-weld-27.vercel.app'],
+                preprocess: true,
+                optimize: true,
             }
         }),
         // csp: {
