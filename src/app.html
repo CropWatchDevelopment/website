@@ -36,13 +36,19 @@
 		content="CropWatch the best IoT device for remote monitoring for your farm, factory, building or city." />
 	<!-- <meta name="twitter:image" content="%sveltekit.assets%/twitter-image.jpg" /> -->
 
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-V65DJ4TTV1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-V65DJ4TTV1');
+	</script>
+
 	<!-- Canonical URL -->
 	<link rel="canonical" href="https://CropWatch.io/" />
-
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-V65DJ4TTV1"
-		nonce="%sveltekit.nonce%"></script>
-
 	%sveltekit.head%
 </head>
 
