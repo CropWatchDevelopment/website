@@ -47,10 +47,14 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-	<!-- Preload the hero background image to optimize LCP -->
+	<meta name="description" content="CropWatch - Solving problems using IoT for Farming, Industry, and more" />
+	<meta name="keywords" content="CropWatch, IoT, Farming, Industry, Smart City" />
+	<meta name="robots" content="index, follow" />
 	<link rel="preload" as="image" href={SAITO_IMAGE} />
-	<!-- Inline critical CSS if possible -->
+	<link rel="preload" as="image" href={PLANT_IMAGE} />
+	<link rel="preload" as="image" href={COLD_STORAGE_IMAGE} />
+	<link rel="preload" as="image" href={FACTORY_IMAGE} />
+	<link rel="preload" as="image" href={BOSTON_IMAGE} />
 	<style>
 		/* Minimal critical styles can be inlined here.
 		   For full optimization, consider extracting above‑the‑fold CSS. */
@@ -59,10 +63,7 @@
 			font-family: sans-serif;
 		}
 	</style>
-	<!-- 
-		NOTE: Ensure your server or CDN is configured to serve static assets (images, CSS, JS)
-		with an efficient cache policy (e.g., Cache-Control headers) to improve repeat load performance.
-	-->
+	
 </svelte:head>
 
 <!-- Hero Section -->

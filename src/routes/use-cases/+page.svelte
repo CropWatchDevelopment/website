@@ -15,6 +15,16 @@
 		});
 </script>
 
+<svelte:head>
+	<title>CropWatch IoT Use Cases</title>
+	<meta name="description" content="Problems CropWatch has solved with our IoT Devices." />
+	<meta name="keywords" content="CropWatch, IoT, Use Cases" />
+	<meta name="robots" content="index, follow" />
+	<meta name="author" content="CropWatch" />
+	<meta property="og:title" content="CropWatch IoT Use Cases" />
+	<meta property="og:description" content="Problems CropWatch has solved with our IoT Devices." />
+</svelte:head>
+
 <h1 class="mb-8 mt-4 text-center text-6xl font-bold">Use Cases</h1>
 <div class="mx-8 mb-4 grid grid-cols-1 gap-6 border-b border-t sm:grid-cols-2 lg:grid-cols-4">
 	{#each useCases as useCase}

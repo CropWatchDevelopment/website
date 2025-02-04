@@ -25,6 +25,14 @@
 	});
 </script>
 
+<svelte:head>
+	<title>CropWatch Product Categories</title>
+	<meta name="description" content="Find our IoT offerings by category" />
+	<meta name="keywords" content="CropWatch, IoT, Categories" />
+	<meta name="robots" content="index, follow" />
+	<meta name="author" content="CropWatch" />
+</svelte:head>
+
 {#if loading}
 	<!-- Loading Spinner -->
 	<div class="flex min-h-screen flex-col items-center justify-center">

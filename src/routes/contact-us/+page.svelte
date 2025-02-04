@@ -69,6 +69,9 @@
 		name="description"
 		content="Contact CropWatch for more information about our products and services."
 	/>
+	<meta name="keywords" content="CropWatch, Contact Us" />
+	<meta name="robots" content="index, follow" />
+	<meta name="author" content="CropWatch" />
 
 	<script
 		src="https://www.google.com/recaptcha/api.js?render={PUBLIC_RECAPTCHA_SITE_KEY}"
