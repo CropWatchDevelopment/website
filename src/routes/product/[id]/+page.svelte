@@ -124,7 +124,7 @@
 				{m.product_contact_us_subtitle()}
 			</p>
 			<a
-				href="contact.html"
+				href="/contact-us"
 				class="mt-6 inline-block rounded bg-white px-6 py-3 text-blue-600 hover:bg-gray-200"
 			>
 			{m.contact_us()}

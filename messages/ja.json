@@ -1,7 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"hello_world": "こんにちは、{name}さん！enからです。",
-	"home_hero_title": "あなたに合わせたIoTモニタリング",
+	"home_hero_title": "あなたの環境を思いのままに。",
 	"home_hero_subtitle": "CropWatchはIoTとLoRaWANを活用し、すべての人々にソリューションを提供します。",
 	"home_solutions_title": "私たちのソリューション",
 	"home_solutions_subtitle": "さまざまな業界でどのように違いを生み出しているかをご覧ください。",
