@@ -132,6 +132,27 @@
 	</div>
 </section>
 
+<!-- <section id="products-quickview" class="bg-amber-600 py-10 text-white">
+	<div class="container mx-auto text-center">
+		<h2 class="text-3xl mt-4 font-bold">Helping you find the best solution for your IoT project</h2>
+		<p class="mt-4">
+			Click the items below to learn about some of the most popular IoT communication methods
+		</p>
+	</div>
+	<div class="flex flex-row justify-center">
+		<a href="/product/categories/lorawan" class="m-4">
+			<img src="/images/lorawan.png" alt="LoRaWan" class="w-32 h-32" />
+		</a>
+		<a href="/product/categories/wifi" class="m-4">
+			<img src="/images/wifi.png" alt="wifi" class="w-32 h-32" />
+		</a>
+		<a href="/product/categories/lte" class="m-4">
+			<img src="/image/lte.png" alt="lte" class="w-32 h-32" />
+		</a>
+
+	</div>
+</section> -->
+
 <!-- Products Quickview Section -->
 <section id="products-quickview" class="bg-gray-600 py-10 text-white">
 	<div class="container mx-auto text-center">

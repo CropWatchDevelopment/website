@@ -15,7 +15,7 @@
 	</div>
 	<h3 class="mt-4 text-xl font-bold">{name ?? 'Product Name Not available'}</h3>
 	<p class="mt-2 text-gray-600">{description}</p>
-	<p class="mt-4 text-lg font-bold text-blue-600">{price}</p>
+	<!-- <p class="mt-4 text-lg font-bold text-blue-600">{price}</p> -->
 	<span class="flex-grow"></span>
 	<a
 		href={link}
