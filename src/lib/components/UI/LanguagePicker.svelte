@@ -6,9 +6,14 @@
 
 	let dropdownOpen = $state(false);
 	let selectedLanguage = $state('ja');
-	const languages: AvailableLanguageTag = ['ja', 'en', 'es', 'fr'];
+	const languages: AvailableLanguageTag = [
+		// 'ja',
+		'en',
+		'es',
+		'fr'
+	];
 	const languageFlags = {
-		ja: '🇯🇵',
+		// ja: '🇯🇵',
 		en: '🇺🇸',
 		es: '🇭🇳',
 		fr: '🇫🇷'
