@@ -1,18 +1,22 @@
 <script>
-	import { languageTag } from "$lib/paraglide/runtime";
+	import { languageTag } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages.js';
+	import { browser } from '$app/environment';
 
 	// Example use cases array
 	let useCases = $state([]);
-	fetch(`/configs/usecases/${languageTag()}.json`)
-		.then((res) => res.json())
-		.then((data) => {
-			console.log(data);
-			useCases = data.usecases;
-		})
-		.catch((err) => {
-			console.error(err);
-		});
+	$effect(() => {
+		fetch(`/configs/usecases/${languageTag()}.json`)
+			.then((res) => res.json())
+			.then((data) => {
+				debugger;
+				console.log(data);
+				useCases = data.usecases;
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	});
 </script>
 
 <svelte:head>
