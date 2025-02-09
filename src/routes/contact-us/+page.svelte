@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
 	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 
@@ -17,14 +17,15 @@
 	let current_state = ReCaptchaState.idle;
 
 	function onSubmit() {
-		debugger;
 		current_state = ReCaptchaState.requesting;
 		doRecaptcha();
 	}
 
 	function doRecaptcha() {
 		grecaptcha.ready(function () {
-			grecaptcha.execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit' }).then(function (t) {
+			grecaptcha.execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit' }).then(function (
+				t: string
+			) {
 				current_state = ReCaptchaState.success;
 				token = t;
 				submitReCaptchaToServerWithEmailForVerification(token);
@@ -42,7 +43,6 @@
 			body: formBody.toString() // or simply: body: formBody
 		})
 			.then((res) => {
-				debugger;
 				if (res.ok) {
 					name = '';
 					email = '';
@@ -111,6 +111,11 @@
 					<span class="font-bold">{m.contact_business_hours_label()}</span>
 					{m.contact_business_hours_value()}
 				</p>
+				<div class="border-t border-gray-300 pt-4">
+					<a href="https://discord.gg/tQ5642Cj" target="_blank" rel="noopener">
+						<img src="/images/discord-logo-blue.svg" alt="Discord" width="150px" />
+					</a>
+				</div>
 			</div>
 
 			<!-- Contact Form -->
