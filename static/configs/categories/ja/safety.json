@@ -1,43 +1,50 @@
 {
-    "title": "安全とリスク軽減",
-    "subtitle": "どの業界においても、安全とリスク軽減は非常に重要です。当社のセンサーは、環境条件を監視して事故を防ぎ、安全規制への準拠を確保するのに役立ちます。温度、湿度、CO₂レベル、その他の重要なパラメータを監視するためのさまざまなセンサーを提供しています。",
+    "title": "安全対策とリスク軽減",
+    "subtitle": "どの業界においても、安全対策とリスク管理は非常に重要です。当社のセンサーは、遠隔で現場の環境条件を監視し、作業員のバイタルデータを確認することで、安全で快適な作業環境を実現します。さらに、アラート通知やSOSボタン機能を備え、異常が発生した際には即座に対応可能。作業現場の安全基準を維持し、事故のリスクを最小限に抑えます。",
     "categories": [
       {
         "name": "個人用安全センサー",
         "products": [
           {
             "image": "/images/image_1.webp",
-            "name": "[CROPWATCH] LoRaWATCH",
-            "description": "LoRaWATCHは、個人データを監視するスマートウォッチです。温度、心拍数、血中酸素レベルを検出できます。高温な作業環境で安全かつ健康を維持するために設計されています。",
+            "name": "[CROPWATCH] ローラウォッチ",
+            "description": "LoRaWATCHは、個人の健康データをリアルタイムで監視するスマートウォッチです。体温・心拍数・血中酸素レベルなどのバイタルデータを測定し、GPSやSOS機能も搭載。過酷な作業環境でも、安全と健康を守るために設計されています。",
             "price": "$199",
             "link": "/product/CW-LW-1"
           },
           {
             "image": "/images/CHICKADEE-ISO2-768x768.webp",
-            "name": "[TEKTELIC] Personal Badge Tracker",
-            "description": "屋内外の人員および資産の追跡と監視のための着用可能なバッジ型デバイス",
+            "name": "[TEKTELIC] GPSトラッカー",
+            "description": "CHICKADEEは、屋内外での人員や資産の追跡・監視が可能な着用型のバッジ型デバイスです。正確な位置情報を提供し、労働者の安全を強化します。さらに、SOS機能を搭載しており、危険な作業環境や単独作業を行う作業員に最適なデバイスです。",
             "price": "$199",
             "link": "/product/tektelic-chickadee"
           }
         ]
       },
       {
-        "name": "環境安全センサー",
+        "name": "環境用安全センサー",
         "products": [
           {
             "image": "/images/breeze-solution-768x768.webp",
-            "name": "[TEKTELIC] Breeze-v",
-            "description": "このインテリジェントセンサーは、CO₂レベル、温度、湿度、占有状況などの重要な要因を積極的に監視および管理します。優れた空気品質を促進することで、BREEZE-Vは快適で生産的な環境を作り出します。",
+            "name": "[TEKTELIC] マルチ環境センサー",
+            "description": "Breeze-Vは、室内のCO₂レベル・温度・湿度・占有状況などのデータを監視および管理を行います。優れた空気品質を促進することで、快適で生産的な環境を作り出します。",
             "price": "$199",
             "link": "/product/breeze-v"
           },
           {
             "image": "/images/RA02A Wireless Smoke Detector.webp",
             "name": "[NETVOX] Smoke Detector",
-            "description": "Netvox RA02Aは煙検知警報器です。内蔵の光電式煙感知器とブザーにより、環境中の煙の濃度を検出し、煙の濃度が安全な値を超えた場合に警報を発します。",
+            "description": "Netvox RA02Aは、内蔵の光電式煙感知器とブザーにより、煙の濃度が安全基準を超えた際に警報を発します。さらに、登録先へアラート通知を送信することで、異常を即座に検知し、迅速な対応を可能にします。",
             "price": "$199",
             "link": "/product/netvox-ra02a"
-          }
+          },
+{
+          "image": "/images/Milesight_EM500-co2.webp",
+          "name": "[Milesight] CO₂・温度・湿度センサー",
+          "description": "EM500-CO2は、過酷な環境下での気体状二酸化炭素（CO₂）の濃度を測定するために設計されています。室内・屋外を問わず設置可能で、CO₂レベルの監視や熱中症対策にも最適です。",
+          "price": "$199",
+          "link": "/product/milesight-em500-co2"
+        }
         ]
       }
     ]

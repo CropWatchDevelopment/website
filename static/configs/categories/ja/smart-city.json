@@ -1,35 +1,56 @@
 {
     "title": "スマートシティ",
-    "subtitle": "スマートシティは、IoT技術を活用して市民の生活の質を向上させます。当社のセンサーは、環境条件、交通量、その他の重要なパラメータを監視し、市民の安全と福祉を確保するのに役立ちます。空気品質、温度、湿度、その他の重要なパラメータを監視するためのさまざまなセンサーを提供しています。",
+    "subtitle": "IoT技術を活用し、都市や建物の状態をリアルタイムで監視することで、防災対策の強化、インフラ管理の最適化、建物環境の改善を実現します。都市環境の変化や交通量、気象データ、構造物の劣化状況など、さまざまな重要なパラメータを継続的に監視し、災害リスクの低減や安全な生活環境の維持に貢献します。",
     "categories": [
       {
-        "name": "都市屋外環境センサー",
+        "name": "屋外センサー",
         "products": [
           {
             "image": "/images/AI_canera_1.webp",
-            "name": "[CROPWATCH] AI-Traffic",
-            "description": "CropWatch AI Traffic の交通カウント、監視、および報告システムは、交通管理のためのスマートなソリューションです。AIを用いて交通量をカウントおよび監視し、リアルタイムで報告することで、交通管理に関する情報に基づいた意思決定をサポートします。",
+            "name": "[CROPWATCH] AI-交通量調査",
+            "description": "CropWatch AI Trafficのカウントシステムは、従来手作業で行っていた人や車のカウントをAIによって自動化し、集計データをリアルタイムで送信します。日々の交通状況を可視化することで、交通管理や都市計画のためのデータに基づいた意思決定をサポートします。",
             "price": "$199",
             "link": "device-details.html"
           },
           {
             "image": "/images/seeed.webp",
             "name": "[SEEED] 8-in-1ウェザーステーション",
-            "description": "SenseCAP LoRaWAN S2120 ウェザーステーションは、世界中のLoRaWANネットワークに対応し、気温、湿度、風速/風向、降雨強度、光強度、UV指数、気圧データを収集してアップロードします。",
+            "description": "SenseCAP LoRaWAN S2120ウェザーステーションは、気温・湿度・風速・風向・降雨強度・光強度・UV指数・気圧などの環境データを高精度に収集します。気象変化の監視、防災対策、交通管理、エネルギー効率の最適化などに活用できます。",
             "price": "$199",
             "link": "device-details.html"
+          },
+          {
+            "image": "/images/CHICKADEE-ISO2-768x768.webp",
+            "name": "[TEKTELIC] GPSトラッカー",
+            "description": "CHICKADEEは、屋内外での人や資産の追跡・監視が可能な着用型のバッジ型デバイスです。正確な位置情報を提供し、市民の安全強化や資産管理に活用出来ます。さらに、SOS機能を搭載しており、児童や高齢者の見守りに最適なデバイスです。",
+            "price": "$199",
+            "link": "/product/tektelic-chickadee"
+          },
+       {
+            "image": "/images/CHICKADEE-ISO2-768x768.webp",
+            "name": "[NETVOX] 超音波液面レベルセンサー",
+            "description": "R718PEは、超音波を利用してデバイスと検出対象物との距離を測定するワイヤレス通信デバイスです。用水路や貯水池の水位監視から駐車場の空き状況検知まで対応し、作業員の安全を確保しながら、都市インフラの効率的な管理と運用を実現します。",
+            "price": "$199",
+            "link": "/product/tektelic-chickadee"
           }
         ]
       },
       {
-        "name": "都市屋内環境センサー",
+        "name": "屋内センサー",
         "products": [
           {
             "image": "/images/breeze-solution-768x768.webp",
-            "name": "[TEKTELIC] Breeze-v",
-            "description": "このインテリジェントセンサーは、CO₂レベル、温度、湿度、占有状況などの重要な要因を積極的に監視および管理します。優れた空気品質を促進することで、BREEZE-Vは快適で生産的な環境を作り出します。",
+            "name": "[TEKTELIC] マルチ環境センサー",
+            "description": "Breeze-Vは、室内のCO₂レベル・温度・湿度・占有状況などの室内環境の監視および管理を行います。適切な換気や空調の調整が可能になり、快適で生産的な環境を作り出します。",
             "price": "$199",
             "link": "/product/breeze-v"
+          },
+      {
+            "image": "/images/RA02A Wireless Smoke Detector.webp",
+            "name": "[NETVOX] 煙検知センサー",
+            "description": "Netvox RA02Aは、内蔵の光電式煙感知器とブザーにより、煙の濃度が安全基準を超えた際に警報を発します。さらに、登録先へアラート通知を送信することで、異常を即座に検知し、迅速な対応を可能にします。",
+            "price": "$199",
+            "link": "/product/netvox-ra02a"
           }
         ]
       }
