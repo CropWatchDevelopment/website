@@ -33,12 +33,6 @@ export const actions: Actions = {
       return new Response(JSON.stringify({ error: 'reCAPTCHA verification failed.' }));
     }
 
-    // Extract other form values
-    // const name = formData.get('name') as string;
-    // const email = formData.get('email') as string;
-    // const subject = formData.get('subject') as string || 'No Subject';
-    // const message = formData.get('message') as string;
-
     // Create a nodemailer transporter
     const transporter = nodemailer.createTransport({
       host: PRIVATE_EMAIL_HOST,

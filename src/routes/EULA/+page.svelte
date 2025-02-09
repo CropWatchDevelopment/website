@@ -387,20 +387,11 @@
     2024 年 8 月 1 日 制定・施行
   </div>
 </main>
-<footer>
-  <p>&copy; 2024 合同会社クロップウォッチ</p>
-</footer>
-
-
 
 <style>
     header, footer {
       text-align: center;
       padding: 10px 0;
-    }
-    header img {
-      max-width: 150px;
-      height: auto;
     }
     header h1 {
       margin: 10px 0 0;

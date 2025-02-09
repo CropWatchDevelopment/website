@@ -177,9 +177,6 @@
 		<p>2024年8月1日　制定・施行</p>
 	</section>
 </main>
-<footer>
-	<p>&copy; 2024 合同会社クロップウォッチ</p>
-</footer>
 
 <style>
 	header,
