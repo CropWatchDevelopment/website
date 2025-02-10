@@ -1,7 +1,6 @@
 <script>
 	import { languageTag } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages.js';
-	import { browser } from '$app/environment';
 
 	// Example use cases array
 	let useCases = $state([]);
@@ -42,11 +41,11 @@
 			</div>
 			<div class="flex-grow p-4">
 				<div class="mb-4">
-					<h3 class="text-lg font-semibold text-gray-800">Challenges</h3>
+					<h3 class="text-lg font-semibold text-gray-800">{m.usecases_challenges()}</h3>
 					<p class="text-gray-600">{useCase.challenges}</p>
 				</div>
 				<div>
-					<h3 class="text-lg font-semibold text-gray-800">Solution</h3>
+					<h3 class="text-lg font-semibold text-gray-800">{m.usecases_solutions()}</h3>
 					<p class="text-gray-600">{useCase.solution}</p>
 				</div>
 			</div>

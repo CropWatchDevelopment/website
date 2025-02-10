@@ -4,8 +4,8 @@
         "title": "Hotel Room",
         "image": "https://www.usatoday.com/gcdn/authoring/authoring-images/2024/05/26/USAT/73865433007-tempoby-hilton-nashville-standard-king.jpg?width=1733&height=1176&fit=crop&format=pjpg&auto=webp",
         "alt": "Use Case 1",
-        "challenges": "Detailing the challenges faced in this scenario, including obstacles and key pain points.",
-        "solution": "Explaining our approach to overcoming these challenges with innovative solutions."
+        "challenges": "Hotel guest satisfaction is directly tied to room comfort. Temperature, humidity, and CO₂ levels play a crucial role in ensuring a pleasant stay. However, maintaining the ideal environment across all rooms can be challenging due to fluctuating occupancy, varying preferences, and outdated climate control systems. Inconsistent room conditions can lead to complaints, poor reviews, and reduced guest retention.",
+        "solution": "CropWatch provides an advanced monitoring and automation system that ensures optimal room conditions in real time. By integrating smart sensors and automated controls, hotels can maintain the perfect balance of temperature, humidity, and air quality for every guest. Whether for new construction or retrofitting existing properties, CropWatch helps create a seamless and comfortable experience—ensuring guests leave satisfied and eager to return."
       },
       {
         "title": "Super Market",
@@ -18,8 +18,8 @@
         "title": "School/Classroom",
         "image": "https://www.acs.org/content/acs/en/education/policies/middle-and-high-school-chemistry/classroom/_jcr_content/bottomContent/columnsbootstrap/column1/image.scale.medium.1399.jpg/1574355187340.jpg",
         "alt": "Use Case 3",
-        "challenges": "An overview of the specific challenges encountered in this scenario.",
-        "solution": "How our strategy effectively tackles the identified challenges."
+        "challenges": "Classroom environments significantly impact student concentration, comfort, and overall learning experience. Temperature, humidity, and CO₂ levels can fluctuate throughout the day due to occupancy, external weather conditions, and outdated ventilation systems. Poor air quality and uncomfortable temperatures can lead to decreased focus, fatigue, and lower academic performance. Schools need a reliable way to maintain an optimal learning environment without excessive manual adjustments or high energy costs.",
+        "solution": "CropWatch provides an intelligent monitoring and automation system designed to create the ideal classroom environment. By leveraging real-time sensor data, schools can maintain optimal temperature, humidity, and air quality, ensuring students and teachers remain comfortable and focused. Whether for new school buildings or retrofitting existing classrooms, CropWatch helps improve student well-being, reduce complaints, and enhance overall learning efficiency with minimal operational overhead."
       },
       {
         "title": "Elderly Care",

@@ -8,7 +8,7 @@
           {
             "image": "/images/AI_canera_1.webp",
             "name": "[CROPWATCH] AI-交通量調査",
-            "description": "CropWatch AI Trafficのカウントシステムは、従来手作業で行っていた人や車のカウントをAIによって自動化し、集計データをリアルタイムで送信します。日々の交通状況を可視化することで、交通管理や都市計画のためのデータに基づいた意思決定をサポートします。",
+            "description": "CropWatch AI Trafficカウントシステムは、従来手作業で行っていた人や車のカウントをAIによって自動化し、集計データをリアルタイムで送信します。日々の交通状況を可視化することで、交通管理や都市計画のためのデータに基づいた意思決定をサポートします。",
             "price": "$199",
             "link": "device-details.html"
           },

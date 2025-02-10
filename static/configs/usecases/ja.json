@@ -1,11 +1,11 @@
 {
     "usecases": [
       {
-        "title": "ホテルの部屋",
+        "title": "ホテルルーム",
         "image": "https://www.usatoday.com/gcdn/authoring/authoring-images/2024/05/26/USAT/73865433007-tempoby-hilton-nashville-standard-king.jpg?width=1733&height=1176&fit=crop&format=pjpg&auto=webp",
         "alt": "ユースケース 1",
-        "challenges": "このシナリオで直面する課題の詳細、障害や主要な痛点を含む。",
-        "solution": "これらの課題を革新的なソリューションで克服するための私たちのアプローチを説明する。",
+        "challenges": "ホテルの宿泊客の満足度は、室内の快適さに直結しています。温度・湿度・CO₂レベルは、快適な滞在を実現するために重要な要素です。しかしながら、客室の稼働状況や個々の好みの違い、老朽化した空調システムなどにより、理想的な環境を維持することは容易ではありません。室内環境が不安定だと、苦情や低評価につながり、リピーターの減少を招く恐れがあります。",
+        "solution": "CropWatchは、最適な客室環境をリアルタイムで維持できる高度なモニタリング＆自動化システムを提供します。スマートセンサーと自動制御を組み合わせることで、客室ごとに理想的な温度・湿度・空気環境を維持。新築はもちろん、既存の施設にも簡単に導入でき、ゲストに最高の快適性を提供します。室内の適切な管理を行うことで、宿泊客の満足度を向上させ、リピーターの増加につなげることが可能です。",
         "button": {
           "text": "続きを読む",
           "link": "/readmore"
@@ -15,29 +15,32 @@
         "title": "スーパーマーケット",
         "image": "https://s.yimg.com/ny/api/res/1.2/ip1CHmVMTvxcRzO4Ar8Mew--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://media.zenfs.com/en/insidermonkey.com/efdfeb0a3401696fb2fc224def7e8348",
         "alt": "ユースケース 2",
-        "challenges": "この分野でよく遭遇する問題や複雑さを探る。",
-        "solution": "私たちのソリューションがこれらの問題にどのように対処し、効率的に解決するか。"
+        "challenges": "手作業による温度管理は従業員の負担が大きく、さらにリアルタイムでの監視ができないため、異常が発生してもすぐに気づけず、対応が遅れる可能性があります。加えて、スーパーマーケットの棚は限られたスペースしかなく、効果的な温度管理を行うためのセンサー設置に制約がある状況で  す。",
+        "solution": "配線不要でコンパクトな設計のセンサーを活用し、温度管理を実現します。センサーはリアルタイムで温度・湿度データを収集し、設定した閾値を超えた場合は、管理者や従業員に即座に通知を送信します。また、収集したデータは自動的にログとして記録され、食品衛生管理（HACCP）や監査対応にも活用可能です。システムを活用することで、手作業による記録が不要となり、従業員の負担を軽減するとともに、業務の効率化とコスト削減が期待できます。",
+        "button": {
+          "text": "続きを読む",
+          "link": "/readmore"
+        }
       },
       {
-        "title": "学校/教室",
+        "title": "公共施設/教室",
         "image": "https://www.acs.org/content/acs/en/education/policies/middle-and-high-school-chemistry/classroom/_jcr_content/bottomContent/columnsbootstrap/column1/image.scale.medium.1399.jpg/1574355187340.jpg",
         "alt": "ユースケース 3",
-        "challenges": "このシナリオで直面する特定の課題の概要。",
-        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "challenges": "教室や室内の環境は、集中力や快適さ、学習体験全体に大きな影響を与えます。温度・湿度・CO₂レベルは、教室の使用状況や外部の気象条件、老朽化した換気システムなどによって一日の中で変動することがあります。空気の質が悪く、室温が快適でないと、生徒の集中力が低下し、学習成果が損なわれる可能性があります。",
+        "solution": "室内の環境を可視化することで、最適な温度や湿度、空気の質を維持し、快適に集中できる環境を整えることができます。新築だけでなく、既存の教室にも導入可能で、学習環境の改善、適切な換気、全体的な学習効率の向上を最小限の運用負担で実現します。",
         "button": {
-          "text": "YouTubeで見る",
-          "link": "https://youtube.com/somevideo",
-          "external": true
+          "text": "続きを読む",
+          "link": "/readmore"
         }
       },
       {
         "title": "高齢者ケア",
         "image": "https://cdn.britannica.com/65/199365-050-3D2AB9D0/Residents-nursing-home-meal.jpg",
         "alt": "ユースケース 3",
-        "challenges": "このシナリオで直面する特定の課題の概要。",
-        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "challenges": "高齢者介護施設では、快適で健康的な環境を維持することが非常に重要です。高齢者は温度の変化や湿度、空気の質に対して敏感であり、不適切な室内環境は不快感を引き起こし、健康リスクや呼吸器系の問題を悪化させる可能性があります。手間を最小限に抑えながら、入居者の健康と快適性を優先できる信頼性の高いソリューションが求められています。",
+        "solution": "室内環境を継続的に監視し、快適で安全な空間を確保します。さらに、PIRセンサーや照度センサーを活用することで、個室の利用状況を把握し、より効率的な管理が可能になります。リアルタイム監視により、介護スタッフが迅速に対応できる環境を整え、より安全で支援の行き届いた介護を実現します",
         "button": {
-          "text": "YouTubeで見る",
+          "text": "続きを読む",
           "link": "https://youtube.com/somevideo",
           "external": true
         }
@@ -46,10 +49,10 @@
         "title": "養鶏場",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8XmHx8QUxn1bkB5ip4kv5Y2gNIpDpQcMtuw&s",
         "alt": "ユースケース 3",
-        "challenges": "このシナリオで直面する特定の課題の概要。",
-        "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
+        "challenges": "養鶏場では、鶏の健康、成長、生産性を維持するために、最適な環境を整えることが不可欠です。温度・湿度・CO₂レベルは、天候の変化、換気の問題、高密度飼育などの要因によって変動します。空気の質が悪く、極端な温度変化があると、熱ストレスや呼吸器疾患を引き起こし、卵の産卵率や肉の生産量の低下につながります。",
+        "solution": "1台のゲートウェイで広範囲の鶏舎をカバー。鶏舎内の環境データをどこからでも確認出来るようになった。",
         "button": {
-          "text": "YouTubeで見る",
+          "text": "続きを読む",
           "link": "https://youtube.com/somevideo",
           "external": true
         }
@@ -61,7 +64,7 @@
         "challenges": "このシナリオで直面する特定の課題の概要。",
         "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
         "button": {
-          "text": "YouTubeで見る",
+          "text": "続きを読む",
           "link": "https://youtube.com/somevideo",
           "external": true
         }
@@ -73,7 +76,7 @@
         "challenges": "このシナリオで直面する特定の課題の概要。",
         "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
         "button": {
-          "text": "YouTubeで見る",
+          "text": "続きを読む",
           "link": "https://youtube.com/somevideo",
           "external": true
         }
@@ -85,7 +88,7 @@
         "challenges": "このシナリオで直面する特定の課題の概要。",
         "solution": "私たちの戦略がどのようにして特定された課題に効果的に対処するか。",
         "button": {
-          "text": "YouTubeで見る",
+          "text": "続きを読む",
           "link": "https://youtube.com/somevideo",
           "external": true
         }
@@ -109,7 +112,7 @@
         "challenges": "ほとんどの公共施設には火災時に自動的に消防署に連絡できるシステムが備わっていますが、ほとんどの住宅にはそのような安全対策がありません。",
         "solution": "私たちは、どの家庭にも設置可能なソリューションを提供しており、煙や火災が検知された際にあなたや関係者に連絡することで、煙の発生から支援到着までの待機時間を短縮し、あなた、家族、ペット、財産の保護を強化します。",
         "button": {
-          "text": "YouTubeで見る",
+          "text": "続きを読む",
           "link": "https://youtube.com/somevideo",
           "external": true
         }

@@ -64,5 +64,8 @@
 	"app_login": "🔒 Connexion à l'application",
 	"more_coming_soon": "Plus d'informations à venir bientôt !",
 	"price_3": "Parlons-en!",
-	"page_not_found_subtitle": "Une erreur s'est produite. Nous nous excusons pour la gêne occasionnée. Veuillez essayer de revenir à la page d'accueil ou de revenir plus tard."
+	"page_not_found_subtitle": "Une erreur s'est produite. Nous nous excusons pour la gêne occasionnée. Veuillez essayer de revenir à la page d'accueil ou de revenir plus tard.",
+	"usecases_challenges": "Défis",
+	"usecases_solutions": "Solutions",
+	"usecases_title": "Cas d'utilisation"
 }

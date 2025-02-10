@@ -73,5 +73,8 @@
 	"price_2": "$99/seat",
 	"price_3": "Let's Talk!",
 	"page_not_found_title": "404 - Page Not Found",
-	"page_not_found_subtitle": "Something went wrong. We apologize for the inconvenience. Please try return to the Home page, or come back later."
+	"page_not_found_subtitle": "Something went wrong. We apologize for the inconvenience. Please try return to the Home page, or come back later.",
+	"usecases_challenges": "Challenges",
+	"usecases_solutions": "Solutions",
+	"usecases_title": "Use Cases"
 }

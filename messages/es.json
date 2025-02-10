@@ -64,5 +64,8 @@
 	"app_login": "🔒 Iniciar sesión en la aplicación",
 	"more_coming_soon": "¡Pronto habrá más!",
 	"price_3": "¡Hablemos!",
-	"page_not_found_subtitle": "Algo salió mal. Le pedimos disculpas por las molestias. Intente volver a la página de inicio o vuelva más tarde."
+	"page_not_found_subtitle": "Algo salió mal. Le pedimos disculpas por las molestias. Intente volver a la página de inicio o vuelva más tarde.",
+	"usecases_challenges": "Desafíos",
+	"usecases_solutions": "Soluciones",
+	"usecases_title": "Casos de uso"
 }
