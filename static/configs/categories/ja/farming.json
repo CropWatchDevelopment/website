@@ -7,14 +7,14 @@
       "products": [
         {
           "image": "/images/CW-SS-TMEPNPK.webp",
-          "name": "[CropWatch] ISFET pH＆温度・水分・EC土壌センサー",
+          "name": "[CropWatch] pH＆温度・水分・EC土壌センサー",
           "description": "農業に必要な4つのデータを、1台で測定できる革新的なデバイスです。高精度ISFET pHセンサーにより、ガラス電極不要で耐久性に優れたpH測定を実現。さらに、土壌の温度・水分・EC（電気伝導度）をリアルタイムで監視 し、最適な水やり・施肥管理をサポートします。",
           "price": "$299",
           "link": "/product/CW-SS-TMEPNPK"
         },
         {
           "image": "/images/CW-SS-PH.webp",
-          "name": "[CropWatch] ISFET pH土壌センサー",
+          "name": "[CropWatch] pH土壌センサー",
           "description": "ISFET pHセンサーは、従来のガラス電極pHセンサーと比べてコンパクトで壊れにくく、応答速度が速いため、農業・医療・食品分野などさまざまな場面で活用されています。迅速かつ正確で信頼性の高いpH測定を提供し、より良い土壌管理と作物収穫に貢献します。",
           "price": "$299",
           "link": "/product/CW-SS-PH"
