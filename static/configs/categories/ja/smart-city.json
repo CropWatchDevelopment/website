@@ -10,14 +10,14 @@
             "name": "[CROPWATCH] AI-交通量調査",
             "description": "CropWatch AI Trafficカウントシステムは、従来手作業で行っていた人や車のカウントをAIによって自動化し、集計データをリアルタイムで送信します。日々の交通状況を可視化することで、交通管理や都市計画のためのデータに基づいた意思決定をサポートします。",
             "price": "$199",
-            "link": "/products/ai-camera.json"
+            "link": "/products/ai-camera"
           },
           {
             "image": "/images/seeed.webp",
             "name": "[SEEED] 8-in-1ウェザーステーション",
             "description": "SenseCAP LoRaWAN S2120ウェザーステーションは、気温・湿度・風速・風向・降雨強度・光強度・UV指数・気圧などの環境データを高精度に収集します。気象変化の監視、防災対策、交通管理、エネルギー効率の最適化などに活用できます。",
             "price": "$199",
-            "link": "/products/seed-weatherstation.json"
+            "link": "/products/seed-weatherstation"
           },
           {
             "image": "/images/CHICKADEE-ISO2-768x768.webp",
