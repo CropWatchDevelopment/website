@@ -1,0 +1,47 @@
+{
+    "id": "CropWatch® LoRaWATCH",
+    "name": "CropWatch® LoRaWATCH",
+    "tagline": "生産性、健康、ウェルビーング向上のためにCO2と占有状況を効率的にモニタリング",
+    "image": "/images/image_1.webp",
+    "description": "こちらは当社独自のパーソナルセーフティウォッチです。信号到達距離とバッテリー寿命を最適化しており、あなたのバイタルサインや位置情報をモニタリングできます。終日着用できるよう設計され、充電も可能です。また、防水仕様です。",
+    "applications": [
+      {
+        "image": "",
+        "title": "土壌水分",
+        "description": "asdfasdf"
+      },
+      {
+        "image": "",
+        "title": "土壌水分",
+        "description": "asdfasdf"
+      }
+    ],
+    "specifications": [
+      {
+        "title": "防塵・防水等級",
+        "value_title": "評価",
+        "value": "IP67"
+      },
+      {
+        "title": "バッテリー寿命",
+        "value_title": "持続時間",
+        "value": "5日間"
+      }
+    ],
+    "features": [
+      "ユーザーの体温測定",
+      "ユーザーの心拍数測定",
+      "屋外でのユーザーGPS位置情報",
+      "GPSジオフェンシング",
+      "ユーザー用SOSボタン",
+      "ユーザーが交換可能なバッテリー",
+      "リモート設定"
+    ],
+    "downloads": [
+      {
+        "title": "asdf",
+        "url": "asdf"
+      }
+    ]
+  }
+  

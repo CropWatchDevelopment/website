@@ -10,14 +10,14 @@
             "name": "[CROPWATCH] AI-交通量調査",
             "description": "CropWatch AI Trafficカウントシステムは、従来手作業で行っていた人や車のカウントをAIによって自動化し、集計データをリアルタイムで送信します。日々の交通状況を可視化することで、交通管理や都市計画のためのデータに基づいた意思決定をサポートします。",
             "price": "$199",
-            "link": "device-details.html"
+            "link": "/products/ai-camera.json"
           },
           {
             "image": "/images/seeed.webp",
             "name": "[SEEED] 8-in-1ウェザーステーション",
             "description": "SenseCAP LoRaWAN S2120ウェザーステーションは、気温・湿度・風速・風向・降雨強度・光強度・UV指数・気圧などの環境データを高精度に収集します。気象変化の監視、防災対策、交通管理、エネルギー効率の最適化などに活用できます。",
             "price": "$199",
-            "link": "device-details.html"
+            "link": "/products/seed-weatherstation.json"
           },
           {
             "image": "/images/CHICKADEE-ISO2-768x768.webp",
@@ -27,11 +27,11 @@
             "link": "/product/tektelic-chickadee"
           },
        {
-            "image": "/images/CHICKADEE-ISO2-768x768.webp",
+            "image": "/images/R718PE.webp",
             "name": "[NETVOX] 超音波液面レベルセンサー",
             "description": "R718PEは、超音波を利用してデバイスと検出対象物との距離を測定するワイヤレス通信デバイスです。用水路や貯水池の水位監視から駐車場の空き状況検知まで対応し、作業員の安全を確保しながら、都市インフラの効率的な管理と運用を実現します。",
             "price": "$199",
-            "link": "/product/tektelic-chickadee"
+            "link": "/product/netvox-r718pe"
           }
         ]
       },
