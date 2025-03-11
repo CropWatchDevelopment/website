@@ -82,7 +82,6 @@ declare module '$env/static/private' {
 	export const GTK_IM_MODULE: string;
 	export const LOGNAME: string;
 	export const npm_package_type: string;
-	export const DESKTOP_AUTOSTART_ID: string;
 	export const _: string;
 	export const npm_package_private: string;
 	export const npm_package_scripts_check_watch: string;
@@ -254,7 +253,6 @@ declare module '$env/dynamic/private' {
 		GTK_IM_MODULE: string;
 		LOGNAME: string;
 		npm_package_type: string;
-		DESKTOP_AUTOSTART_ID: string;
 		_: string;
 		npm_package_private: string;
 		npm_package_scripts_check_watch: string;

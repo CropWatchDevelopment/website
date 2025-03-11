@@ -14,5 +14,13 @@
 		<span class="block md:hidden mt-2">
 			<LanguagePicker />
 		</span>
+		<!-- <div>
+			<a href="https://www.linkedin.com/company/cropwatch-system/" target="_blank" rel="noopener noreferrer">
+				<img src="/images/linkedin.svg" alt="LinkedIn" class="w-6 h-6 inline-block" />
+			</a>
+			<a href="https://www.facebook.com/CropWatch-System-100102002370000" target="_blank" rel="noopener noreferrer">
+				<img src="/images/facebook.svg" alt="Facebook" class="w-6 h-6 inline-block" />
+			</a>
+		</div> -->
 	</div>
 </footer>
