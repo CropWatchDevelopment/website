@@ -15,7 +15,8 @@ export const nodes = [
 	() => import('./nodes/9'),
 	() => import('./nodes/10'),
 	() => import('./nodes/11'),
-	() => import('./nodes/12')
+	() => import('./nodes/12'),
+	() => import('./nodes/13')
 ];
 
 export const server_loads = [];
@@ -25,13 +26,14 @@ export const dictionary = {
 		"/EULA": [3],
 		"/about-us": [4],
 		"/contact-us": [~5],
-		"/demo": [6],
-		"/demo/paraglide": [7],
-		"/privacy-policy": [8],
-		"/product/categories/[id]": [10],
-		"/product/[id]": [9],
-		"/terms-of-service": [11],
-		"/use-cases": [12]
+		"/cw-air-th": [6],
+		"/demo": [7],
+		"/demo/paraglide": [8],
+		"/privacy-policy": [9],
+		"/product/categories/[id]": [11],
+		"/product/[id]": [10],
+		"/terms-of-service": [12],
+		"/use-cases": [13]
 	};
 
 export const hooks = {

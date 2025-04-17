@@ -2,3 +2,29 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import '@fontsource/fira-mono';
+@import '@cropwatchdevelopment/cwui/styles.css';
+
+:root {
+    --color-primary: #1d4ed8;
+    --color-primary-content: #ffffff;
+    
+    /* Export critical UI colors for @cropwatchdevelopment/cwui package */
+    --cw-color-success: #10b981;
+    --cw-color-warning-600: #d97706;
+    --cw-color-danger-500: #ef4444;
+}
+
+/* Remove any previous fixes */
+
+/* Export classes that map to CSS variables as a fallback */
+.bg-success {
+  background-color: var(--cw-color-success) !important;
+}
+
+.bg-warning-600 {
+  background-color: var(--cw-color-warning-600) !important;
+}
+
+.bg-danger-500 {
+  background-color: var(--cw-color-danger-500) !important;
+}

@@ -10,7 +10,7 @@
 
 <ParaglideJS {i18n}>
 	<div class="flex min-h-screen flex-col">
-		<Header />
+		<!-- <Header /> -->
 		<main class="flex-grow">
 			{@render children()}
 		</main>

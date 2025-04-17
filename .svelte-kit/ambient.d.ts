@@ -66,6 +66,7 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies__types_nodemailer: string;
 	export const CINNAMON_VERSION: string;
 	export const DBUS_SESSION_BUS_ADDRESS: string;
+	export const npm_package_dependencies_moment: string;
 	export const npm_config_engine_strict: string;
 	export const COLORTERM: string;
 	export const npm_package_devDependencies__tailwindcss_forms: string;
@@ -94,6 +95,7 @@ declare module '$env/static/private' {
 	export const XDG_SESSION_ID: string;
 	export const GNOME_DESKTOP_SESSION_ID: string;
 	export const npm_package_devDependencies_prettier_plugin_tailwindcss: string;
+	export const npm_config__octocat_registry: string;
 	export const PATH: string;
 	export const SESSION_MANAGER: string;
 	export const GDM_LANG: string;
@@ -122,6 +124,7 @@ declare module '$env/static/private' {
 	export const VSCODE_GIT_IPC_HANDLE: string;
 	export const GNOME_TERMINAL_SERVICE: string;
 	export const TERM_PROGRAM: string;
+	export const npm_config__cropwatchdevelopment_registry: string;
 	export const npm_lifecycle_script: string;
 	export const SSH_AUTH_SOCK: string;
 	export const XDG_GREETER_DATA_DIR: string;
@@ -164,6 +167,7 @@ declare module '$env/static/private' {
 	export const PNPM_HOME: string;
 	export const VTE_VERSION: string;
 	export const npm_package_devDependencies__tailwindcss_container_queries: string;
+	export const npm_package_dependencies__cropwatchdevelopment_cwui: string;
 	export const INIT_CWD: string;
 	export const NODE_ENV: string;
 }
@@ -237,6 +241,7 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies__types_nodemailer: string;
 		CINNAMON_VERSION: string;
 		DBUS_SESSION_BUS_ADDRESS: string;
+		npm_package_dependencies_moment: string;
 		npm_config_engine_strict: string;
 		COLORTERM: string;
 		npm_package_devDependencies__tailwindcss_forms: string;
@@ -265,6 +270,7 @@ declare module '$env/dynamic/private' {
 		XDG_SESSION_ID: string;
 		GNOME_DESKTOP_SESSION_ID: string;
 		npm_package_devDependencies_prettier_plugin_tailwindcss: string;
+		npm_config__octocat_registry: string;
 		PATH: string;
 		SESSION_MANAGER: string;
 		GDM_LANG: string;
@@ -293,6 +299,7 @@ declare module '$env/dynamic/private' {
 		VSCODE_GIT_IPC_HANDLE: string;
 		GNOME_TERMINAL_SERVICE: string;
 		TERM_PROGRAM: string;
+		npm_config__cropwatchdevelopment_registry: string;
 		npm_lifecycle_script: string;
 		SSH_AUTH_SOCK: string;
 		XDG_GREETER_DATA_DIR: string;
@@ -335,6 +342,7 @@ declare module '$env/dynamic/private' {
 		PNPM_HOME: string;
 		VTE_VERSION: string;
 		npm_package_devDependencies__tailwindcss_container_queries: string;
+		npm_package_dependencies__cropwatchdevelopment_cwui: string;
 		INIT_CWD: string;
 		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;

@@ -9,6 +9,7 @@
 	"/contact-us": [
 		"src/routes/contact-us/+page.server.ts"
 	],
+	"/cw-air-th": [],
 	"/demo": [],
 	"/demo/paraglide": [],
 	"/privacy-policy": [],

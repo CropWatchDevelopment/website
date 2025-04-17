@@ -1,5 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
+Allow: /
 User-agent: *
-Disallow:
-
 Sitemap: https://cropwatch.io/sitemap.xml
+Disallow:
