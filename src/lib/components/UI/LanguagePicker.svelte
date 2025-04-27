@@ -3,16 +3,12 @@
 	import { page } from '$app/state';
 	import { i18n } from '$lib/i18n';
 	import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
+	import { languageTag } from '$lib/paraglide/runtime';
 
 	let dropdownOpen = $state(false);
-	let selectedLanguage = $state('ja');
-	const languages: AvailableLanguageTag = [
-		'ja',
-		'en',
-		'es',
-		'fr'
-	];
-	const languageFlags = {
+	let selectedLanguage = $state<AvailableLanguageTag>(languageTag());
+	const languages: AvailableLanguageTag[] = ['ja', 'en', 'es', 'fr'];
+	const languageFlags: Record<AvailableLanguageTag, string> = {
 		ja: '🇯🇵',
 		en: '🇺🇸',
 		es: '🇭🇳',
@@ -21,8 +17,12 @@
 
 	// On component mount, retrieve the saved language from localStorage
 	$effect(() => {
-		const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-		selectedLanguage = savedLanguage;
+		const savedLanguage = localStorage.getItem('selectedLanguage') as AvailableLanguageTag;
+		if (savedLanguage && languages.includes(savedLanguage)) {
+			selectedLanguage = savedLanguage;
+		} else {
+			selectedLanguage = languageTag();
+		}
 	});
 
 	// Update the language and persist the choice
