@@ -1,0 +1,102 @@
+{
+    "id": "CW-AIR-TH",
+    "name": "Sensor de Temperatura y Humedad CropWatch®",
+    "tagline": "Monitoreo preciso y confiable de temperatura y humedad para diversos entornos",
+    "image": "/images/CW-AIR-TH-nobg.png",
+    "description": "El Sensor de Temperatura y Humedad CropWatch® está diseñado para monitoreo ambiental preciso en entornos agrícolas, industriales y comerciales. Este sensor duradero proporciona datos en tiempo real sobre las condiciones de temperatura y humedad, ayudando a mantener ambientes óptimos para cultivos, inventario y equipos. Con una larga duración de batería y un diseño robusto, es la solución perfecta para sus necesidades de monitoreo ambiental.",
+    "specifications": [
+        {
+            "title": "Medición de temperatura",
+            "value_title": "Rango",
+            "value": "-40°C a +85°C"
+        },
+        {
+            "title": "Precisión de temperatura",
+            "value_title": "Precisión",
+            "value": "±0.5°C"
+        },
+        {
+            "title": "Medición de humedad",
+            "value_title": "Rango",
+            "value": "0% a 100% HR"
+        },
+        {
+            "title": "Precisión de humedad",
+            "value_title": "Precisión",
+            "value": "±3% HR"
+        },
+        {
+            "title": "Protocolo de comunicación",
+            "value_title": "Tipo",
+            "value": "LoRaWAN®"
+        },
+        {
+            "title": "Batería",
+            "value_title": "Tipo",
+            "value": "2 pilas AA (reemplazables)"
+        },
+        {
+            "title": "Vida de la batería",
+            "value_title": "Duración",
+            "value": "Hasta 5 años"
+        },
+        {
+            "title": "Protección de ingreso",
+            "value_title": "Clasificación",
+            "value": "IP67"
+        },
+        {
+            "title": "Dimensiones",
+            "value_title": "Tamaño",
+            "value": "120 x 80 x 40 mm"
+        },
+        {
+            "title": "Peso",
+            "value_title": "Masa",
+            "value": "200g (con baterías)"
+        },
+        {
+            "title": "Entorno operativo",
+            "value_title": "Rango",
+            "value": "-40°C a +85°C, 0-100% HR"
+        }
+    ],
+    "features": [
+        "Monitoreo de temperatura y humedad de alta precisión",
+        "Comunicación LoRaWAN® de largo alcance",
+        "Intervalos de informes configurables por el usuario",
+        "Bajo consumo de energía con larga duración de batería",
+        "Fácil instalación y configuración",
+        "Carcasa resistente a la intemperie (clasificación IP67)",
+        "Alertas en tiempo real para violaciones de umbral",
+        "Compatible con el panel de control y la aplicación móvil CropWatch®",
+        "Transmisión segura de datos",
+        "Baterías reemplazables en campo",
+        "Múltiples opciones de montaje",
+        "Actualizaciones de firmware por aire"
+    ],
+    "applications": [
+        {
+            "title": "Agricultura",
+            "description": "Monitoreo de condiciones de invernadero y microclimas de campo"
+        },
+        {
+            "title": "Gestión de cadena de frío",
+            "description": "Asegurar temperatura y humedad adecuadas para productos sensibles"
+        },
+        {
+            "title": "Industrial",
+            "description": "Monitoreo de condiciones de trabajo y entornos de equipos"
+        },
+        {
+            "title": "Comercial",
+            "description": "Mantener condiciones óptimas en espacios comerciales y de almacenamiento"
+        }
+    ],
+    "downloads": [
+        {
+            "title": "Ficha técnica del producto",
+            "url": "/downloads/CW-AIR-TH-Datasheet.pdf"
+        }
+    ]
+}
