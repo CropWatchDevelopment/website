@@ -43,25 +43,7 @@
 			alt: "Building Management Temp and CO2 sensor",
             text: 'Tektelic Breeze',
             link: "/product/breeze-v"
-        },
-        {
-            image: '/images/image_1.webp',
-			alt: "Personal Protection watch device",
-            text: 'CropWatch Safety Monitor Watch',
-            link: '/product/CW-LW-1',
-        },
-        {
-            image: '/images/CHICKADEE-ISO2-768x768.webp',
-			alt: "Personal Protection Card Sized device",
-            text: 'Tektelic Personal Tracker',
-            link: '/product/tektelic-chickadee',
-        },
-        {
-            image: '/images/AI_canera_1.webp',
-			alt: "AI Device for Traffic Counting",
-            text: 'CropWatch AI Traffic Counting',
-            link: '#',
-        },
+        }
     ];
 
 	const visibleItems = 3;

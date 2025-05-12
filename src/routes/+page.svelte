@@ -2,8 +2,8 @@
 	import PLANT_IMAGE from '$lib/images/plant.avif';
 	import COLD_STORAGE_IMAGE from '$lib/images/cold-storage.webp';
 	import SectionCard from '$lib/components/UI/Section-Card.svelte';
-	import FACTORY_IMAGE from '$lib/images/factory.webp';
-	import BOSTON_IMAGE from '$lib/images/boston.webp';
+	// Removed FACTORY_IMAGE import as it's for Safety & Risk mitigation
+	// Removed BOSTON_IMAGE import as it's for smart city
 	import SAITO_IMAGE from '$lib/images/saito.webp';
 	import LinkedParticles from '$lib/components/vendor/animated-lines';
 	import { onMount } from 'svelte';
@@ -51,7 +51,7 @@
 	<meta name="title" content="クロップウォッチ" />
 	<meta
 		name="description"
-		content="CropWatch the best IoT device for remote monitoring for your farm 🌱, factory 🏭, building 🏢 or city 🏙️."
+		content="CropWatch the best IoT device for remote monitoring for your farm 🌱, building 🏢."
 	/>
 	<meta name="keywords" content="IoT Monitoring, クロップウォッチ, Cold Chain Management, Full service IoT" />
 	<meta name="author" content="CropWatch LLC" />
@@ -60,13 +60,11 @@
 		name="description"
 		content="CropWatch - Solving problems using IoT for Farming, Industry, and more"
 	/>
-	<meta name="keywords" content="CropWatch, IoT, Farming, Industry, Smart City" />
+	<meta name="keywords" content="CropWatch, IoT, Farming, Industry" />
 	<meta name="robots" content="index, follow" />
 	<link rel="preload" as="image" href={SAITO_IMAGE} />
 	<link rel="preload" as="image" href={PLANT_IMAGE} />
 	<link rel="preload" as="image" href={COLD_STORAGE_IMAGE} />
-	<link rel="preload" as="image" href={FACTORY_IMAGE} />
-	<link rel="preload" as="image" href={BOSTON_IMAGE} />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -100,7 +98,7 @@
 	<div class="container relative z-10 mx-auto text-center">
 		<h2 class="text-3xl font-bold">{m.home_solutions_title()}</h2>
 		<p class="mt-4">{m.home_solutions_subtitle()}</p>
-		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
 			<SectionCard
 				image={PLANT_IMAGE}
 				title={m.home_solutions_farming_title()}
@@ -113,21 +111,7 @@
 				title={m.home_solutions_cold_storage_title()}
 				description={m.home_solutions_cold_storage_description()}
 				link="/product/categories/cold-storage"
-			/>
-
-			<SectionCard
-				image={FACTORY_IMAGE}
-				title={m.home_solutions_safety_title()}
-				description={m.home_solutions_safety_description()}
-				link="/product/categories/safety"
-			/>
-
-			<SectionCard
-				image={BOSTON_IMAGE}
-				title={m.home_solutions_smart_cities_title()}
-				description={m.home_solutions_smart_cities_description()}
-				link="/product/categories/smart-city"
-			/>
+				/>
 		</div>
 	</div>
 </section>
@@ -169,7 +153,7 @@
 	<div class="container mx-auto text-center">
 		<h2 class="text-3xl font-bold">{m.home_pricing_title()}</h2>
 		<p class="mt-4">{m.home_pricing_subtitle()}</p>
-		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
+		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
 			<PriceCard
 				title="IoT"
 				description={m.price_1()}
@@ -198,37 +182,6 @@
 						]}
 				link="#"
 				color="bg-green-500"
-				buttonLabel={m.home_pricing_get_started()}
-			/>
-
-			<PriceCard
-				title="Edge AI(cv)"
-				description={m.price_2()}
-				features={languageTag() == 'ja'
-					? [
-							'データ2年分保存（データベース）',
-							'データの一元管理（アプリケーションサーバー）',
-							'LoRaWANサーバー',
-							'アラート通知',
-							'データダウンロード',
-							'レポート作成・自動配信',
-							'権限付与',
-							'無制限ログイン',
-							'APIアクセス'
-						]
-					: [
-							'Store data for 2 years (database)',
-							'Centralized data management (application server)',
-							'LoRaWAN Server',
-							'Alert notifications',
-							'Data download',
-							'Report generation and automatic distribution',
-							'Permission granting',
-							'Unlimited logins',
-							'API access'
-						]}
-				link="#"
-				color="bg-red-500"
 				buttonLabel={m.home_pricing_get_started()}
 			/>
 
