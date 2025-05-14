@@ -118,6 +118,16 @@
 		isContactFormOpen = false;
 	}
 
+	let activeTooltip = $state(null);
+
+	function showTooltip(id) {
+		activeTooltip = id;
+	}
+
+	function hideTooltip() {
+		activeTooltip = null;
+	}
+
 	onMount(() => {
 		// Any initialization code can go here
 	});
@@ -388,57 +398,152 @@
 			<div class="relative rounded-lg bg-gray-50 p-6 shadow-lg">
 				<h3 class="mb-4 text-xl font-semibold text-gray-800">Sensor Detail View</h3>
 				<div class="relative">
-					<img 
-						src="/images/cw-sht31-DIS-P-FRONT.png" 
-						alt="CropWatch Air TH Sensor Board" 
+					<!-- Image with map attribute -->
+					<img
+						src="/images/cw-sht31-DIS-P-FRONT.png"
+						alt="CropWatch Air TH Sensor Board"
 						class="mx-auto h-auto w-full max-w-md object-contain"
+						usemap="#sensor-map"
 					/>
-					
-					<!-- SVG Overlay for annotations -->
-					<svg class="absolute inset-0 h-full w-full" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<!-- Line to Sensirion Chip -->
-						<path d="M150,180 L80,100" stroke="#22c55e" stroke-width="2" />
-						<circle cx="150" cy="180" r="5" fill="#22c55e" />
-						
-						<!-- Text bubble for Sensirion Chip -->
-						<rect x="10" y="60" width="160" height="40" rx="5" fill="#22c55e" />
-						<text x="20" y="85" font-family="Arial" font-size="12" fill="white">Genuine Sensirion SHT31 Sensor</text>
-						
-						<!-- Line to Main Board -->
-						<path d="M300,220 L380,170" stroke="#22c55e" stroke-width="2" />
-						<circle cx="300" cy="220" r="5" fill="#22c55e" />
-						
-						<!-- Text bubble for Conformal Coating -->
-						<rect x="320" y="140" width="160" height="40" rx="5" fill="#22c55e" />
-						<text x="330" y="165" font-family="Arial" font-size="12" fill="white">Conformal Coated Board</text>
-					</svg>
+
+					<!-- Image map definition -->
+					<map name="sensor-map">
+						<!-- Sensor IC area -->
+						<area
+							shape="circle"
+							coords="45,146,27"
+							alt="Temperature/Humidity Sensor"
+							href="javascript:void(0)"
+							on:mouseover={() => showTooltip('sensor')}
+							on:mouseout={hideTooltip}
+						/>
+
+						<!-- I²C Connector area -->
+						<area
+							shape="circle"
+							coords="425,100,27"
+							alt="Conformal Coated PCB"
+							href="javascript:void(0)"
+							on:mouseover={() => showTooltip('pcb')}
+							on:mouseout={hideTooltip}
+						/>
+
+						<!-- PCB Board area -->
+						<area
+							shape="circle"
+							coords="235,280,27"
+							alt="PCB Board Connector"
+							href="javascript:void(0)"
+							on:mouseover={() => showTooltip('connector')}
+							on:mouseout={hideTooltip}
+						/>
+					</map>
+
+					<!-- Tooltips - shown conditionally based on activeTooltip -->
+					{#if activeTooltip === 'sensor'}
+						<div
+							class="absolute left-1/2 top-1/3 z-10 -translate-x-1/2 -translate-y-full transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
+						>
+							<h4 class="mb-1 font-bold">SHT31-DIS Sensor</h4>
+							<p class="text-sm">
+								High-quality digital temperature and humidity sensor with built-in heater for
+								greater humidity accuracy.
+							</p>
+						</div>
+					{/if}
+
+					{#if activeTooltip === 'connector'}
+						<div
+							class="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 translate-y-full transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
+						>
+							<h4 class="mb-1 font-bold">Conformal Coated PCB</h4>
+							<p class="text-sm">
+								Our PCB & sensor is conformal coated for higher reliability in humid, wet, and
+								difficult environments.
+							</p>
+						</div>
+					{/if}
+
+					{#if activeTooltip === 'pcb'}
+						<div
+							class="absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-1/4 transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
+						>
+							<h4 class="mb-1 font-bold">User Replacable</h4>
+							<p class="text-sm">
+								Quick disconnect plug to allow the user to quickly replace our sensor or to plug
+								into a test platform to ensure accuracy.
+							</p>
+						</div>
+					{/if}
 				</div>
-				<p class="mt-4 text-gray-600">High-precision environmental monitoring component with industry-leading sensor technology</p>
+				<p class="mt-4 text-gray-600">
+					High-precision environmental monitoring component with industry-leading sensor technology
+				</p>
 			</div>
-			
+
 			<!-- Second Image with Annotations -->
 			<div class="relative rounded-lg bg-gray-50 p-6 shadow-lg">
 				<h3 class="mb-4 text-xl font-semibold text-gray-800">Logo & Serial Detail</h3>
 				<div class="relative">
-					<img 
-						src="/images/cw-sht31-DIS-P-BACK.png" 
-						alt="CropWatch Logo and Serial Number" 
+					<!-- Image with map attribute -->
+					<img
+						src="/images/cw-sht31-DIS-P-BACK.png"
+						alt="CropWatch Air TH Sensor Board"
 						class="mx-auto h-auto w-full max-w-md object-contain"
+						usemap="#sensor-map"
 					/>
+
+					<!-- Image map definition -->
+					<map name="sensor-map-back">
+						<!-- Sensor IC area -->
+						<area
+							style="debug-shape"
+							shape="circle"
+							coords="0,146,27"
+							alt="CropWatch Logo"
+							href="javascript:void(0)"
+							on:mouseover={() => showTooltip('logo')}
+							on:mouseout={hideTooltip}
+						/>
+
+						<!-- I²C Connector area -->
+						<!-- <area
+							shape="circle"
+							coords="150,220,27"
+							alt="id"
+							href="javascript:void(0)"
+							on:mouseover={() => showTooltip('id')}
+							on:mouseout={hideTooltip}
+						/> -->
+					</map>
+					{#if activeTooltip === 'logo'}
+						<div
+							class="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 translate-y-full transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
+						>
+							<h4 class="mb-1 font-bold">CropWatch Logo</h4>
+							<p class="text-sm">
+								Our PCB & sensor is conformal coated for higher reliability in humid, wet, and
+								difficult environments.
+							</p>
+						</div>
+					{/if}
+
+					{#if activeTooltip === 'id'}
+						<div
+							class="absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-1/4 transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
+						>
+							<h4 class="mb-1 font-bold">User Replacable</h4>
+							<p class="text-sm">
+								Quick disconnect plug to allow the user to quickly replace our sensor or to plug
+								into a test platform to ensure accuracy.
+							</p>
+						</div>
+					{/if}
 					
-					<!-- SVG Overlay for annotations -->
-					<svg class="absolute inset-0 h-full w-full" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<!-- Line to CropWatch Logo -->
-						<path d="M250,180 L350,80" stroke="#22c55e" stroke-width="2" />
-						<circle cx="250" cy="180" r="5" fill="#22c55e" />
-						
-						<!-- Text bubble for Logo area -->
-						<rect x="280" y="40" width="200" height="50" rx="5" fill="#22c55e" />
-						<text x="290" y="65" font-family="Arial" font-size="12" fill="white">Sensirion Serial Number &</text>
-						<text x="290" y="80" font-family="Arial" font-size="12" fill="white">CropWatch Logo for Quality Verification</text>
-					</svg>
 				</div>
-				<p class="mt-4 text-gray-600">Each device comes with a unique serial number and authentic CropWatch branding</p>
+				<p class="mt-4 text-gray-600">
+					Each device comes with a unique serial number and authentic CropWatch branding
+				</p>
 			</div>
 		</div>
 
@@ -452,7 +557,8 @@
 				</div>
 				<div class="p-4">
 					<p class="mb-4 text-gray-700">
-						High-precision temperature monitoring with ±0.3°C accuracy across a wide operating range.
+						High-precision temperature monitoring with ±0.3°C accuracy across a wide operating
+						range.
 					</p>
 					<ul class="mb-4 list-disc pl-5 text-gray-700">
 						<li>Range: -40°C to +85°C</li>
@@ -556,7 +662,7 @@
 </section>
 
 <!-- Testimonials -->
-<section class="bg-gray-200 py-16">
+<!-- <section class="bg-gray-200 py-16">
 	<div class="container mx-auto px-4 md:px-8">
 		<h2 class="mb-12 text-center text-3xl font-bold text-gray-800">What Our Customers Say</h2>
 
@@ -585,12 +691,12 @@
 			{/each}
 		</div>
 	</div>
-</section>
+</section> -->
 
 <!-- Call to Action -->
 <section class="bg-green-700 py-16 text-white">
 	<div class="container mx-auto px-4 text-center md:px-8">
-		<h2 class="mb-6 text-3xl font-bold">Ready to Transform Your Environmental Monitoring?</h2>
+		<h2 class="mb-6 text-3xl font-bold">Ready to Transform Your Cold-Chain Monitoring?</h2>
 		<p class="mx-auto mb-8 max-w-3xl text-xl">
 			Join the growing number of businesses that trust CropWatch for their critical monitoring
 			needs.
@@ -725,3 +831,13 @@
 		</div>
 	</div>
 </footer>
+
+
+
+<style>
+.debug-shape {
+	position: absolute;
+	border: 2px dashed red;
+	background-color: rgba(255, 0, 0, 0.2);
+  }
+</style>
