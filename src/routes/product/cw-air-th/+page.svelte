@@ -134,20 +134,20 @@
 </script>
 
 <!-- Hero Section -->
-<section class="bg-gradient-to-r from-green-700 to-green-600 text-white">
+<section class="bg-gradient-to-r from-blue-700 to-blue-600 text-white">
 	<div class="container mx-auto flex flex-col items-center px-4 py-12 md:flex-row md:px-8">
 		<div class="mb-8 md:mb-0 md:w-1/2">
 			<h1 class="mb-4 text-4xl font-bold md:text-5xl">{product.name}</h1>
 			<p class="mb-6 text-xl md:text-2xl">{product.tagline}</p>
 			<p class="mb-8 text-lg">{product.description}</p>
 			<div class="flex space-x-4">
-				<button
-					class="rounded-lg bg-white px-6 py-3 font-bold text-green-700 shadow-lg transition duration-300 hover:bg-green-100"
+				<a href="mailto:sayaka@cropwatch.io"
+					class="rounded-lg bg-white px-6 py-3 font-bold text-blue-700 shadow-lg transition duration-300 hover:bg-green-100"
 				>
 					Request Quote
-				</button>
+			</a>
 				<button
-					class="rounded-lg border-2 border-white bg-transparent px-6 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-green-700"
+					class="rounded-lg border-2 border-white bg-transparent px-6 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-blue-700"
 				>
 					Download Datasheet
 				</button>
@@ -174,11 +174,11 @@
 					class="overflow-hidden rounded-xl bg-white shadow-lg transition-transform duration-300 hover:scale-105"
 				>
 					<div class="p-6">
-						<h3 class="mb-2 text-2xl font-bold text-green-700">{model.name}</h3>
+						<h3 class="mb-2 text-2xl font-bold text-blue-700">{model.name}</h3>
 						<div class="mb-2 text-gray-500">Model: {model.id}</div>
 						<p class="text-gray-700">{model.description}</p>
 					</div>
-					<div class="flex items-center justify-between bg-green-700 p-4 text-white">
+					<div class="flex items-center justify-between bg-blue-700 p-4 text-white">
 						<span class="font-bold">Learn More</span>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -324,7 +324,7 @@
 				<div class="overflow-hidden rounded-lg bg-white shadow-md">
 					{#each product.specifications as category}
 						<div class="border-b border-gray-200 last:border-b-0">
-							<div class="bg-green-700 px-6 py-3 text-white">
+							<div class="bg-blue-700 px-6 py-3 text-white">
 								<h3 class="font-bold">{category.category} Specifications</h3>
 							</div>
 							<div class="p-4">
@@ -348,7 +348,7 @@
 </section>
 
 <!-- Applications -->
-<section class="bg-gradient-to-r from-green-700 to-green-600 py-16 text-white">
+<section class="bg-gradient-to-r from-blue-700 to-blue-600 py-16 text-white">
 	<div class="container mx-auto px-4 md:px-8">
 		<h2 class="mb-12 text-center text-3xl font-bold">Applications</h2>
 
@@ -414,8 +414,8 @@
 							coords="45,146,27"
 							alt="Temperature/Humidity Sensor"
 							href="javascript:void(0)"
-							on:mouseover={() => showTooltip('sensor')}
-							on:mouseout={hideTooltip}
+							onmouseover={() => showTooltip('sensor')}
+							onmouseout={hideTooltip}
 						/>
 
 						<!-- I²C Connector area -->
@@ -424,8 +424,8 @@
 							coords="425,100,27"
 							alt="Conformal Coated PCB"
 							href="javascript:void(0)"
-							on:mouseover={() => showTooltip('pcb')}
-							on:mouseout={hideTooltip}
+							onmouseover={() => showTooltip('pcb')}
+							onmouseout={hideTooltip}
 						/>
 
 						<!-- PCB Board area -->
@@ -434,8 +434,8 @@
 							coords="235,280,27"
 							alt="PCB Board Connector"
 							href="javascript:void(0)"
-							on:mouseover={() => showTooltip('connector')}
-							on:mouseout={hideTooltip}
+							onmouseover={() => showTooltip('connector')}
+							onmouseout={hideTooltip}
 						/>
 					</map>
 
@@ -490,56 +490,54 @@
 						src="/images/cw-sht31-DIS-P-BACK.png"
 						alt="CropWatch Air TH Sensor Board"
 						class="mx-auto h-auto w-full max-w-md object-contain"
-						usemap="#sensor-map"
+						usemap="#sensor-map-back"
 					/>
 
 					<!-- Image map definition -->
 					<map name="sensor-map-back">
-						<!-- Sensor IC area -->
+						 <!-- Left "i" icon ID -->
 						<area
-							style="debug-shape"
 							shape="circle"
-							coords="0,146,27"
-							alt="CropWatch Logo"
+							coords="160,160,30"
+							alt="ID"
 							href="javascript:void(0)"
-							on:mouseover={() => showTooltip('logo')}
-							on:mouseout={hideTooltip}
+							onmouseover={() => showTooltip('id')}
+							onmouseout={hideTooltip}
+							onfocus={() => showTooltip('id')}
+							onblur={hideTooltip}
 						/>
-
-						<!-- I²C Connector area -->
-						<!-- <area
+						<!-- Right "i" icon Logo -->
+						<area
 							shape="circle"
-							coords="150,220,27"
-							alt="id"
+							coords="300,170,30"
+							alt="Logo"
 							href="javascript:void(0)"
-							on:mouseover={() => showTooltip('id')}
-							on:mouseout={hideTooltip}
-						/> -->
+							onmouseover={() => showTooltip('logo')}
+							onmouseout={hideTooltip}
+							onfocus={() => showTooltip('logo')}
+							onblur={hideTooltip}
+						/>
 					</map>
 					{#if activeTooltip === 'logo'}
 						<div
-							class="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 translate-y-full transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
+							class="absolute bottom-0 left-2/3 z-10 -translate-x-1/2 translate-y-full transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
 						>
 							<h4 class="mb-1 font-bold">CropWatch Logo</h4>
 							<p class="text-sm">
-								Our PCB & sensor is conformal coated for higher reliability in humid, wet, and
-								difficult environments.
+								Authentic CropWatch branding for quality assurance.
 							</p>
 						</div>
 					{/if}
-
 					{#if activeTooltip === 'id'}
 						<div
-							class="absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-1/4 transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
+							class="absolute bottom-0 left-1/3 z-10 -translate-x-1/2 translate-y-full transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
 						>
-							<h4 class="mb-1 font-bold">User Replacable</h4>
+							<h4 class="mb-1 font-bold">Serial Number</h4>
 							<p class="text-sm">
-								Quick disconnect plug to allow the user to quickly replace our sensor or to plug
-								into a test platform to ensure accuracy.
+								Each device has a unique serial number for traceability and support.
 							</p>
 						</div>
 					{/if}
-					
 				</div>
 				<p class="mt-4 text-gray-600">
 					Each device comes with a unique serial number and authentic CropWatch branding
@@ -552,7 +550,7 @@
 			<div
 				class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl"
 			>
-				<div class="bg-green-700 p-4">
+				<div class="bg-blue-700 p-4">
 					<h3 class="text-xl font-bold text-white">Temperature Sensor</h3>
 				</div>
 				<div class="p-4">
@@ -567,7 +565,7 @@
 					</ul>
 					<a
 						href="#temp-spec"
-						class="flex items-center font-medium text-green-700 hover:text-green-800"
+						class="flex items-center font-medium text-blue-700 hover:text-blue-800"
 					>
 						Technical Specifications
 						<svg
@@ -589,7 +587,7 @@
 			<div
 				class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl"
 			>
-				<div class="bg-green-700 p-4">
+				<div class="bg-blue-700 p-4">
 					<h3 class="text-xl font-bold text-white">Humidity Sensor</h3>
 				</div>
 				<div class="p-4">
@@ -603,7 +601,7 @@
 					</ul>
 					<a
 						href="#humidity-spec"
-						class="flex items-center font-medium text-green-700 hover:text-green-800"
+						class="flex items-center font-medium text-blue-700 hover:text-blue-800"
 					>
 						Technical Specifications
 						<svg
@@ -625,7 +623,7 @@
 			<div
 				class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl"
 			>
-				<div class="bg-green-700 p-4">
+				<div class="bg-blue-700 p-4">
 					<h3 class="text-xl font-bold text-white">I²C Interface</h3>
 				</div>
 				<div class="p-4">
@@ -639,7 +637,7 @@
 					</ul>
 					<a
 						href="#interface-spec"
-						class="flex items-center font-medium text-green-700 hover:text-green-800"
+						class="flex items-center font-medium text-blue-700 hover:text-blue-800"
 					>
 						Connection Guide
 						<svg
@@ -694,7 +692,7 @@
 </section> -->
 
 <!-- Call to Action -->
-<section class="bg-green-700 py-16 text-white">
+<section class="bg-blue-700 py-16 text-white">
 	<div class="container mx-auto px-4 text-center md:px-8">
 		<h2 class="mb-6 text-3xl font-bold">Ready to Transform Your Cold-Chain Monitoring?</h2>
 		<p class="mx-auto mb-8 max-w-3xl text-xl">
@@ -704,14 +702,14 @@
 
 		<div class="flex flex-col justify-center gap-4 sm:flex-row">
 			<button
-				on:click={toggleContactForm}
-				class="rounded-lg bg-white px-8 py-3 font-bold text-green-700 shadow-lg transition duration-300 hover:bg-green-100"
+				onclick={toggleContactForm}
+				class="rounded-lg bg-white px-8 py-3 font-bold text-blue-700 shadow-lg transition duration-300 hover:bg-blue-100"
 			>
 				Contact Sales
 			</button>
 			<a
 				href="#download"
-				class="rounded-lg border-2 border-white bg-transparent px-8 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-green-700"
+				class="rounded-lg border-2 border-white bg-transparent px-8 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-blue-700"
 			>
 				Download Documentation
 			</a>
@@ -726,7 +724,7 @@
 			<div class="p-6">
 				<div class="mb-4 flex items-center justify-between">
 					<h3 class="text-2xl font-bold text-gray-800">Contact Sales</h3>
-					<button on:click={toggleContactForm} class="text-gray-500 hover:text-gray-700">
+					<button onclick={toggleContactForm} class="text-gray-500 hover:text-gray-700">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							class="h-6 w-6"
@@ -744,13 +742,13 @@
 					</button>
 				</div>
 
-				<form on:submit|preventDefault={handleSubmit}>
+				<form>
 					<div class="mb-4">
 						<label for="name" class="mb-2 block font-medium text-gray-700">Name</label>
 						<input
 							type="text"
 							id="name"
-							class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-green-500 focus:ring-2 focus:ring-green-500"
+							class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
 							required
 						/>
 					</div>
@@ -760,7 +758,7 @@
 						<input
 							type="email"
 							id="email"
-							class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-green-500 focus:ring-2 focus:ring-green-500"
+							class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
 							required
 						/>
 					</div>
@@ -770,7 +768,7 @@
 						<input
 							type="text"
 							id="company"
-							class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-green-500 focus:ring-2 focus:ring-green-500"
+							class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
 							required
 						/>
 					</div>
@@ -780,14 +778,14 @@
 						<textarea
 							id="message"
 							rows="4"
-							class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-green-500 focus:ring-2 focus:ring-green-500"
+							class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
 							required
 						></textarea>
 					</div>
 
 					<button
 						type="submit"
-						class="w-full rounded-lg bg-green-700 px-4 py-3 font-bold text-white transition duration-300 hover:bg-green-800"
+						class="w-full rounded-lg bg-blue-700 px-4 py-3 font-bold text-white transition duration-300 hover:bg-blue-800"
 					>
 						Submit Request
 					</button>
