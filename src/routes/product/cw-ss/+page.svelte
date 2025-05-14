@@ -1,72 +1,12 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
+	import { languageTag } from '$lib/paraglide/runtime.js';
+	import productData from '$lib/paraglide/messages/cw-ss.js';
 
-	// CropWatch Soil Sensing Solution content
-	const product = {
-		name: 'CropWatch® Soil Sensing Solution',
-		tagline: 'Precision Soil Monitoring for Agriculture',
-		description:
-			'The CropWatch Soil Sensing Solution delivers accurate, real-time soil data for optimal crop management. Designed for rugged field conditions, it features robust wireless connectivity, long battery life, and easy integration with farm management systems.',
-		models: [
-			{
-				id: 'CW-SS-XXXX',
-				name: 'Soil Sensing Solution',
-				description:
-					'Specialized for soil sensing applications, with configurable sensor options to measure soil moisture, temperature, conductivity, and more.'
-			}
-		],
-		standoutFeatures: [
-			'10-year battery life with a single D-cell Li-SOCL2 battery',
-			'Accurate soil moisture, temperature, and EC readings',
-			'IP67-rated weatherproof and UV-resistant enclosure',
-			'Plug-and-play sensor ports for rapid deployment',
-			'LoRaWAN, RS485, I²C and NFC connectivity for flexible integration'
-		],
-		specifications: [
-			{
-				category: 'Physical',
-				specs: [
-					{ name: 'Enclosure', value: 'IP67-rated, UV-resistant ASA UL94HB' },
-					{ name: 'Mounting', value: 'Pole, DIN Rail, Wall, Magnet' }
-				]
-			},
-			{
-				category: 'Power',
-				specs: [
-					{ name: 'Battery Type', value: 'Li-SOCL2 D-Cell' },
-					{ name: 'Battery Life', value: 'Up to 5 years' }
-				]
-			},
-			{
-				category: 'Connectivity',
-				specs: [
-					{ name: 'Wireless', value: 'LoRaWAN (AS923-1, US915)' },
-					{ name: 'Wired', value: 'RS485, I²C' },
-					{ name: 'Configuration', value: 'NFC' }
-				]
-			},
-			{
-				category: 'Environmental',
-				specs: [
-					{ name: 'Temperature', value: '-40°C to +80°C' },
-					{ name: 'Humidity', value: '0-100% RH (condensing)' },
-					{ name: 'Certifications', value: 'FCC, TELEC, RoHS' }
-				]
-			}
-		],
-		applications: [
-			{
-				name: 'Agriculture',
-				examples: ['Soil moisture monitoring', 'Irrigation optimization', 'Nutrient management']
-			},
-			{
-				name: 'Research',
-				examples: ['Soil science studies', 'Field trials', 'Environmental monitoring']
-			}
-		]
-	};
-
+	let product = productData;
 	let isContactFormOpen = false;
+
+	$: product = productData;
 
 	function toggleContactForm() {
 		isContactFormOpen = !isContactFormOpen;
@@ -77,9 +17,9 @@
 		isContactFormOpen = false;
 	}
 
-	let activeTooltip = null;
+	let activeTooltip: string | null = null;
 
-	function showTooltip(id) {
+	function showTooltip(id: string) {
 		activeTooltip = id;
 	}
 

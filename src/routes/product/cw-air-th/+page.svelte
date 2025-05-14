@@ -1,126 +1,49 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
+	import { languageTag } from '$lib/paraglide/runtime.js';
+	import productData from '$lib/paraglide/messages/cw-air-th.js';
 
-	const onNavigate = (locationId) => {
-		// Handle navigation logic here
+	let product = productData;
+	let isContactFormOpen = false;
+
+	// If productData is dynamic per language, this will update on language change
+	$: product = productData;
+
+	const onNavigate = (locationId: string) => {
 		console.log(`Navigating to location with ID: ${locationId}`);
 	};
 
-	// Sample product data - you would likely fetch this from an API
-	const product = {
-		name: 'CropWatch® Environmental Monitoring Solution',
-		tagline: 'Long-Range Monitoring for Challenging Environments',
-		description:
-			'The CropWatch Monitoring Solution is engineered for challenging environments where traditional monitoring systems fail. With a unique external antenna design, exceptional battery longevity, and resilient construction, CropWatch outperforms competitors in refrigeration facilities, rural deployments, and high-density environments.',
-		models: [
-			{
-				id: 'CW-SS-XXXX',
-				name: 'Soil Sensing Solution',
-				description:
-					'Specialized for soil sensing applications, with configurable sensor options to measure soil moisture, temperature, conductivity, and more.'
-			},
-			{
-				id: 'CW-AIR-XXX',
-				name: 'Atmospheric Monitoring Solution',
-				description:
-					'Designed for atmospheric monitoring, capable of measuring air temperature, humidity, pressure, and gas concentrations depending on sensor configuration.'
-			}
-		],
-		standoutFeatures: [
-			'Exceptional 10-year battery life with a single D-cell Li-SOCL2 battery',
-			'Superior signal performance even in difficult radio environments',
-			'Durable IP67-rated weatherproof construction',
-			'User-serviceable components for easy maintenance',
-			'Versatile LoRaWAN, RS485, and NFC connectivity'
-		],
-		specifications: [
-			{
-				category: 'Physical',
-				specs: [
-					{ name: 'Enclosure', value: 'IP67-rated weatherproof housing' },
-					{ name: 'Material', value: 'UV-resistant ASA UL94HB' },
-					{ name: 'Mounting', value: 'Pole, DIN Rail, Wall, Magnet' }
-				]
-			},
-			{
-				category: 'Power',
-				specs: [
-					{ name: 'Battery Type', value: 'Li-SOCL2 D-Cell' },
-					{ name: 'Battery Life', value: 'Up to 10 years' },
-					{ name: 'Power Consumption', value: '25-30 μA (Sleep)' }
-				]
-			},
-			{
-				category: 'Connectivity',
-				specs: [
-					{ name: 'Wireless', value: 'LoRaWAN (AS923-1, US915)' },
-					{ name: 'Wired', value: 'RS485, I²C' },
-					{ name: 'Configuration', value: 'NFC' }
-				]
-			},
-			{
-				category: 'Environmental',
-				specs: [
-					{ name: 'Temperature', value: '-40°C to +80°C (-22°F to +176°F)' },
-					{ name: 'Humidity', value: '0-100% RH (condensing)' },
-					{ name: 'Certifications', value: 'FCC, TELEC, RoHS' }
-				]
-			}
-		],
-		applications: [
-			{
-				name: 'Agriculture',
-				examples: ['Greenhouse monitoring', 'Soil condition tracking', 'Irrigation control']
-			},
-			{
-				name: 'Cold Chain',
-				examples: ['Refrigerated transport', 'Cold storage facilities', 'HACCP compliance']
-			},
-			{
-				name: 'Food Processing',
-				examples: ['Production monitoring', 'Storage oversight', 'Regulatory compliance']
-			}
-		]
-	};
-
-	// For testimonials or case studies
 	const testimonials = [
 		{
-			quote:
-				'CropWatch sensors have transformed how we monitor our greenhouse conditions, saving us thousands in potential crop losses.',
+			quote: 'CropWatch sensors have transformed how we monitor our greenhouse conditions, saving us thousands in potential crop losses.',
 			author: 'Sarah Johnson',
 			title: 'Operations Manager, Green Valley Farms',
 			image: 'images/testimonial1.jpg'
 		},
 		{
-			quote:
-				"The battery life is impressive. We installed these two years ago and haven't had to service a single unit yet.",
+			quote: "The battery life is impressive. We installed these two years ago and haven't had to service a single unit yet.",
 			author: 'Michael Chen',
 			title: 'Chief Engineer, FreshTech Storage Solutions'
 		},
 		{
-			quote:
-				'The data reliability even in our metal-walled cold storage facilities is outstanding. No more dead zones.',
+			quote: 'The data reliability even in our metal-walled cold storage facilities is outstanding. No more dead zones.',
 			author: 'David Rodriguez',
 			title: 'Quality Assurance Director, Pacific Cold Chain'
 		}
 	];
-
-	let isContactFormOpen = false;
 
 	function toggleContactForm() {
 		isContactFormOpen = !isContactFormOpen;
 	}
 
 	function handleSubmit() {
-		// Handle form submission logic here
 		alert('Thank you for your interest! Our team will contact you soon.');
 		isContactFormOpen = false;
 	}
 
-	let activeTooltip = $state(null);
+	let activeTooltip: string | null = null;
 
-	function showTooltip(id) {
+	function showTooltip(id: string) {
 		activeTooltip = id;
 	}
 
@@ -128,9 +51,7 @@
 		activeTooltip = null;
 	}
 
-	onMount(() => {
-		// Any initialization code can go here
-	});
+	onMount(() => {});
 </script>
 
 <!-- Hero Section -->
@@ -374,7 +295,6 @@
 										stroke-width="2"
 										d="M5 13l4 4L19 7"
 									/>
-								</svg>
 								{example}
 							</li>
 						{/each}
@@ -830,12 +750,5 @@
 	</div>
 </footer>
 
-
-
 <style>
-.debug-shape {
-	position: absolute;
-	border: 2px dashed red;
-	background-color: rgba(255, 0, 0, 0.2);
-  }
 </style>
