@@ -103,7 +103,7 @@
 				image={PLANT_IMAGE}
 				title={m.home_solutions_farming_title()}
 				description={m.home_solutions_farming_description()}
-				link="/product/categories/farming"
+				link="/product/cw-ss"
 			/>
 
 			<SectionCard
@@ -117,7 +117,7 @@
 </section>
 
 <!-- Products Quickview Section -->
-<section id="products-quickview" class="bg-gray-600 py-10 text-white">
+<!-- <section id="products-quickview" class="bg-gray-600 py-10 text-white">
 	<div class="container mx-auto text-center">
 		<h2 class="text-3xl font-bold">{m.home_popular_products_title()}</h2>
 		<p class="mt-4">
@@ -125,7 +125,7 @@
 		</p>
 	</div>
 	<LineCarasol />
-</section>
+</section> -->
 
 <!-- Pricing Section -->
 <section id="pricing" class="bg-white py-20">
