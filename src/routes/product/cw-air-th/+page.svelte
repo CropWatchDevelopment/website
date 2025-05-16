@@ -1,12 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import productData from '$lib/paraglide/messages/cw-air-th.js';
+	import cwAirThProduct from '$lib/data/products/cw-air-th';
 
-	let product = productData;
+	let product = cwAirThProduct;
 	let isContactFormOpen = false;
-
-	// If productData is dynamic per language, this will update on language change
-	$: product = productData;
 
 	const onNavigate = (locationId: string) => {
 		console.log(`Navigating to location with ID: ${locationId}`);

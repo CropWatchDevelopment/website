@@ -59,3 +59,4 @@ const cwSSProduct = {
 };
 
 export default cwSSProduct;
+export {};
