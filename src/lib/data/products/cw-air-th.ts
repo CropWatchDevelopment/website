@@ -51,7 +51,9 @@ const cwAirThProduct = {
 			examples: [
 				'Greenhouses',
 				'Produce storage',
-				'Livestock barns'
+				'Livestock barns',
+				'Crop monitoring',
+				'Nurseries'
 			]
 		}
 	]
