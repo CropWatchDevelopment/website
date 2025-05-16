@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import productData from '$lib/paraglide/messages/cw-ss.js';
+	import cwSSProduct from '$lib/data/products/cw-ss';
 
-	let product = productData;
+	let product = cwSSProduct;
 	let isContactFormOpen = false;
-
-	$: product = productData;
 
 	function toggleContactForm() {
 		isContactFormOpen = !isContactFormOpen;
