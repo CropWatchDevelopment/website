@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { languageTag } from '$lib/paraglide/runtime.js';
 	import productData from '$lib/paraglide/messages/cw-air-th.js';
 
 	let product = productData;
@@ -551,9 +550,9 @@
 						Our sensors are user replacable, and can be connected to a data validation tool to verify accuracy.
 					</p>
 					<ul class="mb-4 list-disc pl-5 text-gray-700">
-						<li>Address: 0x44 (default)</li>
-						<li>Speed: 100kHz/400kHz</li>
-						<li>Expandable with additional sensors</li>
+						<li>User Replacable</li>
+						<li>Saves cost, and the environment by reducing the need to purchase new devices.</li>
+						<li>Easy to validate data and upgrade sensors if needed.</li>
 					</ul>
 					<a
 						href="#interface-spec"
