@@ -1,6 +1,7 @@
 <script lang="ts">
 	import PLANT_IMAGE from '$lib/images/plant.avif';
-	import COLD_STORAGE_IMAGE from '$lib/images/cold-storage.webp';
+	import COLD_STORAGE_IMAGE from '$lib/images/coldChain.webp';
+	import HOT_IMAGE from '$lib/images/hot.png';
 	import SectionCard from '$lib/components/UI/Section-Card.svelte';
 	// Removed FACTORY_IMAGE import as it's for Safety & Risk mitigation
 	// Removed BOSTON_IMAGE import as it's for smart city
@@ -53,7 +54,10 @@
 		name="description"
 		content="CropWatch the best IoT device for remote monitoring for your farm 🌱, building 🏢."
 	/>
-	<meta name="keywords" content="IoT Monitoring, クロップウォッチ, Cold Chain Management, Full service IoT" />
+	<meta
+		name="keywords"
+		content="IoT Monitoring, クロップウォッチ, Cold Chain Management, Full service IoT"
+	/>
 	<meta name="author" content="CropWatch LLC" />
 
 	<meta
@@ -65,6 +69,7 @@
 	<link rel="preload" as="image" href={SAITO_IMAGE} />
 	<link rel="preload" as="image" href={PLANT_IMAGE} />
 	<link rel="preload" as="image" href={COLD_STORAGE_IMAGE} />
+	<link rel="preload" as="image" href={HOT_IMAGE} />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -98,12 +103,13 @@
 	<div class="container relative z-10 mx-auto text-center">
 		<h2 class="text-3xl font-bold">{m.home_solutions_title()}</h2>
 		<p class="mt-4">{m.home_solutions_subtitle()}</p>
-		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
 			<SectionCard
 				image={PLANT_IMAGE}
 				title={m.home_solutions_farming_title()}
 				description={m.home_solutions_farming_description()}
 				link="/product/cw-ss"
+				class="bg-green-100 border border-green-200"
 			/>
 
 			<SectionCard
@@ -111,7 +117,16 @@
 				title={m.home_solutions_cold_storage_title()}
 				description={m.home_solutions_cold_storage_description()}
 				link="/product/cw-air-th"
-				/>
+				class="bg-blue-100 border border-blue-200"
+			/>
+
+			<SectionCard
+				image={HOT_IMAGE}
+				title={m.home_solutions_heat_safety_title()}
+				description={m.home_solutions_heat_safety_description()}
+				link="/product/cw-air-th-safety"
+				class="bg-red-50 border border-red-200"
+			/>
 		</div>
 	</div>
 </section>

@@ -1,34 +1,82 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { languageTag } from '$lib/paraglide/runtime.js';
-	import productData from '$lib/paraglide/messages/cw-air-th.js';
+	// No i18n productData for this special page, so we define content inline
 
-	let product = productData;
-	let isContactFormOpen = false;
-
-	// If productData is dynamic per language, this will update on language change
-	$: product = productData;
-
-	const onNavigate = (locationId: string) => {
-		console.log(`Navigating to location with ID: ${locationId}`);
+	let product = {
+		name: 'CropWatch Heat Safety Sensor',
+		tagline: 'Protect Your Team from Heat Stress – Early Warnings, Reliable Data',
+		description:
+			'Safeguard your workforce in hot environments with the CropWatch Heat Safety Sensor. Our device continuously monitors heat index and ambient conditions, providing real-time alerts to prevent heat stroke and related health risks. With dual-sensor technology for unmatched reliability, you can trust CropWatch to keep your people safe where it matters most.',
+		models: [
+			{
+				name: 'CW-AIR-TH Safety',
+				id: 'CW-AIR-TH-SAFETY',
+				description:
+					'Optimized for heat safety monitoring in warehouses, factories, construction sites, and outdoor events. Dual-sensor design ensures accurate, fail-safe heat index readings.'
+			}
+		],
+		standoutFeatures: [
+			'Dual-sensor system: one for heat index, one for redundancy and reliability',
+			'Instant alerts for dangerous heat conditions – act before it’s too late',
+			'Easy deployment in any hot environment: indoor or outdoor',
+			'Rugged, maintenance-free design for continuous operation',
+			'Protects workers, athletes, and the public from heat-related illness',
+			'Cloud-connected for remote monitoring and compliance reporting'
+		],
+		specifications: [
+			{
+				category: 'Environmental',
+				specs: [
+					{ name: 'Temperature Range', value: '-20°C to +70°C' },
+					{ name: 'Humidity Range', value: '0% to 100% RH' },
+					{ name: 'Heat Index Accuracy', value: '±0.5°C (with dual-sensor validation)' },
+					{ name: 'Ingress Protection', value: 'IP67' }
+				]
+			},
+			{
+				category: 'Power',
+				specs: [
+					{ name: 'Battery Life', value: 'Up to 10 years' },
+					{ name: 'Battery Type', value: 'D-cell Li-SOCL2' }
+				]
+			}
+		],
+		applications: [
+			{
+				name: 'Workplace Safety',
+				examples: [
+					'Warehouses & Factories',
+					'Construction Sites',
+					'Logistics & Shipping Yards',
+					'Outdoor Events & Festivals'
+				]
+			},
+			{
+				name: 'Public Safety',
+				examples: ['Schools & Playgrounds', 'Sports Facilities', 'Parks & Recreation Areas']
+			}
+		]
 	};
 
+	let isContactFormOpen = false;
 	const testimonials = [
 		{
-			quote: 'CropWatch sensors have transformed how we monitor our greenhouse conditions, saving us thousands in potential crop losses.',
-			author: 'Sarah Johnson',
-			title: 'Operations Manager, Green Valley Farms',
+			quote:
+				'We rely on CropWatch Heat Safety Sensors to protect our team during the hottest months. The early warnings have prevented multiple incidents.',
+			author: 'Lisa Turner',
+			title: 'Safety Manager, SunTech Logistics',
 			image: 'images/testimonial1.jpg'
 		},
 		{
-			quote: "The battery life is impressive. We installed these two years ago and haven't had to service a single unit yet.",
-			author: 'Michael Chen',
-			title: 'Chief Engineer, FreshTech Storage Solutions'
+			quote:
+				'The dual-sensor design gives us peace of mind. We know the readings are accurate, and our compliance reporting is easier than ever.',
+			author: 'Carlos Ramirez',
+			title: 'Operations Director, MegaBuild Construction'
 		},
 		{
-			quote: 'The data reliability even in our metal-walled cold storage facilities is outstanding. No more dead zones.',
-			author: 'David Rodriguez',
-			title: 'Quality Assurance Director, Pacific Cold Chain'
+			quote:
+				'We use these sensors at all our outdoor events. The real-time alerts help us keep athletes and guests safe from heat stroke.',
+			author: 'Emily Chen',
+			title: 'Event Coordinator, City Sports League'
 		}
 	];
 
@@ -50,34 +98,35 @@
 	function hideTooltip() {
 		activeTooltip = null;
 	}
-
-	onMount(() => {});
 </script>
 
 <!-- Hero Section -->
-<section class="bg-gradient-to-r from-blue-700 to-blue-600 text-white">
+<section class="bg-gradient-to-r from-yellow-600 to-red-600 text-white">
 	<div class="container mx-auto flex flex-col items-center px-4 py-12 md:flex-row md:px-8">
 		<div class="mb-8 md:mb-0 md:w-1/2">
 			<h1 class="mb-4 text-4xl font-bold md:text-5xl">{product.name}</h1>
 			<p class="mb-6 text-xl md:text-2xl">{product.tagline}</p>
 			<p class="mb-8 text-lg">{product.description}</p>
 			<div class="flex space-x-4">
-				<a href="mailto:sayaka@cropwatch.io"
-					class="rounded-lg bg-white px-6 py-3 font-bold text-blue-700 shadow-lg transition duration-300 hover:bg-green-100"
+				<a
+					href="mailto:sayaka@cropwatch.io"
+					class="rounded-lg bg-white px-6 py-3 font-bold text-yellow-700 shadow-lg transition duration-300 hover:bg-red-100"
 				>
 					Request Quote
-			</a>
+				</a>
 				<button
-					class="rounded-lg border-2 border-white bg-transparent px-6 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-blue-700"
+					type="button"
+					class="rounded-lg border-2 border-white bg-transparent px-6 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-yellow-700"
+					onclick={() => window.open('/docs/CW-AIR-TH-SAFETY-datasheet.pdf', '_blank')}
 				>
-					Download Datasheet
+					Download Safety Datasheet
 				</button>
 			</div>
 		</div>
 		<div class="flex justify-center md:w-1/2">
 			<img
 				src="/images/CW-AIR-TH-nobg.png"
-				alt="CropWatch Monitoring Device"
+				alt="CropWatch Heat Safety Sensor"
 				class="h-auto max-w-full rounded-lg shadow-xl"
 			/>
 		</div>
@@ -85,9 +134,9 @@
 </section>
 
 <!-- Product Showcase -->
-<section class="bg-gray-100 py-16">
+<section class="bg-red-100 py-16">
 	<div class="container mx-auto px-4 md:px-8">
-		<h2 class="mb-12 text-center text-3xl font-bold text-gray-800">Product Models</h2>
+		<h2 class="mb-12 text-center text-3xl font-bold text-red-800">Product Models</h2>
 
 		<div class="grid gap-8 md:grid-cols-2">
 			{#each product.models as model}
@@ -95,11 +144,11 @@
 					class="overflow-hidden rounded-xl bg-white shadow-lg transition-transform duration-300 hover:scale-105"
 				>
 					<div class="p-6">
-						<h3 class="mb-2 text-2xl font-bold text-blue-700">{model.name}</h3>
+						<h3 class="mb-2 text-2xl font-bold text-red-700">{model.name}</h3>
 						<div class="mb-2 text-gray-500">Model: {model.id}</div>
 						<p class="text-gray-700">{model.description}</p>
 					</div>
-					<div class="flex items-center justify-between bg-blue-700 p-4 text-white">
+					<div class="flex items-center justify-between bg-red-700 p-4 text-white">
 						<span class="font-bold">Learn More</span>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -125,8 +174,8 @@
 <!-- What Makes CropWatch Stand Out -->
 <section class="bg-white py-16">
 	<div class="container mx-auto px-4 md:px-8">
-		<h2 class="mb-12 text-center text-3xl font-bold text-gray-800">
-			What Makes CropWatch Stand Out
+		<h2 class="mb-12 text-center text-3xl font-bold text-red-800">
+			Why Choose CropWatch for Heat Safety?
 		</h2>
 
 		<div class="mx-auto max-w-3xl">
@@ -136,7 +185,7 @@
 						<div class="mt-1 flex-shrink-0">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								class="h-5 w-5 text-green-600"
+								class="h-5 w-5 text-red-600"
 								viewBox="0 0 20 20"
 								fill="currentColor"
 							>
@@ -156,12 +205,12 @@
 </section>
 
 <!-- Features & Specifications -->
-<section class="bg-gray-100 py-16">
+<section class="bg-red-100 py-16">
 	<div class="container mx-auto px-4 md:px-8">
 		<div class="flex flex-col md:flex-row">
 			<!-- Features Column -->
 			<div class="mb-8 pr-0 md:mb-0 md:w-1/2 md:pr-8">
-				<h2 class="mb-8 text-3xl font-bold text-gray-800">Key Features</h2>
+				<h2 class="mb-8 text-3xl font-bold text-red-800">Key Features</h2>
 
 				<div class="space-y-6">
 					<div class="rounded-lg bg-white p-6 shadow-md">
@@ -240,12 +289,12 @@
 
 			<!-- Specifications Column -->
 			<div class="pl-0 md:w-1/2 md:pl-8">
-				<h2 class="mb-8 text-3xl font-bold text-gray-800">Technical Specifications</h2>
+				<h2 class="mb-8 text-3xl font-bold text-red-800">Technical Specifications</h2>
 
 				<div class="overflow-hidden rounded-lg bg-white shadow-md">
 					{#each product.specifications as category}
 						<div class="border-b border-gray-200 last:border-b-0">
-							<div class="bg-blue-700 px-6 py-3 text-white">
+							<div class="bg-red-700 px-6 py-3 text-white">
 								<h3 class="font-bold">{category.category} Specifications</h3>
 							</div>
 							<div class="p-4">
@@ -269,7 +318,7 @@
 </section>
 
 <!-- Applications -->
-<section class="bg-gradient-to-r from-blue-700 to-blue-600 py-16 text-white">
+<section class="bg-gradient-to-r from-yellow-600 to-red-600 py-16 text-white">
 	<div class="container mx-auto px-4 md:px-8">
 		<h2 class="mb-12 text-center text-3xl font-bold">Applications</h2>
 
@@ -295,6 +344,7 @@
 										stroke-width="2"
 										d="M5 13l4 4L19 7"
 									/>
+								</svg>
 								{example}
 							</li>
 						{/each}
@@ -415,7 +465,7 @@
 
 					<!-- Image map definition -->
 					<map name="sensor-map-back">
-						 <!-- Left "i" icon ID -->
+						<!-- Left "i" icon ID -->
 						<area
 							shape="circle"
 							coords="160,160,30"
@@ -443,9 +493,7 @@
 							class="absolute bottom-0 left-2/3 z-10 -translate-x-1/2 translate-y-full transform rounded-md bg-black bg-opacity-90 p-3 text-white shadow-lg"
 						>
 							<h4 class="mb-1 font-bold">CropWatch Logo</h4>
-							<p class="text-sm">
-								Authentic CropWatch branding for quality assurance.
-							</p>
+							<p class="text-sm">Authentic CropWatch branding for quality assurance.</p>
 						</div>
 					{/if}
 					{#if activeTooltip === 'id'}
@@ -470,7 +518,7 @@
 			<div
 				class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl"
 			>
-				<div class="bg-blue-700 p-4">
+				<div class="bg-red-700 p-4">
 					<h3 class="text-xl font-bold text-white">Temperature Sensor</h3>
 				</div>
 				<div class="p-4">
@@ -485,7 +533,7 @@
 					</ul>
 					<a
 						href="#temp-spec"
-						class="flex items-center font-medium text-blue-700 hover:text-blue-800"
+						class="flex items-center font-medium text-red-700 hover:text-red-800"
 					>
 						Technical Specifications
 						<svg
@@ -507,7 +555,7 @@
 			<div
 				class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl"
 			>
-				<div class="bg-blue-700 p-4">
+				<div class="bg-red-700 p-4">
 					<h3 class="text-xl font-bold text-white">Humidity Sensor</h3>
 				</div>
 				<div class="p-4">
@@ -521,7 +569,7 @@
 					</ul>
 					<a
 						href="#humidity-spec"
-						class="flex items-center font-medium text-blue-700 hover:text-blue-800"
+						class="flex items-center font-medium text-red-700 hover:text-red-800"
 					>
 						Technical Specifications
 						<svg
@@ -543,7 +591,7 @@
 			<div
 				class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl"
 			>
-				<div class="bg-blue-700 p-4">
+				<div class="bg-red-700 p-4">
 					<h3 class="text-xl font-bold text-white">User Replacable Sensor</h3>
 				</div>
 				<div class="p-4">
@@ -551,13 +599,13 @@
 						Our sensors are user replacable, and can be connected to a data validation tool to verify accuracy.
 					</p>
 					<ul class="mb-4 list-disc pl-5 text-gray-700">
-						<li>Address: 0x44 (default)</li>
-						<li>Speed: 100kHz/400kHz</li>
-						<li>Expandable with additional sensors</li>
+						<li>User Replacable</li>
+						<li>Saves cost, and the environment by reducing the need to purchase new devices.</li>
+						<li>Easy to validate data and upgrade sensors if needed.</li>
 					</ul>
 					<a
 						href="#interface-spec"
-						class="flex items-center font-medium text-blue-700 hover:text-blue-800"
+						class="flex items-center font-medium text-red-700 hover:text-red-800"
 					>
 						Connection Guide
 						<svg
@@ -579,60 +627,28 @@
 	</div>
 </section>
 
-<!-- Testimonials -->
-<!-- <section class="bg-gray-200 py-16">
-	<div class="container mx-auto px-4 md:px-8">
-		<h2 class="mb-12 text-center text-3xl font-bold text-gray-800">What Our Customers Say</h2>
-
-		<div class="grid gap-8 md:grid-cols-3">
-			{#each testimonials as testimonial}
-				<div class="rounded-lg bg-white p-6 shadow-md">
-					<div class="mb-4 text-green-600">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							class="absolute ml-5 mt-5 h-8 w-8"
-							fill="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
-							/>
-						</svg>
-						<img src={testimonial.image} alt={testimonial.author} class="rounded-xl" />
-					</div>
-					<p class="mb-6 italic text-gray-700">{testimonial.quote}</p>
-					<div>
-						<p class="font-bold text-gray-800">{testimonial.author}</p>
-						<p class="text-gray-600">{testimonial.title}</p>
-					</div>
-				</div>
-			{/each}
-		</div>
-	</div>
-</section> -->
-
 <!-- Call to Action -->
-<section class="bg-blue-700 py-16 text-white">
+<section class="bg-red-700 py-16 text-white">
 	<div class="container mx-auto px-4 text-center md:px-8">
-		<h2 class="mb-6 text-3xl font-bold">Ready to Transform Your Cold-Chain Monitoring?</h2>
+		<h2 class="mb-6 text-3xl font-bold">Ready to Protect Your Team from Heat Stress?</h2>
 		<p class="mx-auto mb-8 max-w-3xl text-xl">
-			Join the growing number of businesses that trust CropWatch for their critical monitoring
-			needs.
+			Join the growing number of organizations that trust CropWatch for heat safety and compliance.
 		</p>
 
 		<div class="flex flex-col justify-center gap-4 sm:flex-row">
 			<button
 				onclick={toggleContactForm}
-				class="rounded-lg bg-white px-8 py-3 font-bold text-blue-700 shadow-lg transition duration-300 hover:bg-blue-100"
+				class="rounded-lg bg-white px-8 py-3 font-bold text-red-700 shadow-lg transition duration-300 hover:bg-red-100"
 			>
 				Contact Sales
 			</button>
-			<a
-				href="#download"
-				class="rounded-lg border-2 border-white bg-transparent px-8 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-blue-700"
+			<button
+				type="button"
+				class="rounded-lg border-2 border-white bg-transparent px-8 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-red-700"
+				onclick={() => window.open('/docs/CW-AIR-TH-SAFETY-datasheet.pdf', '_blank')}
 			>
-				Download Documentation
-			</a>
+				Download Safety Datasheet
+			</button>
 		</div>
 	</div>
 </section>
@@ -749,6 +765,3 @@
 		</div>
 	</div>
 </footer>
-
-<style>
-</style>
