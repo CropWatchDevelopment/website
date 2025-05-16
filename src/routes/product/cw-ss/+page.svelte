@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { languageTag } from '$lib/paraglide/runtime.js';
 	import productData from '$lib/paraglide/messages/cw-ss.js';
 
 	let product = productData;
