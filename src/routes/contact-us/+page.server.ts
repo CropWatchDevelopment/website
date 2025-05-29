@@ -51,7 +51,7 @@ export const actions: Actions = {
     try {
       const info = await transporter.sendMail({
         from: `"${name}" <admin@cropwatch.io>`, // sender info from form data
-        to: "kevin@cropwatch.io",      // receiver email
+        to: "sayaka@cropwatch.io",      // receiver email
         subject: '📧❗ Message sent from CropWatch.io Website!',
         text: `
         sender name: ${name}
