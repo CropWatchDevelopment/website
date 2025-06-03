@@ -30,7 +30,7 @@
 				href="https://app.cropwatch.io"
 				target="_blank"
 				rel="noopener"
-				class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+				class="rounded bg-green-600 px-4 py-2 text-lg font-light text-white hover:bg-green-700"
 			>
 				{m.app_login()}
 			</a>
@@ -78,7 +78,7 @@
 					href="https://app.cropwatch.io"
 					target="_blank"
 					rel="noopener"
-					class="block rounded bg-blue-600 px-4 py-2 text-center text-white hover:bg-blue-700"
+					class="block rounded bg-green-600 px-4 py-2 text-center text-white hover:bg-blue-700"
 				>
 					App Login
 				</a>

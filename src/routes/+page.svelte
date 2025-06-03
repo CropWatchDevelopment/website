@@ -12,6 +12,8 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import PriceCard from '$lib/components/UI/Price-Card.svelte';
 	import { languageTag } from '$lib/paraglide/runtime';
+	import { fly } from 'svelte/transition';
+	import { Sprout } from '@lucide/svelte';
 
 	let canvas;
 	let ctx;
@@ -24,6 +26,7 @@
 		canvas.width = width;
 		canvas.height = height;
 	}
+	let loaded = $state(false)
 
 	onMount(() => {
 		canvas = document.getElementById('lines');
@@ -43,6 +46,7 @@
 			requestAnimationFrame(loop);
 		}
 		requestAnimationFrame(loop);
+		loaded = true;
 	});
 </script>
 
@@ -75,25 +79,27 @@
 <!-- Hero Section -->
 <section
 	id="home"
-	class="relative bg-blue-200 py-32 text-white"
-	style="background-image: url('{SAITO_IMAGE}'); background-size: cover; background-position: top;"
+	class="relative bg-blue-200 py-32 text-white bg-[url(/images/welcome.webp)] bg-cover bg-fixed"
+
 >
 	<!-- Overlay for blur and darkening -->
 	<div class="backdrop-blur-xs absolute inset-0 bg-black bg-opacity-40"></div>
 	<!-- Content -->
-	<div class="container relative mx-auto text-center">
-		<h1 class="text-4xl font-bold text-yellow-400 xl:text-6xl">{m.home_hero_title()}</h1>
-		<p class="mt-4 text-lg">
+	<div class="container relative mx-auto text-center px-10 space-y-10">
+		{#if loaded}
+		<h1 class="text-4xl font-bold text-white xl:text-6xl" transition:fly={{ y: 100, duration: 1000 }}>{m.home_hero_title()}</h1>
+		<p class="mt-4 text-lg pt-20" transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
 			{m.home_hero_subtitle()}
 		</p>
-		<div class="mt-6">
-			<a href="/use-cases" class="rounded bg-white px-6 py-3 text-blue-600 hover:bg-gray-200">
-				{m.home_hero_button_label()}
+		<div class="mt-6" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
+			<a href="/use-cases" class=" bg-green-600 px-4 py-3 text-white text-lg rounded-md hover:bg-gray-200 flex justify-center">
+				{m.home_hero_button_label()} <Sprout size={30} class="ml-2 animate-bounce"/>
 			</a>
 		</div>
 		<div class="mt-10">
 			<!-- If you add any hero image element here, consider adding explicit width/height and loading="lazy" if offscreen -->
 		</div>
+		{/if}
 	</div>
 </section>
 
