@@ -88,10 +88,10 @@
 	<div class="container relative mx-auto text-center px-10 space-y-10">
 		{#if loaded}
 		<h1 class="text-4xl font-bold text-white xl:text-6xl" transition:fly={{ y: 100, duration: 1000 }}>{m.home_hero_title()}</h1>
-		<p class="mt-4 text-lg pt-20" transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
+		<p class="mt-4 text-lg pt-20 lg:w-1/2 lg:mx-auto" transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
 			{m.home_hero_subtitle()}
 		</p>
-		<div class="mt-6" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
+		<div class="mt-6 lg:w-1/2 lg:mx-auto" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
 			<a href="/use-cases" class=" bg-green-600 px-4 py-3 text-white text-lg rounded-md hover:bg-gray-200 flex justify-center">
 				{m.home_hero_button_label()} <Sprout size={30} class="ml-2 animate-bounce"/>
 			</a>
