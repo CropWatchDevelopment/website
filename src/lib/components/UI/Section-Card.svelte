@@ -2,10 +2,15 @@
 	const { image, title, description, link, class: ClassName } = $props();
 </script>
 
-<div class="{ClassName} m-2 rounded shadow-md hover:m-0 hover:shadow-lg cursor-pointer">
-	<a href={link} class="block">
-		<img src={image} alt="Agriculture" loading="lazy" class="h-52 mx-auto w-full" height="208px" width="344px" />
-		<h3 class="mt-4 font-bold">{title}</h3>
-		<p class="mt-2 px-6 pb-6">{description}</p>
-	</a>
+<div class="m-2 mx-4 rounded-md bg-white shadow-md  text-left ">
+	<img src={image} alt="Agriculture" loading="lazy" class="h-60 mx-auto w-full rounded-t-md" />
+	<div class="px-6">
+		<h3 class="mt-4 font-bold text-2xl">{title}</h3>
+		<p class="pb-2 font-light mt-4">{description}</p>
+		<p class="text-center">
+		<a href={link} class="block {ClassName} text-white my-6 py-3 rounded font-light transition-all hover:scale-105">
+			Learn more
+		</a>
+		</p>
+	</div>
 </div>
