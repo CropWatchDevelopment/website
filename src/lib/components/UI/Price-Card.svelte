@@ -10,7 +10,7 @@
 		$props();
 </script>
 
-<div class="flex flex-col border border-gray-300 shadow-md rounded-md">
+<div class="flex flex-col border border-gray-300 shadow-md rounded-md lg:mx-16">
 	<div class="bg-green-950 p-6 rounded-t-md">
 		<h3 class="text-3xl font-bold text-green-100 mb-4">{title}</h3>
 		<p class="mt-2 text-xl font-light text-green-200">{description}</p>

@@ -140,8 +140,8 @@
 </section>
 <!--Underground Pause-->
 <section id="underground-img">
-	<div class="h-60 w-full bg-[url(/images/sensor-underground.png)] bg-contain relative">
-		<p class="font-semibold text-3xl px-4 text-green-500 absolute bottom-6 right-5 mix-blend-lighten flex items-center">Know your crops <Sprout color="white" size="30" class="animate-bounce"/></p>
+	<div class="h-60 w-full bg-[url(/images/sensor-underground.png)] bg-contain relative lg:bg-cover lg:bg-fixed lg:bg-bottom lg:h-[30rem]">
+		<p class="font-semibold text-3xl px-4 text-green-500 absolute bottom-6 right-5 mix-blend-lighten flex items-center lg:text-6xl lg:bottom-20">Know your crops <Sprout color="white" size="30" class="animate-bounce"/></p>
 	</div>
 </section>
 
@@ -159,8 +159,8 @@
 <!-- Pricing Section -->
 <section id="pricing" class="bg-gradient-to-t from-white to-[#cfecff]  py-20 px-4">
 	<div class="container mx-auto text-center">
-		<h2 class="text-3xl font-bold">{m.home_pricing_title()}</h2>
-		<p class="mt-4 font-light py-6">{m.home_pricing_subtitle()}</p>
+		<h2 class="text-3xl font-bold lg:text-5xl">{m.home_pricing_title()}</h2>
+		<p class="mt-4 font-light py-6 lg:text-2xl">{m.home_pricing_subtitle()}</p>
 		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
 			<PriceCard
 				title="IoT"
