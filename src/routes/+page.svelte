@@ -13,7 +13,7 @@
 	import PriceCard from '$lib/components/UI/Price-Card.svelte';
 	import { languageTag } from '$lib/paraglide/runtime';
 	import { fly } from 'svelte/transition';
-	import { Sprout } from '@lucide/svelte';
+	import { ChartColumnIncreasing, Sprout } from '@lucide/svelte';
 
 	let canvas;
 	let ctx;
@@ -79,7 +79,7 @@
 <!-- Hero Section -->
 <section
 	id="home"
-	class="relative bg-blue-200 py-32 text-white bg-[url(/images/welcome.webp)] bg-cover bg-fixed"
+	class="relative bg-blue-200 py-32 text-white bg-[url(/images/sensor-field2.jpg)] bg-cover bg-fixed min-h-screen"
 
 >
 	<!-- Overlay for blur and darkening -->
@@ -87,13 +87,13 @@
 	<!-- Content -->
 	<div class="container relative mx-auto text-center px-10 space-y-10">
 		{#if loaded}
-		<h1 class="text-4xl font-bold text-white xl:text-6xl" transition:fly={{ y: 100, duration: 1000 }}>{m.home_hero_title()}</h1>
-		<p class="mt-4 text-lg pt-20 lg:w-1/2 lg:mx-auto" transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
+		<h1 class="text-5xl font-bold text-white xl:text-6xl" transition:fly={{ y: 100, duration: 1000 }}>{m.home_hero_title()}</h1>
+		<p class="mt-4 text-lg pt-10 lg:w-1/2 lg:mx-auto" transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
 			{m.home_hero_subtitle()}
 		</p>
-		<div class="mt-6 lg:w-1/2 lg:mx-auto" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
+		<div class="mt-6 lg:w-1/2 lg:mx-auto pt-20" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
 			<a href="/use-cases" class=" bg-green-600 px-4 py-3 text-white text-lg rounded-md hover:bg-gray-200 flex justify-center">
-				{m.home_hero_button_label()} <Sprout size={30} class="ml-2 animate-bounce"/>
+				{m.home_hero_button_label()} <ChartColumnIncreasing size={30} class="ml-2 "/>
 			</a>
 		</div>
 		<div class="mt-10">
@@ -103,19 +103,21 @@
 	</div>
 </section>
 
+
 <!-- Solutions Section -->
 <section id="solutions" class="relative bg-gray-100 py-20" style="overflow: hidden;">
-	<canvas id="lines" class="absolute inset-0 z-0 h-full w-full"></canvas>
-	<div class="container relative z-10 mx-auto text-center">
+	<canvas id="lines" class="absolute inset-0 z-0 h-full w-full filter"></canvas>
+	<div class="container relative z-10 mx-auto text-center ">
 		<h2 class="text-3xl font-bold">{m.home_solutions_title()}</h2>
 		<p class="mt-4">{m.home_solutions_subtitle()}</p>
 		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
 			<SectionCard
-				image={PLANT_IMAGE}
+				image="/images/sensor-field.jpg"
 				title={m.home_solutions_farming_title()}
 				description={m.home_solutions_farming_description()}
 				link="/product/cw-ss"
-				class="bg-green-100 border border-green-200"
+				class="bg-green-600"
+
 			/>
 
 			<SectionCard
@@ -123,7 +125,7 @@
 				title={m.home_solutions_cold_storage_title()}
 				description={m.home_solutions_cold_storage_description()}
 				link="/product/cw-air-th"
-				class="bg-blue-100 border border-blue-200"
+				class="bg-blue-500"
 			/>
 
 			<SectionCard
@@ -131,9 +133,15 @@
 				title={m.home_solutions_heat_safety_title()}
 				description={m.home_solutions_heat_safety_description()}
 				link="/product/cw-air-th-safety"
-				class="bg-red-50 border border-red-200"
+				class="bg-orange-500"
 			/>
 		</div>
+	</div>
+</section>
+<!--Underground Pause-->
+<section id="underground-img">
+	<div class="h-60 w-full bg-[url(/images/sensor-underground.png)] bg-contain relative">
+		<p class="font-semibold text-3xl px-4 text-green-500 absolute bottom-6 right-5 mix-blend-lighten flex items-center">Know your crops <Sprout color="white" size="30" class="animate-bounce"/></p>
 	</div>
 </section>
 
@@ -149,10 +157,10 @@
 </section> -->
 
 <!-- Pricing Section -->
-<section id="pricing" class="bg-white py-20">
+<section id="pricing" class="bg-gradient-to-t from-white to-[#cfecff]  py-20 px-4">
 	<div class="container mx-auto text-center">
 		<h2 class="text-3xl font-bold">{m.home_pricing_title()}</h2>
-		<p class="mt-4">{m.home_pricing_subtitle()}</p>
+		<p class="mt-4 font-light py-6">{m.home_pricing_subtitle()}</p>
 		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
 			<PriceCard
 				title="IoT"
