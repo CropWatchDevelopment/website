@@ -53,7 +53,7 @@
 		"vitest": "^2.1.8"
 	},
 	"dependencies": {
-		"@inlang/paraglide-sveltekit": "^0.15.5",
+		"@inlang/paraglide-sveltekit": "^0.16.1",
 		"nodemailer": "^6.10.0",
 		"recaptcha-v3": "^1.11.3"
 	},
