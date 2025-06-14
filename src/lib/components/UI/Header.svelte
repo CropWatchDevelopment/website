@@ -37,7 +37,7 @@
           <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
         </svg>
         <span class="font-medium">New: Enhanced LoRaWAN connectivity now available!</span>
-        <a href="#learn-more" class="underline hover:no-underline ml-2">Learn more →</a>
+        <a href="#learn-more" class="underline hover:no-underline ml-2 hover:translate-x-2 transition-all ease-in-out">Learn more →</a>
       </div>
       <button onclick={closeAnnouncement} class="text-green-200 hover:text-white transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,19 +54,19 @@
     <div class="flex items-center justify-between text-sm">
       <!-- Left side - Quick links -->
       <div class="hidden md:flex items-center gap-6 text-slate-900">
-        <a href="/support" class="hover:text-green-400 transition-colors flex items-center gap-1">
+        <a href="/support" class="hover:text-blue-700 transition-colors flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 11-6.697 2.697M12 21.75a9.75 9.75 0 01-6.697-2.697"/>
           </svg>
           24/7 Support
         </a>
-        <a href="/docs" class="hover:text-green-400 transition-colors flex items-center gap-1">
+        <a href="/docs" class="hover:text-blue-700 transition-colors flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
           </svg>
           Documentation
         </a>
-        <a href="/api" class="hover:text-green-400 transition-colors flex items-center gap-1">
+        <a href="/api" class="hover:text-blue-700 transition-colors flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
           </svg>
@@ -76,16 +76,16 @@
 
       <!-- Right side - Status and contact -->
       <div class="flex items-center gap-4">
-        <div class="hidden sm:flex items-center gap-2 text-green-400">
+        <div class="hidden sm:flex items-center gap-2 text-green-400 bg-blue-950 p-2 rounded-lg">
           <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           <span class="text-xs">All Systems Operational</span>
         </div>
-        <div class="flex items-center gap-3 text-slate-300">
-          <a href="tel:+1234567890" class="hover:text-green-400 transition-colors text-xs">
+        <div class="flex items-center gap-3 text-slate-800">
+          <a href="tel:+1234567890" class="hover:text-slate-600 transition-colors text-xs">
             📞 Support: +1 (234) 567-890
           </a>
           <span class="text-slate-600">|</span>
-          <a href="/login" class="hover:text-green-400 transition-colors text-xs">Login</a>
+          <a href="/login" class="hover:text-white bg-blue-300 p-2 hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 rounded-lg transition-colors text-xs ">Login</a>
         </div>
       </div>
     </div>
@@ -173,8 +173,8 @@
   <div class="max-w-6xl mx-auto px-4 lg:px-8 py-3">
     <div class="flex items-center justify-between">
       <!-- Breadcrumb or secondary nav -->
-      <div class="flex items-center gap-2 text-sm text-slate-400">
-        <a href="/" class="hover:text-green-400 transition-colors">Home</a>
+      <div class="flex items-center gap-2 text-sm text-slate-600">
+        <a href="/" class="hover:text-slate-500 transition-colors">Home</a>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
