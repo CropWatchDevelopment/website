@@ -27,6 +27,27 @@ importers:
       '@fontsource/fira-mono':
         specifier: ^5.0.0
         version: 5.1.1
+      '@inlang/message-lint-rule-empty-pattern':
+        specifier: '1'
+        version: 1.4.8(@sinclair/typebox@0.31.28)
+      '@inlang/message-lint-rule-identical-pattern':
+        specifier: '1'
+        version: 1.5.9
+      '@inlang/message-lint-rule-missing-translation':
+        specifier: '1'
+        version: 1.4.8(@sinclair/typebox@0.31.28)
+      '@inlang/message-lint-rule-valid-js-identifier':
+        specifier: '1'
+        version: 1.0.8(@sinclair/typebox@0.31.28)
+      '@inlang/message-lint-rule-without-source':
+        specifier: '1'
+        version: 1.4.8(@sinclair/typebox@0.31.28)
+      '@inlang/plugin-m-function-matcher':
+        specifier: '0'
+        version: 0.9.36(@sinclair/typebox@0.31.28)
+      '@inlang/plugin-message-format':
+        specifier: '2'
+        version: 2.2.0
       '@neoconfetti/svelte':
         specifier: ^2.0.0
         version: 2.2.1
@@ -469,19 +490,38 @@ packages:
 
   '@inlang/json-types@1.1.0':
     resolution: {integrity: sha512-n6vS6AqETsCFbV4TdBvR/EH57waVXzKsMqeUQ+eH2Q6NUATfKhfLabgNms2A+QV3aedH/hLtb1pRmjl2ykBVZg==}
+    deprecated: no longer used
     peerDependencies:
       '@sinclair/typebox': ^0.31.0
 
   '@inlang/language-tag@1.5.1':
     resolution: {integrity: sha512-+NlYDxDvN5h/TKUmkuQv+Ct1flxaVRousCbek7oFEk3/afZPVLNTJhm+cX2xiOg3tmi2KKrBLfy/V9oUDHj6GQ==}
+    deprecated: use the inlang sdk directly https://www.npmjs.com/package/@inlang/sdk
+
+  '@inlang/message-lint-rule-empty-pattern@1.4.8':
+    resolution: {integrity: sha512-2svMrCYsvIn/GT9mclhLPnZfkftxaHt2yFuIfgvSyfwge64xjm+mO4x0YdfFTh2Xt7Kc8Y4GJZwbmNu8iYDZWg==}
+
+  '@inlang/message-lint-rule-identical-pattern@1.5.9':
+    resolution: {integrity: sha512-87ZDHyjYuHw/uAPATtrRgppU7AmTmhO3DZhzM8MO0H3hDg2pw2XJiwOAUI2zGuX5ZBHPmwU4d/L9HHP0rlSciQ==}
+
+  '@inlang/message-lint-rule-missing-translation@1.4.8':
+    resolution: {integrity: sha512-TS2g9giH04BIDgUyvY66R5JP5yG8aGfjufV7GAUHlkg1cv5bSDErsyQ7lRl3UI2tIklm6/i8m8sRkHJngS3CXA==}
+
+  '@inlang/message-lint-rule-valid-js-identifier@1.0.8':
+    resolution: {integrity: sha512-qSr5jvEsF957Zb/m5W6UsBT0PtRaSJ2cfk8J+3CULgrRYOOBk3trPspW8UapakrxMFlKVZk4A+2HxHO0ISG8kg==}
+
+  '@inlang/message-lint-rule-without-source@1.4.8':
+    resolution: {integrity: sha512-S19cJVsSo66tWjWYeXt9FN1n2FjdpPCDJqThMxtXQWsPB9HN7uFkWy10vyXLGIzBmn2uxEpl6nhGFB9TuPnNmw==}
 
   '@inlang/message-lint-rule@1.4.7':
     resolution: {integrity: sha512-FCiFe/H25fqhsIb/YTb0K7eDJqEYzdr6ectF0xG4zARiS7nXz0FHxk2niJrIO8kFkB4mx6tszsgQ0xqD5cHQag==}
+    deprecated: use the inlang sdk directly https://www.npmjs.com/package/@inlang/sdk
     peerDependencies:
       '@sinclair/typebox': ^0.31.17
 
   '@inlang/message@2.1.0':
     resolution: {integrity: sha512-Gr3wiErI7fW4iW11xgZzsJEUTjlZuz02fB/EO+ENTBlSHGyI1kzbCCeNqLr1mnGdQYiOxfuZxY0S4G5C6Pju3Q==}
+    deprecated: use the inlang sdk directly https://www.npmjs.com/package/@inlang/sdk
     peerDependencies:
       '@sinclair/typebox': ^0.31.17
 
@@ -506,11 +546,15 @@ packages:
   '@inlang/paraglide-vite@1.3.5':
     resolution: {integrity: sha512-yLa+gxA8el6RXXneeiqTnV9Od4Yh389lA+wSfiS+jDXY5vV/2j7Lpk2yuATLmxwI9i2nMP6c6yu8L0X77PA9dg==}
 
+  '@inlang/plugin-m-function-matcher@0.9.36':
+    resolution: {integrity: sha512-TDZlnc/wm7VQ31fvwqx4smtc/j3cAK9bKxq0pu+Ue+ONj/seDnqTGgFXQSzWgDMTzjnmD4jYK9+ZVrTPiJX3tw==}
+
   '@inlang/plugin-message-format@2.2.0':
     resolution: {integrity: sha512-6MJLExr3OLqbR8gCP4UEgNMgdaJFFCug2GLmFwid7Ana4kObnbCA33YN3m3eN8p+lmnv7zpfW7oeyTZXZLoptg==}
 
   '@inlang/plugin@2.4.14':
     resolution: {integrity: sha512-HFI1t1tKs6jXqwKVl59vvt7kvMgg2Po7xA3IFijfJTZCt0tTI8txqeXCUV9jhUop29Hqj6a5zQd32BYv33Dulw==}
+    deprecated: use the inlang sdk directly https://www.npmjs.com/package/@inlang/sdk
     peerDependencies:
       '@sinclair/typebox': ^0.31.17
 
@@ -542,6 +586,7 @@ packages:
 
   '@inlang/translatable@1.3.1':
     resolution: {integrity: sha512-VAtle21vRpIrB+axtHFrFB0d1HtDaaNj+lV77eZQTJyOWbTFYTVIQJ8WAbyw9eu4F6h6QC2FutLyxjMomxfpcQ==}
+    deprecated: no longer used
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -2659,6 +2704,35 @@ snapshots:
     dependencies:
       '@sinclair/typebox': 0.31.28
 
+  '@inlang/message-lint-rule-empty-pattern@1.4.8(@sinclair/typebox@0.31.28)':
+    dependencies:
+      '@inlang/message-lint-rule': 1.4.7(@sinclair/typebox@0.31.28)
+    transitivePeerDependencies:
+      - '@sinclair/typebox'
+
+  '@inlang/message-lint-rule-identical-pattern@1.5.9':
+    dependencies:
+      '@inlang/message-lint-rule': 1.4.7(@sinclair/typebox@0.31.28)
+      '@sinclair/typebox': 0.31.28
+
+  '@inlang/message-lint-rule-missing-translation@1.4.8(@sinclair/typebox@0.31.28)':
+    dependencies:
+      '@inlang/message-lint-rule': 1.4.7(@sinclair/typebox@0.31.28)
+    transitivePeerDependencies:
+      - '@sinclair/typebox'
+
+  '@inlang/message-lint-rule-valid-js-identifier@1.0.8(@sinclair/typebox@0.31.28)':
+    dependencies:
+      '@inlang/message-lint-rule': 1.4.7(@sinclair/typebox@0.31.28)
+    transitivePeerDependencies:
+      - '@sinclair/typebox'
+
+  '@inlang/message-lint-rule-without-source@1.4.8(@sinclair/typebox@0.31.28)':
+    dependencies:
+      '@inlang/message-lint-rule': 1.4.7(@sinclair/typebox@0.31.28)
+    transitivePeerDependencies:
+      - '@sinclair/typebox'
+
   '@inlang/message-lint-rule@1.4.7(@sinclair/typebox@0.31.28)':
     dependencies:
       '@inlang/json-types': 1.1.0(@sinclair/typebox@0.31.28)
@@ -2733,6 +2807,15 @@ snapshots:
     transitivePeerDependencies:
       - babel-plugin-macros
       - debug
+      - supports-color
+
+  '@inlang/plugin-m-function-matcher@0.9.36(@sinclair/typebox@0.31.28)':
+    dependencies:
+      '@inlang/plugin': 2.4.14(@sinclair/typebox@0.31.28)
+      '@inlang/sdk': 0.36.3
+    transitivePeerDependencies:
+      - '@sinclair/typebox'
+      - babel-plugin-macros
       - supports-color
 
   '@inlang/plugin-message-format@2.2.0': {}
