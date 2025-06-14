@@ -80,6 +80,7 @@
 <section
 	id="home"
 	class="relative bg-blue-200 py-32 text-white bg-[url(/images/sensor-field2.jpg)] bg-cover bg-fixed min-h-screen"
+	style="background-image: url('{SAITO_IMAGE}'); background-size: cover; background-position: top;"
 
 >
 	<!-- Overlay for blur and darkening -->
