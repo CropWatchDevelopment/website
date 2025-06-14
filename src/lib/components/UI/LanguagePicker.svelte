@@ -45,7 +45,7 @@
 	<button
 		onclick={toggleDropdown}
 		type="button"
-		class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-black shadow-sm hover:bg-gray-50 focus:outline-none"
+		class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-black shadow-sm hover:bg-gray-50 focus:outline-none"
 	>
 		<span>{languageFlags[selectedLanguage]} {selectedLanguage.toUpperCase()}</span>
 		<svg
