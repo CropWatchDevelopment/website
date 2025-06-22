@@ -37,7 +37,7 @@
           <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
         </svg>
         <span class="font-medium">New: Enhanced LoRaWAN connectivity now available!</span>
-        <a href="#learn-more" class="underline hover:no-underline ml-2 hover:translate-x-2 transition-all ease-in-out">Learn more →</a>
+        <a href="#contact" class="underline hover:no-underline ml-2 hover:translate-x-2 transition-all ease-in-out">Learn more →</a>
       </div>
       <button onclick={closeAnnouncement} class="text-green-200 hover:text-white transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,19 +54,19 @@
     <div class="flex items-center justify-between text-sm">
       <!-- Left side - Quick links -->
       <div class="hidden md:flex items-center gap-6 text-slate-900">
-        <a href="/support" class="hover:text-blue-700 transition-colors flex items-center gap-1">
+        <a href="https://cropwatch.io/contact-us" class="hover:text-blue-700 transition-colors flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 11-6.697 2.697M12 21.75a9.75 9.75 0 01-6.697-2.697"/>
           </svg>
           24/7 Support
         </a>
-        <a href="/docs" class="hover:text-blue-700 transition-colors flex items-center gap-1">
+        <a href="https://kb.cropwatch.io" class="hover:text-blue-700 transition-colors flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
           </svg>
           Documentation
         </a>
-        <a href="/api" class="hover:text-blue-700 transition-colors flex items-center gap-1">
+        <a href="https://api.cropwatch.io/swagger" class="hover:text-blue-700 transition-colors flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
           </svg>
@@ -85,7 +85,7 @@
             📞 Support: +1 (234) 567-890
           </a>
           <span class="text-slate-600">|</span>
-          <a href="/login" class="hover:text-white bg-blue-300 p-2 hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 rounded-lg transition-colors text-xs ">Login</a>
+          <a href="https://app.cropwatch.io/auth/login" class="hover:text-white bg-blue-300 p-2 hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 rounded-lg transition-colors text-xs ">Login</a>
         </div>
       </div>
     </div>
@@ -126,7 +126,7 @@
         </a>
       </li>
       <li class="relative group">
-        <a href="#devices" class="relative px-4 py-2 text-white/80 font-medium rounded-lg backdrop-blur-sm transition-all duration-300 hover:text-green-400 hover:bg-green-500/10 hover:-translate-y-0.5 after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:-translate-x-1/2 after:transition-all after:duration-300 hover:after:w-4/5 flex items-center gap-1">
+        <a href="#" class="relative px-4 py-2 text-white/80 font-medium rounded-lg backdrop-blur-sm transition-all duration-300 hover:text-green-400 hover:bg-green-500/10 hover:-translate-y-0.5 after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:-translate-x-1/2 after:transition-all after:duration-300 hover:after:w-4/5 flex items-center gap-1">
           Devices
           <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -134,12 +134,12 @@
         </a>
       </li>
       <li>
-        <a href="#resources" class="relative px-4 py-2 text-white/80 font-medium rounded-lg backdrop-blur-sm transition-all duration-300 hover:text-green-400 hover:bg-green-500/10 hover:-translate-y-0.5 after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:-translate-x-1/2 after:transition-all after:duration-300 hover:after:w-4/5">
+        <a href="#" class="relative px-4 py-2 text-white/80 font-medium rounded-lg backdrop-blur-sm transition-all duration-300 hover:text-green-400 hover:bg-green-500/10 hover:-translate-y-0.5 after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:-translate-x-1/2 after:transition-all after:duration-300 hover:after:w-4/5">
           Resources
         </a>
       </li>
       <li>
-        <a href="#about" class="relative px-4 py-2 text-white/80 font-medium rounded-lg backdrop-blur-sm transition-all duration-300 hover:text-green-400 hover:bg-green-500/10 hover:-translate-y-0.5 after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:-translate-x-1/2 after:transition-all after:duration-300 hover:after:w-4/5">
+        <a href="#" class="relative px-4 py-2 text-white/80 font-medium rounded-lg backdrop-blur-sm transition-all duration-300 hover:text-green-400 hover:bg-green-500/10 hover:-translate-y-0.5 after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:-translate-x-1/2 after:transition-all after:duration-300 hover:after:w-4/5">
           About
         </a>
       </li>
@@ -147,7 +147,7 @@
 
     <!-- CTA Button -->
     <div class="hidden md:flex items-center gap-3">
-      <a href="/demo" class="px-4 py-2 text-white/80 hover:text-green-400 font-medium transition-colors">
+      <a href="#" class="px-4 py-2 text-white/80 hover:text-green-400 font-medium transition-colors">
         Demo
       </a>
       <a href="/contact-us" class="relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-xl shadow-lg shadow-green-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-green-500/40 overflow-hidden group">
@@ -182,7 +182,7 @@
       </div>
 
       <!-- Quick actions -->
-      <div class="hidden md:flex items-center gap-4 text-sm">
+      <!-- <div class="hidden md:flex items-center gap-4 text-sm">
         <a href="/marketplace" class="text-slate-900 hover:text-green-400 transition-colors flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
@@ -195,7 +195,7 @@
           </svg>
           Partners
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
