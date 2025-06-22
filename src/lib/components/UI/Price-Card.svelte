@@ -10,10 +10,10 @@
 		$props();
 </script>
 
-<div class="flex flex-col rounded-lg border border-gray-300 shadow-md">
-	<div class="bg-blue-600 p-6">
-		<h3 class="text-3xl font-bold text-white">{title}</h3>
-		<p class="mt-2 text-xl font-extrabold text-gray-300">{description}</p>
+<div class="flex flex-col border border-gray-300 shadow-md rounded-md lg:mx-16">
+	<div class="bg-green-950 p-6 rounded-t-md">
+		<h3 class="text-3xl font-bold text-green-100 mb-4">{title}</h3>
+		<p class="mt-2 text-xl font-light text-green-200">{description}</p>
 	</div>
 	<ul class="mt-4 space-y-2 p-6 text-left">
 		{#each features as feature}
@@ -35,7 +35,7 @@
 	<span class="flex-grow"></span>
 	<a
 		href={link}
-		class="mt-6 inline-block rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 text-nowrap"
+		class="mt-6 inline-block rounded-b-md bg-green-500 px-4 py-4 text-green-100 hover:bg-blue-700 text-nowrap text-lg"
 	>
 		{buttonLabel ? buttonLabel : 'Get Started'}
 	</a>
