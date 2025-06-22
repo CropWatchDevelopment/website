@@ -1,11 +1,11 @@
 <script lang="ts">
 	import PLANT_IMAGE from '$lib/images/plant.avif';
-	import COLD_STORAGE_IMAGE from '$lib/images/coldChain.webp';
+	import COLD_STORAGE_IMAGE from '$lib/images/refer.jpg';
 	import HOT_IMAGE from '$lib/images/hot.png';
 	import SectionCard from '$lib/components/UI/Section-Card.svelte';
 	// Removed FACTORY_IMAGE import as it's for Safety & Risk mitigation
 	// Removed BOSTON_IMAGE import as it's for smart city
-	import SAITO_IMAGE from '$lib/images/saito.webp';
+	import SAITO_IMAGE from '$lib/images/saito.jpg';
 	import LinkedParticles from '$lib/components/vendor/animated-lines';
 	import { onMount } from 'svelte';
 	import LineCarasol from '$lib/components/UI/Line-Carasol.svelte';
@@ -80,20 +80,20 @@
 <section
 	id="home"
 	class="relative bg-blue-200 py-32 text-white bg-[url(/images/sensor-field2.jpg)] bg-cover bg-fixed min-h-screen"
-	style="background-image: url('{SAITO_IMAGE}'); background-size: cover; background-position: top;"
+	style="background-image: url('{SAITO_IMAGE}'); background-position: center;"
 
 >
 	<!-- Overlay for blur and darkening -->
-	<div class="backdrop-blur-xs absolute inset-0 bg-black bg-opacity-40"></div>
+	<div class="backdrop-blur-xs absolute inset-0 bg-black bg-opacity-10"></div>
 	<!-- Content -->
 	<div class="container relative mx-auto text-center px-10 space-y-10">
 		{#if loaded}
 		<h1 class="text-5xl font-bold text-white xl:text-6xl" transition:fly={{ y: 100, duration: 1000 }}>{m.home_hero_title()}</h1>
-		<p class="mt-4 text-lg pt-10 lg:w-1/2 lg:mx-auto" transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
+		<p class="w-full bg-blue-300 rounded-lg mt-10 text-xl lg:mx-auto text-white-900 font-bold bg-opacity-70 p-4" transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
 			{m.home_hero_subtitle()}
 		</p>
-		<div class="mt-6 lg:w-1/2 lg:mx-auto pt-20" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
-			<a href="/use-cases" class=" bg-green-600 px-4 py-3 text-white text-lg rounded-md hover:bg-gray-200 flex justify-center">
+		<div class="mt-6 lg:w-1/2 lg:mx-auto pt-10" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
+			<a href="/use-cases" class="bg-green-600 px-4 py-3 text-white text-lg rounded-md hover:bg-gray-200 flex justify-center">
 				{m.home_hero_button_label()} <ChartColumnIncreasing size={30} class="ml-2 "/>
 			</a>
 		</div>

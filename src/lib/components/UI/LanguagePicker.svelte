@@ -45,7 +45,7 @@
 	<button
 		onclick={toggleDropdown}
 		type="button"
-		class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-black shadow-sm hover:bg-gray-50 focus:outline-none"
+		class="inline-flex w-full justify-center rounded-md border border-gray-300 px-6 py-3 text-sm font-medium text-black shadow-sm focus:outline-none"
 	>
 		<span>{languageFlags[selectedLanguage]} {selectedLanguage.toUpperCase()}</span>
 		<svg
@@ -66,7 +66,7 @@
 	<!-- Dropdown menu -->
 	{#if dropdownOpen}
 		<div
-			class="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+			class="absolute right-0 top-full mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-[9999]"
 		>
 			<div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 				{#each languages as lang}
