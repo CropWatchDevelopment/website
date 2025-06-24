@@ -113,7 +113,7 @@
 			</div>
 
 			<!-- Right side - Status and contact -->
-			<div class="flex items-center gap-4">
+			<div class="flex items-center gap-2 sm:gap-4">
 				<div class="hidden items-center gap-2 rounded-lg bg-blue-950 p-2 text-green-400 sm:flex">
 					<div class="h-2 w-2 animate-pulse rounded-full bg-green-400"></div>
 					<span class="text-xs">
@@ -122,14 +122,14 @@
 						>
 					</span>
 				</div>
-				<div class="flex items-center gap-3 text-slate-800">
-					<a href="tel:+1234567890" class="text-xs transition-colors hover:text-slate-600">
-						📞 Support: +81-80-4284-3390
+				<div class="flex items-center gap-2 text-slate-800 sm:gap-3">
+					<a href="tel:+81804284339" class="hidden text-xs transition-colors hover:text-slate-600 sm:block">
+						📞 +81-80-4284-3390
 					</a>
-					<span class="text-slate-600">|</span>
+					<span class="hidden text-slate-600 sm:inline">|</span>
 					<a
 						href="/contact-us"
-						class="rounded-lg bg-blue-300 p-2 text-xs transition-colors hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 hover:text-white"
+						class="rounded-lg bg-blue-300 px-2 py-1 text-xs transition-colors hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 hover:text-white sm:p-2"
 						>Email Us!</a
 					>
 				</div>
@@ -154,11 +154,9 @@
 
 	<nav class="relative z-10 mx-auto flex max-w-6xl items-center justify-between p-4 lg:px-8">
 		<!-- Logo -->
-		<a href="/" class="flex items-center gap-3 transition-transform hover:scale-105">
-			<!-- <div class="relative w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30"> -->
-			<img src={CropWatchLogo} alt="CropWatch Logo" class="h-10" width="40px" height="40px" />
-			<!-- </div> -->
-			<div class="text-2xl font-bold tracking-tight text-white">
+		<a href="/" class="flex items-center gap-2 transition-transform hover:scale-105 sm:gap-3">
+			<img src={CropWatchLogo} alt="CropWatch Logo" class="h-8 sm:h-10" width="40px" height="40px" />
+			<div class="text-xl font-bold tracking-tight text-white sm:text-2xl">
 				CropWatch<sup><small>®</small></sup>
 			</div>
 		</a>
@@ -253,20 +251,35 @@
 			</a>
 		</div>
 
-		<!-- Mobile menu button -->
-		<button
-			onclick={toggleMobileMenu}
-			class="mobile-menu-btn rounded-lg p-2 text-white transition-colors hover:bg-white/10 lg:hidden"
-		>
-			<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M4 6h16M4 12h16M4 18h16"
-				></path>
-			</svg>
-		</button>
+		<!-- Mobile Login Button and Menu -->
+		<div class="flex items-center gap-3 lg:hidden">
+			<!-- Mobile App Login Button - Always visible -->
+			<a
+				href="https://app.cropwatch.io/auth/login"
+				target="_blank"
+				class="group relative inline-flex items-center overflow-hidden rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-green-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-green-500/40"
+			>
+				<span class="relative z-10">Login</span>
+				<div
+					class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"
+				></div>
+			</a>
+			
+			<!-- Mobile menu button -->
+			<button
+				onclick={toggleMobileMenu}
+				class="mobile-menu-btn rounded-lg p-2 text-white transition-colors hover:bg-white/10"
+			>
+				<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M4 6h16M4 12h16M4 18h16"
+					></path>
+				</svg>
+			</button>
+		</div>
 	</nav>
 </header>
 
@@ -294,40 +307,53 @@
 		<div class="space-y-2 p-4">
 			<a
 				href="#solutions"
+				onclick={() => (mobileMenuOpen = false)}
 				class="block rounded-lg px-4 py-3 text-white/80 transition-colors hover:bg-green-500/10 hover:text-green-400"
 			>
 				Solutions
 			</a>
 			<a
 				href="#pricing"
+				onclick={() => (mobileMenuOpen = false)}
 				class="block rounded-lg px-4 py-3 text-white/80 transition-colors hover:bg-green-500/10 hover:text-green-400"
 			>
 				Pricing
 			</a>
 			<a
 				href="#devices"
+				onclick={() => (mobileMenuOpen = false)}
 				class="block rounded-lg px-4 py-3 text-white/80 transition-colors hover:bg-green-500/10 hover:text-green-400"
 			>
 				Devices
 			</a>
 			<a
 				href="#resources"
+				onclick={() => (mobileMenuOpen = false)}
 				class="block rounded-lg px-4 py-3 text-white/80 transition-colors hover:bg-green-500/10 hover:text-green-400"
 			>
 				Resources
 			</a>
+			<a
+				href="#about"
+				onclick={() => (mobileMenuOpen = false)}
+				class="block rounded-lg px-4 py-3 text-white/80 transition-colors hover:bg-green-500/10 hover:text-green-400"
+			>
+				About
+			</a>
 			<div class="space-y-2 border-t border-white/10 pt-2">
 				<a
 					href="/demo"
+					onclick={() => (mobileMenuOpen = false)}
 					class="block rounded-lg px-4 py-3 text-white/80 transition-colors hover:bg-green-500/10 hover:text-green-400"
 				>
 					Demo
 				</a>
 				<a
 					href="/contact-us"
-					class="block rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 px-4 py-3 text-center font-semibold text-white"
+					onclick={() => (mobileMenuOpen = false)}
+					class="block rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-3 text-center font-semibold text-white transition-all hover:from-blue-600 hover:to-blue-700"
 				>
-					Get Started
+					Contact Us
 				</a>
 			</div>
 		</div>
