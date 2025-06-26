@@ -8,7 +8,7 @@
 	import SAITO_IMAGE from '$lib/images/saito.jpg';
 	import LinkedParticles from '$lib/components/vendor/animated-lines';
 	import { onMount } from 'svelte';
-	import LineCarasol from '$lib/components/UI/Line-Carasol.svelte';
+	// import LineCarasol from '$lib/components/UI/Line-Carasol.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import PriceCard from '$lib/components/UI/Price-Card.svelte';
 	import { languageTag } from '$lib/paraglide/runtime';
@@ -18,7 +18,7 @@
 	let canvas;
 	let ctx;
 	let lp;
-	let submittingEmail = $state(false);
+	// let submittingEmail = $state(false);
 
 	function resizeCanvas() {
 		const section = document.getElementById('solutions');
