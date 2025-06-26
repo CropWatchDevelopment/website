@@ -112,8 +112,8 @@
 
 
 <!-- Solutions Section -->
-<section id="solutions" class="relative bg-gray-100 py-20" style="overflow: hidden;">
-	<canvas id="lines" class="absolute inset-0 z-0 h-full w-full filter"></canvas>
+<section id="solutions" class="relative bg-gray-100 py-20 bg-gradient-to-t from-white to-blue-300" style="overflow: hidden;">
+<!--	<canvas id="lines" class="absolute inset-0 z-0 h-full w-full filter"></canvas>-->
 	<div class="container relative z-10 mx-auto text-center ">
 		<h2 class="text-3xl font-bold">{m.home_solutions_title()}</h2>
 		<p class="mt-4">{m.home_solutions_subtitle()}</p>
@@ -156,7 +156,7 @@
 		</p>
 	</div>
 </section>
-<section class="py-20">
+<section class="py-20 bg-[#cfecff]">
 	<h2 class="text-6xl font-semibold p-10">Why <span class="text-green-500">Us</span>?</h2>
 	<div class="flex flex-col lg:flex-row items-center justify-between lg:px-12 px-4 space-y-10 lg:space-y-0">
 
