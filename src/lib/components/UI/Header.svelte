@@ -213,7 +213,8 @@
 			</li>
 			<li>
 				<a
-					href="#"
+					href="https://api.cropwatch.io/swagger"
+					target="_blank" rel="noopener noreferrer"
 					class="relative rounded-lg px-4 py-2 font-medium text-white/80 backdrop-blur-sm transition-all duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:transition-all after:duration-300 hover:-translate-y-0.5 hover:bg-green-500/10 hover:text-green-400 hover:after:w-4/5"
 				>
 					Resources
