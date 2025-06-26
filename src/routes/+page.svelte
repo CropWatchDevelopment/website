@@ -13,7 +13,7 @@
 	import PriceCard from '$lib/components/UI/Price-Card.svelte';
 	import { languageTag } from '$lib/paraglide/runtime';
 	import { fly } from 'svelte/transition';
-	import { ChartColumnIncreasing, Sprout } from '@lucide/svelte';
+	import { ChartColumnIncreasing, Sprout, CircleDollarSign, CirclePower, Zap } from '@lucide/svelte';
 
 	let canvas;
 	let ctx;
@@ -26,7 +26,8 @@
 		canvas.width = width;
 		canvas.height = height;
 	}
-	let loaded = $state(false)
+
+	let loaded = $state(false);
 
 	onMount(() => {
 		canvas = document.getElementById('lines');
@@ -45,6 +46,7 @@
 			lp.draw();
 			requestAnimationFrame(loop);
 		}
+
 		requestAnimationFrame(loop);
 		loaded = true;
 	});
@@ -88,18 +90,22 @@
 	<!-- Content -->
 	<div class="container relative mx-auto text-center px-10 space-y-10">
 		{#if loaded}
-		<h1 class="text-5xl font-bold text-white xl:text-6xl" transition:fly={{ y: 100, duration: 1000 }}>{m.home_hero_title()}</h1>
-		<p class="w-full bg-blue-300 rounded-lg mt-10 text-xl lg:mx-auto text-white-900 font-bold bg-opacity-70 p-4" transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
-			{m.home_hero_subtitle()}
-		</p>
-		<div class="mt-6 lg:w-1/2 lg:mx-auto pt-10" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
-			<a href="/use-cases" class="bg-green-600 px-4 py-3 text-white text-lg rounded-md hover:bg-gray-200 flex justify-center">
-				{m.home_hero_button_label()} <ChartColumnIncreasing size={30} class="ml-2 "/>
-			</a>
-		</div>
-		<div class="mt-10">
-			<!-- If you add any hero image element here, consider adding explicit width/height and loading="lazy" if offscreen -->
-		</div>
+			<h1 class="text-5xl font-bold text-white xl:text-6xl"
+					transition:fly={{ y: 100, duration: 1000 }}>{m.home_hero_title()}</h1>
+			<p class="w-full bg-blue-300 rounded-lg mt-10 text-xl lg:mx-auto text-white-900 font-bold bg-opacity-70 p-4"
+				 transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
+				{m.home_hero_subtitle()}
+			</p>
+			<div class="mt-6 lg:w-1/2 lg:mx-auto pt-10" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
+				<a href="/use-cases"
+					 class="bg-green-600 px-4 py-3 text-white text-lg rounded-md hover:bg-gray-200 flex justify-center">
+					{m.home_hero_button_label()}
+					<ChartColumnIncreasing size={30} class="ml-2 " />
+				</a>
+			</div>
+			<div class="mt-10">
+				<!-- If you add any hero image element here, consider adding explicit width/height and loading="lazy" if offscreen -->
+			</div>
 		{/if}
 	</div>
 </section>
@@ -141,8 +147,40 @@
 </section>
 <!--Underground Pause-->
 <section id="underground-img">
-	<div class="h-60 w-full bg-[url(/images/sensor-underground.png)] bg-contain relative lg:bg-cover lg:bg-fixed lg:bg-bottom lg:h-[30rem]">
-		<p class="font-semibold text-3xl px-4 text-green-500 absolute bottom-6 right-5 mix-blend-lighten flex items-center lg:text-6xl lg:bottom-20">Know your crops <Sprout color="white" size="30" class="animate-bounce"/></p>
+	<div
+		class="h-60 w-full bg-[url(/images/sensor-underground.png)] bg-contain relative lg:bg-cover lg:bg-fixed lg:bg-bottom lg:h-[30rem]">
+		<p
+			class="font-semibold text-3xl px-4 text-green-500 absolute bottom-6 right-5 mix-blend-lighten flex items-center lg:text-6xl lg:bottom-20">
+			Know your crops
+			<Sprout color="white" size="30" class="animate-bounce" />
+		</p>
+	</div>
+</section>
+<section class="py-20">
+	<h2 class="text-6xl font-semibold p-10">Why <span class="text-green-500">Us</span>?</h2>
+	<div class="flex flex-col lg:flex-row items-center justify-between lg:px-12 px-4 space-y-10 lg:space-y-0">
+
+		<div
+			class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-l-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 p-20">
+			<p class="text-4xl font-semibold">Affordable Pricing</p>
+			<CircleDollarSign size={150} />
+			<p>We offer affordable pricing compared to our competition.</p>
+		</div>
+
+		<div
+			class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 p-20">
+			<p class="text-4xl font-semibold">Installation included</p>
+			<CirclePower size={150} />
+			<p>We go to your location and install everything for you. You will be set with a working product from day one.</p>
+		</div>
+
+		<div
+			class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-r-xl lg:rounded-none  rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 p-20">
+			<p class="text-4xl font-semibold">Endless Battery</p>
+			<Zap size={150} />
+			<p>Our systems require very little to no maintenance due to the longevity and efficiency of our batteries.</p>
+		</div>
+
 	</div>
 </section>
 
@@ -246,7 +284,7 @@
 			<sm>※1</sm>
 			{m.home_disclaimer_1()}
 			<a class="cursor-pointer font-bold text-blue-900 underline" href="https://discord.com/"
-				>Discord</a
+			>Discord</a
 			>
 		</li>
 	</ol>
