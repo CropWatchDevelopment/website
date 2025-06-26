@@ -63,7 +63,7 @@
 {/if}
 
 <!-- Utility Navigation Bar -->
-<div class="relative border-b border-slate-700/50 bg-blue-300 backdrop-blur-sm overflow-visible">
+<div class="relative border-b border-slate-700/50 bg-blue-300 backdrop-blur-sm overflow-visible z-20">
 	<div class="mx-auto max-w-6xl px-4 py-2">
 		<div class="flex items-center justify-between text-sm">
 			<!-- Left side - Quick links -->
@@ -133,7 +133,7 @@
 						>Email Us!</a
 					>
 				</div>
-				<div class="relative z-[9999]">
+				<div class="relative z-20">
 					<LanguagePicker />
 				</div>
 			</div>
