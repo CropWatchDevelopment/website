@@ -169,19 +169,6 @@
 					class="relative flex items-center gap-1 rounded-lg px-4 py-2 font-medium text-white/80 backdrop-blur-sm transition-all duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:transition-all after:duration-300 hover:-translate-y-0.5 hover:bg-green-500/10 hover:text-green-400 hover:after:w-4/5"
 				>
 					Solutions
-					<svg
-						class="h-4 w-4 transition-transform group-hover:rotate-180"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M19 9l-7 7-7-7"
-						/>
-					</svg>
 				</a>
 			</li>
 			<li>
@@ -198,19 +185,19 @@
 					class="relative flex items-center gap-1 rounded-lg px-4 py-2 font-medium text-white/80 backdrop-blur-sm transition-all duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:transition-all after:duration-300 hover:-translate-y-0.5 hover:bg-green-500/10 hover:text-green-400 hover:after:w-4/5"
 				>
 					Devices
-					<svg
-						class="h-4 w-4 transition-transform group-hover:rotate-180"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M19 9l-7 7-7-7"
-						/>
-					</svg>
+<!--					<svg-->
+<!--						class="h-4 w-4 transition-transform group-hover:rotate-180"-->
+<!--						fill="none"-->
+<!--						stroke="currentColor"-->
+<!--						viewBox="0 0 24 24"-->
+<!--					>-->
+<!--						<path-->
+<!--							stroke-linecap="round"-->
+<!--							stroke-linejoin="round"-->
+<!--							stroke-width="2"-->
+<!--							d="M19 9l-7 7-7-7"-->
+<!--						/>-->
+<!--					</svg>-->
 				</a>
 			</li>
 			<li>
@@ -234,7 +221,7 @@
 		<!-- CTA Button -->
 		<div class="hidden items-center gap-3 md:flex">
 			<a
-				href="#"
+				href="/demo"
 				class="px-4 py-2 font-medium text-white/80 transition-colors hover:text-green-400"
 			>
 				Demo
