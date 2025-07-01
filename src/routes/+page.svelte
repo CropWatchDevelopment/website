@@ -13,7 +13,7 @@
 	import PriceCard from '$lib/components/UI/Price-Card.svelte';
 	import { languageTag } from '$lib/paraglide/runtime';
 	import { fly } from 'svelte/transition';
-	import { ChartColumnIncreasing, Sprout, CircleDollarSign, CirclePower, Zap } from '@lucide/svelte';
+	import { ChartColumnIncreasing, Sprout, CircleDollarSign, Shield, RadioTower, Route } from '@lucide/svelte';
 
 	let canvas;
 	let ctx;
@@ -113,7 +113,7 @@
 
 <!-- Solutions Section -->
 <section id="solutions" class="relative bg-gray-100 py-20 bg-gradient-to-t from-white to-blue-300" style="overflow: hidden;">
-<!--	<canvas id="lines" class="absolute inset-0 z-0 h-full w-full filter"></canvas>-->
+
 	<div class="container relative z-10 mx-auto text-center ">
 		<h2 class="text-3xl font-bold">{m.home_solutions_title()}</h2>
 		<p class="mt-4">{m.home_solutions_subtitle()}</p>
@@ -159,28 +159,30 @@
 <section class="py-20 bg-[#cfecff]">
 	<h2 class="text-6xl font-semibold p-10">Why <span class="text-green-500">Us</span>?</h2>
 	<div class="flex flex-col lg:flex-row items-center justify-between lg:px-12 px-4 space-y-10 lg:space-y-0">
-
 		<div
-			class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-l-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 p-20">
+			class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-l-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8">
 			<p class="text-4xl font-semibold">Affordable Pricing</p>
 			<CircleDollarSign size={150} />
-			<p>We offer affordable pricing compared to our competition.</p>
+			<p>Enjoy cost-effective solutions with transparent pricing, designed to deliver exceptional value compared to industry standards.</p>
 		</div>
-
 		<div
-			class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 p-20">
-			<p class="text-4xl font-semibold">Installation included</p>
-			<CirclePower size={150} />
-			<p>We go to your location and install everything for you. You will be set with a working product from day one.</p>
+			class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8">
+			<p class="text-4xl font-semibold">End-to-End Service</p>
+			<Route size={150} />
+			<p>Experience seamless installation and setup at your location, ensuring a fully operational product from the moment we complete the job.</p>
 		</div>
-
 		<div
-			class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-r-xl lg:rounded-none  rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 p-20">
-			<p class="text-4xl font-semibold">Endless Battery</p>
-			<Zap size={150} />
-			<p>Our systems require very little to no maintenance due to the longevity and efficiency of our batteries.</p>
+			class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8">
+			<p class="text-4xl font-semibold">Long Lasting Hardware</p>
+			<Shield size={150} />
+			<p>Benefit from durable, high-quality hardware built to withstand the test of time, minimizing maintenance and ensuring reliable performance.</p>
 		</div>
-
+		<div
+			class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-r-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8">
+			<p class="text-4xl font-semibold">The Best Signal Coverage</p>
+			<RadioTower size={150} />
+			<p>Achieve superior connectivity with our advanced systems, delivering unmatched signal coverage and powered by long-lasting, low-maintenance batteries.</p>
+		</div>
 	</div>
 </section>
 
