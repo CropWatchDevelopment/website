@@ -6,8 +6,6 @@
 	// Removed FACTORY_IMAGE import as it's for Safety & Risk mitigation
 	// Removed BOSTON_IMAGE import as it's for smart city
 	import SAITO_IMAGE from '$lib/images/saito.jpg';
-	import LinkedParticles from '$lib/components/vendor/animated-lines';
-	import { onMount } from 'svelte';
 	// import LineCarasol from '$lib/components/UI/Line-Carasol.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import PriceCard from '$lib/components/UI/Price-Card.svelte';
@@ -15,41 +13,9 @@
 	import { fly } from 'svelte/transition';
 	import { ChartColumnIncreasing, Sprout, CircleDollarSign, Shield, RadioTower, Route } from '@lucide/svelte';
 
-	let canvas;
-	let ctx;
-	let lp;
 	// let submittingEmail = $state(false);
 
-	function resizeCanvas() {
-		const section = document.getElementById('solutions');
-		const { width, height } = section.getBoundingClientRect();
-		canvas.width = width;
-		canvas.height = height;
-	}
-
-	let loaded = $state(false);
-
-	onMount(() => {
-		canvas = document.getElementById('lines');
-		ctx = canvas.getContext('2d');
-
-		// Initialize canvas size
-		resizeCanvas();
-
-		// Listen for window resize
-		window.addEventListener('resize', resizeCanvas);
-
-		lp = new LinkedParticles(ctx);
-
-		function loop() {
-			lp.update();
-			lp.draw();
-			requestAnimationFrame(loop);
-		}
-
-		requestAnimationFrame(loop);
-		loaded = true;
-	});
+	let loaded = $state(true); // Set to true since we no longer need to wait for canvas initialization
 </script>
 
 <svelte:head>
@@ -113,7 +79,6 @@
 
 <!-- Solutions Section -->
 <section id="solutions" class="relative bg-gray-100 py-20 bg-gradient-to-t from-white to-blue-300" style="overflow: hidden;">
-
 	<div class="container relative z-10 mx-auto text-center ">
 		<h2 class="text-3xl font-bold">{m.home_solutions_title()}</h2>
 		<p class="mt-4">{m.home_solutions_subtitle()}</p>
