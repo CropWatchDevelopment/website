@@ -66,7 +66,7 @@
 	<!-- Dropdown menu -->
 	{#if dropdownOpen}
 		<div
-			class="absolute right-0 top-full mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-[9999]"
+			class="absolute right-0 top-full mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-10"
 		>
 			<div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 				{#each languages as lang}

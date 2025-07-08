@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import CropWatchLogo from '$lib/images/favicon.svg';
 	import LanguagePicker from './LanguagePicker.svelte';
+
 	let mobileMenuOpen = $state(false);
 	let announcementVisible = $state(true);
 
@@ -27,6 +28,17 @@
 			document.removeEventListener('click', handleClickOutside);
 		};
 	});
+
+	function handleSectionClick(event) {
+		event.preventDefault();
+		const link = event.currentTarget;
+		const anchorId = new URL(link.href).hash.replace('#', '');
+		const anchor = document.getElementById(anchorId);
+		window.scrollTo({
+			top: anchor.offsetTop,
+			behavior: 'smooth'
+		});
+	}
 </script>
 
 <!-- Announcement/Utility Bar -->
@@ -45,7 +57,7 @@
 				<a
 					href="#contact"
 					class="ml-2 underline transition-all ease-in-out hover:translate-x-2 hover:no-underline"
-					>Learn more →</a
+				>Learn more →</a
 				>
 			</div>
 			<button onclick={closeAnnouncement} class="text-green-200 transition-colors hover:text-white">
@@ -63,7 +75,7 @@
 {/if}
 
 <!-- Utility Navigation Bar -->
-<div class="relative border-b border-slate-700/50 bg-blue-300 backdrop-blur-sm overflow-visible">
+<div class="relative border-b border-slate-700/50 bg-blue-300 backdrop-blur-sm overflow-visible z-20">
 	<div class="mx-auto max-w-6xl px-4 py-2">
 		<div class="flex items-center justify-between text-sm">
 			<!-- Left side - Quick links -->
@@ -98,6 +110,7 @@
 				</a>
 				<a
 					href="https://api.cropwatch.io/swagger"
+					target="_blank" rel="noopener noreferrer"
 					class="flex items-center gap-1 transition-colors hover:text-blue-700"
 				>
 					<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,7 +131,7 @@
 					<div class="h-2 w-2 animate-pulse rounded-full bg-green-400"></div>
 					<span class="text-xs">
 						<a href="https://stats.uptimerobot.com/1Z6H85HuHq" target="_blank"
-							>All Systems Operational</a
+						>All Systems Operational</a
 						>
 					</span>
 				</div>
@@ -130,10 +143,10 @@
 					<a
 						href="/contact-us"
 						class="rounded-lg bg-blue-300 px-2 py-1 text-xs transition-colors hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 hover:text-white sm:p-2"
-						>Email Us!</a
+					>Email Us!</a
 					>
 				</div>
-				<div class="relative z-[9999]">
+				<div class="relative z-20">
 					<LanguagePicker />
 				</div>
 			</div>
@@ -165,23 +178,10 @@
 		<ul class="hidden items-center gap-8 lg:flex">
 			<li class="group relative">
 				<a
-					href="#solutions"
+					href="#solutions" onclick={() => handleSectionClick}
 					class="relative flex items-center gap-1 rounded-lg px-4 py-2 font-medium text-white/80 backdrop-blur-sm transition-all duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:transition-all after:duration-300 hover:-translate-y-0.5 hover:bg-green-500/10 hover:text-green-400 hover:after:w-4/5"
 				>
 					Solutions
-					<svg
-						class="h-4 w-4 transition-transform group-hover:rotate-180"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M19 9l-7 7-7-7"
-						/>
-					</svg>
 				</a>
 			</li>
 			<li>
@@ -198,24 +198,25 @@
 					class="relative flex items-center gap-1 rounded-lg px-4 py-2 font-medium text-white/80 backdrop-blur-sm transition-all duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:transition-all after:duration-300 hover:-translate-y-0.5 hover:bg-green-500/10 hover:text-green-400 hover:after:w-4/5"
 				>
 					Devices
-					<svg
-						class="h-4 w-4 transition-transform group-hover:rotate-180"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M19 9l-7 7-7-7"
-						/>
-					</svg>
+					<!--					<svg-->
+					<!--						class="h-4 w-4 transition-transform group-hover:rotate-180"-->
+					<!--						fill="none"-->
+					<!--						stroke="currentColor"-->
+					<!--						viewBox="0 0 24 24"-->
+					<!--					>-->
+					<!--						<path-->
+					<!--							stroke-linecap="round"-->
+					<!--							stroke-linejoin="round"-->
+					<!--							stroke-width="2"-->
+					<!--							d="M19 9l-7 7-7-7"-->
+					<!--						/>-->
+					<!--					</svg>-->
 				</a>
 			</li>
 			<li>
 				<a
-					href="#"
+					href="https://api.cropwatch.io/swagger"
+					target="_blank" rel="noopener noreferrer"
 					class="relative rounded-lg px-4 py-2 font-medium text-white/80 backdrop-blur-sm transition-all duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:transition-all after:duration-300 hover:-translate-y-0.5 hover:bg-green-500/10 hover:text-green-400 hover:after:w-4/5"
 				>
 					Resources
@@ -223,7 +224,7 @@
 			</li>
 			<li>
 				<a
-					href="#"
+					href="about-us"
 					class="relative rounded-lg px-4 py-2 font-medium text-white/80 backdrop-blur-sm transition-all duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-gradient-to-r after:from-green-500 after:to-emerald-500 after:transition-all after:duration-300 hover:-translate-y-0.5 hover:bg-green-500/10 hover:text-green-400 hover:after:w-4/5"
 				>
 					About
@@ -234,7 +235,7 @@
 		<!-- CTA Button -->
 		<div class="hidden items-center gap-3 md:flex">
 			<a
-				href="#"
+				href="/demo"
 				class="px-4 py-2 font-medium text-white/80 transition-colors hover:text-green-400"
 			>
 				Demo
@@ -264,11 +265,11 @@
 					class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"
 				></div>
 			</a>
-			
+
 			<!-- Mobile menu button -->
 			<button
 				onclick={toggleMobileMenu}
-				class="mobile-menu-btn rounded-lg p-2 text-white transition-colors hover:bg-white/10"
+				class="mobile-menu-btn rounded-lg p-2 text-white transition-colors hover:bg-white/10" aria-label="Toggle mobile menu"
 			>
 				<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path
@@ -361,12 +362,12 @@
 {/if}
 
 <style>
-	@keyframes drift {
-		0% {
-			transform: translateX(0) translateY(0);
-		}
-		100% {
-			transform: translateX(-60px) translateY(-60px);
-		}
-	}
+    @keyframes drift {
+        0% {
+            transform: translateX(0) translateY(0);
+        }
+        100% {
+            transform: translateX(-60px) translateY(-60px);
+        }
+    }
 </style>
