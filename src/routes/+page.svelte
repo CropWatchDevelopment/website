@@ -12,8 +12,12 @@
 	import { languageTag } from '$lib/paraglide/runtime';
 	import { fly } from 'svelte/transition';
 	import { ChartColumnIncreasing, Sprout, CircleDollarSign, Shield, RadioTower, Route } from '@lucide/svelte';
-
+	import Modal from '$lib/components/UI/Modal.svelte';
 	// let submittingEmail = $state(false);
+	let showModalAffordable = $state(false);
+	let showModalService = $state(false);
+	let showModalHardware = $state(false);
+	let showModalCoverage = $state(false);
 
 	let loaded = $state(true); // Set to true since we no longer need to wait for canvas initialization
 </script>
@@ -78,7 +82,8 @@
 
 
 <!-- Solutions Section -->
-<section id="solutions" class="relative bg-gray-100 py-20 bg-gradient-to-t from-white to-blue-300" style="overflow: hidden;">
+<section id="solutions" class="relative bg-gray-100 py-20 bg-gradient-to-t from-white to-blue-300"
+				 style="overflow: hidden;">
 	<div class="container relative z-10 mx-auto text-center ">
 		<h2 class="text-3xl font-bold">{m.home_solutions_title()}</h2>
 		<p class="mt-4">{m.home_solutions_subtitle()}</p>
@@ -124,30 +129,94 @@
 <section class="py-20 bg-[#cfecff]">
 	<h2 class="text-6xl font-semibold p-10">Why <span class="text-green-500">Us</span>?</h2>
 	<div class="flex flex-col lg:flex-row items-center justify-between lg:px-12 px-4 space-y-10 lg:space-y-0">
-		<a href="/"
-			class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-l-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
+		<button onclick={() =>(showModalAffordable = true)}
+						class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-l-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
 			<p class="text-4xl font-semibold">Affordable Pricing</p>
 			<CircleDollarSign size={150} />
-			<p>Enjoy cost-effective solutions with transparent pricing, designed to deliver exceptional value compared to industry standards.</p>
-		</a>
-		<a href="/"
-			class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
+			<p>Enjoy cost-effective solutions with transparent pricing, designed to deliver exceptional value compared to
+				industry standards.</p>
+		</button>
+		<Modal bind:showModal={showModalAffordable}>
+			{#snippet header()}
+				Affordable Pricing
+			{/snippet}
+			{#snippet children()}
+				<CircleDollarSign size={100} />
+				<p>Our pricing model is designed with farmers in mind, offering flexible plans that scale with your needs.
+					Whether you're managing a small family farm or a large agricultural enterprise, our IoT crop monitoring
+					solutions provide exceptional value without hidden costs. We offer straightforward subscription tiers,
+					one-time purchase options for hardware, and no long-term contracts, ensuring you only pay for what you need.
+					Compared to industry standards, our solutions deliver premium features at a fraction of the cost, empowering
+					you to maximize yields while minimizing expenses.</p>
+				<img src="https://images.unsplash.com/photo-1628282928695-29aaa1536c11?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Stack of coins representing affordable pricing" class="mt-4 w-full h-auto rounded-xl" />
+			{/snippet}
+		</Modal>
+		<button onclick={() =>(showModalService = true)}
+						class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
 			<p class="text-4xl font-semibold">End-to-End Service</p>
 			<Route size={150} />
-			<p>Experience seamless installation and setup at your location, ensuring a fully operational product from the moment we complete the job.</p>
-		</a>
-		<a href="/"
-			class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
+			<p>Experience seamless installation and setup at your location, ensuring a fully operational product from the
+				moment we complete the job.</p>
+		</button>
+		<Modal bind:showModal={showModalService}>
+			{#snippet header()}
+				End-to-End Service
+			{/snippet}
+			{#snippet children()}
+				<Route size={100} />
+				<p>Our end-to-end service ensures your IoT crop monitoring system is up and running with minimal effort on your
+					part. From initial consultation to final setup, our expert team handles everything—site assessment, hardware
+					installation, software configuration, and system testing. We provide on-site training to ensure your team is
+					confident in using the system. Post-installation, our dedicated support team is available 24/7 to address any
+					questions or issues, guaranteeing a hassle-free experience and a fully operational solution tailored to your
+					farm's unique needs.</p>
+				<img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" alt="Technician working on equipment for end-to-end service" class="mt-4 w-full h-auto rounded-xl" />
+			{/snippet}
+		</Modal>
+		<button onclick={() =>(showModalHardware = true)}
+						class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
 			<p class="text-4xl font-semibold">Long Lasting Hardware</p>
 			<Shield size={150} />
-			<p>Benefit from durable, high-quality hardware built to withstand the test of time, minimizing maintenance and ensuring reliable performance.</p>
-		</a>
-		<a href="/"
-			class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-r-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
+			<p>Benefit from durable, high-quality hardware built to withstand the test of time, minimizing maintenance and
+				ensuring reliable performance.</p>
+		</button>
+		<Modal bind:showModal={showModalHardware}>
+			{#snippet header()}
+				Long Lasting Hardware
+			{/snippet}
+			{#snippet children()}
+				<Shield size={100} />
+				<p>Our IoT devices are engineered for durability and reliability in the harshest agricultural environments.
+					Constructed with weather-resistant materials, our sensors and monitoring equipment are designed to endure
+					extreme temperatures, moisture, and dust, ensuring consistent performance year-round. With a focus on
+					longevity, our hardware requires minimal maintenance, reducing downtime and operational costs. Each device
+					undergoes rigorous testing to meet the highest quality standards, providing you with a dependable solution
+					that supports your farm’s productivity for years to come.</p>
+				<img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f" alt="Close-up of durable IoT hardware components" class="mt-4 w-full h-auto rounded-xl" />
+			{/snippet}
+		</Modal>
+		<button onclick={() =>(showModalCoverage = true)}
+						class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-r-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
 			<p class="text-4xl font-semibold">The Best Signal Coverage</p>
 			<RadioTower size={150} />
-			<p>Achieve superior connectivity with our advanced systems, delivering unmatched signal coverage and powered by long-lasting, low-maintenance batteries.</p>
-		</a>
+			<p>Achieve superior connectivity with our advanced systems, delivering unmatched signal coverage and powered by
+				long-lasting, low-maintenance batteries.</p>
+		</button>
+		<Modal bind:showModal={showModalCoverage}>
+			{#snippet header()}
+				The Best Signal Coverage
+			{/snippet}
+			{#snippet children()}
+				<RadioTower size={100} />
+				<p>Our IoT crop monitoring systems leverage cutting-edge connectivity technology to ensure seamless data
+					transmission across your entire farm, no matter the size or terrain. With advanced signal amplification and
+					low-power wide-area network (LPWAN) technology, our devices provide unmatched coverage, even in remote or
+					challenging environments. Powered by long-lasting, low-maintenance batteries, our systems minimize the need
+					for frequent replacements, ensuring continuous monitoring and real-time insights into soil health, moisture
+					levels, and crop conditions, all accessible from your smartphone or computer.</p>
+				<img src="https://images.unsplash.com/photo-1548244250-9aa08b58f204?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Radio tower ensuring superior signal coverage" class="mt-4 w-full h-auto rounded-xl" />
+			{/snippet}
+		</Modal>
 	</div>
 </section>
 
