@@ -182,32 +182,6 @@
 					value compared to industry standards.
 				</p>
 			</button>
-			<Modal bind:showModal={showModalAffordable}>
-				{#snippet header()}
-					Affordable Pricing
-				{/snippet}
-				{#snippet children()}
-					<div class="mb-6 flex justify-center">
-						<div class="rounded-full border border-slate-200 bg-slate-100 p-4">
-							<CircleDollarSign size={80} class="text-slate-700" />
-						</div>
-					</div>
-					<p>
-						Our pricing model is designed with farmers in mind, offering flexible plans that scale
-						with your needs. Whether you're managing a small family farm or a large agricultural
-						enterprise, our IoT crop monitoring solutions provide exceptional value without hidden
-						costs. We offer straightforward subscription tiers, one-time purchase options for
-						hardware, and no long-term contracts, ensuring you only pay for what you need. Compared
-						to industry standards, our solutions deliver premium features at a fraction of the cost,
-						empowering you to maximize yields while minimizing expenses.
-					</p>
-					<img
-						src="https://images.unsplash.com/photo-1628282928695-29aaa1536c11?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-						alt="Stack of coins representing affordable pricing"
-						class="mt-4 h-auto w-full rounded-xl"
-					/>
-				{/snippet}
-			</Modal>
 			<button
 				onclick={() => (showModalService = true)}
 				class="flex flex-col items-center justify-center space-y-12 rounded-md bg-green-500 px-8 py-20 text-center text-white transition ease-in-out hover:-translate-y-10 lg:h-[37rem] lg:w-1/3 lg:space-y-10 lg:rounded-none"
@@ -223,32 +197,6 @@
 					product from the moment we complete the job.
 				</p>
 			</button>
-			<Modal bind:showModal={showModalService}>
-				{#snippet header()}
-					End-to-End Service
-				{/snippet}
-				{#snippet children()}
-					<div class="mb-6 flex justify-center">
-						<div class="rounded-full border border-slate-200 bg-slate-100 p-4">
-							<Route size={80} class="text-slate-700" />
-						</div>
-					</div>
-					<p>
-						Our end-to-end service ensures your IoT crop monitoring system is up and running with
-						minimal effort on your part. From initial consultation to final setup, our expert team
-						handles everything—site assessment, hardware installation, software configuration, and
-						system testing. We provide on-site training to ensure your team is confident in using
-						the system. Post-installation, our dedicated support team is available 24/7 to address
-						any questions or issues, guaranteeing a hassle-free experience and a fully operational
-						solution tailored to your farm's unique needs.
-					</p>
-					<img
-						src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-						alt="Technician working on equipment for end-to-end service"
-						class="mt-4 h-auto w-full rounded-xl"
-					/>
-				{/snippet}
-			</Modal>
 <Modal bind:showModal={showModalAffordable} class="max-w-xl">
 	{#snippet header()}
 		Affordable Pricing
@@ -320,32 +268,6 @@
 					minimizing maintenance and ensuring reliable performance.
 				</p>
 			</button>
-			<Modal bind:showModal={showModalHardware}>
-				{#snippet header()}
-					Long Lasting Hardware
-				{/snippet}
-				{#snippet children()}
-					<div class="mb-6 flex justify-center">
-						<div class="rounded-full border border-slate-200 bg-slate-100 p-4">
-							<shield size={80} class="text-slate-700" />
-						</div>
-					</div>
-					<p>
-						Our IoT devices are engineered for durability and reliability in the harshest
-						agricultural environments. Constructed with weather-resistant materials, our sensors and
-						monitoring equipment are designed to endure extreme temperatures, moisture, and dust,
-						ensuring consistent performance year-round. With a focus on longevity, our hardware
-						requires minimal maintenance, reducing downtime and operational costs. Each device
-						undergoes rigorous testing to meet the highest quality standards, providing you with a
-						dependable solution that supports your farm’s productivity for years to come.
-					</p>
-					<img
-						src="https://images.unsplash.com/photo-1516321497487-e288fb19713f"
-						alt="Close-up of durable IoT hardware components"
-						class="mt-4 h-auto w-full rounded-xl"
-					/>
-				{/snippet}
-			</Modal>
 <Modal bind:showModal={showModalHardware} class="max-w-xl">
 	{#snippet header()}
 		Long Lasting Hardware
@@ -389,50 +311,6 @@
 					coverage and powered by long-lasting, low-maintenance batteries.
 				</p>
 			</button>
-			<Modal bind:showModal={showModalCoverage} class="w-[50vw]">
-				{#snippet header()}
-					The Best Signal Coverage
-				{/snippet}
-				{#snippet children()}
-					<div class="mb-6 flex justify-center">
-						<div class="rounded-full border border-slate-200 bg-slate-100 p-4">
-							<RadioTower size={80} class="text-slate-700" />
-						</div>
-					</div>
-
-					<div class="space-y-4 text-gray-800">
-						<p class="text-base leading-relaxed">
-							Our IoT crop monitoring systems leverage cutting-edge connectivity technology to
-							ensure seamless data transmission across your entire farm, no matter the size or
-							terrain. With advanced signal amplification and low-power wide-area network (LPWAN)
-							technology, our devices provide unmatched coverage, even in remote or challenging
-							environments.
-						</p>
-
-						<p class="text-base leading-relaxed">
-							Powered by long-lasting, low-maintenance batteries, our systems minimize the need for
-							frequent replacements, ensuring continuous monitoring and real-time insights into soil
-							health, moisture levels, and crop conditions, all accessible from your smartphone or
-							computer.
-						</p>
-					</div>
-
-					<img
-						src="https://images.unsplash.com/photo-1548244250-9aa08b58f204?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-						alt="Radio tower ensuring superior signal coverage"
-						class="mt-6 h-48 w-full rounded-lg object-cover shadow-md"
-					/>
-
-					<div class="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
-						<div class="flex items-center justify-center space-x-2">
-							<div class="h-2 w-2 rounded-full bg-emerald-600"></div>
-							<p class="text-center text-sm font-medium text-gray-800">
-								Real-time monitoring • 99.9% uptime • Enterprise-grade security
-							</p>
-						</div>
-					</div>
-				{/snippet}
-			</Modal>
 <Modal bind:showModal={showModalCoverage} class="max-w-xl">
 	{#snippet header()}
 		The Best Signal Coverage
