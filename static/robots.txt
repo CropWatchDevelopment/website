@@ -1,5 +1,3 @@
-# https://www.robotstxt.org/robotstxt.html
+# allow crawling everything by default
 User-agent: *
 Disallow:
-
-Sitemap: https://cropwatch.io/sitemap.xml
