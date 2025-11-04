@@ -25,7 +25,7 @@
                 src: gatewayImage,
                 alt: 'Gateway monitoring hardware inside a processing facility'
             },
-            textSide: 'left'
+            textSide: 'right'
         },
         {
             id: 'battery-life',

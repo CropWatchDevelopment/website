@@ -9,7 +9,7 @@
 <div class="flex flex-col min-h-screen">
 	<Header />
 
-	<main class="flex flex-1 flex-col w-full mx-auto gap-8">
+	<main class="flex flex-1 flex-col w-full mx-auto">
 		{@render children()}
 	</main>
 

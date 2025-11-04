@@ -17,9 +17,9 @@
 		{
 			id: 'products',
 			label: 'Products',
-			children: [{ label: 'Temperature/Humidity Sensor (CW-AIR-TH)', href: '/cw-air-th' }]
+			children: [{ label: 'Temperature/Humidity Sensor (CW-AIR-TH)', href: '/products/cw-air-th' }]
 		},
-		{ id: 'case-studies', label: 'Case Studies', href: '/usecases' },
+		{ id: 'case-studies', label: 'Case Studies', href: '/case-studies' },
 		{ id: 'about', label: 'About', href: '/about' },
 		{ id: 'contact', label: 'Contact', href: '/contact' }
 	] as const;
@@ -76,7 +76,7 @@
 	<div class="bg-gradient-to-b from-[#2f5387] to-[#1f3b64] py-4 text-white shadow-[0_2px_4px_rgba(0,0,0,0.15)]">
 		<div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-6 px-4">
 			<a class="flex min-w-[220px] items-center gap-4" href="https://cropwatch.io/" aria-label="CropWatch home">
-				<picture class="h-14 w-14 overflow-hidden rounded-full bg-white/10 p-2">
+				<picture class="h-14 w-14 overflow-hidden p-2">
 					<source srcset={logo} type="image/svg+xml" />
 					<img src={logo} alt="CropWatch logo" class="h-full w-full object-contain" />
 				</picture>
@@ -159,12 +159,12 @@
 							</svg>
 						</button>
 						<ul
-							class={`absolute top-full left-0 mt-2 w-52 rounded-md bg-white py-2 text-gray-800 shadow-lg ring-1 ring-black/5 transition-[opacity,transform] duration-150 ${openMenu === item.id ? 'visible translate-y-0 opacity-100' : 'pointer-events-none invisible -translate-y-2 opacity-0'}`}
+							class={`z-10 absolute top-full left-0 mt-2 w-52 rounded-md bg-white py-2 text-gray-800 shadow-lg ring-1 ring-black/5 transition-[opacity,transform] duration-150 ${openMenu === item.id ? 'visible translate-y-0 opacity-100' : 'pointer-events-none invisible -translate-y-2 opacity-0'}`}
 							role="menu"
 							aria-hidden={openMenu !== item.id}
 						>
 							{#each item.children as child (child.href)}
-								<li>
+								<li class="z-10">
 									<a
 										class="block px-4 py-2 text-sm font-medium transition hover:bg-gray-100 hover:text-gray-900"
 										href={child.href}

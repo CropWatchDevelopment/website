@@ -43,7 +43,7 @@
     const year = new Date().getFullYear();
 </script>
 
-<footer class="relative overflow-hidden bg-[#0a1a34] text-white mt-10">
+<footer class="relative overflow-hidden bg-[#0a1a34] text-white">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent)]" aria-hidden="true"></div>
 
     <div class="relative mx-auto w-full max-w-6xl px-4 py-16">
