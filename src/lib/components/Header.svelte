@@ -24,6 +24,11 @@
 		{ id: 'contact', label: 'Contact', href: '/contact' }
 	] as const;
 
+	const utilityLinks = [
+		{ label: 'UI APP', href: 'https://app.cropwatch.io/' },
+		{ label: 'System Status', href: '/status' }
+	] as const;
+
 	function toggleMenu(id: string) {
 		openMenu = openMenu === id ? null : id;
 	}
@@ -121,11 +126,9 @@
 		</div>
 	</div>
 
-	<nav
-		class="bg-gradient-to-b from-[#2f5387] to-[#1f3b64] py-4 shadow-[0_2px_4px_rgba(0,0,0,0.15)]"
-		use:clickOutside
-	>
-		<ul class="mx-auto flex max-w-6xl items-center gap-6 px-4 text-sm text-white" id="mainMenu">
+	<nav class="bg-gradient-to-b from-[#2f5387] to-[#1f3b64] py-4 shadow-[0_2px_4px_rgba(0,0,0,0.15)]" use:clickOutside>
+		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
+			<ul class="flex items-center gap-6 text-sm text-white" id="mainMenu">
 			{#each navItems as item (item.id)}
 				<li class="relative">
 					{#if item.children}
@@ -187,5 +190,13 @@
 				</li>
 			{/each}
 		</ul>
+			<ul class="flex items-center gap-4 text-sm font-semibold text-white/80">
+				{#each utilityLinks as link (link.href)}
+					<li>
+						<a class="rounded px-3 py-1 transition hover:bg-white/10 hover:text-white" target="_blank" href={link.href}>{link.label}</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
 	</nav>
 </header>
