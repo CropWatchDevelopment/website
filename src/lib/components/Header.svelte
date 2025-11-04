@@ -1,216 +1,191 @@
-<script>
-	// Use Svelte reactive state instead of direct DOM access so this is
-	// safe during SSR and runs correctly when the component mounts.
-	let mobileMenuOpen = false;
+<script lang="ts">
+	import logo from '$lib/images/cropwatch_animated.svg';
+	let openMenu = $state<string | null>(null);
 
-	function toggleMenu() {
-		mobileMenuOpen = !mobileMenuOpen;
+	const navItems = [
+		{ id: 'home', label: 'Home', href: '/' },
+		{
+			id: 'solutions',
+			label: 'Solutions',
+			children: [
+				{ label: 'Manufacturing', href: '/solutions/manufacturing' },
+				{ label: 'Logistics', href: '/solutions/logistics' },
+				{ label: 'Agriculture', href: '/solutions/agriculture' },
+				{ label: 'Energy', href: '/solutions/energy' }
+			]
+		},
+		{
+			id: 'products',
+			label: 'Products',
+			children: [{ label: 'Temperature/Humidity Sensor (CW-AIR-TH)', href: '/cw-air-th' }]
+		},
+		{ id: 'case-studies', label: 'Case Studies', href: '/usecases' },
+		{ id: 'about', label: 'About', href: '/about' },
+		{ id: 'contact', label: 'Contact', href: '/contact' }
+	] as const;
+
+	function toggleMenu(id: string) {
+		openMenu = openMenu === id ? null : id;
+	}
+
+	function closeMenu() {
+		openMenu = null;
+	}
+
+	function clickOutside(node: HTMLElement) {
+		const handleClick = (event: MouseEvent) => {
+			if (!node.contains(event.target as Node)) {
+				closeMenu();
+			}
+		};
+
+		const handleKeydown = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				closeMenu();
+			}
+		};
+
+		document.addEventListener('click', handleClick, true);
+		document.addEventListener('keydown', handleKeydown, true);
+
+		return {
+			destroy() {
+				document.removeEventListener('click', handleClick, true);
+				document.removeEventListener('keydown', handleKeydown, true);
+			}
+		};
 	}
 </script>
 
-<header
-	class="sticky top-0 z-50 border-b border-blue-200/40 bg-white/60 shadow-md backdrop-blur-md"
-	aria-label="Primary navigation"
->
-	<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
-		<!-- Logo and brand name -->
-		<a href="/" class="flex items-center space-x-2">
-			<!-- Inline SVG logo to avoid external asset during prerender -->
-			<svg
-				role="img"
-				aria-label="YourCompany logo"
-				class="h-8 w-8 drop-shadow-sm"
-				viewBox="0 0 24 24"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<title>YourCompany</title>
-				<g fill="none" fill-rule="evenodd">
-					<circle cx="12" cy="12" r="10" fill="#0ea5e9" />
-					<path d="M7 12c1.5-3 5-5 8-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-					<path d="M7 12c1.5 3 5 5 8 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-				</g>
-			</svg>
-			<span class="text-lg font-semibold tracking-wide text-gray-800"> YourCompany </span>
-		</a>
-		<!-- Desktop navigation -->
-		<nav class="hidden items-center space-x-6 md:flex">
-			<a href="/" class="font-medium text-gray-700 transition-colors hover:text-blue-800"
-				>Home</a
-			>
-			<div class="group relative">
-				<!-- Button to toggle the services dropdown -->
-				<button
-					type="button"
-					class="flex items-center space-x-1 font-medium text-gray-700 hover:text-blue-800 focus:outline-none"
-					aria-haspopup="true"
-					aria-expanded="false"
-				>
-					<span>Services</span>
-					<!-- Down chevron icon -->
-					<svg
-						class="h-4 w-4 transform transition-transform group-hover:rotate-180"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.5"
-						viewBox="0 0 24 24"
-					>
-						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-					</svg>
-				</button>
-				<!-- Dropdown menu -->
-				<ul
-					class="invisible absolute left-0 mt-3 w-44 rounded-lg border border-blue-200/30 bg-white/90 opacity-0 shadow-lg backdrop-blur-md transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100"
-				>
-					<li>
-						<a
-							href="/about"
-							class="block px-4 py-2 text-gray-700 hover:bg-blue-100/60 hover:text-blue-900"
-							>Consulting</a
-						>
-					</li>
-					<li>
-						<a
-							href="/about"
-							class="block px-4 py-2 text-gray-700 hover:bg-blue-100/60 hover:text-blue-900"
-							>Development</a
-						>
-					</li>
-					<li>
-						<a
-							href="/about"
-							class="block px-4 py-2 text-gray-700 hover:bg-blue-100/60 hover:text-blue-900"
-							>Support</a
-						>
-					</li>
-				</ul>
-			</div>
-			<a href="/about" class="font-medium text-gray-700 transition-colors hover:text-blue-800"
-				>About</a
-			>
-			<a href="/about" class="font-medium text-gray-700 transition-colors hover:text-blue-800"
-				>Contact</a
-			>
-		</nav>
-		<!-- Icons and mobile toggle -->
-		<div class="flex items-center space-x-4">
-			<!-- Search icon -->
-			<button
-				aria-label="Search"
-				class="text-gray-700 transition-colors hover:text-blue-800"
-				type="button"
-			>
-				<svg
-					class="h-6 w-6"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1.5"
-					viewBox="0 0 24 24"
-				>
-					<!-- Magnifying glass path from Heroicons outline set -->
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-					/>
-				</svg>
-			</button>
-			<!-- Mail icon -->
-			<a
-				href="mailto:info@example.com"
-				aria-label="Email"
-				class="text-gray-700 transition-colors hover:text-blue-800"
-			>
-				<svg
-					class="h-6 w-6"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1.5"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-					/>
-				</svg>
-			</a>
-			<!-- Phone icon -->
-			<a
-				href="tel:+811234567890"
-				aria-label="Call"
-				class="text-gray-700 transition-colors hover:text-blue-800"
-			>
-				<svg
-					class="h-6 w-6"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1.5"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-					/>
-				</svg>
-			</a>
-			<!-- Mobile menu button -->
-			<button
-				id="mobile-menu-toggle"
-				class="text-gray-700 hover:text-blue-800 focus:outline-none md:hidden"
-				aria-label="Toggle mobile menu"
-				aria-expanded={mobileMenuOpen}
-				aria-controls="mobile-menu"
-				type="button"
-				on:click={toggleMenu}
-			>
-				<svg
-					class="h-6 w-6"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1.5"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M3.75 6.75h16.5m-16.5 5.25h16.5m-16.5 5.25h16.5"
-					/>
-				</svg>
-			</button>
+<header>
+	<div class="mx-auto flex flex-row bg-[#fffc00] items-center justify-between bg-gray-100 px-4 py-2 text-sm">
+		<div class="flex gap-2 py-3">
+			<span>Welcome to CropWatch</span>
+			<span>|</span>
+			<span>Global Site</span>
+			<!-- <span class="flex flex-1"></span> -->
+		</div>
+		<div class="flex gap-4">
+			<a href="/contact" class="transition-colors hover:text-blue-600">Contact</a>
+			<a href="/support" class="transition-colors hover:text-blue-600">Support</a>
+			<a href="/en" class="transition-colors hover:text-blue-600">EN</a>
+			<a href="/jp" class="transition-colors hover:text-blue-600">JP</a>
 		</div>
 	</div>
-	<!-- Mobile navigation menu (hidden by default) -->
-		<nav
-		id="mobile-menu"
-		class="space-y-1 border-t border-blue-200/40 bg-white/80 px-4 pb-4 backdrop-blur-lg md:hidden"
-		class:hidden={!mobileMenuOpen}
-		class:block={mobileMenuOpen}
-		aria-label="Mobile navigation"
-	>
-			<a href="/" class="block py-2 font-medium text-gray-700 hover:text-blue-800">Home</a>
-		<details>
-			<summary
-				class="flex cursor-pointer items-center justify-between py-2 font-medium text-gray-700 hover:text-blue-800"
-			>
-				<span>Services</span>
-				<svg
-					class="ml-2 h-4 w-4"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1.5"
-					viewBox="0 0 24 24"
+
+	<div class="bg-gradient-to-b from-[#2f5387] to-[#1f3b64] py-4 text-white shadow-[0_2px_4px_rgba(0,0,0,0.15)]">
+		<div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-6 px-4">
+			<a class="flex min-w-[220px] items-center gap-4" href="https://cropwatch.io/" aria-label="CropWatch home">
+				<picture class="h-14 w-14 overflow-hidden rounded-full bg-white/10 p-2">
+					<source srcset={logo} type="image/svg+xml" />
+					<img src={logo} alt="CropWatch logo" class="h-full w-full object-contain" />
+				</picture>
+				<div class="flex flex-col">
+					<span class="text-lg font-semibold tracking-wide">CropWatch LLC</span>
+					<span class="text-xs uppercase text-white/80">Delivering Quality &amp; ROI Since 2019</span>
+				</div>
+			</a>
+			<div class="flex flex-1 items-center justify-end gap-6">
+				<div class="hidden items-center gap-2 text-sm font-semibold sm:flex">
+					<span class="text-lg">☎</span>
+					<a href="tel:+818042843390" class="hover:text-white">080-4284-3390</a>
+				</div>
+				<form
+					class="flex w-full max-w-xs items-center overflow-hidden rounded-full border border-white/30 bg-white/10 px-3 py-1 text-sm transition focus-within:border-white focus-within:bg-white/20"
+					role="search"
 				>
-					<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-				</svg>
-			</summary>
-			<div class="mt-1 space-y-1 pl-4">
-				<a href="/about" class="block py-1 text-gray-700 hover:text-blue-800">Consulting</a>
-				<a href="/about" class="block py-1 text-gray-700 hover:text-blue-800">Development</a>
-				<a href="/about" class="block py-1 text-gray-700 hover:text-blue-800">Support</a>
+					<label class="sr-only" for="header-search">Search CropWatch</label>
+					<input
+						id="header-search"
+						class="w-full bg-transparent border-none text-white placeholder:text-white/70 focus:outline-none"
+						type="search"
+						name="q"
+						placeholder="Search our site"
+						autocomplete="off"
+					/>
+					<button
+						type="submit"
+						class="ml-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white transition hover:bg-white/40"
+						aria-label="Search"
+					>
+						<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path
+								fill-rule="evenodd"
+								d="M9 3.5a5.5 5.5 0 1 0 3.356 9.9l3.122 3.122a.75.75 0 1 0 1.06-1.06l-3.121-3.123A5.5 5.5 0 0 0 9 3.5ZM5 9a4 4 0 1 1 7.007 2.545.75.75 0 0 0-.144.144A4 4 0 0 1 5 9Z"
+								clip-rule="evenodd"
+							/>
+						</svg>
+					</button>
+				</form>
 			</div>
-		</details>
-			<a href="/about" class="block py-2 font-medium text-gray-700 hover:text-blue-800">About</a>
-			<a href="/about" class="block py-2 font-medium text-gray-700 hover:text-blue-800">Contact</a>
+		</div>
+	</div>
+
+	<nav
+		class="bg-gradient-to-b from-[#2f5387] to-[#1f3b64] py-4 shadow-[0_2px_4px_rgba(0,0,0,0.15)]"
+		use:clickOutside
+	>
+		<ul class="mx-auto flex max-w-6xl items-center gap-6 px-4 text-sm text-white" id="mainMenu">
+			{#each navItems as item (item.id)}
+				<li class="relative">
+					{#if item.children}
+						<button
+							class="flex items-center gap-1 rounded px-2 py-1 font-medium transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+							aria-expanded={openMenu === item.id}
+							onclick={() => toggleMenu(item.id)}
+							onkeydown={(event) => {
+								if (event.key === 'Escape') {
+									closeMenu();
+								}
+
+								if (event.key === ' ' || event.key === 'Enter') {
+									event.preventDefault();
+									toggleMenu(item.id);
+								}
+							}}
+						>
+							<span>{item.label}</span>
+							<svg
+								class={`h-4 w-4 transition-transform ${openMenu === item.id ? 'rotate-180' : ''}`}
+								viewBox="0 0 20 20"
+								fill="currentColor"
+								aria-hidden="true"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08"
+									clip-rule="evenodd"
+								/>
+							</svg>
+						</button>
+						<ul
+							class={`absolute top-full left-0 mt-2 w-52 rounded-md bg-white py-2 text-gray-800 shadow-lg ring-1 ring-black/5 transition-[opacity,transform] duration-150 ${openMenu === item.id ? 'visible translate-y-0 opacity-100' : 'pointer-events-none invisible -translate-y-2 opacity-0'}`}
+							role="menu"
+							aria-hidden={openMenu !== item.id}
+						>
+							{#each item.children as child (child.href)}
+								<li>
+									<a
+										class="block px-4 py-2 text-sm font-medium transition hover:bg-gray-100 hover:text-gray-900"
+										href={child.href}
+										role="menuitem"
+										onclick={closeMenu}
+									>
+										{child.label}
+									</a>
+								</li>
+							{/each}
+						</ul>
+					{:else}
+						<a
+							class="rounded px-2 py-1 font-medium transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+							href={item.href}
+						>
+							{item.label}
+						</a>
+					{/if}
+				</li>
+			{/each}
+		</ul>
 	</nav>
 </header>
