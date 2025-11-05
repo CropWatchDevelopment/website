@@ -63,8 +63,8 @@
 </script>
 
 <header>
-	<div class="mx-auto flex flex-row bg-[#fffc00] items-center justify-between bg-gray-100 px-4 py-2 text-sm">
-		<div class="flex gap-2 py-3">
+	<div class="mx-auto flex flex-row bg-[#f2a5168f]  items-center justify-between px-4 py-2 text-sm">
+		<div class="flex gap-2 py-3 text-sm font-semibold text-[#11213c]">
 			<span>Welcome to CropWatch</span>
 			<span>|</span>
 			<span>Global Site</span>
@@ -190,7 +190,7 @@
 				</li>
 			{/each}
 		</ul>
-			<ul class="flex items-center gap-4 text-sm font-semibold text-white/80">
+			<ul id="utilityLinks" class="flex items-center gap-4 text-sm font-semibold text-white/80">
 				{#each utilityLinks as link (link.href)}
 					<li>
 						<a class="rounded px-3 py-1 transition hover:bg-white/10 hover:text-white" target="_blank" href={link.href}>{link.label}</a>

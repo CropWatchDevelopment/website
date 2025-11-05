@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ProductOrigin from '$lib/components/product-origin.svelte';
     import deviceSideViewImage from './images/device-side-view.webp';
 
 	const featureHighlights = [
@@ -199,6 +200,10 @@
 			{/each}
 		</div>
 	</div>
+</section>
+
+<section id="product-origin">
+	<ProductOrigin />
 </section>
 
 <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
