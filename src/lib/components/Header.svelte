@@ -1,26 +1,27 @@
 <script lang="ts">
 	import logo from '$lib/images/cropwatch_animated.svg';
+	import MaterialIcon from './MaterialIcon.svelte';
 	let openMenu = $state<string | null>(null);
 
 	interface NavItem {
 		id: string;
 		label: string;
 		href?: string;
-		children?: { label: string; href: string }[];
+		children?: { label: string; href: string; icon?: string }[];
 	}
 
 	const navItems: NavItem[] = [
 		{ id: 'home', label: 'Home', href: '/' },
-		{
-			id: 'solutions',
-			label: 'Solutions',
-			children: [
-				{ label: 'Manufacturing', href: '/solutions/manufacturing' },
-				{ label: 'Logistics', href: '/solutions/logistics' },
-				{ label: 'Agriculture', href: '/solutions/agriculture' },
-				{ label: 'Energy', href: '/solutions/energy' }
-			]
-		},
+		// {
+		// 	id: 'solutions',
+		// 	label: 'Solutions',
+		// 	children: [
+		// 		{ label: 'Manufacturing', href: '/solutions/manufacturing' },
+		// 		{ label: 'Logistics', href: '/solutions/logistics' },
+		// 		{ label: 'Agriculture', href: '/solutions/agriculture' },
+		// 		{ label: 'Energy', href: '/solutions/energy' }
+		// 	]
+		// },
 		{
 			id: 'products',
 			label: 'Products',
@@ -32,8 +33,12 @@
 	] as const;
 
 	const utilityLinks = [
-		{ label: 'UI APP', href: 'https://app.cropwatch.io/' },
-		{ label: 'System Status', href: 'https://stats.uptimerobot.com/1Z6H85HuHq' }
+		{ label: 'UI APP', href: 'https://app.cropwatch.io/', icon: 'exit_to_app' },
+		{
+			label: 'System Status',
+			icon: 'monitor_heart',
+			href: 'https://stats.uptimerobot.com/1Z6H85HuHq'
+		}
 	] as const;
 
 	function toggleMenu(id: string) {
@@ -107,7 +112,16 @@
 			</a>
 			<div class="flex flex-1 items-center justify-end gap-6">
 				<div class="hidden items-center gap-2 text-sm font-semibold sm:flex">
-					<span class="text-lg">☎</span>
+					<span class="text-lg">
+						<MaterialIcon
+							name="phone_in_talk"
+							collection="symbols"
+							variant="rounded"
+							size={18}
+							class="inline-block align-middle"
+							ariaLabel="Location icon"
+						/>
+					</span>
 					<a href="tel:+818042843390" class="hover:text-white">080-4284-3390</a>
 				</div>
 				<form
@@ -216,8 +230,20 @@
 						<a
 							class="rounded px-3 py-1 transition hover:bg-white/10 hover:text-white"
 							target="_blank"
-							href={link.href}>{link.label}</a
+							href={link.href}
 						>
+							{#if link.icon}
+								<MaterialIcon
+									name={link.icon}
+									collection="symbols"
+									variant="rounded"
+									size={16}
+									class="mr-1 inline-block align-middle"
+									ariaLabel={link.label + ' icon'}
+								/>
+							{/if}
+							{link.label}
+						</a>
 					</li>
 				{/each}
 			</ul>

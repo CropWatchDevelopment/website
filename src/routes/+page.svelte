@@ -20,7 +20,7 @@
 				'Dual-sensor design with tie-breaker logic for each reading',
 				'Serialized calibration with cloud-based certificates',
 				'Automated drift detection keeps compliance on track',
-				'Individual NIST-traceable certificates for each device',
+				'Individual NIST-traceable certificates for each device'
 			],
 			link: { label: 'Explore our quality program', href: '/quality' }
 		},
@@ -57,15 +57,18 @@
 			title: 'Sensors & Edge Devices',
 			lead: 'Deploy scalable coverage with zero compromise on accuracy.',
 			items: [
-				{ label: 'First 10 devices', value: '$199 each' },
-				{ label: '11+ devices', value: '$179 each' },
-				{ label: 'Calibration', value: 'Included, ISO-traceable' }
+				{ label: '0-10 devices', value: '$10/device/mo' },
+				{ label: '11-99 devices', value: '$8/device/mo' },
+				{ label: '100+ devices', value: 'Contact Us', href: '/contact' },
+				{ label: 'Calibration', value: 'Included, NIST-traceable' }
 			]
 		},
 		{
-			title: 'Gateways & Backbone',
+			title: 'Devices & Gateways',
 			lead: 'Indoor, outdoor, and carrier-grade LoRaWAN® options.',
 			items: [
+				{ label: 'Temperature/Humidity sensor', value: '$199' },
+				{ label: 'Automation Relay Module', value: '$179' },
 				{ label: 'Indoor edge gateway', value: '$549' },
 				{ label: 'Industrial carrier-grade', value: '$1,899' },
 				{ label: 'Site RF design', value: 'Bundled with deployment' }
@@ -107,14 +110,14 @@
 					Industrial IoT That Pays For Itself
 				</p>
 				<h1 class="text-4xl font-semibold tracking-tight text-[#0b1730] md:text-5xl">
-					What makes CropWatch™ different?
+					What makes CropWatch<sup><small>™</small></sup> different?
 				</h1>
 				<p class="text-lg leading-relaxed text-[#15284a]/80">
-					CropWatch™ pairs ruggedized sensors with LoRaWAN<sup><small>®</small></sup> networks to provide unparalleled
-					device reliability and data accuracy in the most challenging industrial environments.
-					Our devices are not just built to last—they're engineered to deliver measurable ROI from day one.
-					Realize cost savings through reduced manual checks, faster compliance audits, and devices that are engineered
-					to be maintaince-free and long-lasting.
+					CropWatch<sup><small>™</small></sup> pairs ruggedized sensors with LoRaWAN<sup><small>®</small></sup> networks to provide
+					unparalleled device reliability and data accuracy in the most challenging industrial environments.
+					Our devices are not just built to last—they're engineered to deliver measurable ROI from day
+					one. Realize cost savings through reduced manual checks, faster compliance audits, and devices
+					that are engineered to be maintaince-free and long-lasting.
 				</p>
 				<div
 					class="grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-sm text-[#1c2d52] md:grid-cols-2"
@@ -165,7 +168,7 @@
 			class="grid gap-8 rounded-3xl border border-[#d7e0f5] bg-[#0b1730] px-6 py-10 md:grid-cols-3 md:px-10"
 		>
 			{#each proofPoints as card (card.title)}
-				<article class="space-y-4 text-white/90">
+				<article class="flex flex-col space-y-4 text-white/90">
 					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
 						{card.title}
 					</p>
@@ -178,6 +181,7 @@
 							</li>
 						{/each}
 					</ul>
+					<span class="flex-grow"></span>
 					{#if card.link}
 						<a
 							class="inline-flex items-center gap-2 text-sm font-semibold text-[#f2a516] transition hover:text-white"
@@ -243,9 +247,9 @@
 				href="/contact"
 				class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-5 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387]"
 			>
-			<MaterialIcon name="concierge" collection="symbols" variant="outlined" />
-			Request a tailored estimate
-		</a>
+				<MaterialIcon name="concierge" collection="symbols" variant="outlined" />
+				Request a tailored estimate
+			</a>
 		</div>
 		<div class="grid gap-6 md:grid-cols-3">
 			{#each pricingMatrix as column (column.title)}
@@ -259,7 +263,13 @@
 						{#each column.items as item (item.label)}
 							<li class="flex items-start justify-between gap-4">
 								<span class="font-medium">{item.label}</span>
-								<span class="text-[#2f5387]">{item.value}</span>
+								{#if item.href}
+									<a class="text-[#2f5387] underline" href={item.href}>
+										{item.value}
+									</a>
+								{:else}
+									<span class="text-[#2f5387]">{item.value}</span>
+								{/if}
 							</li>
 						{/each}
 					</ul>
@@ -279,7 +289,7 @@
 			Ready to Prove ROI?
 		</p>
 		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
-			Let's chat, and we will show you how CropWatch™ can deliver measurable value
+			Let's chat, and we will show you how CropWatch<sup><small>™</small></sup> can deliver measurable value
 		</h2>
 		<p class="mt-4 text-base text-white/80">
 			We'll walk your environment, model signal coverage, and produce a business case that leaders

@@ -42,8 +42,8 @@
         {
             id: 'wireless-signal',
             badge: '📡 Strong Wireless Signal',
-            title: 'LoRaWAN Built To Penetrate Tough Sites',
-            body: 'From cold storage to concrete basements, our LoRaWAN® stack delivers long-range, low-power connectivity with on-device buffering for when backhaul goes dark.',
+            title: 'Saves time and money',
+            body: 'Let LoRaWAN® do the heavy lifting with long-range, get readings from anywhere, and cut down on costly commute times for manual checks.',
             cta: { label: 'Learn About LoRaWAN®', href: '/technology/lorawan' },
             image: {
                 src: liveStockImage,

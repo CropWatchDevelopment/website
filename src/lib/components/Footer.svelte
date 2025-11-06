@@ -11,7 +11,7 @@
                 { label: 'Manufacturing', href: '/solutions/manufacturing' },
                 { label: 'Logistics', href: '/solutions/logistics' },
                 { label: 'Agriculture', href: '/solutions/agriculture' },
-                { label: 'Energy', href: '/solutions/energy' }
+                { label: 'Energy', href: '/solutions/energy' },
             ]
         },
         {
@@ -20,7 +20,7 @@
                 { label: 'Sensor Suite', href: '/products/sensors' },
                 { label: 'Gateways', href: '/products/gateways' },
                 { label: 'Analytics', href: '/products/analytics' },
-                { label: 'Integrations', href: '/products/integrations' }
+                { label: 'Integrations', href: '/products/integrations' },
             ]
         },
         {
@@ -29,7 +29,8 @@
                 { label: 'Contact Us', href: '/contact' },
                 { label: 'Support', href: '/support' },
                 { label: 'Case Studies', href: '/usecases' },
-                { label: 'Github', href: 'https://github.com/CropWatchDevelopment' }
+                { label: 'Github', href: 'https://github.com/CropWatchDevelopment' },
+                { label: 'FAQ', href: '/faq' },
             ]
         }
     ];
