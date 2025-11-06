@@ -29,7 +29,7 @@
                 { label: 'Contact Us', href: '/contact' },
                 { label: 'Support', href: '/support' },
                 { label: 'Case Studies', href: '/usecases' },
-                { label: 'Blog', href: '/blog' }
+                { label: 'Github', href: 'https://github.com/CropWatchDevelopment' }
             ]
         }
     ];

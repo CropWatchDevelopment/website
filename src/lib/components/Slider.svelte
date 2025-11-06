@@ -18,8 +18,8 @@
         {
             id: 'industry-ready',
             badge: '🏭 Industry-Ready IoT',
-            title: 'Industrial IoT That Pays For Itself',
-            body: 'Deploy rugged gateways and sensors that stream real-time diagnostics across every processing line while keeping maintenance downtime to an absolute minimum.',
+            title: 'Verify Everything, All The Time',
+            body: 'Industrial-grade dual-sensor hardware built to ensure data integrity regardless of your environment, from freezers to factory floors.',
             cta: { label: 'Talk To An IoT Specialist', href: '/contact' },
             image: {
                 src: gatewayImage,
@@ -63,7 +63,7 @@ type Props = {
     let {
         slides = DEFAULT_SLIDES,
         autoplay = true,
-        interval = 8000,
+        interval = 9000,
         loop = true
     } = $props<Props>();
 
