@@ -1,6 +1,7 @@
 <script lang="ts">
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
 	import Slider from '$lib/components/Slider.svelte';
+	import { _ } from 'svelte-i18n';
 
 	const proofPoints = [
 		{
@@ -97,6 +98,8 @@
 <section id="slider" class="bg-[#11213c]">
 	<Slider />
 </section>
+
+{$_('hello')}
 
 <section class="relative overflow-hidden bg-white py-20">
 	<div

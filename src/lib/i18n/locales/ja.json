@@ -1,0 +1,8 @@
+{
+    "hello": "こんにちは",
+    "welcome_message": "CropWatchへようこそ！",
+    "date_format": "{{date, YYYY年M月D日}}",
+    "time_format": "{{time, HH:mm}}",
+    "items_count": "{{count}} アイテム",
+    "items_count_plural": "{{count}} アイテム"
+}

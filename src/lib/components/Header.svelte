@@ -1,6 +1,7 @@
 <script lang="ts">
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import MaterialIcon from './MaterialIcon.svelte';
+	import { _, locale, locales } from 'svelte-i18n';
 	let openMenu = $state<string | null>(null);
 
 	interface NavItem {
@@ -72,6 +73,7 @@
 			}
 		};
 	}
+
 </script>
 
 <header>
@@ -85,8 +87,9 @@
 		<div class="flex gap-4">
 			<a href="/contact" class="transition-colors hover:text-blue-600">Contact</a>
 			<a href="/support" class="transition-colors hover:text-blue-600">Support</a>
-			<a href="/en" class="transition-colors hover:text-blue-600">EN</a>
-			<a href="/jp" class="transition-colors hover:text-blue-600">JP</a>
+			<a onclick={() => locale.set('en')} class="transition-colors hover:text-blue-600">🇺🇸</a>
+			<a onclick={() => locale.set('ja')} class="transition-colors hover:text-blue-600">🇯🇵</a>
+			
 		</div>
 	</div>
 
