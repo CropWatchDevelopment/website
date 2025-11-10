@@ -53,6 +53,13 @@
             "cta": "IoT スペシャリストに相談する"
         },
         "link_groups": {
+            "socials": {
+                "title": "ソーシャル",
+                "links": {
+                    "linkedin": "LinkedIn",
+                    "youtube": "YouTube"
+                }
+            },
             "solutions": {
                 "title": "ソリューション",
                 "links": {

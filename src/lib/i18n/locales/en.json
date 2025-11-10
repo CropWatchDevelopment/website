@@ -53,6 +53,13 @@
             "cta": "Talk to an IoT specialist"
         },
         "link_groups": {
+            "socials": {
+                "title": "Social channels",
+                "links": {
+                    "linkedin": "LinkedIn",
+                    "youtube": "YouTube"
+                }
+            },
             "solutions": {
                 "title": "Solutions",
                 "links": {
@@ -206,7 +213,7 @@
                 "How quickly can you prove readings when compliance asks?",
                 "Are concrete, steel, and freezers still causing blind spots?"
             ],
-            "primary_cta": "Schedule a facility walkthrough",
+            "primary_cta": "Schedule a live demo",
             "secondary_cta": "Review customer outcomes",
             "sidebar": {
                 "title": "Program ROI snapshot",

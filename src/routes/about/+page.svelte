@@ -251,7 +251,9 @@
 		<p class="mt-4 text-base text-white/80">{$_(closingSection.bodyKey)}</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a
-				href="/careers"
+				href="https://www.linkedin.com/company/cropwatch-system/"
+				target="_blank"
+				rel="noopener noreferrer"
 				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 			>
 				{$_(closingSection.primaryCtaKey)}

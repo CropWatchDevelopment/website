@@ -392,7 +392,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 	</div>
 </section>
 
-<section class="bg-[#f5f7fb] py-20">
+<!-- <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 			<div>
@@ -432,7 +432,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 			{/each}
 		</div>
 	</div>
-</section>
+</section> -->
 
 <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
 	<div

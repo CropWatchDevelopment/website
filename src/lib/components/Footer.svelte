@@ -9,12 +9,10 @@
 
     const linkGroups: LinkGroup[] = [
         {
-            titleKey: 'footer.link_groups.solutions.title',
+            titleKey: 'footer.link_groups.socials.title',
             links: [
-                { labelKey: 'footer.link_groups.solutions.links.manufacturing', href: '/solutions/manufacturing' },
-                { labelKey: 'footer.link_groups.solutions.links.logistics', href: '/solutions/logistics' },
-                { labelKey: 'footer.link_groups.solutions.links.agriculture', href: '/solutions/agriculture' },
-                { labelKey: 'footer.link_groups.solutions.links.energy', href: '/solutions/energy' }
+                { labelKey: 'footer.link_groups.socials.links.linkedin', href: 'https://www.linkedin.com/company/cropwatch-system' },
+                { labelKey: 'footer.link_groups.socials.links.youtube', href: 'https://www.youtube.com/@cropwatch4407' },
             ]
         },
         {
@@ -33,7 +31,7 @@
                 { labelKey: 'footer.link_groups.connect.links.support', href: '/support' },
                 { labelKey: 'footer.link_groups.connect.links.case_studies', href: '/usecases' },
                 { labelKey: 'footer.link_groups.connect.links.github', href: 'https://github.com/CropWatchDevelopment' },
-                { labelKey: 'footer.link_groups.connect.links.faq', href: '/faq' }
+                { labelKey: 'footer.link_groups.connect.links.faq', href: '/faq' },
             ]
         }
     ];
