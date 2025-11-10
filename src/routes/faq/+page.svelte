@@ -90,9 +90,9 @@
 						'Operations specialists monitor deployments around the clock. You can open tickets in the portal, email, or contact us by phone for urgent issues.'
 				},
 				{
-					question: 'Can you front the cost of hardware, and we can pay you back later on?',
+					question: 'Can you provide NET 30/60/90/180 financing terms?',
 					answer:
-						'Historically, this is something we have done; However, at this time we are not able to offer financial support for new hardware. Please reach out to Kevin@CropWatch.io for additional information if you have any questions.'
+						"We've offered financing options in the past; however, at this time we're unable to extend financial terms for new hardware purchases."
 				}
 			]
 		}
@@ -227,7 +227,7 @@
 								<button
 									type="button"
 									class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold text-[#0b1730] transition hover:bg-[#f5f7fb] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
-									on:click={() => toggleItem(itemId)}
+									onclick={() => toggleItem(itemId)}
 									aria-expanded={!!openItems[itemId]}
 									aria-controls={panelId}
 								>

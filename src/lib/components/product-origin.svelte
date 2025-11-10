@@ -114,19 +114,19 @@
 						{/each}
 					</div>
 				{:else if origin.country}
-					<div class="grid w-full max-w-[320px] grid-cols-2 gap-2 sm:grid-cols-3">
+					<div class="grid w-full max-w-[320px] grid-cols-2 gap-1 sm:grid-cols-3">
 						{#each origin.country as coo (coo.name)}
 							<button
 								type="button"
-								class="flex aspect-square w-full min-w-[84px] flex-col items-center justify-center gap-2 rounded-2xl bg-[#f5f7fb] px-4 text-center shadow-sm shadow-[#0b1730]/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f5387]"
+								class="flex aspect-square w-full min-w-[84px] flex-col items-center justify-center rounded-2xl bg-[#f5f7fb] text-center shadow-sm shadow-[#0b1730]/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f5387]"
 								onmousemove={(e) => onFlagHover(e, coo)}
 								onmouseleave={hideTooltip}
 								aria-label={`View parts sourced from ${coo.name}`}
 							>
 								<span class="text-[clamp(1.2rem,3vw,2.4rem)] leading-none">{coo.flag}</span>
-								<p class="text-[clamp(0.58rem,1.2vw,0.85rem)] font-semibold text-[#1c2d52]">
+								<!-- <p class="text-[clamp(0.58rem,1.2vw,0.85rem)] font-semibold text-[#1c2d52]">
 									{coo.name}
-								</p>
+								</p> -->
 							</button>
 						{/each}
 					</div>

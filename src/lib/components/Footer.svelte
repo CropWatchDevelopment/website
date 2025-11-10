@@ -1,5 +1,6 @@
 <script lang="ts">
     import { _ } from 'svelte-i18n';
+	import Telephone from './Telephone.svelte';
 
     type LinkGroup = {
         titleKey: string;
@@ -69,12 +70,13 @@
                 <p class="text-sm leading-relaxed text-white/70">
                     {$_(aboutContent.subBodyKey)}
                 </p>
-                <p class="text-sm text-white/60">
+                <!-- <p class="text-sm text-white/60">
                     {$_(aboutContent.phoneLabelKey)}
                     <a href={aboutContent.phoneHref} class="font-semibold text-white transition hover:text-[#f2a516]">
                         {$_(aboutContent.phoneNumberKey)}
                     </a>
-                </p>
+                </p> -->
+                <Telephone hideIcon={true} />
                 <a
                     href="/contact"
                     class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-4 py-2 text-sm font-semibold text-[#0a1a34] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"

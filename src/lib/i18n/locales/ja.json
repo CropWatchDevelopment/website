@@ -128,13 +128,13 @@
   },
   "home": {
     "meta": {
-      "title": "CropWatch™ | Industrial IoT That Pays For Itself",
+      "title": "CropWatch® | Industrial IoT That Pays For Itself",
       "description": "Rugged industrial IoT for cold chain, manufacturing, and hospitality. Deploy long-range sensors, LoRaWAN gateways, and analytics trusted by operations leaders."
     },
     "hero": {
       "eyebrow": "Industrial IoT That Pays For Itself",
-      "headline_html": "What makes CropWatch<sup><small>™</small></sup> different?",
-      "body_html": "CropWatch<sup><small>™</small></sup> pairs ruggedized sensors with LoRaWAN<sup><small>®</small></sup> networks to provide unparalleled device reliability and data accuracy in the most challenging industrial environments. Our devices are not just built to last—they're engineered to deliver measurable ROI from day one. Realize cost savings through reduced manual checks, faster compliance audits, and devices that are engineered to be maintenance-free and long-lasting.",
+      "headline_html": "What makes CropWatch<sup><small>®</small></sup> different?",
+      "body_html": "CropWatch<sup><small>®</small></sup> pairs ruggedized sensors with LoRaWAN<sup><small>®</small></sup> networks to provide unparalleled device reliability and data accuracy in the most challenging industrial environments. Our devices are not just built to last—they're engineered to deliver measurable ROI from day one. Realize cost savings through reduced manual checks, faster compliance audits, and devices that are engineered to be maintenance-free and long-lasting.",
       "questions": [
         "Can your current sensors run a decade on one charge?",
         "Do you receive actionable data at the cadence operations expect?",
@@ -301,7 +301,7 @@
     },
     "closing": {
       "eyebrow": "Ready to Prove ROI?",
-      "headline": "Let's chat, and we will show you how CropWatch<sup><small>™</small></sup> can deliver measurable value",
+      "headline": "Let's chat, and we will show you how CropWatch<sup><small>®</small></sup> can deliver measurable value",
       "body": "We'll walk your environment, model signal coverage, and produce a business case that leaders can take to the boardroom.",
       "primary_cta": "Book a strategy session",
       "secondary_cta": "Download case studies"

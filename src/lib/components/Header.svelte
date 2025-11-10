@@ -1,7 +1,8 @@
 <script lang="ts">
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import MaterialIcon from './MaterialIcon.svelte';
-	import { _, locale } from 'svelte-i18n';
+	import { _, locale, locales } from 'svelte-i18n';
+	import Telephone from './Telephone.svelte';
 	let openMenu = $state<string | null>(null);
 
 	interface NavItem {
@@ -90,7 +91,6 @@
 			}
 		};
 	}
-
 </script>
 
 <header>
@@ -108,20 +108,20 @@
 			<button
 				aria-roledescription={$_('header.language.switch_to_english_aria')}
 				onclick={() => locale.set(LANGUAGE_CODES.ENGLISH)}
-				class="inline-flex items-center justify-center text-base transition-transform transition-colors hover:scale-125 hover:text-blue-600"
+				class="inline-flex items-center justify-center text-base transition-colors transition-transform hover:scale-125 hover:text-blue-600"
 			>
 				{$_('header.language.english_icon')}
 			</button>
 			<button
 				aria-roledescription={$_('header.language.switch_to_japanese_aria')}
 				onclick={() => locale.set(LANGUAGE_CODES.JAPANESE)}
-				class="inline-flex items-center justify-center text-base transition-transform transition-colors hover:scale-125 hover:text-blue-600"
+				class="inline-flex items-center justify-center text-base transition-colors transition-transform hover:scale-125 hover:text-blue-600"
 			>
 				{$_('header.language.japanese_icon')}
 			</button>
 		</div>
 	</div>
-	
+
 	<div
 		class="bg-gradient-to-b from-[#2f5387] to-[#1f3b64] py-4 text-white shadow-[0_2px_4px_rgba(0,0,0,0.15)]"
 	>
@@ -141,19 +141,7 @@
 				</div>
 			</a>
 			<div class="flex flex-1 items-center justify-end gap-6">
-				<div class="hidden items-center gap-2 text-sm font-semibold sm:flex">
-					<span class="text-lg">
-						<MaterialIcon
-							name="phone_in_talk"
-							collection="symbols"
-							variant="rounded"
-							size={18}
-							class="inline-block align-middle"
-							ariaLabel={$_('header.brand.phone_icon_aria')}
-						/>
-					</span>
-					<a href="tel:+818042843390" class="hover:text-white">080-4284-3390</a>
-				</div>
+				<Telephone />
 				<form
 					class="flex w-full max-w-xs items-center overflow-hidden rounded-full border border-white/30 bg-white/10 px-3 py-1 text-sm transition focus-within:border-white focus-within:bg-white/20"
 					role="search"
