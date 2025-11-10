@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import { slide } from 'svelte/transition';
 
 	type Status = 'online' | 'offline' | 'loading' | 'partialError';
 	type DetailRow = {
@@ -42,8 +43,8 @@
 	const primaryValue = $derived(props.primaryValue ?? localPrimaryValue);
 	const secondaryValue = $derived(props.secondaryValue ?? localSecondaryValue);
 
-	const title = $derived(props.title ?? '冷凍コンテナ2');
-	const deviceLabel = $derived(props.deviceLabel ?? '冷凍コンテナ②');
+	const title = $derived(props.title ?? '冷凍');
+	const deviceLabel = $derived(props.deviceLabel ?? '冷凍コ');
 	const primaryUnit = $derived(props.primaryUnit ?? '°C');
 	const secondaryUnit = $derived(props.secondaryUnit ?? '%');
 	const lastUpdate = $derived(props.lastUpdate ?? '8m 17s 前');
@@ -138,6 +139,7 @@
 			title={`Current status: ${statusStyle.label}. Click to cycle states.`}
 			aria-label={`Cycle status (current ${statusStyle.label})`}
 		>
+        
 			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 				<path
 					fill="currentColor"
@@ -215,7 +217,7 @@
 			</div>
 
 			{#if expanded}
-				<div class="sensor-card__details">
+				<div class="sensor-card__details" transition:slide={{ duration: 220 }}>
 					<h4>詳細</h4>
 					<ul>
 						{#each computedDetailRows as row (row.id)}
