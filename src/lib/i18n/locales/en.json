@@ -413,6 +413,155 @@
             "secondary_cta": "Book a live demo"
         }
     },
+    "products": {
+        "cw_air_th": {
+            "features": {
+                "rugged": {
+                    "title": "Rugged industrial enclosure",
+                    "body": "IP67-rated shell with conformal coated electronics keeps the sensor operating in freezers, loading docks, and production floors."
+                },
+                "precision": {
+                    "title": "Precision monitoring",
+                    "body": "High-accuracy digital sensing provides +/- 0.2°C temperature and +/- 2% RH readings for compliance-ready reporting."
+                },
+                "battery": {
+                    "title": "Multi-year battery life",
+                    "body": "Engineered for more than five years of continuous telemetry with field-replaceable lithium batteries and low-power firmware."
+                },
+                "lorawan": {
+                    "title": "LoRaWAN connectivity",
+                    "body": "Secure LoRaWAN connectivity ensures resilient transmission through dense infrastructure and cold storage insulation."
+                }
+            },
+            "specs": {
+                "sensor": {
+                    "label": "Sensor",
+                    "value": "Sensirion x1 SHT40 & x1 SHT43, True NIST, w/ISO17025 Certification"
+                },
+                "temperature_range": {
+                    "label": "Temperature range",
+                    "value": "-40°C to 85°C (calibrated)"
+                },
+                "humidity_range": {
+                    "label": "Humidity range",
+                    "value": "0% to 100% RH (non-condensing)"
+                },
+                "heater": {
+                    "label": "Integrated Heater",
+                    "value": "Ensure condensation prevention in cold environments"
+                },
+                "temperature_accuracy": {
+                    "label": "Temperature accuracy",
+                    "value": "+/- 0.2°C between -10°C and 50°C"
+                },
+                "humidity_accuracy": {
+                    "label": "Humidity accuracy",
+                    "value": "+/- 2% RH between 10% and 90%"
+                },
+                "ingress": {
+                    "label": "Ingress protection",
+                    "value": "IP67 enclosure"
+                },
+                "protocol": {
+                    "label": "Wireless protocol",
+                    "value": "LoRaWAN 1.0.4 Class A, regional bands supported"
+                },
+                "battery": {
+                    "label": "Battery",
+                    "value": "Li-SOCl2 (lithium thionyl chloride), field replaceable"
+                },
+                "dimensions": {
+                    "label": "Dimensions",
+                    "value": "120 mm x 70 mm x 35 mm"
+                },
+                "operating_life": {
+                    "label": "Operating life",
+                    "value": "Up to 5 years at 15 minute intervals"
+                },
+                "certifications": {
+                    "label": "Certifications",
+                    "value": "FCC, CE, IC, HACCP compliant materials"
+                }
+            },
+            "kit": {
+                "items": {
+                    "sensor": "CW Air TH sensor with pre-configured firmware",
+                    "credentials": "LoRaWAN activation credentials and QR deployment tag",
+                    "mounting": "Stainless steel mounting bracket with hardware and adhesive pads",
+                    "calibration": "Calibration certificate and validation documentation",
+                    "playbook": "Install and cold storage handling playbook"
+                }
+            },
+            "deployment": {
+                "steps": {
+                    "site_planning": {
+                        "title": "Site planning",
+                        "body": "CropWatch specialists map facility zones, determine gateway placement, and align telemetry intervals with compliance needs."
+                    },
+                    "install": {
+                        "title": "Rapid install",
+                        "body": "Technicians mount sensors using magnetic, adhesive, or bracket hardware options without disrupting production."
+                    },
+                    "validation": {
+                        "title": "Automated validation",
+                        "body": "Sensors perform baseline calibration checks and register with CropWatch Command for continuous monitoring."
+                    },
+                    "insight": {
+                        "title": "Insight delivery",
+                        "body": "Real-time dashboards, alerts, and audit-ready reports empower teams to resolve anomalies before they escalate."
+                    }
+                }
+            },
+            "demo": {
+                "status": {
+                    "loading": {
+                        "label": "Loading",
+                        "helper": "Device is joining the network."
+                    },
+                    "online": {
+                        "label": "Online",
+                        "helper": "Telemetry is current and within tolerance."
+                    },
+                    "partial_error": {
+                        "label": "Partial error",
+                        "helper": "Some sensors need attention but data is flowing."
+                    },
+                    "offline": {
+                        "label": "Offline",
+                        "helper": "No packets received within the expected interval."
+                    }
+                },
+                "walkthrough": {
+                    "steps": {
+                        "details": {
+                            "title": "Open or collapse sensor insights",
+                            "body": "Our UI allows you to organize and group devices by location. At the top left of the location card you can see the location health indicator. It shows green when devices are reporting normally, yellow for warnings, and red for critical issues. Use the chevron in the card to reveal detailed readings, alarms, and update history."
+                        },
+                        "status": {
+                            "title": "Glanceable location health",
+                            "body": "The badge in the top left cycles through Loading, Online, Partial Error, and Offline so operators can see device health instantly."
+                        },
+                        "temperature": {
+                            "title": "Live temperature monitoring",
+                            "body": "The left measurement updates as fast as packets arrive. Tap the thermometer in the demo card to sample live readings."
+                        },
+                        "humidity": {
+                            "title": "Humidity in lockstep",
+                            "body": "Relative humidity is captured alongside temperature to flag condensation risks. Click the droplet to see it update."
+                        },
+                        "location_page": {
+                            "title": "Brings you to a Location Detail page",
+                            "body": "The Location Details page shows every device within a location and allows you to update settings or permissions for who can access them."
+                        },
+                        "device_detail": {
+                            "title": "View the device detail page",
+                            "body": "The Device Detail page provides in-depth telemetry, status history, and configuration options for a specific device, making troubleshooting straightforward."
+                        }
+                    }
+                }
+            }
+        }
+    },
     "about": {
         "meta": {
             "title": "About CropWatch | Industrial IoT Built for Reliability",

@@ -106,7 +106,7 @@
 		class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-center gap-5 px-4 md:flex-nowrap"
 	>
 		{#each origins as origin, index (origin.title)}
-			<div class="flex min-w-[120px] flex-1 flex-col items-center text-center md:flex-[0_0_240px] md:max-w-[280px]">
+			<div class="flex min-w-[100px] flex-1 flex-col items-center text-center md:flex-[0_0_240px] md:max-w-[200px]">
 				{#if origin.flag}
 					<div class="flex items-center gap-1">
 						{#each origin.flag as symbol, flagIndex (flagIndex)}

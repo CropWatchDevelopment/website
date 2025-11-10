@@ -5,78 +5,104 @@
 	import deviceDetailImage from './images/device-detail.webp';
 	import locationDetailImage from './images/location-detail.webp';
 	import UIDemo from '$lib/components/UI-Demo.svelte';
+	import { _ } from 'svelte-i18n';
 
 	const featureHighlights = [
 		{
-			title: 'Rugged industrial enclosure',
-			description:
-				'IP67-rated shell with conformal coated electronics keeps the sensor operating in freezers, loading docks, and production floors.'
+			titleKey: 'products.cw_air_th.features.rugged.title',
+			descriptionKey: 'products.cw_air_th.features.rugged.body'
 		},
 		{
-			title: 'Precision monitoring',
-			description:
-				'High-accuracy digital sensing provides +/- 0.2°C temperature and +/- 2% RH readings for compliance-ready reporting.'
+			titleKey: 'products.cw_air_th.features.precision.title',
+			descriptionKey: 'products.cw_air_th.features.precision.body'
 		},
 		{
-			title: 'Multi-year battery life',
-			description:
-				'Engineered for more than five years of continuous telemetry with field-replaceable lithium batteries and low-power firmware.'
+			titleKey: 'products.cw_air_th.features.battery.title',
+			descriptionKey: 'products.cw_air_th.features.battery.body'
 		},
 		{
-			title: 'LoRaWAN connectivity',
-			description:
-				'Secure LoRaWAN connectivity ensures resilient transmission through dense infrastructure and cold storage insulation.'
+			titleKey: 'products.cw_air_th.features.lorawan.title',
+			descriptionKey: 'products.cw_air_th.features.lorawan.body'
 		}
-	];
+	] as const;
 
 	const specificationMatrix = [
 		{
-			label: 'Sensor',
-			value: 'Sensirion x1 SHT40 & x1 SHT43, True NIST, w/ISO17025 Certification'
+			labelKey: 'products.cw_air_th.specs.sensor.label',
+			valueKey: 'products.cw_air_th.specs.sensor.value'
 		},
-		{ label: 'Temperature range', value: '-40°C to 85°C (calibrated)' },
-		{ label: 'Humidity range', value: '0% to 100% RH (non-condensing)' },
-		{ label: 'Integrated Heater', value: 'Ensure condensation prevention in cold environments' },
-		{ label: 'Temperature accuracy', value: '+/- 0.2°C between -10°C and 50°C' },
-		{ label: 'Humidity accuracy', value: '+/- 2% RH between 10% and 90%' },
-		{ label: 'Ingress protection', value: 'IP67 enclosure' },
-		{ label: 'Wireless protocol', value: 'LoRaWAN 1.0.4 Class A, regional bands supported' },
-		{ label: 'Battery', value: 'Li-SOCl2 (lithium thionyl chloride), field replaceable' },
-		{ label: 'Dimensions', value: '120 mm x 70 mm x 35 mm' },
-		{ label: 'Operating life', value: 'Up to 5 years at 15 minute intervals' },
-		{ label: 'Certifications', value: 'FCC, CE, IC, HACCP compliant materials' }
-	];
+		{
+			labelKey: 'products.cw_air_th.specs.temperature_range.label',
+			valueKey: 'products.cw_air_th.specs.temperature_range.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.humidity_range.label',
+			valueKey: 'products.cw_air_th.specs.humidity_range.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.heater.label',
+			valueKey: 'products.cw_air_th.specs.heater.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.temperature_accuracy.label',
+			valueKey: 'products.cw_air_th.specs.temperature_accuracy.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.humidity_accuracy.label',
+			valueKey: 'products.cw_air_th.specs.humidity_accuracy.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.ingress.label',
+			valueKey: 'products.cw_air_th.specs.ingress.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.protocol.label',
+			valueKey: 'products.cw_air_th.specs.protocol.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.battery.label',
+			valueKey: 'products.cw_air_th.specs.battery.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.dimensions.label',
+			valueKey: 'products.cw_air_th.specs.dimensions.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.operating_life.label',
+			valueKey: 'products.cw_air_th.specs.operating_life.value'
+		},
+		{
+			labelKey: 'products.cw_air_th.specs.certifications.label',
+			valueKey: 'products.cw_air_th.specs.certifications.value'
+		}
+	] as const;
 
 	const kitContents = [
-		'CW Air TH sensor with pre-configured firmware',
-		'LoRaWAN activation credentials and QR deployment tag',
-		'Stainless steel mounting bracket with hardware and adhesive pads',
-		'Calibration certificate and validation documentation',
-		'Install and cold storage handling playbook'
-	];
+		'products.cw_air_th.kit.items.sensor',
+		'products.cw_air_th.kit.items.credentials',
+		'products.cw_air_th.kit.items.mounting',
+		'products.cw_air_th.kit.items.calibration',
+		'products.cw_air_th.kit.items.playbook'
+	] as const;
 
 	const deploymentWorkflow = [
 		{
-			title: 'Site planning',
-			description:
-				'CropWatch specialists map facility zones, determine gateway placement, and align telemetry intervals with compliance needs.'
+			titleKey: 'products.cw_air_th.deployment.steps.site_planning.title',
+			descriptionKey: 'products.cw_air_th.deployment.steps.site_planning.body'
 		},
 		{
-			title: 'Rapid install',
-			description:
-				'Technicians mount sensors using magnetic, adhesive, or bracket hardware options without disrupting production.'
+			titleKey: 'products.cw_air_th.deployment.steps.install.title',
+			descriptionKey: 'products.cw_air_th.deployment.steps.install.body'
 		},
 		{
-			title: 'Automated validation',
-			description:
-				'Sensors perform baseline calibration checks and register with CropWatch Command for continuous monitoring.'
+			titleKey: 'products.cw_air_th.deployment.steps.validation.title',
+			descriptionKey: 'products.cw_air_th.deployment.steps.validation.body'
 		},
 		{
-			title: 'Insight delivery',
-			description:
-				'Real-time dashboards, alerts, and audit-ready reports empower teams to resolve anomalies before they escalate.'
+			titleKey: 'products.cw_air_th.deployment.steps.insight.title',
+			descriptionKey: 'products.cw_air_th.deployment.steps.insight.body'
 		}
-	];
+	] as const;
 
 	type DemoStatus = 'online' | 'offline' | 'loading' | 'partialError';
 	type DemoTheme = 'dark' | 'light';
@@ -92,36 +118,36 @@
 		mode: DemoTheme;
 	};
 
-	const statusMeta: Record<DemoStatus, { label: string; helper: string; color: string }> = {
+	const statusMeta: Record<DemoStatus, { labelKey: string; helperKey: string; color: string }> = {
 		loading: {
-			label: 'Loading',
-			helper: 'Device is joining the network.',
+			labelKey: 'products.cw_air_th.demo.status.loading.label',
+			helperKey: 'products.cw_air_th.demo.status.loading.helper',
 			color: '#f2a516'
 		},
 		online: {
-			label: 'Online',
-			helper: 'Telemetry is current and within tolerance.',
+			labelKey: 'products.cw_air_th.demo.status.online.label',
+			helperKey: 'products.cw_air_th.demo.status.online.helper',
 			color: '#20d16a'
 		},
 		partialError: {
-			label: 'Partial error',
-			helper: 'Some sensors need attention but data is flowing.',
+			labelKey: 'products.cw_air_th.demo.status.partial_error.label',
+			helperKey: 'products.cw_air_th.demo.status.partial_error.helper',
 			color: '#ff784f'
 		},
 		offline: {
-			label: 'Offline',
-			helper: 'No packets received within the expected interval.',
+			labelKey: 'products.cw_air_th.demo.status.offline.label',
+			helperKey: 'products.cw_air_th.demo.status.offline.helper',
 			color: '#f25555'
 		}
-	};
+	} as const;
 
 	const temperatureSamples = [-22.93, -18.25, -12.5];
 	const humiditySamples = [79.61, 72.4, 55.4];
 
 	type WalkthroughStep = {
 		id: string;
-		title: string;
-		description: string;
+		titleKey: string;
+		descriptionKey: string;
 		imgSrc?: string;
 		apply: (state: DemoState) => DemoState;
 	};
@@ -129,53 +155,42 @@
 	const walkthroughSteps: WalkthroughStep[] = [
 		{
 			id: 'details',
-			title: 'Open or collapse sensor insights',
-			description:
-				`
-				Our ui allows you to organize and group "Devices" by location. A location can represent a physical, or logical grouping of devices.
-				At the TOP LEFT of the location card, you can see the location's health status indicator. The indicator will show green if all devices
-				are online and reporting correctly, yellow if there are warnings, and red if there are critical issues.
-				
-				TASK: Use the chevron inside the card to reveal detailed sensor readings, alarms, and update history for the device.`,
+			titleKey: 'products.cw_air_th.demo.walkthrough.steps.details.title',
+			descriptionKey: 'products.cw_air_th.demo.walkthrough.steps.details.body',
 			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
 		},
 		{
 			id: 'status',
-			title: 'Glanceable location health',
-			description:
-				'The badge in the top left cycles through Loading, Online, Partial Error, and Offline so operators can see device health instantly.',
+			titleKey: 'products.cw_air_th.demo.walkthrough.steps.status.title',
+			descriptionKey: 'products.cw_air_th.demo.walkthrough.steps.status.body',
 			apply: (state: DemoState): DemoState => ({ ...state, status: 'online' as DemoStatus })
 		},
 		{
 			id: 'temperature',
-			title: 'Live temperature monitoring',
-			description:
-				'The left measurement updates as fast as packets arrive. Tap the thermometer in the demo card to sample live readings.',
+			titleKey: 'products.cw_air_th.demo.walkthrough.steps.temperature.title',
+			descriptionKey: 'products.cw_air_th.demo.walkthrough.steps.temperature.body',
 			apply: (state: DemoState): DemoState => ({ ...state, primaryValue: temperatureSamples[0] })
 		},
 		{
 			id: 'humidity',
-			title: 'Humidity in lockstep',
-			description:
-				'Relative humidity is captured alongside temperature to flag condensation risks. Click the droplet to see it update.',
+			titleKey: 'products.cw_air_th.demo.walkthrough.steps.humidity.title',
+			descriptionKey: 'products.cw_air_th.demo.walkthrough.steps.humidity.body',
 			apply: (state: DemoState): DemoState => ({ ...state, secondaryValue: humiditySamples[0] })
 		},
 		{
 			id: 'location-page',
-			title: 'Brings you to a Location Detail page',
-			description:
-				`The Location Details page allows you to see all devices within a location, and update that location's details and settings. This is also where you will find permissions for the users that can access a location and devices within.`,
+			titleKey: 'products.cw_air_th.demo.walkthrough.steps.location_page.title',
+			descriptionKey: 'products.cw_air_th.demo.walkthrough.steps.location_page.body',
 			imgSrc: locationDetailImage,
 			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
 		},
 		{
 			id: 'device-detail-page',
-			title: 'View the device detail page',
-			description:
-				`The Device Detail page provides in-depth information about a specific device, including its telemetry data, status history, and configuration options. This page is essential for troubleshooting and managing individual sensors within your network.`,
+			titleKey: 'products.cw_air_th.demo.walkthrough.steps.device_detail.title',
+			descriptionKey: 'products.cw_air_th.demo.walkthrough.steps.device_detail.body',
 			imgSrc: deviceDetailImage,
 			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
-		},
+		}
 	];
 
 	const initialDemoState: DemoState = {
@@ -403,12 +418,12 @@ function handleDemoChange(
 		</div>
 
 		<div class="mt-10 grid gap-6 text-sm text-[#1c2d52]/80 md:grid-cols-2">
-			{#each featureHighlights as feature (feature.title)}
+			{#each featureHighlights as feature (feature.titleKey)}
 				<div
 					class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5"
 				>
-					<p class="text-base font-semibold text-[#0b1730]">{feature.title}</p>
-					<p class="mt-2 text-sm text-[#1c2d52]/80">{feature.description}</p>
+					<p class="text-base font-semibold text-[#0b1730]">{$_(feature.titleKey)}</p>
+					<p class="mt-2 text-sm text-[#1c2d52]/80">{$_(feature.descriptionKey)}</p>
 				</div>
 			{/each}
 		</div>
@@ -426,13 +441,13 @@ function handleDemoChange(
 		>
 			<table class="w-full text-left text-sm text-[#1c2d52]/80">
 				<tbody>
-					{#each specificationMatrix as spec (spec.label)}
+					{#each specificationMatrix as spec (spec.labelKey)}
 						<tr class="border-b border-[#d7e0f5]/80 last:border-none">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{spec.label}</th
+							>{$_(spec.labelKey)}</th
 							>
-							<td class="px-6 py-4 text-sm text-[#0b1730]">{spec.value}</td>
+							<td class="px-6 py-4 text-sm text-[#0b1730]">{$_(spec.valueKey)}</td>
 						</tr>
 					{/each}
 				</tbody>
@@ -464,7 +479,7 @@ function handleDemoChange(
 					{#each kitContents as item (item)}
 						<li class="flex items-start gap-3">
 							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-							<span>{item}</span>
+							<span>{$_(item)}</span>
 						</li>
 					{/each}
 				</ul>
@@ -504,8 +519,8 @@ function handleDemoChange(
 						<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
 							Step {walkthroughStep + 1} of {walkthroughSteps.length}
 						</p>
-						<h3 class="mt-2 text-2xl font-semibold text-[#0b1730]">{currentStep.title}</h3>
-						<p class="mt-2 text-sm text-[#1c2d52]/80">{currentStep.description}</p>
+						<h3 class="mt-2 text-2xl font-semibold text-[#0b1730]">{$_(currentStep.titleKey)}</h3>
+						<p class="mt-2 text-sm text-[#1c2d52]/80">{$_(currentStep.descriptionKey)}</p>
 					</div>
 
 					<div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-[#6b7ba7]">
@@ -543,7 +558,7 @@ function handleDemoChange(
 							<img
 								width="50%"
 								src={currentStep.imgSrc}
-								alt={currentStep.title}
+								alt={$_(currentStep.titleKey)}
 								loading="lazy"
 								class="h-full w-full object-cover"
 							/>
@@ -574,12 +589,12 @@ function handleDemoChange(
 											style={`background:${statusMeta[option].color}`}
 											aria-hidden="true"
 										></span>
-										{statusMeta[option].label}
+										{$_(statusMeta[option].labelKey)}
 									</button>
 								{/each}
 							</div>
 							<p class="mt-3 text-xs text-[#6b7ba7]">
-								{statusMeta[demoState.status].helper}
+								{$_(statusMeta[demoState.status].helperKey)}
 							</p>
 						</div>
 					{:else if walkthroughStep === 2}
@@ -663,12 +678,12 @@ function handleDemoChange(
 			the training, telemetry, and reporting they need to succeed.
 		</p>
 		<div class="mt-10 grid gap-8 md:grid-cols-4">
-			{#each deploymentWorkflow as step (step.title)}
+			{#each deploymentWorkflow as step (step.titleKey)}
 				<div class="rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
 					<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
-						{step.title}
+						{$_(step.titleKey)}
 					</p>
-					<p class="mt-3 text-sm text-[#1c2d52]/80">{step.description}</p>
+					<p class="mt-3 text-sm text-[#1c2d52]/80">{$_(step.descriptionKey)}</p>
 				</div>
 			{/each}
 		</div>
