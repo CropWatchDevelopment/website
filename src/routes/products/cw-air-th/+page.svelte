@@ -308,10 +308,11 @@
 		</p>
 		<div class="flex flex-row gap-10">
 			<div id="demo-section">
-				<UIDemo />
+				<UIDemo isOpen={true} sensorStatus="offline" />
 			</div>
 			<div id="demo-description" class="mt-10 max-w-3xl text-base text-[#1c2d52]/80">
-				Our UI has been hyper optimized for quick data aquisition and easy navigation, so users can
+				Our UI has been hyper optimized for quick data aquisition and easy navigation.
+
 
 			</div>
 		</div>
