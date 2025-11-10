@@ -126,6 +126,71 @@
             }
         }
     },
+        "product_origin": {
+            "origins": {
+                "designed": "ノルウェーで設計",
+                "manufactured": "日本で製造・組立",
+                "parts": {
+                    "title": "使用部品の供給元:",
+                    "subtitle": "日本、韓国、米国、台湾、アイルランド、スイス"
+                },
+                "programmed": "米国とオーストラリアでプログラム",
+                "used_by_you": "世界中のお客様にご利用いただいています"
+            },
+            "aria": {
+                "view_parts": "{country} から調達した部品を見る"
+            },
+            "note": {
+                "line1": "* 上記に記載のない国の部品は製品に使用していません。",
+                "line2": "* すべての製品は鉛フリーかつ RoHS に準拠しています。"
+            },
+            "tooltip": {
+                "heading": "{country} からの部品:"
+            }
+        },
+        "ui_demo": {
+            "defaults": {
+                "title": "<ロケーション名を入力>",
+                "device_label": "<デバイスラベルを入力>",
+                "last_update": "8分17秒前"
+            },
+            "status": {
+                "loading": "接続中",
+                "online": "オンライン",
+                "partial_error": "部分エラー",
+                "offline": "オフライン"
+            },
+            "status_indicator": {
+                "title": "現在のステータス: {{status}}。クリックすると状態が切り替わります。",
+                "aria": "ステータスを切り替え (現在 {{status}})"
+            },
+            "header": {
+                "view_device_aria": "デバイスを表示"
+            },
+            "stats": {
+                "temperature_title": "温度のサンプルを切り替える",
+                "humidity_title": "湿度のサンプルを切り替える"
+            },
+            "details": {
+                "heading": "詳細",
+                "collapse_aria": "詳細を閉じる",
+                "expand_aria": "詳細を開く",
+                "cta": "デバイス詳細を見る"
+            },
+            "detail_rows": {
+                "humidity": "湿度",
+                "temperature": "温度",
+                "updated": "最終更新"
+            },
+            "hint": {
+                "text": "カードを操作するとウォークスルー表示が連動します。"
+            },
+            "theme_toggle": {
+                "aria": "カードの表示を切り替える",
+                "light": "ライトモード",
+                "dark": "ダークモード"
+            }
+        },
     "home": {
         "meta": {
             "title": "CropWatch® | 投資対効果に直結する産業用 IoT",
@@ -474,7 +539,7 @@
                         "eyebrow": "UI",
                         "headline": "素早く使いこなせるユーザーインターフェース",
                         "body": "CropWatch の UI は迅速なデータ取得とスムーズなナビゲーションのために最適化されており、必要な情報に素早くアクセスできます。モニタリングに費やす時間を短縮し、他の重要な業務に集中できるよう支援します。",
-                        "step_progress": "ステップ {{current}} / {{total}}",
+                                "step_progress": "ステップ {current} / {total}",
                         "theme_label": "テーマ:",
                         "theme_options": {
                             "dark": "ダーク",
@@ -522,7 +587,7 @@
                 },
                 "battery": {
                     "title": "マルチイヤーのバッテリー寿命",
-                    "body": "フィールド交換可能なリチウムバッテリーと低消費電力ファームウェアにより、5 年以上の連続テレメトリを実現します。"
+                    "body": "フィールド交換可能なリチウムバッテリーと低消費電力ファームウェアにより、10 年以上の連続テレメトリを実現します。"
                 },
                 "lorawan": {
                     "title": "LoRaWAN 接続",
@@ -632,6 +697,15 @@
                         "details": {
                             "title": "センサーインサイトの展開・折りたたみ",
                             "body": "UI ではデバイスをロケーションごとに整理できます。左上のロケーションカードにはヘルスインジケーターが表示され、正常は緑、警告は黄、重大問題は赤です。カードのシェブロンを使って詳細な測定値、アラーム、更新履歴を表示します。"
+                        },
+                        "setup_location_device_names": {
+                            "title": "ロケーション名とデバイス名を入力",
+                            "body": "カードに分かりやすい名前を付けると、どのエリアや設備なのかすぐに共有できます。",
+                            "helper": "ここで設定した名前はデモカードのヘッダーやデバイスタグに反映されます。",
+                            "location_label": "ロケーション名",
+                            "location_placeholder": "例: 冷凍コンテナA",
+                            "device_label": "デバイス名",
+                            "device_placeholder": "例: CW Air TH #1"
                         },
                         "status": {
                             "title": "ひと目で分かるロケーション状態",

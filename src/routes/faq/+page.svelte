@@ -1,5 +1,6 @@
 <script lang="ts">
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
+	import { onMount, tick } from 'svelte';
 
 	const heroHighlights = [
 		'Pilot deployments reach production readiness in under 30 days.',
@@ -95,32 +96,135 @@
 						"We've offered financing options in the past; however, at this time we're unable to extend financial terms for new hardware purchases."
 				}
 			]
+		},
+		{
+			title: 'Technical Deep Dives',
+			description: 'Answers to what specific terms or concepts mean in the context of CropWatch.',
+			items: [
+				{
+					question: 'What is NIST?',
+					answer:
+						'The National Institute of Standards and Technology (NIST) is the U.S. authority for maintaining national measurement standards. If a sensor is “NIST-traceable,” its calibration can be linked—through documented comparisons—to these official standards.'
+				},
+				{
+					question: 'What does “NIST-traceable” really mean?',
+					answer:
+						'It means the sensor or instrument was calibrated using reference equipment that is itself traceable back to NIST. However, this does not guarantee the quality of the calibration—just that a traceable path exists.'
+				},
+				{
+					question: 'What is ISO/IEC 17025?',
+					answer:
+						'ISO/IEC 17025 is the global standard for calibration and testing lab competence. A lab accredited under ISO 17025 has been independently verified for technical skill, documented processes, and uncertainty reporting. This ensures not just traceability, but calibration done right. (Yes our devices are True NIST-traceable with ISO 17025 accredited certificates!)'
+				},
+				{
+					question: 'Is NIST-traceable the same as ISO/IEC 17025 accredited?',
+					answer:
+						'No. NIST-traceable refers to the measurement being linked to a national standard. ISO/IEC 17025 refers to the lab’s ability to perform that measurement reliably, with documented uncertainty and audited methods. You can have NIST-traceability without 17025 accreditation—but it’s less trustworthy.'
+				},
+				{
+					question: 'What is “True NIST Traceability”?',
+					answer: `It typically means the device has been calibrated by an ISO/IEC 17025 accredited lab and comes with a certificate showing:
+- Measurement results
+- Uncertainties
+- Traceability chain to NIST
+This is superior to generic NIST-traceability, which may be internally documented but not externally audited or certified per device.`
+				},
+				{
+					question: 'What is LoRa?',
+					answer:
+						'LoRa (short for Long Range) is a wireless communication technology designed for low-power, long-distance data transmission. LoRa is the actual waves transmitted by a device (Think the actual NOISE you make when speaking).'
+				},
+				{
+					question: 'What is LoRaWAN?',
+					answer:
+						'LoRaWAN (Long Range Wide Area Network) is a communication protocol (think Actual Language with grammar and vocabulary) and system architecture built on top of LoRa technology. It defines the network structure, data transfer methods, and security features for devices using LoRa.'
+				},
+				{
+					question: 'What is PCB Conformal Coating??',
+					answer:
+						'PCB Conformal Coating is a protective chemical layer applied to printed circuit boards (PCBs) to shield them from environmental factors such as moisture, dust, chemicals, and temperature extremes. This coating helps enhance the durability and reliability of electronic components, especially in harsh or industrial environments.'
+				},
+				{
+					question: 'What is a Li-SOCl2 type battery?',
+					answer:
+						'Li-SOCl2 stands for Lithium-Thionyl Chloride battery. It is a type of primary (non-rechargeable) lithium battery known for its high energy density, long shelf life, and ability to operate in extreme temperatures. These batteries are commonly used in applications requiring long-term, reliable power sources, such as remote sensors, utility metering, and military equipment.'
+				},
+			]
 		}
 	];
 
 	const resourceHighlights = [
 		{
 			title: 'Deployment Checklist',
-			description: 'Step-by-step tasks for facilities, IT, and compliance stakeholders ahead of go-live.',
+			description:
+				'Step-by-step tasks for facilities, IT, and compliance stakeholders ahead of go-live.',
 			link: { label: 'Download the checklist', href: '/resources/deployment-checklist' }
 		},
 		{
 			title: 'Network Design Guide',
-			description: 'RF modeling best practices to maximize coverage in complex industrial footprints.',
+			description:
+				'RF modeling best practices to maximize coverage in complex industrial footprints.',
 			link: { label: 'Review the guide', href: '/technology/network' }
 		},
 		{
 			title: 'Power & Sensor Lifecycle',
-			description: 'Battery longevity charts, calibration intervals, and replacement SOPs for technicians.',
+			description:
+				'Battery longevity charts, calibration intervals, and replacement SOPs for technicians.',
 			link: { label: 'View lifecycle resources', href: '/resources/battery-lifecycle' }
 		}
 	];
+
+	function slugify(text: string) {
+		return text
+			.toLowerCase()
+			.replace(/[^a-z0-9]+/g, '-')
+			.replace(/^-+|-+$/g, '');
+	}
+
+	function getAnchorId(sectionIndex: number, itemIndex: number, question: string) {
+		const slug = slugify(question) || `${sectionIndex}-${itemIndex}`;
+		return `faq-${sectionIndex}-${itemIndex}-${slug}`;
+	}
+
+	const anchorLookup: Record<string, string> = {};
+	faqSections.forEach((section, sectionIndex) => {
+		section.items.forEach((item, itemIndex) => {
+			const itemId = `${sectionIndex}-${itemIndex}`;
+			const anchorId = getAnchorId(sectionIndex, itemIndex, item.question);
+			anchorLookup[anchorId] = itemId;
+		});
+	});
 
 	let openItems: Record<string, boolean> = $state({ '0-0': true });
 
 	function toggleItem(id: string) {
 		openItems = { ...openItems, [id]: !openItems[id] };
 	}
+
+	async function openHashTarget(hash: string | null) {
+		if (!hash) return;
+		const normalized = hash.startsWith('#') ? hash.slice(1) : hash;
+		const targetItemId = anchorLookup[normalized];
+		if (!targetItemId) return;
+		openItems = { ...openItems, [targetItemId]: true };
+		await tick();
+		const targetElement = document.getElementById(normalized);
+		if (!targetElement) return;
+		targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		const focusable = targetElement.querySelector('button');
+		if (focusable instanceof HTMLElement) {
+			focusable.focus({ preventScroll: true });
+		}
+	}
+
+	onMount(() => {
+		openHashTarget(window.location.hash);
+		const handleHashChange = () => {
+			openHashTarget(window.location.hash);
+		};
+		window.addEventListener('hashchange', handleHashChange);
+		return () => window.removeEventListener('hashchange', handleHashChange);
+	});
 </script>
 
 <svelte:head>
@@ -132,14 +236,22 @@
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
-	<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]" aria-hidden="true"></div>
+	<div
+		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
+		aria-hidden="true"
+	></div>
 	<div class="relative mx-auto w-full max-w-6xl px-4">
 		<div class="grid gap-12 md:grid-cols-[1.25fr_1fr] md:items-center">
 			<div class="space-y-6">
-				<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#f2a516]">Support center</p>
-				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">Frequently asked questions about CropWatch</h1>
+				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
+					Support center
+				</p>
+				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
+					Frequently asked questions about CropWatch
+				</h1>
 				<p class="text-base text-white/80">
-					Everything you need to know about deploying rugged sensors, building resilient LoRaWAN networks, and keeping operations audit-ready.
+					Everything you need to know about deploying rugged sensors, building resilient LoRaWAN
+					networks, and keeping operations audit-ready.
 				</p>
 				<ul class="space-y-3 text-sm text-white/80">
 					{#each heroHighlights as highlight}
@@ -164,9 +276,13 @@
 					</a>
 				</div>
 			</div>
-			<div class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur">
+			<div
+				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
+			>
 				<h2 class="text-lg font-semibold text-white">Quick resolutions</h2>
-				<p class="mt-2 text-sm text-white/70">Most troubleshooting is solved in minutes with these checkpoints.</p>
+				<p class="mt-2 text-sm text-white/70">
+					Most troubleshooting is solved in minutes with these checkpoints.
+				</p>
 				<dl class="mt-6 space-y-4 text-sm text-white/80">
 					<div class="flex items-start justify-between gap-6">
 						<dt class="font-medium text-white">Gateway status</dt>
@@ -197,15 +313,20 @@
 <section class="bg-white py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="mb-12 text-center">
-			<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#2f5387]">Knowledge base</p>
-			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">Answers for every team in your rollout</h2>
+			<p class="text-xs font-semibold tracking-[0.32em] text-[#2f5387] uppercase">Knowledge base</p>
+			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">
+				Answers for every team in your rollout
+			</h2>
 			<p class="mt-3 text-base text-[#1c2d52]/80">
-				From operations and IT to finance and compliance, find clear guidance on how CropWatch keeps facilities online and audit-ready.
+				From operations and IT to finance and compliance, find clear guidance on how CropWatch keeps
+				facilities online and audit-ready.
 			</p>
 		</div>
 		<div class="space-y-10">
 			{#each faqSections as section, sectionIndex}
-				<article class="rounded-3xl border border-[#d7e0f5] bg-[#f9fbff] p-8 shadow-sm shadow-[#0b1730]/5">
+				<article
+					class="rounded-3xl border border-[#d7e0f5] bg-[#f9fbff] p-8 shadow-sm shadow-[#0b1730]/5"
+				>
 					<header class="mb-6 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
 						<div>
 							<h3 class="text-xl font-semibold text-[#0b1730]">{section.title}</h3>
@@ -223,7 +344,12 @@
 						{#each section.items as item, itemIndex}
 							{@const itemId = `${sectionIndex}-${itemIndex}`}
 							{@const panelId = `faq-panel-${sectionIndex}-${itemIndex}`}
-							<div class="rounded-2xl border border-[#d7e0f5] bg-white">
+							{@const anchorId = getAnchorId(sectionIndex, itemIndex, item.question)}
+							<div
+								id={anchorId}
+								tabindex="-1"
+								class="scroll-mt-24 rounded-2xl border border-[#d7e0f5] bg-white"
+							>
 								<button
 									type="button"
 									class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold text-[#0b1730] transition hover:bg-[#f5f7fb] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
@@ -240,7 +366,10 @@
 									/>
 								</button>
 								{#if openItems[itemId]}
-									<div id={panelId} class="space-y-4 border-t border-[#d7e0f5] px-5 pb-5 pt-4 text-sm text-[#1c2d52]/80">
+									<div
+										id={panelId}
+										class="space-y-4 border-t border-[#d7e0f5] px-5 pt-4 pb-5 text-sm text-[#1c2d52]/80"
+									>
 										<p>{item.answer}</p>
 										{#if item.points}
 											<ul class="space-y-2 text-[#1c2d52]/75">
@@ -267,10 +396,15 @@
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 			<div>
-				<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#2f5387]">Helpful resources</p>
-				<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">Guides to accelerate your rollout</h2>
+				<p class="text-xs font-semibold tracking-[0.32em] text-[#2f5387] uppercase">
+					Helpful resources
+				</p>
+				<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
+					Guides to accelerate your rollout
+				</h2>
 				<p class="mt-3 max-w-2xl text-base text-[#1c2d52]/80">
-					Share these playbooks with operations, IT, and compliance teams to streamline pilots and enterprise expansions.
+					Share these playbooks with operations, IT, and compliance teams to streamline pilots and
+					enterprise expansions.
 				</p>
 			</div>
 			<a
@@ -282,7 +416,9 @@
 		</div>
 		<div class="grid gap-6 md:grid-cols-3">
 			{#each resourceHighlights as resource (resource.title)}
-				<div class="flex h-full flex-col rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
+				<div
+					class="flex h-full flex-col rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5"
+				>
 					<h3 class="text-lg font-semibold text-[#0b1730]">{resource.title}</h3>
 					<p class="mt-3 text-sm text-[#1c2d52]/75">{resource.description}</p>
 					<a
@@ -299,12 +435,20 @@
 </section>
 
 <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
-	<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]" aria-hidden="true"></div>
+	<div
+		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
+		aria-hidden="true"
+	></div>
 	<div class="relative mx-auto w-full max-w-5xl px-4 text-center">
-		<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#f2a516]">Need a deeper dive?</p>
-		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">Schedule a white-glove consult with our IoT engineers</h2>
+		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
+			Need a deeper dive?
+		</p>
+		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
+			Schedule a white-glove consult with our IoT engineers
+		</h2>
 		<p class="mt-4 text-base text-white/80">
-			Bring us your facility maps, compliance targets, and ROI goals—we will co-author a deployment blueprint you can share with leadership.
+			Bring us your facility maps, compliance targets, and ROI goals—we will co-author a deployment
+			blueprint you can share with leadership.
 		</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a

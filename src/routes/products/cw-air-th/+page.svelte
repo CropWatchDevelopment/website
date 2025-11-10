@@ -139,9 +139,7 @@
 				],
 				diagram: {
 					headlineKey: 'products.cw_air_th.page.sections.capabilities.diagram.headline',
-					bodyKeys: [
-						'products.cw_air_th.page.sections.capabilities.diagram.body.0'
-					],
+					bodyKeys: ['products.cw_air_th.page.sections.capabilities.diagram.body.0'],
 					bulletKeys: [
 						'products.cw_air_th.page.sections.capabilities.diagram.bullets.0',
 						'products.cw_air_th.page.sections.capabilities.diagram.bullets.1',
@@ -241,6 +239,18 @@
 	const temperatureSamples = [-22.93, -18.25, -12.5];
 	const humiditySamples = [79.61, 72.4, 55.4];
 
+	const setupNameInputKeys = {
+		helperKey: 'products.cw_air_th.demo.walkthrough.steps.setup_location_device_names.helper',
+		locationLabelKey:
+			'products.cw_air_th.demo.walkthrough.steps.setup_location_device_names.location_label',
+		locationPlaceholderKey:
+			'products.cw_air_th.demo.walkthrough.steps.setup_location_device_names.location_placeholder',
+		deviceLabelKey:
+			'products.cw_air_th.demo.walkthrough.steps.setup_location_device_names.device_label',
+		devicePlaceholderKey:
+			'products.cw_air_th.demo.walkthrough.steps.setup_location_device_names.device_placeholder'
+	} as const;
+
 	type WalkthroughStep = {
 		id: string;
 		titleKey: string;
@@ -254,6 +264,12 @@
 			id: 'details',
 			titleKey: 'products.cw_air_th.demo.walkthrough.steps.details.title',
 			descriptionKey: 'products.cw_air_th.demo.walkthrough.steps.details.body',
+			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
+		},
+		{
+			id: 'setup-location-device-names',
+			titleKey: 'products.cw_air_th.demo.walkthrough.steps.setup_location_device_names.title',
+			descriptionKey: 'products.cw_air_th.demo.walkthrough.steps.setup_location_device_names.body',
 			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
 		},
 		{
@@ -291,8 +307,8 @@
 	];
 
 	const initialDemoState: DemoState = {
-		title: '冷凍コンテナ2',
-		deviceLabel: '冷凍コンテナ②',
+		title: '冷凍',
+		deviceLabel: 'Sensor 1',
 		expanded: true,
 		status: 'loading',
 		primaryValue: temperatureSamples[0],
@@ -336,29 +352,27 @@
 		setDemoState({ mode });
 	}
 
-function handleDemoChange(
-	event: CustomEvent<Partial<DemoState> & { stepId?: string }>
-) {
-	const { stepId, ...patch } = event.detail;
-	if (Object.keys(patch).length > 0) {
-		setDemoState(patch);
-		if ('expanded' in patch) {
-			walkthroughStep = 0;
-		} else if ('status' in patch) {
-			walkthroughStep = 1;
-		} else if ('primaryValue' in patch) {
-			walkthroughStep = 2;
-		} else if ('secondaryValue' in patch) {
-			walkthroughStep = 3;
+	function handleDemoChange(event: CustomEvent<Partial<DemoState> & { stepId?: string }>) {
+		const { stepId, ...patch } = event.detail;
+		if (Object.keys(patch).length > 0) {
+			setDemoState(patch);
+			if ('expanded' in patch) {
+				walkthroughStep = 0;
+			} else if ('status' in patch) {
+				walkthroughStep = 1;
+			} else if ('primaryValue' in patch) {
+				walkthroughStep = 2;
+			} else if ('secondaryValue' in patch) {
+				walkthroughStep = 3;
+			}
+		}
+		if (stepId) {
+			const index = walkthroughSteps.findIndex((step) => step.id === stepId);
+			if (index !== -1) {
+				goToStep(index);
+			}
 		}
 	}
-	if (stepId) {
-		const index = walkthroughSteps.findIndex((step) => step.id === stepId);
-		if (index !== -1) {
-			goToStep(index);
-		}
-	}
-}
 
 	$: currentStep = walkthroughSteps[walkthroughStep];
 	$: progressPercent =
@@ -501,7 +515,7 @@ function handleDemoChange(
 						<tr class="border-b border-[#d7e0f5]/80 last:border-none">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-							>{$_(spec.labelKey)}</th
+								>{$_(spec.labelKey)}</th
 							>
 							<td class="px-6 py-4 text-sm text-[#0b1730]">{$_(spec.valueKey)}</td>
 						</tr>
@@ -545,12 +559,14 @@ function handleDemoChange(
 		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
 			{$_(pageContent.sections.ui.eyebrowKey)}
 		</p>
-		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">{$_(pageContent.sections.ui.headlineKey)}</h2>
+		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
+			{$_(pageContent.sections.ui.headlineKey)}
+		</h2>
 		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">
 			{$_(pageContent.sections.ui.bodyKey)}
 		</p>
 		<div class="flex flex-row gap-2">
-			<div id="demo-section" class="mt-10">
+			<div id="demo-section" class="mt-10 flex-shrink-0">
 				<UIDemo
 					title={demoState.title}
 					deviceLabel={demoState.deviceLabel}
@@ -563,15 +579,16 @@ function handleDemoChange(
 					on:stateChange={handleDemoChange}
 				/>
 			</div>
-			<div id="demo-description" class="mt-10 max-w-3xl text-base text-[#1c2d52]/80">
+			<div id="demo-description" class="mt-10 max-w-3xl flex-1 text-base text-[#1c2d52]/80">
 				<div
-					class="flex h-full min-h-[400px] flex-col gap-6 rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5"
+					id="explanation-card"
+					class="flex h-full min-h-[400px] w-full flex-col gap-6 rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5"
 				>
 					<div>
 						<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-							{$_(pageContent.sections.ui.stepProgressKey, {
-								values: { current: walkthroughStep + 1, total: walkthroughSteps.length }
-							})}
+							{$_(pageContent.sections.ui.stepProgressKey)
+								.replace('{current}', String(walkthroughStep + 1))
+								.replace('{total}', String(walkthroughSteps.length))}
 						</p>
 						<h3 class="mt-2 text-2xl font-semibold text-[#0b1730]">{$_(currentStep.titleKey)}</h3>
 						<p class="mt-2 text-sm text-[#1c2d52]/80">{$_(currentStep.descriptionKey)}</p>
@@ -583,9 +600,7 @@ function handleDemoChange(
 							<button
 								type="button"
 								class={`rounded-full px-3 py-1 transition ${
-									demoState.mode === 'dark'
-										? 'bg-white text-[#0b1730] shadow-sm'
-										: 'text-[#6b7ba7]'
+									demoState.mode === 'dark' ? 'bg-white text-[#0b1730] shadow-sm' : 'text-[#6b7ba7]'
 								}`}
 								onclick={() => setTheme('dark')}
 							>
@@ -604,6 +619,42 @@ function handleDemoChange(
 							</button>
 						</div>
 					</div>
+
+					{#if currentStep.id === 'setup-location-device-names'}
+						<div
+							class="space-y-4 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-4 shadow-inner shadow-white/40"
+						>
+							<p class="text-xs text-[#1c2d52]/80">
+								{$_(setupNameInputKeys.helperKey)}
+							</p>
+							<label class="flex flex-col gap-1 text-sm font-semibold text-[#0b1730]">
+								<span>{$_(setupNameInputKeys.locationLabelKey)}</span>
+								<input
+									class="w-full rounded-xl border border-[#c7d5f2] bg-white px-3 py-2 text-base font-normal text-[#0b1730] focus:ring-2 focus:ring-[#2f5387] focus:outline-none"
+									type="text"
+									value={demoState.title}
+									placeholder={$_(setupNameInputKeys.locationPlaceholderKey)}
+									oninput={(event) =>
+										setDemoState({
+											title: (event.currentTarget as HTMLInputElement).value
+										})}
+								/>
+							</label>
+							<label class="flex flex-col gap-1 text-sm font-semibold text-[#0b1730]">
+								<span>{$_(setupNameInputKeys.deviceLabelKey)}</span>
+								<input
+									class="w-full rounded-xl border border-[#c7d5f2] bg-white px-3 py-2 text-base font-normal text-[#0b1730] focus:ring-2 focus:ring-[#2f5387] focus:outline-none"
+									type="text"
+									value={demoState.deviceLabel}
+									placeholder={$_(setupNameInputKeys.devicePlaceholderKey)}
+									oninput={(event) =>
+										setDemoState({
+											deviceLabel: (event.currentTarget as HTMLInputElement).value
+										})}
+								/>
+							</label>
+						</div>
+					{/if}
 
 					{#if currentStep.imgSrc}
 						<figure
@@ -755,6 +806,70 @@ function handleDemoChange(
 
 <section id="product-origin">
 	<ProductOrigin />
+</section>
+
+<section class="bg-[#f5f7fb] py-20">
+	<div class="mx-auto w-full max-w-6xl px-4">
+		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">Documents</p>
+		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">Downloadable files and resources</h2>
+		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">
+			Explore our collection of documents, brochures, and technical specifications to learn more
+			about CW-Air-TH and its capabilities.
+		</p>
+		<div class="mt-10 grid gap-3 md:grid-cols-3">
+			
+			<div class="flex flex-col rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
+				<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
+					Product Flyer
+				</p>
+				<p class="mt-3 text-sm text-[#1c2d52]/80 mb-2 border-b border-[#d7e0f5] pb-4">
+					A comprehensive overview of CW-Air-TH features and benefits.
+				</p>
+				<span class="flex-1"></span>
+				<a
+					href="/contact"
+					class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+				>
+					Download Flyer
+				</a>
+			</div>
+
+			<div class="flex flex-col rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
+				<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
+					Example Report
+				</p>
+				<p class="mt-3 text-sm text-[#1c2d52]/80 mb-2 border-b border-[#d7e0f5] pb-4">
+					An example report that would be generated by the CropWatch User Interface's Report feature
+				</p>
+				<span class="flex-1"></span>
+				<a
+					href="/contact"
+					class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+				>
+					Download Sample Report
+				</a>
+			</div>
+
+
+			<div class="flex flex-col rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
+				<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
+					CSV Data Export
+				</p>
+				<p class="mt-3 text-sm text-[#1c2d52]/80 mb-2 border-b border-[#d7e0f5] pb-4">
+					A CSV data export sample from the CropWatch User Interface containing temperature and humidity readings.
+				</p>
+				<span class="flex-1"></span>
+				<a
+					href="/contact"
+					class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+				>
+					Download Sample Data
+				</a>
+			</div>
+
+
+		</div>
+	</div>
 </section>
 
 <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">

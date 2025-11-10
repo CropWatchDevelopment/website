@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { slide } from 'svelte/transition';
+	import { _ } from 'svelte-i18n';
 
 	type Status = 'online' | 'offline' | 'loading' | 'partialError';
 	type DetailRow = {
 		id: string;
-		label: string;
-		value: string | number;
+		label?: string;
+		labelKey?: string;
+		value?: string | number | null;
+		valueKey?: string;
 		unit?: string;
 		icon?: 'drop' | 'thermo' | 'timer';
 	};
@@ -50,18 +53,30 @@
 	const secondaryValue = $derived(props.secondaryValue ?? localSecondaryValue);
 	const mode = $derived(props.mode ?? localMode);
 
-	const title = $derived(props.title ?? '<Enter Location Name>');
-	const deviceLabel = $derived(props.deviceLabel ?? '<Enter Device Label>');
+	const title = $derived(props.title);
+	const deviceLabel = $derived(props.deviceLabel);
 	const primaryUnit = $derived(props.primaryUnit ?? '°C');
 	const secondaryUnit = $derived(props.secondaryUnit ?? '%');
-	const lastUpdate = $derived(props.lastUpdate ?? '8m 17s 前');
+	const lastUpdate = $derived(props.lastUpdate);
 	const detailRowsProp = $derived(props.detailRows ?? []);
 
-	const statusStyles: Record<Status, { color: string; glow: string; label: string }> = {
-		loading: { color: '#f2a516', glow: 'rgba(242,165,22,0.5)', label: 'Loading' },
-		online: { color: '#20d16a', glow: 'rgba(32,209,106,0.5)', label: 'Online' },
-		partialError: { color: '#ff784f', glow: 'rgba(255,120,79,0.45)', label: 'Partial Error' },
-		offline: { color: '#f25555', glow: 'rgba(242,85,85,0.45)', label: 'Offline' }
+	const statusStyles: Record<Status, { color: string; glow: string; labelKey: string }> = {
+		loading: {
+			color: '#f2a516',
+			glow: 'rgba(242,165,22,0.5)',
+			labelKey: 'ui_demo.status.loading'
+		},
+		online: { color: '#20d16a', glow: 'rgba(32,209,106,0.5)', labelKey: 'ui_demo.status.online' },
+		partialError: {
+			color: '#ff784f',
+			glow: 'rgba(255,120,79,0.45)',
+			labelKey: 'ui_demo.status.partial_error'
+		},
+		offline: {
+			color: '#f25555',
+			glow: 'rgba(242,85,85,0.45)',
+			labelKey: 'ui_demo.status.offline'
+		}
 	};
 
 	const statusSequence: Status[] = ['loading', 'online', 'partialError', 'offline'];
@@ -128,19 +143,26 @@
 			: [
 					{
 						id: 'humidity',
-						label: '湿度',
+						labelKey: 'ui_demo.detail_rows.humidity',
 						value: secondaryValue.toFixed(2),
 						unit: secondaryUnit,
 						icon: 'drop'
 					},
 					{
 						id: 'temperature',
-						label: '温度',
+						labelKey: 'ui_demo.detail_rows.temperature',
 						value: primaryValue.toFixed(2),
 						unit: primaryUnit,
 						icon: 'thermo'
 					},
-					{ id: 'updated', label: '最終更新', value: lastUpdate, unit: '', icon: 'timer' }
+					{
+						id: 'updated',
+						labelKey: 'ui_demo.detail_rows.updated',
+						value: lastUpdate ?? null,
+						valueKey: 'ui_demo.defaults.last_update',
+						unit: '',
+						icon: 'timer'
+					}
 			  ]
 	);
 </script>
@@ -151,8 +173,8 @@
 			class="status-indicator"
 			type="button"
 			onclick={cycleStatus}
-			title={`Current status: ${statusStyle.label}. Click to cycle states.`}
-			aria-label={`Cycle status (current ${statusStyle.label})`}
+			title={$_('ui_demo.status_indicator.title', { values: { status: $_(statusStyle.labelKey) } })}
+			aria-label={$_('ui_demo.status_indicator.aria', { values: { status: $_(statusStyle.labelKey) } })}
 		>
         
 			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -163,13 +185,15 @@
 			</svg>
 		</button>
 		<div class="sensor-card__title-group">
-			<div class="sensor-card__title">{title}</div>
-			<span class="sensor-card__status-pill" style={`--pill-color:${statusStyle.color}`}>{statusStyle.label}</span>
+			<div class="sensor-card__title">{title || '<LOCATION NAME>'}</div>
+			<span class="sensor-card__status-pill" style={`--pill-color:${statusStyle.color}`}>
+				{$_(statusStyle.labelKey)}
+			</span>
 		</div>
 		<button
 			class="header-action"
 			type="button"
-			aria-label="View device"
+			aria-label={$_('ui_demo.header.view_device_aria')}
 			onclick={() => emitState({ stepId: 'location-page' })}
 		>
 			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -185,13 +209,13 @@
 		>
 			<div class="sensor-card__content">
 				<div class="sensor-card__device">
-					<span class="sensor-card__label">{deviceLabel}</span>
+					<span class="sensor-card__label">{`${deviceLabel || '<DEVICE NAME>'}`}</span>
 					<div class="sensor-card__stats">
 						<button
 							type="button"
 							class="sensor-stat sensor-stat--action"
 							onclick={() => cycleStat('temperature')}
-							title="Click to sample another temperature reading"
+							title={$_('ui_demo.stats.temperature_title')}
 						>
 							<span class="sensor-stat__icon sensor-stat__icon--temp" aria-hidden="true">
 								<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -209,7 +233,7 @@
 							type="button"
 							class="sensor-stat sensor-stat--action"
 							onclick={() => cycleStat('humidity')}
-							title="Click to sample another humidity reading"
+							title={$_('ui_demo.stats.humidity_title')}
 						>
 							<span class="sensor-stat__icon sensor-stat__icon--humidity" aria-hidden="true">
 								<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -227,7 +251,7 @@
 				<button
 					class="sensor-card__collapse"
 					type="button"
-					aria-label={expanded ? 'Collapse details' : 'Expand details'}
+					aria-label={expanded ? $_('ui_demo.details.collapse_aria') : $_('ui_demo.details.expand_aria')}
 					onclick={toggleDetails}
 				>
 					<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -238,7 +262,7 @@
 
 			{#if expanded}
 				<div class="sensor-card__details" transition:slide={{ duration: 220 }}>
-					<h4>詳細</h4>
+					<h4>{$_('ui_demo.details.heading')}</h4>
 					<ul>
 						{#each computedDetailRows as row (row.id)}
 							<li>
@@ -268,13 +292,17 @@
 												</svg>
 											{/if}
 										</span>
-										<span class="detail-item__label">{row.label}</span>
+										<span class="detail-item__label">
+											{row.label ?? (row.labelKey ? $_(row.labelKey) : '')}
+										</span>
 									</div>
 									<div
 										class="detail-item__value"
 										class:detail-item__value--muted={!row.unit}
 									>
-										<span class="detail-item__number">{row.value}</span>
+										<span class="detail-item__number">
+											{row.value ?? (row.valueKey ? $_(row.valueKey) : '')}
+										</span>
 										{#if row.unit}
 											<span class="detail-item__unit">{row.unit}</span>
 										{/if}
@@ -289,7 +317,7 @@
 						type="button"
 						onclick={() => emitState({ stepId: 'device-detail-page' })}
 					>
-						<span>詳細を見る</span>
+						<span>{$_('ui_demo.details.cta')}</span>
 						<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 							<path fill="currentColor" d="M10 6v12l6-6-6-6Z"></path>
 						</svg>
@@ -298,14 +326,14 @@
 			{/if}
 		</div>
 		<div class="sensor-card__footer">
-			<p class="sensor-card__hint">Tip: Interact with the card to see the walkthrough react.</p>
+			<p class="sensor-card__hint">{$_('ui_demo.hint.text')}</p>
 			<button
 				type="button"
 				class="sensor-card__theme-toggle"
 				onclick={toggleTheme}
-				aria-label="Toggle card appearance"
+				aria-label={$_('ui_demo.theme_toggle.aria')}
 			>
-				{mode === 'dark' ? 'Light mode' : 'Dark mode'}
+				{mode === 'dark' ? $_('ui_demo.theme_toggle.light') : $_('ui_demo.theme_toggle.dark')}
 			</button>
 		</div>
 	</section>

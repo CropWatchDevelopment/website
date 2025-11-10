@@ -126,6 +126,71 @@
             }
         }
     },
+    "product_origin": {
+        "origins": {
+            "designed": "Designed in Norway",
+            "manufactured": "Manufactured & Assembled in Japan",
+            "parts": {
+                "title": "Using Parts from:",
+                "subtitle": "Japan, South Korea, USA, Taiwan, Ireland, and Switzerland"
+            },
+            "programmed": "Programmed in the USA & Australia",
+            "used_by_you": "Used by You"
+        },
+        "aria": {
+            "view_parts": "View parts sourced from {country}"
+        },
+        "note": {
+            "line1": "* If a country is not listed above, their parts are not used in our products.",
+            "line2": "* All offerings remain lead-free and RoHS compliant."
+        },
+        "tooltip": {
+            "heading": "Parts from {country}:"
+        }
+    },
+    "ui_demo": {
+        "defaults": {
+            "title": "<Enter Location Name>",
+            "device_label": "<Enter Device Label>",
+            "last_update": "8m 17s ago"
+        },
+        "status": {
+            "loading": "Loading",
+            "online": "Online",
+            "partial_error": "Partial Error",
+            "offline": "Offline"
+        },
+        "status_indicator": {
+            "title": "Current status: {{status}}. Click to cycle states.",
+            "aria": "Cycle status (current {{status}})"
+        },
+        "header": {
+            "view_device_aria": "View device"
+        },
+        "stats": {
+            "temperature_title": "Click to sample another temperature reading",
+            "humidity_title": "Click to sample another humidity reading"
+        },
+        "details": {
+            "heading": "Details",
+            "collapse_aria": "Collapse details",
+            "expand_aria": "Expand details",
+            "cta": "View device details"
+        },
+        "detail_rows": {
+            "humidity": "Humidity",
+            "temperature": "Temperature",
+            "updated": "Last updated"
+        },
+        "hint": {
+            "text": "Tip: Interact with the card to see the walkthrough react."
+        },
+        "theme_toggle": {
+            "aria": "Toggle card appearance",
+            "light": "Light mode",
+            "dark": "Dark mode"
+        }
+    },
     "home": {
         "meta": {
             "title": "CropWatch® | Industrial IoT That Pays For Itself",
@@ -474,7 +539,7 @@
                         "eyebrow": "Our UI",
                         "headline": "User Interface that is fast to use",
                         "body": "Our UI has been hyper optimized for quick data aquisition and easy navigation, so users can get to the information they need faster, reducing time spent on monitoring, and increasing time for other important tasks.",
-                        "step_progress": "Step {{current}} of {{total}}",
+                        "step_progress": "Step {current} of {total}",
                         "theme_label": "Theme:",
                         "theme_options": {
                             "dark": "Dark",
@@ -522,7 +587,7 @@
                 },
                 "battery": {
                     "title": "Multi-year battery life",
-                    "body": "Engineered for more than five years of continuous telemetry with field-replaceable lithium batteries and low-power firmware."
+                    "body": "Engineered for more than 10 years of continuous telemetry with field-replaceable lithium batteries and low-power firmware."
                 },
                 "lorawan": {
                     "title": "LoRaWAN connectivity",
@@ -632,6 +697,15 @@
                         "details": {
                             "title": "Open or collapse sensor insights",
                             "body": "Our UI allows you to organize and group devices by location. At the top left of the location card you can see the location health indicator. It shows green when devices are reporting normally, yellow for warnings, and red for critical issues. Use the chevron in the card to reveal detailed readings, alarms, and update history."
+                        },
+                        "setup_location_device_names": {
+                            "title": "Name your location and device",
+                            "body": "Give each card a friendly label so teams instantly recognize which area or asset it represents.",
+                            "helper": "Names entered here sync with the card header and device tag in the demo.",
+                            "location_label": "Location name",
+                            "location_placeholder": "e.g., Freezer Bay A",
+                            "device_label": "Device name",
+                            "device_placeholder": "e.g., CW Air TH #1"
                         },
                         "status": {
                             "title": "Glanceable location health",
