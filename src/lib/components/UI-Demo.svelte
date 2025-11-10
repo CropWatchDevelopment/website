@@ -11,11 +11,15 @@
 		icon?: 'drop' | 'thermo' | 'timer';
 	};
 
+	type Theme = 'dark' | 'light';
+
 	type CardStatePatch = {
 		expanded?: boolean;
 		status?: Status;
 		primaryValue?: number;
 		secondaryValue?: number;
+		mode?: Theme;
+		stepId?: string;
 	};
 
 	const dispatch = createEventDispatcher<{ stateChange: CardStatePatch }>();
@@ -31,20 +35,23 @@
 		secondaryUnit?: string;
 		lastUpdate?: string;
 		detailRows?: DetailRow[];
+		mode?: Theme;
 	}>();
 
 	let localExpanded = $state(props.expanded ?? true);
 	let localStatus = $state<Status>(props.status ?? 'loading');
 	let localPrimaryValue = $state(props.primaryValue ?? -22.93);
 	let localSecondaryValue = $state(props.secondaryValue ?? 79.61);
+	let localMode = $state<Theme>(props.mode ?? 'dark');
 
 	const expanded = $derived(props.expanded ?? localExpanded);
 	const status = $derived(props.status ?? localStatus);
 	const primaryValue = $derived(props.primaryValue ?? localPrimaryValue);
 	const secondaryValue = $derived(props.secondaryValue ?? localSecondaryValue);
+	const mode = $derived(props.mode ?? localMode);
 
-	const title = $derived(props.title ?? '冷凍');
-	const deviceLabel = $derived(props.deviceLabel ?? '冷凍コ');
+	const title = $derived(props.title ?? '<Enter Location Name>');
+	const deviceLabel = $derived(props.deviceLabel ?? '<Enter Device Label>');
 	const primaryUnit = $derived(props.primaryUnit ?? '°C');
 	const secondaryUnit = $derived(props.secondaryUnit ?? '%');
 	const lastUpdate = $derived(props.lastUpdate ?? '8m 17s 前');
@@ -98,6 +105,14 @@
 		}
 	}
 
+	function toggleTheme() {
+		const next = mode === 'dark' ? 'light' : 'dark';
+		if (props.mode === undefined) {
+			localMode = next;
+		}
+		emitState({ mode: next });
+	}
+
 	function nextSample(samples: number[], current: number) {
 		const roundedCurrent = Number(current.toFixed(2));
 		const index = samples.findIndex((value) => Number(value.toFixed(2)) === roundedCurrent);
@@ -130,7 +145,7 @@
 	);
 </script>
 
-<div class="sensor-card" data-status={status}>
+<div class="sensor-card" data-status={status} data-theme={mode}>
 	<header class="sensor-card__header">
 		<button
 			class="status-indicator"
@@ -151,7 +166,12 @@
 			<div class="sensor-card__title">{title}</div>
 			<span class="sensor-card__status-pill" style={`--pill-color:${statusStyle.color}`}>{statusStyle.label}</span>
 		</div>
-		<button class="header-action" type="button" aria-label="View device">
+		<button
+			class="header-action"
+			type="button"
+			aria-label="View device"
+			onclick={() => emitState({ stepId: 'location-page' })}
+		>
 			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 				<path fill="currentColor" d="M10 6v12l6-6-6-6Z"></path>
 			</svg>
@@ -264,7 +284,11 @@
 						{/each}
 					</ul>
 
-					<button class="sensor-card__cta" type="button">
+					<button
+						class="sensor-card__cta"
+						type="button"
+						onclick={() => emitState({ stepId: 'device-detail-page' })}
+					>
 						<span>詳細を見る</span>
 						<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 							<path fill="currentColor" d="M10 6v12l6-6-6-6Z"></path>
@@ -273,21 +297,94 @@
 				</div>
 			{/if}
 		</div>
-		<p class="sensor-card__hint">Tip: Interact with the card to see the walkthrough react.</p>
+		<div class="sensor-card__footer">
+			<p class="sensor-card__hint">Tip: Interact with the card to see the walkthrough react.</p>
+			<button
+				type="button"
+				class="sensor-card__theme-toggle"
+				onclick={toggleTheme}
+				aria-label="Toggle card appearance"
+			>
+				{mode === 'dark' ? 'Light mode' : 'Dark mode'}
+			</button>
+		</div>
 	</section>
 </div>
 
 <style>
 	.sensor-card {
+		--card-bg: #1d2029;
+		--card-border: #161b25;
+		--header-bg: #242a39;
+		--header-border: rgba(255, 255, 255, 0.06);
+		--body-bg: #2f374c;
+		--slot-bg: #343f58;
+		--slot-border: rgba(255, 255, 255, 0.05);
+		--text-primary: #f7f9ff;
+		--text-secondary: rgba(255, 255, 255, 0.72);
+		--text-muted: rgba(255, 255, 255, 0.6);
+		--text-hint: rgba(255, 255, 255, 0.45);
+		--icon-bg: rgba(255, 255, 255, 0.08);
+		--status-indicator-bg: rgba(14, 20, 31, 0.65);
+		--status-indicator-border: rgba(255, 255, 255, 0.08);
+		--status-pill-bg: rgba(255, 255, 255, 0.1);
+		--status-pill-border: rgba(255, 255, 255, 0.08);
+		--status-pill-text: #ffd740;
+		--title-color: #ffd740;
+		--header-action-bg: rgba(34, 45, 66, 0.65);
+		--header-action-border: rgba(111, 141, 199, 0.3);
+		--header-action-color: #7fa5ff;
+		--collapse-color: rgba(255, 255, 255, 0.7);
+		--detail-divider: rgba(255, 255, 255, 0.08);
+		--stat-hover-bg: rgba(255, 255, 255, 0.08);
+		--cta-bg: linear-gradient(180deg, #3c4357, #2c3244);
+		--cta-bg-hover: linear-gradient(180deg, #454c61, #2f3546);
+		--cta-text: #f5f7ff;
+		--theme-btn-bg: rgba(255, 255, 255, 0.08);
+		--theme-btn-border: rgba(255, 255, 255, 0.15);
+		--theme-btn-text: #f5f7ff;
 		position: relative;
-		width: min(370px, 100%);
+		width: min(390px, 100%);
 		border-radius: 18px;
-		background: #1d2029;
-		border: 1px solid #161b25;
+		background: var(--card-bg);
+		border: 1px solid var(--card-border);
 		box-shadow: 0 12px 24px rgba(8, 10, 15, 0.55);
-		color: #f7f9ff;
+		color: var(--text-primary);
 		overflow: hidden;
 		font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	}
+
+	.sensor-card[data-theme='light'] {
+		--card-bg: #ffffff;
+		--card-border: #d7e0f5;
+		--header-bg: #f5f7fb;
+		--header-border: rgba(13, 19, 41, 0.08);
+		--body-bg: #f7f9fc;
+		--slot-bg: #ffffff;
+		--slot-border: rgba(15, 23, 42, 0.08);
+		--text-primary: #0b1730;
+		--text-secondary: #203055;
+		--text-muted: #6b7ba7;
+		--text-hint: #6b7ba7;
+		--icon-bg: rgba(47, 83, 135, 0.12);
+		--status-indicator-bg: #ffffff;
+		--status-indicator-border: #d7e0f5;
+		--status-pill-bg: #eef2fb;
+		--status-pill-border: #d7e0f5;
+		--status-pill-text: #0b1730;
+		--title-color: #0b1730;
+		--header-action-bg: #e4e9f7;
+		--header-action-border: #c7d5f2;
+		--header-action-color: #2f5387;
+		--collapse-color: #6b7ba7;
+		--detail-divider: rgba(15, 23, 42, 0.08);
+		--stat-hover-bg: rgba(47, 83, 135, 0.12);
+		--cta-bg: linear-gradient(180deg, #ffffff, #edf1fb);
+		--cta-bg-hover: linear-gradient(180deg, #f7f9ff, #e4e9f7);
+		--cta-text: #0b1730;
+		--theme-btn-bg: #edf1fb;
+		--theme-btn-border: #c7d5f2;
+		--theme-btn-text: #1c2d52;
 	}
 
 	.sensor-card__header {
@@ -295,8 +392,8 @@
 		align-items: center;
 		padding: 0.85rem 1rem;
 		gap: 0.8rem;
-		background: #242a39;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		background: var(--header-bg);
+		border-bottom: 1px solid var(--header-border);
 	}
 
 	.status-indicator {
@@ -306,9 +403,9 @@
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
-		border: 1px solid rgba(255, 255, 255, 0.08);
+		border: 1px solid var(--status-indicator-border);
 		color: #20d16a;
-		background: rgba(14, 20, 31, 0.65);
+		background: var(--status-indicator-bg);
 		cursor: pointer;
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 	}
@@ -316,7 +413,7 @@
 	.status-indicator:hover,
 	.status-indicator:focus-visible {
 		transform: translateY(-1px);
-		box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+		box-shadow: 0 0 0 3px rgba(32, 209, 106, 0.15);
 	}
 
 	.status-indicator svg,
@@ -335,7 +432,7 @@
 
 	.sensor-card__title {
 		font-weight: 700;
-		color: #ffd740;
+		color: var(--title-color);
 		font-size: 1rem;
 	}
 
@@ -346,11 +443,11 @@
 		font-size: 0.7rem;
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
-		color: rgba(255, 255, 255, 0.8);
-		background: rgba(255, 255, 255, 0.1);
+		color: var(--status-pill-text);
+		background: var(--status-pill-bg);
 		padding: 0.1rem 0.5rem;
 		border-radius: 999px;
-		border: 1px solid rgba(255, 255, 255, 0.08);
+		border: 1px solid var(--status-pill-border);
 		position: relative;
 	}
 
@@ -367,12 +464,12 @@
 		width: 34px;
 		height: 34px;
 		border-radius: 50%;
-		background: rgba(34, 45, 66, 0.65);
-		border: 1px solid rgba(111, 141, 199, 0.3);
+		background: var(--header-action-bg);
+		border: 1px solid var(--header-action-border);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: #7fa5ff;
+		color: var(--header-action-color);
 		cursor: pointer;
 		transition: transform 0.2s ease, background 0.2s ease;
 	}
@@ -383,7 +480,7 @@
 	}
 
 	.sensor-card__body {
-		background: #2f374c;
+		background: var(--body-bg);
 		padding: 1rem 1rem 1.3rem;
 	}
 
@@ -391,8 +488,8 @@
 		position: relative;
 		padding: 0.75rem 0.9rem 0.9rem 2.4rem;
 		border-radius: 14px;
-		background: #343f58;
-		border: 1px solid rgba(255, 255, 255, 0.05);
+		background: var(--slot-bg);
+		border: 1px solid var(--slot-border);
 		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 	}
 
@@ -424,7 +521,7 @@
 
 	.sensor-card__label {
 		font-size: 0.95rem;
-		color: rgba(255, 255, 255, 0.72);
+		color: var(--text-secondary);
 		font-weight: 600;
 		letter-spacing: 0.03em;
 	}
@@ -432,7 +529,7 @@
 	.sensor-card__collapse {
 		border: 0;
 		background: transparent;
-		color: rgba(255, 255, 255, 0.7);
+		color: var(--collapse-color);
 		cursor: pointer;
 		padding: 0.1rem;
 		transition: transform 0.2s ease;
@@ -448,7 +545,7 @@
 		align-items: center;
 		justify-content: flex-start;
 		gap: 1rem;
-		flex-wrap: wrap;
+		flex-wrap: no-wrap;
 	}
 
 	.sensor-stat {
@@ -457,7 +554,7 @@
 		gap: 0.35rem;
 		font-weight: 700;
 		font-size: 1.1rem;
-		color: #f6f7fb;
+		color: var(--text-primary);
 		background: transparent;
 		border: none;
 		padding: 0.25rem 0.35rem;
@@ -471,7 +568,7 @@
 
 	.sensor-stat--action:hover,
 	.sensor-stat--action:focus-visible {
-		background: rgba(255, 255, 255, 0.08);
+		background: var(--stat-hover-bg);
 		transform: translateY(-1px);
 	}
 
@@ -482,7 +579,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		background: rgba(255, 255, 255, 0.08);
+		background: var(--icon-bg);
 	}
 
 	.sensor-stat__icon svg {
@@ -504,7 +601,7 @@
 
 	.sensor-stat__unit {
 		font-size: 0.75rem;
-		color: rgba(255, 255, 255, 0.6);
+		color: var(--text-muted);
 		margin-left: 0.1rem;
 		font-weight: 500;
 	}
@@ -512,7 +609,7 @@
 	.sensor-card__details {
 		margin-top: 0.85rem;
 		padding-top: 0.5rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		border-top: 1px solid var(--detail-divider);
 	}
 
 	.sensor-card__details h4 {
@@ -528,7 +625,7 @@
 	}
 
 	.sensor-card__details li + li {
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		border-top: 1px solid var(--detail-divider);
 	}
 
 	.detail-item {
@@ -542,7 +639,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.45rem;
-		color: rgba(255, 255, 255, 0.75);
+		color: var(--text-secondary);
 		font-size: 0.9rem;
 	}
 
@@ -553,7 +650,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		background: rgba(255, 255, 255, 0.05);
+		background: var(--icon-bg);
 	}
 
 	.detail-item__icon svg {
@@ -578,7 +675,7 @@
 		align-items: baseline;
 		gap: 0.25rem;
 		font-weight: 700;
-		color: #f6f7fb;
+		color: var(--text-primary);
 	}
 
 	.detail-item__number {
@@ -587,12 +684,12 @@
 
 	.detail-item__unit {
 		font-size: 0.75rem;
-		color: rgba(255, 255, 255, 0.6);
+		color: var(--text-muted);
 	}
 
 	.detail-item__value--muted {
 		font-weight: 500;
-		color: rgba(255, 255, 255, 0.65);
+		color: var(--text-muted);
 		font-size: 0.85rem;
 	}
 
@@ -601,8 +698,8 @@
 		margin-top: 0.85rem;
 		border: 0;
 		border-radius: 10px;
-		background: linear-gradient(180deg, #3c4357, #2c3244);
-		color: #f5f7ff;
+		background: var(--cta-bg);
+		color: var(--cta-text);
 		font-weight: 600;
 		padding: 0.65rem 0.85rem;
 		display: inline-flex;
@@ -615,7 +712,7 @@
 	}
 
 	.sensor-card__cta:hover {
-		background: linear-gradient(180deg, #454c61, #2f3546);
+		background: var(--cta-bg-hover);
 		transform: translateY(-1px);
 	}
 
@@ -625,12 +722,37 @@
 		color: #9fb2ff;
 	}
 
-	.sensor-card__hint {
+	.sensor-card__footer {
 		margin-top: 0.75rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+
+	.sensor-card__hint {
 		font-size: 0.7rem;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.45);
-		text-align: center;
+		color: var(--text-hint);
+		margin: 0;
+	}
+
+	.sensor-card__theme-toggle {
+		border: 1px solid var(--theme-btn-border);
+		background: var(--theme-btn-bg);
+		color: var(--theme-btn-text);
+		border-radius: 999px;
+		padding: 0.25rem 0.9rem;
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		cursor: pointer;
+		transition: background 0.2s ease, transform 0.2s ease;
+	}
+
+	.sensor-card__theme-toggle:hover {
+		transform: translateY(-1px);
 	}
 </style>

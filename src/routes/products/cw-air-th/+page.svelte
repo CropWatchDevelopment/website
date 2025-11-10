@@ -2,6 +2,8 @@
 	import ProductOrigin from '$lib/components/product-origin.svelte';
 	import deviceSideViewImage from './images/device-side-view.webp';
 	import crossValidationDiagram from './images/crossvalidate.webp';
+	import deviceDetailImage from './images/device-detail.webp';
+	import locationDetailImage from './images/location-detail.webp';
 	import UIDemo from '$lib/components/UI-Demo.svelte';
 
 	const featureHighlights = [
@@ -77,6 +79,7 @@
 	];
 
 	type DemoStatus = 'online' | 'offline' | 'loading' | 'partialError';
+	type DemoTheme = 'dark' | 'light';
 
 	type DemoState = {
 		title: string;
@@ -86,6 +89,7 @@
 		primaryValue: number;
 		secondaryValue: number;
 		lastUpdate: string;
+		mode: DemoTheme;
 	};
 
 	const statusMeta: Record<DemoStatus, { label: string; helper: string; color: string }> = {
@@ -114,12 +118,25 @@
 	const temperatureSamples = [-22.93, -18.25, -12.5];
 	const humiditySamples = [79.61, 72.4, 55.4];
 
-	const walkthroughSteps = [
+	type WalkthroughStep = {
+		id: string;
+		title: string;
+		description: string;
+		imgSrc?: string;
+		apply: (state: DemoState) => DemoState;
+	};
+
+	const walkthroughSteps: WalkthroughStep[] = [
 		{
 			id: 'details',
 			title: 'Open or collapse sensor insights',
 			description:
-				'Use the chevron inside the card to reveal detailed sensor readings, alarms, and update history for the device.',
+				`
+				Our ui allows you to organize and group "Devices" by location. A location can represent a physical, or logical grouping of devices.
+				At the TOP LEFT of the location card, you can see the location's health status indicator. The indicator will show green if all devices
+				are online and reporting correctly, yellow if there are warnings, and red if there are critical issues.
+				
+				TASK: Use the chevron inside the card to reveal detailed sensor readings, alarms, and update history for the device.`,
 			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
 		},
 		{
@@ -142,7 +159,23 @@
 			description:
 				'Relative humidity is captured alongside temperature to flag condensation risks. Click the droplet to see it update.',
 			apply: (state: DemoState): DemoState => ({ ...state, secondaryValue: humiditySamples[0] })
-		}
+		},
+		{
+			id: 'location-page',
+			title: 'Brings you to a Location Detail page',
+			description:
+				`The Location Details page allows you to see all devices within a location, and update that location's details and settings. This is also where you will find permissions for the users that can access a location and devices within.`,
+			imgSrc: locationDetailImage,
+			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
+		},
+		{
+			id: 'device-detail-page',
+			title: 'View the device detail page',
+			description:
+				`The Device Detail page provides in-depth information about a specific device, including its telemetry data, status history, and configuration options. This page is essential for troubleshooting and managing individual sensors within your network.`,
+			imgSrc: deviceDetailImage,
+			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
+		},
 	];
 
 	const initialDemoState: DemoState = {
@@ -152,7 +185,8 @@
 		status: 'loading',
 		primaryValue: temperatureSamples[0],
 		secondaryValue: humiditySamples[0],
-		lastUpdate: '8m 17s 前'
+		lastUpdate: '8m 17s 前',
+		mode: 'dark'
 	};
 
 	let demoState: DemoState = { ...initialDemoState };
@@ -186,25 +220,37 @@
 		walkthroughStep = 1;
 	}
 
-	function handleDemoChange(event: CustomEvent<Partial<DemoState>>) {
-		const detail = event.detail;
-		setDemoState(detail);
-		if ('expanded' in detail) {
+	function setTheme(mode: DemoTheme) {
+		setDemoState({ mode });
+	}
+
+function handleDemoChange(
+	event: CustomEvent<Partial<DemoState> & { stepId?: string }>
+) {
+	const { stepId, ...patch } = event.detail;
+	if (Object.keys(patch).length > 0) {
+		setDemoState(patch);
+		if ('expanded' in patch) {
 			walkthroughStep = 0;
-		} else if ('status' in detail) {
+		} else if ('status' in patch) {
 			walkthroughStep = 1;
-		} else if ('primaryValue' in detail) {
+		} else if ('primaryValue' in patch) {
 			walkthroughStep = 2;
-		} else if ('secondaryValue' in detail) {
+		} else if ('secondaryValue' in patch) {
 			walkthroughStep = 3;
 		}
 	}
+	if (stepId) {
+		const index = walkthroughSteps.findIndex((step) => step.id === stepId);
+		if (index !== -1) {
+			goToStep(index);
+		}
+	}
+}
 
 	$: currentStep = walkthroughSteps[walkthroughStep];
 	$: progressPercent =
-		walkthroughSteps.length > 1
-			? (walkthroughStep / (walkthroughSteps.length - 1)) * 100
-			: 100;
+		walkthroughSteps.length > 1 ? (walkthroughStep / (walkthroughSteps.length - 1)) * 100 : 100;
 </script>
 
 <svelte:head>
@@ -436,7 +482,7 @@
 			get to the information they need faster, reducing time spent on monitoring, and increasing
 			time for other important tasks.
 		</p>
-		<div class="flex flex-row gap-10">
+		<div class="flex flex-row gap-2">
 			<div id="demo-section" class="mt-10">
 				<UIDemo
 					title={demoState.title}
@@ -446,11 +492,14 @@
 					primaryValue={demoState.primaryValue}
 					secondaryValue={demoState.secondaryValue}
 					lastUpdate={demoState.lastUpdate}
+					mode={demoState.mode}
 					on:stateChange={handleDemoChange}
 				/>
 			</div>
 			<div id="demo-description" class="mt-10 max-w-3xl text-base text-[#1c2d52]/80">
-				<div class="flex flex-col gap-6 rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
+				<div
+					class="flex h-full min-h-[400px] flex-col gap-6 rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5"
+				>
 					<div>
 						<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
 							Step {walkthroughStep + 1} of {walkthroughSteps.length}
@@ -459,6 +508,48 @@
 						<p class="mt-2 text-sm text-[#1c2d52]/80">{currentStep.description}</p>
 					</div>
 
+					<div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-[#6b7ba7]">
+						<span>Theme:</span>
+						<div class="inline-flex rounded-full border border-[#d7e0f5] bg-[#f5f7fb] p-1">
+							<button
+								type="button"
+								class={`rounded-full px-3 py-1 transition ${
+									demoState.mode === 'dark'
+										? 'bg-white text-[#0b1730] shadow-sm'
+										: 'text-[#6b7ba7]'
+								}`}
+								onclick={() => setTheme('dark')}
+							>
+								Dark
+							</button>
+							<button
+								type="button"
+								class={`rounded-full px-3 py-1 transition ${
+									demoState.mode === 'light'
+										? 'bg-white text-[#0b1730] shadow-sm'
+										: 'text-[#6b7ba7]'
+								}`}
+								onclick={() => setTheme('light')}
+							>
+								Light
+							</button>
+						</div>
+					</div>
+
+					{#if currentStep.imgSrc}
+						<figure
+							class="overflow-hidden rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] shadow-sm shadow-[#0b1730]/5"
+						>
+							<img
+								width="50%"
+								src={currentStep.imgSrc}
+								alt={currentStep.title}
+								loading="lazy"
+								class="h-full w-full object-cover"
+							/>
+						</figure>
+					{/if}
+					<span class="flex flex-1"></span>
 					{#if walkthroughStep === 1}
 						<div class="rounded-2xl bg-[#f5f7fb] p-4 text-sm text-[#1c2d52]">
 							<p class="text-sm font-semibold text-[#0b1730]">Status indicator states</p>
