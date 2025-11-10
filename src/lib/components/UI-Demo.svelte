@@ -1,117 +1,215 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 
-
-
-	let { isOpen = false, sensorStatus = 'online' }: { isOpen?: boolean; sensorStatus?: 'online' | 'offline' } = $props();
-
-	const summary = {
-		title: '冷凍コンテナ2',
-		deviceLabel: '冷凍コンテナ②',
-		primary: {
-			label: 'temperature',
-			value: -22.93,
-			unit: '°C'
-		},
-		secondary: {
-			label: 'humidity',
-			value: 79.61,
-			unit: '%'
-		},
-		lastUpdate: '8m 17s 前'
+	type Status = 'online' | 'offline' | 'loading' | 'partialError';
+	type DetailRow = {
+		id: string;
+		label: string;
+		value: string | number;
+		unit?: string;
+		icon?: 'drop' | 'thermo' | 'timer';
 	};
 
-	const detailRows = [
-		{
-			id: 'humidity',
-			label: '湿度',
-			value: '79.61',
-			unit: '%',
-			icon: 'drop'
-		},
-		{
-			id: 'temperature',
-			label: '温度',
-			value: '-22.93',
-			unit: '°C',
-			icon: 'thermo'
-		},
-		{
-			id: 'updated',
-			label: '最終更新',
-			value: summary.lastUpdate,
-			unit: '',
-			icon: 'timer'
-		}
-	];
+	type CardStatePatch = {
+		expanded?: boolean;
+		status?: Status;
+		primaryValue?: number;
+		secondaryValue?: number;
+	};
 
-	let expanded = $state(isOpen);
+	const dispatch = createEventDispatcher<{ stateChange: CardStatePatch }>();
+
+	const props = $props<{
+		title?: string;
+		deviceLabel?: string;
+		expanded?: boolean;
+		status?: Status;
+		primaryValue?: number;
+		primaryUnit?: string;
+		secondaryValue?: number;
+		secondaryUnit?: string;
+		lastUpdate?: string;
+		detailRows?: DetailRow[];
+	}>();
+
+	let localExpanded = $state(props.expanded ?? true);
+	let localStatus = $state<Status>(props.status ?? 'loading');
+	let localPrimaryValue = $state(props.primaryValue ?? -22.93);
+	let localSecondaryValue = $state(props.secondaryValue ?? 79.61);
+
+	const expanded = $derived(props.expanded ?? localExpanded);
+	const status = $derived(props.status ?? localStatus);
+	const primaryValue = $derived(props.primaryValue ?? localPrimaryValue);
+	const secondaryValue = $derived(props.secondaryValue ?? localSecondaryValue);
+
+	const title = $derived(props.title ?? '冷凍コンテナ2');
+	const deviceLabel = $derived(props.deviceLabel ?? '冷凍コンテナ②');
+	const primaryUnit = $derived(props.primaryUnit ?? '°C');
+	const secondaryUnit = $derived(props.secondaryUnit ?? '%');
+	const lastUpdate = $derived(props.lastUpdate ?? '8m 17s 前');
+	const detailRowsProp = $derived(props.detailRows ?? []);
+
+	const statusStyles: Record<Status, { color: string; glow: string; label: string }> = {
+		loading: { color: '#f2a516', glow: 'rgba(242,165,22,0.5)', label: 'Loading' },
+		online: { color: '#20d16a', glow: 'rgba(32,209,106,0.5)', label: 'Online' },
+		partialError: { color: '#ff784f', glow: 'rgba(255,120,79,0.45)', label: 'Partial Error' },
+		offline: { color: '#f25555', glow: 'rgba(242,85,85,0.45)', label: 'Offline' }
+	};
+
+	const statusSequence: Status[] = ['loading', 'online', 'partialError', 'offline'];
+	const temperatureSamples = [-22.93, -18.25, -12.5];
+	const humiditySamples = [79.61, 72.4, 55.4];
+
+	function emitState(patch: CardStatePatch) {
+		dispatch('stateChange', patch);
+	}
+
+	function toggleDetails() {
+		const next = !expanded;
+		if (props.expanded === undefined) {
+			localExpanded = next;
+		}
+		emitState({ expanded: next });
+	}
+
+	function cycleStatus() {
+		const idx = statusSequence.indexOf(status);
+		const next = statusSequence[(idx + 1) % statusSequence.length];
+		if (!props.status) {
+			localStatus = next;
+		}
+		emitState({ status: next });
+	}
+
+	function cycleStat(type: 'temperature' | 'humidity') {
+		if (type === 'temperature') {
+			const next = nextSample(temperatureSamples, primaryValue);
+			if (props.primaryValue === undefined) {
+				localPrimaryValue = next;
+			}
+			emitState({ primaryValue: next });
+		} else {
+			const next = nextSample(humiditySamples, secondaryValue);
+			if (props.secondaryValue === undefined) {
+				localSecondaryValue = next;
+			}
+			emitState({ secondaryValue: next });
+		}
+	}
+
+	function nextSample(samples: number[], current: number) {
+		const roundedCurrent = Number(current.toFixed(2));
+		const index = samples.findIndex((value) => Number(value.toFixed(2)) === roundedCurrent);
+		const nextIndex = index === -1 ? 0 : (index + 1) % samples.length;
+		return Number(samples[nextIndex].toFixed(2));
+	}
+
+	const statusStyle = $derived(statusStyles[status] || statusStyles.loading);
+
+	const computedDetailRows = $derived(
+		detailRowsProp.length > 0
+			? detailRowsProp
+			: [
+					{
+						id: 'humidity',
+						label: '湿度',
+						value: secondaryValue.toFixed(2),
+						unit: secondaryUnit,
+						icon: 'drop'
+					},
+					{
+						id: 'temperature',
+						label: '温度',
+						value: primaryValue.toFixed(2),
+						unit: primaryUnit,
+						icon: 'thermo'
+					},
+					{ id: 'updated', label: '最終更新', value: lastUpdate, unit: '', icon: 'timer' }
+			  ]
+	);
 </script>
 
-<div class="sensor-card" data-expanded={expanded}>
+<div class="sensor-card" data-status={status}>
 	<header class="sensor-card__header">
-		<span class="status-indicator" aria-hidden="true">
-			<svg viewBox="0 0 24 24" role="presentation">
+		<button
+			class="status-indicator"
+			type="button"
+			onclick={cycleStatus}
+			title={`Current status: ${statusStyle.label}. Click to cycle states.`}
+			aria-label={`Cycle status (current ${statusStyle.label})`}
+		>
+			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 				<path
 					fill="currentColor"
 					d="M9.55 17.05 5.5 13l1.41-1.41 2.64 2.63 7.55-7.54L18.5 8.1l-8.95 8.95Z"
 				></path>
 			</svg>
-		</span>
-		<div class="sensor-card__title">{summary.title}</div>
+		</button>
+		<div class="sensor-card__title-group">
+			<div class="sensor-card__title">{title}</div>
+			<span class="sensor-card__status-pill" style={`--pill-color:${statusStyle.color}`}>{statusStyle.label}</span>
+		</div>
 		<button class="header-action" type="button" aria-label="View device">
-			<svg viewBox="0 0 24 24" role="presentation">
-				<path
-					fill="currentColor"
-					d="M10 6v12l6-6-6-6Z"
-				></path>
+			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
+				<path fill="currentColor" d="M10 6v12l6-6-6-6Z"></path>
 			</svg>
 		</button>
 	</header>
 
 	<section class="sensor-card__body">
-		<div class="sensor-card__slot sensor-card__slot__{sensorStatus}">
+		<div
+			class="sensor-card__slot"
+			style={`--status-color:${statusStyle.color}; --status-glow:${statusStyle.glow};`}
+		>
 			<div class="sensor-card__content">
 				<div class="sensor-card__device">
-					<span class="sensor-card__label">{summary.deviceLabel}</span>
+					<span class="sensor-card__label">{deviceLabel}</span>
 					<div class="sensor-card__stats">
-						<div class="sensor-stat">
+						<button
+							type="button"
+							class="sensor-stat sensor-stat--action"
+							onclick={() => cycleStat('temperature')}
+							title="Click to sample another temperature reading"
+						>
 							<span class="sensor-stat__icon sensor-stat__icon--temp" aria-hidden="true">
-								<svg viewBox="0 0 24 24" role="presentation">
+								<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 									<path
 										fill="currentColor"
 										d="M14 14.76V5a2 2 0 0 0-4 0v9.76a3.5 3.5 0 1 0 4 0ZM12 3a2 2 0 0 1 2 2v9.73l.21.12a2.5 2.5 0 1 1-4.42 0l.21-.12V5a2 2 0 0 1 2-2Zm0 9.5a1 1 0 0 0 1-1V7h-2v4.5a1 1 0 0 0 1 1Z"
 									></path>
 								</svg>
 							</span>
-							<span class="sensor-stat__value">{summary.primary.value.toFixed(2)}</span>
-							<span class="sensor-stat__unit">{summary.primary.unit}</span>
-						</div>
+							<span class="sensor-stat__value">{primaryValue.toFixed(2)}</span>
+							<span class="sensor-stat__unit">{primaryUnit}</span>
+						</button>
 
-						<div class="sensor-stat">
+						<button
+							type="button"
+							class="sensor-stat sensor-stat--action"
+							onclick={() => cycleStat('humidity')}
+							title="Click to sample another humidity reading"
+						>
 							<span class="sensor-stat__icon sensor-stat__icon--humidity" aria-hidden="true">
-								<svg viewBox="0 0 24 24" role="presentation">
+								<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 									<path
 										fill="currentColor"
 										d="m12 3.1 4.95 6.17a6 6 0 1 1-9.9 0L12 3.1Zm0 1.52-3.9 4.86a5 5 0 1 0 7.8 0L12 4.62Z"
 									></path>
 								</svg>
 							</span>
-							<span class="sensor-stat__value">{summary.secondary.value.toFixed(2)}</span>
-							<span class="sensor-stat__unit">{summary.secondary.unit}</span>
-						</div>
+							<span class="sensor-stat__value">{secondaryValue.toFixed(2)}</span>
+							<span class="sensor-stat__unit">{secondaryUnit}</span>
+						</button>
 					</div>
 				</div>
 				<button
 					class="sensor-card__collapse"
 					type="button"
-					aria-label="Toggle details"
-					onclick={() => (expanded = !expanded)}
+					aria-label={expanded ? 'Collapse details' : 'Expand details'}
+					onclick={toggleDetails}
 				>
-					<svg viewBox="0 0 24 24" role="presentation">
-						<path
-							fill="currentColor"
-							d={expanded ? 'M7 14l5-5 5 5H7Z' : 'M7 10l5 5 5-5H7Z'}
-						></path>
+					<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
+						<path fill="currentColor" d={expanded ? 'M7 14l5-5 5 5H7Z' : 'M7 10l5 5 5-5H7Z'}></path>
 					</svg>
 				</button>
 			</div>
@@ -120,30 +218,27 @@
 				<div class="sensor-card__details">
 					<h4>詳細</h4>
 					<ul>
-						{#each detailRows as row (row.id)}
+						{#each computedDetailRows as row (row.id)}
 							<li>
 								<div class="detail-item">
 									<div class="detail-item__info">
-										<span
-											class={`detail-item__icon detail-item__icon--${row.icon}`}
-											aria-hidden="true"
-										>
+										<span class={`detail-item__icon detail-item__icon--${row.icon ?? 'timer'}`} aria-hidden="true">
 											{#if row.icon === 'drop'}
-												<svg viewBox="0 0 24 24" role="presentation">
+												<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 													<path
 														fill="currentColor"
 														d="M12 3c-.3 0-.6.1-.8.4l-4 5c-.8 1-1.2 2.3-1.2 3.6C6 15.9 8.7 18.5 12 18.5s6-2.6 6-6c0-1.3-.4-2.6-1.2-3.6l-4-5c-.2-.3-.5-.4-.8-.4Z"
 													></path>
 												</svg>
 											{:else if row.icon === 'thermo'}
-												<svg viewBox="0 0 24 24" role="presentation">
+												<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 													<path
 														fill="currentColor"
 														d="M14 14.76V5a2 2 0 1 0-4 0v9.76a3.5 3.5 0 1 0 4 0Z"
 													></path>
 												</svg>
 											{:else}
-												<svg viewBox="0 0 24 24" role="presentation">
+												<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 													<path
 														fill="currentColor"
 														d="M12 7v5l4.3 2.6-.8 1.3L11 13V7h1Z"
@@ -170,22 +265,20 @@
 					<button class="sensor-card__cta" type="button">
 						<span>詳細を見る</span>
 						<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
-							<path
-								fill="currentColor"
-								d="M10 6v12l6-6-6-6Z"
-							></path>
+							<path fill="currentColor" d="M10 6v12l6-6-6-6Z"></path>
 						</svg>
 					</button>
 				</div>
 			{/if}
 		</div>
+		<p class="sensor-card__hint">Tip: Interact with the card to see the walkthrough react.</p>
 	</section>
 </div>
 
 <style>
 	.sensor-card {
 		position: relative;
-		width: min(315px, 100%);
+		width: min(370px, 100%);
 		border-radius: 18px;
 		background: #1d2029;
 		border: 1px solid #161b25;
@@ -211,9 +304,17 @@
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
-		background: rgba(14, 20, 31, 0.65);
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		color: #20d16a;
+		background: rgba(14, 20, 31, 0.65);
+		cursor: pointer;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.status-indicator:hover,
+	.status-indicator:focus-visible {
+		transform: translateY(-1px);
+		box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 	}
 
 	.status-indicator svg,
@@ -223,11 +324,41 @@
 		height: 18px;
 	}
 
+	.sensor-card__title-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		flex: 1;
+	}
+
 	.sensor-card__title {
 		font-weight: 700;
 		color: #ffd740;
 		font-size: 1rem;
-		flex: 1;
+	}
+
+	.sensor-card__status-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: rgba(255, 255, 255, 0.8);
+		background: rgba(255, 255, 255, 0.1);
+		padding: 0.1rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		position: relative;
+	}
+
+	.sensor-card__status-pill::before {
+		content: '';
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--pill-color, #20d16a);
+		box-shadow: 0 0 6px var(--pill-color, #20d16a);
 	}
 
 	.header-action {
@@ -251,7 +382,7 @@
 
 	.sensor-card__body {
 		background: #2f374c;
-		padding: 1rem;
+		padding: 1rem 1rem 1.3rem;
 	}
 
 	.sensor-card__slot {
@@ -271,22 +402,15 @@
 		bottom: 12px;
 		width: 5px;
 		border-radius: 999px;
-		
-		box-shadow: 0 0 8px rgba(37, 214, 114, 0.75);
+		background: linear-gradient(180deg, var(--status-color, #53ff8a), #1b1f29);
+		box-shadow: 0 0 10px var(--status-glow, rgba(37, 214, 114, 0.75));
 	}
-
-    .sensor-card__slot__online::before {
-        background: linear-gradient(180deg, #53ff8a, #1ab552);
-    }
-    .sensor-card__slot__offline::before {
-        background: linear-gradient(180deg, #ff5c5c, #b52a2a);
-        box-shadow: 0 0 8px rgba(255, 92, 92, 0.75);
-    }
 
 	.sensor-card__content {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		gap: 0.5rem;
 	}
 
 	.sensor-card__device {
@@ -321,8 +445,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
-		gap: 1.25rem;
-		margin-top: 0.65rem;
+		gap: 1rem;
+		flex-wrap: wrap;
 	}
 
 	.sensor-stat {
@@ -332,6 +456,21 @@
 		font-weight: 700;
 		font-size: 1.1rem;
 		color: #f6f7fb;
+		background: transparent;
+		border: none;
+		padding: 0.25rem 0.35rem;
+		border-radius: 12px;
+	}
+
+	.sensor-stat--action {
+		cursor: pointer;
+		transition: background 0.2s ease, transform 0.2s ease;
+	}
+
+	.sensor-stat--action:hover,
+	.sensor-stat--action:focus-visible {
+		background: rgba(255, 255, 255, 0.08);
+		transform: translateY(-1px);
 	}
 
 	.sensor-stat__icon {
@@ -342,6 +481,11 @@
 		align-items: center;
 		justify-content: center;
 		background: rgba(255, 255, 255, 0.08);
+	}
+
+	.sensor-stat__icon svg {
+		width: 16px;
+		height: 16px;
 	}
 
 	.sensor-stat__icon--temp {
@@ -477,5 +621,14 @@
 		width: 16px;
 		height: 16px;
 		color: #9fb2ff;
+	}
+
+	.sensor-card__hint {
+		margin-top: 0.75rem;
+		font-size: 0.7rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+		text-align: center;
 	}
 </style>

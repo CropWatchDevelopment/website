@@ -75,6 +75,136 @@
 				'Real-time dashboards, alerts, and audit-ready reports empower teams to resolve anomalies before they escalate.'
 		}
 	];
+
+	type DemoStatus = 'online' | 'offline' | 'loading' | 'partialError';
+
+	type DemoState = {
+		title: string;
+		deviceLabel: string;
+		expanded: boolean;
+		status: DemoStatus;
+		primaryValue: number;
+		secondaryValue: number;
+		lastUpdate: string;
+	};
+
+	const statusMeta: Record<DemoStatus, { label: string; helper: string; color: string }> = {
+		loading: {
+			label: 'Loading',
+			helper: 'Device is joining the network.',
+			color: '#f2a516'
+		},
+		online: {
+			label: 'Online',
+			helper: 'Telemetry is current and within tolerance.',
+			color: '#20d16a'
+		},
+		partialError: {
+			label: 'Partial error',
+			helper: 'Some sensors need attention but data is flowing.',
+			color: '#ff784f'
+		},
+		offline: {
+			label: 'Offline',
+			helper: 'No packets received within the expected interval.',
+			color: '#f25555'
+		}
+	};
+
+	const temperatureSamples = [-22.93, -18.25, -12.5];
+	const humiditySamples = [79.61, 72.4, 55.4];
+
+	const walkthroughSteps = [
+		{
+			id: 'details',
+			title: 'Open or collapse sensor insights',
+			description:
+				'Use the chevron inside the card to reveal detailed sensor readings, alarms, and update history for the device.',
+			apply: (state: DemoState): DemoState => ({ ...state, expanded: true })
+		},
+		{
+			id: 'status',
+			title: 'Glanceable location health',
+			description:
+				'The badge in the top left cycles through Loading, Online, Partial Error, and Offline so operators can see device health instantly.',
+			apply: (state: DemoState): DemoState => ({ ...state, status: 'online' as DemoStatus })
+		},
+		{
+			id: 'temperature',
+			title: 'Live temperature monitoring',
+			description:
+				'The left measurement updates as fast as packets arrive. Tap the thermometer in the demo card to sample live readings.',
+			apply: (state: DemoState): DemoState => ({ ...state, primaryValue: temperatureSamples[0] })
+		},
+		{
+			id: 'humidity',
+			title: 'Humidity in lockstep',
+			description:
+				'Relative humidity is captured alongside temperature to flag condensation risks. Click the droplet to see it update.',
+			apply: (state: DemoState): DemoState => ({ ...state, secondaryValue: humiditySamples[0] })
+		}
+	];
+
+	const initialDemoState: DemoState = {
+		title: '冷凍コンテナ2',
+		deviceLabel: '冷凍コンテナ②',
+		expanded: true,
+		status: 'loading',
+		primaryValue: temperatureSamples[0],
+		secondaryValue: humiditySamples[0],
+		lastUpdate: '8m 17s 前'
+	};
+
+	let demoState: DemoState = { ...initialDemoState };
+	let walkthroughStep = 0;
+
+	function setDemoState(patch: Partial<DemoState>) {
+		demoState = { ...demoState, ...patch };
+	}
+
+	function goToStep(index: number) {
+		const step = walkthroughSteps[index];
+		if (!step) return;
+		demoState = step.apply(demoState);
+		walkthroughStep = index;
+	}
+
+	function nextStep() {
+		if (walkthroughStep < walkthroughSteps.length - 1) {
+			goToStep(walkthroughStep + 1);
+		}
+	}
+
+	function previousStep() {
+		if (walkthroughStep > 0) {
+			goToStep(walkthroughStep - 1);
+		}
+	}
+
+	function handleStatusSelect(status: DemoStatus) {
+		setDemoState({ status });
+		walkthroughStep = 1;
+	}
+
+	function handleDemoChange(event: CustomEvent<Partial<DemoState>>) {
+		const detail = event.detail;
+		setDemoState(detail);
+		if ('expanded' in detail) {
+			walkthroughStep = 0;
+		} else if ('status' in detail) {
+			walkthroughStep = 1;
+		} else if ('primaryValue' in detail) {
+			walkthroughStep = 2;
+		} else if ('secondaryValue' in detail) {
+			walkthroughStep = 3;
+		}
+	}
+
+	$: currentStep = walkthroughSteps[walkthroughStep];
+	$: progressPercent =
+		walkthroughSteps.length > 1
+			? (walkthroughStep / (walkthroughSteps.length - 1)) * 100
+			: 100;
 </script>
 
 <svelte:head>
@@ -307,13 +437,127 @@
 			time for other important tasks.
 		</p>
 		<div class="flex flex-row gap-10">
-			<div id="demo-section">
-				<UIDemo isOpen={true} sensorStatus="offline" />
+			<div id="demo-section" class="mt-10">
+				<UIDemo
+					title={demoState.title}
+					deviceLabel={demoState.deviceLabel}
+					expanded={demoState.expanded}
+					status={demoState.status}
+					primaryValue={demoState.primaryValue}
+					secondaryValue={demoState.secondaryValue}
+					lastUpdate={demoState.lastUpdate}
+					on:stateChange={handleDemoChange}
+				/>
 			</div>
 			<div id="demo-description" class="mt-10 max-w-3xl text-base text-[#1c2d52]/80">
-				Our UI has been hyper optimized for quick data aquisition and easy navigation.
+				<div class="flex flex-col gap-6 rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
+					<div>
+						<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
+							Step {walkthroughStep + 1} of {walkthroughSteps.length}
+						</p>
+						<h3 class="mt-2 text-2xl font-semibold text-[#0b1730]">{currentStep.title}</h3>
+						<p class="mt-2 text-sm text-[#1c2d52]/80">{currentStep.description}</p>
+					</div>
 
+					{#if walkthroughStep === 1}
+						<div class="rounded-2xl bg-[#f5f7fb] p-4 text-sm text-[#1c2d52]">
+							<p class="text-sm font-semibold text-[#0b1730]">Status indicator states</p>
+							<p class="mt-1 text-xs text-[#6b7ba7]">
+								Click a pill or tap the badge on the demo card to see each network state.
+							</p>
+							<div class="mt-3 flex flex-wrap gap-2">
+								{#each Object.keys(statusMeta) as key}
+									{@const option = key as DemoStatus}
+									<button
+										type="button"
+										class={`flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold transition ${
+											demoState.status === option
+												? 'border-[#2f5387] bg-white text-[#0b1730] shadow-sm'
+												: 'border-transparent bg-white/70 text-[#1c2d52]/70'
+										}`}
+										style={`--chip-color:${statusMeta[option].color}`}
+										onclick={() => handleStatusSelect(option)}
+									>
+										<span
+											class="h-2 w-2 rounded-full"
+											style={`background:${statusMeta[option].color}`}
+											aria-hidden="true"
+										></span>
+										{statusMeta[option].label}
+									</button>
+								{/each}
+							</div>
+							<p class="mt-3 text-xs text-[#6b7ba7]">
+								{statusMeta[demoState.status].helper}
+							</p>
+						</div>
+					{:else if walkthroughStep === 2}
+						<div class="rounded-2xl bg-[#f5f7fb] p-4 shadow-inner shadow-white/40">
+							<p class="text-sm font-semibold text-[#0b1730]">Current temperature</p>
+							<p class="text-3xl font-bold text-[#0b1730]">
+								{demoState.primaryValue.toFixed(2)}°C
+							</p>
+							<p class="text-xs text-[#6b7ba7]">
+								Click the thermometer on the demo card to step through recent samples.
+							</p>
+						</div>
+					{:else if walkthroughStep === 3}
+						<div class="rounded-2xl bg-[#f5f7fb] p-4 shadow-inner shadow-white/40">
+							<p class="text-sm font-semibold text-[#0b1730]">Current humidity</p>
+							<p class="text-3xl font-bold text-[#0b1730]">
+								{demoState.secondaryValue.toFixed(2)}%
+							</p>
+							<p class="text-xs text-[#6b7ba7]">
+								Tap the droplet to watch relative humidity arrive with every packet.
+							</p>
+						</div>
+					{/if}
 
+					<div>
+						<div class="h-2 rounded-full bg-[#e1e6f5]">
+							<div
+								class="h-2 rounded-full bg-[#2f5387] transition-all"
+								style={`width:${progressPercent}%`}
+							></div>
+						</div>
+						<div class="mt-4 flex items-center justify-between">
+							{#each walkthroughSteps as step, index}
+								<button
+									type="button"
+									class={`flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition ${
+										index === walkthroughStep
+											? 'border-[#2f5387] bg-[#2f5387] text-white'
+											: 'border-[#d7e0f5] bg-white text-[#6b7ba7]'
+									}`}
+									onclick={() => goToStep(index)}
+								>
+									{index + 1}
+								</button>
+							{/each}
+						</div>
+					</div>
+
+					<div class="flex items-center justify-between">
+						<button
+							type="button"
+							class="inline-flex items-center gap-2 rounded-full border border-[#c7d5f2] px-4 py-2 text-sm font-semibold text-[#1c2d52] transition hover:border-[#2f5387]"
+							onclick={previousStep}
+							disabled={walkthroughStep === 0}
+						>
+							<span aria-hidden="true">←</span>
+							Back
+						</button>
+						<button
+							type="button"
+							class="inline-flex items-center gap-2 rounded-full bg-[#2f5387] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#1c3867] disabled:cursor-not-allowed disabled:bg-[#9fb1d8]"
+							onclick={nextStep}
+							disabled={walkthroughStep === walkthroughSteps.length - 1}
+						>
+							Next
+							<span aria-hidden="true">→</span>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
