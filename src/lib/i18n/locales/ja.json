@@ -1,702 +1,774 @@
 {
-  "common": {
-    "actions": {
-      "contact": "Contact",
-      "support": "Support"
-    }
-  },
-  "header": {
-    "topbar": {
-      "welcome": "CropWatchへようこそ",
-      "global_site": "グローバルサイト"
+    "common": {
+        "actions": {
+            "contact": "お問い合わせ",
+            "support": "サポート"
+        }
     },
-    "language": {
-      "switch_to_english_aria": "Change language to English",
-      "switch_to_japanese_aria": "言語を日本語に変更します",
-      "english_icon": "🇺🇸",
-      "japanese_icon": "🇯🇵"
+    "header": {
+        "topbar": {
+            "welcome": "CropWatch へようこそ",
+            "global_site": "グローバルサイト"
+        },
+        "language": {
+            "switch_to_english_aria": "言語を英語に変更",
+            "switch_to_japanese_aria": "言語を日本語に変更",
+            "english_icon": "🇺🇸",
+            "japanese_icon": "🇯🇵"
+        },
+        "brand": {
+            "home_aria": "CropWatch ホーム",
+            "logo_alt": "CropWatch のロゴ",
+            "name": "CropWatch LLC",
+            "tagline": "2019 年から品質と ROI を提供し続けています",
+            "phone_icon_aria": "電話アイコン"
+        },
+        "search": {
+            "label": "CropWatch を検索",
+            "placeholder": "サイト内検索",
+            "submit_aria": "検索"
+        },
+        "navigation": {
+            "home": "ホーム",
+            "products": "製品",
+            "products_sensor": "温度・湿度センサー (CW-AIR-TH)",
+            "case_studies": "導入事例",
+            "about": "会社情報",
+            "contact": "お問い合わせ"
+        },
+        "utility": {
+            "ui_app": "UI アプリ",
+            "ui_app_icon_aria": "UI アプリリンクのアイコン",
+            "system_status": "システムステータス",
+            "system_status_icon_aria": "システムステータスリンクのアイコン"
+        }
     },
-    "brand": {
-      "home_aria": "CropWatch home",
-      "logo_alt": "CropWatch logo",
-      "name": "CropWatch LLC",
-      "tagline": "Delivering Quality & ROI Since 2019",
-      "phone_icon_aria": "Phone icon"
+    "footer": {
+        "about": {
+            "heading": "CropWatch について",
+            "body": "2019 年以来、品質と ROI を提供し続けています。世界中の主要な製造業、ホスピタリティ、コールドチェーン、エンタープライズのオペレーションに信頼されています。",
+            "sub_body": "堅牢なハードウェアと運用の専門家を組み合わせ、初日からコンプライアンス対応のテレメトリを実現します。",
+            "phone_label": "お電話でのご相談:",
+            "phone_number": "+1 (813) 555-0123",
+            "cta": "IoT スペシャリストに相談する"
+        },
+        "link_groups": {
+            "solutions": {
+                "title": "ソリューション",
+                "links": {
+                    "manufacturing": "製造",
+                    "logistics": "物流",
+                    "agriculture": "農業",
+                    "energy": "エネルギー"
+                }
+            },
+            "products": {
+                "title": "製品",
+                "links": {
+                    "sensor_suite": "センサー製品群",
+                    "gateways": "ゲートウェイ",
+                    "analytics": "アナリティクス",
+                    "integrations": "インテグレーション"
+                }
+            },
+            "connect": {
+                "title": "連絡先",
+                "links": {
+                    "contact": "お問い合わせ",
+                    "support": "サポート",
+                    "case_studies": "導入事例",
+                    "github": "GitHub",
+                    "faq": "FAQ"
+                }
+            }
+        },
+        "legal": {
+            "copyright": "© {{year}} CropWatch LLC. 無断複写・転載を禁じます。",
+            "links": {
+                "privacy": "プライバシーポリシー",
+                "terms": "利用規約",
+                "sitemap": "サイトマップ"
+            }
+        }
     },
-    "search": {
-      "label": "Search CropWatch",
-      "placeholder": "Search our site",
-      "submit_aria": "Search"
+    "slider": {
+        "aria": {
+            "group_label": "CropWatch ハイライトカルーセル"
+        },
+        "controls": {
+            "previous": "前のスライド",
+            "next": "次のスライド"
+        },
+        "fallback": {
+            "no_slides": "スライドが設定されていません。"
+        },
+        "slides": {
+            "industry_ready": {
+                "badge": "🏭 産業対応 IoT",
+                "title": "すべてを常時検証",
+                "body": "冷凍庫から工場床まで、どのような環境でもデータの完全性を守る産業グレードのデュアルセンサーハードウェアです。",
+                "cta": "IoT スペシャリストに相談する",
+                "image_alt": "加工施設内で稼働するゲートウェイ監視ハードウェア"
+            },
+            "battery_life": {
+                "badge": "🔋 長寿命バッテリー",
+                "title": "単一バッテリーで 10 年以上稼働",
+                "body": "スリープサイクルを最適化したファームウェアで 10 分ごとにデータを送信し、予期せぬダウンタイムを防ぎます。現場交換可能なセンサーモジュールが ROI をさらに延ばします。",
+                "cta": "電源チャートを見る",
+                "image_alt": "CropWatch センサー機器のクローズアップ"
+            },
+            "wireless_signal": {
+                "badge": "📡 強力な無線信号",
+                "title": "時間とコストを節約",
+                "body": "LoRaWAN® の長距離通信でどこからでも測定値を取得し、手動確認のための出張コストを削減します。",
+                "cta": "LoRaWAN® について学ぶ",
+                "image_alt": "技術者が LoRaWAN ゲートウェイを設定している様子"
+            }
+        }
     },
-    "navigation": {
-      "home": "Home",
-      "products": "Products",
-      "products_sensor": "Temperature/Humidity Sensor (CW-AIR-TH)",
-      "case_studies": "Case Studies",
-      "about": "About",
-      "contact": "Contact"
+    "home": {
+        "meta": {
+            "title": "CropWatch® | 投資対効果に直結する産業用 IoT",
+            "description": "コールドチェーン、製造、ホスピタリティ向けの堅牢な産業用 IoT。オペレーションのリーダーが信頼する長距離センサー、LoRaWAN ゲートウェイ、アナリティクスを展開しましょう。"
+        },
+        "hero": {
+            "eyebrow": "投資対効果に直結する産業用 IoT",
+            "headline_html": "CropWatch<sup><small>®</small></sup> が選ばれる理由",
+            "body_html": "CropWatch<sup><small>®</small></sup> は堅牢なセンサーと LoRaWAN<sup><small>®</small></sup> ネットワークを組み合わせ、最も過酷な産業環境でも比類ないデバイス信頼性とデータ精度を提供します。デバイスは長持ちするだけでなく、導入初日から測定可能な ROI を生み出すよう設計されています。手動巡回の削減、コンプライアンス監査の迅速化、メンテナンス不要かつ長寿命なデバイスによってコスト削減を実現します。",
+            "questions": [
+                "現在お使いのセンサーは 1 度の充電で 10 年稼働しますか？",
+                "運用チームが求める頻度で行動につながるデータを受け取れていますか？",
+                "コンプライアンスから求められた際、どれほど速く測定結果を証明できますか？",
+                "コンクリート、スチール、冷凍庫が依然として死角を生んでいませんか？"
+            ],
+            "primary_cta": "施設ウォークスルーを予約",
+            "secondary_cta": "お客様の成果を見る",
+            "sidebar": {
+                "title": "プログラム ROI スナップショット",
+                "items": {
+                    "deployment": {
+                        "term": "平均導入期間",
+                        "value_html": "現地調査から<strong>14 日</strong>"
+                    },
+                    "visibility": {
+                        "term": "可視化の向上度",
+                        "value_html": "手動確認を<strong>92%</strong> 削減"
+                    },
+                    "compliance": {
+                        "term": "コンプライアンスの成果",
+                        "value_html": "監査対応を 2 倍高速化"
+                    }
+                }
+            }
+        },
+        "proof_points": {
+            "battery_life": {
+                "eyebrow": "ダウンタイムを上回るバッテリー寿命",
+                "headline": "24 時間稼働施設でも 10 年以上の連続稼働",
+                "bullets": [
+                    "稼働率を犠牲にせず 10 分ごとにテレメトリを送信",
+                    "現場で交換可能なデュアルセンサーとクロスバリデーションでダウンタイムを削減",
+                    "遠隔デバイス管理でシステム健全性を維持"
+                ],
+                "cta": "ライフサイクルモデルを確認"
+            },
+            "measurement_confidence": {
+                "eyebrow": "測定への確信",
+                "headline": "ISO17025 に準拠したデュアルセンサーのクロスバリデーション",
+                "bullets": [
+                    "各測定値に対してデュアルセンサー設計とタイブレーカー ロジックを採用",
+                    "クラウド証明書付きのシリアル化キャリブレーション",
+                    "自動ドリフト検知でコンプライアンスを維持",
+                    "各デバイスに NIST トレーサブルの個別証明書を発行"
+                ],
+                "cta": "品質プログラムを見る"
+            },
+            "connectivity": {
+                "eyebrow": "過酷な現場に対応する接続性",
+                "headline": "LoRaWAN® が死角を作らない浸透力",
+                "bullets": [
+                    "高密度な産業環境向けに調整されたゲートウェイ",
+                    "停電時もデータを失わないバッファストレージ",
+                    "セルラー圏外でも安心なプライベートネットワークオプション"
+                ],
+                "cta": "ネットワーク設計を確認"
+            }
+        },
+        "industries": {
+            "eyebrow": "対応業界",
+            "headline": "センサーが測定可能な ROI をもたらす現場",
+            "intro": "当社のネットワークは、厳格な規制や温度管理が求められる複雑な施設で活動するオペレーションチームに信頼されています。",
+            "cards": {
+                "cold_chain": {
+                    "label": "コールドチェーン物流",
+                    "description": "到達困難なゾーンでもコンプライアンス対応の記録を維持する堅牢なセンサーを展開します。"
+                },
+                "protein": {
+                    "label": "畜産・食肉事業",
+                    "description": "広大な敷地で温度、湿度、飼料保管を監視し、収益を守ります。"
+                },
+                "hospitality": {
+                    "label": "ホスピタリティ・会場",
+                    "description": "すべての施設で空気質、冷却設備、エネルギーを可視化し、ゲスト体験を守ります。"
+                },
+                "manufacturing": {
+                    "label": "製造・加工",
+                    "description": "重要ラインを計測し、ダウンタイムやコンプライアンスリスクになる前に逸脱を検知します。"
+                },
+                "storage": {
+                    "label": "保管・倉庫",
+                    "description": "広大なサイトでもアラートと分析で監査準備を整えます。"
+                },
+                "agriculture": {
+                    "label": "制御型農業",
+                    "description": "種まきから出荷まで、土壌・水分・気候のテレメトリで最適環境を維持します。"
+                }
+            }
+        },
+        "pricing": {
+            "eyebrow": "投資概要",
+            "headline": "スケールを前提にした透明な料金体系",
+            "intro": "すべての導入には、現場設計、展開サポート、そしてオペレーターが頼るアナリティクスプラットフォームが含まれます。料金は面積に合わせて柔軟に変動し、成長を妨げません。",
+            "cta": "最適なお見積りを依頼",
+            "columns": {
+                "sensors": {
+                    "title": "センサー & エッジデバイス",
+                    "lead": "精度を損なわずにスケーラブルなカバレッジを実現します。",
+                    "items": {
+                        "devices_0_10": {
+                            "label": "0〜10 台",
+                            "value": "$10/台/月"
+                        },
+                        "devices_11_99": {
+                            "label": "11〜99 台",
+                            "value": "$8/台/月"
+                        },
+                        "devices_100_plus": {
+                            "label": "100 台以上",
+                            "value": "お問い合わせください"
+                        },
+                        "calibration": {
+                            "label": "キャリブレーション",
+                            "value": "NIST トレーサブルを標準付帯"
+                        }
+                    }
+                },
+                "devices": {
+                    "title": "デバイス & ゲートウェイ",
+                    "lead": "屋内・屋外・キャリアグレードの LoRaWAN® オプション。",
+                    "items": {
+                        "sensor": {
+                            "label": "温度・湿度センサー",
+                            "value": "$199"
+                        },
+                        "relay": {
+                            "label": "オートメーションリレーモジュール",
+                            "value": "$179"
+                        },
+                        "indoor_gateway": {
+                            "label": "屋内エッジゲートウェイ",
+                            "value": "$549"
+                        },
+                        "carrier_gateway": {
+                            "label": "産業用キャリアグレード",
+                            "value": "$1,899"
+                        },
+                        "rf_design": {
+                            "label": "RF 設計",
+                            "value": "導入時にバンドル"
+                        }
+                    }
+                },
+                "software": {
+                    "title": "ソフトウェア & インサイト",
+                    "lead": "統合ダッシュボード、無制限アラート、常時サポート。",
+                    "items": {
+                        "retention": {
+                            "label": "データ保持期間",
+                            "value": "24 か月のローテーション"
+                        },
+                        "licences": {
+                            "label": "ユーザーライセンス",
+                            "value": "無制限"
+                        },
+                        "onboarding": {
+                            "label": "オンボーディング & 成功支援",
+                            "value": "標準付帯"
+                        }
+                    }
+                }
+            }
+        },
+        "closing": {
+            "eyebrow": "ROI を証明する準備はできましたか？",
+            "headline": "CropWatch<sup><small>®</small></sup> が測定可能な価値を生む方法をご紹介します",
+            "body": "環境を確認し、電波カバレッジをモデル化し、経営陣がそのまま提示できるビジネスケースをご提供します。",
+            "primary_cta": "戦略セッションを予約",
+            "secondary_cta": "導入事例をダウンロード"
+        }
     },
-    "utility": {
-      "ui_app": "UI App",
-      "ui_app_icon_aria": "UI app link icon",
-      "system_status": "System Status",
-      "system_status_icon_aria": "System status link icon"
-    }
-  },
-  "footer": {
+    "case_studies": {
+        "meta": {
+            "title": "導入事例 | CropWatch が実現する産業用 IoT の成果",
+            "description": "CropWatch がどのようにコールドストレージ、ホスピタリティ、製造、農業で測定可能な ROI を実現するかをご覧ください。"
+        },
+        "hero": {
+            "eyebrow": "導入事例",
+            "headline": "要求の厳しい現場で証明された成果",
+            "intro": [
+                "オペレーターは、コールドストレージ、ホスピタリティ、重工業において、堅牢なネットワーク、信頼できる分析、迅速な投資回収を実現するために CropWatch を採用しています。",
+                "ハードウェア・ソフトウェア・人の専門知識を組み合わせ、フロントラインを圧倒することなく、厳しい稼働率とコンプライアンス目標を達成する方法をお確かめください。"
+            ],
+            "snapshot": {
+                "title": "成果スナップショット",
+                "items": [
+                    "全国コールドストレージネットワークで損傷クレームを 38% 削減。",
+                    "27 施設のホテルポートフォリオで初年度に 22% のエネルギー削減を達成。",
+                    "グローバルオペレーションセンターによる 99.98% の稼働率。"
+                ]
+            }
+        },
+        "featured": {
+            "eyebrow": "注目のプログラム",
+            "headline": "CropWatch が生み出す業界横断の成功",
+            "intro": "各エンゲージメントでは、規制環境を熟知した導入スペシャリストが堅牢なハードウェアを提供します。その結果、生産性、コンプライアンス、運用の可視性が測定可能な形で向上します。",
+            "cta": "このアプローチについて相談する",
+            "cases": {
+                "sunharvest": {
+                    "company": "SunHarvest Foods",
+                    "industry": "コールドストレージと流通",
+                    "recap": "12 の配送センターで温度・湿度監視を拡張し、損傷クレームを撲滅しました。",
+                    "badge": "グローバル展開",
+                    "stats": [
+                        { "value": "38%", "label": "6 か月以内に保険請求を削減" },
+                        { "value": "16 時間", "label": "施設あたりのインシデント対応時間を短縮" }
+                    ]
+                },
+                "harborline": {
+                    "company": "Harborline Hospitality",
+                    "industry": "ラグジュアリーホテル",
+                    "recap": "27 の施設で室内空気質、エネルギー計測、ゲスト体験センサーを統合しました。",
+                    "badge": "マルチブランドポートフォリオ",
+                    "stats": [
+                        { "value": "22%", "label": "前年比のエネルギー削減" },
+                        { "value": "100%", "label": "初回審査で合格した規制監査" }
+                    ]
+                },
+                "kodiak": {
+                    "company": "Kodiak Manufacturing",
+                    "industry": "産業用製造",
+                    "recap": "重要な生産ラインで振動・粉じん・温度の異常を検知できるように計測しました。",
+                    "badge": "高いコンプライアンス要件",
+                    "stats": [
+                        { "value": "4 時間", "label": "インシデントごとに回避した平均ダウンタイム" },
+                        { "value": "3 倍", "label": "予知保全アラートの増加" }
+                    ]
+                },
+                "greenfield": {
+                    "company": "Greenfield Produce",
+                    "industry": "農産物流通",
+                    "recap": "土壌・水分・輸送テレメトリで畑から港までの可視性を強化し、輸出パートナーを支援しました。",
+                    "badge": "エンドツーエンドの可視化",
+                    "stats": [
+                        { "value": "48 時間", "label": "出荷解放サイクルの短縮" },
+                        { "value": "12%", "label": "灌漑の最適化による収量向上" }
+                    ]
+                }
+            }
+        },
+        "playbook": {
+            "eyebrow": "展開プレイブック",
+            "headline": "現場が変わっても成果は一貫",
+            "intro": "私たちの体系化された手法により、すべてのエンゲージメントが測定可能な ROI と現場での定着に集中します。品質を犠牲にせず迅速にスケールできます。",
+            "steps": {
+                "assess": {
+                    "title": "評価",
+                    "description": "環境、コンプライアンス要件、既存テレメトリを可視化し、最重要テーマを優先します。"
+                },
+                "pilot": {
+                    "title": "パイロット",
+                    "description": "合同チームで迅速な PoV を展開し、明確な KPI とステークホルダー教育を実施します。"
+                },
+                "scale": {
+                    "title": "拡張",
+                    "description": "標準化された導入キットとハイブリッドフィールドチームで、運用を止めずにカバレッジを拡大します。"
+                },
+                "optimize": {
+                    "title": "最適化",
+                    "description": "アナリティクス、プレイブック、四半期ごとの経営レビューで ROI を可視化し、改善を継続します。"
+                }
+            }
+        },
+        "testimony": {
+            "eyebrow": "お客様の声",
+            "quote": "CropWatch はすべてのウォークインとバースを予測的に可視化しつつ、ダッシュボードでチームを疲弊させませんでした。展開は予定より早く完了し、初四半期で投資回収できました。",
+            "person": "Charmaine Ellis",
+            "title": "Harborline Hospitality オペレーション担当副社長"
+        },
+        "closing": {
+            "eyebrow": "パイロットをご検討ですか？",
+            "headline": "最初の 90 日を設計しましょう",
+            "body": "対象施設や課題を共有いただければ、2 週間以内に導入計画、コストモデル、タイムラインをご提示します。",
+            "primary_cta": "パイロットの相談を始める",
+            "secondary_cta": "ライブデモを予約"
+        }
+    },
+    "products": {
+        "cw_air_th": {
+            "page": {
+                "meta": {
+                    "title": "CropWatch CW Air TH | 産業用温湿度センサー",
+                    "description": "CW Air TH センサーを導入して、コールドストレージ、ホスピタリティ、産業環境全体で信頼性の高い温度・湿度監視を実現しましょう。"
+                },
+                "hero": {
+                    "badge": "CW-Air-TH",
+                    "title": "信頼できるモニタリングを、もっと確実に",
+                    "paragraphs": [
+                        "CW Air TH センサーは高精度センシング、長寿命電源、LoRaWAN 接続を組み合わせ、コールドストレージやホスピタリティ、産業拠点の状況をリアルタイムに可視化します。",
+                        "CropWatch Command の一部として導入すれば、プロアクティブなアラート、コンプライアンス文書化、そしてすべての施設で予測可能な運用を同時に実現できます。"
+                    ],
+                    "primary_cta": "専門家に相談する",
+                    "secondary_cta": "プラットフォームのデモを見る",
+                    "sidebar": {
+                        "title": "要求の厳しい現場のために設計",
+                        "image_alt": "CW Air TH センサーの側面",
+                        "bullets": [
+                            "HACCP、FDA、ISO に準拠したプログラムで検証済み。",
+                            "CropWatch<sup><small>®</small></sup> ゲートウェイ向けにプリプロビジョニング済みで、手動設定を不要にします。",
+                            "CropWatch<sup><small>®</small></sup> Command から予測分析とアラート配信にアクセス。"
+                        ]
+                    }
+                },
+                "sections": {
+                    "capabilities": {
+                        "eyebrow": "主な特長",
+                        "headline": "信頼できるコールドチェーンモニタリング",
+                        "paragraphs": [
+                            "当社のコールドチェーンセンサーは、実環境の中でも特に過酷な条件で行う<strong>徹底したテスト</strong>を経て他社との差別化を実現しています。センサーやデバイスの故障を防ぎ、極限環境でもデータの完全性を守るなど、あらゆる設計判断が信頼性を基準に行われています。",
+                            "一般的なデバイスとは異なり、当社のシステムには<strong>インテリジェントなクロスバリデーション機構</strong>が備わっており、センサー精度を常に検証し、問題になる前に異常を検知します。つまり、重要な問いである <em>「センサーが正しい値を報告しなくなったらどうなるのか？」</em> に確実に答えます。",
+                            "CropWatch の目的はシンプルです。<strong>業界で最も信頼性が高く正確なコールドチェーンデータを提供すること</strong>。データに裏付けられた確信を持って意思決定できるよう支援します。"
+                        ],
+                        "diagram": {
+                            "headline": "安全運用を支えるクロスバリデーション & フェイルストップ",
+                            "body": [
+                                "CW-Air-TH は交換可能なセンサー同士を常にクロスチェックし、ダッシュボードに届く前にすべての値を検証します。一次プローブがドリフトしたり許容範囲を外れたりすると、即座に異常としてフラグを立て通知します。"
+                            ],
+                            "bullets": [
+                                "デュアルチャネル比較でライブテレメトリを相互検証。",
+                                "自動フェイルストップで、不正確なデータがダッシュボードに届く前に遮断。",
+                                "例外イベントはコンプライアンスログへ即同期し、監査に必要な検証記録を提示。"
+                            ],
+                            "image_alt": "交換可能なセンサーをクロスバリデーションする CW Air TH の図解"
+                        }
+                    },
+                    "specifications": {
+                        "eyebrow": "技術仕様",
+                        "headline": "信頼性を前提に設計"
+                    },
+                    "kit": {
+                        "eyebrow": "導入キット",
+                        "headline": "数日で稼働開始できる一式を同梱",
+                        "body_html": "すべての CW Air TH センサーは事前設定済みで CropWatch<sup><small>®</small></sup> Command に即参加でき、規制対象環境向けに調整した取り付けオプションとドキュメントを同梱しています。"
+                    },
+                    "ui": {
+                        "eyebrow": "UI",
+                        "headline": "素早く使いこなせるユーザーインターフェース",
+                        "body": "CropWatch の UI は迅速なデータ取得とスムーズなナビゲーションのために最適化されており、必要な情報に素早くアクセスできます。モニタリングに費やす時間を短縮し、他の重要な業務に集中できるよう支援します。",
+                        "step_progress": "ステップ {{current}} / {{total}}",
+                        "theme_label": "テーマ:",
+                        "theme_options": {
+                            "dark": "ダーク",
+                            "light": "ライト"
+                        },
+                        "status_card": {
+                            "title": "ステータスインジケーター",
+                            "helper": "バッジをタップするか、チップを選択して各ネットワーク状態を切り替えてください。"
+                        },
+                        "temperature_card": {
+                            "title": "現在の温度",
+                            "helper": "デモカードの温度計をクリックすると、最新サンプルを順に確認できます。"
+                        },
+                        "humidity_card": {
+                            "title": "現在の湿度",
+                            "helper": "しずくアイコンをタップすると、受信するたびに更新される相対湿度を確認できます。"
+                        },
+                        "controls": {
+                            "back": "戻る",
+                            "next": "次へ"
+                        }
+                    },
+                    "deployment": {
+                        "eyebrow": "導入方法",
+                        "headline": "実績あるロールアウトワークフロー",
+                        "body": "ハイブリッドな導入モデルで工期を短縮しつつ、関係者全員に必要なトレーニング、テレメトリ、レポートを提供します。"
+                    },
+                    "closing": {
+                        "eyebrow": "CW Air TH を体験する",
+                        "headline": "ウォークスルーを予約するかパイロットを開始",
+                        "body": "CropWatch<sup><small>®</small></sup> スペシャリストとともに、センサー配置、ゲートウェイ、分析設計を行い、環境のコンプライアンスと効率性を高めましょう。",
+                        "primary_cta": "導入計画を相談",
+                        "secondary_cta": "導入事例を見る"
+                    }
+                }
+            },
+            "features": {
+                "rugged": {
+                    "title": "産業用堅牢エンクロージャ",
+                    "body": "IP67 の筐体と防湿コーティング済み電子基板で、冷凍庫や荷捌き場、生産フロアでもセンサーが稼働し続けます。"
+                },
+                "precision": {
+                    "title": "高精度モニタリング",
+                    "body": "高精度デジタルセンサーが ±0.2°C の温度、±2% RH の湿度測定を提供し、コンプライアンス対応のレポートを可能にします。"
+                },
+                "battery": {
+                    "title": "マルチイヤーのバッテリー寿命",
+                    "body": "フィールド交換可能なリチウムバッテリーと低消費電力ファームウェアにより、5 年以上の連続テレメトリを実現します。"
+                },
+                "lorawan": {
+                    "title": "LoRaWAN 接続",
+                    "body": "堅牢な LoRaWAN 接続で、密集した設備や断熱材の厚いコールドストレージでも安定した送信を維持します。"
+                }
+            },
+            "specs": {
+                "sensor": {
+                    "label": "センサー",
+                    "value": "Sensirion x1 SHT40 & x1 SHT43、True NIST、ISO17025 認証付き"
+                },
+                "temperature_range": {
+                    "label": "温度範囲",
+                    "value": "-40°C 〜 85°C (キャリブレーション済み)"
+                },
+                "humidity_range": {
+                    "label": "湿度範囲",
+                    "value": "0% 〜 100% RH (結露なし)"
+                },
+                "heater": {
+                    "label": "内蔵ヒーター",
+                    "value": "低温環境での結露を防止"
+                },
+                "temperature_accuracy": {
+                    "label": "温度精度",
+                    "value": "-10°C〜50°C で ±0.2°C"
+                },
+                "humidity_accuracy": {
+                    "label": "湿度精度",
+                    "value": "10%〜90% で ±2% RH"
+                },
+                "ingress": {
+                    "label": "防水・防塵性能",
+                    "value": "IP67 エンクロージャ"
+                },
+                "protocol": {
+                    "label": "無線プロトコル",
+                    "value": "LoRaWAN 1.0.4 クラス A、各地域バンド対応"
+                },
+                "battery": {
+                    "label": "バッテリー",
+                    "value": "Li-SOCl2 (塩化チオニルリチウム)、現場交換可能"
+                },
+                "dimensions": {
+                    "label": "寸法",
+                    "value": "120 mm × 70 mm × 35 mm"
+                },
+                "operating_life": {
+                    "label": "稼働寿命",
+                    "value": "15 分間隔で最大 5 年"
+                },
+                "certifications": {
+                    "label": "認証",
+                    "value": "FCC、CE、IC、HACCP 適合素材"
+                }
+            },
+            "kit": {
+                "items": {
+                    "sensor": "事前設定済みファームウェアを搭載した CW Air TH センサー",
+                    "credentials": "LoRaWAN アクティベーション認証情報と QR 配備タグ",
+                    "mounting": "ステンレス製マウンティングブラケット、取付け金具、粘着パッド",
+                    "calibration": "キャリブレーション証明書と検証ドキュメント",
+                    "playbook": "設置およびコールドストレージ運用プレイブック"
+                }
+            },
+            "deployment": {
+                "steps": {
+                    "site_planning": {
+                        "title": "サイトプランニング",
+                        "body": "CropWatch のスペシャリストが施設ゾーンをマッピングし、ゲートウェイ設置とテレメトリ間隔をコンプライアンス要件に合わせます。"
+                    },
+                    "install": {
+                        "title": "迅速な設置",
+                        "body": "技術者が磁石・粘着・ブラケットなどのハードウェアでセンサーを取り付け、生産を止めません。"
+                    },
+                    "validation": {
+                        "title": "自動バリデーション",
+                        "body": "センサーがベースラインのキャリブレーションチェックを実施し、CropWatch Command に登録して継続監視を開始します。"
+                    },
+                    "insight": {
+                        "title": "インサイト提供",
+                        "body": "リアルタイムダッシュボード、アラート、監査対応レポートで、異常をエスカレーション前に解決できます。"
+                    }
+                }
+            },
+            "demo": {
+                "status": {
+                    "loading": {
+                        "label": "接続中",
+                        "helper": "デバイスがネットワークに参加しています。"
+                    },
+                    "online": {
+                        "label": "オンライン",
+                        "helper": "テレメトリは最新で許容範囲内です。"
+                    },
+                    "partial_error": {
+                        "label": "部分的なエラー",
+                        "helper": "一部のセンサーに注意が必要ですが、データは流れています。"
+                    },
+                    "offline": {
+                        "label": "オフライン",
+                        "helper": "想定間隔内にパケットが受信されていません。"
+                    }
+                },
+                "walkthrough": {
+                    "steps": {
+                        "details": {
+                            "title": "センサーインサイトの展開・折りたたみ",
+                            "body": "UI ではデバイスをロケーションごとに整理できます。左上のロケーションカードにはヘルスインジケーターが表示され、正常は緑、警告は黄、重大問題は赤です。カードのシェブロンを使って詳細な測定値、アラーム、更新履歴を表示します。"
+                        },
+                        "status": {
+                            "title": "ひと目で分かるロケーション状態",
+                            "body": "左上のバッジは Loading、Online、Partial Error、Offline を循環表示し、オペレーターが瞬時に状態を把握できます。"
+                        },
+                        "temperature": {
+                            "title": "ライブ温度モニタリング",
+                            "body": "左側の測定値はパケットが届くたびに更新されます。デモカードの温度計をタップしてライブ読み取りを確認してください。"
+                        },
+                        "humidity": {
+                            "title": "湿度も同期して表示",
+                            "body": "温度と同時に相対湿度を取得し、結露リスクを検知します。しずくアイコンをクリックすると更新が表示されます。"
+                        },
+                        "location_page": {
+                            "title": "ロケーション詳細ページへ移動",
+                            "body": "ロケーション詳細ページでは、その場所にあるすべてのデバイスを表示し、アクセス権や設定を更新できます。"
+                        },
+                        "device_detail": {
+                            "title": "デバイス詳細ページを表示",
+                            "body": "デバイス詳細ページでは、特定デバイスのテレメトリ、ステータス履歴、構成オプションを確認でき、トラブルシューティングが容易になります。"
+                        }
+                    }
+                }
+            }
+        }
+    },
     "about": {
-      "heading": "About CropWatch",
-      "body": "Delivering Quality & ROI since 2019. Trusted by leading manufacturers and hospitality, cold-chain, and enterprise operations worldwide.",
-      "sub_body": "We pair ruggedized hardware with operations experts to ensure compliance-ready telemetry from day one.",
-      "phone_label": "Talk to our team:",
-      "phone_number": "+1 (813) 555-0123",
-      "cta": "Talk to an IoT specialist"
-    },
-    "link_groups": {
-      "solutions": {
-        "title": "Solutions",
-        "links": {
-          "manufacturing": "Manufacturing",
-          "logistics": "Logistics",
-          "agriculture": "Agriculture",
-          "energy": "Energy"
+        "meta": {
+            "title": "CropWatch について | 信頼性を追求した産業用 IoT",
+            "description": "CropWatch のミッション、リーダーシップ、マイルストーンをご紹介。コールドストレージ、ホスピタリティ、製造業向けに堅牢な IoT ネットワークを提供しています。"
+        },
+        "hero": {
+            "eyebrow": "私たちのストーリー",
+            "headline": "産業の知見と堅牢な接続性の融合",
+            "paragraphs": [
+                "CropWatch は、エッジに強いネットワークとミッションクリティカルな環境向けに調整されたアナリティクスを組み合わせ、施設責任者が品質・コンプライアンス・稼働率を維持できるよう支援します。",
+                "農業サプライチェーンの保護からスタートし、現在は 3 大陸で産業キャンパス、ホテル、コールドストレージ艦隊を支援しています。"
+            ],
+            "stats": {
+                "uptime": {
+                    "title": "99.98% の稼働率",
+                    "description": "24/7 のオペレーションチームが支援"
+                },
+                "hubs": {
+                    "title": "世界 6 拠点",
+                    "description": "常時監視されるセンサーフリート"
+                }
+            },
+            "sidebar": {
+                "title": "要求の厳しいオペレーターのために",
+                "intro": "RF エンジニアリング、産業オートメーション、データサイエンスの専門チームが、ダウンタイムを許さない現場に信頼できるインサイトを届けます。",
+                "points": [
+                    "HACCP、OSHA、ISO 9001 のワークフローに精通した認定スペシャリストが在籍。",
+                    "オンサイト技術者とリモートコマンドセンターを組み合わせたハイブリッド導入モデル。",
+                    "主要センサーメーカーやクラウドプラットフォームとの業界提携。"
+                ]
+            }
+        },
+        "history": {
+            "eyebrow": "マイルストーン",
+            "headline": "地域パイロットからグローバルカバレッジへ",
+            "intro": "私たちは現場での専門知識と最新テレメトリを求めるお客様とともに成長してきました。各マイルストーンが、測定可能な価値を届ける能力を磨いています。",
+            "milestones": {
+                "2016": {
+                    "year": "2016",
+                    "title": "初の作物ネットワークを展開",
+                    "description": "40,000 エーカーの柑橘農園と提携し、LoRa ベースのマイクロクライメート監視を大規模に実証。"
+                },
+                "2018": {
+                    "year": "2018",
+                    "title": "センサーカバレッジを世界展開",
+                    "description": "6 か国でゲートウェイを増設し、過酷な産業環境にも耐える堅牢なハードウェアを展開。"
+                },
+                "2021": {
+                    "year": "2021",
+                    "title": "CropWatch アナリティクスをリリース",
+                    "description": "コールドチェーン、ホスピタリティ、製造業向けに調整された予測ダッシュボードと異常検知を提供。"
+                },
+                "2024": {
+                    "year": "2024",
+                    "title": "エンタープライズ信頼性基準を達成",
+                    "description": "24/7 のオペレーションハブとプロアクティブなファームウェア管理で 99.98% のネットワーク稼働率を達成。"
+                }
+            }
+        },
+        "leadership": {
+            "eyebrow": "リーダーシップ",
+            "headline": "すべての展開を導く経験豊富なオペレーター",
+            "intro": "リーダーシップチームは、規制業界、ミッションクリティカルなインフラ、高スケール展開で培った深い経験を持ち、CropWatch が初日から信頼性を届ける基盤となっています。",
+            "members": {
+                "evelyn": {
+                    "name": "Evelyn Ortiz",
+                    "title": "最高経営責任者 (CEO)",
+                    "bio": "フォーチュン 100 の食品・小売企業でコネクテッドサプライチェーンプログラムを主導した元物流エグゼクティブ。"
+                },
+                "marcus": {
+                    "name": "Marcus Boyd",
+                    "title": "最高技術責任者 (CTO)",
+                    "bio": "3 大陸で低消費電力センサーネットワークを設計し、LoRa Edge 展開フレームワークを共同執筆。"
+                },
+                "priya": {
+                    "name": "Priya Nandan",
+                    "title": "最高カスタマー責任者 (CCO)",
+                    "bio": "コールドストレージとホスピタリティポートフォリオで二桁の ROI をもたらすカスタマーサクセスプログラムを構築。"
+                },
+                "greg": {
+                    "name": "Greg Tanaka",
+                    "title": "プロダクト責任者",
+                    "bio": "NASA のシステムエンジニアとしての経験を活かし、ミッションクリティカルなテレメトリ手法を産業用 IoT アナリティクスに適用。"
+                }
+            }
+        },
+        "values": {
+            "eyebrow": "バリュー",
+            "headline": "常にお客様を中心に据える原則",
+            "intro": "私たちはすべての意思決定を、お客様が期待する稼働率・コンプライアンス・体験に照らして判断します。これらのバリューが、私たちの設計・導入・サポートを導きます。",
+            "items": {
+                "operational_certainty": {
+                    "title": "運用の確実性",
+                    "description": "冗長化したゲートウェイと予測保全を組み込み、混乱のない導入を設計します。"
+                },
+                "human_centered": {
+                    "title": "人を中心にした展開",
+                    "description": "技術者、管理者、経営層のすべてに、安心して定着できるプレイブックとトレーニング、背景情報を提供します。"
+                },
+                "proof_of_value": {
+                    "title": "価値証明を先に",
+                    "description": "すべてのプログラムは測定可能な ROI 目標と透明なレポートから始まり、勢いと信頼を保ちます。"
+                }
+            }
+        },
+        "closing": {
+            "eyebrow": "ミッションに参加しませんか",
+            "headline": "エンジニア、オペレーター、カスタマー支援を募集しています",
+            "body": "ダウンタイムが許されない業界向けに信頼できるシステムを構築することに情熱をお持ちなら、ぜひお話ししましょう。",
+            "primary_cta": "募集中の職種を見る",
+            "secondary_cta": "チームに相談する"
         }
-      },
-      "products": {
-        "title": "Products",
-        "links": {
-          "sensor_suite": "Sensor Suite",
-          "gateways": "Gateways",
-          "analytics": "Analytics",
-          "integrations": "Integrations"
-        }
-      },
-      "connect": {
-        "title": "Connect",
-        "links": {
-          "contact": "Contact Us",
-          "support": "Support",
-          "case_studies": "Case Studies",
-          "github": "GitHub",
-          "faq": "FAQ"
-        }
-      }
-    },
-    "legal": {
-      "copyright": "© {{year}} CropWatch LLC. All rights reserved.",
-      "links": {
-        "privacy": "Privacy Policy",
-        "terms": "Terms of Service",
-        "sitemap": "Sitemap"
-      }
     }
-  },
-  "slider": {
-    "aria": {
-      "group_label": "CropWatch highlights carousel"
-    },
-    "controls": {
-      "previous": "Previous slide",
-      "next": "Next slide"
-    },
-    "fallback": {
-      "no_slides": "No slides configured."
-    },
-    "slides": {
-      "industry_ready": {
-        "badge": "🏭 Industry-Ready IoT",
-        "title": "Verify Everything, All The Time",
-        "body": "Industrial-grade dual-sensor hardware built to ensure data integrity regardless of your environment, from freezers to factory floors.",
-        "cta": "Talk to an IoT specialist",
-        "image_alt": "Gateway monitoring hardware inside a processing facility"
-      },
-      "battery_life": {
-        "badge": "🔋 Battery Life",
-        "title": "10+ Years On A Single Battery",
-        "body": "Sleep-cycle optimised firmware keeps your data flowing every 10 minutes without surprise downtime. Field replaceable sensor modules extend your ROI even further.",
-        "cta": "See power charts",
-        "image_alt": "CropWatch sensor hardware close-up"
-      },
-      "wireless_signal": {
-        "badge": "📡 Strong Wireless Signal",
-        "title": "Saves time and money",
-        "body": "Let LoRaWAN® do the heavy lifting with long-range coverage, get readings from anywhere, and cut down on costly commutes for manual checks.",
-        "cta": "Learn about LoRaWAN®",
-        "image_alt": "Technician configuring a LoRaWAN gateway"
-      }
-    }
-  },
-  "home": {
-    "meta": {
-      "title": "CropWatch® | Industrial IoT That Pays For Itself",
-      "description": "Rugged industrial IoT for cold chain, manufacturing, and hospitality. Deploy long-range sensors, LoRaWAN gateways, and analytics trusted by operations leaders."
-    },
-    "hero": {
-      "eyebrow": "Industrial IoT That Pays For Itself",
-      "headline_html": "What makes CropWatch<sup><small>®</small></sup> different?",
-      "body_html": "CropWatch<sup><small>®</small></sup> pairs ruggedized sensors with LoRaWAN<sup><small>®</small></sup> networks to provide unparalleled device reliability and data accuracy in the most challenging industrial environments. Our devices are not just built to last—they're engineered to deliver measurable ROI from day one. Realize cost savings through reduced manual checks, faster compliance audits, and devices that are engineered to be maintenance-free and long-lasting.",
-      "questions": [
-        "Can your current sensors run a decade on one charge?",
-        "Do you receive actionable data at the cadence operations expect?",
-        "How quickly can you prove readings when compliance asks?",
-        "Are concrete, steel, and freezers still causing blind spots?"
-      ],
-      "primary_cta": "Schedule a facility walkthrough",
-      "secondary_cta": "Review customer outcomes",
-      "sidebar": {
-        "title": "Program ROI snapshot",
-        "items": {
-          "deployment": {
-            "term": "Average deployment time",
-            "value_html": "<strong>14 days</strong> from site survey"
-          },
-          "visibility": {
-            "term": "Visibility uplift",
-            "value_html": "<strong>92%</strong> fewer manual checks"
-          },
-          "compliance": {
-            "term": "Compliance wins",
-            "value_html": "2x faster audit response"
-          }
-        }
-      }
-    },
-    "proof_points": {
-      "battery_life": {
-        "eyebrow": "Battery Life That Outlasts Downtime",
-        "headline": "10+ year runtime, even in 24/7 facilities",
-        "bullets": [
-          "Send telemetry every 10 minutes without compromising uptime",
-          "Field-swappable dual-sensors & cross-validation to reduce downtime",
-          "Remote device management to ensure system health"
-        ],
-        "cta": "Verify our lifecycle modeling"
-      },
-      "measurement_confidence": {
-        "eyebrow": "Measurement Confidence",
-        "headline": "ISO17025 alignment, dual sensor cross validation",
-        "bullets": [
-          "Dual-sensor design with tie-breaker logic for each reading",
-          "Serialized calibration with cloud-based certificates",
-          "Automated drift detection keeps compliance on track",
-          "Individual NIST-traceable certificates for each device"
-        ],
-        "cta": "Explore our quality program"
-      },
-      "connectivity": {
-        "eyebrow": "Connectivity Built For Harsh Sites",
-        "headline": "LoRaWAN® penetration without blind spots",
-        "bullets": [
-          "Tuned gateways engineered for dense, industrial environments",
-          "Buffered storage ensures zero data loss during outages",
-          "Private network options when cellular coverage fails"
-        ],
-        "cta": "See the network blueprint"
-      }
-    },
-    "industries": {
-      "eyebrow": "Industries Served",
-      "headline": "Where sensors deliver measurable ROI",
-      "intro": "Our network is trusted by operations teams in heavily regulated, temperature-sensitive, and complex facilities across the globe.",
-      "cards": {
-        "cold_chain": {
-          "label": "Cold chain distribution",
-          "description": "Deploy rugged sensors that keep compliance-ready records in even the hardest-to-reach zones."
-        },
-        "protein": {
-          "label": "Protein & livestock operations",
-          "description": "Monitor temperature, humidity, and feed storage to protect margins across large footprints."
-        },
-        "hospitality": {
-          "label": "Hospitality & venues",
-          "description": "Protect guest experience with air quality, refrigeration, and energy insights in every property."
-        },
-        "manufacturing": {
-          "label": "Manufacturing & processing",
-          "description": "Instrument critical lines to detect deviations before they cause downtime or compliance risk."
-        },
-        "storage": {
-          "label": "Storage and warehousing",
-          "description": "Maintain audit-ready conditions across sprawling sites with proactive alerts and analytics."
-        },
-        "agriculture": {
-          "label": "Controlled agriculture",
-          "description": "Keep crops in optimal zones with soil, moisture, and climate telemetry from seed to shipment."
-        }
-      }
-    },
-    "pricing": {
-      "eyebrow": "Investment Snapshot",
-      "headline": "Transparent pricing engineered for scale",
-      "intro": "Every engagement includes site design, deployment support, and the analytics platform your operators depend on. Pricing flexes with footprint and never penalizes growth.",
-      "cta": "Request a tailored estimate",
-      "columns": {
-        "sensors": {
-          "title": "Sensors & Edge Devices",
-          "lead": "Deploy scalable coverage with zero compromise on accuracy.",
-          "items": {
-            "devices_0_10": {
-              "label": "0-10 devices",
-              "value": "$10/device/mo"
-            },
-            "devices_11_99": {
-              "label": "11-99 devices",
-              "value": "$8/device/mo"
-            },
-            "devices_100_plus": {
-              "label": "100+ devices",
-              "value": "Contact us"
-            },
-            "calibration": {
-              "label": "Calibration",
-              "value": "Included, NIST-traceable"
-            }
-          }
-        },
-        "devices": {
-          "title": "Devices & Gateways",
-          "lead": "Indoor, outdoor, and carrier-grade LoRaWAN® options.",
-          "items": {
-            "sensor": {
-              "label": "Temperature/Humidity sensor",
-              "value": "$199"
-            },
-            "relay": {
-              "label": "Automation Relay Module",
-              "value": "$179"
-            },
-            "indoor_gateway": {
-              "label": "Indoor edge gateway",
-              "value": "$549"
-            },
-            "carrier_gateway": {
-              "label": "Industrial carrier-grade",
-              "value": "$1,899"
-            },
-            "rf_design": {
-              "label": "Site RF design",
-              "value": "Bundled with deployment"
-            }
-          }
-        },
-        "software": {
-          "title": "Software & Insights",
-          "lead": "Unified dashboards, unlimited alerts, always-on support.",
-          "items": {
-            "retention": {
-              "label": "Data retention",
-              "value": "24 months rolling"
-            },
-            "licences": {
-              "label": "User licenses",
-              "value": "Unlimited"
-            },
-            "onboarding": {
-              "label": "Onboarding & success",
-              "value": "Included"
-            }
-          }
-        }
-      }
-    },
-    "closing": {
-      "eyebrow": "Ready to Prove ROI?",
-      "headline": "Let's chat, and we will show you how CropWatch<sup><small>®</small></sup> can deliver measurable value",
-      "body": "We'll walk your environment, model signal coverage, and produce a business case that leaders can take to the boardroom.",
-      "primary_cta": "Book a strategy session",
-      "secondary_cta": "Download case studies"
-    }
-  },
-  "case_studies": {
-    "meta": {
-      "title": "Case Studies | CropWatch Industrial IoT Outcomes",
-      "description": "See how CropWatch delivers measurable ROI for cold storage, hospitality, manufacturing, and agriculture with resilient IoT deployments."
-    },
-    "hero": {
-      "eyebrow": "Case studies",
-      "headline": "Proof points from demanding environments",
-      "intro": [
-        "Operators rely on CropWatch to deliver resilient networks, trusted analytics, and rapid payback across cold storage, hospitality, and heavy industry.",
-        "Explore how we combine hardware, software, and human expertise to meet strict uptime and compliance goals without overwhelming frontline teams."
-      ],
-      "snapshot": {
-        "title": "Snapshot results",
-        "items": [
-          "38 percent reduction in spoilage claims for national cold storage network.",
-          "22 percent energy savings across a 27 hotel portfolio within the first year.",
-          "99.98 percent uptime backed by our global operations centers."
-        ]
-      }
-    },
-    "featured": {
-      "eyebrow": "Featured programs",
-      "headline": "Cross-industry wins delivered with CropWatch",
-      "intro": "Each engagement pairs ruggedized hardware with rollout specialists who understand regulated environments. The result: measurable efficiency, compliance, and operational clarity.",
-      "cta": "Discuss this approach",
-      "cases": {
-        "sunharvest": {
-          "company": "SunHarvest Foods",
-          "industry": "Cold storage and distribution",
-          "recap": "Scaled temperature and humidity monitoring across 12 distribution centers to eliminate spoilage claims.",
-          "badge": "Global rollout",
-          "stats": [
-            {
-              "value": "38%",
-              "label": "Insurance claim reduction inside 6 months"
-            },
-            {
-              "value": "16 hrs",
-              "label": "Faster incident response time per facility"
-            }
-          ]
-        },
-        "harborline": {
-          "company": "Harborline Hospitality",
-          "industry": "Luxury resorts and hotels",
-          "recap": "Unified indoor air quality, energy metering, and guest experience sensors across 27 properties.",
-          "badge": "Multi-brand portfolio",
-          "stats": [
-            {
-              "value": "22%",
-              "label": "Energy savings measured year over year"
-            },
-            {
-              "value": "100%",
-              "label": "Regulatory audits passed on first review"
-            }
-          ]
-        },
-        "kodiak": {
-          "company": "Kodiak Manufacturing",
-          "industry": "Industrial fabrication",
-          "recap": "Instrumented mission critical production lines to detect vibration, dust, and temperature anomalies.",
-          "badge": "High compliance",
-          "stats": [
-            {
-              "value": "4 hrs",
-              "label": "Average downtime avoided per incident"
-            },
-            {
-              "value": "3x",
-              "label": "Increase in predictive maintenance alerts"
-            }
-          ]
-        },
-        "greenfield": {
-          "company": "Greenfield Produce",
-          "industry": "Agricultural supply chain",
-          "recap": "Extended field-to-dock visibility with soil, moisture, and transport telemetry for export partners.",
-          "badge": "End-to-end visibility",
-          "stats": [
-            {
-              "value": "48 hrs",
-              "label": "Faster shipment release cycle"
-            },
-            {
-              "value": "12%",
-              "label": "Yield improvement through targeted irrigation"
-            }
-          ]
-        }
-      }
-    },
-    "playbook": {
-      "eyebrow": "Rollout playbook",
-      "headline": "Consistent outcomes, site after site",
-      "intro": "Our structured methodology keeps every engagement focused on measurable ROI and frontline adoption. Customers can scale quickly without compromising quality.",
-      "steps": {
-        "assess": {
-          "title": "Assess",
-          "description": "We map environments, compliance mandates, and existing telemetry to prioritize critical wins."
-        },
-        "pilot": {
-          "title": "Pilot",
-          "description": "Joint teams deploy a rapid proof of value with clear KPIs and stakeholder training."
-        },
-        "scale": {
-          "title": "Scale",
-          "description": "Standardized deployment kits and hybrid field teams extend coverage without disrupting operations."
-        },
-        "optimize": {
-          "title": "Optimize",
-          "description": "Analytics, playbooks, and quarterly executive reviews keep ROI visible and improvements continuous."
-        }
-      }
-    },
-    "testimony": {
-      "eyebrow": "Customer voice",
-      "quote": "CropWatch gave us predictive insight into every walk-in and loading bay without drowning our teams in dashboards. The rollout finished ahead of schedule and paid for itself inside the first quarter.",
-      "person": "Charmaine Ellis",
-      "title": "VP of Operations, Harborline Hospitality"
-    },
-    "closing": {
-      "eyebrow": "Ready to explore a pilot?",
-      "headline": "Let us map out the first 90 days",
-      "body": "Share a target facility or pain point and we will deliver a tailored deployment plan, cost model, and timeline within two weeks.",
-      "primary_cta": "Start a pilot conversation",
-      "secondary_cta": "Book a live demo"
-    }
-  },
-  "products": {
-    "cw_air_th": {
-      "features": {
-        "rugged": {
-          "title": "Rugged industrial enclosure",
-          "body": "IP67-rated shell with conformal coated electronics keeps the sensor operating in freezers, loading docks, and production floors."
-        },
-        "precision": {
-          "title": "Precision monitoring",
-          "body": "High-accuracy digital sensing provides +/- 0.2°C temperature and +/- 2% RH readings for compliance-ready reporting."
-        },
-        "battery": {
-          "title": "Multi-year battery life",
-          "body": "Engineered for more than five years of continuous telemetry with field-replaceable lithium batteries and low-power firmware."
-        },
-        "lorawan": {
-          "title": "LoRaWAN connectivity",
-          "body": "Secure LoRaWAN connectivity ensures resilient transmission through dense infrastructure and cold storage insulation."
-        }
-      },
-      "specs": {
-        "sensor": {
-          "label": "Sensor",
-          "value": "Sensirion x1 SHT40 & x1 SHT43, True NIST, w/ISO17025 Certification"
-        },
-        "temperature_range": {
-          "label": "Temperature range",
-          "value": "-40°C to 85°C (calibrated)"
-        },
-        "humidity_range": {
-          "label": "Humidity range",
-          "value": "0% to 100% RH (non-condensing)"
-        },
-        "heater": {
-          "label": "Integrated Heater",
-          "value": "Ensure condensation prevention in cold environments"
-        },
-        "temperature_accuracy": {
-          "label": "Temperature accuracy",
-          "value": "+/- 0.2°C between -10°C and 50°C"
-        },
-        "humidity_accuracy": {
-          "label": "Humidity accuracy",
-          "value": "+/- 2% RH between 10% and 90%"
-        },
-        "ingress": {
-          "label": "Ingress protection",
-          "value": "IP67 enclosure"
-        },
-        "protocol": {
-          "label": "Wireless protocol",
-          "value": "LoRaWAN 1.0.4 Class A, regional bands supported"
-        },
-        "battery": {
-          "label": "Battery",
-          "value": "Li-SOCl2 (lithium thionyl chloride), field replaceable"
-        },
-        "dimensions": {
-          "label": "Dimensions",
-          "value": "120 mm x 70 mm x 35 mm"
-        },
-        "operating_life": {
-          "label": "Operating life",
-          "value": "Up to 5 years at 15 minute intervals"
-        },
-        "certifications": {
-          "label": "Certifications",
-          "value": "FCC, CE, IC, HACCP compliant materials"
-        }
-      },
-      "kit": {
-        "items": {
-          "sensor": "CW Air TH sensor with pre-configured firmware",
-          "credentials": "LoRaWAN activation credentials and QR deployment tag",
-          "mounting": "Stainless steel mounting bracket with hardware and adhesive pads",
-          "calibration": "Calibration certificate and validation documentation",
-          "playbook": "Install and cold storage handling playbook"
-        }
-      },
-      "deployment": {
-        "steps": {
-          "site_planning": {
-            "title": "Site planning",
-            "body": "CropWatch specialists map facility zones, determine gateway placement, and align telemetry intervals with compliance needs."
-          },
-          "install": {
-            "title": "Rapid install",
-            "body": "Technicians mount sensors using magnetic, adhesive, or bracket hardware options without disrupting production."
-          },
-          "validation": {
-            "title": "Automated validation",
-            "body": "Sensors perform baseline calibration checks and register with CropWatch Command for continuous monitoring."
-          },
-          "insight": {
-            "title": "Insight delivery",
-            "body": "Real-time dashboards, alerts, and audit-ready reports empower teams to resolve anomalies before they escalate."
-          }
-        }
-      },
-      "demo": {
-        "status": {
-          "loading": {
-            "label": "Loading",
-            "helper": "Device is joining the network."
-          },
-          "online": {
-            "label": "Online",
-            "helper": "Telemetry is current and within tolerance."
-          },
-          "partial_error": {
-            "label": "Partial error",
-            "helper": "Some sensors need attention but data is flowing."
-          },
-          "offline": {
-            "label": "Offline",
-            "helper": "No packets received within the expected interval."
-          }
-        },
-        "walkthrough": {
-          "steps": {
-            "details": {
-              "title": "Open or collapse sensor insights",
-              "body": "Our UI allows you to organize and group devices by location. At the top left of the location card you can see the location health indicator. It shows green when devices are reporting normally, yellow for warnings, and red for critical issues. Use the chevron in the card to reveal detailed readings, alarms, and update history."
-            },
-            "status": {
-              "title": "Glanceable location health",
-              "body": "The badge in the top left cycles through Loading, Online, Partial Error, and Offline so operators can see device health instantly."
-            },
-            "temperature": {
-              "title": "Live temperature monitoring",
-              "body": "The left measurement updates as fast as packets arrive. Tap the thermometer in the demo card to sample live readings."
-            },
-            "humidity": {
-              "title": "Humidity in lockstep",
-              "body": "Relative humidity is captured alongside temperature to flag condensation risks. Click the droplet to see it update."
-            },
-            "location_page": {
-              "title": "Brings you to a Location Detail page",
-              "body": "The Location Details page shows every device within a location and allows you to update settings or permissions for who can access them."
-            },
-            "device_detail": {
-              "title": "View the device detail page",
-              "body": "The Device Detail page provides in-depth telemetry, status history, and configuration options for a specific device, making troubleshooting straightforward."
-            }
-          }
-        }
-      }
-    }
-  },
-  "about": {
-    "meta": {
-      "title": "About CropWatch | Industrial IoT Built for Reliability",
-      "description": "Discover CropWatch's mission, leadership, and milestones as we deliver resilient IoT networks for cold storage, hospitality, and manufacturing."
-    },
-    "hero": {
-      "eyebrow": "Our story",
-      "headline": "Industrial insight meets resilient connectivity",
-      "paragraphs": [
-        "CropWatch helps facility leaders maintain quality, compliance, and uptime by combining edge-resilient networks with analytics tuned for mission-critical environments.",
-        "We started by safeguarding agricultural supply chains and now support industrial campuses, hotels, and cold storage fleets across three continents."
-      ],
-      "stats": {
-        "uptime": {
-          "title": "99.98% uptime",
-          "description": "Backed by 24/7 operations teams"
-        },
-        "hubs": {
-          "title": "6 global hubs",
-          "description": "Sensor fleets monitored around the clock"
-        }
-      },
-      "sidebar": {
-        "title": "Built for demanding operators",
-        "intro": "Our teams blend RF engineering, industrial automation, and data science to deliver reliable insights where downtime is not an option.",
-        "points": [
-          "Certified specialists in HACCP, OSHA, and ISO 9001 compliance workflows.",
-          "Hybrid deployment model blending on-site technicians with remote command centers.",
-          "Industry partnerships with leading sensor manufacturers and cloud platforms."
-        ]
-      }
-    },
-    "history": {
-      "eyebrow": "Milestones",
-      "headline": "From regional pilot to global coverage",
-      "intro": "We have scaled alongside customers who need feet-on-the-ground expertise paired with modern telemetry. Each milestone sharpened our ability to deliver measurable value.",
-      "milestones": {
-        "2016": {
-          "year": "2016",
-          "title": "First crop network deployed",
-          "description": "Partnered with a 40,000 acre citrus grower to prove LoRa-based microclimate monitoring at scale."
-        },
-        "2018": {
-          "year": "2018",
-          "title": "Global sensor coverage",
-          "description": "Expanded gateway fleet across six countries with ruggedized hardware rated for harsh industrial environments."
-        },
-        "2021": {
-          "year": "2021",
-          "title": "CropWatch analytics launch",
-          "description": "Delivered predictive dashboards and anomaly detection tuned for cold chain, hospitality, and manufacturing customers."
-        },
-        "2024": {
-          "year": "2024",
-          "title": "Enterprise reliability standard",
-          "description": "Achieved 99.98% network uptime backed by 24/7 operations hubs and proactive firmware orchestration."
-        }
-      }
-    },
-    "leadership": {
-      "eyebrow": "Leadership",
-      "headline": "Experienced operators guiding every rollout",
-      "intro": "Our leadership team brings deep experience in regulated industries, mission-critical infrastructure, and high-scale deployments, enabling CropWatch to deliver reliability from day one.",
-      "members": {
-        "evelyn": {
-          "name": "Evelyn Ortiz",
-          "title": "Chief Executive Officer",
-          "bio": "Former logistics executive who led connected supply chain programs for Fortune 100 grocers and retailers."
-        },
-        "marcus": {
-          "name": "Marcus Boyd",
-          "title": "Chief Technology Officer",
-          "bio": "Architected low-power sensor networks on three continents; co-authored the LoRa Edge deployment framework."
-        },
-        "priya": {
-          "name": "Priya Nandan",
-          "title": "Chief Customer Officer",
-          "bio": "Built cross-functional customer success programs delivering double-digit ROI across cold storage and hospitality portfolios."
-        },
-        "greg": {
-          "name": "Greg Tanaka",
-          "title": "Head of Product",
-          "bio": "Former NASA systems engineer applying mission-critical telemetry practices to industrial IoT analytics."
-        }
-      }
-    },
-    "values": {
-      "eyebrow": "Values",
-      "headline": "Principles that keep customers at the center",
-      "intro": "Every decision is measured against the uptime, compliance, and experience our customers expect. These values guide how we design, deploy, and support every project.",
-      "items": {
-        "operational_certainty": {
-          "title": "Operational certainty",
-          "description": "We engineer every deployment to run without drama, with redundant gateways and predictive maintenance baked in."
-        },
-        "human_centered": {
-          "title": "Human-centered rollouts",
-          "description": "Technicians, managers, and executives all get the playbooks, training, and context they need to adopt with confidence."
-        },
-        "proof_of_value": {
-          "title": "Proof of value first",
-          "description": "Every program starts with measurable ROI targets and transparent reporting to keep momentum and trust."
-        }
-      }
-    },
-    "closing": {
-      "eyebrow": "Join the mission",
-      "headline": "We are hiring engineers, operators, and customer champions",
-      "body": "If you are passionate about building reliable systems for industries where downtime is not an option, we would love to meet you.",
-      "primary_cta": "Explore open roles",
-      "secondary_cta": "Talk to our team"
-    }
-  }
 }

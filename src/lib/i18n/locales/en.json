@@ -415,6 +415,102 @@
     },
     "products": {
         "cw_air_th": {
+            "page": {
+                "meta": {
+                    "title": "CropWatch CW Air TH | Industrial Temperature & Humidity Sensor",
+                    "description": "Deploy the CW Air TH sensor for reliable temperature and humidity monitoring across cold storage, hospitality, and industrial environments."
+                },
+                "hero": {
+                    "badge": "CW-Air-TH",
+                    "title": "Reliable monitoring you can trust",
+                    "paragraphs": [
+                        "The CW Air TH sensor combines precision sensing, long-life power, and LoRaWAN connectivity to keep cold storage, hospitality, and industrial sites informed in real time.",
+                        "Deploy the sensor as part of CropWatch Command for proactive alerts, compliance documentation, and predictable operations across every facility."
+                    ],
+                    "primary_cta": "Talk to a specialist",
+                    "secondary_cta": "See platform demo",
+                    "sidebar": {
+                        "title": "Designed for demanding operators",
+                        "image_alt": "CW Air TH sensor side view",
+                        "bullets": [
+                            "Validated for HACCP, FDA, and ISO-compliant programs.",
+                            "Ships pre-provisioned for CropWatch<sup><small>®</small></sup> gateways to eliminate manual setup.",
+                            "Access predictive analytics and alerting through CropWatch<sup><small>®</small></sup> Command."
+                        ]
+                    }
+                },
+                "sections": {
+                    "capabilities": {
+                        "eyebrow": "Key capabilities",
+                        "headline": "Reliable Cold-Chain Monitoring You Can Trust",
+                        "paragraphs": [
+                            "Our cold-chain sensor stands apart through <strong>rigorous testing in some of the harshest real-world environments</strong>. Every design decision is driven by reliability — from preventing sensor and device failures to ensuring data integrity under extreme conditions.",
+                            "Unlike conventional devices, our system features an <strong>intelligent cross-validation mechanism</strong> that continuously verifies sensor accuracy and detects anomalies before they become problems. In other words, it answers the critical question: <em>\"What happens if a sensor stops reporting the correct value?\"</em>",
+                            "At CropWatch, our goal is simple: <strong>deliver the most reliable and accurate cold-chain data in the industry</strong> — so you can make confident decisions, backed by data you can trust."
+                        ],
+                        "diagram": {
+                            "headline": "Cross-validated, Fail-Stop system for safe operation",
+                            "body": [
+                                "The CW-Air-TH continuously cross-checks its replaceable sensor against each other to confirm every value before it reaches your dashboards. If the primary probe drifts or reports outside expected tolerances, the device flags the anomaly instantly and notifies you of an issue."
+                            ],
+                            "bullets": [
+                                "Dual-channel comparison cross-validates live telemetry against each other.",
+                                "Automatic Fail-Stop prevents bad data from ever reaching your dashboards.",
+                                "Exception events sync directly into compliance logs so auditors see proof of every validation step."
+                            ],
+                            "image_alt": "Diagram showing CW Air TH cross-validating replaceable sensor readings"
+                        }
+                    },
+                    "specifications": {
+                        "eyebrow": "Technical specifications",
+                        "headline": "Engineered for reliability"
+                    },
+                    "kit": {
+                        "eyebrow": "Deployment kit",
+                        "headline": "Everything you need to go live in days",
+                        "body_html": "Every CW Air TH sensor arrives fully configured and ready to join CropWatch<sup><small>®</small></sup> Command, with mounting options and documentation tailored to regulated environments."
+                    },
+                    "ui": {
+                        "eyebrow": "Our UI",
+                        "headline": "User Interface that is fast to use",
+                        "body": "Our UI has been hyper optimized for quick data aquisition and easy navigation, so users can get to the information they need faster, reducing time spent on monitoring, and increasing time for other important tasks.",
+                        "step_progress": "Step {{current}} of {{total}}",
+                        "theme_label": "Theme:",
+                        "theme_options": {
+                            "dark": "Dark",
+                            "light": "Light"
+                        },
+                        "status_card": {
+                            "title": "Status indicator states",
+                            "helper": "Click a pill or tap the badge on the demo card to see each network state."
+                        },
+                        "temperature_card": {
+                            "title": "Current temperature",
+                            "helper": "Click the thermometer on the demo card to step through recent samples."
+                        },
+                        "humidity_card": {
+                            "title": "Current humidity",
+                            "helper": "Tap the droplet to watch relative humidity arrive with every packet."
+                        },
+                        "controls": {
+                            "back": "Back",
+                            "next": "Next"
+                        }
+                    },
+                    "deployment": {
+                        "eyebrow": "How we deploy",
+                        "headline": "Proven rollout workflow",
+                        "body": "Our hybrid deployment model keeps install timelines short while ensuring every stakeholder has the training, telemetry, and reporting they need to succeed."
+                    },
+                    "closing": {
+                        "eyebrow": "See CW Air TH in action",
+                        "headline": "Schedule a walkthrough or start a pilot",
+                        "body": "Connect with CropWatch<sup><small>®</small></sup> specialists to map out sensor placement, gateways, and analytics that keep your environments compliant and efficient.",
+                        "primary_cta": "Plan my deployment",
+                        "secondary_cta": "Explore customer results"
+                    }
+                }
+            },
             "features": {
                 "rugged": {
                     "title": "Rugged industrial enclosure",

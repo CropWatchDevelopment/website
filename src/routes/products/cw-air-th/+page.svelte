@@ -104,6 +104,103 @@
 		}
 	] as const;
 
+	const pageContent = {
+		meta: {
+			titleKey: 'products.cw_air_th.page.meta.title',
+			descriptionKey: 'products.cw_air_th.page.meta.description'
+		},
+		hero: {
+			badgeKey: 'products.cw_air_th.page.hero.badge',
+			titleKey: 'products.cw_air_th.page.hero.title',
+			paragraphKeys: [
+				'products.cw_air_th.page.hero.paragraphs.0',
+				'products.cw_air_th.page.hero.paragraphs.1'
+			],
+			primaryCtaKey: 'products.cw_air_th.page.hero.primary_cta',
+			secondaryCtaKey: 'products.cw_air_th.page.hero.secondary_cta',
+			sidebar: {
+				titleKey: 'products.cw_air_th.page.hero.sidebar.title',
+				imageAltKey: 'products.cw_air_th.page.hero.sidebar.image_alt',
+				bulletKeys: [
+					'products.cw_air_th.page.hero.sidebar.bullets.0',
+					'products.cw_air_th.page.hero.sidebar.bullets.1',
+					'products.cw_air_th.page.hero.sidebar.bullets.2'
+				]
+			}
+		},
+		sections: {
+			capabilities: {
+				eyebrowKey: 'products.cw_air_th.page.sections.capabilities.eyebrow',
+				headlineKey: 'products.cw_air_th.page.sections.capabilities.headline',
+				paragraphKeys: [
+					'products.cw_air_th.page.sections.capabilities.paragraphs.0',
+					'products.cw_air_th.page.sections.capabilities.paragraphs.1',
+					'products.cw_air_th.page.sections.capabilities.paragraphs.2'
+				],
+				diagram: {
+					headlineKey: 'products.cw_air_th.page.sections.capabilities.diagram.headline',
+					bodyKeys: [
+						'products.cw_air_th.page.sections.capabilities.diagram.body.0'
+					],
+					bulletKeys: [
+						'products.cw_air_th.page.sections.capabilities.diagram.bullets.0',
+						'products.cw_air_th.page.sections.capabilities.diagram.bullets.1',
+						'products.cw_air_th.page.sections.capabilities.diagram.bullets.2'
+					],
+					imageAltKey: 'products.cw_air_th.page.sections.capabilities.diagram.image_alt'
+				}
+			},
+			specifications: {
+				eyebrowKey: 'products.cw_air_th.page.sections.specifications.eyebrow',
+				headlineKey: 'products.cw_air_th.page.sections.specifications.headline'
+			},
+			kit: {
+				eyebrowKey: 'products.cw_air_th.page.sections.kit.eyebrow',
+				headlineKey: 'products.cw_air_th.page.sections.kit.headline',
+				bodyKey: 'products.cw_air_th.page.sections.kit.body_html'
+			},
+			ui: {
+				eyebrowKey: 'products.cw_air_th.page.sections.ui.eyebrow',
+				headlineKey: 'products.cw_air_th.page.sections.ui.headline',
+				bodyKey: 'products.cw_air_th.page.sections.ui.body',
+				stepProgressKey: 'products.cw_air_th.page.sections.ui.step_progress',
+				themeLabelKey: 'products.cw_air_th.page.sections.ui.theme_label',
+				themeOptions: {
+					darkKey: 'products.cw_air_th.page.sections.ui.theme_options.dark',
+					lightKey: 'products.cw_air_th.page.sections.ui.theme_options.light'
+				},
+				statusCard: {
+					titleKey: 'products.cw_air_th.page.sections.ui.status_card.title',
+					helperKey: 'products.cw_air_th.page.sections.ui.status_card.helper'
+				},
+				temperatureCard: {
+					titleKey: 'products.cw_air_th.page.sections.ui.temperature_card.title',
+					helperKey: 'products.cw_air_th.page.sections.ui.temperature_card.helper'
+				},
+				humidityCard: {
+					titleKey: 'products.cw_air_th.page.sections.ui.humidity_card.title',
+					helperKey: 'products.cw_air_th.page.sections.ui.humidity_card.helper'
+				},
+				controls: {
+					backKey: 'products.cw_air_th.page.sections.ui.controls.back',
+					nextKey: 'products.cw_air_th.page.sections.ui.controls.next'
+				}
+			},
+			deployment: {
+				eyebrowKey: 'products.cw_air_th.page.sections.deployment.eyebrow',
+				headlineKey: 'products.cw_air_th.page.sections.deployment.headline',
+				bodyKey: 'products.cw_air_th.page.sections.deployment.body'
+			},
+			closing: {
+				eyebrowKey: 'products.cw_air_th.page.sections.closing.eyebrow',
+				headlineKey: 'products.cw_air_th.page.sections.closing.headline',
+				bodyKey: 'products.cw_air_th.page.sections.closing.body',
+				primaryCtaKey: 'products.cw_air_th.page.sections.closing.primary_cta',
+				secondaryCtaKey: 'products.cw_air_th.page.sections.closing.secondary_cta'
+			}
+		}
+	} as const;
+
 	type DemoStatus = 'online' | 'offline' | 'loading' | 'partialError';
 	type DemoTheme = 'dark' | 'light';
 
@@ -269,11 +366,8 @@ function handleDemoChange(
 </script>
 
 <svelte:head>
-	<title>CropWatch CW Air TH | Industrial Temperature & Humidity Sensor</title>
-	<meta
-		name="description"
-		content="Deploy the CW Air TH sensor for reliable temperature and humidity monitoring across cold storage, hospitality, and industrial environments."
-	/>
+	<title>{$_(pageContent.meta.titleKey)}</title>
+	<meta name="description" content={$_(pageContent.meta.descriptionKey)} />
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
@@ -284,64 +378,49 @@ function handleDemoChange(
 	<div class="relative mx-auto w-full max-w-6xl px-4">
 		<div class="grid gap-12 md:grid-cols-[1.1fr_1fr] md:items-center">
 			<div class="space-y-6">
-				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">CW-Air-TH</p>
+				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
+					{$_(pageContent.hero.badgeKey)}
+				</p>
 				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					Reliable monitoring you can trust
+					{$_(pageContent.hero.titleKey)}
 				</h1>
-				<p class="text-base text-white/80">
-					The CW Air TH sensor combines precision sensing, long-life power, and LoRaWAN connectivity
-					to keep cold storage, hospitality, and industrial sites informed in real time.
-				</p>
-				<p class="text-base text-white/80">
-					Deploy the sensor as part of CropWatch Command for proactive alerts, compliance
-					documentation, and predictable operations across every facility.
-				</p>
+				{#each pageContent.hero.paragraphKeys as paragraphKey (paragraphKey)}
+					<p class="text-base text-white/80">{@html $_(paragraphKey)}</p>
+				{/each}
 				<div class="flex flex-wrap gap-4">
 					<a
 						href="/contact"
 						class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 					>
-						Talk to a specialist
+						{$_(pageContent.hero.primaryCtaKey)}
 					</a>
 					<a
 						href="/demo"
 						class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 					>
-						See platform demo
+						{$_(pageContent.hero.secondaryCtaKey)}
 					</a>
 				</div>
 			</div>
 			<div
 				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
 			>
-				<h2 class="text-lg font-semibold text-white">Designed for demanding operators</h2>
+				<h2 class="text-lg font-semibold text-white">{$_(pageContent.hero.sidebar.titleKey)}</h2>
 				<picture>
 					<source srcset={deviceSideViewImage} type="image/webp" />
 					<img
 						src={deviceSideViewImage}
-						alt="CW Air TH sensor side view"
+						alt={$_(pageContent.hero.sidebar.imageAltKey)}
 						class="mt-4 w-full rounded-lg border border-white/10 shadow-md shadow-black/20"
 					/>
 				</picture>
 				<ul class="mt-6 space-y-4 text-sm text-white/80">
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>Validated for HACCP, FDA, and ISO-compliant programs.</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span
-							>Ships pre-provisioned for CropWatch<sup><small>®</small></sup> gateways to eliminate
-							manual setup.</span
-						>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span
-							>Access predictive analytics and alerting through CropWatch<sup><small>®</small></sup
-							> Command.</span
-						>
-					</li>
+					{#each pageContent.hero.sidebar.bulletKeys as bulletKey (bulletKey)}
+						<li class="flex items-start gap-3">
+							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+							<span>{@html $_(bulletKey)}</span>
+						</li>
+					{/each}
 				</ul>
 			</div>
 		</div>
@@ -350,68 +429,43 @@ function handleDemoChange(
 
 <section class="bg-white py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
-		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">Key capabilities</p>
+		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
+			{$_(pageContent.sections.capabilities.eyebrowKey)}
+		</p>
 		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-			Reliable Cold-Chain Monitoring You Can Trust
+			{$_(pageContent.sections.capabilities.headlineKey)}
 		</h2>
 
 		<section class="cold-chain-hero" aria-labelledby="cold-chain-heading">
-			<p>
-				Our cold-chain sensor stands apart through
-				<strong>rigorous testing in some of the harshest real-world environments</strong>. Every
-				design decision is driven by reliability — from preventing sensor and device failures to
-				ensuring data integrity under extreme conditions.
-			</p>
-
-			<p class="my-4">
-				Unlike conventional devices, our system features an
-				<strong>intelligent cross-validation mechanism</strong> that continuously verifies sensor
-				accuracy and detects anomalies before they become problems. In other words, it answers the
-				critical question:
-				<em>“What happens if a sensor stops reporting the correct value?”</em>
-			</p>
-
-			<p>
-				At CropWatch, our goal is simple:
-				<strong>deliver the most reliable and accurate cold-chain data in the industry</strong> — so
-				you can make confident decisions, backed by data you can trust.
-			</p>
+			{#each pageContent.sections.capabilities.paragraphKeys as paragraphKey, index (paragraphKey)}
+				<p class={index === 1 ? 'my-4' : undefined}>
+					{@html $_(paragraphKey)}
+				</p>
+			{/each}
 		</section>
 
 		<div class="mt-12 grid gap-10 text-[#1c2d52]/80 md:grid-cols-[1.05fr_1fr] md:items-center">
 			<div class="space-y-4">
 				<h3 class="text-2xl font-semibold text-[#0b1730]">
-					Cross-validated, Fail-Stop system for safe operation
+					{$_(pageContent.sections.capabilities.diagram.headlineKey)}
 				</h3>
-				<p>
-					The CW-Air-TH continuously cross-checks its replaceable sensor against each other to
-					confirm every value before it reaches your dashboards. If the primary probe drifts or
-					reports outside expected tolerances, the device flags the anomaly instantly and notifies
-					you of an issue.
-				</p>
+				{#each pageContent.sections.capabilities.diagram.bodyKeys as bodyKey (bodyKey)}
+					<p>{$_(bodyKey)}</p>
+				{/each}
 				<ul class="space-y-3 text-sm">
-					<li class="flex gap-3">
-						<span class="mt-1 h-2 w-2 flex-none rounded-full bg-[#f2a516]"></span>
-						<span>Dual-channel comparison cross-validates live telemetry against each other.</span>
-					</li>
-					<li class="flex gap-3">
-						<span class="mt-1 h-2 w-2 flex-none rounded-full bg-[#f2a516]"></span>
-						<span>Automatic Fail-Stop prevents bad data from ever reaching your dashboards.</span>
-					</li>
-					<li class="flex gap-3">
-						<span class="mt-1 h-2 w-2 flex-none rounded-full bg-[#f2a516]"></span>
-						<span
-							>Exception events sync directly into compliance logs so auditors see proof of every
-							validation step.</span
-						>
-					</li>
+					{#each pageContent.sections.capabilities.diagram.bulletKeys as bulletKey (bulletKey)}
+						<li class="flex gap-3">
+							<span class="mt-1 h-2 w-2 flex-none rounded-full bg-[#f2a516]"></span>
+							<span>{$_(bulletKey)}</span>
+						</li>
+					{/each}
 				</ul>
 			</div>
 			<picture class="order-first md:order-none md:justify-self-end">
 				<source srcset={crossValidationDiagram} type="image/webp" />
 				<img
 					src={crossValidationDiagram}
-					alt="Diagram showing CW Air TH cross-validating replaceable sensor readings"
+					alt={$_(pageContent.sections.capabilities.diagram.imageAltKey)}
 					class="w-full max-w-md rounded-3xl border border-[#d7e0f5] bg-white p-4 shadow-sm shadow-[#0b1730]/10"
 				/>
 			</picture>
@@ -433,9 +487,11 @@ function handleDemoChange(
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-			Technical specifications
+			{$_(pageContent.sections.specifications.eyebrowKey)}
 		</p>
-		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">Engineered for reliability</h2>
+		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
+			{$_(pageContent.sections.specifications.headlineKey)}
+		</h2>
 		<div
 			class="mt-8 overflow-hidden rounded-3xl border border-[#d7e0f5] bg-white shadow-sm shadow-[#0b1730]/5"
 		>
@@ -461,16 +517,12 @@ function handleDemoChange(
 		<div class="grid gap-10 md:grid-cols-[1.15fr_1fr] md:items-center">
 			<div class="space-y-6">
 				<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-					Deployment kit
+					{$_(pageContent.sections.kit.eyebrowKey)}
 				</p>
 				<h2 class="text-3xl font-semibold text-[#0b1730]">
-					Everything you need to go live in days
+					{$_(pageContent.sections.kit.headlineKey)}
 				</h2>
-				<p class="text-base text-[#1c2d52]/80">
-					Every CW Air TH sensor arrives fully configured and ready to join CropWatch<sup
-						><small>®</small></sup
-					> Command, with mounting options and documentation tailored to regulated environments.
-				</p>
+				<p class="text-base text-[#1c2d52]/80">{@html $_(pageContent.sections.kit.bodyKey)}</p>
 			</div>
 			<div
 				class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-8 shadow-sm shadow-[#0b1730]/5"
@@ -490,12 +542,12 @@ function handleDemoChange(
 
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
-		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">Our UI</p>
-		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">User Interface that is fast to use</h2>
+		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
+			{$_(pageContent.sections.ui.eyebrowKey)}
+		</p>
+		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">{$_(pageContent.sections.ui.headlineKey)}</h2>
 		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">
-			Our UI has been hyper optimized for quick data aquisition and easy navigation, so users can
-			get to the information they need faster, reducing time spent on monitoring, and increasing
-			time for other important tasks.
+			{$_(pageContent.sections.ui.bodyKey)}
 		</p>
 		<div class="flex flex-row gap-2">
 			<div id="demo-section" class="mt-10">
@@ -517,14 +569,16 @@ function handleDemoChange(
 				>
 					<div>
 						<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-							Step {walkthroughStep + 1} of {walkthroughSteps.length}
+							{$_(pageContent.sections.ui.stepProgressKey, {
+								values: { current: walkthroughStep + 1, total: walkthroughSteps.length }
+							})}
 						</p>
 						<h3 class="mt-2 text-2xl font-semibold text-[#0b1730]">{$_(currentStep.titleKey)}</h3>
 						<p class="mt-2 text-sm text-[#1c2d52]/80">{$_(currentStep.descriptionKey)}</p>
 					</div>
 
 					<div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-[#6b7ba7]">
-						<span>Theme:</span>
+						<span>{$_(pageContent.sections.ui.themeLabelKey)}</span>
 						<div class="inline-flex rounded-full border border-[#d7e0f5] bg-[#f5f7fb] p-1">
 							<button
 								type="button"
@@ -535,7 +589,7 @@ function handleDemoChange(
 								}`}
 								onclick={() => setTheme('dark')}
 							>
-								Dark
+								{$_(pageContent.sections.ui.themeOptions.darkKey)}
 							</button>
 							<button
 								type="button"
@@ -546,7 +600,7 @@ function handleDemoChange(
 								}`}
 								onclick={() => setTheme('light')}
 							>
-								Light
+								{$_(pageContent.sections.ui.themeOptions.lightKey)}
 							</button>
 						</div>
 					</div>
@@ -567,9 +621,11 @@ function handleDemoChange(
 					<span class="flex flex-1"></span>
 					{#if walkthroughStep === 1}
 						<div class="rounded-2xl bg-[#f5f7fb] p-4 text-sm text-[#1c2d52]">
-							<p class="text-sm font-semibold text-[#0b1730]">Status indicator states</p>
+							<p class="text-sm font-semibold text-[#0b1730]">
+								{$_(pageContent.sections.ui.statusCard.titleKey)}
+							</p>
 							<p class="mt-1 text-xs text-[#6b7ba7]">
-								Click a pill or tap the badge on the demo card to see each network state.
+								{$_(pageContent.sections.ui.statusCard.helperKey)}
 							</p>
 							<div class="mt-3 flex flex-wrap gap-2">
 								{#each Object.keys(statusMeta) as key}
@@ -599,22 +655,26 @@ function handleDemoChange(
 						</div>
 					{:else if walkthroughStep === 2}
 						<div class="rounded-2xl bg-[#f5f7fb] p-4 shadow-inner shadow-white/40">
-							<p class="text-sm font-semibold text-[#0b1730]">Current temperature</p>
+							<p class="text-sm font-semibold text-[#0b1730]">
+								{$_(pageContent.sections.ui.temperatureCard.titleKey)}
+							</p>
 							<p class="text-3xl font-bold text-[#0b1730]">
 								{demoState.primaryValue.toFixed(2)}°C
 							</p>
 							<p class="text-xs text-[#6b7ba7]">
-								Click the thermometer on the demo card to step through recent samples.
+								{$_(pageContent.sections.ui.temperatureCard.helperKey)}
 							</p>
 						</div>
 					{:else if walkthroughStep === 3}
 						<div class="rounded-2xl bg-[#f5f7fb] p-4 shadow-inner shadow-white/40">
-							<p class="text-sm font-semibold text-[#0b1730]">Current humidity</p>
+							<p class="text-sm font-semibold text-[#0b1730]">
+								{$_(pageContent.sections.ui.humidityCard.titleKey)}
+							</p>
 							<p class="text-3xl font-bold text-[#0b1730]">
 								{demoState.secondaryValue.toFixed(2)}%
 							</p>
 							<p class="text-xs text-[#6b7ba7]">
-								Tap the droplet to watch relative humidity arrive with every packet.
+								{$_(pageContent.sections.ui.humidityCard.helperKey)}
 							</p>
 						</div>
 					{/if}
@@ -651,7 +711,7 @@ function handleDemoChange(
 							disabled={walkthroughStep === 0}
 						>
 							<span aria-hidden="true">←</span>
-							Back
+							{$_(pageContent.sections.ui.controls.backKey)}
 						</button>
 						<button
 							type="button"
@@ -659,7 +719,7 @@ function handleDemoChange(
 							onclick={nextStep}
 							disabled={walkthroughStep === walkthroughSteps.length - 1}
 						>
-							Next
+							{$_(pageContent.sections.ui.controls.nextKey)}
 							<span aria-hidden="true">→</span>
 						</button>
 					</div>
@@ -671,11 +731,14 @@ function handleDemoChange(
 
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
-		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">How we deploy</p>
-		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">Proven rollout workflow</h2>
+		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
+			{$_(pageContent.sections.deployment.eyebrowKey)}
+		</p>
+		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
+			{$_(pageContent.sections.deployment.headlineKey)}
+		</h2>
 		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">
-			Our hybrid deployment model keeps install timelines short while ensuring every stakeholder has
-			the training, telemetry, and reporting they need to succeed.
+			{$_(pageContent.sections.deployment.bodyKey)}
 		</p>
 		<div class="mt-10 grid gap-8 md:grid-cols-4">
 			{#each deploymentWorkflow as step (step.titleKey)}
@@ -701,25 +764,24 @@ function handleDemoChange(
 	></div>
 	<div class="relative mx-auto w-full max-w-5xl px-4 text-center">
 		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-			See CW Air TH in action
+			{$_(pageContent.sections.closing.eyebrowKey)}
 		</p>
-		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">Schedule a walkthrough or start a pilot</h2>
-		<p class="mt-4 text-base text-white/80">
-			Connect with CropWatch<sup><small>®</small></sup> specialists to map out sensor placement, gateways,
-			and analytics that keep your environments compliant and efficient.
-		</p>
+		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
+			{$_(pageContent.sections.closing.headlineKey)}
+		</h2>
+		<p class="mt-4 text-base text-white/80">{@html $_(pageContent.sections.closing.bodyKey)}</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a
 				href="/contact"
 				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 			>
-				Plan my deployment
+				{$_(pageContent.sections.closing.primaryCtaKey)}
 			</a>
 			<a
 				href="/case-studies"
 				class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 			>
-				Explore customer results
+				{$_(pageContent.sections.closing.secondaryCtaKey)}
 			</a>
 		</div>
 	</div>
