@@ -1,46 +1,63 @@
 <script lang="ts">
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import MaterialIcon from './MaterialIcon.svelte';
-	import { _, locale, locales } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 	let openMenu = $state<string | null>(null);
 
 	interface NavItem {
 		id: string;
-		label: string;
+		labelKey: string;
 		href?: string;
-		children?: { label: string; href: string; icon?: string }[];
+		children?: { labelKey: string; href: string; icon?: string; ariaKey?: string }[];
 	}
 
 	const navItems: NavItem[] = [
-		{ id: 'home', label: 'Home', href: '/' },
-		// {
-		// 	id: 'solutions',
-		// 	label: 'Solutions',
-		// 	children: [
-		// 		{ label: 'Manufacturing', href: '/solutions/manufacturing' },
-		// 		{ label: 'Logistics', href: '/solutions/logistics' },
-		// 		{ label: 'Agriculture', href: '/solutions/agriculture' },
-		// 		{ label: 'Energy', href: '/solutions/energy' }
-		// 	]
-		// },
+		{ id: 'home', labelKey: 'header.navigation.home', href: '/' },
 		{
 			id: 'products',
-			label: 'Products',
-			children: [{ label: 'Temperature/Humidity Sensor (CW-AIR-TH)', href: '/products/cw-air-th' }]
+			labelKey: 'header.navigation.products',
+			children: [
+				{
+					labelKey: 'header.navigation.products_sensor',
+					href: '/products/cw-air-th'
+				}
+			]
 		},
-		{ id: 'case-studies', label: 'Case Studies', href: '/case-studies' },
-		{ id: 'about', label: 'About', href: '/about' },
-		{ id: 'contact', label: 'Contact', href: '/contact' }
+		{ id: 'case-studies', labelKey: 'header.navigation.case_studies', href: '/case-studies' },
+		{ id: 'about', labelKey: 'header.navigation.about', href: '/about' },
+		{ id: 'contact', labelKey: 'header.navigation.contact', href: '/contact' }
+	] as const;
+
+	const topLinks = [
+		{ href: '/contact', labelKey: 'common.actions.contact' },
+		{ href: '/support', labelKey: 'common.actions.support' }
 	] as const;
 
 	const utilityLinks = [
-		{ label: 'UI APP', href: 'https://app.cropwatch.io/', icon: 'exit_to_app' },
 		{
-			label: 'System Status',
+			labelKey: 'header.utility.ui_app',
+			href: 'https://app.cropwatch.io/',
+			icon: 'exit_to_app',
+			ariaKey: 'header.utility.ui_app_icon_aria'
+		},
+		{
+			labelKey: 'header.utility.system_status',
 			icon: 'monitor_heart',
-			href: 'https://stats.uptimerobot.com/1Z6H85HuHq'
+			href: 'https://stats.uptimerobot.com/1Z6H85HuHq',
+			ariaKey: 'header.utility.system_status_icon_aria'
 		}
 	] as const;
+
+	const LANGUAGE_CODES = {
+		ENGLISH: 'en',
+		JAPANESE: 'ja'
+	} as const;
+
+	const KEYBOARD_KEYS = {
+		ESCAPE: 'Escape',
+		SPACE: ' ',
+		ENTER: 'Enter'
+	} as const;
 
 	function toggleMenu(id: string) {
 		openMenu = openMenu === id ? null : id;
@@ -58,7 +75,7 @@
 		};
 
 		const handleKeydown = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') {
+			if (event.key === KEYBOARD_KEYS.ESCAPE) {
 				closeMenu();
 			}
 		};
@@ -79,20 +96,32 @@
 <header>
 	<div class="mx-auto flex flex-row items-center justify-between bg-[#f2a5168f] px-4 py-2 text-sm">
 		<div class="flex gap-2 py-3 text-sm font-semibold text-[#11213c]">
-			<span>Welcome to CropWatch</span>
+			<span>{$_('header.topbar.welcome')}</span>
 			<span>|</span>
-			<span>Global Site</span>
+			<span>{$_('header.topbar.global_site')}</span>
 			<!-- <span class="flex flex-1"></span> -->
 		</div>
 		<div class="flex gap-4">
-			<a href="/contact" class="transition-colors hover:text-blue-600">Contact</a>
-			<a href="/support" class="transition-colors hover:text-blue-600">Support</a>
-			<a onclick={() => locale.set('en')} class="transition-colors hover:text-blue-600">🇺🇸</a>
-			<a onclick={() => locale.set('ja')} class="transition-colors hover:text-blue-600">🇯🇵</a>
-			
+			{#each topLinks as link (link.href)}
+				<a href={link.href} class="transition-colors hover:text-blue-600">{$_(link.labelKey)}</a>
+			{/each}
+			<button
+				aria-roledescription={$_('header.language.switch_to_english_aria')}
+				onclick={() => locale.set(LANGUAGE_CODES.ENGLISH)}
+				class="inline-flex items-center justify-center text-base transition-transform transition-colors hover:scale-125 hover:text-blue-600"
+			>
+				{$_('header.language.english_icon')}
+			</button>
+			<button
+				aria-roledescription={$_('header.language.switch_to_japanese_aria')}
+				onclick={() => locale.set(LANGUAGE_CODES.JAPANESE)}
+				class="inline-flex items-center justify-center text-base transition-transform transition-colors hover:scale-125 hover:text-blue-600"
+			>
+				{$_('header.language.japanese_icon')}
+			</button>
 		</div>
 	</div>
-
+	
 	<div
 		class="bg-gradient-to-b from-[#2f5387] to-[#1f3b64] py-4 text-white shadow-[0_2px_4px_rgba(0,0,0,0.15)]"
 	>
@@ -100,17 +129,15 @@
 			<a
 				class="flex min-w-[220px] items-center gap-4"
 				href="https://cropwatch.io/"
-				aria-label="CropWatch home"
+				aria-label={$_('header.brand.home_aria')}
 			>
 				<picture class="h-14 w-14 overflow-hidden p-2">
 					<source srcset={logo} type="image/svg+xml" />
-					<img src={logo} alt="CropWatch logo" class="h-full w-full object-contain" />
+					<img src={logo} alt={$_('header.brand.logo_alt')} class="h-full w-full object-contain" />
 				</picture>
 				<div class="flex flex-col">
-					<span class="text-lg font-semibold tracking-wide">CropWatch LLC</span>
-					<span class="text-xs text-white/80 uppercase"
-						>Delivering Quality &amp; ROI Since 2019</span
-					>
+					<span class="text-lg font-semibold tracking-wide">{$_('header.brand.name')}</span>
+					<span class="text-xs text-white/80 uppercase">{$_('header.brand.tagline')}</span>
 				</div>
 			</a>
 			<div class="flex flex-1 items-center justify-end gap-6">
@@ -122,7 +149,7 @@
 							variant="rounded"
 							size={18}
 							class="inline-block align-middle"
-							ariaLabel="Location icon"
+							ariaLabel={$_('header.brand.phone_icon_aria')}
 						/>
 					</span>
 					<a href="tel:+818042843390" class="hover:text-white">080-4284-3390</a>
@@ -131,19 +158,19 @@
 					class="flex w-full max-w-xs items-center overflow-hidden rounded-full border border-white/30 bg-white/10 px-3 py-1 text-sm transition focus-within:border-white focus-within:bg-white/20"
 					role="search"
 				>
-					<label class="sr-only" for="header-search">Search CropWatch</label>
+					<label class="sr-only" for="header-search">{$_('header.search.label')}</label>
 					<input
 						id="header-search"
 						class="w-full border-none bg-transparent text-white placeholder:text-white/70 focus:outline-none"
 						type="search"
 						name="q"
-						placeholder="Search our site"
+						placeholder={$_('header.search.placeholder')}
 						autocomplete="off"
 					/>
 					<button
 						type="submit"
 						class="ml-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white transition hover:bg-white/40"
-						aria-label="Search"
+						aria-label={$_('header.search.submit_aria')}
 					>
 						<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 							<path
@@ -174,17 +201,17 @@
 								aria-expanded={openMenu === item.id}
 								onclick={() => toggleMenu(item.id)}
 								onkeydown={(event) => {
-									if (event.key === 'Escape') {
+									if (event.key === KEYBOARD_KEYS.ESCAPE) {
 										closeMenu();
 									}
 
-									if (event.key === ' ' || event.key === 'Enter') {
+									if (event.key === KEYBOARD_KEYS.SPACE || event.key === KEYBOARD_KEYS.ENTER) {
 										event.preventDefault();
 										toggleMenu(item.id);
 									}
 								}}
 							>
-								<span>{item.label}</span>
+								<span>{$_(item.labelKey)}</span>
 								<svg
 									class={`h-4 w-4 transition-transform ${openMenu === item.id ? 'rotate-180' : ''}`}
 									viewBox="0 0 20 20"
@@ -211,7 +238,7 @@
 											role="menuitem"
 											onclick={closeMenu}
 										>
-											{child.label}
+											{$_(child.labelKey)}
 										</a>
 									</li>
 								{/each}
@@ -221,7 +248,7 @@
 								class="rounded px-2 py-1 font-medium transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
 								href={item.href}
 							>
-								{item.label}
+								{$_(item.labelKey)}
 							</a>
 						{/if}
 					</li>
@@ -242,10 +269,10 @@
 									variant="rounded"
 									size={16}
 									class="mr-1 inline-block align-middle"
-									ariaLabel={link.label + ' icon'}
+									ariaLabel={$_(link.ariaKey)}
 								/>
 							{/if}
-							{link.label}
+							{$_(link.labelKey)}
 						</a>
 					</li>
 				{/each}

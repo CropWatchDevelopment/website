@@ -1,57 +1,76 @@
 <script lang="ts">
+    import { _ } from 'svelte-i18n';
     import gatewayImage from '$lib/images/slider-images/gateway_header-1280.webp'
     import referImage from '$lib/images/slider-images/refer_header-1280.webp';
     import liveStockImage from '$lib/images/slider-images/livestock_header-1024.webp';
     type TextSide = 'left' | 'right';
 
-    type Slide = {
-        id?: string;
+    type SlideText = {
+        badgeKey?: string;
         badge?: string;
-        title: string;
-        body: string;
-        cta?: { label: string; href: string };
-        image: { src: string; alt: string };
+        titleKey?: string;
+        title?: string;
+        bodyKey?: string;
+        body?: string;
+    };
+
+    type SlideCTA = {
+        labelKey?: string;
+        label?: string;
+        href: string;
+    };
+
+    type SlideImage = {
+        src: string;
+        altKey?: string;
+        alt?: string;
+    };
+
+    type Slide = SlideText & {
+        id?: string;
+        cta?: SlideCTA;
+        image: SlideImage;
         textSide?: TextSide;
     };
 
-    const DEFAULT_SLIDES = [
+    const DEFAULT_SLIDES: Slide[] = [
         {
             id: 'industry-ready',
-            badge: '🏭 Industry-Ready IoT',
-            title: 'Verify Everything, All The Time',
-            body: 'Industrial-grade dual-sensor hardware built to ensure data integrity regardless of your environment, from freezers to factory floors.',
-            cta: { label: 'Talk To An IoT Specialist', href: '/contact' },
+            badgeKey: 'slider.slides.industry_ready.badge',
+            titleKey: 'slider.slides.industry_ready.title',
+            bodyKey: 'slider.slides.industry_ready.body',
+            cta: { labelKey: 'slider.slides.industry_ready.cta', href: '/contact' },
             image: {
                 src: gatewayImage,
-                alt: 'Gateway monitoring hardware inside a processing facility'
+                altKey: 'slider.slides.industry_ready.image_alt'
             },
             textSide: 'right'
         },
         {
             id: 'battery-life',
-            badge: '🔋 Battery Life',
-            title: '10+ Years On A Single Battery',
-            body: 'Sleep-cycle optimised firmware keeps your data flowing every 10 minutes without the surprise downtime. Field replaceable sensor modules extend your ROI even further.',
-            cta: { label: 'See Power Charts', href: '/downloads/power-charts' },
+            badgeKey: 'slider.slides.battery_life.badge',
+            titleKey: 'slider.slides.battery_life.title',
+            bodyKey: 'slider.slides.battery_life.body',
+            cta: { labelKey: 'slider.slides.battery_life.cta', href: '/downloads/power-charts' },
             image: {
                 src: referImage,
-                alt: 'CropWatch sensor hardware close-up'
+                altKey: 'slider.slides.battery_life.image_alt'
             },
             textSide: 'right'
         },
         {
             id: 'wireless-signal',
-            badge: '📡 Strong Wireless Signal',
-            title: 'Saves time and money',
-            body: 'Let LoRaWAN® do the heavy lifting with long-range, get readings from anywhere, and cut down on costly commute times for manual checks.',
-            cta: { label: 'Learn About LoRaWAN®', href: '/technology/lorawan' },
+            badgeKey: 'slider.slides.wireless_signal.badge',
+            titleKey: 'slider.slides.wireless_signal.title',
+            bodyKey: 'slider.slides.wireless_signal.body',
+            cta: { labelKey: 'slider.slides.wireless_signal.cta', href: '/technology/lorawan' },
             image: {
                 src: liveStockImage,
-                alt: 'Technician configuring a LoRaWAN gateway'
+                altKey: 'slider.slides.wireless_signal.image_alt'
             },
             textSide: 'left'
         }
-    ] satisfies Slide[];
+    ];
 
 type Props = {
         slides?: Slide[];
@@ -141,13 +160,13 @@ type Props = {
             class="flex flex-col"
             role="group"
             aria-roledescription="carousel"
-            aria-label="CropWatch highlights"
+            aria-label={$_('slider.aria.group_label')}
         >
             {#if activeSlide}
                 <div class="relative overflow-hidden rounded-b-3xl shadow-2xl">
                     <img
                         src={activeSlide.image.src}
-                        alt={activeSlide.image.alt}
+                        alt={activeSlide.image.altKey ? $_(activeSlide.image.altKey) : activeSlide.image.alt}
                         class="absolute inset-0 h-full w-full object-cover"
                     />
                     <div class="absolute inset-0 bg-[linear-gradient(120deg,rgba(17,33,60,0.75)_0%,rgba(17,33,60,0.25)_45%,rgba(17,33,60,0.65)_100%)]"></div>
@@ -158,7 +177,7 @@ type Props = {
                                 class="absolute left-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/10 text-lg text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white md:flex"
                                 onclick={previousSlide}
                                 onkeydown={handleArrowKey}
-                                aria-label="Previous slide"
+                                aria-label={$_('slider.controls.previous')}
                             >
                                 ‹
                             </button>
@@ -167,36 +186,54 @@ type Props = {
                                 class="absolute right-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/10 text-lg text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white md:flex"
                                 onclick={nextSlide}
                                 onkeydown={handleArrowKey}
-                                aria-label="Next slide"
+                                aria-label={$_('slider.controls.next')}
                             >
                                 ›
                             </button>
                         {/if}
                         <div class={`relative max-w-xl rounded-3xl bg-[#0c2b52]/85 px-6 py-6 text-left text-white shadow-xl backdrop-blur ${activeSlide.textSide === 'right' ? 'md:ml-auto md:text-right' : 'md:mr-auto md:text-left'}`}>
-                            {#if activeSlide.badge}
+                            {#if activeSlide.badgeKey || activeSlide.badge}
                                 <p class="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
-                                    <span>{activeSlide.badge}</span>
+                                    <span>
+                                        {#if activeSlide.badgeKey}
+                                            {$_(activeSlide.badgeKey)}
+                                        {:else if activeSlide.badge}
+                                            {activeSlide.badge}
+                                        {/if}
+                                    </span>
                                 </p>
                             {/if}
                             <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
-                                {activeSlide.title}
+                                {#if activeSlide.titleKey}
+                                    {$_(activeSlide.titleKey)}
+                                {:else}
+                                    {activeSlide.title}
+                                {/if}
                             </h2>
                             <p class="mt-3 text-base text-white/85 md:text-lg">
-                                {activeSlide.body}
+                                {#if activeSlide.bodyKey}
+                                    {$_(activeSlide.bodyKey)}
+                                {:else}
+                                    {activeSlide.body}
+                                {/if}
                             </p>
                             {#if activeSlide.cta}
                                 <a
                                     href={activeSlide.cta.href}
                                     class="mt-6 inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-5 py-2 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                                 >
-                                    {activeSlide.cta.label}
+                                    {#if activeSlide.cta.labelKey}
+                                        {$_(activeSlide.cta.labelKey)}
+                                    {:else}
+                                        {activeSlide.cta.label}
+                                    {/if}
                                 </a>
                             {/if}
                         </div>
                     </div>
                 </div>
             {:else}
-                <p class="text-center text-white/70">No slides configured.</p>
+                <p class="text-center text-white/70">{$_('slider.fallback.no_slides')}</p>
             {/if}
         </div>
     </div>

@@ -3,103 +3,154 @@
 	import Slider from '$lib/components/Slider.svelte';
 	import { _ } from 'svelte-i18n';
 
-	const proofPoints = [
+	type ProofPoint = {
+		id: string;
+		labelKey: string;
+		headlineKey: string;
+		bulletKeys: string[];
+		link?: { labelKey: string; href: string };
+	};
+
+	const proofPoints: ProofPoint[] = [
 		{
-			title: 'Battery Life That Outlasts Downtime',
-			headline: '10+ year runtime, even in 24/7 facilities',
-			bullets: [
-				'Send telemetry every 10 minutes without compromising uptime',
-				'Field-swappable dual-sensors & cross-validation to reduce downtime',
-				'Remote device management to ensure system health'
+			id: 'battery-life',
+			labelKey: 'home.proof_points.battery_life.eyebrow',
+			headlineKey: 'home.proof_points.battery_life.headline',
+			bulletKeys: [
+				'home.proof_points.battery_life.bullets.0',
+				'home.proof_points.battery_life.bullets.1',
+				'home.proof_points.battery_life.bullets.2'
 			],
-			link: { label: 'Verify our lifecycle modeling', href: '/resources/battery-lifecycle' }
+			link: { labelKey: 'home.proof_points.battery_life.cta', href: '/resources/battery-lifecycle' }
 		},
 		{
-			title: 'Measurement Confidence',
-			headline: 'ISO17025 alignment, dual sensor cross validation',
-			bullets: [
-				'Dual-sensor design with tie-breaker logic for each reading',
-				'Serialized calibration with cloud-based certificates',
-				'Automated drift detection keeps compliance on track',
-				'Individual NIST-traceable certificates for each device'
+			id: 'measurement-confidence',
+			labelKey: 'home.proof_points.measurement_confidence.eyebrow',
+			headlineKey: 'home.proof_points.measurement_confidence.headline',
+			bulletKeys: [
+				'home.proof_points.measurement_confidence.bullets.0',
+				'home.proof_points.measurement_confidence.bullets.1',
+				'home.proof_points.measurement_confidence.bullets.2',
+				'home.proof_points.measurement_confidence.bullets.3'
 			],
-			link: { label: 'Explore our quality program', href: '/quality' }
+			link: { labelKey: 'home.proof_points.measurement_confidence.cta', href: '/quality' }
 		},
 		{
-			title: 'Connectivity Built For Harsh Sites',
-			headline: 'LoRaWAN® penetration without blind spots',
-			bullets: [
-				'Tuned gateways engineered for dense, industrial environments',
-				'Buffered storage ensures zero data loss during outages',
-				'Private network options when cellular coverage fails'
+			id: 'connectivity',
+			labelKey: 'home.proof_points.connectivity.eyebrow',
+			headlineKey: 'home.proof_points.connectivity.headline',
+			bulletKeys: [
+				'home.proof_points.connectivity.bullets.0',
+				'home.proof_points.connectivity.bullets.1',
+				'home.proof_points.connectivity.bullets.2'
 			],
-			link: { label: 'See the network blueprint', href: '/technology/network' }
+			link: { labelKey: 'home.proof_points.connectivity.cta', href: '/technology/network' }
 		}
 	];
 
-	const discoveryQuestions = [
-		'Can your current sensors run a decade on one charge?',
-		'Do you receive actionable data at the cadence operations expect?',
-		'How quickly can you prove readings when compliance asks?',
-		'Are concrete, steel, and freezers still causing blind spots?'
-	];
+	const heroContent = {
+		eyebrowKey: 'home.hero.eyebrow',
+		headlineKey: 'home.hero.headline_html',
+		bodyKey: 'home.hero.body_html',
+		questions: [
+			'home.hero.questions.0',
+			'home.hero.questions.1',
+			'home.hero.questions.2',
+			'home.hero.questions.3'
+		],
+		primaryCtaKey: 'home.hero.primary_cta',
+		secondaryCtaKey: 'home.hero.secondary_cta',
+		sidebar: {
+			titleKey: 'home.hero.sidebar.title',
+			items: [
+				{
+					termKey: 'home.hero.sidebar.items.deployment.term',
+					valueKey: 'home.hero.sidebar.items.deployment.value_html'
+				},
+				{
+					termKey: 'home.hero.sidebar.items.visibility.term',
+					valueKey: 'home.hero.sidebar.items.visibility.value_html'
+				},
+				{
+					termKey: 'home.hero.sidebar.items.compliance.term',
+					valueKey: 'home.hero.sidebar.items.compliance.value_html'
+				}
+			]
+		}
+	} as const;
 
 	const industriesServed = [
-		{ icon: '🧊', label: 'Cold chain distribution' },
-		{ icon: '🐔', label: 'Protein & livestock operations' },
-		{ icon: '🏨', label: 'Hospitality & venues' },
-		{ icon: '🏭', label: 'Manufacturing & processing' },
-		{ icon: '📦', label: 'Storage and Warehousing' },
-		{ icon: '🌿', label: 'Controlled agriculture' }
-	];
+		{ icon: '🧊', labelKey: 'home.industries.cards.cold_chain.label', descriptionKey: 'home.industries.cards.cold_chain.description' },
+		{ icon: '🐔', labelKey: 'home.industries.cards.protein.label', descriptionKey: 'home.industries.cards.protein.description' },
+		{ icon: '🏨', labelKey: 'home.industries.cards.hospitality.label', descriptionKey: 'home.industries.cards.hospitality.description' },
+		{ icon: '🏭', labelKey: 'home.industries.cards.manufacturing.label', descriptionKey: 'home.industries.cards.manufacturing.description' },
+		{ icon: '📦', labelKey: 'home.industries.cards.storage.label', descriptionKey: 'home.industries.cards.storage.description' },
+		{ icon: '🌿', labelKey: 'home.industries.cards.agriculture.label', descriptionKey: 'home.industries.cards.agriculture.description' }
+	] as const;
 
 	const pricingMatrix = [
 		{
-			title: 'Sensors & Edge Devices',
-			lead: 'Deploy scalable coverage with zero compromise on accuracy.',
+			titleKey: 'home.pricing.columns.sensors.title',
+			leadKey: 'home.pricing.columns.sensors.lead',
 			items: [
-				{ label: '0-10 devices', value: '$10/device/mo' },
-				{ label: '11-99 devices', value: '$8/device/mo' },
-				{ label: '100+ devices', value: 'Contact Us', href: '/contact' },
-				{ label: 'Calibration', value: 'Included, NIST-traceable' }
+				{ labelKey: 'home.pricing.columns.sensors.items.devices_0_10.label', valueKey: 'home.pricing.columns.sensors.items.devices_0_10.value' },
+				{ labelKey: 'home.pricing.columns.sensors.items.devices_11_99.label', valueKey: 'home.pricing.columns.sensors.items.devices_11_99.value' },
+				{ labelKey: 'home.pricing.columns.sensors.items.devices_100_plus.label', valueKey: 'home.pricing.columns.sensors.items.devices_100_plus.value', href: '/contact' },
+				{ labelKey: 'home.pricing.columns.sensors.items.calibration.label', valueKey: 'home.pricing.columns.sensors.items.calibration.value' }
 			]
 		},
 		{
-			title: 'Devices & Gateways',
-			lead: 'Indoor, outdoor, and carrier-grade LoRaWAN® options.',
+			titleKey: 'home.pricing.columns.devices.title',
+			leadKey: 'home.pricing.columns.devices.lead',
 			items: [
-				{ label: 'Temperature/Humidity sensor', value: '$199' },
-				{ label: 'Automation Relay Module', value: '$179' },
-				{ label: 'Indoor edge gateway', value: '$549' },
-				{ label: 'Industrial carrier-grade', value: '$1,899' },
-				{ label: 'Site RF design', value: 'Bundled with deployment' }
+				{ labelKey: 'home.pricing.columns.devices.items.sensor.label', valueKey: 'home.pricing.columns.devices.items.sensor.value' },
+				{ labelKey: 'home.pricing.columns.devices.items.relay.label', valueKey: 'home.pricing.columns.devices.items.relay.value' },
+				{ labelKey: 'home.pricing.columns.devices.items.indoor_gateway.label', valueKey: 'home.pricing.columns.devices.items.indoor_gateway.value' },
+				{ labelKey: 'home.pricing.columns.devices.items.carrier_gateway.label', valueKey: 'home.pricing.columns.devices.items.carrier_gateway.value' },
+				{ labelKey: 'home.pricing.columns.devices.items.rf_design.label', valueKey: 'home.pricing.columns.devices.items.rf_design.value' }
 			]
 		},
 		{
-			title: 'Software & Insights',
-			lead: 'Unified dashboards, unlimited alerts, always-on support.',
+			titleKey: 'home.pricing.columns.software.title',
+			leadKey: 'home.pricing.columns.software.lead',
 			items: [
-				{ label: 'Data retention', value: '24 months rolling' },
-				{ label: 'User licenses', value: 'Unlimited' },
-				{ label: 'Onboarding & success', value: 'Included' }
+				{ labelKey: 'home.pricing.columns.software.items.retention.label', valueKey: 'home.pricing.columns.software.items.retention.value' },
+				{ labelKey: 'home.pricing.columns.software.items.licences.label', valueKey: 'home.pricing.columns.software.items.licences.value' },
+				{ labelKey: 'home.pricing.columns.software.items.onboarding.label', valueKey: 'home.pricing.columns.software.items.onboarding.value' }
 			]
 		}
-	];
+	] as const;
+
+	const pricingSection = {
+		eyebrowKey: 'home.pricing.eyebrow',
+		headlineKey: 'home.pricing.headline',
+		introKey: 'home.pricing.intro',
+		ctaKey: 'home.pricing.cta'
+	} as const;
+
+	const industriesSection = {
+		eyebrowKey: 'home.industries.eyebrow',
+		headlineKey: 'home.industries.headline',
+		introKey: 'home.industries.intro'
+	} as const;
+
+	const closingCtas = {
+		eyebrowKey: 'home.closing.eyebrow',
+		headlineKey: 'home.closing.headline',
+		bodyKey: 'home.closing.body',
+		primaryKey: 'home.closing.primary_cta',
+		secondaryKey: 'home.closing.secondary_cta'
+	} as const;
 </script>
 
 <svelte:head>
-	<title>CropWatch™ | Industrial IoT That Pays For Itself</title>
-	<meta
-		name="description"
-		content="Rugged industrial IoT for cold chain, manufacturing, and hospitality. Deploy long-range sensors, LoRaWAN gateways, and analytics trusted by operations leaders."
-	/>
+	<title>{$_('home.meta.title')}</title>
+	<meta name="description" content={$_('home.meta.description')} />
 </svelte:head>
 
 <section id="slider" class="bg-[#11213c]">
 	<Slider />
 </section>
-
-{$_('hello')}
 
 <section class="relative overflow-hidden bg-white py-20">
 	<div
@@ -110,25 +161,21 @@
 		<div class="grid gap-12 md:grid-cols-[1.35fr_1fr] md:items-center">
 			<div class="space-y-6">
 				<p class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-					Industrial IoT That Pays For Itself
+					{$_(heroContent.eyebrowKey)}
 				</p>
 				<h1 class="text-4xl font-semibold tracking-tight text-[#0b1730] md:text-5xl">
-					What makes CropWatch<sup><small>™</small></sup> different?
+					{@html $_(heroContent.headlineKey)}
 				</h1>
 				<p class="text-lg leading-relaxed text-[#15284a]/80">
-					CropWatch<sup><small>™</small></sup> pairs ruggedized sensors with LoRaWAN<sup><small>®</small></sup> networks to provide
-					unparalleled device reliability and data accuracy in the most challenging industrial environments.
-					Our devices are not just built to last—they're engineered to deliver measurable ROI from day
-					one. Realize cost savings through reduced manual checks, faster compliance audits, and devices
-					that are engineered to be maintaince-free and long-lasting.
+					{@html $_(heroContent.bodyKey)}
 				</p>
 				<div
 					class="grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-sm text-[#1c2d52] md:grid-cols-2"
 				>
-					{#each discoveryQuestions as question}
+					{#each heroContent.questions as questionKey}
 						<div class="flex items-start gap-3">
 							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-							<p>{question}</p>
+							<p>{$_(questionKey)}</p>
 						</div>
 					{/each}
 				</div>
@@ -137,32 +184,26 @@
 						href="/contact"
 						class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
 					>
-						Schedule a facility walkthrough
+						{$_(heroContent.primaryCtaKey)}
 					</a>
 					<a
 						href="/case-studies"
 						class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-6 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
 					>
-						Review customer outcomes
+						{$_(heroContent.secondaryCtaKey)}
 					</a>
 				</div>
 			</div>
 			<div class="rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-lg shadow-[#0b1730]/5">
-				<h2 class="text-lg font-semibold text-[#0b1730]">Program ROI snapshot</h2>
+				<h2 class="text-lg font-semibold text-[#0b1730]">{$_(heroContent.sidebar.titleKey)}</h2>
 				<hr class="my-4 border-[#d7e0f5]" />
 				<dl class="space-y-4 text-sm text-[#1c2d52]">
-					<div class="flex items-start justify-between gap-6">
-						<dt class="font-medium">Average deployment time</dt>
-						<dd class="text-[#2f5387]"><strong>14 days</strong> from site survey</dd>
-					</div>
-					<div class="flex items-start justify-between gap-6">
-						<dt class="font-medium">Visibility uplift</dt>
-						<dd class="text-[#2f5387]"><strong>92%</strong> fewer manual checks</dd>
-					</div>
-					<div class="flex items-start justify-between gap-6">
-						<dt class="font-medium">Compliance wins</dt>
-						<dd class="text-[#2f5387]">2x faster audit response</dd>
-					</div>
+					{#each heroContent.sidebar.items as item (item.termKey)}
+						<div class="flex items-start justify-between gap-6">
+							<dt class="font-medium">{$_(item.termKey)}</dt>
+							<dd class="text-[#2f5387]">{@html $_(item.valueKey)}</dd>
+						</div>
+					{/each}
 				</dl>
 			</div>
 		</div>
@@ -170,17 +211,17 @@
 		<section
 			class="grid gap-8 rounded-3xl border border-[#d7e0f5] bg-[#0b1730] px-6 py-10 md:grid-cols-3 md:px-10"
 		>
-			{#each proofPoints as card (card.title)}
+			{#each proofPoints as card (card.id)}
 				<article class="flex flex-col space-y-4 text-white/90">
 					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-						{card.title}
+						{$_(card.labelKey)}
 					</p>
-					<h3 class="text-xl font-semibold text-white">{card.headline}</h3>
+					<h3 class="text-xl font-semibold text-white">{$_(card.headlineKey)}</h3>
 					<ul class="space-y-3 text-sm leading-relaxed">
-						{#each card.bullets as bullet}
+						{#each card.bulletKeys as bulletKey}
 							<li class="flex items-start gap-2">
 								<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-								<span>{bullet}</span>
+								<span>{$_(bulletKey)}</span>
 							</li>
 						{/each}
 					</ul>
@@ -190,7 +231,7 @@
 							class="inline-flex items-center gap-2 text-sm font-semibold text-[#f2a516] transition hover:text-white"
 							href={card.link.href}
 						>
-							{card.link.label}
+							{$_(card.link.labelKey)}
 							<span aria-hidden="true">→</span>
 						</a>
 					{/if}
@@ -204,27 +245,23 @@
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="mb-12 text-center">
 			<p class="text-xs font-semibold tracking-[0.32em] text-[#2f5387] uppercase">
-				Industries Served
+				{$_(industriesSection.eyebrowKey)}
 			</p>
 			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">
-				Where sensors deliver measurable ROI
+				{$_(industriesSection.headlineKey)}
 			</h2>
 			<p class="mt-3 text-base text-[#1c2d52]/80">
-				Our network is trusted by operations teams in heavily regulated, temperature-sensitive, and
-				complex facilities across the globe.
+				{$_(industriesSection.introKey)}
 			</p>
 		</div>
 		<div class="grid gap-6 md:grid-cols-3">
-			{#each industriesServed as industry (industry.label)}
+			{#each industriesServed as industry (industry.labelKey)}
 				<div
 					class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
 				>
 					<div class="text-3xl">{industry.icon}</div>
-					<p class="mt-4 text-base font-semibold text-[#0b1730]">{industry.label}</p>
-					<p class="mt-2 text-sm text-[#1c2d52]/70">
-						Deploy rugged sensors that keep compliance-ready records in even the hardest-to-reach
-						zones.
-					</p>
+					<p class="mt-4 text-base font-semibold text-[#0b1730]">{$_(industry.labelKey)}</p>
+					<p class="mt-2 text-sm text-[#1c2d52]/70">{$_(industry.descriptionKey)}</p>
 				</div>
 			{/each}
 		</div>
@@ -236,14 +273,13 @@
 		<div class="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 			<div>
 				<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-					Investment Snapshot
+					{$_(pricingSection.eyebrowKey)}
 				</p>
 				<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-					Transparent pricing engineered for scale
+					{$_(pricingSection.headlineKey)}
 				</h2>
 				<p class="mt-3 max-w-2xl text-base text-[#1c2d52]/80">
-					Every engagement includes site design, deployment support, and the analytics platform your
-					operators depend on. Pricing flexes with footprint and never penalizes growth.
+					{$_(pricingSection.introKey)}
 				</p>
 			</div>
 			<a
@@ -251,27 +287,27 @@
 				class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-5 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387]"
 			>
 				<MaterialIcon name="concierge" collection="symbols" variant="outlined" />
-				Request a tailored estimate
+				{$_(pricingSection.ctaKey)}
 			</a>
 		</div>
 		<div class="grid gap-6 md:grid-cols-3">
-			{#each pricingMatrix as column (column.title)}
+			{#each pricingMatrix as column (column.titleKey)}
 				<div
 					class="flex h-full flex-col rounded-3xl border border-[#d7e0f5] bg-[#f9fbff] p-7 shadow-sm shadow-[#0b1730]/5"
 				>
-					<h3 class="text-lg font-semibold text-[#0b1730]">{column.title}</h3>
-					<p class="mt-3 text-sm text-[#1c2d52]/75">{column.lead}</p>
+					<h3 class="text-lg font-semibold text-[#0b1730]">{$_(column.titleKey)}</h3>
+					<p class="mt-3 text-sm text-[#1c2d52]/75">{$_(column.leadKey)}</p>
 					<hr class="my-5 border-[#d7e0f5]" />
 					<ul class="space-y-4 text-sm text-[#1c2d52]">
-						{#each column.items as item (item.label)}
+						{#each column.items as item (item.labelKey)}
 							<li class="flex items-start justify-between gap-4">
-								<span class="font-medium">{item.label}</span>
+								<span class="font-medium">{$_(item.labelKey)}</span>
 								{#if item.href}
 									<a class="text-[#2f5387] underline" href={item.href}>
-										{item.value}
+										{$_(item.valueKey)}
 									</a>
 								{:else}
-									<span class="text-[#2f5387]">{item.value}</span>
+									<span class="text-[#2f5387]">{$_(item.valueKey)}</span>
 								{/if}
 							</li>
 						{/each}
@@ -289,27 +325,26 @@
 	></div>
 	<div class="relative mx-auto w-full max-w-5xl px-4 text-center text-white">
 		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-			Ready to Prove ROI?
+			{$_(closingCtas.eyebrowKey)}
 		</p>
 		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
-			Let's chat, and we will show you how CropWatch<sup><small>™</small></sup> can deliver measurable value
+			{@html $_(closingCtas.headlineKey)}
 		</h2>
 		<p class="mt-4 text-base text-white/80">
-			We'll walk your environment, model signal coverage, and produce a business case that leaders
-			can take to the boardroom.
+			{$_(closingCtas.bodyKey)}
 		</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a
 				href="/contact"
 				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 			>
-				Book a strategy session
+				{$_(closingCtas.primaryKey)}
 			</a>
 			<a
 				href="/case-studies"
 				class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 			>
-				Download case studies
+				{$_(closingCtas.secondaryKey)}
 			</a>
 		</div>
 	</div>
