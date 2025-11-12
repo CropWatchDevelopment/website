@@ -31,7 +31,7 @@
 
 	const topLinks = [
 		{ href: '/contact', labelKey: 'common.actions.contact' },
-		{ href: '/support', labelKey: 'common.actions.support' }
+		// { href: '/support', labelKey: 'common.actions.support' }
 	] as const;
 
 	const utilityLinks = [

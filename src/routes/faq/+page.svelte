@@ -170,7 +170,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 			title: 'Power & Sensor Lifecycle',
 			description:
 				'Battery longevity charts, calibration intervals, and replacement SOPs for technicians.',
-			link: { label: 'View lifecycle resources', href: '/resources/battery-lifecycle' }
+			// link: { label: 'View lifecycle resources', href: '/resources/battery-lifecycle' }
 		}
 	];
 

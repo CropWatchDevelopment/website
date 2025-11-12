@@ -1,6 +1,7 @@
 <script lang="ts">
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
 	import Slider from '$lib/components/Slider.svelte';
+	import StandardsBanner from '$lib/components/StandardsBanner.svelte';
 	import { _ } from 'svelte-i18n';
 
 	type ProofPoint = {
@@ -21,7 +22,7 @@
 				'home.proof_points.battery_life.bullets.1',
 				'home.proof_points.battery_life.bullets.2'
 			],
-			link: { labelKey: 'home.proof_points.battery_life.cta', href: '/resources/battery-lifecycle' }
+			// link: { labelKey: 'home.proof_points.battery_life.cta', href: '/resources/battery-lifecycle' }
 		},
 		{
 			id: 'measurement-confidence',
@@ -33,7 +34,7 @@
 				'home.proof_points.measurement_confidence.bullets.2',
 				'home.proof_points.measurement_confidence.bullets.3'
 			],
-			link: { labelKey: 'home.proof_points.measurement_confidence.cta', href: '/quality' }
+			// link: { labelKey: 'home.proof_points.measurement_confidence.cta', href: '/quality' }
 		},
 		{
 			id: 'connectivity',
@@ -44,7 +45,7 @@
 				'home.proof_points.connectivity.bullets.1',
 				'home.proof_points.connectivity.bullets.2'
 			],
-			link: { labelKey: 'home.proof_points.connectivity.cta', href: '/technology/network' }
+			// link: { labelKey: 'home.proof_points.connectivity.cta', href: '/technology/network' }
 		}
 	];
 
@@ -56,7 +57,9 @@
 			'home.hero.questions.0',
 			'home.hero.questions.1',
 			'home.hero.questions.2',
-			'home.hero.questions.3'
+			'home.hero.questions.3',
+			'home.hero.questions.4',
+			'home.hero.questions.5',
 		],
 		primaryCtaKey: 'home.hero.primary_cta',
 		secondaryCtaKey: 'home.hero.secondary_cta',
@@ -150,6 +153,7 @@
 
 <section id="slider" class="bg-[#11213c]">
 	<Slider />
+	<StandardsBanner />
 </section>
 
 <section class="relative overflow-hidden bg-white py-20">
@@ -194,17 +198,49 @@
 					</a>
 				</div>
 			</div>
-			<div class="rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-lg shadow-[#0b1730]/5">
+			<div class="h-full rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-lg shadow-[#0b1730]/5">
 				<h2 class="text-lg font-semibold text-[#0b1730]">{$_(heroContent.sidebar.titleKey)}</h2>
 				<hr class="my-4 border-[#d7e0f5]" />
-				<dl class="space-y-4 text-sm text-[#1c2d52]">
-					{#each heroContent.sidebar.items as item (item.termKey)}
-						<div class="flex items-start justify-between gap-6">
-							<dt class="font-medium">{$_(item.termKey)}</dt>
-							<dd class="text-[#2f5387]">{@html $_(item.valueKey)}</dd>
+				<div class="space-y-6 text-sm text-[#1c2d52]">
+					<div class="grid gap-4 sm:grid-cols-2">
+						<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
+							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">Manual Checks</p>
+							<ul class="mt-4 space-y-3 text-[#1c2d52]/80">
+								<li>Clipboards, spreadsheets, and single daily readings</li>
+								<li>Averages 20 hrs/week across a 10-site network</li>
+								<li>Reactive responses when thresholds are breached</li>
+							</ul>
 						</div>
-					{/each}
-				</dl>
+						<div class="rounded-2xl border border-transparent bg-[#0b1730] p-5 text-white">
+							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#f2a516]">CropWatch Sensors</p>
+							<ul class="mt-4 space-y-3 text-white/80">
+								<li>Continuous wireless data, automated compliance logs</li>
+								<li>Checks cut to 2 hrs/week via exception-based workflows</li>
+								<li>Instant alerts before product loss or safety issues</li>
+							</ul>
+						</div>
+					</div>
+					<div class="grid gap-4 sm:grid-cols-2">
+						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
+							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">Time Saved</p>
+							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">18 hrs/week</p>
+							<p class="mt-2 text-[#1c2d52]/70">Manual logging drops from 20 hrs to just 2 hrs per week, freeing teams for higher-value work.</p>
+						</div>
+						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
+							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">Annual Labor Savings</p>
+							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">≈ $29K</p>
+							<p class="mt-2 text-[#1c2d52]/70">Based on $25/hour labor, automating temperature logs across 10 sites recoups budget for growth.</p>
+						</div>
+					</div>
+					<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
+						<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">Productivity Impact</p>
+						<ul class="mt-3 space-y-3 text-[#1c2d52]/80">
+							<li>Audit-ready reports generated automatically—no more manual data consolidation.</li>
+							<li>Predictive thresholds catch issues hours earlier, preventing waste and recalls.</li>
+							<li>Operations teams redeploy hours to training, expansion, and customer care.</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
