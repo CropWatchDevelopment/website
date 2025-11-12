@@ -162,8 +162,8 @@
 		aria-hidden="true"
 	></div>
 	<div class="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4">
-		<div class="grid gap-12 md:grid-cols-[1.35fr_1fr] md:items-center">
-			<div class="space-y-6">
+		<div class="grid gap-12 md:grid-cols-[1.35fr_1fr] md:items-start">
+			<div class="flex h-full flex-col gap-6">
 				<p class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
 					{$_(heroContent.eyebrowKey)}
 				</p>
@@ -183,7 +183,7 @@
 						</div>
 					{/each}
 				</div>
-				<div class="flex flex-wrap gap-3">
+				<div class="mt-auto flex flex-wrap gap-3">
 					<a
 						href="/contact"
 						class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"

@@ -94,7 +94,7 @@
 </script>
 
 <header>
-	<div class="mx-auto flex flex-row items-center justify-between bg-[#f2a5168f] px-4 py-2 text-sm">
+	<div class="mx-auto flex flex-row items-center justify-between bg-[#e7be728f] px-4 text-sm">
 		<div class="flex gap-2 py-3 text-sm font-semibold text-[#11213c]">
 			<span>{$_('header.topbar.welcome')}</span>
 			<span>|</span>

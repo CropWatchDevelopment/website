@@ -8,7 +8,7 @@
 
 <div class="bg-[#d9e9fb]">
 	<div
-		class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-center gap-10 px-6 py-8 md:justify-between"
+		class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-center gap-10 px-6 py-4 md:justify-between"
 	>
 		<a href="https://ilac.org/about-ilac/">
 			<img src={ilacImage} alt="ILAC-MRA Certified" class="h-20 w-auto flex-shrink-0 md:h-24" />
