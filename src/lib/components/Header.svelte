@@ -136,7 +136,8 @@
 					<img src={logo} alt={$_('header.brand.logo_alt')} class="h-full w-full object-contain" />
 				</picture>
 				<div class="flex flex-col">
-					<span class="text-lg font-semibold tracking-wide">{$_('header.brand.name')}</span>
+					<!-- <span class="text-lg font-semibold tracking-wide">{$_('header.brand.name')}</span> -->
+					 <span class="text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
 					<span class="text-xs text-white/80 uppercase">{$_('header.brand.tagline')}</span>
 				</div>
 			</a>
