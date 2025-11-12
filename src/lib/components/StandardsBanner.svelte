@@ -3,7 +3,6 @@
 	import nistImage from '$lib/images/nist-traceable-web.png';
 	import isoImage from '$lib/images/iso-iec-17025-certified-web.png';
 	import haccp from '$lib/images/HACCP.webp';
-	import { locale } from 'svelte-i18n';
 </script>
 
 <div class="bg-[#d9e9fb]">

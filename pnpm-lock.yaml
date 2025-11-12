@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      svelte-i18n:
-        specifier: ^4.0.1
-        version: 4.0.1(svelte@5.43.2)
     devDependencies:
       '@eslint/compat':
         specifier: ^1.4.0
@@ -84,6 +80,9 @@ importers:
       svelte-check:
         specifier: ^4.3.3
         version: 4.3.3(picomatch@4.0.3)(svelte@5.43.2)(typescript@5.9.3)
+      svelte-i18n:
+        specifier: ^4.0.1
+        version: 4.0.1(svelte@5.43.2)
       tailwindcss:
         specifier: ^4.1.14
         version: 4.1.16
