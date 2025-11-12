@@ -156,7 +156,7 @@
 	<StandardsBanner />
 </section>
 
-<section class="relative overflow-hidden bg-white py-20">
+<section class="relative overflow-hidden bg-white py-10">
 	<div
 		class="absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-[#11213c]/10 to-transparent"
 		aria-hidden="true"
