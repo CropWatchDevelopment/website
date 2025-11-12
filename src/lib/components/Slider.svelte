@@ -81,7 +81,7 @@ type Props = {
 
     let {
         slides = DEFAULT_SLIDES,
-        autoplay = true,
+        autoplay = false,
         interval = 9000,
         loop = true
     } = $props<Props>();
@@ -170,7 +170,7 @@ type Props = {
                         class="absolute inset-0 h-full w-full object-cover"
                     />
                     <div class="absolute inset-0 bg-[linear-gradient(120deg,rgba(17,33,60,0.75)_0%,rgba(17,33,60,0.25)_45%,rgba(17,33,60,0.65)_100%)]"></div>
-                    <div class={`relative flex min-h-[320px] flex-col justify-center gap-6 p-6 md:min-h-[420px] md:p-14 ${activeSlide.textSide === 'right' ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}>
+                    <div class={`relative flex min-h-[320px] flex-col justify-center gap-6 p-6 md:min-h-[420px] md:px-16 md:py-14 ${activeSlide.textSide === 'right' ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}>
                         {#if hasMultipleSlides}
                             <button
                                 type="button"
@@ -191,7 +191,7 @@ type Props = {
                                 ›
                             </button>
                         {/if}
-                        <div class={`relative max-w-xl rounded-3xl bg-[#0c2b52]/85 px-6 py-6 text-left text-white shadow-xl backdrop-blur ${activeSlide.textSide === 'right' ? 'md:ml-auto md:text-right' : 'md:mr-auto md:text-left'}`}>
+                        <div class={`relative max-w-xl rounded-3xl bg-[#0c2b52]/85 px-7 py-7 text-left text-white shadow-xl backdrop-blur ${activeSlide.textSide === 'right' ? 'md:ml-auto md:mr-16 md:text-right' : 'md:ml-16 md:mr-auto md:text-left'}`}>
                             {#if activeSlide.badgeKey || activeSlide.badge}
                                 <p class="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
                                     <span>
@@ -218,16 +218,18 @@ type Props = {
                                 {/if}
                             </p>
                             {#if activeSlide.cta}
-                                <a
-                                    href={activeSlide.cta.href}
-                                    class="mt-6 inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-5 py-2 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                                >
-                                    {#if activeSlide.cta.labelKey}
-                                        {$_(activeSlide.cta.labelKey)}
-                                    {:else}
-                                        {activeSlide.cta.label}
-                                    {/if}
-                                </a>
+                                <div class={`mt-8 flex justify-start ${activeSlide.textSide === 'right' ? 'md:justify-end' : 'md:justify-start'}`}>
+                                    <a
+                                        href={activeSlide.cta.href}
+                                        class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-8 py-3 text-sm font-semibold text-[#11213c] shadow-md transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                    >
+                                        {#if activeSlide.cta.labelKey}
+                                            {$_(activeSlide.cta.labelKey)}
+                                        {:else}
+                                            {activeSlide.cta.label}
+                                        {/if}
+                                    </a>
+                                </div>
                             {/if}
                         </div>
                     </div>
