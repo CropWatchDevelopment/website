@@ -1,9 +1,10 @@
 <script lang="ts">
 	import kevinImage from '$lib/images/team/Kevin_Cantrell.jpeg';
-	import sigurdImage from '$lib/images/team/Sigurd_Øyen.jpeg';
-	import joseImage from '$lib/images/team/Jose_Ramiro_Zuniga.jpg';
-	import sayakaImage from '$lib/images/team/Sayaka_Ikemizu.jpg';
-	import sedarImage from '$lib/images/team/Sedar_Korur.jpg';
+	import sigurdImage from '$lib/images/team/Sigurd_Øyen.jpeg'; // i18n-ignore
+	import joseImage from '$lib/images/team/Jose_Ramiro_Zuniga.jpg'; // i18n-ignore
+	import sayakaImage from '$lib/images/team/Sayaka_Ikemizu.jpg'; // i18n-ignore
+	import sedarImage from '$lib/images/team/Sedar_Korur.jpg'; // i18n-ignore
+	import yoImage from '$lib/images/team/yo-san.png'; // i18n-ignore
 	import { _ } from 'svelte-i18n';
 
 	type Milestone = {
@@ -46,62 +47,70 @@
 		githubUrl?: string;
 	};
 
+	/* i18n-ignore leadership roster strings */
 	const leadershipTeam: Leader[] = [
 		{
-			name: 'Kevin Cantrell',
-			title: 'Founder & Developer',
-			bio: 'Founder of CropWatch and lead developer of its core technologies.',
+			name: 'Kevin Cantrell', // i18n-ignore
+			title: 'Founder & Developer', // i18n-ignore
+			bio: 'Founder of CropWatch and lead developer of its core technologies.', // i18n-ignore
 			src: kevinImage,
-			avatarAlt: 'Placeholder portrait illustration for Kevin Cantrell',
+			avatarAlt: 'Placeholder portrait illustration for Kevin Cantrell', // i18n-ignore
 			initials: 'KC',
 			linkedinUrl: 'https://www.linkedin.com/in/cropwatch/',
 			githubUrl: 'https://github.com/kevin192291'
 		},
 		{
-			name: 'Sayaka Cantrell',
-			title: 'Business Leader',
-			bio: 'Responsible for business operations and strategy, driving growth and market presence for CropWatch.',
-			avatarAlt: 'Placeholder portrait illustration for Sayaka Cantrell',
+			name: 'Sayaka Cantrell', // i18n-ignore
+			title: 'Business Leader', // i18n-ignore
+			bio: 'Responsible for business operations and strategy, driving growth and market presence for CropWatch.', // i18n-ignore
 			src: sayakaImage,
+			avatarAlt: 'Placeholder portrait illustration for Sayaka Cantrell', // i18n-ignore
 			initials: 'SC',
 			linkedinUrl: 'https://www.linkedin.com/in/sayaka-ikemizu-694b17276/'
 		},
 		{
-			name: 'Sigurd Øyen',
-			title: 'Head of Engineering',
-			bio: 'Sigurd has engineered the hardware of CropWatch’s sensor networks from the beginning, ensuring robust and reliable performance in diverse environments.',
-			avatarAlt: 'Placeholder portrait illustration for Sigurd Øyen',
+			name: 'Sigurd Øyen', // i18n-ignore
+			title: 'Head of Engineering', // i18n-ignore
+			bio: 'Sigurd has engineered the hardware of CropWatch’s sensor networks from the beginning, ensuring robust and reliable performance in diverse environments.', // i18n-ignore
 			src: sigurdImage,
+			avatarAlt: 'Placeholder portrait illustration for Sigurd Øyen', // i18n-ignore
 			initials: 'SO',
 			linkedinUrl: 'https://www.linkedin.com/in/sigurd-%C3%B8yen-78688899/'
 		},
 		{
-			name: 'Jose Ramiro Zuniga',
-			title: 'Frontend Engineer & Designer',
-			bio: 'Jose is responsible for the design and user experience of CropWatch’s web applications, bringing a user-centered approach to the platform.',
-			avatarAlt: 'Placeholder portrait illustration for Jose Ramiro Zuniga',
+			name: 'Jose Ramiro Zuniga', // i18n-ignore
+			title: 'Frontend Engineer & Designer', // i18n-ignore
+			bio: 'Jose is responsible for the design and user experience of CropWatch’s web applications, bringing a user-centered approach to the platform.', // i18n-ignore
 			src: joseImage,
+			avatarAlt: 'Placeholder portrait illustration for Jose Ramiro Zuniga', // i18n-ignore
 			initials: 'JRZ',
 			linkedinUrl: 'https://www.linkedin.com/in/jose-ramiro-zuniga',
 			githubUrl: 'https://github.com/jramiroz98'
 		},
 		{
-			name: 'Kohei',
-			title: 'Full Stack Engineer',
-			bio: 'Kohei contributes to both frontend and backend development, ensuring seamless integration and functionality across CropWatch’s platform.',
-			avatarAlt: 'Placeholder portrait illustration for Kohei',
-			// src: sigurdImage,
-			initials: 'SO',
+			name: 'Kohei', // i18n-ignore
+			title: 'Full Stack Engineer', // i18n-ignore
+			bio: 'Kohei contributes to both frontend and backend development, ensuring seamless integration and functionality across CropWatch’s platform.', // i18n-ignore
+			avatarAlt: 'Placeholder portrait illustration for Kohei', // i18n-ignore
+			initials: 'K',
 			linkedinUrl: 'https://www.linkedin.com/in/sigurd-%C3%B8yen-78688899/'
 		},
 		{
-			name: 'Sedar Korur',
-			title: 'API/Backend Engineer',
-			bio: 'Sedar is responsible for developing and maintaining the backend systems and APIs that power CropWatch’s data services.',
-			avatarAlt: 'Placeholder portrait illustration for Sedar Korur',
+			name: 'Sedar Korur', // i18n-ignore
+			title: 'API/Backend Engineer', // i18n-ignore
+			bio: 'Sedar is responsible for developing and maintaining the backend systems and APIs that power CropWatch’s data services.', // i18n-ignore
 			src: sedarImage,
+			avatarAlt: 'Placeholder portrait illustration for Sedar Korur', // i18n-ignore
 			initials: 'SK',
 			githubUrl: 'https://github.com/korur'
+		},
+		{
+			name: 'Yo', // i18n-ignore
+			title: 'Hardware Installation and Deployment Specialist', // i18n-ignore
+			bio: 'Yo-san is in charge of installing and deploying CropWatch’s sensor hardware in the field, ensuring optimal performance and data collection.', // i18n-ignore
+			src: yoImage,
+			avatarAlt: 'Placeholder portrait illustration for Yo', // i18n-ignore
+			initials: 'YO'
 		}
 	];
 
@@ -125,67 +134,29 @@
 		}
 	];
 
-	const heroContent = {
-		eyebrowKey: 'about.hero.eyebrow',
-		headlineKey: 'about.hero.headline',
-		paragraphKeys: ['about.hero.paragraphs.0', 'about.hero.paragraphs.1'],
-		statCards: [
-			{
-				titleKey: 'about.hero.stats.uptime.title',
-				descriptionKey: 'about.hero.stats.uptime.description'
-			},
-			{
-				titleKey: 'about.hero.stats.hubs.title',
-				descriptionKey: 'about.hero.stats.hubs.description'
-			}
-		]
-	} as const;
+	const heroParagraphKeys = ['about.hero.paragraphs.0', 'about.hero.paragraphs.1'] as const;
 
-	const meta = {
-		titleKey: 'about.meta.title',
-		descriptionKey: 'about.meta.description'
-	} as const;
+	const heroStatCards = [
+		{
+			titleKey: 'about.hero.stats.uptime.title',
+			descriptionKey: 'about.hero.stats.uptime.description'
+		},
+		{
+			titleKey: 'about.hero.stats.hubs.title',
+			descriptionKey: 'about.hero.stats.hubs.description'
+		}
+	] as const;
 
-	const heroSidebar = {
-		titleKey: 'about.hero.sidebar.title',
-		introKey: 'about.hero.sidebar.intro',
-		bullets: [
-			'about.hero.sidebar.points.0',
-			'about.hero.sidebar.points.1',
-			'about.hero.sidebar.points.2'
-		]
-	} as const;
-
-	const historySection = {
-		eyebrowKey: 'about.history.eyebrow',
-		headlineKey: 'about.history.headline',
-		introKey: 'about.history.intro'
-	} as const;
-
-	const leadershipSection = {
-		eyebrowKey: 'about.leadership.eyebrow',
-		headlineKey: 'about.leadership.headline',
-		introKey: 'about.leadership.intro'
-	} as const;
-
-	const valuesSection = {
-		eyebrowKey: 'about.values.eyebrow',
-		headlineKey: 'about.values.headline',
-		introKey: 'about.values.intro'
-	} as const;
-
-	const closingSection = {
-		eyebrowKey: 'about.closing.eyebrow',
-		headlineKey: 'about.closing.headline',
-		bodyKey: 'about.closing.body',
-		primaryCtaKey: 'about.closing.primary_cta',
-		secondaryCtaKey: 'about.closing.secondary_cta'
-	} as const;
+	const heroSidebarBulletKeys = [
+		'about.hero.sidebar.points.0',
+		'about.hero.sidebar.points.1',
+		'about.hero.sidebar.points.2'
+	] as const;
 </script>
 
 <svelte:head>
-	<title>{$_(meta.titleKey)}</title>
-	<meta name="description" content={$_(meta.descriptionKey)} />
+	<title>{$_('about.meta.title')}</title>
+	<meta name="description" content={$_('about.meta.description')} />
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
@@ -197,29 +168,29 @@
 		<div class="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
 			<div class="space-y-6">
 				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-					{$_(heroContent.eyebrowKey)}
+					{$_('about.hero.eyebrow')}
 				</p>
 				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					{$_(heroContent.headlineKey)}
+					{$_('about.hero.headline')}
 				</h1>
-				{#each heroContent.paragraphKeys as paragraphKey (paragraphKey)}
+				{#each heroParagraphKeys as paragraphKey (paragraphKey)}
 					<p class="text-base text-white/80">{$_(paragraphKey)}</p>
 				{/each}
 				<div class="grid gap-4 text-sm text-white/80 md:grid-cols-2">
 					<div class="rounded-2xl border border-white/20 bg-white/10 px-5 py-4">
 						<p class="text-sm font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-							{$_(heroContent.statCards[0].titleKey)}
+							{$_(heroStatCards[0].titleKey)}
 						</p>
 						<p class="mt-2 text-base font-semibold text-white">
-							{$_(heroContent.statCards[0].descriptionKey)}
+							{$_(heroStatCards[0].descriptionKey)}
 						</p>
 					</div>
 					<div class="rounded-2xl border border-white/20 bg-white/10 px-5 py-4">
 						<p class="text-sm font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-							{$_(heroContent.statCards[1].titleKey)}
+							{$_(heroStatCards[1].titleKey)}
 						</p>
 						<p class="mt-2 text-base font-semibold text-white">
-							{$_(heroContent.statCards[1].descriptionKey)}
+							{$_(heroStatCards[1].descriptionKey)}
 						</p>
 					</div>
 				</div>
@@ -227,10 +198,10 @@
 			<div
 				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
 			>
-				<h2 class="text-lg font-semibold text-white">{$_(heroSidebar.titleKey)}</h2>
-				<p class="mt-3 text-sm text-white/70">{$_(heroSidebar.introKey)}</p>
+				<h2 class="text-lg font-semibold text-white">{$_('about.hero.sidebar.title')}</h2>
+				<p class="mt-3 text-sm text-white/70">{$_('about.hero.sidebar.intro')}</p>
 				<ul class="mt-6 space-y-4 text-sm text-white/80">
-					{#each heroSidebar.bullets as bulletKey (bulletKey)}
+					{#each heroSidebarBulletKeys as bulletKey (bulletKey)}
 						<li class="flex items-start gap-3">
 							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
 							<span>{$_(bulletKey)}</span>
@@ -247,10 +218,10 @@
 		<div class="grid gap-10 md:grid-cols-[1.2fr_1fr]">
 			<div class="space-y-6">
 				<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-					{$_(historySection.eyebrowKey)}
+					{$_('about.history.eyebrow')}
 				</p>
-				<h2 class="text-3xl font-semibold text-[#0b1730]">{$_(historySection.headlineKey)}</h2>
-				<p class="text-base text-[#1c2d52]/80">{$_(historySection.introKey)}</p>
+				<h2 class="text-3xl font-semibold text-[#0b1730]">{$_('about.history.headline')}</h2>
+				<p class="text-base text-[#1c2d52]/80">{$_('about.history.intro')}</p>
 			</div>
 			<div
 				class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-8 shadow-sm shadow-[#0b1730]/5"
@@ -277,10 +248,10 @@
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-			{$_(leadershipSection.eyebrowKey)}
+			{$_('about.leadership.eyebrow')}
 		</p>
-		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">{$_(leadershipSection.headlineKey)}</h2>
-		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">{$_(leadershipSection.introKey)}</p>
+		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">{$_('about.leadership.headline')}</h2>
+		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">{$_('about.leadership.intro')}</p>
 		<div class="mt-10 grid gap-6 md:grid-cols-2">
 			{#each leadershipTeam as leader (leader.name)}
 				<article
@@ -351,10 +322,10 @@
 		<div class="grid gap-10 md:grid-cols-[1.15fr_1fr] md:items-center">
 			<div class="space-y-6">
 				<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-					{$_(valuesSection.eyebrowKey)}
+					{$_('about.values.eyebrow')}
 				</p>
-				<h2 class="text-3xl font-semibold text-[#0b1730]">{$_(valuesSection.headlineKey)}</h2>
-				<p class="text-base text-[#1c2d52]/80">{$_(valuesSection.introKey)}</p>
+				<h2 class="text-3xl font-semibold text-[#0b1730]">{$_('about.values.headline')}</h2>
+				<p class="text-base text-[#1c2d52]/80">{$_('about.values.intro')}</p>
 			</div>
 			<div class="space-y-6">
 				{#each values as value (value.titleKey)}
@@ -377,10 +348,10 @@
 	></div>
 	<div class="relative mx-auto w-full max-w-5xl px-4 text-center">
 		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-			{$_(closingSection.eyebrowKey)}
+			{$_('about.closing.eyebrow')}
 		</p>
-		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">{$_(closingSection.headlineKey)}</h2>
-		<p class="mt-4 text-base text-white/80">{$_(closingSection.bodyKey)}</p>
+		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">{$_('about.closing.headline')}</h2>
+		<p class="mt-4 text-base text-white/80">{$_('about.closing.body')}</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a
 				href="https://www.linkedin.com/company/cropwatch-system/"
@@ -388,13 +359,13 @@
 				rel="noopener noreferrer"
 				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 			>
-				{$_(closingSection.primaryCtaKey)}
+				{$_('about.closing.primary_cta')}
 			</a>
 			<a
 				href="/contact"
 				class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 			>
-				{$_(closingSection.secondaryCtaKey)}
+				{$_('about.closing.secondary_cta')}
 			</a>
 		</div>
 	</div>
