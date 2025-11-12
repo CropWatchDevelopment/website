@@ -13,6 +13,7 @@
             links: [
                 { labelKey: 'footer.link_groups.socials.links.linkedin', href: 'https://www.linkedin.com/company/cropwatch-system' },
                 { labelKey: 'footer.link_groups.socials.links.youtube', href: 'https://www.youtube.com/@cropwatch4407' },
+                { labelKey: 'footer.link_groups.socials.links.github', href: 'https://github.com/CropWatchDevelopment' },
             ]
         },
         {
@@ -30,7 +31,6 @@
                 { labelKey: 'footer.link_groups.connect.links.contact', href: '/contact' },
                 { labelKey: 'footer.link_groups.connect.links.support', href: '/support' },
                 { labelKey: 'footer.link_groups.connect.links.case_studies', href: '/usecases' },
-                { labelKey: 'footer.link_groups.connect.links.github', href: 'https://github.com/CropWatchDevelopment' },
                 { labelKey: 'footer.link_groups.connect.links.faq', href: '/faq' },
             ]
         }
