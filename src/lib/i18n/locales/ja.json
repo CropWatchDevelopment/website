@@ -130,6 +130,13 @@
         "body": "LoRaWAN® の高い浸透力で、従来の無線が届かなかった環境でも安定した通信を実現。人の移動や巡回を必要としない、効率的で信頼性の高い運用を実現します。",
         "cta": "LoRaWAN® について学ぶ",
         "image_alt": "技術者が LoRaWAN ゲートウェイを設定している様子"
+      },
+      "survive_the_cold": {
+        "badge": "❄️ Survive The Cold",
+        "title": "Engineered for Freezers & Cold Chain",
+        "body": "Our sensors are built to perform in the harshest cold storage environments, ensuring reliable data even at sub-zero temperatures.",
+        "cta": "Explore cold chain solutions",
+        "image_alt": "CropWatch sensor installed inside a freezer"
       }
     }
   },
@@ -212,10 +219,8 @@
         "通信が届かず、いまだに計測できない場所は残っていませんか？",
         "故障するたびに新品の機器を購入して、運用コストが上がっていませんか？",
         "現在のセンサーは、10分間隔で本当に10年間動き続けますか？",
-        
         "データ記録や巡回チェックに、余計な人件費や工数がかかっていませんか？",
         "コンプライアンス対応や監査のとき、必要なデータをすぐに提出できますか？"
-
       ],
       "primary_cta": "施設ウォークスルーを予約",
       "secondary_cta": "お客様の成果を見る",
@@ -234,6 +239,44 @@
             "term": "コンプライアンスの成果",
             "value_html": "監査対応を 2 倍高速化"
           }
+        },
+        "comparison": {
+          "manual": {
+            "title": "手動チェック",
+            "bullets": [
+              "紙の帳票、スプレッドシート、1日1回の手書き記録",
+              "10 拠点ネットワークで週 20 時間の工数が発生",
+              "閾値超過に気付いてから後追いで対応"
+            ]
+          },
+          "automated": {
+            "title": "CropWatch センサー",
+            "bullets": [
+              "無線で継続的にデータ収集し、コンプライアンス記録を自動化",
+              "例外対応型ワークフローで週あたりの確認工数を 2 時間に削減",
+              "製品ロスや安全リスクの前に即アラートを発報"
+            ]
+          }
+        },
+        "stats": {
+          "time_saved": {
+            "title": "削減できる時間",
+            "value": "週 18 時間",
+            "body": "手書き記録が週 20 時間から 2 時間に減り、高付加価値業務へ時間を再配分できます。"
+          },
+          "labor_savings": {
+            "title": "年間の人件費削減",
+            "value": "約 29,000 ドル",
+            "body": "時給 25 ドル、10 拠点で温度記録を自動化すると、成長投資に回せる年間約 29,000 ドルを確保できます。"
+          }
+        },
+        "productivity": {
+          "title": "生産性への影響",
+          "bullets": [
+            "監査用レポートを自動生成し、手作業でデータをまとめる必要がありません。",
+            "予測的な閾値検知で数時間前に問題を捕捉し、廃棄やリコールを防ぎます。",
+            "オペレーションチームは浮いた時間を教育、拡張、顧客対応に充てられます。"
+          ]
         }
       }
     },

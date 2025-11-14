@@ -59,7 +59,7 @@
 			'home.hero.questions.2',
 			'home.hero.questions.3',
 			'home.hero.questions.4',
-			'home.hero.questions.5',
+			'home.hero.questions.5'
 		],
 		primaryCtaKey: 'home.hero.primary_cta',
 		secondaryCtaKey: 'home.hero.secondary_cta',
@@ -78,6 +78,45 @@
 					termKey: 'home.hero.sidebar.items.compliance.term',
 					valueKey: 'home.hero.sidebar.items.compliance.value_html'
 				}
+			]
+		}
+	} as const;
+
+	const roiSnapshot = {
+		manualCard: {
+			titleKey: 'home.hero.sidebar.comparison.manual.title',
+			bulletKeys: [
+				'home.hero.sidebar.comparison.manual.bullets.0',
+				'home.hero.sidebar.comparison.manual.bullets.1',
+				'home.hero.sidebar.comparison.manual.bullets.2'
+			]
+		},
+		automatedCard: {
+			titleKey: 'home.hero.sidebar.comparison.automated.title',
+			bulletKeys: [
+				'home.hero.sidebar.comparison.automated.bullets.0',
+				'home.hero.sidebar.comparison.automated.bullets.1',
+				'home.hero.sidebar.comparison.automated.bullets.2'
+			]
+		},
+		stats: [
+			{
+				titleKey: 'home.hero.sidebar.stats.time_saved.title',
+				valueKey: 'home.hero.sidebar.stats.time_saved.value',
+				bodyKey: 'home.hero.sidebar.stats.time_saved.body'
+			},
+			{
+				titleKey: 'home.hero.sidebar.stats.labor_savings.title',
+				valueKey: 'home.hero.sidebar.stats.labor_savings.value',
+				bodyKey: 'home.hero.sidebar.stats.labor_savings.body'
+			}
+		],
+		productivity: {
+			titleKey: 'home.hero.sidebar.productivity.title',
+			bulletKeys: [
+				'home.hero.sidebar.productivity.bullets.0',
+				'home.hero.sidebar.productivity.bullets.1',
+				'home.hero.sidebar.productivity.bullets.2'
 			]
 		}
 	} as const;
@@ -204,40 +243,45 @@
 				<div class="space-y-6 text-sm text-[#1c2d52]">
 					<div class="grid gap-4 sm:grid-cols-2">
 						<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
-							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">Manual Checks</p>
+							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">
+								{$_(roiSnapshot.manualCard.titleKey)}
+							</p>
 							<ul class="mt-4 space-y-3 text-[#1c2d52]/80">
-								<li>Clipboards, spreadsheets, and single daily readings</li>
-								<li>Averages 20 hrs/week across a 10-site network</li>
-								<li>Reactive responses when thresholds are breached</li>
+								{#each roiSnapshot.manualCard.bulletKeys as bulletKey}
+									<li>{$_(bulletKey)}</li>
+								{/each}
 							</ul>
 						</div>
 						<div class="rounded-2xl border border-transparent bg-[#0b1730] p-5 text-white">
-							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#f2a516]">CropWatch Sensors</p>
+							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#f2a516]">
+								{$_(roiSnapshot.automatedCard.titleKey)}
+							</p>
 							<ul class="mt-4 space-y-3 text-white/80">
-								<li>Continuous wireless data, automated compliance logs</li>
-								<li>Checks cut to 2 hrs/week via exception-based workflows</li>
-								<li>Instant alerts before product loss or safety issues</li>
+								{#each roiSnapshot.automatedCard.bulletKeys as bulletKey}
+									<li>{$_(bulletKey)}</li>
+								{/each}
 							</ul>
 						</div>
 					</div>
 					<div class="grid gap-4 sm:grid-cols-2">
-						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
-							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">Time Saved</p>
-							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">18 hrs/week</p>
-							<p class="mt-2 text-[#1c2d52]/70">Manual logging drops from 20 hrs to just 2 hrs per week, freeing teams for higher-value work.</p>
-						</div>
-						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
-							<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">Annual Labor Savings</p>
-							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">≈ $29K</p>
-							<p class="mt-2 text-[#1c2d52]/70">Based on $25/hour labor, automating temperature logs across 10 sites recoups budget for growth.</p>
-						</div>
+						{#each roiSnapshot.stats as stat (stat.titleKey)}
+							<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
+								<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">
+									{$_(stat.titleKey)}
+								</p>
+								<p class="mt-2 text-2xl font-semibold text-[#0b1730]">{$_(stat.valueKey)}</p>
+								<p class="mt-2 text-[#1c2d52]/70">{$_(stat.bodyKey)}</p>
+							</div>
+						{/each}
 					</div>
 					<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
-						<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">Productivity Impact</p>
+						<p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#2f5387]">
+							{$_(roiSnapshot.productivity.titleKey)}
+						</p>
 						<ul class="mt-3 space-y-3 text-[#1c2d52]/80">
-							<li>Audit-ready reports generated automatically—no more manual data consolidation.</li>
-							<li>Predictive thresholds catch issues hours earlier, preventing waste and recalls.</li>
-							<li>Operations teams redeploy hours to training, expansion, and customer care.</li>
+							{#each roiSnapshot.productivity.bulletKeys as bulletKey}
+								<li>{$_(bulletKey)}</li>
+							{/each}
 						</ul>
 					</div>
 				</div>

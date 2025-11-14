@@ -131,6 +131,13 @@
         "body": "Let LoRaWAN® do the heavy lifting with long-range coverage, get readings from anywhere, and cut down on costly commutes for manual checks.",
         "cta": "Learn about LoRaWAN®",
         "image_alt": "Technician configuring a LoRaWAN gateway"
+      },
+      "survive_the_cold": {
+        "badge": "❄️ Survive The Cold",
+        "title": "Engineered for Freezers & Cold Chain",
+        "body": "Our sensors are built to perform in the harshest cold storage environments, ensuring reliable data even at sub-zero.",
+        "cta": "Explore cold chain solutions",
+        "image_alt": "CropWatch sensor installed inside a freezer"
       }
     }
   },
@@ -212,7 +219,9 @@
         "Can your current sensors run a decade on one charge?",
         "Do you receive actionable data at the cadence operations expect?",
         "How quickly can you prove readings when compliance asks?",
-        "Are concrete, steel, and freezers still causing blind spots?"
+        "Are concrete, steel, and freezers still causing blind spots?",
+        "Are manual logs and route checks still burning hours you can't spare?",
+        "Can you surface the exact records compliance needs the moment they ask?"
       ],
       "primary_cta": "Schedule a live demo",
       "secondary_cta": "Review customer outcomes",
@@ -231,6 +240,44 @@
             "term": "Compliance wins",
             "value_html": "2x faster audit response"
           }
+        },
+        "comparison": {
+          "manual": {
+            "title": "Manual checks",
+            "bullets": [
+              "Clipboards, spreadsheets, and single daily readings",
+              "Averages 20 hrs/week across a 10-site network",
+              "Reactive responses when thresholds are breached"
+            ]
+          },
+          "automated": {
+            "title": "CropWatch sensors",
+            "bullets": [
+              "Continuous wireless data, automated compliance logs",
+              "Checks cut to 2 hrs/week via exception-based workflows",
+              "Instant alerts before product loss or safety issues"
+            ]
+          }
+        },
+        "stats": {
+          "time_saved": {
+            "title": "Time saved",
+            "value": "18 hrs/week",
+            "body": "Manual logging drops from 20 hrs to just 2 hrs per week, freeing teams for higher-value work."
+          },
+          "labor_savings": {
+            "title": "Annual labor savings",
+            "value": "≈ $29K",
+            "body": "Based on $25/hour labor, automating temperature logs across 10 sites recoups budget for growth."
+          }
+        },
+        "productivity": {
+          "title": "Productivity impact",
+          "bullets": [
+            "Audit-ready reports generated automatically—no more manual data consolidation.",
+            "Predictive thresholds catch issues hours earlier, preventing waste and recalls.",
+            "Operations teams redeploy hours to training, expansion, and customer care."
+          ]
         }
       }
     },
@@ -513,7 +560,7 @@
   "sitemap": {
     "meta": {
       "title": "Sitemap | CropWatch® Industrial IoT Platform",
-  "description": "Browse every CropWatch page, from product details and case studies to support resources and legal policies, all organized for quick navigation."
+      "description": "Browse every CropWatch page, from product details and case studies to support resources and legal policies, all organized for quick navigation."
     },
     "hero": {
       "eyebrow": "Sitemap",

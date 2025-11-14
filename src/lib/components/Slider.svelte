@@ -3,6 +3,7 @@
     import gatewayImage from '$lib/images/slider-images/gateway_header-1280.webp'
     import referImage from '$lib/images/slider-images/refer_header-1280.webp';
     import liveStockImage from '$lib/images/slider-images/livestock_header-1024.webp';
+    import insideFreezerImage from '$lib/images/slider-images/survive_the_cold.webp';
     type TextSide = 'left' | 'right';
 
     type SlideText = {
@@ -67,6 +68,18 @@
             image: {
                 src: liveStockImage,
                 altKey: 'slider.slides.wireless_signal.image_alt'
+            },
+            textSide: 'left'
+        },
+        {
+            id: 'survive-the-cold',
+            badgeKey: 'slider.slides.survive_the_cold.badge',
+            titleKey: 'slider.slides.survive_the_cold.title',
+            bodyKey: 'slider.slides.survive_the_cold.body',
+            cta: { labelKey: 'slider.slides.survive_the_cold.cta', href: '/technology/lorawan' },
+            image: {
+                src: insideFreezerImage,
+                altKey: 'slider.slides.survive_the_cold.image_alt'
             },
             textSide: 'left'
         }
@@ -163,7 +176,7 @@ type Props = {
             aria-label={$_('slider.aria.group_label')}
         >
             {#if activeSlide}
-                <div class="relative overflow-hidden rounded-b-3xl shadow-2xl">
+                <div class="relative overflow-hidden shadow-2xl">
                     <img
                         src={activeSlide.image.src}
                         alt={activeSlide.image.altKey ? $_(activeSlide.image.altKey) : activeSlide.image.alt}
