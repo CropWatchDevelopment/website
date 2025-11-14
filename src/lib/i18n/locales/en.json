@@ -32,6 +32,7 @@
       "home": "Home",
       "products": "Products",
       "products_sensor": "Temperature/Humidity Sensor (CW-AIR-TH)",
+      "products_replacement_sensors": "Replacement Sensors (Coming Soon)",
       "case_studies": "Case Studies",
       "about": "About",
       "contact": "Contact"
@@ -206,7 +207,7 @@
     "hero": {
       "eyebrow": "Industrial IoT That Pays For Itself",
       "headline_html": "What makes CropWatch<sup><small>®</small></sup> different?",
-      "body_html": "CropWatch<sup><small>®</small></sup> pairs ruggedized sensors with LoRaWAN<sup><small>®</small></sup> networks to provide unparalleled device reliability and data accuracy in the most challenging industrial environments. Our devices are not just built to last—they're engineered to deliver measurable ROI from day one. Realize cost savings through reduced manual checks, faster compliance audits, and devices that are engineered to be maintenance-free and long-lasting.",
+      "body_html": "CropWatch<sup><small>®</small></sup> specializes in building the most trusted industrial IoT systems for cold chain, manufacturing, hospitality, and complex environments. Our dual-sensor hardware, long-life battery design, and LoRaWAN® connectivity ensure reliable data from even the harshest sites. Combined with our proven deployment methodology and analytics platform, CropWatch<sup><small>®</small></sup> delivers measurable ROI without overwhelming frontline teams.",
       "questions": [
         "Can your current sensors run a decade on one charge?",
         "Do you receive actionable data at the cadence operations expect?",
@@ -509,6 +510,48 @@
       "secondary_cta": "Book a live demo"
     }
   },
+  "sitemap": {
+    "meta": {
+      "title": "Sitemap | CropWatch® Industrial IoT Platform",
+  "description": "Browse every CropWatch page, from product details and case studies to support resources and legal policies, all organized for quick navigation."
+    },
+    "hero": {
+      "eyebrow": "Sitemap",
+      "headline": "Every CropWatch page in one place",
+      "body": "Jump straight to the product information, customer outcomes, support resources, and legal documentation you need."
+    },
+    "sections": {
+      "primary": {
+        "heading": "Core pages"
+      },
+      "resources": {
+        "heading": "Resources & tools"
+      },
+      "support": {
+        "heading": "Support & help"
+      },
+      "legal": {
+        "heading": "Legal & compliance"
+      }
+    },
+    "links": {
+      "lorawan": "LoRaWAN technology overview",
+      "case_study_archive": "Case study archive",
+      "pricing": "Pricing overview",
+      "faq": "Frequently Asked Questions",
+      "sitemap": "Sitemap",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "robots": "Robots.txt"
+    },
+    "cta": {
+      "eyebrow": "Ready to engage?",
+      "headline": "Let's talk through your deployment",
+      "body": "Connect with CropWatch specialists to map sensors, coverage, and business outcomes tailored to your facilities.",
+      "primary_cta": "Contact our team",
+      "secondary_cta": "Explore case studies"
+    }
+  },
   "products": {
     "cw_air_th": {
       "page": {
@@ -770,10 +813,10 @@
     },
     "hero": {
       "eyebrow": "Our story",
-      "headline": "Industrial insight meets resilient connectivity",
+      "headline": "Our Story - How we got to where we are today",
       "paragraphs": [
-        "CropWatch helps facility leaders maintain quality, compliance, and uptime by combining edge-resilient networks with analytics tuned for mission-critical environments.",
-        "We started by safeguarding agricultural supply chains and now support industrial campuses, hotels, and cold storage fleets across three continents."
+        "We started off building devices that could survive the harshest agricultural environments. Over time, we realized that the same principles of reliability, accuracy, ease-of-use, and strong signal in touch locations were desperately needed in other industries where downtime is not an option.",
+        "Today, CropWatch is trusted by operations teams across cold storage, hospitality, manufacturing, and agriculture to deliver resilient IoT networks that keep facilities compliant and efficient. Our mission remains unchanged: to provide industrial-grade IoT solutions that empower operators with reliable data and insights, no matter the environment."
       ],
       "stats": {
         "uptime": {
@@ -824,8 +867,8 @@
     },
     "leadership": {
       "eyebrow": "Leadership",
-      "headline": "Experienced operators guiding every rollout",
-      "intro": "Meet our team of highly skilled people working to make CropWatch what you see today.",
+      "headline": "Our highly skilled team",
+      "intro": "We pulled people from all over the world based on their outstanding knowledge and experteese in their own specific field.",
       "members": {
         "evelyn": {
           "name": "Evelyn Ortiz",
@@ -862,19 +905,19 @@
     "values": {
       "eyebrow": "Values",
       "headline": "Principles that keep customers at the center",
-      "intro": "Every decision is measured against the uptime, compliance, and experience our customers expect. These values guide how we design, deploy, and support every project.",
+      "intro": "Every decision is measured against the uptime, compliance, and experience our customers expect. At the end of the day, we value each and every customer and aim to provide the best support possible. At CropWatch, each and everyone puts a little bit of themselves into the work that they have done, and because our work reflects us, we want our products to be the best that they can be.",
       "items": {
         "operational_certainty": {
-          "title": "Operational certainty",
-          "description": "We engineer every deployment to run without drama, with redundant gateways and predictive maintenance baked in."
+          "title": "We actually value customer input",
+          "description": "Our product roadmap is driven by frontline feedback to ensure every feature delivers measurable operational clarity."
         },
         "human_centered": {
-          "title": "Human-centered rollouts",
-          "description": "Technicians, managers, and executives all get the playbooks, training, and context they need to adopt with confidence."
+          "title": "Support is as important to us as it is to you",
+          "description": "We take requests from customers seriously and respond quickly to ensure your teams have the help they need, when they need it."
         },
         "proof_of_value": {
-          "title": "Proof of value first",
-          "description": "Every program starts with measurable ROI targets and transparent reporting to keep momentum and trust."
+          "title": "Whenever we start a project, we make sure to fully understand your goals and objectives",
+          "description": "Every engagement begins with a clear business case and success metrics so outcomes are aligned from day one."
         }
       }
     },

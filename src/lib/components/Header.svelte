@@ -20,8 +20,14 @@
 			children: [
 				{
 					labelKey: 'header.navigation.products_sensor',
-					href: '/products/cw-air-th'
-				}
+					href: '/products/cw-air-th',
+					icon: 'device_thermostat',
+				},
+				{
+					labelKey: 'header.navigation.products_replacement_sensors',
+					href: '/products/coming-soon',
+					icon: 'settings_input_hdmi',
+				},
 			]
 		},
 		{ id: 'case-studies', labelKey: 'header.navigation.case_studies', href: '/case-studies' },
@@ -30,7 +36,7 @@
 	] as const;
 
 	const topLinks = [
-		{ href: '/contact', labelKey: 'common.actions.contact' },
+		{ href: '/contact', labelKey: 'common.actions.contact' }
 		// { href: '/support', labelKey: 'common.actions.support' }
 	] as const;
 
@@ -137,7 +143,7 @@
 				</picture>
 				<div class="flex flex-col">
 					<!-- <span class="text-lg font-semibold tracking-wide">{$_('header.brand.name')}</span> -->
-					 <span class="text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
+					<span class="text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
 					<span class="text-xs text-white/80 uppercase">{$_('header.brand.tagline')}</span>
 				</div>
 			</a>
@@ -222,12 +228,22 @@
 								{#each item.children as child (child.href)}
 									<li class="z-10">
 										<a
-											class="block px-4 py-2 text-sm font-medium transition hover:bg-gray-100 hover:text-gray-900"
+											class="flex items-center gap-2 px-4 py-2 text-sm font-medium transition hover:bg-gray-100 hover:text-gray-900"
 											href={child.href}
 											role="menuitem"
 											onclick={closeMenu}
 										>
-											{$_(child.labelKey)}
+											{#if child.icon}
+												<MaterialIcon
+													name={child.icon || 'open_in_new'}
+													collection="symbols"
+													variant="rounded"
+													size={20}
+													class="text-gray-500"
+													ariaLabel={$_(child.ariaKey || 'header.navigation.opens_in_new_tab_aria')}
+												/>
+											{/if}
+											<span>{$_(child.labelKey)}</span>
 										</a>
 									</li>
 								{/each}

@@ -513,6 +513,48 @@
       "secondary_cta": "ライブデモを予約"
     }
   },
+  "sitemap": {
+    "meta": {
+      "title": "サイトマップ | CropWatch® 産業用 IoT プラットフォーム",
+      "description": "CropWatch の製品ページ、導入事例、サポート、法的情報などすべての公開ページを一覧でご確認いただけます。"
+    },
+    "hero": {
+      "eyebrow": "サイトマップ",
+      "headline": "CropWatch のすべてのページをこの一覧で",
+      "body": "製品詳細、導入事例、サポートリソース、法的情報へのリンクを素早く見つけるためにご活用ください。"
+    },
+    "sections": {
+      "primary": {
+        "heading": "主要ページ"
+      },
+      "resources": {
+        "heading": "リソース & ツール"
+      },
+      "support": {
+        "heading": "サポート & ヘルプ"
+      },
+      "legal": {
+        "heading": "法務・コンプライアンス"
+      }
+    },
+    "links": {
+      "lorawan": "LoRaWAN テクノロジー概要",
+      "case_study_archive": "導入事例アーカイブ",
+      "pricing": "料金の概要",
+      "faq": "よくある質問",
+      "sitemap": "サイトマップ",
+      "terms": "利用規約",
+      "privacy": "プライバシーポリシー",
+      "robots": "robots.txt"
+    },
+    "cta": {
+      "eyebrow": "お問い合わせの前に",
+      "headline": "導入計画について一緒に検討しませんか",
+      "body": "CropWatch のスペシャリストがセンサー配置や通信設計、ビジネス成果をお客様の施設に合わせてご提案します。",
+      "primary_cta": "チームに連絡する",
+      "secondary_cta": "導入事例を見る"
+    }
+  },
   "products": {
     "cw_air_th": {
       "page": {

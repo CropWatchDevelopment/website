@@ -2,10 +2,14 @@
 	import kevinImage from '$lib/images/team/Kevin_Cantrell.jpeg';
 	import sigurdImage from '$lib/images/team/Sigurd_Øyen.jpeg'; // i18n-ignore
 	import joseImage from '$lib/images/team/Jose_Ramiro_Zuniga.jpg'; // i18n-ignore
-	import sayakaImage from '$lib/images/team/Sayaka_Ikemizu.jpg'; // i18n-ignore
+	import sayakaImage from '$lib/images/team/Sayaka.png'; // i18n-ignore
 	import sedarImage from '$lib/images/team/Sedar_Korur.jpg'; // i18n-ignore
-	import yoImage from '$lib/images/team/yo-san.png'; // i18n-ignore
-	import { _ } from 'svelte-i18n';
+	import efecanImage from '$lib/images/team/Efecan_Hepaksaz.webp'; // i18n-ignore
+	
+	import { _, locale } from 'svelte-i18n';
+	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
+
+	const currentLanguage = $derived($locale);
 
 	type Milestone = {
 		yearKey: string;
@@ -45,22 +49,29 @@
 		initials: string;
 		linkedinUrl?: string;
 		githubUrl?: string;
+		websiteUrl?: string;
 	};
 
 	/* i18n-ignore leadership roster strings */
-	const leadershipTeam: Leader[] = [
+	type LeaderSource = Leader & {
+		nameByLocale?: Partial<Record<string, string>>;
+	};
+
+	const leadershipTeamSource: LeaderSource[] = [
 		{
-			name: 'Kevin Cantrell', // i18n-ignore
+			name: '🇺🇸 Kevin Cantrell', // i18n-ignore
 			title: 'Founder & Developer', // i18n-ignore
 			bio: 'Founder of CropWatch and lead developer of its core technologies.', // i18n-ignore
 			src: kevinImage,
 			avatarAlt: 'Placeholder portrait illustration for Kevin Cantrell', // i18n-ignore
 			initials: 'KC',
 			linkedinUrl: 'https://www.linkedin.com/in/cropwatch/',
-			githubUrl: 'https://github.com/kevin192291'
+			githubUrl: 'https://github.com/kevin192291',
+
 		},
 		{
-			name: 'Sayaka Cantrell', // i18n-ignore
+			name: '🇯🇵 Sayaka Cantrell', // i18n-ignore
+			nameByLocale: { ja: '🇯🇵 彩池水' },
 			title: 'Business Leader', // i18n-ignore
 			bio: 'Responsible for business operations and strategy, driving growth and market presence for CropWatch.', // i18n-ignore
 			src: sayakaImage,
@@ -69,8 +80,8 @@
 			linkedinUrl: 'https://www.linkedin.com/in/sayaka-ikemizu-694b17276/'
 		},
 		{
-			name: 'Sigurd Øyen', // i18n-ignore
-			title: 'Head of Engineering', // i18n-ignore
+			name: '🇳🇴 Sigurd Øyen', // i18n-ignore
+			title: 'Electrical Engineer', // i18n-ignore
 			bio: 'Sigurd has engineered the hardware of CropWatch’s sensor networks from the beginning, ensuring robust and reliable performance in diverse environments.', // i18n-ignore
 			src: sigurdImage,
 			avatarAlt: 'Placeholder portrait illustration for Sigurd Øyen', // i18n-ignore
@@ -78,41 +89,43 @@
 			linkedinUrl: 'https://www.linkedin.com/in/sigurd-%C3%B8yen-78688899/'
 		},
 		{
-			name: 'Jose Ramiro Zuniga', // i18n-ignore
-			title: 'Frontend Engineer & Designer', // i18n-ignore
+			name: '🇭🇳 Jose Ramiro Zuniga', // i18n-ignore
+			title: 'Frontend Developer & Designer', // i18n-ignore
 			bio: 'Jose is responsible for the design and user experience of CropWatch’s web applications, bringing a user-centered approach to the platform.', // i18n-ignore
 			src: joseImage,
 			avatarAlt: 'Placeholder portrait illustration for Jose Ramiro Zuniga', // i18n-ignore
 			initials: 'JRZ',
 			linkedinUrl: 'https://www.linkedin.com/in/jose-ramiro-zuniga',
-			githubUrl: 'https://github.com/jramiroz98'
+			githubUrl: 'https://github.com/jramiroz98',
+			websiteUrl: 'https://jramiroz98.github.io/my-portfolio/'
 		},
 		{
-			name: 'Kohei', // i18n-ignore
-			title: 'Full Stack Engineer', // i18n-ignore
-			bio: 'Kohei contributes to both frontend and backend development, ensuring seamless integration and functionality across CropWatch’s platform.', // i18n-ignore
-			avatarAlt: 'Placeholder portrait illustration for Kohei', // i18n-ignore
-			initials: 'K',
-			linkedinUrl: 'https://www.linkedin.com/in/sigurd-%C3%B8yen-78688899/'
-		},
-		{
-			name: 'Sedar Korur', // i18n-ignore
-			title: 'API/Backend Engineer', // i18n-ignore
+			name: '🇵🇱 Sedar Korur', // i18n-ignore
+			title: 'API/Backend Developer', // i18n-ignore
 			bio: 'Sedar is responsible for developing and maintaining the backend systems and APIs that power CropWatch’s data services.', // i18n-ignore
 			src: sedarImage,
 			avatarAlt: 'Placeholder portrait illustration for Sedar Korur', // i18n-ignore
 			initials: 'SK',
-			githubUrl: 'https://github.com/korur'
+			githubUrl: 'https://github.com/korur',
+			websiteUrl: 'https://datavisualizationwithsvelte.com/',
 		},
 		{
-			name: 'Yo', // i18n-ignore
-			title: 'Hardware Installation and Deployment Specialist', // i18n-ignore
-			bio: 'Yo-san is in charge of installing and deploying CropWatch’s sensor hardware in the field, ensuring optimal performance and data collection.', // i18n-ignore
-			src: yoImage,
-			avatarAlt: 'Placeholder portrait illustration for Yo', // i18n-ignore
-			initials: 'YO'
-		}
+			name: '🇹🇷 Efecan Hepaksaz', // i18n-ignore
+			title: 'Mechanical Engineer & CAD Designer', // i18n-ignore
+			bio: 'Efecan is our CAD designer, He carefully designs and builds our Injection Molding jigs, Cases, and Enclosures to be the highest quality.', // i18n-ignore
+			src: efecanImage,
+			avatarAlt: 'EH', // i18n-ignore
+			initials: 'EH',
+			websiteUrl: 'https://www.xazdesign.com/',
+		},
 	];
+
+	const leadershipTeam = $derived(
+		leadershipTeamSource.map(({ nameByLocale, ...leader }) => ({
+			...leader,
+			name: nameByLocale?.[$locale] ?? leader.name
+		}))
+	);
 
 	type ValueEntry = {
 		titleKey: string;
@@ -213,7 +226,7 @@
 	</div>
 </section>
 
-<section class="bg-white py-20">
+<!-- <section class="bg-white py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="grid gap-10 md:grid-cols-[1.2fr_1fr]">
 			<div class="space-y-6">
@@ -243,7 +256,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
@@ -253,7 +266,7 @@
 		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">{$_('about.leadership.headline')}</h2>
 		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">{$_('about.leadership.intro')}</p>
 		<div class="mt-10 grid gap-6 md:grid-cols-2">
-			{#each leadershipTeam as leader (leader.name)}
+			{#each leadershipTeam as leader (leader.initials)}
 				<article
 					class="flex h-full flex-col justify-between rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5"
 				>
@@ -306,8 +319,22 @@
 									values: { name: leader.name }
 								})}
 							>
-								<span aria-hidden="true" class="text-base font-semibold">GH</span>
+								<MaterialIcon name="code" class="text-base font-semibold" />
 								<span>{$_('about.leadership.actions.github')}</span>
+							</a>
+						{/if}
+						{#if leader.websiteUrl}
+							<a
+								href={leader.websiteUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="inline-flex items-center gap-2 rounded-full border border-[#0b1730]/30 px-4 py-2 text-sm font-medium text-[#0b1730] transition hover:border-[#0b1730] hover:bg-[#0b1730] hover:text-white"
+								aria-label={$_('about.leadership.actions.github_aria', {
+									values: { name: leader.name }
+								})}
+							>
+								<MaterialIcon name="language" class="text-base font-semibold" />
+								<span>Website</span>
 							</a>
 						{/if}
 					</div>
@@ -341,7 +368,7 @@
 	</div>
 </section>
 
-<section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
+<!-- <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
 	<div
 		class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(47,83,135,0.25),transparent_60%)]"
 		aria-hidden="true"
@@ -369,4 +396,4 @@
 			</a>
 		</div>
 	</div>
-</section>
+</section> -->
