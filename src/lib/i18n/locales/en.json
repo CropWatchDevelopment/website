@@ -675,6 +675,139 @@
         ]
       }
     },
+    "gateways": {
+      "meta": {
+        "title": "LoRaWAN Gateways | CropWatch®",
+        "description": "Explore the CropWatch gateway lineup with manufacturer details, indoor and outdoor ratings, and recommended deployments for each model."
+      },
+      "hero": {
+        "eyebrow": "Gateway portfolio",
+        "headline": "Gateways qualified for regulated environments",
+        "body": "We stock LoRaWAN gateways that survive cold storage, rooftops, and dense industrial interiors. Every unit ships pre-provisioned with the latest firmware so your telemetry network is reliable from day one.",
+        "primary_cta": "Plan your RF design",
+        "secondary_cta": "Review the gateway lineup",
+        "stats": [
+          {
+            "value": "6",
+            "label": "Qualified gateway SKUs"
+          },
+          {
+            "value": "3",
+            "label": "Indoor & outdoor form factors"
+          },
+          {
+            "value": "200+",
+            "label": "Deployments configured each year"
+          }
+        ]
+      },
+      "highlights": {
+        "eyebrow": "What to expect",
+        "items": [
+          {
+            "title": "Pre-provisioned & documented",
+            "body": "Serial numbers, QR codes, and CropWatch Command templates ship inside each crate so install teams can plug in and go."
+          },
+          {
+            "title": "Compliance-ready power options",
+            "body": "Support for PoE, LTE backhaul, redundant power, and lightning protection keeps auditors and facilities teams aligned."
+          },
+          {
+            "title": "Global operations support",
+            "body": "Our 24/7 operations desk monitors heartbeat telemetry and pushes security updates as new advisories drop."
+          }
+        ]
+      },
+      "lineup": {
+        "eyebrow": "Gateway lineup",
+        "headline": "From micro indoor multi-floor coverage to larger carrier-grade campus wide coverage",
+        "intro": "Choose the right gateway for each facility. Mix indoor, outdoor, and carrier-grade hardware to build resilient LoRaWAN coverage without overspending.",
+        "fields": {
+          "manufacturer": "Manufacturer",
+          "placement": "Placement",
+          "recommended": "Recommended usages"
+        },
+        "items": {
+          "ug65": {
+            "name": "Milesight UG65 Indoor",
+            "manufacturer": "Milesight",
+            "placement": "Indoor (IP65)",
+            "summary": "High-performance indoor/Covered Outdoor LoRaWAN gateway with Ethernet, Wi-Fi and LTE for quick installs in medium range spaces.",
+            "recommended": [
+              "Cold rooms, livestock and office spaces",
+              "Hospitality back-of-house monitoring zones",
+              "Warehouses that need coverage without rooftop access"
+            ],
+            "image_alt": "Milesight UG65 gateway sitting on a workbench"
+          },
+          "ug67": {
+            "name": "Milesight UG67 Outdoor",
+            "manufacturer": "Milesight",
+            "placement": "Outdoor (IP67 / pole & wall mount)",
+            "summary": "Ruggedized 8-channel gateway with built-in surge protection for rooftops, yards, and remote perimeters.",
+            "recommended": [
+              "Remote locations, Rooftops, and any rough environment exposed to weather",
+              "Agriculture or logistics corridors that span kilometers",
+              "Facilities needing Wifi, LTE and Ethernet backhaul redundancy"
+            ],
+            "image_alt": "Milesight UG67 gateway mounted on a pole outdoors"
+          },
+          "kona_micro": {
+            "name": "Tektelic KONA Micro",
+            "manufacturer": "Tektelic",
+            "placement": "Indoor (compact / desktop)",
+            "summary": "Compact gateway with a built-in backup battery ideal for indoor coverage where uptime is critical.",
+            "recommended": [
+              "Retail, hospitality suites, or test kitchens",
+              "Small offices or network closets needing reliable coverage",
+              "Ethernet and LTE backhaul for failover protection"
+            ],
+            "image_alt": "Tektelic KONA Micro gateway on a table"
+          },
+          "kona_enterprise": {
+            "name": "Tektelic KONA Enterprise",
+            "manufacturer": "Tektelic",
+            "placement": "Indoor (rack or wall mount)",
+            "summary": "Enterprise-grade LoRaWAN gateway with dual concentrators, LTE failover, and SNMP hooks for IT teams.",
+            "recommended": [
+              "Hospitals or universities with existing network teams",
+              "Multi-floor hotels and convention centers",
+              "Industrial control rooms requiring IT integration"
+            ],
+            "image_alt": "Tektelic KONA Enterprise gateway angled on a desk"
+          },
+          "kona_macro": {
+            "name": "Tektelic KONA Macro",
+            "manufacturer": "Tektelic",
+            "placement": "Outdoor (carrier-grade)",
+            "summary": "High gain outdoor gateway designed for miles of coverage, redundant radios, and high availability SLAs. Extremely rugged and built for extreme deployments.",
+            "recommended": [
+              "Large manufacturing campuses and ports",
+              "Agricultural operations spanning thousands of acres",
+              "Municipal or utility deployments demanding SLA uptime"
+            ],
+            "image_alt": "Tektelic KONA Macro gateway installed outside"
+          },
+          "kerlink_istation": {
+            "name": "SenseCAP M2 LoRaWAN Gateway",
+            "manufacturer": "SEEED Studio",
+            "placement": "Indoors",
+            "summary": "Cost-effective indoor gateway great for small installations and light duty environments.",
+            "recommended": [
+              "WiFi and Ethernet options"
+            ],
+            "image_alt": "Kerlink Wirnet iStation gateway mounted on a rooftop"
+          }
+        }
+      },
+      "cta": {
+        "eyebrow": "Need guidance?",
+        "headline": "Work directly with our RF engineers",
+        "body": "Share square footage, building materials, and compliance requirements for each site. We'll map signal plans, stage gateways, and pre-configure monitoring inside CropWatch Command.",
+        "primary_cta": "Schedule a design workshop",
+        "secondary_cta": "Send us your floor plans"
+      }
+    },
     "cw_air_th": {
       "page": {
         "meta": {

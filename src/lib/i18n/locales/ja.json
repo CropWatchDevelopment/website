@@ -672,6 +672,141 @@
         ]
       }
     },
+    "gateways": {
+      "meta": {
+        "title": "LoRaWAN ゲートウェイ | CropWatch®",
+        "description": "メーカー情報、屋内外の対応、推奨用途をひと目で確認できる CropWatch のゲートウェイ ラインアップです。"
+      },
+      "hero": {
+        "eyebrow": "ゲートウェイ ラインアップ",
+        "headline": "規制産業に適合したゲートウェイ",
+        "body": "冷凍倉庫や屋上、鉄とコンクリートに囲まれた製造現場など、過酷な環境でも実績のある LoRaWAN ゲートウェイだけを在庫しています。すべての機種は最新ファームウェアと CropWatch 設定を入れた状態で出荷され、到着したその日から稼働できます。",
+        "primary_cta": "RF 設計を相談する",
+        "secondary_cta": "ラインアップを確認",
+        "stats": [
+          {
+            "value": "6",
+            "label": "認定済みゲートウェイ SKU"
+          },
+          {
+            "value": "3",
+            "label": "屋内・屋外フォームファクタ"
+          },
+          {
+            "value": "200+",
+            "label": "年間プリコンフィグ導入件数"
+          }
+        ]
+      },
+      "highlights": {
+        "eyebrow": "CropWatch が選ばれる理由",
+        "items": [
+          {
+            "title": "プリプロビジョニング済み",
+            "body": "シリアル番号、QR コード、CropWatch Command テンプレートを同梱。現場では接続するだけで稼働します。"
+          },
+          {
+            "title": "コンプライアンス対応電源",
+            "body": "PoE や LTE バックホール、二重化電源、避雷対策など、設備・監査部門が求める要件を満たします。"
+          },
+          {
+            "title": "グローバル運用支援",
+            "body": "24/7 のオペレーションデスクがハートビートを監視し、新しいセキュリティ勧告が出るたびにアップデートを展開します。"
+          }
+        ]
+      },
+      "lineup": {
+        "eyebrow": "ゲートウェイ一覧",
+        "headline": "小型ノードからキャリアグレードまで一括供給",
+        "intro": "現場ごとに最適なゲートウェイを組み合わせることで、過剰投資を避けながらも強靭な LoRaWAN カバレッジを実現します。",
+        "fields": {
+          "manufacturer": "メーカー",
+          "placement": "設置環境",
+          "recommended": "推奨用途"
+        },
+        "items": {
+          "ug65": {
+            "name": "Milesight UG65 屋内モデル",
+            "manufacturer": "Milesight",
+            "placement": "屋内 (IP65)",
+            "summary": "イーサネットと Wi-Fi を備えた高性能ゲートウェイ。空調の効いたスペースに素早く導入できます。",
+            "recommended": [
+              "冷蔵室・品質管理ラボ・製造オフィス",
+              "ホテルや飲食のバックヤード監視",
+              "屋上にアクセスできない倉庫のカバレッジ"
+            ],
+            "image_alt": "作業台に置かれた Milesight UG65 ゲートウェイ"
+          },
+          "ug67": {
+            "name": "Milesight UG67 屋外モデル",
+            "manufacturer": "Milesight",
+            "placement": "屋外 (IP67・ポール取付)",
+            "summary": "耐雷サージを備えた 8 チャネルゲートウェイ。屋上やヤード、遠隔境界をカバーします。",
+            "recommended": [
+              "風雨にさらされる食品工場の屋上・ヤード",
+              "数 km に及ぶ農業・物流ルート",
+              "LTE + Ethernet 冗長バックホールが必要な施設"
+            ],
+            "image_alt": "屋外ポールに取り付けられた Milesight UG67 ゲートウェイ"
+          },
+          "kona_micro": {
+            "name": "Tektelic KONA Micro",
+            "manufacturer": "Tektelic",
+            "placement": "屋内 (小型/卓上)",
+            "summary": "PoE で動作するコンパクトなゲートウェイ。臨時カバレッジや冗長マイクロセルに最適です。",
+            "recommended": [
+              "小売店舗・ホスピタリティスイート・テストキッチン",
+              "期間限定の設置やパイロット導入",
+              "司令室や保守室でのバックアップカバレッジ"
+            ],
+            "image_alt": "デスク上の Tektelic KONA Micro ゲートウェイ"
+          },
+          "kona_enterprise": {
+            "name": "Tektelic KONA Enterprise",
+            "manufacturer": "Tektelic",
+            "placement": "屋内 (ラック/壁面)",
+            "summary": "デュアルコンセントレータと LTE フェイルオーバー、SNMP を備えたエンタープライズ向けゲートウェイ。",
+            "recommended": [
+              "ネットワーク部門を持つ病院や大学",
+              "多層のホテルやコンベンションセンター",
+              "IT 連携が必須の制御室"
+            ],
+            "image_alt": "斜めから見た Tektelic KONA Enterprise ゲートウェイ"
+          },
+          "kona_macro": {
+            "name": "Tektelic KONA Macro",
+            "manufacturer": "Tektelic",
+            "placement": "屋外 (キャリアグレード)",
+            "summary": "長距離カバレッジと冗長ラジオを備え、高い稼働 SLA に対応する屋外ゲートウェイです。",
+            "recommended": [
+              "大規模製造キャンパスや港湾",
+              "数千エーカー規模の農業オペレーション",
+              "SLA 稼働が求められる自治体・公共インフラ"
+            ],
+            "image_alt": "屋外に設置された Tektelic KONA Macro ゲートウェイ"
+          },
+          "kerlink_istation": {
+            "name": "Kerlink Wirnet iStation",
+            "manufacturer": "Kerlink",
+            "placement": "屋外 (タワー/屋上)",
+            "summary": "GPS・LTE を統合したキャリアグレード筐体。過酷な気候でも安定稼働します。",
+            "recommended": [
+              "化学・重工業のプラント",
+              "高温・粉じん・塩害のある屋上",
+              "GPS 同期が必須の展開"
+            ],
+            "image_alt": "屋上に設置された Kerlink Wirnet iStation ゲートウェイ"
+          }
+        }
+      },
+      "cta": {
+        "eyebrow": "ご相談ください",
+        "headline": "RF エンジニアが直接サポート",
+        "body": "延床面積、建材、監査要件をご共有いただければ、最適なゲートウェイ配置と CropWatch Command 上の設定までまとめてご提案します。",
+        "primary_cta": "設計ワークショップを予約",
+        "secondary_cta": "図面を送る"
+      }
+    },
     "cw_air_th": {
       "page": {
         "meta": {
