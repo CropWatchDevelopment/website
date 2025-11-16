@@ -91,7 +91,7 @@
       }
     },
     "legal": {
-      "copyright": "© {{year}} CropWatch LLC. All rights reserved.",
+  "copyright": "© {year} CropWatch LLC. All rights reserved.",
       "links": {
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
@@ -134,7 +134,7 @@
       },
       "survive_the_cold": {
         "badge": "❄️ Survive The Cold",
-        "title": "Engineered for Freezers & Cold Chain",
+        "title": "Engineered for the cold",
         "body": "Our sensors are built to perform in the harshest cold storage environments, ensuring reliable data even at sub-zero.",
         "cta": "Explore cold chain solutions",
         "image_alt": "CropWatch sensor installed inside a freezer"
@@ -315,33 +315,33 @@
       }
     },
     "industries": {
-      "eyebrow": "Industries Served",
-      "headline": "Where sensors deliver measurable ROI",
-      "intro": "Our network is trusted by operations teams in heavily regulated, temperature-sensitive, and complex facilities across the globe.",
+      "eyebrow": "Supported Industries",
+      "headline": "Industries Where Our Sensors Deliver Accurate Measurement and Strong Cost Benefits",
+      "intro": "Our network is trusted in environments where strict regulations and precise temperature/humidity control are required.",
       "cards": {
         "cold_chain": {
-          "label": "Cold chain distribution",
-          "description": "Deploy rugged sensors that keep compliance-ready records in even the hardest-to-reach zones."
+          "label": "Cold Chain",
+          "description": "Reliable logging even in harsh temperature zones. Protects the quality and compliance of frozen and refrigerated products."
         },
         "protein": {
-          "label": "Protein & livestock operations",
-          "description": "Monitor temperature, humidity, and feed storage to protect margins across large footprints."
+          "label": "Cultural Facilities",
+          "description": "Preserves artworks and archives in optimal conditions. Ensures stable temperature and humidity in sensitive environments."
         },
         "hospitality": {
-          "label": "Hospitality & venues",
-          "description": "Protect guest experience with air quality, refrigeration, and energy insights in every property."
+          "label": "Livestock Industry",
+          "description": "Monitors environments in real time across wide or remote areas, protecting animal health and productivity."
         },
         "manufacturing": {
-          "label": "Manufacturing & processing",
-          "description": "Instrument critical lines to detect deviations before they cause downtime or compliance risk."
+          "label": "Manufacturing & Processing",
+          "description": "Precise monitoring supports safe production in sites where temperature and humidity directly affect product quality."
         },
         "storage": {
-          "label": "Storage and warehousing",
-          "description": "Maintain audit-ready conditions across sprawling sites with proactive alerts and analytics."
+          "label": "Storage & Warehousing",
+          "description": "Visualizes temperature and humidity even in large spaces. Prevents product degradation and audit issues, ensuring safe storage conditions."
         },
         "agriculture": {
-          "label": "Controlled agriculture",
-          "description": "Keep crops in optimal zones with soil, moisture, and climate telemetry from seed to shipment."
+          "label": "Care Facilities",
+          "description": "Detects sudden temperature/humidity changes early and alerts immediately, supporting quick response to abnormalities."
         }
       }
     },
@@ -382,7 +382,7 @@
               "value": "$199"
             },
             "relay": {
-              "label": "Automation Relay Module",
+              "label": "Automation Relay Device",
               "value": "$179"
             },
             "indoor_gateway": {
@@ -405,7 +405,7 @@
           "items": {
             "retention": {
               "label": "Data retention",
-              "value": "24 months rolling"
+              "value": "24 months rolling Standard"
             },
             "licences": {
               "label": "User licenses",
@@ -455,26 +455,28 @@
       "cta": "Discuss this approach",
       "cases": {
         "sunharvest": {
-          "company": "SunHarvest Foods",
-          "industry": "Cold storage and distribution",
-          "recap": "Scaled temperature and humidity monitoring across 12 distribution centers to eliminate spoilage claims.",
-          "badge": "Global rollout",
+          "company": "TK Ebisu Foods",
+          "industry": "Poultry / Animal Safety",
+          "recap": "In the past, TK Ebisu Foods needed to manually monitor the temperature, humidity, and air quality across their coop locations. CropWatch provided a comprehensive IoT solution that automated these processes, ensuring optimal conditions and animal welfare and egg production.",
+          "badge": "Timesavings",
+          "websiteUrl": "https://ebisu-g.com/group/tk-ebisu/",
           "stats": [
             {
               "value": "38%",
               "label": "Insurance claim reduction inside 6 months"
             },
             {
-              "value": "16 hrs",
-              "label": "Faster incident response time per facility"
+              "value": "6048 hrs per year saved",
+              "label": "By reducing driving time for manual checks, TK Ebisu Foods saved significant labor hours annually."
             }
           ]
         },
         "harborline": {
-          "company": "Harborline Hospitality",
+          "company": "Phoenix Seagaia Resport",
           "industry": "Luxury resorts and hotels",
-          "recap": "Unified indoor air quality, energy metering, and guest experience sensors across 27 properties.",
-          "badge": "Multi-brand portfolio",
+          "recap": "This buffet-style restaurant features local cuisine crafted from traditional Miyazaki fruits and vegetables, award-winning Miyazaki beef, rich seafood. CropWatch provides comprehensive IoT food temperature and humidity monitoring solutions to ensure food safety and quality standards are consistently met. Time is saved on manual checks and compliance reporting, allowing staff to focus on enhancing guest experiences.",
+          "badge": "High compliance",
+          "websiteUrl": "https://seagaia.co.jp/",
           "stats": [
             {
               "value": "22%",
@@ -600,6 +602,76 @@
     }
   },
   "products": {
+    "coming_soon": {
+      "meta": {
+        "title": "Replacement Sensors Coming Soon | CropWatch®",
+        "description": "Stay updated as the CropWatch replacement sensor kits approach launch. Explore the benefits, rollout timeline, and how to join the pilot program."
+      },
+      "hero": {
+        "eyebrow": "Replacement sensors",
+        "headline": "Replacement sensor kit is almost ready",
+  "body": "We're finalizing hot-swap cartridges that keep your CW Air TH sensors calibrated without shipping hardware back to the factory. Early partners get the tooling, documentation, and support they need on day one.",
+        "primary_cta": "Request early access",
+        "secondary_cta": "See customer outcomes",
+        "sidebar": {
+          "title": "What to expect",
+          "intro": "The replacement program is built to keep line operations moving while we handle calibration and recycling.",
+          "points": [
+            "Drop-in cartridges install in minutes with no downtime or rewiring required.",
+            "Serialized ISO17025-ready certificates ship inside every kit.",
+            "Prepaid envelopes let you return retired probes for responsible recycling."
+          ]
+        }
+      },
+      "benefits": {
+        "sensor_suite": {
+          "title": "Keep your fleet mission-ready",
+          "description": "Swap sensor cartridges on-site and keep every CW Air TH device reporting without waiting for factory service."
+        },
+        "network": {
+          "title": "Stay connected throughout rollout",
+          "description": "Our team pre-configures every module so your LoRaWAN network accepts replacements with zero re-provisioning."
+        },
+        "compliance": {
+          "title": "Compliance documentation bundled",
+          "description": "Each kit includes calibration proof, chain-of-custody paperwork, and guidance your auditors expect."
+        }
+      },
+      "timeline": {
+        "discovery": {
+          "label": "Discovery & design",
+          "status": "Wrapping up",
+          "description": "We are finalizing mechanical tolerances, firmware validation, and recycling logistics with early partners."
+        },
+        "pilot": {
+          "label": "Pilot deployments",
+          "status": "Launching soon",
+          "description": "Select fleets will receive pilot kits to validate swap procedures, documentation flow, and support playbooks."
+        },
+        "launch": {
+          "label": "General availability",
+          "status": "Targeting Q2",
+          "description": "Once pilots lock, we will open ordering globally with regional stocking and automated re-ordering."
+        }
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "question": "Will I need to ship sensors back for calibration?",
+            "answer": "No. Replacement cartridges are factory calibrated and include certificates. You simply swap the probe, scan the code, and log the change in CropWatch Command."
+          },
+          {
+            "question": "How much downtime should we budget?",
+            "answer": "Each swap takes under five minutes. Most customers schedule replacements during existing walkthroughs so no additional downtime is required."
+          },
+          {
+            "question": "Can we reserve inventory ahead of launch?",
+            "answer": "Yes. Talk to our team and we'll allocate pilot or launch inventory, plus set up automatic replenishment thresholds if needed."
+          }
+        ]
+      }
+    },
     "cw_air_th": {
       "page": {
         "meta": {
@@ -914,8 +986,8 @@
     },
     "leadership": {
       "eyebrow": "Leadership",
-      "headline": "Our highly skilled team",
-      "intro": "We pulled people from all over the world based on their outstanding knowledge and experteese in their own specific field.",
+      "headline": "Meet our highly skilled team",
+      "intro": "In order to deliver reliable IoT solutions, we have assembled a team of experts with deep experience in Electronics, Software Engineering, Mechanical Engineering, and Product development from around the world.",
       "members": {
         "evelyn": {
           "name": "Evelyn Ortiz",

@@ -100,7 +100,7 @@
 
     <div class="relative border-t border-white/10 bg-[#071227]">
         <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-white/65 md:flex-row md:items-center md:justify-between">
-            <p>{$_('footer.legal.copyright', { values: { year } })}</p>
+            <p>{$_('footer.legal.copyright', { year })}</p>
             <ul class="flex flex-wrap items-center gap-3">
                         {#each legalLinks as link, index (link.href)}
                     <li class="flex items-center gap-3">

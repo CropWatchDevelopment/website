@@ -123,11 +123,11 @@
 
 	const industriesServed = [
 		{ icon: '🧊', labelKey: 'home.industries.cards.cold_chain.label', descriptionKey: 'home.industries.cards.cold_chain.description' },
-		{ icon: '🐔', labelKey: 'home.industries.cards.protein.label', descriptionKey: 'home.industries.cards.protein.description' },
-		{ icon: '🏨', labelKey: 'home.industries.cards.hospitality.label', descriptionKey: 'home.industries.cards.hospitality.description' },
+		{ icon: '🖼️', labelKey: 'home.industries.cards.protein.label', descriptionKey: 'home.industries.cards.protein.description' },
+		{ icon: '🐔', labelKey: 'home.industries.cards.hospitality.label', descriptionKey: 'home.industries.cards.hospitality.description' },
 		{ icon: '🏭', labelKey: 'home.industries.cards.manufacturing.label', descriptionKey: 'home.industries.cards.manufacturing.description' },
 		{ icon: '📦', labelKey: 'home.industries.cards.storage.label', descriptionKey: 'home.industries.cards.storage.description' },
-		{ icon: '🌿', labelKey: 'home.industries.cards.agriculture.label', descriptionKey: 'home.industries.cards.agriculture.description' }
+		{ icon: '🧓', labelKey: 'home.industries.cards.agriculture.label', descriptionKey: 'home.industries.cards.agriculture.description' }
 	] as const;
 
 	const pricingMatrix = [

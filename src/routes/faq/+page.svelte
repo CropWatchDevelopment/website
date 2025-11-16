@@ -42,12 +42,17 @@
 				{
 					question: 'How far can sensors communicate through dense materials?',
 					answer:
-						'Indoor range exceeds 3,500 feet in typical warehouses and cold storage. Concrete, steel, and refrigeration lines are mitigated with tuned antennas and optional repeater nodes placed during your RF survey.'
+						'Indoor range exceeds 500 meters / 1,500 feet in typical warehouses and cold storage. Concrete, steel, and refrigeration lines may reduce distance. Antennas and optional repeater nodes are placed during your RF survey to optimize coverage.'
 				},
 				{
 					question: 'Do gateways support redundancy?',
 					answer:
 						'Yes. We design dual-path coverage with overlapping gateways. If one gateway is offline, neighboring hardware automatically accepts traffic, and the network operations center is alerted for proactive remediation.'
+				},
+				{
+					question: 'What is the outdoor range with direct line-of-sight?',
+					answer:
+						'Outdoor range exceeds 7 kilometers / 4.3 miles with direct line-of-sight safely. Terrain, vegetation, and atmospheric conditions may affect distance. Antennas and site placement are optimized during your RF survey to maximize coverage. Our max range has been 70km / 43.5 miles but this is an extreme case.'
 				}
 			]
 		},
@@ -58,7 +63,7 @@
 				{
 					question: 'How is sensor data validated before it reaches our dashboards?',
 					answer:
-						'Dual sensing elements capture each reading with a tie-breaker channel to arbitrate anomalies. Firmware applies drift detection, and the platform flags deviations long before compliance thresholds are missed.'
+						'Data is processed through multiple levels of validators before it hits our database. The first level occures directly on the device itsself where our sensor cross-validates data from each of the sensors, then after being sent to our network, our data processor runs a sanity check before committing it to our database that also has column level limits on data expectations. For more info on exactly how our code does this, please check our Github repo from the socials link in the footer.'
 				},
 				{
 					question: 'Can CropWatch integrate with our BI stack or CMMS?',
@@ -72,8 +77,13 @@
 				{
 					question: 'Where is data stored and how is it secured?',
 					answer:
-						'Data resides in redundant SOC 2 Type II cloud regions with encryption in transit (TLS 1.2+) and at rest (AES-256). Granular audit logs track every access, and optional single sign-on keeps authentication aligned with your identity provider.'
-				}
+						'We are very serious about data storage. All data is stored on Supabase (AWS) as the primary hosted location, with a mirrored database stored on-prem in our office. We have engineered our system not not only survive an AWS outage, but we expect it. So all data is buffered through a Packet Broker hosted again on both AWS and on-prem.'
+				},
+				{
+					question: 'What if MY internet or MY gateway goes down?',
+					answer:
+						'No worries! Problems happen. All devices we offer(and are manufactured by CropWatch) have local (on-device) storage and can handle continuous network outages for up to 30 days when the device transmits at a 10 minute interval. When connectivity is restored, all buffered data is automatically uploaded to the cloud without any user intervention.'
+				},
 			]
 		},
 		{
@@ -93,7 +103,7 @@
 				{
 					question: 'Can you provide NET 30/60/90/180 financing terms?',
 					answer:
-						"We've offered financing options in the past; however, at this time we're unable to extend financial terms for new hardware purchases."
+						"We've offered financing options in the past; however, at this time we're unable to extend financial terms for new hardware purchases. If you have any questions or comments, please contact us via our contact page regarding this issue."
 				}
 			]
 		},
@@ -318,8 +328,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 				Answers for every team in your rollout
 			</h2>
 			<p class="mt-3 text-base text-[#1c2d52]/80">
-				From operations and IT to finance and compliance, find clear guidance on how CropWatch keeps
-				facilities online and audit-ready.
+				Here is a collection of the most common questions we get from customers during deployments.
 			</p>
 		</div>
 		<div class="space-y-10">
@@ -444,11 +453,10 @@ This is superior to generic NIST-traceability, which may be internally documente
 			Need a deeper dive?
 		</p>
 		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
-			Schedule a white-glove consult with our IoT engineers
+			Do you have a question we didn't cover here?
 		</h2>
 		<p class="mt-4 text-base text-white/80">
-			Bring us your facility maps, compliance targets, and ROI goals—we will co-author a deployment
-			blueprint you can share with leadership.
+			Reach out to us anytime for personalized support from our industrial IoT experts.
 		</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a
