@@ -727,6 +727,9 @@
           "placement": "Placement",
           "recommended": "Recommended usages"
         },
+        "cta": {
+          "view_manufacturer": "View manufacturer website"
+        },
         "items": {
           "ug65": {
             "name": "Milesight UG65 Indoor",
@@ -1059,6 +1062,58 @@
           }
         }
       }
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact CropWatch | Talk to an IoT Specialist",
+      "description": "Schedule a walk-through or connect with CropWatch specialists to design your rugged industrial IoT deployment."
+    },
+    "hero": {
+      "eyebrow": "Let's connect",
+      "headline": "Book a strategy session with our industrial IoT team",
+      "body": "Share your facility goals and we will build a tailored business case, from LoRaWAN coverage and sensor selection to analytics rollout and compliance-ready reporting.",
+      "bullets": [
+        "Site walk-throughs, live demos, and proof-of-value pilots.",
+        "Design guidance for cold storage, manufacturing, hospitality, and more.",
+        "Executive-ready ROI modeling to accelerate stakeholder sign-off."
+      ]
+    },
+    "form": {
+      "title": "Start the conversation",
+      "subtitle": "Complete the form and we'll respond within one business day.",
+      "fields": {
+        "first_name": {
+          "label": "First name",
+          "placeholder": "John"
+        },
+        "last_name": {
+          "label": "Last name",
+          "placeholder": "Smith"
+        },
+        "email": {
+          "label": "Work email",
+          "placeholder": "you@company.com"
+        },
+        "company": {
+          "label": "Company",
+          "placeholder": "Acme Foods"
+        },
+        "message": {
+          "label": "How can we help?",
+          "placeholder": "Tell us about your facilities, challenges, and timelines."
+        }
+      },
+      "submit": "Submit inquiry"
+    },
+    "recaptcha": {
+      "protected": "Protected by Google reCAPTCHA (v3).",
+      "missing_key_prefix": "Set",
+      "missing_key_suffix": "to enable CAPTCHA validation."
+    },
+    "errors": {
+      "security_unavailable": "Security check unavailable. Please reload and try again.",
+      "verification_failed": "Verification failed. Please try again."
     }
   },
   "about": {

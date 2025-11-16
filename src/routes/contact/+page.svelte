@@ -1,47 +1,94 @@
-<script lang="ts">
-	const regionalOffices = [
-		{
-			region: 'North America',
-			phone: '+1 (813) 555-0123',
-			address: '410 Harbor Exchange, Suite 400, Tampa, FL 33602',
-			email: 'na-sales@cropwatch.io'
-		},
-		{
-			region: 'Asia Pacific',
-			phone: '+81 3-1234-5678',
-			address: 'Eitai 2-36-2, Koto-ku, Tokyo 135-0034, Japan',
-			email: 'apac@cropwatch.io'
-		},
-		{
-			region: 'Europe',
-			phone: '+44 20 7946 0630',
-			address: '90 High Holborn, London WC1V 6LJ, United Kingdom',
-			email: 'eu@cropwatch.io'
-		}
-	];
 
-	const engagementHighlights = [
-		{
-			title: 'Rapid deployment blueprint',
-			description: 'Site survey, RF modeling, and rollout plan delivered inside two weeks.'
-		},
-		{
-			title: 'Operational success team',
-			description: 'Dedicated specialists oversee installs, onboarding, and quarterly ROI reviews.'
-		},
-		{
-			title: 'Always-on support',
-			description: '24/7 network monitoring, automatic firmware updates, and guaranteed replacements.'
+<script lang="ts">
+	import { browser } from '$app/environment';
+	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
+	import { _ } from 'svelte-i18n';
+
+	type RecaptchaClient = {
+		ready: (cb: () => void) => void;
+		execute: (
+			siteKey: string,
+			config: {
+				action: string;
+			}
+		) => Promise<string>;
+	};
+
+	type RecaptchaWindow = Window & {
+		grecaptcha?: RecaptchaClient;
+	};
+
+	const getRecaptchaClient = () => (window as RecaptchaWindow).grecaptcha;
+
+	const heroBulletKeys = [
+		'contact.hero.bullets.0',
+		'contact.hero.bullets.1',
+		'contact.hero.bullets.2'
+	] as const;
+
+	const recaptchaSiteKey = PUBLIC_RECAPTCHA_SITE_KEY;
+	const recaptchaRequired = Boolean(recaptchaSiteKey);
+	const recaptchaAction = 'contact_form';
+	let recaptchaReady = $state(!recaptchaRequired);
+	let recaptchaBusy = $state(false);
+	let recaptchaErrorKey = $state<string | null>(null);
+
+	if (browser && recaptchaRequired) {
+		const watchForRecaptcha = () => {
+			const recaptcha = getRecaptchaClient();
+			if (recaptcha) {
+				recaptcha.ready(() => {
+					recaptchaReady = true;
+				});
+			} else {
+				setTimeout(watchForRecaptcha, 250);
+			}
+		};
+		watchForRecaptcha();
+	}
+
+	const handleSubmit = async (event: SubmitEvent) => {
+		if (!browser || !recaptchaRequired) {
+			return;
 		}
-	];
+
+		event.preventDefault();
+		recaptchaErrorKey = null;
+		const target = event.currentTarget as HTMLFormElement | null;
+		if (!target) return;
+		const recaptcha = getRecaptchaClient();
+		if (!recaptcha) {
+			recaptchaErrorKey = 'contact.errors.security_unavailable';
+			return;
+		}
+
+		recaptchaBusy = true;
+		try {
+			const token = await recaptcha.execute(recaptchaSiteKey, { action: recaptchaAction });
+			let tokenInput = target.querySelector<HTMLInputElement>('input[name="g-recaptcha-response"]');
+			if (!tokenInput) {
+				tokenInput = document.createElement('input');
+				tokenInput.type = 'hidden';
+				tokenInput.name = 'g-recaptcha-response';
+				target.appendChild(tokenInput);
+			}
+			tokenInput.value = token;
+			target.submit();
+		} catch (error) {
+			console.error('reCAPTCHA execution error', error);
+			recaptchaErrorKey = 'contact.errors.verification_failed';
+		} finally {
+			recaptchaBusy = false;
+		}
+	};
 </script>
 
 <svelte:head>
-	<title>Contact CropWatch | Talk to an IoT Specialist</title>
-	<meta
-		name="description"
-		content="Schedule a walk-through or connect with CropWatch specialists to design your rugged industrial IoT deployment."
-	/>
+	<title>{$_('contact.meta.title')}</title>
+	<meta name="description" content={$_('contact.meta.description')} />
+	{#if recaptchaSiteKey}
+		<script src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`} async defer></script>
+	{/if}
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
@@ -49,93 +96,99 @@
 	<div class="relative mx-auto w-full max-w-6xl px-4">
 		<div class="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
 			<div class="space-y-6">
-				<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#f2a516]">Let's connect</p>
-				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					Book a strategy session with our industrial IoT team
-				</h1>
-				<p class="text-base text-white/80">
-					Share your facility goals and we will build a tailored business case, from LoRaWAN coverage and sensor selection to analytics rollout and compliance-ready reporting.
-				</p>
+				<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#f2a516]">{$_('contact.hero.eyebrow')}</p>
+				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">{$_('contact.hero.headline')}</h1>
+				<p class="text-base text-white/80">{$_('contact.hero.body')}</p>
 				<ul class="space-y-4 text-sm text-white/80">
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>Site walk-throughs, live demos, and proof-of-value pilots.</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>Design guidance for cold storage, manufacturing, hospitality, and more.</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>Executive-ready ROI modeling to accelerate stakeholder sign-off.</span>
-					</li>
+					{#each heroBulletKeys as bulletKey (bulletKey)}
+						<li class="flex items-start gap-3">
+							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+							<span>{$_(bulletKey)}</span>
+						</li>
+					{/each}
 				</ul>
 			</div>
 			<div class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur">
-				<h2 class="text-lg font-semibold text-white">Start the conversation</h2>
-				<p class="mt-2 text-sm text-white/70">Complete the form and we'll respond within one business day.</p>
-				<form class="mt-6 space-y-5 text-sm" method="post">
+				<h2 class="text-lg font-semibold text-white">{$_('contact.form.title')}</h2>
+				<p class="mt-2 text-sm text-white/70">{$_('contact.form.subtitle')}</p>
+				<form class="mt-6 space-y-5 text-sm" method="post" onsubmit={handleSubmit}>
 					<div class="grid gap-4 md:grid-cols-2">
 						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white">First name</span>
+							<span class="font-medium text-white">{$_('contact.form.fields.first_name.label')}</span>
 							<input
 								name="firstName"
 								type="text"
 								required
 								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder="Jordan"
+								placeholder={$_('contact.form.fields.first_name.placeholder')}
 							/>
 						</label>
 						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white">Last name</span>
+							<span class="font-medium text-white">{$_('contact.form.fields.last_name.label')}</span>
 							<input
 								name="lastName"
 								type="text"
 								required
 								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder="Morgan"
+								placeholder={$_('contact.form.fields.last_name.placeholder')}
 							/>
 						</label>
 					</div>
 					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">Work email</span>
+						<span class="font-medium text-white">{$_('contact.form.fields.email.label')}</span>
 						<input
 							name="email"
 							type="email"
 							required
 							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder="you@company.com"
+							placeholder={$_('contact.form.fields.email.placeholder')}
 						/>
 					</label>
 					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">Company</span>
+						<span class="font-medium text-white">{$_('contact.form.fields.company.label')}</span>
 						<input
 							name="company"
 							type="text"
 							required
 							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder="Acme Foods"
+							placeholder={$_('contact.form.fields.company.placeholder')}
 						/>
 					</label>
 					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">How can we help?</span>
+						<span class="font-medium text-white">{$_('contact.form.fields.message.label')}</span>
 						<textarea
 							name="message"
 							rows={4}
 							required
 							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder="Tell us about your facilities, challenges, and timelines."
+							placeholder={$_('contact.form.fields.message.placeholder')}
 						></textarea>
 					</label>
-					<label class="flex items-center gap-2 text-white/70">
+					<input type="hidden" name="g-recaptcha-response" value="" aria-hidden="true" />
+					{#if recaptchaRequired}
+						<p class="rounded-xl border border-white/20 bg-white/5 px-3 py-2 text-xs text-white/80" aria-live="polite">
+							{#if recaptchaErrorKey}
+								{$_(recaptchaErrorKey)}
+							{:else}
+								{$_('contact.recaptcha.protected')}
+							{/if}
+						</p>
+					{:else}
+						<p class="rounded-xl border border-dashed border-white/30 bg-white/5 px-3 py-2 text-xs text-white/80">
+							{$_('contact.recaptcha.missing_key_prefix')} <code>PUBLIC_RECAPTCHA_SITE_KEY</code> {$_('contact.recaptcha.missing_key_suffix')}
+						</p>
+					{/if}
+					<!-- <label class="flex items-center gap-2 text-white/70">
 						<input type="checkbox" name="subscribe" class="h-4 w-4 rounded border-white/30 bg-white/10 text-[#f2a516] focus:ring-[#f2a516]" />
 						<span>Keep me updated on product releases and industry insights.</span>
-					</label>
+					</label> -->
 					<button
 						type="submit"
-						class="w-full rounded-full bg-[#f2a516] px-4 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+						class="w-full rounded-full bg-[#f2a516] px-4 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-60"
+						disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
+						aria-disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
 					>
-						Submit inquiry
+						{$_('contact.form.submit')}
 					</button>
 				</form>
 			</div>

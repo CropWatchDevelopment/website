@@ -724,6 +724,9 @@
           "placement": "設置環境",
           "recommended": "推奨用途"
         },
+        "cta": {
+          "view_manufacturer": "メーカーサイトを見る"
+        },
         "items": {
           "ug65": {
             "name": "Milesight UG65 屋内モデル",
@@ -1058,6 +1061,58 @@
           }
         }
       }
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "CropWatch へお問い合わせ | IoT スペシャリストに相談",
+      "description": "施設ウォークスルーの予約や、堅牢な産業用 IoT 展開の設計について CropWatch のスペシャリストにご相談ください。"
+    },
+    "hero": {
+      "eyebrow": "お問い合わせ",
+      "headline": "産業用 IoT チームとの戦略セッションを予約",
+      "body": "施設の目標や課題を共有いただければ、LoRaWAN カバレッジ設計からセンサー選定、分析導入、コンプライアンス対応までを含むビジネスケースをカスタムでご提案します。",
+      "bullets": [
+        "現地ウォークスルー、ライブデモ、PoV パイロットを実施。",
+        "冷凍倉庫、製造、ホスピタリティなど各業界向けの設計ガイダンス。",
+        "経営層の承認を加速させる ROI モデリングをご提供。"
+      ]
+    },
+    "form": {
+      "title": "まずはご相談ください",
+      "subtitle": "フォームにご入力いただければ、1 営業日以内にご連絡します。",
+      "fields": {
+        "first_name": {
+          "label": "名",
+          "placeholder": "太郎"
+        },
+        "last_name": {
+          "label": "姓",
+          "placeholder": "山田"
+        },
+        "email": {
+          "label": "業務用メールアドレス",
+          "placeholder": "you@company.com"
+        },
+        "company": {
+          "label": "会社名",
+          "placeholder": "Acme Foods"
+        },
+        "message": {
+          "label": "ご相談内容",
+          "placeholder": "施設情報や課題、希望スケジュールをご記入ください。"
+        }
+      },
+      "submit": "送信する"
+    },
+    "recaptcha": {
+      "protected": "Google reCAPTCHA (v3) によって保護されています。",
+      "missing_key_prefix": "CAPTCHA を有効にするには",
+      "missing_key_suffix": "を設定してください。"
+    },
+    "errors": {
+      "security_unavailable": "セキュリティチェックを利用できません。ページを再読み込みしてからお試しください。",
+      "verification_failed": "検証に失敗しました。もう一度お試しください。"
     }
   },
   "about": {

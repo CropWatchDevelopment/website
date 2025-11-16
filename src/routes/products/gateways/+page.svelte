@@ -50,7 +50,8 @@
 				'products.gateways.lineup.items.ug65.recommended.2'
 			],
 			image: ug65Image,
-			imageAltKey: 'products.gateways.lineup.items.ug65.image_alt'
+			imageAltKey: 'products.gateways.lineup.items.ug65.image_alt',
+			website: 'https://www.milesight-iot.com/iot/lorawan-gateway/ug65/'
 		},
 		{
 			nameKey: 'products.gateways.lineup.items.ug67.name',
@@ -63,7 +64,8 @@
 				'products.gateways.lineup.items.ug67.recommended.2'
 			],
 			image: ug67Image,
-			imageAltKey: 'products.gateways.lineup.items.ug67.image_alt'
+			imageAltKey: 'products.gateways.lineup.items.ug67.image_alt',
+			website: 'https://www.milesight-iot.com/iot/lorawan-gateway/ug67/'
 		},
 		{
 			nameKey: 'products.gateways.lineup.items.kona_micro.name',
@@ -76,7 +78,8 @@
 				'products.gateways.lineup.items.kona_micro.recommended.2'
 			],
 			image: konaMicroImage,
-			imageAltKey: 'products.gateways.lineup.items.kona_micro.image_alt'
+			imageAltKey: 'products.gateways.lineup.items.kona_micro.image_alt',
+			website: 'https://tektelic.com/products/kona-micro/'
 		},
 		{
 			nameKey: 'products.gateways.lineup.items.kona_enterprise.name',
@@ -89,7 +92,8 @@
 				'products.gateways.lineup.items.kona_enterprise.recommended.2'
 			],
 			image: konaEnterpriseImage,
-			imageAltKey: 'products.gateways.lineup.items.kona_enterprise.image_alt'
+			imageAltKey: 'products.gateways.lineup.items.kona_enterprise.image_alt',
+			website: 'https://tektelic.com/products/kona-enterprise/'
 		},
 		{
 			nameKey: 'products.gateways.lineup.items.kona_macro.name',
@@ -102,7 +106,8 @@
 				'products.gateways.lineup.items.kona_macro.recommended.2'
 			],
 			image: konaMacroImage,
-			imageAltKey: 'products.gateways.lineup.items.kona_macro.image_alt'
+			imageAltKey: 'products.gateways.lineup.items.kona_macro.image_alt',
+			website: 'https://tektelic.com/products/kona-macro/'
 		},
 		{
 			nameKey: 'products.gateways.lineup.items.kerlink_istation.name',
@@ -115,7 +120,8 @@
 				'products.gateways.lineup.items.kerlink_istation.recommended.2'
 			],
 			image: kerlinkImage,
-			imageAltKey: 'products.gateways.lineup.items.kerlink_istation.image_alt'
+			imageAltKey: 'products.gateways.lineup.items.kerlink_istation.image_alt',
+			website: 'https://www.seeedstudio.com/SenseCAP-M2-LoRaWAN-Gateway-p-5758.html'
 		}
 	] as const;
 </script>
@@ -156,7 +162,7 @@
 			</div>
 			<div class="rounded-3xl border border-white/15 bg-white/5 p-8 shadow-xl shadow-black/30 backdrop-blur">
 				<dl class="space-y-6">
-					{#each heroStats as stat}
+					{#each heroStats as stat (stat.labelKey)}
 						<div>
 							<dt class="text-sm uppercase tracking-[0.25em] text-white/60">
 								{$_(stat.labelKey)}
@@ -175,7 +181,7 @@
 <section class="bg-white py-16">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="grid gap-6 md:grid-cols-3">
-			{#each highlightCards as card}
+			{#each highlightCards as card (card.titleKey)}
 				<article class="rounded-3xl border border-slate-200 bg-slate-50/80 p-6 shadow-sm">
 					<h3 class="text-lg font-semibold text-[#0b1730]">{$_(card.titleKey)}</h3>
 					<p class="mt-3 text-sm text-slate-600">{$_(card.bodyKey)}</p>
@@ -199,7 +205,7 @@
 			</p>
 		</div>
 		<div class="mt-12 grid gap-8 lg:grid-cols-2">
-			{#each gatewayLineup as gateway}
+			{#each gatewayLineup as gateway (gateway.nameKey)}
 				<article class="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg shadow-slate-200/60">
 					<div class="relative h-56 w-full overflow-hidden bg-slate-100">
 						<img
@@ -234,13 +240,23 @@
 								{$_('products.gateways.lineup.fields.recommended')}
 							</p>
 							<ul class="mt-3 space-y-2 text-sm text-slate-700">
-								{#each gateway.recommendedKeys as recKey}
+								{#each gateway.recommendedKeys as recKey (recKey)}
 									<li class="flex gap-2">
 										<span class="text-[#f2a516]">•</span>
 										<span>{$_(recKey)}</span>
 									</li>
 								{/each}
 							</ul>
+						</div>
+						<div class="mt-auto border-t border-slate-100 pt-4">
+							<a
+								href={gateway.website}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="inline-flex w-full items-center justify-center rounded-2xl bg-[#0b1730] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#152a52] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2a516]"
+							>
+								{$_('products.gateways.lineup.cta.view_manufacturer')}
+							</a>
 						</div>
 					</div>
 				</article>

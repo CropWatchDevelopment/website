@@ -29,28 +29,28 @@
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.14",
 		"@types/node": "^22",
+		"@types/nodemailer": "^7.0.3",
 		"@vitest/browser": "^3.2.4",
 		"eslint": "^9.38.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.12.4",
 		"globals": "^16.4.0",
 		"mdsvex": "^0.12.6",
+		"nodemailer": "^7.0.10",
 		"playwright": "^1.56.1",
 		"prettier": "^3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.7.1",
 		"svelte": "^5.41.0",
 		"svelte-check": "^4.3.3",
+		"svelte-i18n": "^4.0.1",
 		"tailwindcss": "^4.1.14",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.1",
 		"vite": "^7.1.10",
 		"vite-plugin-devtools-json": "^1.0.0",
 		"vitest": "^3.2.4",
-		"vitest-browser-svelte": "^1.1.0",
-		"svelte-i18n": "^4.0.1"
+		"vitest-browser-svelte": "^1.1.0"
 	},
-	"packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd",
-	"dependencies": {
-	}
+	"packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd"
 }

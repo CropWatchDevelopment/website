@@ -36,3 +36,13 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Google reCAPTCHA setup
+
+The contact form uses the Google reCAPTCHA checkbox widget. Provide your public site key through a `.env` entry so the widget can render during build and runtime:
+
+```
+PUBLIC_RECAPTCHA_SITE_KEY=your_site_key_here
+```
+
+The matching secret key should be stored on the server-side handler that validates form submissions before processing them.
