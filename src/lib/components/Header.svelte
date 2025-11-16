@@ -1,10 +1,10 @@
 <script lang="ts">
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import MaterialIcon from './MaterialIcon.svelte';
-	import { _, locale } from 'svelte-i18n';
+	import LanguagePicker from './LanguagePicker.svelte';
+	import Search from './Search.svelte';
 	import Telephone from './Telephone.svelte';
-	import { onDestroy } from 'svelte';
-	let openMenu = $state<string | null>(null);
+	import { _ } from 'svelte-i18n';
 
 	interface NavItem {
 		id: string;
@@ -22,23 +22,18 @@
 				{
 					labelKey: 'header.navigation.products_sensor',
 					href: '/products/cw-air-th',
-					icon: 'device_thermostat',
+					icon: 'device_thermostat'
 				},
 				{
 					labelKey: 'header.navigation.products_replacement_sensors',
 					href: '/products/coming-soon',
-					icon: 'settings_input_hdmi',
-				},
+					icon: 'settings_input_hdmi'
+				}
 			]
 		},
 		{ id: 'case-studies', labelKey: 'header.navigation.case_studies', href: '/case-studies' },
 		{ id: 'about', labelKey: 'header.navigation.about', href: '/about' },
 		{ id: 'contact', labelKey: 'header.navigation.contact', href: '/contact' }
-	] as const;
-
-	const topLinks = [
-		{ href: '/contact', labelKey: 'common.actions.contact' }
-		// { href: '/support', labelKey: 'common.actions.support' }
 	] as const;
 
 	const utilityLinks = [
@@ -56,29 +51,13 @@
 		}
 	] as const;
 
-	const LANGUAGE_CODES = {
-		ENGLISH: 'en',
-		JAPANESE: 'ja'
-	} as const;
-
-	const languages = [
-		{
-			code: LANGUAGE_CODES.ENGLISH,
-			iconKey: 'header.language.english_icon',
-			labelKey: 'header.language.english_label'
-		},
-		{
-			code: LANGUAGE_CODES.JAPANESE,
-			iconKey: 'header.language.japanese_icon',
-			labelKey: 'header.language.japanese_label'
-		}
-	] as const;
-
 	const KEYBOARD_KEYS = {
 		ESCAPE: 'Escape',
 		SPACE: ' ',
 		ENTER: 'Enter'
 	} as const;
+
+	let openMenu = $state<string | null>(null);
 
 	function toggleMenu(id: string) {
 		openMenu = openMenu === id ? null : id;
@@ -88,43 +67,10 @@
 		openMenu = null;
 	}
 
-	let selectedLocale = $state<string>(LANGUAGE_CODES.ENGLISH);
-
-	const unsubscribeLocale = locale.subscribe((value) => {
-		selectedLocale = value ?? LANGUAGE_CODES.ENGLISH;
-	});
-
-	onDestroy(unsubscribeLocale);
-
-	function handleLocaleChange(event: Event) {
-		const target = event.target as HTMLSelectElement;
-		const newLocale = target.value as (typeof LANGUAGE_CODES)[keyof typeof LANGUAGE_CODES];
-		locale.set(newLocale);
-	}
-
-	function clickOutside(node: HTMLElement) {
-		const handleClick = (event: MouseEvent) => {
-			if (!node.contains(event.target as Node)) {
-				closeMenu();
-			}
-		};
-
-		const handleKeydown = (event: KeyboardEvent) => {
-			if (event.key === KEYBOARD_KEYS.ESCAPE) {
-				closeMenu();
-			}
-		};
-
-		document.addEventListener('click', handleClick, true);
-		document.addEventListener('keydown', handleKeydown, true);
-
-		return {
-			destroy() {
-				document.removeEventListener('click', handleClick, true);
-				document.removeEventListener('keydown', handleKeydown, true);
-			}
-		};
-	}
+	const topLinks = [
+		{ href: '/contact', labelKey: 'common.actions.contact' }
+		// { href: '/support', labelKey: 'common.actions.support' }
+	] as const;
 </script>
 
 <header>
@@ -133,27 +79,12 @@
 			<span>{$_('header.topbar.welcome')}</span>
 			<span>|</span>
 			<span>{$_('header.topbar.global_site')}</span>
-			<!-- <span class="flex flex-1"></span> -->
 		</div>
-		<div class="flex items-center gap-4">
+		<div class="flex items-center gap-4 py-3">
 			{#each topLinks as link (link.href)}
 				<a href={link.href} class="transition-colors hover:text-blue-600">{$_(link.labelKey)}</a>
 			{/each}
-			<div class="relative">
-				<label class="sr-only" for="language-select">{$_('header.language.picker_label')}</label>
-				<select
-					id="language-select"
-					class="min-w-[140px] rounded-full border border-white/60 bg-white/70 px-3 py-1 text-sm font-semibold text-[#11213c] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387] hover:bg-white/90"
-					bind:value={selectedLocale}
-					onchange={handleLocaleChange}
-				>
-					{#each languages as language (language.code)}
-						<option value={language.code}>
-							{$_(language.iconKey)} {$_(language.labelKey)}
-						</option>
-					{/each}
-				</select>
-			</div>
+			<LanguagePicker />
 		</div>
 	</div>
 
@@ -178,40 +109,14 @@
 			</a>
 			<div class="flex flex-1 items-center justify-end gap-6">
 				<Telephone />
-				<form
-					class="flex w-full max-w-xs items-center overflow-hidden rounded-full border border-white/30 bg-white/10 px-3 py-1 text-sm transition focus-within:border-white focus-within:bg-white/20"
-					role="search"
-				>
-					<label class="sr-only" for="header-search">{$_('header.search.label')}</label>
-					<input
-						id="header-search"
-						class="w-full border-none bg-transparent text-white placeholder:text-white/70 focus:outline-none"
-						type="search"
-						name="q"
-						placeholder={$_('header.search.placeholder')}
-						autocomplete="off"
-					/>
-					<button
-						type="submit"
-						class="ml-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white transition hover:bg-white/40"
-						aria-label={$_('header.search.submit_aria')}
-					>
-						<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-							<path
-								fill-rule="evenodd"
-								d="M9 3.5a5.5 5.5 0 1 0 3.356 9.9l3.122 3.122a.75.75 0 1 0 1.06-1.06l-3.121-3.123A5.5 5.5 0 0 0 9 3.5ZM5 9a4 4 0 1 1 7.007 2.545.75.75 0 0 0-.144.144A4 4 0 0 1 5 9Z"
-								clip-rule="evenodd"
-							/>
-						</svg>
-					</button>
-				</form>
+				<Search />
 			</div>
 		</div>
 	</div>
 
 	<nav
 		class="bg-gradient-to-b from-[#2f5387] to-[#1f3b64] py-3 shadow-[0_2px_4px_rgba(0,0,0,0.15)]"
-		use:clickOutside
+		
 	>
 		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
 			<ul class="flex items-center gap-6 text-sm text-white" id="mainMenu">
