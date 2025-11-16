@@ -14,7 +14,10 @@
       "switch_to_english_aria": "Change language to English",
       "switch_to_japanese_aria": "Change language to Japanese",
       "english_icon": "🇺🇸",
-      "japanese_icon": "🇯🇵"
+      "japanese_icon": "🇯🇵",
+      "picker_label": "Language",
+      "english_label": "English",
+      "japanese_label": "日本語"
     },
     "brand": {
       "home_aria": "CropWatch home",

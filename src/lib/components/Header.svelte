@@ -1,8 +1,9 @@
 <script lang="ts">
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import MaterialIcon from './MaterialIcon.svelte';
-	import { _, locale, locales } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 	import Telephone from './Telephone.svelte';
+	import { onDestroy } from 'svelte';
 	let openMenu = $state<string | null>(null);
 
 	interface NavItem {
@@ -60,6 +61,19 @@
 		JAPANESE: 'ja'
 	} as const;
 
+	const languages = [
+		{
+			code: LANGUAGE_CODES.ENGLISH,
+			iconKey: 'header.language.english_icon',
+			labelKey: 'header.language.english_label'
+		},
+		{
+			code: LANGUAGE_CODES.JAPANESE,
+			iconKey: 'header.language.japanese_icon',
+			labelKey: 'header.language.japanese_label'
+		}
+	] as const;
+
 	const KEYBOARD_KEYS = {
 		ESCAPE: 'Escape',
 		SPACE: ' ',
@@ -72,6 +86,20 @@
 
 	function closeMenu() {
 		openMenu = null;
+	}
+
+	let selectedLocale = $state<string>(LANGUAGE_CODES.ENGLISH);
+
+	const unsubscribeLocale = locale.subscribe((value) => {
+		selectedLocale = value ?? LANGUAGE_CODES.ENGLISH;
+	});
+
+	onDestroy(unsubscribeLocale);
+
+	function handleLocaleChange(event: Event) {
+		const target = event.target as HTMLSelectElement;
+		const newLocale = target.value as (typeof LANGUAGE_CODES)[keyof typeof LANGUAGE_CODES];
+		locale.set(newLocale);
 	}
 
 	function clickOutside(node: HTMLElement) {
@@ -107,24 +135,25 @@
 			<span>{$_('header.topbar.global_site')}</span>
 			<!-- <span class="flex flex-1"></span> -->
 		</div>
-		<div class="flex gap-4">
+		<div class="flex items-center gap-4">
 			{#each topLinks as link (link.href)}
 				<a href={link.href} class="transition-colors hover:text-blue-600">{$_(link.labelKey)}</a>
 			{/each}
-			<button
-				aria-roledescription={$_('header.language.switch_to_english_aria')}
-				onclick={() => locale.set(LANGUAGE_CODES.ENGLISH)}
-				class="inline-flex items-center justify-center text-base transition-colors transition-transform hover:scale-125 hover:text-blue-600"
-			>
-				{$_('header.language.english_icon')}
-			</button>
-			<button
-				aria-roledescription={$_('header.language.switch_to_japanese_aria')}
-				onclick={() => locale.set(LANGUAGE_CODES.JAPANESE)}
-				class="inline-flex items-center justify-center text-base transition-colors transition-transform hover:scale-125 hover:text-blue-600"
-			>
-				{$_('header.language.japanese_icon')}
-			</button>
+			<div class="relative">
+				<label class="sr-only" for="language-select">{$_('header.language.picker_label')}</label>
+				<select
+					id="language-select"
+					class="min-w-[140px] rounded-full border border-white/60 bg-white/70 px-3 py-1 text-sm font-semibold text-[#11213c] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387] hover:bg-white/90"
+					bind:value={selectedLocale}
+					onchange={handleLocaleChange}
+				>
+					{#each languages as language (language.code)}
+						<option value={language.code}>
+							{$_(language.iconKey)} {$_(language.labelKey)}
+						</option>
+					{/each}
+				</select>
+			</div>
 		</div>
 	</div>
 
