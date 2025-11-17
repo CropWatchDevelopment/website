@@ -31,6 +31,7 @@
       "home": "Home",
       "products": "Products",
       "products_sensor": "Temperature/Humidity Sensor (CW-AIR-TH)",
+      "products_gateways": "LoRaWAN Gateways",
       "products_replacement_sensors": "Replacement Sensors (Coming Soon)",
       "case_studies": "Case Studies",
       "about": "About",

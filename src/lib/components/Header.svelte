@@ -25,6 +25,11 @@
 					icon: 'device_thermostat'
 				},
 				{
+					labelKey: 'header.navigation.products_gateways',
+					href: '/products/gateways',
+					icon: 'router'
+				},
+				{
 					labelKey: 'header.navigation.products_replacement_sensors',
 					href: '/products/coming-soon',
 					icon: 'settings_input_hdmi'
