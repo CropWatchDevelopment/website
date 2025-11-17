@@ -1,0 +1,1244 @@
+{
+  "common": {
+    "actions": {
+      "contact": "Contact",
+      "support": "Assistance"
+    }
+  },
+  "header": {
+    "topbar": {
+      "welcome": "Bienvenue chez CropWatch",
+      "global_site": "Site global"
+    },
+    "language": {
+      "switch_to_english_aria": "Changer la langue en anglais",
+      "switch_to_japanese_aria": "Changer la langue en japonais",
+      "english_icon": "🇺🇸",
+      "japanese_icon": "🇯🇵",
+      "picker_label": "Langue",
+      "english_label": "Anglais",
+      "japanese_label": "Japonais"
+    },
+    "brand": {
+      "home_aria": "Accueil CropWatch",
+      "logo_alt": "Logo CropWatch",
+      "name": "CropWatch LLC",
+      "tagline": "Qualité et ROI depuis 2019",
+      "phone_icon_aria": "Icône de téléphone"
+    },
+    "search": {
+      "label": "Rechercher sur CropWatch",
+      "placeholder": "Rechercher sur notre site",
+      "submit_aria": "Rechercher"
+    },
+    "navigation": {
+      "home": "Accueil",
+      "products": "Produits",
+      "products_sensor": "Capteur de température et d’humidité (CW-AIR-TH)",
+      "products_replacement_sensors": "Capteurs de remplacement (bientôt disponible)",
+      "case_studies": "Études de cas",
+      "about": "À propos",
+      "contact": "Contact"
+    },
+    "utility": {
+      "ui_app": "Application UI",
+      "ui_app_icon_aria": "Icône du lien vers l’application UI",
+      "system_status": "État du système",
+      "system_status_icon_aria": "Icône du lien vers l’état du système"
+    }
+  },
+  "footer": {
+    "about": {
+      "heading": "À propos de CropWatch",
+      "body": "Qualité et ROI depuis 2019. De grandes entreprises de la fabrication, de l’hôtellerie, de la chaîne du froid et de l’industrie nous font confiance dans le monde entier.",
+      "sub_body": "Nous combinons du matériel durci avec des experts opérationnels pour garantir une télémesure prête pour l’audit dès le premier jour.",
+      "phone_label": "Parlez à notre équipe :",
+      "phone_number": "+1 (813) 555-0123",
+      "cta": "Parler à un spécialiste IoT"
+    },
+    "link_groups": {
+      "socials": {
+        "title": "Réseaux sociaux",
+        "links": {
+          "linkedin": "LinkedIn",
+          "youtube": "YouTube",
+          "github": "GitHub"
+        }
+      },
+      "solutions": {
+        "title": "Solutions",
+        "links": {
+          "manufacturing": "Fabrication",
+          "logistics": "Logistique",
+          "agriculture": "Agriculture",
+          "energy": "Énergie"
+        }
+      },
+      "products": {
+        "title": "Produits",
+        "links": {
+          "sensor_suite": "Suite de capteurs",
+          "gateways": "Passerelles",
+          "analytics": "Capteurs de remplacement",
+          "integrations": "Intégrations",
+          "cw-air-th": "CW-AIR-TH"
+        }
+      },
+      "connect": {
+        "title": "Contact",
+        "links": {
+          "contact": "Contactez-nous",
+          "support": "Assistance",
+          "case_studies": "Études de cas",
+          "github": "GitHub",
+          "faq": "FAQ"
+        }
+      }
+    },
+    "legal": {
+      "copyright": "© {year} CropWatch LLC. Tous droits réservés.",
+      "links": {
+        "privacy": "Politique de confidentialité",
+        "terms": "Conditions d’utilisation",
+        "sitemap": "Plan du site"
+      }
+    }
+  },
+  "slider": {
+    "aria": {
+      "group_label": "Carrousel des points forts de CropWatch"
+    },
+    "controls": {
+      "previous": "Diapositive précédente",
+      "next": "Diapositive suivante"
+    },
+    "fallback": {
+      "no_slides": "Aucune diapositive configurée."
+    },
+    "slides": {
+      "industry_ready": {
+        "badge": "🏭 IoT prêt pour l’industrie",
+        "title": "Tout vérifier, en permanence",
+        "body": "Matériel industriel à double capteur conçu pour garantir l’intégrité des données quel que soit l’environnement, des congélateurs aux ateliers de production.",
+        "cta": "Parler à un spécialiste IoT",
+        "image_alt": "Matériel de surveillance par passerelle dans une installation de transformation"
+      },
+      "battery_life": {
+        "badge": "🔋 Autonomie de la batterie",
+        "title": "10+ ans sur une seule batterie",
+        "body": "Un firmware optimisé pour les cycles de veille maintient vos données toutes les 10 minutes, sans interruption imprévue. Des modules de capteurs remplaçables sur site prolongent encore davantage votre ROI.",
+        "cta": "Voir les courbes de consommation",
+        "image_alt": "Gros plan sur le matériel capteur CropWatch"
+      },
+      "wireless_signal": {
+        "badge": "📡 Signal sans fil puissant",
+        "title": "Économise du temps et de l’argent",
+        "body": "Laissez LoRaWAN® faire le gros du travail avec une couverture longue portée, recueillez des mesures partout et réduisez les déplacements coûteux pour les contrôles manuels.",
+        "cta": "En savoir plus sur LoRaWAN®",
+        "image_alt": "Technicien configurant une passerelle LoRaWAN"
+      },
+      "survive_the_cold": {
+        "badge": "❄️ Résister au froid",
+        "title": "Conçu pour le froid",
+        "body": "Nos capteurs sont conçus pour fonctionner dans les environnements de stockage frigorifique les plus difficiles et fournir des données fiables même en dessous de zéro.",
+        "cta": "Explorer les solutions chaîne du froid",
+        "image_alt": "Capteur CropWatch installé dans un congélateur"
+      }
+    }
+  },
+  "product_origin": {
+    "origins": {
+      "designed": "Conçu en Norvège",
+      "manufactured": "Fabriqué et assemblé au Japon",
+      "parts": {
+        "title": "Avec des composants provenant de :",
+        "subtitle": "Japon, Corée du Sud, États-Unis, Taïwan, Irlande et Suisse"
+      },
+      "programmed": "Programmation réalisée aux États-Unis et en Australie",
+      "used_by_you": "Utilisé par vous"
+    },
+    "aria": {
+      "view_parts": "Voir les composants provenant de {country}"
+    },
+    "note": {
+      "line1": "* Si un pays ne figure pas dans la liste ci-dessus, aucun de ses composants n’est utilisé dans nos produits.",
+      "line2": "* Toutes les offres sont sans plomb et conformes RoHS."
+    },
+    "tooltip": {
+      "heading": "Composants provenant de {country} :"
+    }
+  },
+  "ui_demo": {
+    "defaults": {
+      "title": "<Saisir le nom de l’emplacement>",
+      "device_label": "<Saisir le nom du dispositif>",
+      "last_update": "Il y a 8 min 17 s"
+    },
+    "status": {
+      "loading": "Chargement",
+      "online": "En ligne",
+      "partial_error": "Erreur partielle",
+      "offline": "Hors ligne"
+    },
+    "status_indicator": {
+      "title": "Statut actuel : {{status}}. Cliquez pour faire défiler les états.",
+      "aria": "Changer l’état (actuel : {{status}})"
+    },
+    "header": {
+      "view_device_aria": "Voir le dispositif"
+    },
+    "stats": {
+      "temperature_title": "Cliquez pour échantillonner une autre mesure de température",
+      "humidity_title": "Cliquez pour échantillonner une autre mesure d’humidité"
+    },
+    "details": {
+      "heading": "Détails",
+      "collapse_aria": "Replier les détails",
+      "expand_aria": "Développer les détails",
+      "cta": "Voir les détails du dispositif"
+    },
+    "detail_rows": {
+      "humidity": "Humidité",
+      "temperature": "Température",
+      "updated": "Dernière mise à jour"
+    },
+    "hint": {
+      "text": "Astuce : Interagissez avec la carte pour voir la démonstration réagir."
+    },
+    "theme_toggle": {
+      "aria": "Basculer l’apparence de la carte",
+      "light": "Mode clair",
+      "dark": "Mode sombre"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "CropWatch® | IoT industriel qui s’amortit tout seul",
+      "description": "IoT industriel robuste pour la chaîne du froid, la fabrication et l’hôtellerie. Déployez des capteurs longue portée, des passerelles LoRaWAN et des analyses approuvées par les responsables opérationnels."
+    },
+    "hero": {
+      "eyebrow": "IoT industriel qui s’amortit tout seul",
+      "headline_html": "Qu’est-ce qui rend CropWatch<sup><small>®</small></sup> différent ?",
+      "body_html": "CropWatch<sup><small>®</small></sup> est spécialisé dans la conception de systèmes IoT industriels parmi les plus fiables pour la chaîne du froid, la fabrication, l’hôtellerie et les environnements complexes. Notre matériel à double capteur, notre conception longue durée de batterie et notre connectivité LoRaWAN® garantissent des données fiables même sur les sites les plus difficiles. Associé à notre méthodologie de déploiement éprouvée et à notre plateforme d’analyses, CropWatch<sup><small>®</small></sup> offre un ROI mesurable sans submerger les équipes de terrain.",
+      "questions": [
+        "Vos capteurs actuels peuvent-ils fonctionner dix ans sur une seule charge ?",
+        "Recevez-vous des données exploitables au rythme attendu par les opérations ?",
+        "À quelle vitesse pouvez-vous prouver vos mesures lorsque la conformité les demande ?",
+        "Le béton, l’acier et les chambres froides créent-ils encore des zones d’ombre ?",
+        "Les relevés manuels et les tournées consomment-ils encore des heures que vous n’avez pas ?",
+        "Pouvez-vous fournir immédiatement les relevés exacts exigés par la conformité ?"
+      ],
+      "primary_cta": "Planifier une démonstration en direct",
+      "secondary_cta": "Voir les résultats clients",
+      "sidebar": {
+        "title": "Aperçu du ROI du programme",
+        "items": {
+          "deployment": {
+            "term": "Délai moyen de déploiement",
+            "value_html": "<strong>14 jours</strong> après l’étude du site"
+          },
+          "visibility": {
+            "term": "Gain de visibilité",
+            "value_html": "<strong>92 %</strong> de contrôles manuels en moins"
+          },
+          "compliance": {
+            "term": "Résultats de conformité",
+            "value_html": "Temps de réponse aux audits divisé par 2"
+          }
+        },
+        "comparison": {
+          "manual": {
+            "title": "Contrôles manuels",
+            "bullets": [
+              "Papiers, tableurs et un seul relevé quotidien",
+              "En moyenne 20 h/semaine sur un réseau de 10 sites",
+              "Réactions tardives lorsque les seuils sont dépassés"
+            ]
+          },
+          "automated": {
+            "title": "Capteurs CropWatch",
+            "bullets": [
+              "Données sans fil continues, journaux de conformité automatisés",
+              "Contrôles réduits à 2 h/semaine grâce à des workflows basés sur les exceptions",
+              "Alertes instantanées avant les pertes de produits ou incidents de sécurité"
+            ]
+          }
+        },
+        "stats": {
+          "time_saved": {
+            "title": "Temps économisé",
+            "value": "18 h/semaine",
+            "body": "Les journaux manuels passent de 20 h à seulement 2 h par semaine, libérant du temps pour des tâches à plus forte valeur."
+          },
+          "labor_savings": {
+            "title": "Économies annuelles de main-d’œuvre",
+            "value": "≈ 29 000 $",
+            "body": "Sur la base d’un coût de 25 $/h, l’automatisation des relevés de température sur 10 sites libère un budget pour la croissance."
+          }
+        },
+        "productivity": {
+          "title": "Impact sur la productivité",
+          "bullets": [
+            "Rapports prêts pour l’audit générés automatiquement – plus besoin de consolider les données manuellement.",
+            "Des seuils prédictifs détectent les problèmes plusieurs heures plus tôt, évitant le gaspillage et les rappels.",
+            "Les équipes opérationnelles réaffectent leur temps à la formation, à l’expansion et au service client."
+          ]
+        }
+      }
+    },
+    "proof_points": {
+      "battery_life": {
+        "eyebrow": "Une autonomie qui dépasse les pannes",
+        "headline": "Plus de 10 ans d’autonomie, même en 24/7",
+        "bullets": [
+          "Envoyez des télémesures toutes les 10 minutes sans compromettre la disponibilité",
+          "Capteurs doubles remplaçables et validation croisée pour réduire les temps d’arrêt",
+          "Gestion à distance des dispositifs pour assurer la bonne santé du système"
+        ],
+        "cta": "Vérifier nos modèles de cycle de vie"
+      },
+      "measurement_confidence": {
+        "eyebrow": "Confiance dans la mesure",
+        "headline": "Alignement ISO17025, validation croisée à double capteur",
+        "bullets": [
+          "Conception à double capteur avec logique d’arbitrage pour chaque mesure",
+          "Étalonnage sérialisé avec certificats stockés dans le cloud",
+          "Détection automatique de la dérive pour maintenir la conformité",
+          "Certificats individuels traçables NIST pour chaque dispositif"
+        ],
+        "cta": "Découvrir notre programme qualité"
+      },
+      "connectivity": {
+        "eyebrow": "Connectivité pensée pour les sites difficiles",
+        "headline": "Pénétration LoRaWAN® sans zones d’ombre",
+        "bullets": [
+          "Passerelles optimisées pour les environnements industriels denses",
+          "Stockage tampon pour garantir zéro perte de données pendant les coupures",
+          "Options de réseau privé lorsque la couverture cellulaire est insuffisante"
+        ],
+        "cta": "Voir le plan du réseau"
+      }
+    },
+    "industries": {
+      "eyebrow": "Secteurs pris en charge",
+      "headline": "Secteurs où nos capteurs offrent des mesures fiables et un fort retour sur investissement",
+      "intro": "Notre réseau est approuvé dans des environnements où des réglementations strictes et un contrôle précis de la température et de l’humidité sont indispensables.",
+      "cards": {
+        "cold_chain": {
+          "label": "Chaîne du froid",
+          "description": "Enregistrement fiable même dans des zones de température extrêmes. Protège la qualité et la conformité des produits surgelés et réfrigérés."
+        },
+        "protein": {
+          "label": "Établissements culturels",
+          "description": "Protège œuvres d’art et archives dans des conditions optimales. Assure une température et une humidité stables dans les environnements sensibles."
+        },
+        "hospitality": {
+          "label": "Élevage",
+          "description": "Surveille en temps réel de vastes zones ou sites éloignés, protégeant la santé animale et la productivité."
+        },
+        "manufacturing": {
+          "label": "Fabrication et transformation",
+          "description": "Une surveillance précise soutient une production sûre sur les sites où la température et l’humidité influent directement sur la qualité."
+        },
+        "storage": {
+          "label": "Stockage et entrepôts",
+          "description": "Visualise température et humidité même dans les grands volumes. Évite la dégradation des produits et les problèmes d’audit, garantissant des conditions de stockage sûres."
+        },
+        "agriculture": {
+          "label": "Établissements de soins",
+          "description": "Détecte rapidement les variations soudaines de température ou d’humidité et alerte immédiatement, facilitant une réponse rapide aux anomalies."
+        }
+      }
+    },
+    "pricing": {
+      "eyebrow": "Aperçu de l’investissement",
+      "headline": "Tarification transparente conçue pour l’échelle",
+      "intro": "Chaque projet inclut la conception du site, le support de déploiement et la plateforme d’analyses dont vos équipes ont besoin. Les tarifs s’adaptent à votre empreinte sans pénaliser la croissance.",
+      "cta": "Demander une estimation personnalisée",
+      "columns": {
+        "sensors": {
+          "title": "Capteurs et dispositifs de bord",
+          "lead": "Déployez une couverture évolutive sans compromis sur la précision.",
+          "items": {
+            "devices_0_10": {
+              "label": "0–10 dispositifs",
+              "value": "10 $/dispositif/mois"
+            },
+            "devices_11_99": {
+              "label": "11–99 dispositifs",
+              "value": "8 $/dispositif/mois"
+            },
+            "devices_100_plus": {
+              "label": "100+ dispositifs",
+              "value": "Contactez-nous"
+            },
+            "calibration": {
+              "label": "Étalonnage",
+              "value": "Inclus, traçable NIST"
+            }
+          }
+        },
+        "devices": {
+          "title": "Dispositifs et passerelles",
+          "lead": "Options LoRaWAN® intérieures, extérieures et opérateur.",
+          "items": {
+            "sensor": {
+              "label": "Capteur de température et d’humidité",
+              "value": "199 $"
+            },
+            "relay": {
+              "label": "Dispositif relais d’automatisation",
+              "value": "179 $"
+            },
+            "indoor_gateway": {
+              "label": "Passerelle intérieure",
+              "value": "549 $"
+            },
+            "carrier_gateway": {
+              "label": "Passerelle industrielle opérateur",
+              "value": "1 899 $"
+            },
+            "rf_design": {
+              "label": "Conception RF du site",
+              "value": "Inclus avec le déploiement"
+            }
+          }
+        },
+        "software": {
+          "title": "Logiciels et analyses",
+          "lead": "Tableaux de bord unifiés, alertes illimitées, support continu.",
+          "items": {
+            "retention": {
+              "label": "Rétention des données",
+              "value": "24 mois glissants – Standard"
+            },
+            "licences": {
+              "label": "Licences utilisateur",
+              "value": "Illimitées"
+            },
+            "onboarding": {
+              "label": "Mise en service et accompagnement",
+              "value": "Inclus"
+            }
+          }
+        }
+      }
+    },
+    "closing": {
+      "eyebrow": "Prêt à prouver le ROI ?",
+      "headline": "Discutons et voyons comment CropWatch<sup><small>®</small></sup> peut créer de la valeur mesurable",
+      "body": "Nous analyserons votre environnement, modéliserons la couverture radio et produirons un dossier business que les dirigeants pourront présenter en comité.",
+      "primary_cta": "Réserver une session stratégique",
+      "secondary_cta": "Télécharger les études de cas"
+    }
+  },
+  "case_studies": {
+    "meta": {
+      "title": "Études de cas | Résultats IoT industriels CropWatch",
+      "description": "Découvrez comment CropWatch offre un ROI mesurable pour le stockage frigorifique, l’hôtellerie, la fabrication et l’agriculture avec des déploiements IoT résilients."
+    },
+    "hero": {
+      "eyebrow": "Études de cas",
+      "headline": "Des preuves issues d’environnements exigeants",
+      "intro": [
+        "Les exploitants s’appuient sur CropWatch pour fournir des réseaux résilients, des analyses fiables et un retour sur investissement rapide dans la chaîne du froid, l’hôtellerie et l’industrie lourde.",
+        "Découvrez comment nous combinons matériel, logiciel et expertise humaine pour atteindre des objectifs stricts de disponibilité et de conformité sans submerger les équipes de terrain."
+      ],
+      "snapshot": {
+        "title": "Résultats en un coup d’œil",
+        "items": [
+          "Réduction de 38 % des réclamations pour avaries dans un réseau national d’entrepôts frigorifiques.",
+          "Économies d’énergie de 22 % sur un portefeuille de 27 hôtels dès la première année.",
+          "99,98 % de disponibilité soutenue par nos centres d’opérations mondiaux."
+        ]
+      }
+    },
+    "featured": {
+      "eyebrow": "Programmes phares",
+      "headline": "Des succès intersectoriels réalisés avec CropWatch",
+      "intro": "Chaque projet associe du matériel durci à des spécialistes du déploiement familiers avec les environnements réglementés. Résultat : efficacité mesurable, conformité et visibilité opérationnelle.",
+      "cta": "Discuter de cette approche",
+      "cases": {
+        "sunharvest": {
+          "company": "TK Ebisu Foods",
+          "industry": "Volaille / Sécurité animale",
+          "recap": "Auparavant, TK Ebisu Foods devait surveiller manuellement la température, l’humidité et la qualité de l’air sur ses sites d’élevage. CropWatch a fourni une solution IoT complète qui a automatisé ces processus, garantissant des conditions optimales, le bien-être animal et une meilleure production d’œufs.",
+          "badge": "Gain de temps",
+          "websiteUrl": "https://ebisu-g.com/group/tk-ebisu/",
+          "stats": [
+            {
+              "value": "38 %",
+              "label": "Réduction des réclamations d’assurance en 6 mois"
+            },
+            {
+              "value": "6 048 h par an économisées",
+              "label": "En réduisant les trajets pour contrôles manuels, TK Ebisu Foods a économisé un volume significatif d’heures de travail."
+            }
+          ]
+        },
+        "harborline": {
+          "company": "Phoenix Seagaia Resort",
+          "industry": "Complexes hôteliers haut de gamme",
+          "recap": "Ce restaurant-buffet met en valeur la cuisine locale préparée à partir de fruits et légumes de Miyazaki, de bœuf primé et de fruits de mer. CropWatch fournit des solutions complètes de surveillance de la température et de l’humidité des aliments pour garantir à tout moment la sécurité et la qualité des produits. Le temps consacré aux contrôles manuels et aux rapports de conformité est réduit, permettant au personnel de se concentrer sur l’expérience client.",
+          "badge": "Conformité élevée",
+          "websiteUrl": "https://seagaia.co.jp/",
+          "stats": [
+            {
+              "value": "22 %",
+              "label": "Économies d’énergie mesurées d’une année sur l’autre"
+            },
+            {
+              "value": "100 %",
+              "label": "Audits réglementaires réussis dès la première inspection"
+            }
+          ]
+        },
+        "kodiak": {
+          "company": "Kodiak Manufacturing",
+          "industry": "Fabrication industrielle",
+          "recap": "Instrumentation de lignes de production critiques pour détecter les anomalies de vibration, de poussière et de température.",
+          "badge": "Conformité élevée",
+          "stats": [
+            {
+              "value": "4 h",
+              "label": "Temps d’arrêt moyen évité par incident"
+            },
+            {
+              "value": "3x",
+              "label": "Augmentation des alertes de maintenance prédictive"
+            }
+          ]
+        },
+        "greenfield": {
+          "company": "Greenfield Produce",
+          "industry": "Chaîne d’approvisionnement agricole",
+          "recap": "Extension de la visibilité du champ au quai avec des données sur les sols, l’humidité et le transport pour les partenaires export.",
+          "badge": "Visibilité de bout en bout",
+          "stats": [
+            {
+              "value": "48 h",
+              "label": "Cycle de libération des expéditions accéléré"
+            },
+            {
+              "value": "12 %",
+              "label": "Amélioration des rendements grâce à une irrigation ciblée"
+            }
+          ]
+        }
+      }
+    },
+    "playbook": {
+      "eyebrow": "Guide de déploiement",
+      "headline": "Des résultats reproductibles, site après site",
+      "intro": "Notre méthodologie structurée maintient chaque projet centré sur le ROI mesurable et l’adoption par les équipes de terrain. Les clients peuvent monter en charge rapidement sans sacrifier la qualité.",
+      "steps": {
+        "assess": {
+          "title": "Évaluer",
+          "description": "Nous cartographions les environnements, les obligations de conformité et la télémesure existante pour prioriser les gains critiques."
+        },
+        "pilot": {
+          "title": "Piloter",
+          "description": "Les équipes conjointes déploient une preuve de valeur rapide avec des indicateurs clairs et une formation des parties prenantes."
+        },
+        "scale": {
+          "title": "Déployer à grande échelle",
+          "description": "Des kits de déploiement standardisés et des équipes hybrides étendent la couverture sans perturber les opérations."
+        },
+        "optimize": {
+          "title": "Optimiser",
+          "description": "Analyses, guides et revues trimestrielles de direction maintiennent le ROI visible et l’amélioration continue."
+        }
+      }
+    },
+    "testimony": {
+      "eyebrow": "Voix du client",
+      "quote": "CropWatch nous a apporté une visibilité prédictive sur chaque chambre froide et quai de chargement sans noyer nos équipes sous les tableaux de bord. Le déploiement s’est terminé plus tôt que prévu et s’est amorti dès le premier trimestre.",
+      "person": "Charmaine Ellis",
+      "title": "VP des opérations, Harborline Hospitality"
+    },
+    "closing": {
+      "eyebrow": "Prêt à explorer un pilote ?",
+      "headline": "Laissons-nous planifier les 90 premiers jours",
+      "body": "Indiquez une installation cible ou un problème prioritaire et nous livrerons un plan de déploiement, un modèle de coûts et un calendrier personnalisés en moins de deux semaines.",
+      "primary_cta": "Commencer à parler d’un pilote",
+      "secondary_cta": "Réserver une démo en direct"
+    }
+  },
+  "sitemap": {
+    "meta": {
+      "title": "Plan du site | Plateforme IoT industrielle CropWatch®",
+      "description": "Parcourez toutes les pages CropWatch, des fiches produits et études de cas aux ressources d’assistance et documents juridiques, organisées pour une navigation rapide."
+    },
+    "hero": {
+      "eyebrow": "Plan du site",
+      "headline": "Toutes les pages CropWatch en un seul endroit",
+      "body": "Accédez directement aux informations produits, résultats clients, ressources d’assistance et documents juridiques dont vous avez besoin."
+    },
+    "sections": {
+      "primary": {
+        "heading": "Pages principales"
+      },
+      "resources": {
+        "heading": "Ressources & outils"
+      },
+      "support": {
+        "heading": "Support & aide"
+      },
+      "legal": {
+        "heading": "Aspects juridiques & conformité"
+      }
+    },
+    "links": {
+      "lorawan": "Présentation de la technologie LoRaWAN",
+      "case_study_archive": "Archive des études de cas",
+      "pricing": "Vue d’ensemble des tarifs",
+      "faq": "Foire aux questions",
+      "sitemap": "Plan du site",
+      "terms": "Conditions d’utilisation",
+      "privacy": "Politique de confidentialité",
+      "robots": "Robots.txt"
+    },
+    "cta": {
+      "eyebrow": "Prêt à engager la discussion ?",
+      "headline": "Parlons de votre déploiement",
+      "body": "Contactez les spécialistes CropWatch pour cartographier capteurs, couverture et résultats business adaptés à vos sites.",
+      "primary_cta": "Contacter notre équipe",
+      "secondary_cta": "Explorer les études de cas"
+    }
+  },
+  "products": {
+    "coming_soon": {
+      "meta": {
+        "title": "Capteurs de remplacement bientôt disponibles | CropWatch®",
+        "description": "Restez informé du lancement prochain des kits de capteurs de remplacement CropWatch. Découvrez leurs avantages, le calendrier de déploiement et comment rejoindre le programme pilote."
+      },
+      "hero": {
+        "eyebrow": "Capteurs de remplacement",
+        "headline": "Le kit de capteur de remplacement est presque prêt",
+        "body": "Nous finalisons des cartouches à remplacement à chaud qui maintiennent l’étalonnage de vos capteurs CW Air TH sans renvoyer le matériel à l’usine. Les premiers partenaires bénéficient dès le premier jour des outils, de la documentation et du support nécessaires.",
+        "primary_cta": "Demander un accès anticipé",
+        "secondary_cta": "Voir les résultats clients",
+        "sidebar": {
+          "title": "Ce qu’il faut attendre",
+          "intro": "Le programme de remplacement est conçu pour maintenir la production en marche pendant que nous gérons l’étalonnage et le recyclage.",
+          "points": [
+            "Les cartouches enfichables s’installent en quelques minutes sans arrêt ni recâblage.",
+            "Des certificats ISO17025 prêts pour l’audit sont fournis dans chaque kit.",
+            "Des enveloppes préaffranchies vous permettent de renvoyer les sondes retirées pour un recyclage responsable."
+          ]
+        }
+      },
+      "benefits": {
+        "sensor_suite": {
+          "title": "Maintenez votre parc opérationnel",
+          "description": "Remplacez les cartouches de capteur sur site et gardez chaque CW Air TH en service sans attendre un retour usine."
+        },
+        "network": {
+          "title": "Restez connecté pendant tout le déploiement",
+          "description": "Notre équipe préconfigure chaque module pour que votre réseau LoRaWAN accepte les remplacements sans nouvelle mise en service."
+        },
+        "compliance": {
+          "title": "Documentation de conformité incluse",
+          "description": "Chaque kit comprend les preuves d’étalonnage, la chaîne de traçabilité et les guides attendus par vos auditeurs."
+        }
+      },
+      "timeline": {
+        "discovery": {
+          "label": "Découverte & conception",
+          "status": "En phase de finalisation",
+          "description": "Nous finalisons les tolérances mécaniques, la validation du firmware et la logistique de recyclage avec les premiers partenaires."
+        },
+        "pilot": {
+          "label": "Déploiements pilotes",
+          "status": "Bientôt lancés",
+          "description": "Des parcs sélectionnés recevront des kits pilotes pour valider les procédures de remplacement, les flux documentaires et les guides de support."
+        },
+        "launch": {
+          "label": "Disponibilité générale",
+          "status": "Ciblé pour le T2",
+          "description": "Une fois les pilotes validés, nous ouvrirons les commandes au niveau mondial avec des stocks régionaux et des réapprovisionnements automatiques."
+        }
+      },
+      "faq": {
+        "title": "Questions fréquentes",
+        "items": [
+          {
+            "question": "Devrai-je renvoyer les capteurs pour étalonnage ?",
+            "answer": "Non. Les cartouches de remplacement sont étalonnées en usine et accompagnées de certificats. Il vous suffit de remplacer la sonde, de scanner le code et d’enregistrer le changement dans CropWatch Command."
+          },
+          {
+            "question": "Combien de temps d’arrêt doit-on prévoir ?",
+            "answer": "Chaque remplacement prend moins de cinq minutes. La plupart des clients planifient ces opérations pendant les rondes existantes pour éviter tout temps d’arrêt supplémentaire."
+          },
+          {
+            "question": "Pouvons-nous réserver du stock avant le lancement ?",
+            "answer": "Oui. Contactez notre équipe et nous allouerons des kits pilotes ou de lancement, ainsi que des seuils de réapprovisionnement automatiques si nécessaire."
+          }
+        ]
+      }
+    },
+    "gateways": {
+      "meta": {
+        "title": "Passerelles LoRaWAN | CropWatch®",
+        "description": "Découvrez la gamme de passerelles CropWatch avec leurs fabricants, indices de protection intérieur/extérieur et déploiements recommandés pour chaque modèle."
+      },
+      "hero": {
+        "eyebrow": "Portefeuille de passerelles",
+        "headline": "Des passerelles qualifiées pour les environnements réglementés",
+        "body": "Nous stockons des passerelles LoRaWAN conçues pour résister au froid, aux toits exposés et aux intérieurs industriels denses. Chaque unité est livrée préconfigurée avec le dernier firmware pour que votre réseau de télémesure soit fiable dès le premier jour.",
+        "primary_cta": "Planifier votre conception RF",
+        "secondary_cta": "Consulter la gamme de passerelles",
+        "stats": [
+          {
+            "value": "6",
+            "label": "Références de passerelles qualifiées"
+          },
+          {
+            "value": "3",
+            "label": "Formes intérieures et extérieures"
+          },
+          {
+            "value": "200+",
+            "label": "Déploiements configurés chaque année"
+          }
+        ]
+      },
+      "highlights": {
+        "eyebrow": "Ce que vous pouvez attendre",
+        "items": [
+          {
+            "title": "Préconfigurées et documentées",
+            "body": "Numéros de série, QR codes et modèles CropWatch Command sont livrés dans chaque caisse pour que les équipes d’installation puissent brancher et démarrer immédiatement."
+          },
+          {
+            "title": "Alimentation prête pour la conformité",
+            "body": "Prise en charge du PoE, du backhaul LTE, de l’alimentation redondante et de la protection contre la foudre pour aligner auditeurs et équipes techniques."
+          },
+          {
+            "title": "Support opérationnel mondial",
+            "body": "Notre centre d’opérations 24/7 surveille la télémesure de heartbeat et déploie des mises à jour de sécurité dès la publication de nouvelles alertes."
+          }
+        ]
+      },
+      "lineup": {
+        "eyebrow": "Gamme de passerelles",
+        "headline": "De la couverture intérieure multi-étages aux déploiements opérateur de campus",
+        "intro": "Choisissez la passerelle adaptée à chaque site. Combinez matériel intérieur, extérieur et opérateur pour bâtir une couverture LoRaWAN résiliente sans surdimensionner les coûts.",
+        "fields": {
+          "manufacturer": "Fabricant",
+          "placement": "Emplacement",
+          "recommended": "Usages recommandés"
+        },
+        "cta": {
+          "view_manufacturer": "Voir le site du fabricant"
+        },
+        "items": {
+          "ug65": {
+            "name": "Milesight UG65 Indoor",
+            "manufacturer": "Milesight",
+            "placement": "Intérieur (IP65)",
+            "summary": "Passerelle LoRaWAN intérieure / extérieur couvert haute performance avec Ethernet, Wi-Fi et LTE pour des installations rapides dans des espaces de taille moyenne.",
+            "recommended": [
+              "Chambres froides, zones d’élevage et bureaux",
+              "Zones techniques en hôtellerie",
+              "Entrepôts nécessitant de la couverture sans accès toiture"
+            ],
+            "image_alt": "Passerelle Milesight UG65 posée sur un établi"
+          },
+          "ug67": {
+            "name": "Milesight UG67 Outdoor",
+            "manufacturer": "Milesight",
+            "placement": "Extérieur (IP67 / montage mât & mur)",
+            "summary": "Passerelle 8 canaux durcie avec protection intégrée contre les surtensions pour toits, cours et périmètres éloignés.",
+            "recommended": [
+              "Sites distants, toitures et environnements exposés aux intempéries",
+              "Corridors agricoles ou logistiques s’étendant sur plusieurs kilomètres",
+              "Sites nécessitant une redondance Wi-Fi, LTE et Ethernet"
+            ],
+            "image_alt": "Passerelle Milesight UG67 montée sur un mât en extérieur"
+          },
+          "kona_micro": {
+            "name": "Tektelic KONA Micro",
+            "manufacturer": "Tektelic",
+            "placement": "Intérieur (compact / bureau)",
+            "summary": "Passerelle compacte avec batterie de secours intégrée, idéale pour la couverture intérieure où la disponibilité est critique.",
+            "recommended": [
+              "Retail, suites hôtelières ou cuisines d’essai",
+              "Petits bureaux ou baies réseau nécessitant une couverture fiable",
+              "Backhaul Ethernet et LTE pour une protection en basculement"
+            ],
+            "image_alt": "Passerelle Tektelic KONA Micro sur une table"
+          },
+          "kona_enterprise": {
+            "name": "Tektelic KONA Enterprise",
+            "manufacturer": "Tektelic",
+            "placement": "Intérieur (rack ou mural)",
+            "summary": "Passerelle LoRaWAN de niveau entreprise avec double concentrateur, basculement LTE et hooks SNMP pour les équipes IT.",
+            "recommended": [
+              "Hôpitaux ou universités avec équipes réseau existantes",
+              "Hôtels multi-étages et centres de congrès",
+              "Salles de contrôle industrielles nécessitant une intégration IT"
+            ],
+            "image_alt": "Passerelle Tektelic KONA Enterprise posée en biais sur un bureau"
+          },
+          "kona_macro": {
+            "name": "Tektelic KONA Macro",
+            "manufacturer": "Tektelic",
+            "placement": "Extérieur (opérateur)",
+            "summary": "Passerelle extérieure à gain élevé conçue pour des kilomètres de couverture, radios redondantes et SLA de haute disponibilité. Extrêmement robuste et adaptée aux déploiements extrêmes.",
+            "recommended": [
+              "Grands campus industriels et ports",
+              "Exploitations agricoles couvrant des milliers d’hectares",
+              "Déploiements municipaux ou utilitaires avec SLA stricts"
+            ],
+            "image_alt": "Passerelle Tektelic KONA Macro installée en extérieur"
+          },
+          "kerlink_istation": {
+            "name": "SenseCAP M2 LoRaWAN Gateway",
+            "manufacturer": "SEEED Studio",
+            "placement": "Intérieur",
+            "summary": "Passerelle intérieure économique idéale pour les petites installations et environnements peu exigeants.",
+            "recommended": [
+              "Options Wi-Fi et Ethernet"
+            ],
+            "image_alt": "Passerelle Kerlink Wirnet iStation montée sur un toit"
+          }
+        }
+      },
+      "cta": {
+        "eyebrow": "Besoin de conseils ?",
+        "headline": "Travaillez directement avec nos ingénieurs RF",
+        "body": "Indiquez la surface, les matériaux de construction et les exigences de conformité de chaque site. Nous établirons les plans de couverture, positionnerons les passerelles et préconfigurerons la supervision dans CropWatch Command.",
+        "primary_cta": "Planifier un atelier de conception",
+        "secondary_cta": "Nous envoyer vos plans"
+      }
+    },
+    "cw_air_th": {
+      "page": {
+        "meta": {
+          "title": "CropWatch CW Air TH | Capteur industriel de température et d’humidité",
+          "description": "Déployez le capteur CW Air TH pour une surveillance fiable de la température et de l’humidité dans les entrepôts frigorifiques, l’hôtellerie et les environnements industriels."
+        },
+        "hero": {
+          "badge": "CW-Air-TH",
+          "title": "Une surveillance fiable sur laquelle vous pouvez compter",
+          "paragraphs": [
+            "Le capteur CW Air TH combine mesure de précision, alimentation longue durée et connectivité LoRaWAN pour garder les sites frigorifiques, hôteliers et industriels informés en temps réel.",
+            "Déployez le capteur dans le cadre de CropWatch Command pour des alertes proactives, une documentation de conformité et des opérations prévisibles sur tous vos sites."
+          ],
+          "primary_cta": "Parler à un spécialiste",
+          "secondary_cta": "Voir la démo de la plateforme",
+          "sidebar": {
+            "title": "Conçu pour les exploitants exigeants",
+            "image_alt": "Vue latérale du capteur CW Air TH",
+            "bullets": [
+              "Validé pour les programmes conformes HACCP, FDA et ISO.",
+              "Livré préconfiguré pour les passerelles CropWatch<sup><small>®</small></sup> afin d’éliminer la configuration manuelle.",
+              "Accédez aux analyses prédictives et aux alertes via CropWatch<sup><small>®</small></sup> Command."
+            ]
+          }
+        },
+        "sections": {
+          "capabilities": {
+            "eyebrow": "Fonctionnalités clés",
+            "headline": "Surveillance fiable de la chaîne du froid sur laquelle vous pouvez compter",
+            "paragraphs": [
+              "Notre capteur chaîne du froid se distingue par <strong>des tests rigoureux dans certains des environnements réels les plus difficiles</strong>. Chaque décision de conception est guidée par la fiabilité – de la prévention des défaillances à la garantie de l’intégrité des données dans des conditions extrêmes.",
+              "Contrairement aux dispositifs classiques, notre système intègre un <strong>mécanisme intelligent de validation croisée</strong> qui vérifie en continu la précision des capteurs et détecte les anomalies avant qu’elles ne deviennent problématiques. En d’autres termes, il répond à la question critique : <em>« Que se passe-t-il si un capteur cesse de fournir la bonne valeur ? »</em>",
+              "Chez CropWatch, notre objectif est simple : <strong>fournir les données chaîne du froid les plus fiables et précises du secteur</strong> – pour que vous puissiez prendre des décisions en toute confiance, sur la base de données dignes de confiance."
+            ],
+            "diagram": {
+              "headline": "Système de sécurité fail-stop à validation croisée",
+              "body": [
+                "Le CW-Air-TH vérifie en continu son capteur remplaçable en le comparant à l’autre voie afin de confirmer chaque valeur avant qu’elle n’atteigne vos tableaux de bord. Si la sonde principale dérive ou sort des tolérances attendues, le dispositif signale immédiatement l’anomalie et vous avertit du problème."
+              ],
+              "bullets": [
+                "Comparaison double voie validant les télémesures en temps réel.",
+                "Mécanisme fail-stop automatique empêchant les mauvaises données d’atteindre vos tableaux de bord.",
+                "Les événements d’exception sont synchronisés directement dans les journaux de conformité pour que les auditeurs voient chaque étape de validation."
+              ],
+              "image_alt": "Schéma montrant le CW Air TH validant les mesures des capteurs remplaçables"
+            }
+          },
+          "specifications": {
+            "eyebrow": "Spécifications techniques",
+            "headline": "Conçu pour la fiabilité"
+          },
+          "kit": {
+            "eyebrow": "Kit de déploiement",
+            "headline": "Tout ce dont vous avez besoin pour être opérationnel en quelques jours",
+            "body_html": "Chaque capteur CW Air TH arrive entièrement configuré et prêt à rejoindre CropWatch<sup><small>®</small></sup> Command, avec des options de montage et une documentation adaptées aux environnements réglementés."
+          },
+          "ui": {
+            "eyebrow": "Notre interface",
+            "headline": "Une interface utilisateur rapide à utiliser",
+            "body": "Notre interface a été hyper-optimisée pour une acquisition rapide des données et une navigation intuitive, afin que les utilisateurs accèdent plus vite aux informations dont ils ont besoin, réduisant le temps de surveillance et libérant du temps pour d’autres tâches importantes.",
+            "step_progress": "Étape {current} sur {total}",
+            "theme_label": "Thème :",
+            "theme_options": {
+              "dark": "Sombre",
+              "light": "Clair"
+            },
+            "status_card": {
+              "title": "États de l’indicateur de statut",
+              "helper": "Cliquez sur une pastille ou sur le badge de la carte de démonstration pour voir chaque état réseau."
+            },
+            "temperature_card": {
+              "title": "Température actuelle",
+              "helper": "Cliquez sur le thermomètre de la carte de démonstration pour parcourir les mesures récentes."
+            },
+            "humidity_card": {
+              "title": "Humidité actuelle",
+              "helper": "Touchez la goutte pour voir l’humidité relative mise à jour à chaque paquet."
+            },
+            "controls": {
+              "back": "Précédent",
+              "next": "Suivant"
+            }
+          },
+          "deployment": {
+            "eyebrow": "Notre façon de déployer",
+            "headline": "Un processus de déploiement éprouvé",
+            "body": "Notre modèle de déploiement hybride maintient des délais d’installation courts tout en garantissant que chaque partie prenante dispose des formations, télémesures et rapports nécessaires pour réussir."
+          },
+          "closing": {
+            "eyebrow": "Voir le CW Air TH en action",
+            "headline": "Programmer une démonstration ou démarrer un pilote",
+            "body": "Contactez les spécialistes CropWatch<sup><small>®</small></sup> pour planifier la disposition des capteurs, des passerelles et des analyses assurant la conformité et l’efficacité de vos environnements.",
+            "primary_cta": "Planifier mon déploiement",
+            "secondary_cta": "Voir les résultats clients"
+          }
+        }
+      },
+      "features": {
+        "rugged": {
+          "title": "Boîtier industriel robuste",
+          "body": "Un boîtier IP67 avec électronique revêtue de vernis de protection maintient le capteur opérationnel dans les congélateurs, quais de chargement et zones de production."
+        },
+        "precision": {
+          "title": "Surveillance de précision",
+          "body": "La mesure numérique haute précision fournit des relevés de ± 0,2 °C et ± 2 % HR pour des rapports conformes aux exigences réglementaires."
+        },
+        "battery": {
+          "title": "Autonomie multiannuelle",
+          "body": "Conçu pour plus de 10 ans de télémesure continue avec batteries lithium remplaçables sur site et firmware basse consommation."
+        },
+        "lorawan": {
+          "title": "Connectivité LoRaWAN",
+          "body": "Une connectivité LoRaWAN sécurisée garantit une transmission résiliente à travers l’infrastructure dense et l’isolation des chambres froides."
+        }
+      },
+      "specs": {
+        "sensor": {
+          "label": "Capteurs",
+          "value": "Sensirion x1 SHT40 & x1 SHT43, True NIST, avec certification ISO17025"
+        },
+        "temperature_range": {
+          "label": "Plage de température",
+          "value": "-40 °C à 85 °C (étalonné)"
+        },
+        "humidity_range": {
+          "label": "Plage d’humidité",
+          "value": "0 % à 100 % HR (sans condensation)"
+        },
+        "heater": {
+          "label": "Résistance chauffante intégrée",
+          "value": "Assure la prévention de la condensation en environnement froid"
+        },
+        "temperature_accuracy": {
+          "label": "Précision de la température",
+          "value": "± 0,2 °C entre -10 °C et 50 °C"
+        },
+        "humidity_accuracy": {
+          "label": "Précision de l’humidité",
+          "value": "± 2 % HR entre 10 % et 90 %"
+        },
+        "ingress": {
+          "label": "Protection contre les intrusions",
+          "value": "Boîtier IP67"
+        },
+        "protocol": {
+          "label": "Protocole sans fil",
+          "value": "LoRaWAN 1.0.4 Classe A, bandes régionales prises en charge"
+        },
+        "battery": {
+          "label": "Batterie",
+          "value": "Li-SOCl2 (lithium chlorure de thionyle), remplaçable sur site"
+        },
+        "dimensions": {
+          "label": "Dimensions",
+          "value": "120 mm x 70 mm x 35 mm"
+        },
+        "operating_life": {
+          "label": "Durée de fonctionnement",
+          "value": "Jusqu’à 5 ans avec un intervalle de 15 minutes"
+        },
+        "certifications": {
+          "label": "Certifications",
+          "value": "FCC, CE, IC, matériaux conformes HACCP"
+        }
+      },
+      "kit": {
+        "items": {
+          "sensor": "Capteur CW Air TH avec firmware préconfiguré",
+          "credentials": "Identifiants d’activation LoRaWAN et étiquette de déploiement QR",
+          "mounting": "Support de montage en acier inoxydable avec visserie et adhésifs",
+          "calibration": "Certificat d’étalonnage et documentation de validation",
+          "playbook": "Guide d’installation et de gestion en stockage frigorifique"
+        }
+      },
+      "deployment": {
+        "steps": {
+          "site_planning": {
+            "title": "Planification de site",
+            "body": "Les spécialistes CropWatch cartographient les zones de l’installation, déterminent l’implantation des passerelles et alignent les intervalles de télémesure sur les besoins de conformité."
+          },
+          "install": {
+            "title": "Installation rapide",
+            "body": "Les techniciens montent les capteurs à l’aide de solutions magnétiques, adhésives ou de supports sans interrompre la production."
+          },
+          "validation": {
+            "title": "Validation automatisée",
+            "body": "Les capteurs effectuent des vérifications de référence et s’enregistrent dans CropWatch Command pour une surveillance continue."
+          },
+          "insight": {
+            "title": "Livraison des insights",
+            "body": "Tableaux de bord en temps réel, alertes et rapports prêts pour l’audit permettent aux équipes de résoudre les anomalies avant qu’elles ne s’aggravent."
+          }
+        }
+      },
+      "demo": {
+        "status": {
+          "loading": {
+            "label": "Chargement",
+            "helper": "Le dispositif rejoint le réseau."
+          },
+          "online": {
+            "label": "En ligne",
+            "helper": "La télémesure est à jour et dans les tolérances."
+          },
+          "partial_error": {
+            "label": "Erreur partielle",
+            "helper": "Certains capteurs nécessitent une attention mais les données circulent."
+          },
+          "offline": {
+            "label": "Hors ligne",
+            "helper": "Aucun paquet reçu dans l’intervalle attendu."
+          }
+        },
+        "walkthrough": {
+          "steps": {
+            "details": {
+              "title": "Afficher ou masquer les détails du capteur",
+              "body": "Notre interface vous permet d’organiser et de regrouper les dispositifs par emplacement. En haut à gauche de la carte de l’emplacement, vous voyez l’indicateur d’état. Vert lorsque les dispositifs rapportent normalement, jaune pour les avertissements et rouge pour les problèmes critiques. Utilisez le chevron de la carte pour afficher les mesures détaillées, les alarmes et l’historique des mises à jour."
+            },
+            "setup_location_device_names": {
+              "title": "Nommer votre emplacement et votre dispositif",
+              "body": "Donnez à chaque carte un nom parlant afin que les équipes identifient immédiatement la zone ou l’actif concerné.",
+              "helper": "Les noms saisis ici sont synchronisés avec l’en-tête de la carte et l’étiquette du dispositif dans la démo.",
+              "location_label": "Nom de l’emplacement",
+              "location_placeholder": "Ex. : Chambre froide A",
+              "device_label": "Nom du dispositif",
+              "device_placeholder": "Ex. : CW Air TH n°1"
+            },
+            "status": {
+              "title": "État de santé en un coup d’œil",
+              "body": "Le badge en haut à gauche passe par Chargement, En ligne, Erreur partielle et Hors ligne pour que les opérateurs voient l’état du dispositif immédiatement."
+            },
+            "temperature": {
+              "title": "Surveillance de la température en temps réel",
+              "body": "La mesure de gauche est mise à jour au rythme d’arrivée des paquets. Touchez le thermomètre de la carte de démonstration pour échantillonner les relevés."
+            },
+            "humidity": {
+              "title": "Humidité en parallèle",
+              "body": "L’humidité relative est capturée avec la température pour signaler les risques de condensation. Cliquez sur la goutte pour voir la mise à jour."
+            },
+            "location_page": {
+              "title": "Accéder à la page de détail de l’emplacement",
+              "body": "La page Détails de l’emplacement affiche tous les dispositifs présents sur un site et permet de mettre à jour les paramètres ou les permissions d’accès."
+            },
+            "device_detail": {
+              "title": "Voir la page de détail du dispositif",
+              "body": "La page Détails du dispositif fournit une télémesure détaillée, l’historique d’état et les options de configuration pour un appareil spécifique, simplifiant le diagnostic."
+            }
+          }
+        }
+      }
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contacter CropWatch | Parler à un spécialiste IoT",
+      "description": "Planifiez une visite guidée ou contactez les spécialistes CropWatch pour concevoir votre déploiement IoT industriel robuste."
+    },
+    "hero": {
+      "eyebrow": "Restons en contact",
+      "headline": "Réservez une session stratégique avec notre équipe IoT industriel",
+      "body": "Partagez vos objectifs pour vos installations et nous construirons un dossier business sur-mesure, de la couverture LoRaWAN et la sélection des capteurs jusqu’au déploiement des analyses et aux rapports prêts pour la conformité.",
+      "bullets": [
+        "Visites de sites, démos en direct et pilotes preuve de valeur.",
+        "Conseils de conception pour chambre froide, usine, hôtellerie et plus encore.",
+        "Modélisation du ROI prête pour les décideurs pour accélérer la validation interne."
+      ]
+    },
+    "form": {
+      "title": "Commencer la conversation",
+      "subtitle": "Remplissez le formulaire et nous vous répondrons sous un jour ouvré.",
+      "fields": {
+        "first_name": {
+          "label": "Prénom",
+          "placeholder": "Jean"
+        },
+        "last_name": {
+          "label": "Nom",
+          "placeholder": "Dupont"
+        },
+        "email": {
+          "label": "E-mail professionnel",
+          "placeholder": "vous@entreprise.com"
+        },
+        "company": {
+          "label": "Entreprise",
+          "placeholder": "Acme Foods"
+        },
+        "message": {
+          "label": "Comment pouvons-nous vous aider ?",
+          "placeholder": "Parlez-nous de vos installations, de vos enjeux et de vos délais."
+        }
+      },
+      "submit": "Envoyer la demande"
+    },
+    "recaptcha": {
+      "protected": "Protégé par Google reCAPTCHA (v3).",
+      "missing_key_prefix": "Définissez",
+      "missing_key_suffix": "pour activer la validation CAPTCHA."
+    },
+    "errors": {
+      "security_unavailable": "Vérification de sécurité indisponible. Veuillez recharger la page et réessayer.",
+      "verification_failed": "La vérification a échoué. Veuillez réessayer."
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "À propos de CropWatch | IoT industriel conçu pour la fiabilité",
+      "description": "Découvrez la mission, la direction et les étapes clés de CropWatch, qui fournit des réseaux IoT résilients pour le stockage frigorifique, l’hôtellerie et l’industrie."
+    },
+    "hero": {
+      "eyebrow": "Notre histoire",
+      "headline": "Notre histoire – Comment nous en sommes arrivés là",
+      "paragraphs": [
+        "Nous avons commencé par créer des dispositifs capables de survivre aux environnements agricoles les plus rudes. Avec le temps, nous avons compris que ces mêmes principes de fiabilité, de précision, de simplicité et de signal robuste dans les zones difficiles étaient tout aussi nécessaires dans d’autres secteurs où le temps d’arrêt n’est pas une option.",
+        "Aujourd’hui, CropWatch est un partenaire de confiance pour les équipes opérationnelles dans la chaîne du froid, l’hôtellerie, la fabrication et l’agriculture, grâce à des réseaux IoT résilients qui maintiennent les sites conformes et efficaces. Notre mission reste inchangée : fournir des solutions IoT industrielles qui donnent aux opérateurs des données et des insights fiables, quel que soit l’environnement."
+      ],
+      "stats": {
+        "uptime": {
+          "title": "99,98 % de disponibilité",
+          "description": "Assurée par des équipes d’exploitation 24/7"
+        },
+        "hubs": {
+          "title": "6 hubs mondiaux",
+          "description": "Parcs de capteurs supervisés en continu"
+        }
+      },
+      "sidebar": {
+        "title": "Conçu pour les opérateurs exigeants",
+        "intro": "Nos équipes combinent ingénierie RF, automatisation industrielle et data science pour fournir des insights fiables là où le temps d’arrêt n’est pas permis.",
+        "points": [
+          "Spécialistes certifiés des workflows de conformité HACCP, OSHA et ISO 9001.",
+          "Modèle de déploiement hybride combinant techniciens sur site et centres de commande à distance.",
+          "Partenariats industriels avec des fabricants de capteurs et plateformes cloud leaders."
+        ]
+      }
+    },
+    "history": {
+      "eyebrow": "Étapes clés",
+      "headline": "D’un pilote régional à une couverture mondiale",
+      "intro": "Nous avons grandi aux côtés de clients ayant besoin à la fois d’expertise terrain et de télémesure moderne. Chaque étape a renforcé notre capacité à créer de la valeur mesurable.",
+      "milestones": {
+        "2016": {
+          "year": "2016",
+          "title": "Premier réseau agricole déployé",
+          "description": "Partenariat avec un producteur d’agrumes de 40 000 acres pour démontrer la surveillance microclimatique à grande échelle basée sur LoRa."
+        },
+        "2018": {
+          "year": "2018",
+          "title": "Couverture mondiale de capteurs",
+          "description": "Extension de la flotte de passerelles à six pays avec du matériel durci pour environnements industriels sévères."
+        },
+        "2021": {
+          "year": "2021",
+          "title": "Lancement des analyses CropWatch",
+          "description": "Déploiement de tableaux de bord prédictifs et de détection d’anomalies adaptés aux clients de la chaîne du froid, de l’hôtellerie et de la fabrication."
+        },
+        "2024": {
+          "year": "2024",
+          "title": "Référence de fiabilité entreprise",
+          "description": "Atteinte de 99,98 % de disponibilité réseau soutenue par des hubs d’opérations 24/7 et une orchestration proactive du firmware."
+        }
+      }
+    },
+    "leadership": {
+      "eyebrow": "Direction",
+      "headline": "Découvrez notre équipe hautement qualifiée",
+      "intro": "Pour fournir des solutions IoT fiables, nous avons réuni une équipe d’experts en électronique, génie logiciel, mécanique et développement produit, issus du monde entier.",
+      "members": {
+        "evelyn": {
+          "name": "Evelyn Ortiz",
+          "title": "Directrice générale (CEO)",
+          "bio": "Ancienne dirigeante logistique ayant piloté des programmes de chaîne d’approvisionnement connectée pour des distributeurs et détaillants du Fortune 100.",
+          "avatar_alt": "Illustration de portrait pour Evelyn Ortiz"
+        },
+        "marcus": {
+          "name": "Marcus Boyd",
+          "title": "Directeur technique (CTO)",
+          "bio": "A conçu des réseaux de capteurs basse consommation sur trois continents ; co-auteur du cadre de déploiement LoRa Edge.",
+          "avatar_alt": "Illustration de portrait pour Marcus Boyd"
+        },
+        "priya": {
+          "name": "Priya Nandan",
+          "title": "Directrice clients (CCO)",
+          "bio": "A bâti des programmes de réussite client transverses offrant un ROI à deux chiffres dans la chaîne du froid et l’hôtellerie.",
+          "avatar_alt": "Illustration de portrait pour Priya Nandan"
+        },
+        "greg": {
+          "name": "Greg Tanaka",
+          "title": "Responsable produit",
+          "bio": "Ancien ingénieur systèmes à la NASA mettant en pratique des méthodes de télémesure critiques pour l’IoT industriel.",
+          "avatar_alt": "Illustration de portrait pour Greg Tanaka"
+        }
+      },
+      "actions": {
+        "linkedin": "LinkedIn",
+        "linkedin_aria": "Ouvrir le profil LinkedIn de {name}",
+        "github": "GitHub",
+        "github_aria": "Ouvrir le profil GitHub de {name}"
+      }
+    },
+    "values": {
+      "eyebrow": "Valeurs",
+      "headline": "Des principes qui placent le client au centre",
+      "intro": "Chaque décision est mesurée à l’aune de la disponibilité, de la conformité et de l’expérience attendues par nos clients. Au final, nous valorisons chaque client et visons à offrir le meilleur support possible. Chez CropWatch, chacun met un peu de lui-même dans son travail ; comme notre travail nous reflète, nous voulons que nos produits soient les meilleurs possibles.",
+      "items": {
+        "operational_certainty": {
+          "title": "Nous valorisons réellement les retours de nos clients",
+          "description": "Notre feuille de route produit est guidée par les retours du terrain afin que chaque fonctionnalité apporte une clarté opérationnelle mesurable."
+        },
+        "human_centered": {
+          "title": "Le support est aussi important pour nous que pour vous",
+          "description": "Nous prenons les demandes des clients au sérieux et répondons rapidement pour que vos équipes disposent de l’aide nécessaire au bon moment."
+        },
+        "proof_of_value": {
+          "title": "Chaque fois que nous démarrons un projet, nous cherchons d’abord à comprendre vos objectifs",
+          "description": "Chaque projet commence par un cas business clair et des critères de succès définis, afin d’aligner les résultats dès le premier jour."
+        }
+      }
+    },
+    "closing": {
+      "eyebrow": "Rejoignez notre mission",
+      "headline": "Nous recrutons des ingénieurs, opérateurs et responsables clients",
+      "body": "Si vous êtes passionné par la création de systèmes fiables pour des secteurs où le temps d’arrêt n’est pas envisageable, nous serions ravis de vous rencontrer.",
+      "primary_cta": "Découvrir nos postes ouverts",
+      "secondary_cta": "Parler avec notre équipe"
+    }
+  }
+}

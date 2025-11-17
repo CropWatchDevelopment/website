@@ -2,35 +2,47 @@
 	import { _, locale } from 'svelte-i18n';
 	import { onDestroy } from 'svelte';
 
-	const LANGUAGE_CODES = {
-		ENGLISH: 'en',
-		JAPANESE: 'ja'
-	} as const;
-
 	const languages = [
 		{
-			code: LANGUAGE_CODES.ENGLISH,
-			iconKey: 'header.language.english_icon',
-			labelKey: 'header.language.english_label'
+			code: 'en',
+			icon: '🇺🇸',
+			label: 'English'
 		},
 		{
-			code: LANGUAGE_CODES.JAPANESE,
-			iconKey: 'header.language.japanese_icon',
-			labelKey: 'header.language.japanese_label'
+			code: 'ja',
+			icon: '🇯🇵',
+			label: '日本語'
+		},
+		{
+			code: 'fr',
+			icon: '🇫🇷',
+			label: 'Français'
+		},
+		{
+			code: 'it',
+			icon: '🇮🇹',
+			label: 'Italiano'
+		},
+		{
+			code: 'es',
+			icon: '🇭🇳',
+			label: 'Español'
 		}
 	] as const;
 
-	let selectedLocale = $state<string>(LANGUAGE_CODES.ENGLISH);
+	type LanguageCode = (typeof languages)[number]['code'];
+
+	let selectedLocale = $state<LanguageCode>('en');
 
 	const unsubscribe = locale.subscribe((value) => {
-		selectedLocale = value ?? LANGUAGE_CODES.ENGLISH;
+		selectedLocale = (value as LanguageCode | null) ?? 'en';
 	});
 
 	onDestroy(unsubscribe);
 
 	function handleChange(event: Event) {
 		const target = event.target as HTMLSelectElement;
-		const newLocale = target.value as (typeof LANGUAGE_CODES)[keyof typeof LANGUAGE_CODES];
+		const newLocale = target.value as LanguageCode;
 		locale.set(newLocale);
 	}
 </script>
@@ -45,7 +57,7 @@
 	>
 		{#each languages as language (language.code)}
 			<option value={language.code}>
-				{$_(language.iconKey)} {$_(language.labelKey)}
+				{language.icon} {language.label}
 			</option>
 		{/each}
 	</select>

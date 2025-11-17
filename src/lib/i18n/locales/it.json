@@ -1,0 +1,1240 @@
+{
+    "common": {
+        "actions": {
+            "contact": "Contatto",
+            "support": "Assistenza"
+        }
+    },
+    "header": {
+        "topbar": {
+            "welcome": "Benvenuto in CropWatch",
+            "global_site": "Sito globale"
+        },
+        "language": {
+            "switch_to_english_aria": "Cambia lingua in inglese",
+            "switch_to_japanese_aria": "Cambia lingua in giapponese",
+            "picker_label": "Lingua"
+        },
+        "brand": {
+            "home_aria": "Home CropWatch",
+            "logo_alt": "Logo CropWatch",
+            "name": "CropWatch LLC",
+            "tagline": "Qualità e ROI dal 2019",
+            "phone_icon_aria": "Icona telefono"
+        },
+        "search": {
+            "label": "Cerca in CropWatch",
+            "placeholder": "Cerca nel sito",
+            "submit_aria": "Cerca"
+        },
+        "navigation": {
+            "home": "Home",
+            "products": "Prodotti",
+            "products_sensor": "Sensore di temperatura/umidità (CW-AIR-TH)",
+            "products_replacement_sensors": "Sensori di ricambio (in arrivo)",
+            "case_studies": "Casi di studio",
+            "about": "Chi siamo",
+            "contact": "Contatti"
+        },
+        "utility": {
+            "ui_app": "App UI",
+            "ui_app_icon_aria": "Icona link app UI",
+            "system_status": "Stato del sistema",
+            "system_status_icon_aria": "Icona link stato del sistema"
+        }
+    },
+    "footer": {
+        "about": {
+            "heading": "Informazioni su CropWatch",
+            "body": "Qualità e ROI dal 2019. Scelto dai principali produttori, dal settore hospitality, dalla catena del freddo e da grandi realtà aziendali in tutto il mondo.",
+            "sub_body": "Abbiniamo hardware robusto a esperti operativi per garantire telemetria pronta per la conformità fin dal primo giorno.",
+            "phone_label": "Parla con il nostro team:",
+            "phone_number": "+1 (813) 555-0123",
+            "cta": "Parla con uno specialista IoT"
+        },
+        "link_groups": {
+            "socials": {
+                "title": "Canali social",
+                "links": {
+                    "linkedin": "LinkedIn",
+                    "youtube": "YouTube",
+                    "github": "GitHub"
+                }
+            },
+            "solutions": {
+                "title": "Soluzioni",
+                "links": {
+                    "manufacturing": "Manifatturiero",
+                    "logistics": "Logistica",
+                    "agriculture": "Agricoltura",
+                    "energy": "Energia"
+                }
+            },
+            "products": {
+                "title": "Prodotti",
+                "links": {
+                    "sensor_suite": "Suite di sensori",
+                    "gateways": "Gateway",
+                    "analytics": "Sensori di ricambio",
+                    "integrations": "Integrazioni",
+                    "cw-air-th": "CW-AIR-TH"
+                }
+            },
+            "connect": {
+                "title": "Contatti",
+                "links": {
+                    "contact": "Contattaci",
+                    "support": "Assistenza",
+                    "case_studies": "Casi di studio",
+                    "github": "GitHub",
+                    "faq": "FAQ"
+                }
+            }
+        },
+        "legal": {
+            "copyright": "© {year} CropWatch LLC. Tutti i diritti riservati.",
+            "links": {
+                "privacy": "Informativa sulla privacy",
+                "terms": "Termini di servizio",
+                "sitemap": "Mappa del sito"
+            }
+        }
+    },
+    "slider": {
+        "aria": {
+            "group_label": "Carosello dei punti salienti di CropWatch"
+        },
+        "controls": {
+            "previous": "Slide precedente",
+            "next": "Slide successiva"
+        },
+        "fallback": {
+            "no_slides": "Nessuna slide configurata."
+        },
+        "slides": {
+            "industry_ready": {
+                "badge": "🏭 IoT pronto per l’industria",
+                "title": "Verifica tutto, sempre",
+                "body": "Hardware industriale a doppio sensore progettato per garantire l’integrità dei dati in qualsiasi ambiente, dai congelatori ai reparti produttivi.",
+                "cta": "Parla con uno specialista IoT",
+                "image_alt": "Hardware di monitoraggio gateway all’interno di uno stabilimento di lavorazione"
+            },
+            "battery_life": {
+                "badge": "🔋 Durata della batteria",
+                "title": "Oltre 10 anni con una singola batteria",
+                "body": "Firmware ottimizzato per i cicli di sleep che mantiene il flusso dei dati ogni 10 minuti senza fermi imprevisti. Moduli sensore sostituibili in campo estendono ulteriormente il tuo ROI.",
+                "cta": "Guarda i grafici di consumo",
+                "image_alt": "Primo piano dell’hardware sensore CropWatch"
+            },
+            "wireless_signal": {
+                "badge": "📡 Segnale wireless potente",
+                "title": "Risparmia tempo e denaro",
+                "body": "Lascia che LoRaWAN® faccia il lavoro pesante con copertura a lungo raggio, ottieni letture ovunque e riduci le costose trasferte per i controlli manuali.",
+                "cta": "Scopri di più su LoRaWAN®",
+                "image_alt": "Tecnico che configura un gateway LoRaWAN"
+            },
+            "survive_the_cold": {
+                "badge": "❄️ Resiste al freddo",
+                "title": "Progettato per il freddo estremo",
+                "body": "I nostri sensori sono progettati per funzionare nei più difficili ambienti di stoccaggio a freddo, garantendo dati affidabili anche sotto zero.",
+                "cta": "Esplora le soluzioni per la catena del freddo",
+                "image_alt": "Sensore CropWatch installato all’interno di un congelatore"
+            }
+        }
+    },
+    "product_origin": {
+        "origins": {
+            "designed": "Progettato in Norvegia",
+            "manufactured": "Prodotto e assemblato in Giappone",
+            "parts": {
+                "title": "Utilizzando componenti da:",
+                "subtitle": "Giappone, Corea del Sud, USA, Taiwan, Irlanda e Svizzera"
+            },
+            "programmed": "Programmato negli USA e in Australia",
+            "used_by_you": "Utilizzato da te"
+        },
+        "aria": {
+            "view_parts": "Visualizza i componenti provenienti da {country}"
+        },
+        "note": {
+            "line1": "* Se un paese non è elencato sopra, i suoi componenti non vengono utilizzati nei nostri prodotti.",
+            "line2": "* Tutte le soluzioni sono senza piombo e conformi RoHS."
+        },
+        "tooltip": {
+            "heading": "Componenti da {country}:"
+        }
+    },
+    "ui_demo": {
+        "defaults": {
+            "title": "<Inserisci nome della posizione>",
+            "device_label": "<Inserisci etichetta dispositivo>",
+            "last_update": "8m 17s fa"
+        },
+        "status": {
+            "loading": "Caricamento",
+            "online": "Online",
+            "partial_error": "Errore parziale",
+            "offline": "Offline"
+        },
+        "status_indicator": {
+            "title": "Stato attuale: {{status}}. Clicca per scorrere gli stati.",
+            "aria": "Scorri lo stato (attuale {{status}})"
+        },
+        "header": {
+            "view_device_aria": "Visualizza dispositivo"
+        },
+        "stats": {
+            "temperature_title": "Clicca per campionare un’altra lettura di temperatura",
+            "humidity_title": "Clicca per campionare un’altra lettura di umidità"
+        },
+        "details": {
+            "heading": "Dettagli",
+            "collapse_aria": "Comprimi dettagli",
+            "expand_aria": "Espandi dettagli",
+            "cta": "Visualizza dettagli dispositivo"
+        },
+        "detail_rows": {
+            "humidity": "Umidità",
+            "temperature": "Temperatura",
+            "updated": "Ultimo aggiornamento"
+        },
+        "hint": {
+            "text": "Suggerimento: interagisci con la scheda per vedere la guida reagire."
+        },
+        "theme_toggle": {
+            "aria": "Cambia aspetto della scheda",
+            "light": "Modalità chiara",
+            "dark": "Modalità scura"
+        }
+    },
+    "home": {
+        "meta": {
+            "title": "CropWatch® | IoT industriale che si ripaga da solo",
+            "description": "IoT industriale robusto per catena del freddo, manifatturiero e hospitality. Distribuisci sensori a lungo raggio, gateway LoRaWAN e analitiche fidate dai responsabili operativi."
+        },
+        "hero": {
+            "eyebrow": "IoT industriale che si ripaga da solo",
+            "headline_html": "Cosa rende CropWatch<sup><small>®</small></sup> diverso?",
+            "body_html": "CropWatch<sup><small>®</small></sup> è specializzato nella realizzazione dei sistemi IoT industriali più affidabili per catena del freddo, manifatturiero, hospitality e ambienti complessi. Il nostro hardware a doppio sensore, il design a lunga durata della batteria e la connettività LoRaWAN® garantiscono dati affidabili anche dai siti più difficili. Insieme alla nostra metodologia di distribuzione collaudata e alla piattaforma di analitiche, CropWatch<sup><small>®</small></sup> offre ROI misurabile e risparmio di tempo per team grandi e piccoli. </br></br><p><b>Prima di proseguire, se hai già una soluzione di monitoraggio, poniti le seguenti domande: </b></p>",
+            "questions": [
+                "I tuoi sensori attuali possono funzionare per un decennio intero con una sola batteria?",
+                "Cosa succede se un sensore attuale si guasta o ti invia dati errati? Te ne accorgerai?",
+                "Puoi sostituire solo il sensore sui tuoi dispositivi attuali, o devi cambiare l’intero dispositivo?",
+                "Calcestruzzo, acciaio e celle frigorifere causano ancora zone d’ombra?",
+                "I registri manuali e i giri di controllo consumano ancora ore che non puoi permetterti di perdere?",
+                "Puoi fornire all’istante le esatte registrazioni richieste dagli enti di conformità?"
+            ],
+            "primary_cta": "Prenota una demo dal vivo",
+            "secondary_cta": "Consulta i risultati dei clienti",
+            "sidebar": {
+                "title": "Istante di ROI del programma",
+                "items": {
+                    "deployment": {
+                        "term": "Tempo medio di distribuzione",
+                        "value_html": "<strong>14 giorni</strong> dal sopralluogo"
+                    },
+                    "visibility": {
+                        "term": "Aumento di visibilità",
+                        "value_html": "<strong>92%</strong> in meno di controlli manuali"
+                    },
+                    "compliance": {
+                        "term": "Vantaggi di conformità",
+                        "value_html": "Risposta agli audit 2 volte più veloce"
+                    }
+                },
+                "comparison": {
+                    "manual": {
+                        "title": "Controlli manuali",
+                        "bullets": [
+                            "Cartelline, fogli di calcolo e una sola lettura giornaliera",
+                            "In media 20 ore/settimana su una rete di 10 siti",
+                            "Risposte reattive quando le soglie vengono superate"
+                        ]
+                    },
+                    "automated": {
+                        "title": "Sensori CropWatch",
+                        "bullets": [
+                            "Dati wireless continui, registri di conformità automatizzati",
+                            "Controlli ridotti a 2 ore/settimana grazie a flussi basati sulle eccezioni",
+                            "Allarmi istantanei prima di perdite di prodotto o problemi di sicurezza"
+                        ]
+                    }
+                },
+                "stats": {
+                    "time_saved": {
+                        "title": "Tempo risparmiato",
+                        "value": "18 ore/settimana",
+                        "body": "La registrazione manuale passa da 20 a solo 2 ore a settimana, liberando il team per attività a maggior valore."
+                    },
+                    "labor_savings": {
+                        "title": "Risparmio annuale di manodopera",
+                        "value": "≈ 29.000 $",
+                        "body": "Basato su un costo del lavoro di 25 $/ora, l’automazione delle registrazioni di temperatura su 10 siti libera budget per la crescita."
+                    }
+                },
+                "productivity": {
+                    "title": "Impatto sulla produttività",
+                    "bullets": [
+                        "Report pronti per gli audit generati automaticamente — niente più consolidamento manuale dei dati.",
+                        "Soglie predittive rilevano i problemi ore prima, prevenendo sprechi e richiami.",
+                        "I team operativi riconvertono il tempo su formazione, espansione e cura del cliente."
+                    ]
+                }
+            }
+        },
+        "proof_points": {
+            "battery_life": {
+                "eyebrow": "Durata della batteria oltre i fermi",
+                "headline": "Autonomia di oltre 10 anni, anche in strutture 24/7",
+                "bullets": [
+                    "Invia telemetria ogni 10 minuti senza compromettere l’operatività",
+                    "Doppio sensore sostituibile in campo e cross-validazione per ridurre i fermi",
+                    "Gestione remota dei dispositivi per garantire lo stato di salute del sistema"
+                ],
+                "cta": "Verifica i nostri modelli di ciclo di vita"
+            },
+            "measurement_confidence": {
+                "eyebrow": "Affidabilità di misura",
+                "headline": "Allineamento ISO17025, doppio sensore con cross-validazione",
+                "bullets": [
+                    "Design a doppio sensore con logica di tie-breaker per ogni lettura",
+                    "Calibrazione serializzata con certificati in cloud",
+                    "Rilevamento automatico del drift per mantenere la conformità",
+                    "Certificati individuali tracciabili NIST per ogni dispositivo"
+                ],
+                "cta": "Esplora il nostro programma qualità"
+            },
+            "connectivity": {
+                "eyebrow": "Connettività progettata per siti difficili",
+                "headline": "Penetrazione LoRaWAN® senza punti ciechi",
+                "bullets": [
+                    "Gateway ottimizzati per ambienti industriali densi",
+                    "Memoria buffer per evitare perdita di dati durante le interruzioni",
+                    "Opzioni di rete privata quando la copertura cellulare non è sufficiente"
+                ],
+                "cta": "Vedi il blueprint di rete"
+            }
+        },
+        "industries": {
+            "eyebrow": "Settori supportati",
+            "headline": "Settori in cui i nostri sensori offrono misure accurate e forti vantaggi sui costi",
+            "intro": "La nostra rete è utilizzata in ambienti in cui sono richieste normative severe e un controllo preciso di temperatura e umidità.",
+            "cards": {
+                "cold_chain": {
+                    "label": "Catena del freddo",
+                    "description": "Registrazione affidabile anche in fasce di temperatura critiche. Protegge qualità e conformità di prodotti congelati e refrigerati."
+                },
+                "protein": {
+                    "label": "Strutture culturali",
+                    "description": "Preserva opere d’arte e archivi in condizioni ottimali. Garantisce stabilità di temperatura e umidità in ambienti sensibili."
+                },
+                "hospitality": {
+                    "label": "Industria zootecnica",
+                    "description": "Monitora l’ambiente in tempo reale su aree vaste o remote, proteggendo salute e produttività degli animali."
+                },
+                "manufacturing": {
+                    "label": "Produzione e lavorazione",
+                    "description": "Monitoraggio preciso a supporto di una produzione sicura in siti dove temperatura e umidità influiscono direttamente sulla qualità del prodotto."
+                },
+                "storage": {
+                    "label": "Stoccaggio e magazzini",
+                    "description": "Rende visibili temperatura e umidità anche in grandi spazi. Previene degrado dei prodotti e problemi negli audit, garantendo condizioni di conservazione sicure."
+                },
+                "agriculture": {
+                    "label": "Strutture di assistenza",
+                    "description": "Rileva tempestivamente cambiamenti improvvisi di temperatura/umidità e invia allarmi immediati, supportando una rapida risposta alle anomalie."
+                }
+            }
+        },
+        "pricing": {
+            "eyebrow": "Panoramica degli investimenti",
+            "headline": "Prezzi trasparenti progettati per la scalabilità",
+            "intro": "Ogni progetto include progettazione del sito, supporto alla distribuzione e la piattaforma di analitiche su cui fanno affidamento i tuoi operatori. I prezzi si adattano all’estensione dell’impianto e non penalizzano la crescita.",
+            "cta": "Richiedi un preventivo personalizzato",
+            "columns": {
+                "sensors": {
+                    "title": "Sensori e dispositivi edge",
+                    "lead": "Distribuisci copertura scalabile senza rinunciare alla precisione.",
+                    "items": {
+                        "devices_0_10": {
+                            "label": "0-10 dispositivi",
+                            "value": "$10/dispositivo/mese"
+                        },
+                        "devices_11_99": {
+                            "label": "11-99 dispositivi",
+                            "value": "$8/dispositivo/mese"
+                        },
+                        "devices_100_plus": {
+                            "label": "100+ dispositivi",
+                            "value": "Contattaci"
+                        },
+                        "calibration": {
+                            "label": "Calibrazione",
+                            "value": "Inclusa, tracciabile NIST"
+                        }
+                    }
+                },
+                "devices": {
+                    "title": "Dispositivi e gateway",
+                    "lead": "Opzioni LoRaWAN® per interni, esterni e carrier-grade.",
+                    "items": {
+                        "sensor": {
+                            "label": "Sensore di temperatura/umidità",
+                            "value": "$199"
+                        },
+                        "relay": {
+                            "label": "Dispositivo relè per automazione",
+                            "value": "$179"
+                        },
+                        "indoor_gateway": {
+                            "label": "Gateway edge indoor",
+                            "value": "$549"
+                        },
+                        "carrier_gateway": {
+                            "label": "Gateway industriale carrier-grade",
+                            "value": "$1,899"
+                        },
+                        "rf_design": {
+                            "label": "Progettazione RF del sito",
+                            "value": "Inclusa nella distribuzione"
+                        }
+                    }
+                },
+                "software": {
+                    "title": "Software e insight",
+                    "lead": "Dashboard unificate, allarmi illimitati, supporto sempre attivo.",
+                    "items": {
+                        "retention": {
+                            "label": "Conservazione dei dati",
+                            "value": "24 mesi a rotazione (Standard)"
+                        },
+                        "licences": {
+                            "label": "Licenze utente",
+                            "value": "Illimitate"
+                        },
+                        "onboarding": {
+                            "label": "Onboarding e successo",
+                            "value": "Inclusi"
+                        }
+                    }
+                }
+            }
+        },
+        "closing": {
+            "eyebrow": "Pronto a dimostrare il ROI?",
+            "headline": "Parliamone: ti mostreremo come CropWatch<sup><small>®</small></sup> può offrire valore misurabile",
+            "body": "Analizziamo il tuo ambiente, modelliamo la copertura del segnale e produciamo un business case che il management può portare direttamente in consiglio.",
+            "primary_cta": "Prenota una sessione strategica",
+            "secondary_cta": "Scarica i casi di studio"
+        }
+    },
+    "case_studies": {
+        "meta": {
+            "title": "Casi di studio | Risultati IoT industriale CropWatch",
+            "description": "Scopri come CropWatch offre ROI misurabile per stoccaggio a freddo, hospitality, manifatturiero e agricoltura con implementazioni IoT resilienti."
+        },
+        "hero": {
+            "eyebrow": "Casi di studio",
+            "headline": "Prove dai contesti più esigenti",
+            "intro": [
+                "Gli operatori si affidano a CropWatch per reti resilienti, analitiche affidabili e un rapido ritorno dell’investimento in stoccaggio a freddo, hospitality e industria pesante.",
+                "Esplora come combiniamo hardware, software e competenze umane per raggiungere obiettivi rigorosi di uptime e conformità senza sovraccaricare i team in prima linea."
+            ],
+            "snapshot": {
+                "title": "Risultati in sintesi",
+                "items": [
+                    "Riduzione del 38 percento delle richieste di risarcimento per deperimento in una rete nazionale di celle frigorifere.",
+                    "Risparmio energetico del 22 percento in un portafoglio di 27 hotel nel primo anno.",
+                    "Uptime del 99,98 percento garantito dai nostri centri operativi globali."
+                ]
+            }
+        },
+        "featured": {
+            "eyebrow": "Programmi in evidenza",
+            "headline": "Successi cross-settore realizzati con CropWatch",
+            "intro": "Ogni progetto abbina hardware rinforzato a specialisti di rollout che conoscono gli ambienti regolamentati. Il risultato: efficienza misurabile, conformità e chiarezza operativa.",
+            "cta": "Parla di questo approccio",
+            "cases": {
+                "sunharvest": {
+                    "company": "TK Ebisu Foods",
+                    "industry": "Avicolo / Sicurezza animale",
+                    "recap": "In passato, TK Ebisu Foods doveva monitorare manualmente temperatura, umidità e qualità dell’aria nelle diverse strutture. CropWatch ha fornito una soluzione IoT completa che ha automatizzato questi processi, garantendo condizioni ottimali, benessere animale e produzione di uova.",
+                    "badge": "Risparmio di tempo",
+                    "websiteUrl": "https://ebisu-g.com/group/tk-ebisu/",
+                    "stats": [
+                        {
+                            "value": "38%",
+                            "label": "Riduzione delle richieste di risarcimento in 6 mesi"
+                        },
+                        {
+                            "value": "6048 ore/anno risparmiate",
+                            "label": "Riducendo i viaggi per i controlli manuali, TK Ebisu Foods ha risparmiato molte ore di lavoro ogni anno."
+                        }
+                    ]
+                },
+                "harborline": {
+                    "company": "Phoenix Seagaia Resport",
+                    "industry": "Resort e hotel di lusso",
+                    "recap": "Questo ristorante a buffet propone cucina locale preparata con frutta e verdura tipiche di Miyazaki, manzo premiato e ricchi piatti di mare. CropWatch fornisce soluzioni di monitoraggio continuo di temperatura e umidità per garantire che gli standard di sicurezza e qualità alimentare vengano costantemente rispettati. Il tempo dedicato ai controlli manuali e ai report di conformità si riduce, permettendo allo staff di concentrarsi sull’esperienza degli ospiti.",
+                    "badge": "Alta conformità",
+                    "websiteUrl": "https://seagaia.co.jp/",
+                    "stats": [
+                        {
+                            "value": "22%",
+                            "label": "Risparmio energetico misurato anno su anno"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "Audit normativi superati al primo controllo"
+                        }
+                    ]
+                },
+                "kodiak": {
+                    "company": "Kodiak Manufacturing",
+                    "industry": "Fabbricazione industriale",
+                    "recap": "Linee di produzione mission-critical strumentate per rilevare vibrazioni, polvere e anomalie di temperatura.",
+                    "badge": "Alta conformità",
+                    "stats": [
+                        {
+                            "value": "4 ore",
+                            "label": "Tempo medio di fermo evitato per incidente"
+                        },
+                        {
+                            "value": "3x",
+                            "label": "Aumento degli avvisi di manutenzione predittiva"
+                        }
+                    ]
+                },
+                "greenfield": {
+                    "company": "Greenfield Produce",
+                    "industry": "Filiera agricola",
+                    "recap": "Visibilità estesa dal campo al dock con telemetria su suolo, umidità e trasporto per i partner di esportazione.",
+                    "badge": "Visibilità end-to-end",
+                    "stats": [
+                        {
+                            "value": "48 ore",
+                            "label": "Ciclo di rilascio spedizioni più rapido"
+                        },
+                        {
+                            "value": "12%",
+                            "label": "Miglioramento della resa grazie a irrigazione mirata"
+                        }
+                    ]
+                }
+            }
+        },
+        "playbook": {
+            "eyebrow": "Playbook di rollout",
+            "headline": "Risultati coerenti, sito dopo sito",
+            "intro": "La nostra metodologia strutturata mantiene ogni progetto focalizzato su ROI misurabile e adozione da parte dei team in prima linea. I clienti possono scalare rapidamente senza compromettere la qualità.",
+            "steps": {
+                "assess": {
+                    "title": "Valutare",
+                    "description": "Mappiamo ambienti, requisiti di conformità e telemetria esistente per dare priorità ai risultati critici."
+                },
+                "pilot": {
+                    "title": "Pilota",
+                    "description": "I team congiunti distribuiscono una rapida prova di valore con KPI chiari e formazione per gli stakeholder."
+                },
+                "scale": {
+                    "title": "Scalare",
+                    "description": "Kit di distribuzione standardizzati e team sul campo ibridi estendono la copertura senza interrompere le operazioni."
+                },
+                "optimize": {
+                    "title": "Ottimizzare",
+                    "description": "Analitiche, playbook e review trimestrali con il management mantengono il ROI visibile e i miglioramenti continui."
+                }
+            }
+        },
+        "testimony": {
+            "eyebrow": "Voce del cliente",
+            "quote": "CropWatch ci ha dato visibilità predittiva su ogni cella frigorifera e baia di carico senza sommergere i team di dashboard. Il rollout è stato completato in anticipo rispetto ai tempi e si è ripagato entro il primo trimestre.",
+            "person": "Charmaine Ellis",
+            "title": "VP Operations, Harborline Hospitality"
+        },
+        "closing": {
+            "eyebrow": "Pronto a esplorare un pilota?",
+            "headline": "Lasciaci pianificare i primi 90 giorni",
+            "body": "Condividi uno stabilimento target o un punto dolente e noi forniremo un piano di distribuzione personalizzato, un modello di costo e una timeline entro due settimane.",
+            "primary_cta": "Inizia a parlare di un pilota",
+            "secondary_cta": "Prenota una demo dal vivo"
+        }
+    },
+    "sitemap": {
+        "meta": {
+            "title": "Mappa del sito | Piattaforma IoT industriale CropWatch®",
+            "description": "Sfoglia tutte le pagine di CropWatch, dai dettagli sui prodotti ai casi di studio, fino alle risorse di supporto e alle policy legali, organizzate per una navigazione rapida."
+        },
+        "hero": {
+            "eyebrow": "Mappa del sito",
+            "headline": "Tutte le pagine CropWatch in un unico posto",
+            "body": "Vai direttamente alle informazioni sui prodotti, ai risultati dei clienti, alle risorse di supporto e alla documentazione legale di cui hai bisogno."
+        },
+        "sections": {
+            "primary": {
+                "heading": "Pagine principali"
+            },
+            "resources": {
+                "heading": "Risorse e strumenti"
+            },
+            "support": {
+                "heading": "Supporto e aiuto"
+            },
+            "legal": {
+                "heading": "Aspetti legali e conformità"
+            }
+        },
+        "links": {
+            "lorawan": "Panoramica della tecnologia LoRaWAN",
+            "case_study_archive": "Archivio casi di studio",
+            "pricing": "Panoramica prezzi",
+            "faq": "Domande frequenti",
+            "sitemap": "Mappa del sito",
+            "terms": "Termini di servizio",
+            "privacy": "Informativa sulla privacy",
+            "robots": "Robots.txt"
+        },
+        "cta": {
+            "eyebrow": "Pronto a collaborare?",
+            "headline": "Parliamo della tua distribuzione",
+            "body": "Connettiti con gli specialisti CropWatch per mappare sensori, copertura e risultati di business su misura per i tuoi impianti.",
+            "primary_cta": "Contatta il nostro team",
+            "secondary_cta": "Esplora i casi di studio"
+        }
+    },
+    "products": {
+        "coming_soon": {
+            "meta": {
+                "title": "Sensori di ricambio in arrivo | CropWatch®",
+                "description": "Resta aggiornato mentre i kit di sensori di ricambio CropWatch si avvicinano al lancio. Esplora i vantaggi, la timeline e come unirti al programma pilota."
+            },
+            "hero": {
+                "eyebrow": "Sensori di ricambio",
+                "headline": "Il kit di sensori di ricambio è quasi pronto",
+                "body": "Stiamo finalizzando cartucce hot-swap che mantengono i tuoi sensori CW Air TH calibrati senza dover spedire l’hardware in fabbrica. I partner early adopter ottengono strumenti, documentazione e supporto necessari fin dal primo giorno.",
+                "primary_cta": "Richiedi accesso anticipato",
+                "secondary_cta": "Vedi i risultati dei clienti",
+                "sidebar": {
+                    "title": "Cosa aspettarsi",
+                    "intro": "Il programma di sostituzione è progettato per mantenere operative le linee mentre noi gestiamo calibrazione e riciclo.",
+                    "points": [
+                        "Le cartucce plug-in si installano in pochi minuti, senza downtime né cablaggi aggiuntivi.",
+                        "Certificati pronti per ISO17025 con numeri di serie inclusi in ogni kit.",
+                        "Buste prepagate per restituire le sonde dismesse per un riciclo responsabile."
+                    ]
+                }
+            },
+            "benefits": {
+                "sensor_suite": {
+                    "title": "Mantieni la flotta pronta alla missione",
+                    "description": "Sostituisci le cartucce sensore in sito e mantieni ogni dispositivo CW Air TH operativo senza attendere l’assistenza di fabbrica."
+                },
+                "network": {
+                    "title": "Rimani connesso durante il rollout",
+                    "description": "Il nostro team preconfigura ogni modulo così che la tua rete LoRaWAN accetti i ricambi senza nuova provisioning."
+                },
+                "compliance": {
+                    "title": "Documentazione di conformità inclusa",
+                    "description": "Ogni kit include prova di calibrazione, documenti per la catena di custodia e linee guida richieste dagli auditor."
+                }
+            },
+            "timeline": {
+                "discovery": {
+                    "label": "Analisi e progettazione",
+                    "status": "In fase di completamento",
+                    "description": "Stiamo finalizzando tolleranze meccaniche, validazione firmware e logistica di riciclo con i partner early adopter."
+                },
+                "pilot": {
+                    "label": "Distribuzioni pilota",
+                    "status": "In arrivo",
+                    "description": "Flotte selezionate riceveranno kit pilota per validare procedure di sostituzione, flussi documentali e playbook di supporto."
+                },
+                "launch": {
+                    "label": "Disponibilità generale",
+                    "status": "Target Q2",
+                    "description": "Una volta conclusi i piloti, apriremo gli ordini a livello globale con stock regionali e riordino automatico."
+                }
+            },
+            "faq": {
+                "title": "Domande frequenti",
+                "items": [
+                    {
+                        "question": "Dovrò spedire i sensori per la calibrazione?",
+                        "answer": "No. Le cartucce di ricambio sono calibrate in fabbrica e includono certificati. Devi solo sostituire la sonda, scansionare il codice e registrare il cambio in CropWatch Command."
+                    },
+                    {
+                        "question": "Quanto downtime devo considerare?",
+                        "answer": "Ogni sostituzione richiede meno di cinque minuti. La maggior parte dei clienti pianifica le sostituzioni durante i giri di controllo esistenti, quindi non è necessario alcun downtime aggiuntivo."
+                    },
+                    {
+                        "question": "Possiamo prenotare l’inventario prima del lancio?",
+                        "answer": "Sì. Parla con il nostro team e riserveremo stock pilota o di lancio, e potremo configurare soglie di riordino automatico se necessario."
+                    }
+                ]
+            }
+        },
+        "gateways": {
+            "meta": {
+                "title": "Gateway LoRaWAN | CropWatch®",
+                "description": "Esplora la gamma di gateway CropWatch con dettagli sui produttori, classificazioni per interni ed esterni e distribuzioni consigliate per ogni modello."
+            },
+            "hero": {
+                "eyebrow": "Portafoglio gateway",
+                "headline": "Gateway qualificati per ambienti regolamentati",
+                "body": "Disponiamo di gateway LoRaWAN che resistono a celle frigorifere, tetti e interni industriali densi. Ogni unità viene spedita preconfigurata con l’ultima versione firmware in modo che la tua rete di telemetria sia affidabile fin dal primo giorno.",
+                "primary_cta": "Pianifica il tuo design RF",
+                "secondary_cta": "Consulta la gamma di gateway",
+                "stats": [
+                    {
+                        "value": "6",
+                        "label": "SKU di gateway qualificati"
+                    },
+                    {
+                        "value": "3",
+                        "label": "Form factor per interni ed esterni"
+                    },
+                    {
+                        "value": "200+",
+                        "label": "Distribuzioni configurate ogni anno"
+                    }
+                ]
+            },
+            "highlights": {
+                "eyebrow": "Cosa aspettarsi",
+                "items": [
+                    {
+                        "title": "Preconfigurati e documentati",
+                        "body": "Numeri di serie, codici QR e template per CropWatch Command sono inclusi in ogni cassa per permettere ai team di installazione di collegare e avviare subito."
+                    },
+                    {
+                        "title": "Opzioni di alimentazione pronte per la conformità",
+                        "body": "Supporto per PoE, backhaul LTE, alimentazione ridondante e protezioni da fulmini per mantenere allineati auditor e team di facility."
+                    },
+                    {
+                        "title": "Supporto operativo globale",
+                        "body": "Il nostro desk operativo 24/7 monitora la telemetria di heartbeat e distribuisce aggiornamenti di sicurezza al rilascio di nuovi avvisi."
+                    }
+                ]
+            },
+            "lineup": {
+                "eyebrow": "Gamma gateway",
+                "headline": "Dalla copertura multi-piano indoor alla copertura carrier-grade per campus estesi",
+                "intro": "Scegli il gateway giusto per ogni struttura. Combina hardware per interni, esterni e carrier-grade per costruire una copertura LoRaWAN resiliente senza spese eccessive.",
+                "fields": {
+                    "manufacturer": "Produttore",
+                    "placement": "Posizionamento",
+                    "recommended": "Utilizzi consigliati"
+                },
+                "cta": {
+                    "view_manufacturer": "Vai al sito del produttore"
+                },
+                "items": {
+                    "ug65": {
+                        "name": "Milesight UG65 Indoor",
+                        "manufacturer": "Milesight",
+                        "placement": "Interni (IP65)",
+                        "summary": "Gateway LoRaWAN ad alte prestazioni per interni/esterni coperti con Ethernet, Wi-Fi e LTE per installazioni rapide in spazi di media estensione.",
+                        "recommended": [
+                            "Celle frigorifere, stalle e uffici",
+                            "Zone di back-of-house nel settore hospitality",
+                            "Magazzini che necessitano copertura senza accesso al tetto"
+                        ],
+                        "image_alt": "Gateway Milesight UG65 su un banco da lavoro"
+                    },
+                    "ug67": {
+                        "name": "Milesight UG67 Outdoor",
+                        "manufacturer": "Milesight",
+                        "placement": "Esterni (IP67 / montaggio su palo e parete)",
+                        "summary": "Gateway rugged a 8 canali con protezione da sovratensioni integrata per tetti, cortili e perimetri remoti.",
+                        "recommended": [
+                            "Località remote, tetti e qualsiasi ambiente gravoso esposto alle intemperie",
+                            "Corridoi agricoli o logistici che coprono chilometri",
+                            "Strutture che necessitano ridondanza Wi-Fi, LTE ed Ethernet per il backhaul"
+                        ],
+                        "image_alt": "Gateway Milesight UG67 montato su un palo all’aperto"
+                    },
+                    "kona_micro": {
+                        "name": "Tektelic KONA Micro",
+                        "manufacturer": "Tektelic",
+                        "placement": "Interni (compatto / desktop)",
+                        "summary": "Gateway compatto con batteria di backup integrata ideale per copertura indoor dove l’uptime è critico.",
+                        "recommended": [
+                            "Retail, suite hospitality o cucine di prova",
+                            "Piccoli uffici o armadi di rete che necessitano copertura affidabile",
+                            "Backhaul Ethernet e LTE per protezione dal failover"
+                        ],
+                        "image_alt": "Gateway Tektelic KONA Micro su un tavolo"
+                    },
+                    "kona_enterprise": {
+                        "name": "Tektelic KONA Enterprise",
+                        "manufacturer": "Tektelic",
+                        "placement": "Interni (rack o montaggio a parete)",
+                        "summary": "Gateway LoRaWAN enterprise con doppi concentratori, failover LTE e integrazione SNMP per team IT.",
+                        "recommended": [
+                            "Ospedali o università con team di rete interni",
+                            "Hotel multi-piano e centri congressi",
+                            "Sale di controllo industriali che richiedono integrazione IT"
+                        ],
+                        "image_alt": "Gateway Tektelic KONA Enterprise su una scrivania inclinata"
+                    },
+                    "kona_macro": {
+                        "name": "Tektelic KONA Macro",
+                        "manufacturer": "Tektelic",
+                        "placement": "Esterni (carrier-grade)",
+                        "summary": "Gateway outdoor ad alto guadagno progettato per chilometri di copertura, radio ridondanti e SLA di alta disponibilità. Estremamente robusto e pensato per implementazioni estreme.",
+                        "recommended": [
+                            "Grandi campus produttivi e porti",
+                            "Operazioni agricole che coprono migliaia di ettari",
+                            "Progetti municipali o di utility che richiedono uptime garantito da SLA"
+                        ],
+                        "image_alt": "Gateway Tektelic KONA Macro installato all’esterno"
+                    },
+                    "kerlink_istation": {
+                        "name": "SenseCAP M2 LoRaWAN Gateway",
+                        "manufacturer": "SEEED Studio",
+                        "placement": "Interni",
+                        "summary": "Gateway indoor conveniente, ideale per piccole installazioni e ambienti a basso carico.",
+                        "recommended": [
+                            "Opzioni Wi-Fi ed Ethernet"
+                        ],
+                        "image_alt": "Gateway Kerlink Wirnet iStation montato su un tetto"
+                    }
+                }
+            },
+            "cta": {
+                "eyebrow": "Hai bisogno di supporto?",
+                "headline": "Lavora direttamente con i nostri ingegneri RF",
+                "body": "Condividi metratura, materiali di costruzione e requisiti di conformità per ogni sito. Noi mappiamo i piani di copertura, posizioniamo i gateway e preconfiguriamo il monitoraggio all’interno di CropWatch Command.",
+                "primary_cta": "Prenota un workshop di progettazione",
+                "secondary_cta": "Inviaci le planimetrie"
+            }
+        },
+        "cw_air_th": {
+            "page": {
+                "meta": {
+                    "title": "CropWatch CW Air TH | Sensore industriale di temperatura e umidità",
+                    "description": "Distribuisci il sensore CW Air TH per un monitoraggio affidabile di temperatura e umidità in celle frigorifere, hospitality e ambienti industriali."
+                },
+                "hero": {
+                    "badge": "CW-Air-TH",
+                    "title": "Monitoraggio affidabile su cui puoi contare",
+                    "paragraphs": [
+                        "Il sensore CW Air TH combina misurazioni precise, lunga durata energetica e connettività LoRaWAN per mantenere celle frigorifere, strutture hospitality e siti industriali informati in tempo reale.",
+                        "Distribuisci il sensore come parte di CropWatch Command per allarmi proattivi, documentazione di conformità e operazioni prevedibili in ogni struttura."
+                    ],
+                    "primary_cta": "Parla con uno specialista",
+                    "secondary_cta": "Guarda la demo della piattaforma",
+                    "sidebar": {
+                        "title": "Progettato per operatori esigenti",
+                        "image_alt": "Vista laterale del sensore CW Air TH",
+                        "bullets": [
+                            "Validato per programmi conformi a HACCP, FDA e ISO.",
+                            "Spedito preconfigurato per i gateway CropWatch<sup><small>®</small></sup> per eliminare la configurazione manuale.",
+                            "Accesso ad analitiche predittive e allarmi tramite CropWatch<sup><small>®</small></sup> Command."
+                        ]
+                    }
+                },
+                "sections": {
+                    "capabilities": {
+                        "eyebrow": "Funzionalità principali",
+                        "headline": "Monitoraggio della catena del freddo affidabile su cui puoi contare",
+                        "paragraphs": [
+                            "Il nostro sensore per la catena del freddo si distingue grazie a <strong>test rigorosi nei più difficili ambienti reali</strong>. Ogni decisione di design è guidata dall’affidabilità — dalla prevenzione dei guasti di sensori e dispositivi alla garanzia dell’integrità dei dati in condizioni estreme.",
+                            "A differenza dei dispositivi convenzionali, il nostro sistema include un <strong>meccanismo intelligente di cross-validazione</strong> che verifica continuamente l’accuratezza del sensore e rileva le anomalie prima che diventino un problema. In altre parole, risponde alla domanda critica: <em>\"Cosa succede se un sensore smette di riportare il valore corretto?\"</em>",
+                            "In CropWatch, il nostro obiettivo è semplice: <strong>fornire i dati sulla catena del freddo più affidabili e accurati del settore</strong> — così puoi prendere decisioni sicure, supportate da dati di cui ti puoi fidare."
+                        ],
+                        "diagram": {
+                            "headline": "Sistema fail-stop con cross-validazione per un funzionamento sicuro",
+                            "body": [
+                                "Il CW-Air-TH confronta continuamente il suo sensore sostituibile con l’altro canale per confermare ogni valore prima che raggiunga le tue dashboard. Se la sonda primaria deriva o riporta valori fuori tolleranza, il dispositivo segnala subito l’anomalia e ti notifica il problema."
+                            ],
+                            "bullets": [
+                                "Confronto su doppio canale che cross-valida la telemetria in tempo reale.",
+                                "Fail-stop automatico che impedisce ai dati errati di raggiungere le tue dashboard.",
+                                "Eventi di eccezione sincronizzati direttamente nei log di conformità, così gli auditor vedono la prova di ogni passo di validazione."
+                            ],
+                            "image_alt": "Diagramma che mostra CW Air TH mentre cross-valida le letture del sensore sostituibile"
+                        }
+                    },
+                    "specifications": {
+                        "eyebrow": "Specifiche tecniche",
+                        "headline": "Progettato per l’affidabilità"
+                    },
+                    "kit": {
+                        "eyebrow": "Kit di distribuzione",
+                        "headline": "Tutto ciò di cui hai bisogno per andare live in pochi giorni",
+                        "body_html": "Ogni sensore CW Air TH arriva completamente configurato e pronto ad unirsi a CropWatch<sup><small>®</small></sup> Command, con opzioni di montaggio e documentazione pensate per ambienti regolamentati."
+                    },
+                    "ui": {
+                        "eyebrow": "La nostra UI",
+                        "headline": "Interfaccia utente veloce da usare",
+                        "body": "La nostra interfaccia è stata ottimizzata per un’acquisizione dati rapida e una navigazione semplice, così gli utenti raggiungono le informazioni di cui hanno bisogno più velocemente, riducendo il tempo speso sul monitoraggio e aumentando quello per altre attività importanti.",
+                        "step_progress": "Passo {current} di {total}",
+                        "theme_label": "Tema:",
+                        "theme_options": {
+                            "dark": "Scuro",
+                            "light": "Chiaro"
+                        },
+                        "status_card": {
+                            "title": "Stati dell’indicatore di stato",
+                            "helper": "Fai clic su un pill o tocca il badge sulla scheda demo per vedere ogni stato di rete."
+                        },
+                        "temperature_card": {
+                            "title": "Temperatura attuale",
+                            "helper": "Fai clic sul termometro nella scheda demo per scorrere i campioni recenti."
+                        },
+                        "humidity_card": {
+                            "title": "Umidità attuale",
+                            "helper": "Tocca la goccia per vedere l’umidità relativa arrivare con ogni pacchetto."
+                        },
+                        "controls": {
+                            "back": "Indietro",
+                            "next": "Avanti"
+                        }
+                    },
+                    "deployment": {
+                        "eyebrow": "Come distribuiamo",
+                        "headline": "Workflow di rollout collaudato",
+                        "body": "Il nostro modello di distribuzione ibrido mantiene brevi i tempi di installazione assicurando che ogni stakeholder abbia formazione, telemetria e reportistica necessari per avere successo."
+                    },
+                    "closing": {
+                        "eyebrow": "Vedi CW Air TH in azione",
+                        "headline": "Pianifica una walkthrough o avvia un pilota",
+                        "body": "Collegati con gli specialisti CropWatch<sup><small>®</small></sup> per mappare posizionamento dei sensori, gateway e analitiche che mantengono i tuoi ambienti conformi ed efficienti.",
+                        "primary_cta": "Pianifica la mia distribuzione",
+                        "secondary_cta": "Esplora i risultati dei clienti"
+                    }
+                }
+            },
+            "features": {
+                "rugged": {
+                    "title": "Custodia industriale robusta",
+                    "body": "Scocca con grado IP67 e elettronica con coating protettivo mantengono il sensore operativo in celle frigorifere, banchine di carico e reparti produttivi."
+                },
+                "precision": {
+                    "title": "Monitoraggio di precisione",
+                    "body": "Sensori digitali ad alta precisione offrono letture di temperatura ±0,2°C e ±2% RH per reportistica pronta alla conformità."
+                },
+                "battery": {
+                    "title": "Batteria pluriennale",
+                    "body": "Progettato per oltre 10 anni di telemetria continua con batterie al litio sostituibili in campo e firmware a basso consumo."
+                },
+                "lorawan": {
+                    "title": "Connettività LoRaWAN",
+                    "body": "Connettività LoRaWAN sicura che garantisce trasmissioni resilienti attraverso infrastrutture dense e isolamento termico dello stoccaggio a freddo."
+                }
+            },
+            "specs": {
+                "sensor": {
+                    "label": "Sensore",
+                    "value": "Sensirion x1 SHT40 & x1 SHT43, True NIST, con certificazione ISO17025"
+                },
+                "temperature_range": {
+                    "label": "Campo di temperatura",
+                    "value": "-40°C a 85°C (calibrato)"
+                },
+                "humidity_range": {
+                    "label": "Campo di umidità",
+                    "value": "0%–100% RH (non condensante)"
+                },
+                "heater": {
+                    "label": "Riscaldatore integrato",
+                    "value": "Previene la condensazione in ambienti freddi"
+                },
+                "temperature_accuracy": {
+                    "label": "Accuratezza temperatura",
+                    "value": "+/- 0,2°C tra -10°C e 50°C"
+                },
+                "humidity_accuracy": {
+                    "label": "Accuratezza umidità",
+                    "value": "+/- 2% RH tra 10% e 90%"
+                },
+                "ingress": {
+                    "label": "Protezione dall’ingresso",
+                    "value": "Custodia IP67"
+                },
+                "protocol": {
+                    "label": "Protocollo wireless",
+                    "value": "LoRaWAN 1.0.4 Classe A, bande regionali supportate"
+                },
+                "battery": {
+                    "label": "Batteria",
+                    "value": "Li-SOCl2 (cloruro di tionile di litio), sostituibile in campo"
+                },
+                "dimensions": {
+                    "label": "Dimensioni",
+                    "value": "120 mm x 70 mm x 35 mm"
+                },
+                "operating_life": {
+                    "label": "Vita operativa",
+                    "value": "Fino a 5 anni con intervalli di 15 minuti"
+                },
+                "certifications": {
+                    "label": "Certificazioni",
+                    "value": "FCC, CE, IC, materiali conformi HACCP"
+                }
+            },
+            "kit": {
+                "items": {
+                    "sensor": "Sensore CW Air TH con firmware preconfigurato",
+                    "credentials": "Credenziali di attivazione LoRaWAN e tag QR per la distribuzione",
+                    "mounting": "Staffa di montaggio in acciaio inox con viti e pad adesivi",
+                    "calibration": "Certificato di calibrazione e documentazione di validazione",
+                    "playbook": "Playbook di installazione e gestione in celle frigorifere"
+                }
+            },
+            "deployment": {
+                "steps": {
+                    "site_planning": {
+                        "title": "Pianificazione del sito",
+                        "body": "Gli specialisti CropWatch mappano le zone della struttura, definiscono il posizionamento dei gateway e allineano gli intervalli di telemetria alle esigenze di conformità."
+                    },
+                    "install": {
+                        "title": "Installazione rapida",
+                        "body": "I tecnici montano i sensori utilizzando opzioni magnetiche, adesive o con staffa senza interrompere la produzione."
+                    },
+                    "validation": {
+                        "title": "Validazione automatizzata",
+                        "body": "I sensori eseguono verifiche di calibrazione di base e si registrano in CropWatch Command per il monitoraggio continuo."
+                    },
+                    "insight": {
+                        "title": "Consegna degli insight",
+                        "body": "Dashboard in tempo reale, allarmi e report pronti per l’audit consentono ai team di risolvere le anomalie prima che escano da controllo."
+                    }
+                }
+            },
+            "demo": {
+                "status": {
+                    "loading": {
+                        "label": "Caricamento",
+                        "helper": "Il dispositivo si sta collegando alla rete."
+                    },
+                    "online": {
+                        "label": "Online",
+                        "helper": "La telemetria è aggiornata e entro le tolleranze."
+                    },
+                    "partial_error": {
+                        "label": "Errore parziale",
+                        "helper": "Alcuni sensori richiedono attenzione ma i dati stanno fluendo."
+                    },
+                    "offline": {
+                        "label": "Offline",
+                        "helper": "Nessun pacchetto ricevuto entro l’intervallo previsto."
+                    }
+                },
+                "walkthrough": {
+                    "steps": {
+                        "details": {
+                            "title": "Apri o comprimi gli insight del sensore",
+                            "body": "La nostra UI ti permette di organizzare e raggruppare i dispositivi per posizione. In alto a sinistra nella scheda posizione puoi vedere l’indicatore di stato. È verde quando i dispositivi riportano normalmente, giallo per avvisi e rosso per problemi critici. Usa la freccia sulla scheda per mostrare letture dettagliate, allarmi e cronologia aggiornamenti."
+                        },
+                        "setup_location_device_names": {
+                            "title": "Assegna un nome alla posizione e al dispositivo",
+                            "body": "Dai a ogni scheda un’etichetta chiara così che i team riconoscano subito l’area o il bene che rappresenta.",
+                            "helper": "I nomi inseriti qui si sincronizzano con l’intestazione della scheda e il tag dispositivo nella demo.",
+                            "location_label": "Nome posizione",
+                            "location_placeholder": "es. Baia congelatore A",
+                            "device_label": "Nome dispositivo",
+                            "device_placeholder": "es. CW Air TH n. 1"
+                        },
+                        "status": {
+                            "title": "Salute della posizione a colpo d’occhio",
+                            "body": "Il badge in alto a sinistra scorre tra Caricamento, Online, Errore parziale e Offline così che gli operatori vedano subito lo stato del dispositivo."
+                        },
+                        "temperature": {
+                            "title": "Monitoraggio temperatura in tempo reale",
+                            "body": "La misura a sinistra si aggiorna alla frequenza dei pacchetti in arrivo. Tocca il termometro nella scheda demo per campionare letture dal vivo."
+                        },
+                        "humidity": {
+                            "title": "Umidità in sincronia",
+                            "body": "L’umidità relativa viene rilevata insieme alla temperatura per segnalare i rischi di condensa. Clicca la goccia per vederla aggiornarsi."
+                        },
+                        "location_page": {
+                            "title": "Ti porta alla pagina dettagli posizione",
+                            "body": "La pagina Dettagli posizione mostra tutti i dispositivi all’interno di una posizione e ti permette di aggiornare impostazioni o permessi di accesso."
+                        },
+                        "device_detail": {
+                            "title": "Visualizza la pagina dettagli dispositivo",
+                            "body": "La pagina Dettagli dispositivo offre telemetria approfondita, cronologia degli stati e opzioni di configurazione per uno specifico dispositivo, rendendo la diagnostica più semplice."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "contact": {
+        "meta": {
+            "title": "Contatta CropWatch | Parla con uno specialista IoT",
+            "description": "Prenota una walkthrough o connettiti con gli specialisti CropWatch per progettare la tua distribuzione IoT industriale robusta."
+        },
+        "hero": {
+            "eyebrow": "Restiamo in contatto",
+            "headline": "Prenota una sessione strategica con il nostro team IoT industriale",
+            "body": "Condividi gli obiettivi della tua struttura e costruiremo un business case su misura, dalla copertura LoRaWAN e selezione dei sensori fino al rollout delle analitiche e alla reportistica pronta per la conformità.",
+            "bullets": [
+                "Sopralluoghi, demo dal vivo e piloti di prova del valore.",
+                "Linee guida progettuali per celle frigorifere, manifatturiero, hospitality e altro.",
+                "Modellazione del ROI pronta per il management per accelerare l’approvazione degli stakeholder."
+            ]
+        },
+        "form": {
+            "title": "Inizia la conversazione",
+            "subtitle": "Completa il modulo e ti risponderemo entro un giorno lavorativo.",
+            "fields": {
+                "first_name": {
+                    "label": "Nome",
+                    "placeholder": "Mario"
+                },
+                "last_name": {
+                    "label": "Cognome",
+                    "placeholder": "Rossi"
+                },
+                "email": {
+                    "label": "Email di lavoro",
+                    "placeholder": "tu@azienda.com"
+                },
+                "company": {
+                    "label": "Azienda",
+                    "placeholder": "Acme Foods"
+                },
+                "message": {
+                    "label": "Come possiamo aiutarti?",
+                    "placeholder": "Raccontaci delle tue strutture, delle sfide e delle tempistiche."
+                }
+            },
+            "submit": "Invia richiesta"
+        },
+        "recaptcha": {
+            "protected": "Protetto da Google reCAPTCHA (v3).",
+            "missing_key_prefix": "Imposta",
+            "missing_key_suffix": "per abilitare la validazione CAPTCHA."
+        },
+        "errors": {
+            "security_unavailable": "Controllo di sicurezza non disponibile. Ricarica la pagina e riprova.",
+            "verification_failed": "Verifica non riuscita. Riprova."
+        }
+    },
+    "about": {
+        "meta": {
+            "title": "Informazioni su CropWatch | IoT industriale costruito per l’affidabilità",
+            "description": "Scopri la missione, la leadership e le tappe fondamentali di CropWatch mentre offriamo reti IoT resilienti per stoccaggio a freddo, hospitality e manifatturiero."
+        },
+        "hero": {
+            "eyebrow": "La nostra storia",
+            "headline": "La nostra storia – Come siamo arrivati fin qui",
+            "paragraphs": [
+                "Abbiamo iniziato sviluppando dispositivi in grado di resistere agli ambienti agricoli più difficili. Col tempo, ci siamo resi conto che gli stessi principi di affidabilità, precisione, facilità d’uso e segnale forte in punti difficili erano disperatamente necessari anche in altri settori in cui i fermi non sono un’opzione.",
+                "Oggi, CropWatch è scelto dai team operativi in stoccaggio a freddo, hospitality, manifatturiero e agricoltura per offrire reti IoT resilienti che mantengono le strutture conformi ed efficienti. La nostra missione rimane invariata: fornire soluzioni IoT industriali che diano agli operatori dati e insight affidabili, in qualsiasi ambiente."
+            ],
+            "stats": {
+                "uptime": {
+                    "title": "99,98% di uptime",
+                    "description": "Supportato da team operativi 24/7"
+                },
+                "hubs": {
+                    "title": "6 hub globali",
+                    "description": "Flotte di sensori monitorate senza interruzioni"
+                }
+            },
+            "sidebar": {
+                "title": "Progettato per operatori esigenti",
+                "intro": "I nostri team uniscono ingegneria RF, automazione industriale e data science per offrire insight affidabili dove i fermi non sono ammessi.",
+                "points": [
+                    "Specialisti certificati in workflow di conformità HACCP, OSHA e ISO 9001.",
+                    "Modello di distribuzione ibrido che combina tecnici sul campo e centri di comando remoti.",
+                    "Partnership di settore con i principali produttori di sensori e piattaforme cloud."
+                ]
+            }
+        },
+        "history": {
+            "eyebrow": "Tappe",
+            "headline": "Da pilota regionale a copertura globale",
+            "intro": "Siamo cresciuti insieme a clienti che necessitano competenze sul campo abbinate a telemetria moderna. Ogni traguardo ha affinato la nostra capacità di offrire valore misurabile.",
+            "milestones": {
+                "2016": {
+                    "year": "2016",
+                    "title": "Prima rete per le colture distribuita",
+                    "description": "Partnership con un coltivatore di agrumi da 40.000 acri per dimostrare il monitoraggio microclimatico su larga scala basato su LoRa."
+                },
+                "2018": {
+                    "year": "2018",
+                    "title": "Copertura globale dei sensori",
+                    "description": "Espansione della flotta di gateway in sei paesi con hardware rugged classificato per ambienti industriali impegnativi."
+                },
+                "2021": {
+                    "year": "2021",
+                    "title": "Lancio delle analitiche CropWatch",
+                    "description": "Dashboard predittive e rilevamento anomalie progettati per clienti in catena del freddo, hospitality e manifatturiero."
+                },
+                "2024": {
+                    "year": "2024",
+                    "title": "Standard di affidabilità enterprise",
+                    "description": "Raggiunto uptime di rete del 99,98% supportato da hub operativi 24/7 e orchestrazione proattiva del firmware."
+                }
+            }
+        },
+        "leadership": {
+            "eyebrow": "Leadership",
+            "headline": "Conosci il nostro team altamente qualificato",
+            "intro": "Per offrire soluzioni IoT affidabili, abbiamo riunito un team di esperti con profonda esperienza in elettronica, ingegneria del software, ingegneria meccanica e sviluppo prodotto da tutto il mondo.",
+            "members": {
+                "evelyn": {
+                    "name": "Evelyn Ortiz",
+                    "title": "Chief Executive Officer",
+                    "bio": "Ex dirigente logistica che ha guidato programmi di supply chain connessa per grandi catene retail e della GDO.",
+                    "avatar_alt": "Illustrazione segnaposto del ritratto di Evelyn Ortiz"
+                },
+                "marcus": {
+                    "name": "Marcus Boyd",
+                    "title": "Chief Technology Officer",
+                    "bio": "Ha progettato reti di sensori a basso consumo su tre continenti; coautore del framework di distribuzione LoRa Edge.",
+                    "avatar_alt": "Illustrazione segnaposto del ritratto di Marcus Boyd"
+                },
+                "priya": {
+                    "name": "Priya Nandan",
+                    "title": "Chief Customer Officer",
+                    "bio": "Ha creato programmi di customer success cross-funzionali che hanno generato ROI a doppia cifra per portafogli di stoccaggio a freddo e hospitality.",
+                    "avatar_alt": "Illustrazione segnaposto del ritratto di Priya Nandan"
+                },
+                "greg": {
+                    "name": "Greg Tanaka",
+                    "title": "Head of Product",
+                    "bio": "Ex ingegnere di sistemi NASA che applica le pratiche di telemetria mission-critical all’IoT industriale.",
+                    "avatar_alt": "Illustrazione segnaposto del ritratto di Greg Tanaka"
+                }
+            },
+            "actions": {
+                "linkedin": "LinkedIn",
+                "linkedin_aria": "Apri il profilo LinkedIn di {name}",
+                "github": "GitHub",
+                "github_aria": "Apri il profilo GitHub di {name}"
+            }
+        },
+        "values": {
+            "eyebrow": "Valori",
+            "headline": "Principi che mantengono il cliente al centro",
+            "intro": "Ogni decisione viene misurata rispetto all’uptime, alla conformità e all’esperienza che i nostri clienti si aspettano. Alla fine della giornata, teniamo a ogni singolo cliente e puntiamo a offrire il miglior supporto possibile. In CropWatch, ognuno mette una parte di sé nel lavoro svolto e, poiché il nostro lavoro ci rappresenta, vogliamo che i nostri prodotti siano il meglio possibile.",
+            "items": {
+                "operational_certainty": {
+                    "title": "Valutiamo davvero i feedback dei clienti",
+                    "description": "La nostra roadmap di prodotto è guidata dai feedback degli operatori in prima linea per garantire che ogni funzionalità offra chiarezza operativa misurabile."
+                },
+                "human_centered": {
+                    "title": "Il supporto è importante per noi quanto per te",
+                    "description": "Prendiamo sul serio le richieste dei clienti e rispondiamo rapidamente per garantire che i tuoi team abbiano l’aiuto di cui hanno bisogno, quando ne hanno bisogno."
+                },
+                "proof_of_value": {
+                    "title": "Quando avviamo un progetto, ci assicuriamo di comprendere a fondo i tuoi obiettivi",
+                    "description": "Ogni collaborazione inizia con un business case chiaro e metriche di successo, così i risultati sono allineati fin dal primo giorno."
+                }
+            }
+        },
+        "closing": {
+            "eyebrow": "Unisciti alla missione",
+            "headline": "Stiamo assumendo ingegneri, operatori e professionisti del cliente",
+            "body": "Se sei appassionato di sistemi affidabili per settori in cui i fermi non sono un’opzione, ci farebbe piacere conoscerti.",
+            "primary_cta": "Scopri le posizioni aperte",
+            "secondary_cta": "Parla con il nostro team"
+        }
+    }
+}

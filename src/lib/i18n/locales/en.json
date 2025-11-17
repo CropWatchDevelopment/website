@@ -13,11 +13,7 @@
     "language": {
       "switch_to_english_aria": "Change language to English",
       "switch_to_japanese_aria": "Change language to Japanese",
-      "english_icon": "🇺🇸",
-      "japanese_icon": "🇯🇵",
-      "picker_label": "Language",
-      "english_label": "English",
-      "japanese_label": "日本語"
+      "picker_label": "Language"
     },
     "brand": {
       "home_aria": "CropWatch home",
@@ -61,7 +57,8 @@
         "title": "Social channels",
         "links": {
           "linkedin": "LinkedIn",
-          "youtube": "YouTube"
+          "youtube": "YouTube",
+          "github": "GitHub"
         }
       },
       "solutions": {
@@ -78,8 +75,9 @@
         "links": {
           "sensor_suite": "Sensor Suite",
           "gateways": "Gateways",
-          "analytics": "Analytics",
-          "integrations": "Integrations"
+          "analytics": "Replacement Sensors",
+          "integrations": "Integrations",
+          "cw-air-th": "CW-AIR-TH"
         }
       },
       "connect": {
@@ -94,7 +92,7 @@
       }
     },
     "legal": {
-  "copyright": "© {year} CropWatch LLC. All rights reserved.",
+      "copyright": "© {year} CropWatch LLC. All rights reserved.",
       "links": {
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
@@ -217,11 +215,11 @@
     "hero": {
       "eyebrow": "Industrial IoT That Pays For Itself",
       "headline_html": "What makes CropWatch<sup><small>®</small></sup> different?",
-      "body_html": "CropWatch<sup><small>®</small></sup> specializes in building the most trusted industrial IoT systems for cold chain, manufacturing, hospitality, and complex environments. Our dual-sensor hardware, long-life battery design, and LoRaWAN® connectivity ensure reliable data from even the harshest sites. Combined with our proven deployment methodology and analytics platform, CropWatch<sup><small>®</small></sup> delivers measurable ROI without overwhelming frontline teams.",
+      "body_html": "CropWatch<sup><small>®</small></sup> specializes in building the most trusted industrial IoT systems for cold chain, manufacturing, hospitality, and complex environments. Our dual-sensor hardware, long-life battery design, and LoRaWAN® connectivity ensure reliable data from even the harshest sites. Combined with our proven deployment methodology and analytics platform, CropWatch<sup><small>®</small></sup> delivers measurable ROI and time savings to teams large and small. </br></br><p><b>Before continuing, if you already have a monitoring solution, ask yourself the following questions: </b></p>",
       "questions": [
-        "Can your current sensors run a decade on one charge?",
-        "Do you receive actionable data at the cadence operations expect?",
-        "How quickly can you prove readings when compliance asks?",
+        "Can your current sensors run for a full decade on a single battery?",
+        "What happens if your current sensor fails, or sends you wrong data? Will you know?",
+        "Can you change the sensor on your current units? Or do you need to replace the entire device?",
         "Are concrete, steel, and freezers still causing blind spots?",
         "Are manual logs and route checks still burning hours you can't spare?",
         "Can you surface the exact records compliance needs the moment they ask?"
@@ -613,7 +611,7 @@
       "hero": {
         "eyebrow": "Replacement sensors",
         "headline": "Replacement sensor kit is almost ready",
-  "body": "We're finalizing hot-swap cartridges that keep your CW Air TH sensors calibrated without shipping hardware back to the factory. Early partners get the tooling, documentation, and support they need on day one.",
+        "body": "We're finalizing hot-swap cartridges that keep your CW Air TH sensors calibrated without shipping hardware back to the factory. Early partners get the tooling, documentation, and support they need on day one.",
         "primary_cta": "Request early access",
         "secondary_cta": "See customer outcomes",
         "sidebar": {

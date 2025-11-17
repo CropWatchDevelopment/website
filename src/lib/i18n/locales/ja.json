@@ -13,11 +13,7 @@
     "language": {
       "switch_to_english_aria": "言語を英語に変更",
       "switch_to_japanese_aria": "言語を日本語に変更",
-      "english_icon": "🇺🇸",
-      "japanese_icon": "🇯🇵",
-      "picker_label": "言語",
-      "english_label": "英語",
-      "japanese_label": "日本語"
+      "picker_label": "言語"
     },
     "brand": {
       "home_aria": "CropWatch ホーム",
@@ -78,8 +74,9 @@
         "links": {
           "sensor_suite": "センサー",
           "gateways": "ゲートウェイ",
-          "analytics": "アナリティクス",
-          "integrations": "インテグレーション"
+          "analytics": "交換用センサー",
+          "integrations": "インテグレーション",
+          "cw-air-th": "CW-AIR-TH"
         }
       },
       "connect": {
@@ -93,7 +90,7 @@
       }
     },
     "legal": {
-  "copyright": "© {year} CropWatch LLC. 無断複写・転載を禁じます。",
+      "copyright": "© {year} CropWatch LLC. 無断複写・転載を禁じます。",
       "links": {
         "privacy": "プライバシーポリシー",
         "terms": "利用規約",
