@@ -12,7 +12,7 @@ const config = {
 
 			images: {
 				sizes: [640, 828, 1200, 1920, 3840],
-				formats: ['image/avif', 'image/webp', 'image/jpeg', 'image/jpg', 'image/png'],
+				formats: ['image/avif', 'image/webp'],
 				minimumCacheTTL: 300,
 				domains: ['cropwatch.io', 'website-iilojvva6-crop-watch-team.vercel.app'],
 			},
