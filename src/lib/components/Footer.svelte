@@ -93,12 +93,7 @@
 						</a>
 					</li>
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="/support">
-							{$_('footer.link_groups.connect.links.support')}
-						</a>
-					</li>
-					<li>
-						<a class="transition hover:text-[#f2a516]" href="/usecases">
+						<a class="transition hover:text-[#f2a516]" href="/use-cases">
 							{$_('footer.link_groups.connect.links.case_studies')}
 						</a>
 					</li>
