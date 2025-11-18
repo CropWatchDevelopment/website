@@ -93,7 +93,7 @@
 						</a>
 					</li>
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="/use-cases">
+						<a class="transition hover:text-[#f2a516]" href="/case-studies">
 							{$_('footer.link_groups.connect.links.case_studies')}
 						</a>
 					</li>
