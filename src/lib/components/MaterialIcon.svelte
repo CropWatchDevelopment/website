@@ -21,23 +21,39 @@
 		}
 	};
 
-	const FONT_CONFIG: Record<IconCollection, { id: string; href: string }> = {
-		icons: {
-			id: 'google-material-icons-font',
-			href: 'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone'
-		},
-		symbols: {
-			id: 'google-material-symbols-font',
-			href:
-				'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap'
-		}
-	};
-
 	const loadedFonts = new Set<string>();
 
-	function ensureFontLoaded(collection: IconCollection) {
+	function getFontConfig(collection: IconCollection, variant: Variant) {
+		if (collection === 'icons') {
+			let family = 'Material+Icons';
+			if (variant === 'outlined') family = 'Material+Icons+Outlined';
+			else if (variant === 'round') family = 'Material+Icons+Round';
+			else if (variant === 'sharp') family = 'Material+Icons+Sharp';
+			else if (variant === 'two-tone') family = 'Material+Icons+Two+Tone';
+
+			return {
+				id: `google-material-icons-${variant}`,
+				href: `https://fonts.googleapis.com/icon?family=${family}&display=swap`
+			};
+		} else {
+			// symbols
+			let family = 'Material+Symbols+Outlined';
+			if (variant === 'rounded' || variant === 'round') family = 'Material+Symbols+Rounded';
+			else if (variant === 'sharp') family = 'Material+Symbols+Sharp';
+
+			// Use the same variable axes as before to be safe, but only for this family
+			const axes = ':opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+
+			return {
+				id: `google-material-symbols-${variant}`,
+				href: `https://fonts.googleapis.com/css2?family=${family}${axes}&display=swap`
+			};
+		}
+	}
+
+	function ensureFontLoaded(collection: IconCollection, variant: Variant) {
 		if (typeof document === 'undefined') return;
-		const { id, href } = FONT_CONFIG[collection];
+		const { id, href } = getFontConfig(collection, variant);
 		if (loadedFonts.has(id) || document.getElementById(id)) {
 			loadedFonts.add(id);
 			return;
@@ -75,28 +91,22 @@
 	export let title: string | undefined = undefined;
 
 	onMount(() => {
-		ensureFontLoaded(collection);
+		ensureFontLoaded(collection, variant);
 	});
-
-	declare const $$props: {
-		class?: string;
-		style?: string;
-		[key: string]: unknown;
-	};
 
 	let forwardedClass = '';
 	let forwardedStyle = '';
 	let variantClass = VARIANT_CLASS.icons.filled;
 	let resolvedSize = typeof size === 'number' ? `${size}px` : size;
 	let resolvedClass = className.trim();
-	let resolvedStyle = `font-size: ${resolvedSize};`;
+	let resolvedStyle = `font-size: ${resolvedSize}; width: ${resolvedSize}; height: ${resolvedSize}; display: inline-block; overflow: hidden; white-space: nowrap; line-height: 1; text-align: center; vertical-align: middle;`;
 	let role = ariaLabel ? 'img' : 'presentation';
-	let ariaHidden: string | undefined = ariaLabel ? undefined : 'true';
+	let ariaHidden: 'true' | undefined | null = ariaLabel ? undefined : 'true';
 	let restProps: Record<string, unknown> = {};
 
 	$: forwardedClass = $$props.class ?? '';
 	$: forwardedStyle = $$props.style ?? '';
-	$: ensureFontLoaded(collection);
+	$: ensureFontLoaded(collection, variant);
 	$: resolvedSize = typeof size === 'number' ? `${size}px` : size;
 	$: variantClass = (() => {
 		if (collection === 'icons') {
@@ -112,6 +122,16 @@
 		const parts = [];
 		if (forwardedStyle) parts.push(forwardedStyle);
 		parts.push(`font-size: ${resolvedSize};`);
+		// Fix CLS: Reserve exact space and hide ligature text before font loads
+		parts.push(`width: ${resolvedSize};`);
+		parts.push(`height: ${resolvedSize};`);
+		parts.push(`display: inline-block;`);
+		parts.push(`overflow: hidden;`);
+		parts.push(`white-space: nowrap;`);
+		parts.push(`line-height: 1;`);
+		parts.push(`text-align: center;`);
+		parts.push(`vertical-align: middle;`); // Align with text
+		
 		if (collection === 'symbols') {
 			parts.push(
 				`font-variation-settings: "FILL" ${fill}, "wght" ${weight}, "GRAD" ${grade}, "opsz" ${opticalSize};`

@@ -8,6 +8,8 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [vitePreprocess(), mdsvex()],
 	kit: {
+		// Inline CSS smaller than 20kb to avoid network chains and improve FCP/LCP
+		inlineStyleThreshold: 20480,
 		adapter: adapter({
 
 			images: {
