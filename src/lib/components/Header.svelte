@@ -94,20 +94,21 @@
 	}
 </script>
 
-<header class="bg-[var(--cw-blue-900)] text-white relative z-40">
+<header class="relative z-40 bg-[var(--cw-blue-900)] text-white">
 	<!-- Top Bar (Desktop) -->
 	<div
-		class="hidden md:flex relative mx-auto flex-row items-center justify-between overflow-hidden rounded-b-3xl border-b border-white/10 bg-[var(--cw-gold-500)]/15 px-4 text-sm backdrop-blur"
+		class="mx-auto hidden flex-row items-center justify-between bg-[#ffffffde] px-4 text-sm md:flex"
 	>
-		<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_left,_rgba(255,255,255,0.35),_transparent_65%)] opacity-60"></div>
-		<div class="relative flex gap-2 py-3 text-sm font-semibold text-[var(--cw-blue-950)]">
+		<div class="flex gap-2 py-3 text-sm font-semibold text-[#11213c]">
 			<span>{$_('header.topbar.welcome')}</span>
 			<span>|</span>
 			<span>{$_('header.topbar.global_site')}</span>
 		</div>
-		<div class="relative flex items-center gap-4 py-3">
+		<div class="flex items-center gap-4 py-3 text-[#11213c]">
 			{#each topLinks as link (link.href)}
-				<a href={link.href} class="font-medium text-[var(--cw-blue-900)] transition-colors hover:text-[var(--cw-blue-700)]">{$_(link.labelKey)}</a>
+				<a href={link.href} class="font-medium transition-colors hover:text-blue-600"
+					>{$_(link.labelKey)}</a
+				>
 			{/each}
 			<LanguagePicker />
 		</div>
@@ -132,17 +133,17 @@
 					<span class="text-xs text-white/80 uppercase">{$_('header.brand.tagline')}</span>
 				</div>
 			</a>
-			
+
 			<!-- Desktop Actions -->
-			<div class="hidden md:flex flex-1 items-center justify-end gap-6">
+			<div class="hidden flex-1 items-center justify-end gap-6 md:flex">
 				<Telephone />
 				<Search />
 			</div>
 
 			<!-- Mobile Hamburger -->
-			<button 
-				class="md:hidden text-white p-2 focus:outline-none" 
-				onclick={toggleMobileMenu} 
+			<button
+				class="p-2 text-white focus:outline-none md:hidden"
+				onclick={toggleMobileMenu}
 				aria-label="Toggle menu"
 			>
 				<MaterialIcon name={isMobileMenuOpen ? 'close' : 'menu'} size={32} />
@@ -152,7 +153,7 @@
 
 	<!-- Desktop Nav -->
 	<nav
-		class="hidden md:block bg-gradient-to-b from-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+		class="hidden bg-gradient-to-b from-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)] md:block"
 	>
 		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
 			<ul class="flex items-center gap-6 text-sm text-white" id="mainMenu">
@@ -257,14 +258,16 @@
 
 	<!-- Mobile Menu Overlay -->
 	{#if isMobileMenuOpen}
-		<div class="fixed inset-0 z-50 flex flex-col bg-[var(--cw-blue-900)] text-white md:hidden overflow-y-auto">
-			<div class="flex items-center justify-between p-4 border-b border-white/10">
+		<div
+			class="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-[var(--cw-blue-900)] text-white md:hidden"
+		>
+			<div class="flex items-center justify-between border-b border-white/10 p-4">
 				<span class="text-lg font-semibold tracking-wide">Menu</span>
 				<button class="p-2" onclick={closeMobileMenu} aria-label="Close menu">
 					<MaterialIcon name="close" size={32} />
 				</button>
 			</div>
-			
+
 			<div class="flex flex-col gap-6 p-6">
 				<!-- Mobile Search & Phone -->
 				<div class="flex flex-col gap-4">
@@ -289,11 +292,15 @@
 										viewBox="0 0 20 20"
 										fill="currentColor"
 									>
-										<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08" clip-rule="evenodd" />
+										<path
+											fill-rule="evenodd"
+											d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08"
+											clip-rule="evenodd"
+										/>
 									</svg>
 								</button>
 								{#if openMenu === item.id}
-									<ul class="ml-4 mt-2 flex flex-col gap-3 border-l border-white/20 pl-4">
+									<ul class="mt-2 ml-4 flex flex-col gap-3 border-l border-white/20 pl-4">
 										{#each item.children as child}
 											<li>
 												<a
@@ -302,7 +309,12 @@
 													onclick={closeMobileMenu}
 												>
 													{#if child.icon}
-														<MaterialIcon name={child.icon} collection="symbols" variant="rounded" size={20} />
+														<MaterialIcon
+															name={child.icon}
+															collection="symbols"
+															variant="rounded"
+															size={20}
+														/>
 													{/if}
 													<span>{$_(child.labelKey)}</span>
 												</a>
@@ -340,7 +352,9 @@
 				<!-- Mobile Top Links & Language -->
 				<div class="flex flex-col gap-4 pb-10">
 					{#each topLinks as link}
-						<a href={link.href} class="text-white/80" onclick={closeMobileMenu}>{$_(link.labelKey)}</a>
+						<a href={link.href} class="text-white/80" onclick={closeMobileMenu}
+							>{$_(link.labelKey)}</a
+						>
 					{/each}
 					<div class="mt-2">
 						<LanguagePicker />

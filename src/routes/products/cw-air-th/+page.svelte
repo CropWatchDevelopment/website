@@ -454,7 +454,7 @@
 
 		<section class="cold-chain-hero" aria-labelledby="cold-chain-heading">
 			{#each pageContent.sections.capabilities.paragraphKeys as paragraphKey, index (paragraphKey)}
-				<p class={index === 1 ? 'my-4' : undefined}>
+				<p class={`{index === 1 ? 'my-4' : undefined} text-[#0b1730]/80 mt-4`}>
 					{@html $_(paragraphKey)}
 				</p>
 			{/each}

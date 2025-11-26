@@ -150,6 +150,21 @@ This is superior to generic NIST-traceability, which may be internally documente
 						'LoRaWAN (Long Range Wide Area Network) is a communication protocol (think Actual Language with grammar and vocabulary) and system architecture built on top of LoRa technology. It defines the network structure, data transfer methods, and security features for devices using LoRa.'
 				},
 				{
+					question: 'What happens if my gateway looses power or is offline?',
+					answer:
+						'The device will continue sending data to the gateway when power/connection is restored.'
+				},
+				{
+					question: 'Does the device need to re-authorize with the gateway?',
+					answer:
+						'No, the device does not authenticate with the gateway ever, instead, data is simply sent through the gateway to our servers, and they are where the authorization happens.'
+				},
+				{
+					question: 'If my gateway goes offline, and I have another one nearby, will the device use the other gateway?',
+					answer:
+						'Any gateway is capable of receiving data from any device within range, so yes, if another gateway is nearby, it will receive the data and forward it to our servers.'
+				},
+				{
 					question: 'What is PCB Conformal Coating??',
 					answer:
 						'PCB Conformal Coating is a protective chemical layer applied to printed circuit boards (PCBs) to shield them from environmental factors such as moisture, dust, chemicals, and temperature extremes. This coating helps enhance the durability and reliability of electronic components, especially in harsh or industrial environments.'
@@ -158,6 +173,21 @@ This is superior to generic NIST-traceability, which may be internally documente
 					question: 'What is a Li-SOCl2 type battery?',
 					answer:
 						'Li-SOCl2 stands for Lithium-Thionyl Chloride battery. It is a type of primary (non-rechargeable) lithium battery known for its high energy density, long shelf life, and ability to operate in extreme temperatures. These batteries are commonly used in applications requiring long-term, reliable power sources, such as remote sensors, utility metering, and military equipment.'
+				},
+				{
+					question: 'What is the battery life?',
+					answer:
+						'Our devices are engineered for a 10+ year battery life under good operating conditions. Actual battery life may very due to factors such as transmission interval, environmental conditions, and signal strength.'
+				},
+				{
+					question: 'Why does signal strength affect battery life?',
+					answer:
+						'When a device has a weak signal, it will transmit data to the gateway, if the gateway hears the signal, it will transmit a "receipt" back to the device, if the device does not hear the receipt, it will try to resend the data up to 3 additional times (4 total). Each transmission attempt uses additional power, which can drain the battery faster. Therefore, maintaining a strong signal helps conserve battery life by reducing the number of transmission attempts needed.'
+				},
+				{
+					question: 'The power useage of the device is low enough that the battery shoud not die after 10 years, why do you always say it only last 10 years?',
+					answer:
+						'While the battery does contain enough power to last longer than 10 years, the battery chemistry itsself has a natural degradation over time, regardless of power usage. So even though the battery technically contains enough power to run longer than 10 years, the battery itsself may expire at or slightly before the 10 year mark, and we say 10 years to be safe.'
 				},
 			]
 		}

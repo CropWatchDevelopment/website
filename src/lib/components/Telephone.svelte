@@ -22,7 +22,7 @@
 		{#if $locale === 'ja'}
 			<a href="tel:+818042843390" class="hover:text-white">080-4284-3390</a>
 		{:else}
-			<a href="tel:+16038662394" class="hover:text-white">+1(603)866-2394</a>
+			<a href="tel:+16038662394" class="hover:text-white">+1 (603) 866-2394</a>
 		{/if}
 	</phone>
 </div>
