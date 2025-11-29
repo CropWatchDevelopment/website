@@ -46,17 +46,17 @@
 				<h3 class="text-sm font-semibold uppercase tracking-wide text-white/70">{$_('footer.link_groups.socials.title')}</h3>
 				<ul class="space-y-2 text-sm text-white/75">
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="https://www.linkedin.com/company/cropwatch-system">
+						<a class="transition hover:text-[#f2a516]" target="_blank" href="https://www.linkedin.com/company/cropwatch-system">
 							{$_('footer.link_groups.socials.links.linkedin')}
 						</a>
 					</li>
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="https://www.youtube.com/@cropwatch4407">
+						<a class="transition hover:text-[#f2a516]" target="_blank" href="https://www.youtube.com/@cropwatch4407">
 							{$_('footer.link_groups.socials.links.youtube')}
 						</a>
 					</li>
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="https://github.com/CropWatchDevelopment">
+						<a class="transition hover:text-[#f2a516]" target="_blank" href="https://github.com/CropWatchDevelopment">
 							{$_('footer.link_groups.socials.links.github')}
 						</a>
 					</li>
