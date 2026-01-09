@@ -49,6 +49,12 @@
 			ariaKey: 'header.utility.ui_app_icon_aria'
 		},
 		{
+			labelKey: 'API',
+			href: 'https://api.cropwatch.io/docs',
+			icon: 'api',
+			ariaKey: 'header.utility.api_icon_aria'
+		},
+		{
 			labelKey: 'header.utility.system_status',
 			icon: 'monitor_heart',
 			href: 'https://stats.uptimerobot.com/1Z6H85HuHq',

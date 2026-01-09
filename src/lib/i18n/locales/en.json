@@ -457,8 +457,8 @@
       "cta": "Discuss this approach",
       "cases": {
         "sunharvest": {
-          "company": "TK Ebisu Foods",
-          "industry": "Poultry / Animal Safety",
+          "company": "TK-EBISU INC. - Pet food division",
+          "industry": "Pet Food",
           "recap": "In the past, TK Ebisu Foods needed to manually monitor the temperature, humidity, and air quality across their coop locations. CropWatch provided a comprehensive IoT solution that automated these processes, ensuring optimal conditions and animal welfare and egg production.",
           "badge": "Timesavings",
           "websiteUrl": "https://ebisu-g.com/group/tk-ebisu/",
@@ -476,7 +476,7 @@
         "harborline": {
           "company": "Phoenix Seagaia Resport",
           "industry": "Luxury resorts and hotels",
-          "recap": "This buffet-style restaurant features local cuisine crafted from traditional Miyazaki fruits and vegetables, award-winning Miyazaki beef, rich seafood. CropWatch provides comprehensive IoT food temperature and humidity monitoring solutions to ensure food safety and quality standards are consistently met. Time is saved on manual checks and compliance reporting, allowing staff to focus on enhancing guest experiences.",
+          "recap": "A top Miyazaki restaurant featuring local cuisine crafted from traditional Miyazaki fruits and vegetables, award-winning Miyazaki beef, rich seafood. CropWatch provides comprehensive IoT food temperature and humidity monitoring solutions to ensure food safety and quality standards are consistently met. Time is saved on manual checks and compliance reporting, allowing staff to focus on enhancing guest experiences.",
           "badge": "High compliance",
           "websiteUrl": "https://seagaia.co.jp/",
           "stats": [
@@ -491,14 +491,14 @@
           ]
         },
         "kodiak": {
-          "company": "Kodiak Manufacturing",
-          "industry": "Industrial fabrication",
-          "recap": "Instrumented mission critical production lines to detect vibration, dust, and temperature anomalies.",
-          "badge": "High compliance",
+          "company": "TK-EBISU INC. - Egg production division",
+          "industry": "Poultry - Egg production",
+          "recap": "TK Ebisu's egg production division spans dozens of farms spanning across 60km+, making manual monitoring of temperature and humidity a logistical challenge. CropWatch's IoT solution provided real-time monitoring and automated alerts, ensuring optimal conditions for egg production while significantly reducing labor time and costs associated with manual checks.",
+          "badge": "Time Savings",
           "stats": [
             {
               "value": "4 hrs",
-              "label": "Average downtime avoided per incident"
+              "label": "Average travel time saved per site visit"
             },
             {
               "value": "3x",
@@ -507,10 +507,10 @@
           ]
         },
         "greenfield": {
-          "company": "Greenfield Produce",
-          "industry": "Agricultural supply chain",
-          "recap": "Extended field-to-dock visibility with soil, moisture, and transport telemetry for export partners.",
-          "badge": "End-to-end visibility",
+          "company": "Sunassist",
+          "industry": "Poultry - Broiler Meat",
+          "recap": "",
+          "badge": "Animal safety",
           "stats": [
             {
               "value": "48 hrs",
@@ -519,6 +519,23 @@
             {
               "value": "12%",
               "label": "Yield improvement through targeted irrigation"
+            }
+          ]
+        },
+        "JA": {
+          "company": "JA - Japan Agricultureal Cooperatives Miyazaki",
+          "industry": "Agriculture - General",
+          "recap": "Japan Agricultural Cooperatives, also known as Nōkyō or JA Group, refers to the national group of 694 regional co-ops in Japan that supply members with input for production, undertake packaging, transportation, and marketing of agricultural products, and provide financial services.",
+          "badge": "End-to-end visibility",
+          "websiteUrl": "https://miyazaki.mz-ja.or.jp/",
+          "stats": [
+            {
+              "value": "8 hrs/week",
+              "label": "Reduced manual checks"
+            },
+            {
+              "value": "12%",
+              "label": "Faster HACCP audit preparation"
             }
           ]
         }
@@ -530,19 +547,19 @@
       "intro": "Our structured methodology keeps every engagement focused on measurable ROI and frontline adoption. Customers can scale quickly without compromising quality.",
       "steps": {
         "assess": {
-          "title": "Assess",
+          "title": "Assess 🔍",
           "description": "We map environments, compliance mandates, and existing telemetry to prioritize critical wins."
         },
         "pilot": {
-          "title": "Pilot",
+          "title": "Pilot ✈️",
           "description": "Joint teams deploy a rapid proof of value with clear KPIs and stakeholder training."
         },
         "scale": {
-          "title": "Scale",
+          "title": "Scale 🏗️",
           "description": "Standardized deployment kits and hybrid field teams extend coverage without disrupting operations."
         },
         "optimize": {
-          "title": "Optimize",
+          "title": "Optimize 🎯",
           "description": "Analytics, playbooks, and quarterly executive reviews keep ROI visible and improvements continuous."
         }
       }

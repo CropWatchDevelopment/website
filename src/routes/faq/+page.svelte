@@ -355,7 +355,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 		<div class="mb-12 text-center">
 			<p class="text-xs font-semibold tracking-[0.32em] text-[#2f5387] uppercase">Knowledge base</p>
 			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">
-				Answers for every team in your rollout
+				Answers to common questions
 			</h2>
 			<p class="mt-3 text-base text-[#1c2d52]/80">
 				Here is a collection of the most common questions we get from customers during deployments.
@@ -483,7 +483,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 			Need a deeper dive?
 		</p>
 		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
-			Do you have a question we didn't cover here?
+			Have a question that we didn't cover here?
 		</h2>
 		<p class="mt-4 text-base text-white/80">
 			Reach out to us anytime for personalized support from our industrial IoT experts.

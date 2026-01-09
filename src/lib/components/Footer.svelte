@@ -81,6 +81,11 @@
 							{$_('footer.link_groups.products.links.analytics')}
 						</a>
 					</li>
+					<li>
+						<a class="transition hover:text-[#f2a516]" href="https://api.cropwatch.io/docs" target="_blank" rel="noopener noreferrer">
+							API
+						</a>
+					</li>
 				</ul>
 			</nav>
 
