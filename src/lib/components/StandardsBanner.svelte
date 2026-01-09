@@ -25,7 +25,7 @@
 				target="_blank"
 				rel="noopener noreferrer"
 			>
-				<img src={haccp} alt="HACCP適合" class="h-20 w-auto flex-shrink-0 md:h-24" />
+				<img src={haccp} alt="HACCP適合" class="h-20 w-auto flex-shrink-0 md:h-24" title="HACCP監査をスピードアップし、運用をシンプルに" />
 			</a>
 		{:else}
 			<a
@@ -33,7 +33,7 @@
 				target="_blank"
 				rel="noopener noreferrer"
 			>
-				<img src={haccp} alt="HACCP Compliant" class="h-20 w-auto flex-shrink-0 md:h-24" />
+				<img src={haccp} alt="Simplify HACCP Compliant" class="h-20 w-auto flex-shrink-0 md:h-24" title="Speed up HACCP audits and reduce complexity" />
 			</a>
 		{/if}
 	</div>
