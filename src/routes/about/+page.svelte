@@ -71,7 +71,7 @@
 		},
 		{
 			name: '🇯🇵 Sayaka Cantrell', // i18n-ignore
-			nameByLocale: { ja: '🇯🇵 彩池水' },
+			nameByLocale: { ja: '🇯🇵 池水 彩' },
 			title: 'Business Leader', // i18n-ignore
 			bio: 'Responsible for business operations and strategy, driving growth and market presence for CropWatch.', // i18n-ignore
 			src: sayakaImage,
