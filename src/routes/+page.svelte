@@ -88,7 +88,13 @@
 			bulletKeys: [
 				'home.hero.sidebar.comparison.manual.bullets.0',
 				'home.hero.sidebar.comparison.manual.bullets.1',
-				'home.hero.sidebar.comparison.manual.bullets.2'
+				'home.hero.sidebar.comparison.manual.bullets.2',
+				'home.hero.sidebar.comparison.manual.bullets.3',
+				'home.hero.sidebar.comparison.manual.bullets.4',
+				'home.hero.sidebar.comparison.manual.bullets.5'
+				
+				
+
 			]
 		},
 		automatedCard: {
@@ -96,7 +102,11 @@
 			bulletKeys: [
 				'home.hero.sidebar.comparison.automated.bullets.0',
 				'home.hero.sidebar.comparison.automated.bullets.1',
-				'home.hero.sidebar.comparison.automated.bullets.2'
+				'home.hero.sidebar.comparison.automated.bullets.2',
+				'home.hero.sidebar.comparison.automated.bullets.3',
+				'home.hero.sidebar.comparison.automated.bullets.4',
+				'home.hero.sidebar.comparison.automated.bullets.5'
+				
 			]
 		},
 		stats: [
