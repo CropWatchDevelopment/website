@@ -2,6 +2,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
+	import { onDestroy } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
 	type RecaptchaClient = {
@@ -81,6 +82,10 @@
 			recaptchaBusy = false;
 		}
 	};
+
+	onDestroy(() => {
+		// 
+	});
 </script>
 
 <svelte:head>

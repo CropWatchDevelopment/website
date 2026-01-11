@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { derived } from 'svelte/store';
+	import type { Readable } from 'svelte/store';
 	import { dictionary, locale } from 'svelte-i18n';
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
 
@@ -55,10 +56,23 @@
 		title?: string;
 		description?: string;
 	};
+	type MessagesRoot = {
+		case_studies?: {
+			meta?: MetaContent;
+			hero?: HeroContent;
+			featured?: FeaturedContent;
+			playbook?: PlaybookContent;
+			testimony?: TestimonyContent;
+			closing?: ClosingContent;
+		};
+	};
 
-	const messages = derived(
+	const messages: Readable<MessagesRoot> = derived(
 		[dictionary, locale],
-		([$dictionary, $locale]) => $dictionary[$locale] ?? {}
+		([$dictionary, $locale]) => {
+			const safeLocale = typeof $locale === 'string' && $locale ? $locale : 'en';
+			return (($dictionary as Record<string, unknown>)[safeLocale] ?? {}) as MessagesRoot;
+		}
 	);
 
 	const meta = derived(
@@ -94,6 +108,22 @@
 		if (!$playbook?.steps) return [];
 		return Object.values($playbook.steps);
 	});
+
+	function getCompanyMark(company: string): string {
+		const cleaned = company.replace(/[^\p{L}\p{N} ]/gu, ' ').trim();
+		const parts = cleaned.split(/\s+/).filter(Boolean);
+		return parts
+			.slice(0, 2)
+			.map((part) => part.slice(0, 1).toUpperCase())
+			.join('');
+	}
+
+	function getMiniTestimonial(study: CaseStudyContent): string {
+		const recap = (study.recap ?? '').trim();
+		if (recap) return recap;
+		const firstStat = study.stats?.[0];
+		return firstStat ? `${firstStat.value} ${firstStat.label}` : '';
+	}
 </script>
 
 <svelte:head>
@@ -147,22 +177,36 @@
 			<div class="mt-10 grid gap-8 md:grid-cols-2">
 				{#each $caseStudies as study (study.id)}
 					<div
-						class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-8 shadow-sm shadow-[#0b1730]/5"
+						class="group relative overflow-hidden rounded-3xl border border-[#d7e0f5] bg-gradient-to-b from-[#f9fbff] to-[#f5f7fb] p-8 shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:border-[#2f5387]/30 hover:shadow-md"
 					>
 						<div
-							class="flex items-center justify-between text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase"
+							class="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(242,165,22,0.25),_transparent_60%)] opacity-0 transition group-hover:opacity-100"
+							aria-hidden="true"
+						></div>
+						<div
+							class="relative flex items-center justify-between text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase"
 						>
-							<span>{study.industry}</span>
+							<div class="flex items-center gap-3">
+								<div
+									class="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#2f5387] to-[#11213c] text-sm font-semibold tracking-tight text-white shadow-sm"
+									aria-hidden="true"
+								>
+									{getCompanyMark(study.company)}
+								</div>
+								<span>{study.industry}</span>
+							</div>
 							<span
-								class="rounded-full border border-[#2f5387]/40 bg-white/70 px-3 py-1 text-[11px] font-semibold text-[#2f5387]"
+								class="rounded-full border border-[#2f5387]/35 bg-white/80 px-3 py-1 text-[11px] font-semibold text-[#2f5387] shadow-sm"
 								>{study.badge}</span
 							>
 						</div>
-						<p class="mt-4 text-2xl font-semibold text-[#0b1730]">{study.company}</p>
-						<p class="mt-3 text-sm text-[#1c2d52]/80">{study.recap}</p>
+						<p class="relative mt-4 text-2xl font-semibold text-[#0b1730]">{study.company}</p>
+						{#if study.recap}
+							<p class="mt-3 text-sm text-[#1c2d52]/80">{study.recap}</p>
+						{/if}
 						<div class="mt-6 grid gap-4 text-sm text-[#1c2d52]/80 md:grid-cols-2">
 							{#each study.stats as stat (stat.label)}
-								<div class="rounded-2xl border border-[#d7e0f5] bg-white p-4">
+								<div class="rounded-2xl border border-[#d7e0f5] bg-white p-4 shadow-sm">
 									<p class="text-xl font-semibold text-[#0b1730]">{stat.value}</p>
 									<p class="mt-1 text-xs tracking-[0.18em] text-[#2f5387] uppercase">
 										{stat.label}
@@ -170,22 +214,38 @@
 								</div>
 							{/each}
 						</div>
-						<div class="flex flex-row">
+
+						{#if getMiniTestimonial(study)}
+							<!-- Testimonial section (above contact/website row) -->
+							<div class="mt-7 rounded-2xl border border-[#d7e0f5] bg-white/80 p-5">
+								<div class="flex items-start gap-3">
+									<span class="mt-1 text-[#f2a516]" aria-hidden="true">❝</span>
+									<div class="min-w-0">
+										<p class="text-sm italic text-[#1c2d52]/80 clamp-3">
+											{getMiniTestimonial(study)}
+										</p>
+										<p class="mt-3 text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
+											{study.industry}
+										</p>
+									</div>
+								</div>
+							</div>
+						{/if}
+
+						<div class="mt-6 flex flex-row items-center gap-3">
 							<a
 								href="/contact"
-								class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#2f5387] transition hover:text-[#f2a516]"
+								class="inline-flex items-center gap-2 rounded-full bg-[#2f5387] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#24446f] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]/40"
 							>
 								{$featured.cta}
-								<span aria-hidden="true">-></span>
+								<span aria-hidden="true">→</span>
 							</a>
-							<span class="flex flex-1"></span>
-
 							{#if study.websiteUrl}
 								<a
 									href={study.websiteUrl}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#2f5387] transition hover:text-[#f2a516]"
+									class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] bg-white px-4 py-2 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387]/40 hover:text-[#24446f]"
 								>
 									<MaterialIcon
 										name="language"
@@ -197,6 +257,7 @@
 									<span>Visit Website</span>
 								</a>
 							{/if}
+							<span class="flex-1"></span>
 						</div>
 					</div>
 				{/each}
@@ -205,76 +266,13 @@
 	</section>
 {/if}
 
-<section class="bg-[#f5f7fb] py-20">
-	<div class="mx-auto w-full max-w-6xl px-4">
-		{#if $playbook}
-			<div class="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
-				<div class="space-y-6">
-					<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-						{$playbook.eyebrow}
-					</p>
-					<h2 class="text-3xl font-semibold text-[#0b1730]">{$playbook.headline}</h2>
-					<p class="text-base text-[#1c2d52]/80">{$playbook.intro}</p>
-				</div>
-				<div class="rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-sm shadow-[#0b1730]/5">
-					<ul class="space-y-6 text-sm text-[#1c2d52]/80">
-						{#each $rolloutSteps as step (step.title)}
-							<li class="relative border-l-2 border-[#f2a516]/60 pl-6">
-								<div
-									class="absolute top-1 -left-[11px] h-5 w-5 rounded-full border-2 border-[#f2a516] bg-white"
-								></div>
-								<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
-									{step.title}
-								</p>
-								<p class="mt-1 text-[#1c2d52]/70">{step.description}</p>
-							</li>
-						{/each}
-					</ul>
-				</div>
-			</div>
-		{/if}
+<style>
+	.clamp-3 {
+		display: -webkit-box;
+		line-clamp: 3;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>
 
-		{#if $testimony}
-			<div
-				class="mt-16 rounded-3xl border border-[#d7e0f5] bg-white p-10 shadow-sm shadow-[#0b1730]/5"
-			>
-				<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-					{$testimony.eyebrow}
-				</p>
-				<p class="mt-4 text-2xl font-semibold text-[#0b1730]">"{$testimony.quote}"</p>
-				<p class="mt-6 text-sm font-semibold text-[#0b1730]">{$testimony.person}</p>
-				<p class="text-xs tracking-[0.18em] text-[#2f5387] uppercase">{$testimony.title}</p>
-			</div>
-		{/if}
-	</div>
-</section>
-
-{#if $closing}
-	<section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
-		<div
-			class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
-			aria-hidden="true"
-		></div>
-		<div class="relative mx-auto w-full max-w-5xl px-4 text-center">
-			<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-				{$closing.eyebrow}
-			</p>
-			<h2 class="mt-5 text-3xl font-semibold md:text-4xl">{$closing.headline}</h2>
-			<p class="mt-4 text-base text-white/80">{$closing.body}</p>
-			<div class="mt-8 flex flex-wrap justify-center gap-4">
-				<a
-					href="/contact"
-					class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-				>
-					{$closing.primary_cta}
-				</a>
-				<a
-					href="/demo"
-					class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
-				>
-					{$closing.secondary_cta}
-				</a>
-			</div>
-		</div>
-	</section>
-{/if}

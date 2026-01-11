@@ -151,7 +151,7 @@
         "title": "Using Parts from:",
         "subtitle": "Japan, South Korea, USA, Taiwan, Ireland, and Switzerland"
       },
-      "programmed": "Programmed in the USA & Australia",
+      "programmed": "Programmed in the USA & Japan",
       "used_by_you": "Used by You"
     },
     "aria": {
@@ -381,19 +381,19 @@
           "items": {
             "sensor": {
               "label": "Temperature/Humidity sensor",
-              "value": "$199"
+              "value": "199"
             },
             "relay": {
               "label": "Automation Relay Device",
-              "value": "$179"
+              "value": "179"
             },
             "indoor_gateway": {
               "label": "Indoor edge gateway",
-              "value": "$549"
+              "value": "549"
             },
             "carrier_gateway": {
               "label": "Industrial carrier-grade",
-              "value": "$1,899"
+              "value": "1899"
             },
             "rf_design": {
               "label": "Site RF design",
@@ -452,7 +452,7 @@
     },
     "featured": {
       "eyebrow": "Featured programs",
-      "headline": "Cross-industry wins delivered with CropWatch",
+      "headline": "Cross-industry successes delivered by CropWatch",
       "intro": "Each engagement pairs ruggedized hardware with rollout specialists who understand regulated environments. The result: measurable efficiency, compliance, and operational clarity.",
       "cta": "Discuss this approach",
       "cases": {
@@ -1141,8 +1141,8 @@
       "eyebrow": "Our story",
       "headline": "Our Story - How we got to where we are today",
       "paragraphs": [
-        "We started off building devices that could survive the harshest agricultural environments. Over time, we realized that the same principles of reliability, accuracy, ease-of-use, and strong signal in touch locations were desperately needed in other industries where downtime is not an option.",
-        "Today, CropWatch is trusted by operations teams across cold storage, hospitality, manufacturing, and agriculture to deliver resilient IoT networks that keep facilities compliant and efficient. Our mission remains unchanged: to provide industrial-grade IoT solutions that empower operators with reliable data and insights, no matter the environment."
+        "We started off building devices that could survive the harshest agricultural environments. Over time, we realized that the same principles of reliability, accuracy, ease-of-use, and strong signal in tough locations were desperately needed in other industries where downtime is not an option.",
+        "Today, CropWatch is trusted by operations teams across cold storage, hospitality, manufacturing, and agriculture to deliver resilient IoT devices and network hardware that keep facilities compliant and efficient. Our mission remains unchanged: to provide industrial-grade IoT solutions that empower operators with reliable data and insights, no matter the environment."
       ],
       "stats": {
         "uptime": {

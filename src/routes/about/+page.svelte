@@ -5,6 +5,7 @@
 	import sayakaImage from '$lib/images/team/Sayaka.png'; // i18n-ignore
 	import sedarImage from '$lib/images/team/Sedar_Korur.jpg'; // i18n-ignore
 	import efecanImage from '$lib/images/team/Efecan_Hepaksaz.webp'; // i18n-ignore
+	import keiichiroImage from '$lib/images/team/Keiichiro_Yamazaki.jpg'; // i18n-ignore
 	
 	import { _, locale } from 'svelte-i18n';
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
@@ -71,7 +72,7 @@
 		},
 		{
 			name: '🇯🇵 Sayaka Cantrell', // i18n-ignore
-			nameByLocale: { ja: '🇯🇵 彩池水' },
+			nameByLocale: { ja: '🇯🇵 池水 彩' },
 			title: 'Business Leader', // i18n-ignore
 			bio: 'Responsible for business operations and strategy, driving growth and market presence for CropWatch.', // i18n-ignore
 			src: sayakaImage,
@@ -117,6 +118,15 @@
 			avatarAlt: 'EH', // i18n-ignore
 			initials: 'EH',
 			websiteUrl: 'https://www.xazdesign.com/',
+		},
+		{
+			name: '🇯🇵 山﨑 慶一朗', // i18n-ignore
+			title: 'Lawyer & Legal Advisor', // i18n-ignore
+			bio: 'Our Legal Advisor, providing expert counsel to ensure compliance and mitigate risks.', // i18n-ignore
+			src: keiichiroImage,
+			avatarAlt: '山﨑', // i18n-ignore
+			initials: '山﨑',
+			websiteUrl: 'https://kensei-law.jp/people/keiichiro-yamasaki/',
 		},
 	];
 
@@ -343,57 +353,3 @@
 		</div>
 	</div>
 </section>
-
-<section class="bg-white py-20">
-	<div class="mx-auto w-full max-w-6xl px-4">
-		<div class="grid gap-10 md:grid-cols-[1.15fr_1fr] md:items-center">
-			<div class="space-y-6">
-				<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-					{$_('about.values.eyebrow')}
-				</p>
-				<h2 class="text-3xl font-semibold text-[#0b1730]">{$_('about.values.headline')}</h2>
-				<p class="text-base text-[#1c2d52]/80">{$_('about.values.intro')}</p>
-			</div>
-			<div class="space-y-6">
-				{#each values as value (value.titleKey)}
-					<div
-						class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5"
-					>
-						<p class="text-base font-semibold text-[#0b1730]">{$_(value.titleKey)}</p>
-						<p class="mt-2 text-sm text-[#1c2d52]/80">{$_(value.descriptionKey)}</p>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
-	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(47,83,135,0.25),transparent_60%)]"
-		aria-hidden="true"
-	></div>
-	<div class="relative mx-auto w-full max-w-5xl px-4 text-center">
-		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-			{$_('about.closing.eyebrow')}
-		</p>
-		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">{$_('about.closing.headline')}</h2>
-		<p class="mt-4 text-base text-white/80">{$_('about.closing.body')}</p>
-		<div class="mt-8 flex flex-wrap justify-center gap-4">
-			<a
-				href="https://www.linkedin.com/company/cropwatch-system/"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-			>
-				{$_('about.closing.primary_cta')}
-			</a>
-			<a
-				href="/contact"
-				class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
-			>
-				{$_('about.closing.secondary_cta')}
-			</a>
-		</div>
-	</div>
-</section> -->

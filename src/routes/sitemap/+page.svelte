@@ -49,30 +49,3 @@
 	</div>
 </section>
 
-<section class="bg-[#f5f7fb] py-16">
-	<div class="mx-auto w-full max-w-5xl px-4 text-center">
-		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-			{$_('sitemap.cta.eyebrow')}
-		</p>
-		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-			{$_('sitemap.cta.headline')}
-		</h2>
-		<p class="mt-4 text-base text-[#1c2d52]/75">
-			{$_('sitemap.cta.body')}
-		</p>
-		<div class="mt-6 flex flex-wrap justify-center gap-3">
-			<a
-				href="/contact"
-				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34]"
-			>
-				{$_('sitemap.cta.primary_cta')}
-			</a>
-			<a
-				href="/case-studies"
-				class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-6 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387]"
-			>
-				{$_('sitemap.cta.secondary_cta')}
-			</a>
-		</div>
-	</div>
-</section>

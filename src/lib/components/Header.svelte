@@ -50,7 +50,7 @@
 		},
 		{
 			labelKey: 'API',
-			href: 'https://api.cropwatch.io/docs',
+			href: 'https://api.cropwatch.io',
 			icon: 'api',
 			ariaKey: 'header.utility.api_icon_aria'
 		},

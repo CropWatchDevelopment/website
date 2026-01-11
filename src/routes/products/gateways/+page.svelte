@@ -79,7 +79,7 @@
 			],
 			image: konaMicroImage,
 			imageAltKey: 'products.gateways.lineup.items.kona_micro.image_alt',
-			website: 'https://tektelic.com/products/kona-micro/'
+			website: 'https://tektelic.com/products/gateways/kona-micro/'
 		},
 		{
 			nameKey: 'products.gateways.lineup.items.kona_enterprise.name',
@@ -93,7 +93,7 @@
 			],
 			image: konaEnterpriseImage,
 			imageAltKey: 'products.gateways.lineup.items.kona_enterprise.image_alt',
-			website: 'https://tektelic.com/products/kona-enterprise/'
+			website: 'https://tektelic.com/products/gateways/kona-enterprise/'
 		},
 		{
 			nameKey: 'products.gateways.lineup.items.kona_macro.name',
@@ -107,7 +107,7 @@
 			],
 			image: konaMacroImage,
 			imageAltKey: 'products.gateways.lineup.items.kona_macro.image_alt',
-			website: 'https://tektelic.com/products/kona-macro/'
+			website: 'https://tektelic.com/products/gateways/kona-macro/'
 		},
 		{
 			nameKey: 'products.gateways.lineup.items.kerlink_istation.name',

@@ -556,7 +556,7 @@
 	</div>
 </section>
 
-<section class="bg-[#f5f7fb] py-20">
+<!-- <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
 			{$_(pageContent.sections.ui.eyebrowKey)}
@@ -780,7 +780,14 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
+
+
+
+
+
+
+
 
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
