@@ -95,7 +95,8 @@
         "privacy": "プライバシーポリシー",
         "terms": "利用規約",
         "sitemap": "サイトマップ"
-      }
+      },
+      "registration": "届出電気通信事業者 H-04-01772"
     }
   },
   "slider": {
@@ -411,12 +412,10 @@
             "alart": {
               "label": "アラート通知",
               "value": "標準付帯"
-
             },
             "report": {
               "label": "レポート送信",
               "value": "標準付帯"
-
             },
             "api": {
               "label": "API",

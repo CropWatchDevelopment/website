@@ -113,10 +113,14 @@
 	</div>
 
 	<div class="relative border-t border-white/10 bg-[var(--cw-blue-950)]">
-		<div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
+		<div class="flex w-full px-10 flex-col gap-4 px-4 py-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
 			<p>{$_('footer.legal.copyright', { values: { year } })}</p>
 			<ul class="flex flex-wrap items-center gap-3">
 				<li class="flex items-center gap-3">
+					<p class="transition hover:text-[#f2a516]">{$_('footer.legal.registration')}</p>
+				</li>
+				<li class="flex items-center gap-3">
+					<span aria-hidden="true" class="text-white/40">|</span>
 					<a class="transition hover:text-[#f2a516]" href="/legal/privacy-policy">{$_('footer.legal.links.privacy')}</a>
 				</li>
 				<li class="flex items-center gap-3">

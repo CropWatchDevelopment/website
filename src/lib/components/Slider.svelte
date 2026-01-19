@@ -183,7 +183,7 @@ type Props = {
                         class="absolute inset-0 h-full w-full object-cover"
                         fetchpriority="high"
                     />
-                    <div class="absolute inset-0 bg-[linear-gradient(120deg,rgba(17,33,60,0.75)_0%,rgba(17,33,60,0.25)_45%,rgba(17,33,60,0.65)_100%)]"></div>
+                    <div class="absolute inset-0 bg-[linear-gradient(120deg,rgba(17,33,60,0.75)_0%,rgba(17,33,60,0.25)_25%,rgba(17,33,60,0.65)_100%)]"></div>
                     <div class={`relative flex min-h-[320px] flex-col justify-center gap-6 p-6 md:min-h-[420px] md:px-16 md:py-14 ${activeSlide.textSide === 'right' ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}>
                         {#if hasMultipleSlides}
                             <button
