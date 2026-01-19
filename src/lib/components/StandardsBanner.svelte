@@ -17,7 +17,7 @@
 			<img src={nistImage} alt="NIST 800-53 Compliant" class="h-20 w-auto flex-shrink-0 md:h-24" />
 		</a>
 		<a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener noreferrer">
-			<img src={isoImage} alt="ISO 27001 Certified" class="h-20 w-auto flex-shrink-0 md:h-24" />
+			<img src={isoImage} alt="ISO 27001 Certified" title="ISO 27001 Certifications downloadable via App" class="h-20 w-auto flex-shrink-0 md:h-24" />
 		</a>
 		{#if $locale === 'ja'}
 			<a

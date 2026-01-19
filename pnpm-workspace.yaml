@@ -1,5 +1,0 @@
-onlyBuiltDependencies:
-  - esbuild
-  - '@tailwindcss/oxide'
-packages:
-  - "**"
