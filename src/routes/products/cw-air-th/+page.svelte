@@ -384,6 +384,12 @@
 <svelte:head>
 	<title>{$_(pageContent.meta.titleKey)}</title>
 	<meta name="description" content={$_(pageContent.meta.descriptionKey)} />
+	<meta property="og:image" content="https://cropwatch.io/favicon.svg" />
+	<meta property="og:site_name" content="CropWatch" />
+	<meta property="og:type" content="website.product" />
+	<meta property="og:title" content="CW-AIR-TH Sensor from CropWatch" />
+	<meta property="og:description" content="The highest quality temperature and humidity monitoring sensor on the market today." />
+	<meta property="og:url" content="https://www.cropwatch.com/products/cw-air-th" />
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
@@ -454,7 +460,7 @@
 
 		<section class="cold-chain-hero" aria-labelledby="cold-chain-heading">
 			{#each pageContent.sections.capabilities.paragraphKeys as paragraphKey, index (paragraphKey)}
-				<p class={`{index === 1 ? 'my-4' : undefined} text-[#0b1730]/80 mt-4`}>
+				<p class={`{index === 1 ? 'my-4' : undefined} mt-4 text-[#0b1730]/80`}>
 					{@html $_(paragraphKey)}
 				</p>
 			{/each}
@@ -555,239 +561,6 @@
 		</div>
 	</div>
 </section>
-
-<!-- <section class="bg-[#f5f7fb] py-20">
-	<div class="mx-auto w-full max-w-6xl px-4">
-		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-			{$_(pageContent.sections.ui.eyebrowKey)}
-		</p>
-		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-			{$_(pageContent.sections.ui.headlineKey)}
-		</h2>
-		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">
-			{$_(pageContent.sections.ui.bodyKey)}
-		</p>
-		<div class="flex flex-row gap-2">
-			<div id="demo-section" class="mt-10 flex-shrink-0">
-				<UIDemo
-					title={demoState.title}
-					deviceLabel={demoState.deviceLabel}
-					expanded={demoState.expanded}
-					status={demoState.status}
-					primaryValue={demoState.primaryValue}
-					secondaryValue={demoState.secondaryValue}
-					lastUpdate={demoState.lastUpdate}
-					mode={demoState.mode}
-					on:stateChange={handleDemoChange}
-				/>
-			</div>
-			<div id="demo-description" class="mt-10 max-w-3xl flex-1 text-base text-[#1c2d52]/80">
-				<div
-					id="explanation-card"
-					class="flex h-full min-h-[400px] w-full flex-col gap-6 rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5"
-				>
-					<div>
-						<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-							{$_(pageContent.sections.ui.stepProgressKey)
-								.replace('{current}', String(walkthroughStep + 1))
-								.replace('{total}', String(walkthroughSteps.length))}
-						</p>
-						<h3 class="mt-2 text-2xl font-semibold text-[#0b1730]">{$_(currentStep.titleKey)}</h3>
-						<p class="mt-2 text-sm text-[#1c2d52]/80">{$_(currentStep.descriptionKey)}</p>
-					</div>
-
-					<div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-[#6b7ba7]">
-						<span>{$_(pageContent.sections.ui.themeLabelKey)}</span>
-						<div class="inline-flex rounded-full border border-[#d7e0f5] bg-[#f5f7fb] p-1">
-							<button
-								type="button"
-								class={`rounded-full px-3 py-1 transition ${
-									demoState.mode === 'dark' ? 'bg-white text-[#0b1730] shadow-sm' : 'text-[#6b7ba7]'
-								}`}
-								onclick={() => setTheme('dark')}
-							>
-								{$_(pageContent.sections.ui.themeOptions.darkKey)}
-							</button>
-							<button
-								type="button"
-								class={`rounded-full px-3 py-1 transition ${
-									demoState.mode === 'light'
-										? 'bg-white text-[#0b1730] shadow-sm'
-										: 'text-[#6b7ba7]'
-								}`}
-								onclick={() => setTheme('light')}
-							>
-								{$_(pageContent.sections.ui.themeOptions.lightKey)}
-							</button>
-						</div>
-					</div>
-
-					{#if currentStep.id === 'setup-location-device-names'}
-						<div
-							class="space-y-4 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-4 shadow-inner shadow-white/40"
-						>
-							<p class="text-xs text-[#1c2d52]/80">
-								{$_(setupNameInputKeys.helperKey)}
-							</p>
-							<label class="flex flex-col gap-1 text-sm font-semibold text-[#0b1730]">
-								<span>{$_(setupNameInputKeys.locationLabelKey)}</span>
-								<input
-									class="w-full rounded-xl border border-[#c7d5f2] bg-white px-3 py-2 text-base font-normal text-[#0b1730] focus:ring-2 focus:ring-[#2f5387] focus:outline-none"
-									type="text"
-									value={demoState.title}
-									placeholder={$_(setupNameInputKeys.locationPlaceholderKey)}
-									oninput={(event) =>
-										setDemoState({
-											title: (event.currentTarget as HTMLInputElement).value
-										})}
-								/>
-							</label>
-							<label class="flex flex-col gap-1 text-sm font-semibold text-[#0b1730]">
-								<span>{$_(setupNameInputKeys.deviceLabelKey)}</span>
-								<input
-									class="w-full rounded-xl border border-[#c7d5f2] bg-white px-3 py-2 text-base font-normal text-[#0b1730] focus:ring-2 focus:ring-[#2f5387] focus:outline-none"
-									type="text"
-									value={demoState.deviceLabel}
-									placeholder={$_(setupNameInputKeys.devicePlaceholderKey)}
-									oninput={(event) =>
-										setDemoState({
-											deviceLabel: (event.currentTarget as HTMLInputElement).value
-										})}
-								/>
-							</label>
-						</div>
-					{/if}
-
-					{#if currentStep.imgSrc}
-						<figure
-							class="overflow-hidden rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] shadow-sm shadow-[#0b1730]/5"
-						>
-							<img
-								width="50%"
-								src={currentStep.imgSrc}
-								alt={$_(currentStep.titleKey)}
-								loading="lazy"
-								class="h-full w-full object-cover"
-							/>
-						</figure>
-					{/if}
-					<span class="flex flex-1"></span>
-					{#if walkthroughStep === 1}
-						<div class="rounded-2xl bg-[#f5f7fb] p-4 text-sm text-[#1c2d52]">
-							<p class="text-sm font-semibold text-[#0b1730]">
-								{$_(pageContent.sections.ui.statusCard.titleKey)}
-							</p>
-							<p class="mt-1 text-xs text-[#6b7ba7]">
-								{$_(pageContent.sections.ui.statusCard.helperKey)}
-							</p>
-							<div class="mt-3 flex flex-wrap gap-2">
-								{#each Object.keys(statusMeta) as key}
-									{@const option = key as DemoStatus}
-									<button
-										type="button"
-										class={`flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold transition ${
-											demoState.status === option
-												? 'border-[#2f5387] bg-white text-[#0b1730] shadow-sm'
-												: 'border-transparent bg-white/70 text-[#1c2d52]/70'
-										}`}
-										style={`--chip-color:${statusMeta[option].color}`}
-										onclick={() => handleStatusSelect(option)}
-									>
-										<span
-											class="h-2 w-2 rounded-full"
-											style={`background:${statusMeta[option].color}`}
-											aria-hidden="true"
-										></span>
-										{$_(statusMeta[option].labelKey)}
-									</button>
-								{/each}
-							</div>
-							<p class="mt-3 text-xs text-[#6b7ba7]">
-								{$_(statusMeta[demoState.status].helperKey)}
-							</p>
-						</div>
-					{:else if walkthroughStep === 2}
-						<div class="rounded-2xl bg-[#f5f7fb] p-4 shadow-inner shadow-white/40">
-							<p class="text-sm font-semibold text-[#0b1730]">
-								{$_(pageContent.sections.ui.temperatureCard.titleKey)}
-							</p>
-							<p class="text-3xl font-bold text-[#0b1730]">
-								{demoState.primaryValue.toFixed(2)}°C
-							</p>
-							<p class="text-xs text-[#6b7ba7]">
-								{$_(pageContent.sections.ui.temperatureCard.helperKey)}
-							</p>
-						</div>
-					{:else if walkthroughStep === 3}
-						<div class="rounded-2xl bg-[#f5f7fb] p-4 shadow-inner shadow-white/40">
-							<p class="text-sm font-semibold text-[#0b1730]">
-								{$_(pageContent.sections.ui.humidityCard.titleKey)}
-							</p>
-							<p class="text-3xl font-bold text-[#0b1730]">
-								{demoState.secondaryValue.toFixed(2)}%
-							</p>
-							<p class="text-xs text-[#6b7ba7]">
-								{$_(pageContent.sections.ui.humidityCard.helperKey)}
-							</p>
-						</div>
-					{/if}
-
-					<div>
-						<div class="h-2 rounded-full bg-[#e1e6f5]">
-							<div
-								class="h-2 rounded-full bg-[#2f5387] transition-all"
-								style={`width:${progressPercent}%`}
-							></div>
-						</div>
-						<div class="mt-4 flex items-center justify-between">
-							{#each walkthroughSteps as step, index}
-								<button
-									type="button"
-									class={`flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition ${
-										index === walkthroughStep
-											? 'border-[#2f5387] bg-[#2f5387] text-white'
-											: 'border-[#d7e0f5] bg-white text-[#6b7ba7]'
-									}`}
-									onclick={() => goToStep(index)}
-								>
-									{index + 1}
-								</button>
-							{/each}
-						</div>
-					</div>
-
-					<div class="flex items-center justify-between">
-						<button
-							type="button"
-							class="inline-flex items-center gap-2 rounded-full border border-[#c7d5f2] px-4 py-2 text-sm font-semibold text-[#1c2d52] transition hover:border-[#2f5387]"
-							onclick={previousStep}
-							disabled={walkthroughStep === 0}
-						>
-							<span aria-hidden="true">←</span>
-							{$_(pageContent.sections.ui.controls.backKey)}
-						</button>
-						<button
-							type="button"
-							class="inline-flex items-center gap-2 rounded-full bg-[#2f5387] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#1c3867] disabled:cursor-not-allowed disabled:bg-[#9fb1d8]"
-							onclick={nextStep}
-							disabled={walkthroughStep === walkthroughSteps.length - 1}
-						>
-							{$_(pageContent.sections.ui.controls.nextKey)}
-							<span aria-hidden="true">→</span>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section> -->
-
-
-
-
-
-
-
 
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">

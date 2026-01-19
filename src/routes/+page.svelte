@@ -146,6 +146,12 @@
 <svelte:head>
 	<title>{$_('home.meta.title')}</title>
 	<meta name="description" content={$_('home.meta.description')} />
+	<meta property="og:image" content="https://cropwatch.io/favicon.svg" />
+	<meta property="og:site_name" content="CropWatch" />
+	<meta property="og:type" content="website.home" />
+	<meta property="og:title" content="CropWatch" />
+	<meta property="og:description" content="Quality Temperature Monitoring Devices" />
+	<meta property="og:url" content="https://www.cropwatch.com/" />
 </svelte:head>
 
 <section id="slider" class="bg-[#11213c]">
