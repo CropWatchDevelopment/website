@@ -3,127 +3,15 @@
 
 	import ug65Image from './images/ug65-lorawan-gateway.png';
 	import ug67Image from './images/Milesight-UG67-gateway.png';
-	import konaMicroImage from './images/kona-micro.jpg';
+	import konaMicroImage from './images/kona-micro.png';
 	import konaEnterpriseImage from './images/Enterprise-ISO2-copy-1.png';
 	import konaMacroImage from './images/Macro-ISO2-1-1.png';
-	import kerlinkImage from './images/Pasted-into-1-10.png';
-
-	const heroStats = [
-		{
-			labelKey: 'products.gateways.hero.stats.0.label',
-			valueKey: 'products.gateways.hero.stats.0.value'
-		},
-		{
-			labelKey: 'products.gateways.hero.stats.1.label',
-			valueKey: 'products.gateways.hero.stats.1.value'
-		},
-		{
-			labelKey: 'products.gateways.hero.stats.2.label',
-			valueKey: 'products.gateways.hero.stats.2.value'
-		}
-	] as const;
-
-	const highlightCards = [
-		{
-			titleKey: 'products.gateways.highlights.items.0.title',
-			bodyKey: 'products.gateways.highlights.items.0.body'
-		},
-		{
-			titleKey: 'products.gateways.highlights.items.1.title',
-			bodyKey: 'products.gateways.highlights.items.1.body'
-		},
-		{
-			titleKey: 'products.gateways.highlights.items.2.title',
-			bodyKey: 'products.gateways.highlights.items.2.body'
-		}
-	] as const;
-
-	const gatewayLineup = [
-		{
-			nameKey: 'products.gateways.lineup.items.ug65.name',
-			manufacturerKey: 'products.gateways.lineup.items.ug65.manufacturer',
-			placementKey: 'products.gateways.lineup.items.ug65.placement',
-			summaryKey: 'products.gateways.lineup.items.ug65.summary',
-			recommendedKeys: [
-				'products.gateways.lineup.items.ug65.recommended.0',
-				'products.gateways.lineup.items.ug65.recommended.1',
-				'products.gateways.lineup.items.ug65.recommended.2'
-			],
-			image: ug65Image,
-			imageAltKey: 'products.gateways.lineup.items.ug65.image_alt',
-			website: 'https://www.milesight-iot.com/iot/lorawan-gateway/ug65/'
-		},
-		{
-			nameKey: 'products.gateways.lineup.items.ug67.name',
-			manufacturerKey: 'products.gateways.lineup.items.ug67.manufacturer',
-			placementKey: 'products.gateways.lineup.items.ug67.placement',
-			summaryKey: 'products.gateways.lineup.items.ug67.summary',
-			recommendedKeys: [
-				'products.gateways.lineup.items.ug67.recommended.0',
-				'products.gateways.lineup.items.ug67.recommended.1',
-				'products.gateways.lineup.items.ug67.recommended.2'
-			],
-			image: ug67Image,
-			imageAltKey: 'products.gateways.lineup.items.ug67.image_alt',
-			website: 'https://www.milesight-iot.com/iot/lorawan-gateway/ug67/'
-		},
-		{
-			nameKey: 'products.gateways.lineup.items.kona_micro.name',
-			manufacturerKey: 'products.gateways.lineup.items.kona_micro.manufacturer',
-			placementKey: 'products.gateways.lineup.items.kona_micro.placement',
-			summaryKey: 'products.gateways.lineup.items.kona_micro.summary',
-			recommendedKeys: [
-				'products.gateways.lineup.items.kona_micro.recommended.0',
-				'products.gateways.lineup.items.kona_micro.recommended.1',
-				'products.gateways.lineup.items.kona_micro.recommended.2'
-			],
-			image: konaMicroImage,
-			imageAltKey: 'products.gateways.lineup.items.kona_micro.image_alt',
-			website: 'https://tektelic.com/products/gateways/kona-micro/'
-		},
-		{
-			nameKey: 'products.gateways.lineup.items.kona_enterprise.name',
-			manufacturerKey: 'products.gateways.lineup.items.kona_enterprise.manufacturer',
-			placementKey: 'products.gateways.lineup.items.kona_enterprise.placement',
-			summaryKey: 'products.gateways.lineup.items.kona_enterprise.summary',
-			recommendedKeys: [
-				'products.gateways.lineup.items.kona_enterprise.recommended.0',
-				'products.gateways.lineup.items.kona_enterprise.recommended.1',
-				'products.gateways.lineup.items.kona_enterprise.recommended.2'
-			],
-			image: konaEnterpriseImage,
-			imageAltKey: 'products.gateways.lineup.items.kona_enterprise.image_alt',
-			website: 'https://tektelic.com/products/gateways/kona-enterprise/'
-		},
-		{
-			nameKey: 'products.gateways.lineup.items.kona_macro.name',
-			manufacturerKey: 'products.gateways.lineup.items.kona_macro.manufacturer',
-			placementKey: 'products.gateways.lineup.items.kona_macro.placement',
-			summaryKey: 'products.gateways.lineup.items.kona_macro.summary',
-			recommendedKeys: [
-				'products.gateways.lineup.items.kona_macro.recommended.0',
-				'products.gateways.lineup.items.kona_macro.recommended.1',
-				'products.gateways.lineup.items.kona_macro.recommended.2'
-			],
-			image: konaMacroImage,
-			imageAltKey: 'products.gateways.lineup.items.kona_macro.image_alt',
-			website: 'https://tektelic.com/products/gateways/kona-macro/'
-		},
-		{
-			nameKey: 'products.gateways.lineup.items.kerlink_istation.name',
-			manufacturerKey: 'products.gateways.lineup.items.kerlink_istation.manufacturer',
-			placementKey: 'products.gateways.lineup.items.kerlink_istation.placement',
-			summaryKey: 'products.gateways.lineup.items.kerlink_istation.summary',
-			recommendedKeys: [
-				'products.gateways.lineup.items.kerlink_istation.recommended.0',
-				'products.gateways.lineup.items.kerlink_istation.recommended.1',
-				'products.gateways.lineup.items.kerlink_istation.recommended.2'
-			],
-			image: kerlinkImage,
-			imageAltKey: 'products.gateways.lineup.items.kerlink_istation.image_alt',
-			website: 'https://www.seeedstudio.com/SenseCAP-M2-LoRaWAN-Gateway-p-5758.html'
-		}
-	] as const;
+	import seeedImage from './images/Seeed-m2.png';
+	import ezurioImage from './images/LoRaGateway01.webp';
+	import milesightLogo from './images/Milesight.png';
+	import tektelicLogo from './images/tektelic.svg';
+	import ezurioLogo from './images/ezurio.png';
+	import seeedLogo from './images/seeed-studio.webp';
 </script>
 
 <svelte:head>
@@ -161,33 +49,6 @@
 					</a>
 				</div>
 			</div>
-			<div class="rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/30 backdrop-blur">
-				<dl class="grid gap-6 sm:grid-cols-3">
-					{#each heroStats as stat (stat.labelKey)}
-						<div class="rounded-2xl bg-white/5 p-4 text-center shadow-inner shadow-white/10">
-							<dt class="text-xs uppercase tracking-[0.32em] text-white/60">{$_(stat.labelKey)}</dt>
-							<dd class="mt-3 text-3xl font-semibold text-white md:text-4xl">{$_(stat.valueKey)}</dd>
-						</div>
-					{/each}
-				</dl>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="bg-white py-20">
-	<div class="mx-auto w-full max-w-6xl px-4">
-		<div class="grid gap-6 md:grid-cols-3">
-			{#each highlightCards as card (card.titleKey)}
-				<article class="relative overflow-hidden rounded-3xl border border-slate-100 bg-gradient-to-br from-white to-slate-50 p-6 shadow-lg shadow-slate-200/60">
-					<div class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[var(--cw-blue-600)]/10 blur-3xl"></div>
-					<div class="absolute bottom-4 right-4 h-8 w-8 rounded-full bg-[var(--cw-gold-500)]/40 blur-lg"></div>
-					<div class="relative">
-						<h3 class="text-xl font-semibold text-[var(--cw-blue-900)]">{$_(card.titleKey)}</h3>
-						<p class="mt-3 text-sm leading-relaxed text-slate-600">{$_(card.bodyKey)}</p>
-					</div>
-				</article>
-			{/each}
 		</div>
 	</div>
 </section>
@@ -206,65 +67,494 @@
 			</p>
 		</div>
 		<div class="mt-14 grid gap-10 lg:grid-cols-2">
-			{#each gatewayLineup as gateway (gateway.nameKey)}
-				<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
-					<div class="relative h-56 w-full overflow-hidden bg-slate-900/5">
-						<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
-						<img
-							src={gateway.image}
-							alt={$_(gateway.imageAltKey)}
-							loading="lazy"
-							class="h-full w-full object-cover"
-						/>
+			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
+				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
+					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+					<img
+						src={ug65Image}
+						alt={$_('products.gateways.lineup.items.ug65.image_alt')}
+						loading="lazy"
+						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
+					/>
+				</div>
+				<div class="flex flex-1 flex-col gap-5 p-7">
+					<div class="flex flex-wrap items-center justify-between gap-4">
+						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
+							{$_('products.gateways.lineup.items.ug65.name')}
+						</h3>
+						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+							{$_('products.gateways.lineup.items.ug65.placement')}
+						</span>
 					</div>
-					<div class="flex flex-1 flex-col gap-5 p-7">
-						<div class="flex flex-wrap items-center justify-between gap-4">
-							<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
-								{$_(gateway.nameKey)}
-							</h3>
-							<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
-								{$_(gateway.placementKey)}
-							</span>
-						</div>
-						<div class="grid gap-2 sm:grid-cols-2">
-							<div>
-								<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-									{$_('products.gateways.lineup.fields.manufacturer')}
-								</p>
-								<p class="text-base font-medium text-slate-900">
-									{$_(gateway.manufacturerKey)}
-								</p>
-							</div>
-							<div>
-								<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-									{$_('products.gateways.lineup.fields.recommended')}
-								</p>
-								<ul class="mt-3 space-y-1 text-sm text-slate-700">
-									{#each gateway.recommendedKeys as recKey (recKey)}
-										<li class="flex items-start gap-2">
-											<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-											<span>{$_(recKey)}</span>
-										</li>
-									{/each}
-								</ul>
+					<div class="grid gap-2 sm:grid-cols-2">
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.manufacturer')}
+							</p>
+							<div class="mt-2 flex flex-col items-start gap-2">
+								<span class="text-base font-medium text-slate-900">
+									{$_('products.gateways.lineup.items.ug65.manufacturer')}
+								</span>
+								<div class="flex w-full items-center justify-center">
+									<img
+										src={milesightLogo}
+										alt="Milesight logo"
+										class="object-contain max-w-[60%]"
+									/>
+								</div>
 							</div>
 						</div>
-						<p class="text-sm leading-relaxed text-slate-600">
-							{$_(gateway.summaryKey)}
-						</p>
-						<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
-							<a
-								href={gateway.website}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
-							>
-								{$_('products.gateways.lineup.cta.view_manufacturer')}
-							</a>
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.recommended')}
+							</p>
+							<ul class="mt-3 space-y-1 text-sm text-slate-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.ug65.recommended.0')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.ug65.recommended.1')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.ug65.recommended.2')}</span>
+								</li>
+							</ul>
 						</div>
 					</div>
-				</article>
-			{/each}
+					<p class="text-sm leading-relaxed text-slate-600">
+						{$_('products.gateways.lineup.items.ug65.summary')}
+					</p>
+					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
+						<a
+							href="https://www.milesight-iot.com/iot/lorawan-gateway/ug65/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+						>
+							{$_('products.gateways.lineup.cta.view_manufacturer')}
+						</a>
+					</div>
+				</div>
+			</article>
+			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
+				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
+					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+					<img
+						src={ug67Image}
+						alt={$_('products.gateways.lineup.items.ug67.image_alt')}
+						loading="lazy"
+						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
+					/>
+				</div>
+				<div class="flex flex-1 flex-col gap-5 p-7">
+					<div class="flex flex-wrap items-center justify-between gap-4">
+						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
+							{$_('products.gateways.lineup.items.ug67.name')}
+						</h3>
+						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+							{$_('products.gateways.lineup.items.ug67.placement')}
+						</span>
+					</div>
+					<div class="grid gap-2 sm:grid-cols-2">
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.manufacturer')}
+							</p>
+							<div class="mt-2 flex flex-col items-start gap-2">
+								<span class="text-base font-medium text-slate-900">
+									{$_('products.gateways.lineup.items.ug67.manufacturer')}
+								</span>
+								<div class="flex w-full items-center justify-center">
+									<img
+										src={milesightLogo}
+										alt="Milesight logo"
+										class="object-contain max-w-[60%]"
+									/>
+								</div>
+							</div>
+						</div>
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.recommended')}
+							</p>
+							<ul class="mt-3 space-y-1 text-sm text-slate-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.ug67.recommended.0')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.ug67.recommended.1')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.ug67.recommended.2')}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p class="text-sm leading-relaxed text-slate-600">
+						{$_('products.gateways.lineup.items.ug67.summary')}
+					</p>
+					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
+						<a
+							href="https://www.milesight-iot.com/iot/lorawan-gateway/ug67/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+						>
+							{$_('products.gateways.lineup.cta.view_manufacturer')}
+						</a>
+					</div>
+				</div>
+			</article>
+			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
+				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
+					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+					<img
+						src={konaMicroImage}
+						alt={$_('products.gateways.lineup.items.kona_micro.image_alt')}
+						loading="lazy"
+						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
+					/>
+				</div>
+				<div class="flex flex-1 flex-col gap-5 p-7">
+					<div class="flex flex-wrap items-center justify-between gap-4">
+						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
+							{$_('products.gateways.lineup.items.kona_micro.name')}
+						</h3>
+						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+							{$_('products.gateways.lineup.items.kona_micro.placement')}
+						</span>
+					</div>
+					<div class="grid gap-2 sm:grid-cols-2">
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.manufacturer')}
+							</p>
+							<div class="mt-2 flex flex-col items-start gap-2">
+								<span class="text-base font-medium text-slate-900">
+									{$_('products.gateways.lineup.items.kona_micro.manufacturer')}
+								</span>
+								<div class="flex w-full items-center justify-center">
+									<img
+										src={tektelicLogo}
+										alt="Tektelic logo"
+										class="object-contain max-w-[60%]"
+									/>
+								</div>
+							</div>
+						</div>
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.recommended')}
+							</p>
+							<ul class="mt-3 space-y-1 text-sm text-slate-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.0')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.1')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.2')}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p class="text-sm leading-relaxed text-slate-600">
+						{$_('products.gateways.lineup.items.kona_micro.summary')}
+					</p>
+					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
+						<a
+							href="https://tektelic.com/products/gateways/kona-micro/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+						>
+							{$_('products.gateways.lineup.cta.view_manufacturer')}
+						</a>
+					</div>
+				</div>
+			</article>
+			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
+				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
+					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+					<img
+						src={konaEnterpriseImage}
+						alt={$_('products.gateways.lineup.items.kona_enterprise.image_alt')}
+						loading="lazy"
+						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
+					/>
+				</div>
+				<div class="flex flex-1 flex-col gap-5 p-7">
+					<div class="flex flex-wrap items-center justify-between gap-4">
+						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
+							{$_('products.gateways.lineup.items.kona_enterprise.name')}
+						</h3>
+						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+							{$_('products.gateways.lineup.items.kona_enterprise.placement')}
+						</span>
+					</div>
+					<div class="grid gap-2 sm:grid-cols-2">
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.manufacturer')}
+							</p>
+							<div class="mt-2 flex flex-col items-start gap-2">
+								<span class="text-base font-medium text-slate-900">
+									{$_('products.gateways.lineup.items.kona_enterprise.manufacturer')}
+								</span>
+								<div class="flex w-full items-center justify-center">
+									<img
+										src={tektelicLogo}
+										alt="Tektelic logo"
+										class="object-contain max-w-[60%]"
+									/>
+								</div>
+							</div>
+						</div>
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.recommended')}
+							</p>
+							<ul class="mt-3 space-y-1 text-sm text-slate-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.0')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.1')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.2')}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p class="text-sm leading-relaxed text-slate-600">
+						{$_('products.gateways.lineup.items.kona_enterprise.summary')}
+					</p>
+					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
+						<a
+							href="https://tektelic.com/products/gateways/kona-enterprise/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+						>
+							{$_('products.gateways.lineup.cta.view_manufacturer')}
+						</a>
+					</div>
+				</div>
+			</article>
+			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
+				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
+					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+					<img
+						src={konaMacroImage}
+						alt={$_('products.gateways.lineup.items.kona_macro.image_alt')}
+						loading="lazy"
+						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
+					/>
+				</div>
+				<div class="flex flex-1 flex-col gap-5 p-7">
+					<div class="flex flex-wrap items-center justify-between gap-4">
+						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
+							{$_('products.gateways.lineup.items.kona_macro.name')}
+						</h3>
+						<span class="inline-flex items-center rounded-full border border-[var(--cw-emerald-500)] bg-[var(--cw-emerald-900)] px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-emerald-900)]">
+							{$_('products.gateways.lineup.items.kona_macro.placement')}
+						</span>
+					</div>
+					<div class="grid gap-2 sm:grid-cols-2">
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.manufacturer')}
+							</p>
+							<div class="mt-2 flex flex-col items-start gap-2">
+								<span class="text-base font-medium text-slate-900">
+									{$_('products.gateways.lineup.items.kona_macro.manufacturer')}
+								</span>
+								<div class="flex w-full items-center justify-center">
+									<img
+										src={tektelicLogo}
+										alt="Tektelic logo"
+										class="object-contain max-w-[60%]"
+									/>
+								</div>
+							</div>
+						</div>
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.recommended')}
+							</p>
+							<ul class="mt-3 space-y-1 text-sm text-slate-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.0')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.1')}</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.2')}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p class="text-sm leading-relaxed text-slate-600">
+						{$_('products.gateways.lineup.items.kona_macro.summary')}
+					</p>
+					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
+						<a
+							href="https://tektelic.com/products/gateways/kona-macro/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+						>
+							{$_('products.gateways.lineup.cta.view_manufacturer')}
+						</a>
+					</div>
+				</div>
+			</article>
+			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
+				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
+					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+					<img
+						src={seeedImage}
+						alt={$_('products.gateways.lineup.items.seeed_m2.image_alt')}
+						loading="lazy"
+						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
+					/>
+				</div>
+				<div class="flex flex-1 flex-col gap-5 p-7">
+					<div class="flex flex-wrap items-center justify-between gap-4">
+						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
+							{$_('products.gateways.lineup.items.seeed_m2.name')}
+						</h3>
+						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+							{$_('products.gateways.lineup.items.seeed_m2.placement')}
+						</span>
+					</div>
+					<div class="grid gap-2 sm:grid-cols-2">
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.manufacturer')}
+							</p>
+							<div class="mt-2 flex flex-col items-start gap-2">
+								<span class="text-base font-medium text-slate-900">
+									{$_('products.gateways.lineup.items.seeed_m2.manufacturer')}
+								</span>
+								<div class="flex w-full items-center justify-center">
+									<img
+										src={seeedLogo}
+										alt="Seeed Studio logo"
+										class="object-contain max-w-[60%]"
+									/>
+								</div>
+							</div>
+						</div>
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.recommended')}
+							</p>
+							<ul class="mt-3 space-y-1 text-sm text-slate-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.seeed_m2.recommended.0')}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p class="text-sm leading-relaxed text-slate-600">
+						{$_('products.gateways.lineup.items.seeed_m2.summary')}
+					</p>
+					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
+						<a
+							href="https://www.seeedstudio.com/SenseCAP-M2-LoRaWAN-Gateway-p-5758.html"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+						>
+							{$_('products.gateways.lineup.cta.view_manufacturer')}
+						</a>
+					</div>
+				</div>
+			</article>
+			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
+				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
+					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+					<img
+						src={ezurioImage}
+						alt={$_('products.gateways.lineup.items.ezurio_indoor.image_alt')}
+						loading="lazy"
+						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
+					/>
+				</div>
+				<div class="flex flex-1 flex-col gap-5 p-7">
+					<div class="flex flex-wrap items-center justify-between gap-4">
+						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
+							{$_('products.gateways.lineup.items.ezurio_indoor.name')}
+						</h3>
+						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+							{$_('products.gateways.lineup.items.ezurio_indoor.placement')}
+						</span>
+					</div>
+					<div class="grid gap-2 sm:grid-cols-2">
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.manufacturer')}
+							</p>
+							<div class="mt-2 flex flex-col items-start gap-2">
+								<span class="text-base font-medium text-slate-900">
+									{$_('products.gateways.lineup.items.ezurio_indoor.manufacturer')}
+								</span>
+								<div class="flex w-full items-center justify-center">
+									<img
+										src={ezurioLogo}
+										alt="Ezurio logo"
+										class="object-contain max-w-[60%]"
+									/>
+								</div>
+							</div>
+						</div>
+						<div>
+							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+								{$_('products.gateways.lineup.fields.recommended')}
+							</p>
+							<ul class="mt-3 space-y-1 text-sm text-slate-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span>{$_('products.gateways.lineup.items.ezurio_indoor.recommended.0')}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p class="text-sm leading-relaxed text-slate-600">
+						{$_('products.gateways.lineup.items.ezurio_indoor.summary')}
+					</p>
+					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
+						<a
+							href="https://www.ezurio.com/iot-devices/lorawan-iot-devices/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+						>
+							{$_('products.gateways.lineup.cta.view_manufacturer')}
+						</a>
+					</div>
+				</div>
+			</article>
 		</div>
 	</div>
 </section>

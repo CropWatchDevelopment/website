@@ -39,39 +39,8 @@
     },
     "utility": {
       "ui_app": "UI App",
-      "ui_app_icon_aria": "UI app link icon",
-      "system_status": "System Status",
-      "system_status_icon_aria": "System status link icon"
-    }
-  },
-  "footer": {
-    "about": {
-      "heading": "About CropWatch",
-      "body": "Delivering Quality & ROI since 2019. Trusted by leading manufacturers and hospitality, cold-chain, and enterprise operations worldwide.",
-      "sub_body": "We pair ruggedized hardware with operations experts to ensure compliance-ready telemetry from day one.",
-      "phone_label": "Talk to our team:",
-      "phone_number": "+1 (813) 555-0123",
-      "cta": "Talk to an IoT specialist"
-    },
-    "link_groups": {
+        "secondary_cta": "Revisa el lineup de gateways"
       "socials": {
-        "title": "Social channels",
-        "links": {
-          "linkedin": "LinkedIn",
-          "youtube": "YouTube",
-          "github": "GitHub"
-        }
-      },
-      "solutions": {
-        "title": "Solutions",
-        "links": {
-          "manufacturing": "Manufacturing",
-          "logistics": "Logistics",
-          "agriculture": "Agriculture",
-          "energy": "Energy"
-        }
-      },
-      "products": {
         "title": "Products",
         "links": {
           "sensor_suite": "Sensor Suite",
@@ -790,7 +759,7 @@
             ],
             "image_alt": "Tektelic KONA Macro gateway installed outside"
           },
-          "kerlink_istation": {
+          "seeed_m2": {
             "name": "SenseCAP M2 LoRaWAN Gateway",
             "manufacturer": "SEEED Studio",
             "placement": "Indoors",
@@ -798,7 +767,17 @@
             "recommended": [
               "WiFi and Ethernet options"
             ],
-            "image_alt": "Kerlink Wirnet iStation gateway mounted on a rooftop"
+            "image_alt": "Gateway LoRaWAN SenseCAP M2 de SEEED Studio"
+          },
+          "ezurio_indoor": {
+            "name": "Sentrius RG1xx Indoor Gateway",
+            "manufacturer": "Ezurio Connectivity",
+            "placement": "Indoors",
+            "summary": "The Sentrius™ RG1xx LoRaWAN-Enabled Gateway is the ultimate in secure, scalable, robust LoRaWAN solutions. Gather data from as far as 10 miles via LoRaWAN and sync to the cloud via Wi-Fi / Ethernet.",
+            "recommended": [
+              "WiFi and Ethernet options, (LTE optional for USA only)"
+            ],
+            "image_alt": "Ezurio Sentrius RG1xx Indoor Gateway"
           }
         }
       },

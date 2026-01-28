@@ -72,39 +72,8 @@
             },
             "products": {
                 "title": "Prodotti",
-                "links": {
-                    "sensor_suite": "Suite di sensori",
-                    "gateways": "Gateway",
-                    "analytics": "Sensori di ricambio",
-                    "integrations": "Integrazioni",
-                    "cw-air-th": "CW-AIR-TH"
-                }
-            },
-            "connect": {
-                "title": "Contatti",
-                "links": {
-                    "contact": "Contattaci",
-                    "support": "Assistenza",
-                    "case_studies": "Casi di studio",
-                    "github": "GitHub",
+                        "secondary_cta": "Rivedi il lineup dei gateway"
                     "faq": "FAQ"
-                }
-            }
-        },
-        "legal": {
-            "copyright": "© {year} CropWatch LLC. Tutti i diritti riservati.",
-            "links": {
-                "privacy": "Informativa sulla privacy",
-                "terms": "Termini di servizio",
-                "sitemap": "Mappa del sito"
-            }
-        }
-    },
-    "slider": {
-        "aria": {
-            "group_label": "Carosello dei punti salienti di CropWatch"
-        },
-        "controls": {
             "previous": "Slide precedente",
             "next": "Slide successiva"
         },
@@ -789,15 +758,25 @@
                         ],
                         "image_alt": "Gateway Tektelic KONA Macro installato all’esterno"
                     },
-                    "kerlink_istation": {
+                    "seeed_m2": {
                         "name": "SenseCAP M2 LoRaWAN Gateway",
                         "manufacturer": "SEEED Studio",
                         "placement": "Interni",
                         "summary": "Gateway indoor conveniente, ideale per piccole installazioni e ambienti a basso carico.",
                         "recommended": [
-                            "Opzioni Wi-Fi ed Ethernet"
+                            "Opzioni Wi‑Fi ed Ethernet"
                         ],
-                        "image_alt": "Gateway Kerlink Wirnet iStation montato su un tetto"
+                        "image_alt": "Gateway LoRaWAN SEEED Studio SenseCAP M2"
+                    },
+                    "ezurio_indoor": {
+                        "name": "Sentrius RG1xx Indoor Gateway",
+                        "manufacturer": "Ezurio Connectivity",
+                        "placement": "Interni",
+                        "summary": "Il gateway LoRaWAN Sentrius™ RG1xx offre una soluzione sicura, scalabile e robusta. Raccoglie dati fino a 10 miglia via LoRaWAN e sincronizza sul cloud tramite Wi‑Fi/Ethernet.",
+                        "recommended": [
+                            "Opzioni Wi‑Fi ed Ethernet (LTE opzionale solo per USA)"
+                        ],
+                        "image_alt": "Gateway indoor Ezurio Sentrius RG1xx"
                     }
                 }
             },

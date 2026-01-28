@@ -700,40 +700,9 @@
       "hero": {
         "eyebrow": "Gateway portfolio",
         "headline": "Gateways qualified for regulated environments",
-        "body": "We stock LoRaWAN gateways that survive cold storage, rooftops, and dense industrial interiors. Every unit ships pre-provisioned with the latest firmware so your telemetry network is reliable from day one.",
+        "body": "We stock LoRaWAN gateways that survive rooftops, dense industrial interiors, as well as small discrete devices for indoor professional environments. Every unit ships pre-provisioned with the latest firmware so your telemetry network is reliable from day one.",
         "primary_cta": "Plan your RF design",
-        "secondary_cta": "Review the gateway lineup",
-        "stats": [
-          {
-            "value": "6",
-            "label": "Qualified gateway SKUs"
-          },
-          {
-            "value": "3",
-            "label": "Indoor & outdoor form factors"
-          },
-          {
-            "value": "200+",
-            "label": "Deployments configured each year"
-          }
-        ]
-      },
-      "highlights": {
-        "eyebrow": "What to expect",
-        "items": [
-          {
-            "title": "Pre-provisioned & documented",
-            "body": "Serial numbers, QR codes, and CropWatch Command templates ship inside each crate so install teams can plug in and go."
-          },
-          {
-            "title": "Compliance-ready power options",
-            "body": "Support for PoE, LTE backhaul, redundant power, and lightning protection keeps auditors and facilities teams aligned."
-          },
-          {
-            "title": "Global operations support",
-            "body": "Our 24/7 operations desk monitors heartbeat telemetry and pushes security updates as new advisories drop."
-          }
-        ]
+        "secondary_cta": "Review the gateway lineup"
       },
       "lineup": {
         "eyebrow": "Gateway lineup",
@@ -749,9 +718,9 @@
         },
         "items": {
           "ug65": {
-            "name": "Milesight UG65 Indoor",
-            "manufacturer": "Milesight",
-            "placement": "Indoor (IP65)",
+            "name": "Milesight UG65",
+            "manufacturer": "🇨🇳 Milesight",
+            "placement": "Indoor rough environments (IP65)",
             "summary": "High-performance indoor/Covered Outdoor LoRaWAN gateway with Ethernet, Wi-Fi and LTE for quick installs in medium range spaces.",
             "recommended": [
               "Cold rooms, livestock and office spaces",
@@ -761,8 +730,8 @@
             "image_alt": "Milesight UG65 gateway sitting on a workbench"
           },
           "ug67": {
-            "name": "Milesight UG67 Outdoor",
-            "manufacturer": "Milesight",
+            "name": "Milesight UG67",
+            "manufacturer": "🇨🇳 Milesight",
             "placement": "Outdoor (IP67 / pole & wall mount)",
             "summary": "Ruggedized 8-channel gateway with built-in surge protection for rooftops, yards, and remote perimeters.",
             "recommended": [
@@ -774,8 +743,8 @@
           },
           "kona_micro": {
             "name": "Tektelic KONA Micro",
-            "manufacturer": "Tektelic",
-            "placement": "Indoor (compact / desktop)",
+            "manufacturer": "🇨🇦 Tektelic",
+            "placement": "Indoor (compact / discrete)",
             "summary": "Compact gateway with a built-in backup battery ideal for indoor coverage where uptime is critical.",
             "recommended": [
               "Retail, hospitality suites, or test kitchens",
@@ -786,8 +755,8 @@
           },
           "kona_enterprise": {
             "name": "Tektelic KONA Enterprise",
-            "manufacturer": "Tektelic",
-            "placement": "Indoor (rack or wall mount)",
+            "manufacturer": "🇨🇦 Tektelic",
+            "placement": "Rugged/Outdoor",
             "summary": "Enterprise-grade LoRaWAN gateway with dual concentrators, LTE failover, and SNMP hooks for IT teams.",
             "recommended": [
               "Hospitals or universities with existing network teams",
@@ -798,7 +767,7 @@
           },
           "kona_macro": {
             "name": "Tektelic KONA Macro",
-            "manufacturer": "Tektelic",
+            "manufacturer": "🇨🇦 Tektelic",
             "placement": "Outdoor (carrier-grade)",
             "summary": "High gain outdoor gateway designed for miles of coverage, redundant radios, and high availability SLAs. Extremely rugged and built for extreme deployments.",
             "recommended": [
@@ -808,15 +777,25 @@
             ],
             "image_alt": "Tektelic KONA Macro gateway installed outside"
           },
-          "kerlink_istation": {
+          "seeed_m2": {
             "name": "SenseCAP M2 LoRaWAN Gateway",
-            "manufacturer": "SEEED Studio",
+            "manufacturer": "🇨🇳 SEEED Studio",
             "placement": "Indoors",
             "summary": "Cost-effective indoor gateway great for small installations and light duty environments.",
             "recommended": [
               "WiFi and Ethernet options"
             ],
-            "image_alt": "Kerlink Wirnet iStation gateway mounted on a rooftop"
+            "image_alt": "SEEED Studio SenseCAP M2 LoRaWAN gateway"
+          },
+          "ezurio_indoor": {
+            "name": "Sentrius RG1xx Indoor Gateway",
+            "manufacturer": "🇺🇸 Ezurio Connectivity",
+            "placement": "Indoors",
+            "summary": "The Sentrius™ RG1xx LoRaWAN-Enabled Gateway is the ultimate in secure, scalable, robust LoRaWAN solutions. Gather data from as far as 10 miles via LoRaWAN and sync to the cloud via Wi-Fi / Ethernet.",
+            "recommended": [
+              "WiFi and Ethernet options, (LTE optional for USA only)"
+            ],
+            "image_alt": "Ezurio Sentrius RG1xx Indoor Gateway"
           }
         }
       },

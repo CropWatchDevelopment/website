@@ -58,39 +58,8 @@
           "linkedin": "LinkedIn",
           "youtube": "YouTube",
           "github": "GitHub"
-        }
-      },
-      "solutions": {
-        "title": "ソリューション",
-        "links": {
-          "manufacturing": "製造",
-          "logistics": "物流",
-          "agriculture": "農業",
-          "energy": "エネルギー"
-        }
-      },
-      "products": {
-        "title": "製品",
-        "links": {
-          "sensor_suite": "センサー",
+          "secondary_cta": "ゲートウェイ一覧を見る"
           "gateways": "ゲートウェイ",
-          "analytics": "交換用センサー",
-          "integrations": "インテグレーション",
-          "cw-air-th": "CW-AIR-TH"
-        }
-      },
-      "connect": {
-        "title": "連絡先",
-        "links": {
-          "contact": "お問い合わせ",
-          "support": "サポート",
-          "case_studies": "導入事例",
-          "faq": "FAQ"
-        }
-      }
-    },
-    "legal": {
-      "copyright": "© {year} CropWatch LLC. 無断複写・転載を禁じます。",
       "links": {
         "privacy": "プライバシーポリシー",
         "terms": "利用規約",
@@ -792,17 +761,25 @@
             ],
             "image_alt": "屋外に設置された Tektelic KONA Macro ゲートウェイ"
           },
-          "kerlink_istation": {
-            "name": "Kerlink Wirnet iStation",
-            "manufacturer": "Kerlink",
-            "placement": "屋外 (タワー/屋上)",
-            "summary": "GPS・LTE を統合したキャリアグレード筐体。過酷な気候でも安定稼働します。",
+          "seeed_m2": {
+            "name": "SenseCAP M2 LoRaWAN Gateway",
+            "manufacturer": "SEEED Studio",
+            "placement": "屋内",
+            "summary": "小規模導入やライトな運用に適したコスト効率の高い屋内向けゲートウェイです。",
             "recommended": [
-              "化学・重工業のプラント",
-              "高温・粉じん・塩害のある屋上",
-              "GPS 同期が必須の展開"
+              "Wi‑Fi と Ethernet オプション"
             ],
-            "image_alt": "屋上に設置された Kerlink Wirnet iStation ゲートウェイ"
+            "image_alt": "SEEED Studio SenseCAP M2 LoRaWAN ゲートウェイ"
+          },
+          "ezurio_indoor": {
+            "name": "Sentrius RG1xx Indoor Gateway",
+            "manufacturer": "Ezurio Connectivity",
+            "placement": "屋内",
+            "summary": "Sentrius™ RG1xx は安全性・拡張性・堅牢性に優れた LoRaWAN ゲートウェイです。最大 10 マイルのデータ収集と Wi‑Fi/Ethernet 経由のクラウド同期に対応します。",
+            "recommended": [
+              "Wi‑Fi と Ethernet オプション（米国のみ LTE オプション）"
+            ],
+            "image_alt": "Ezurio Sentrius RG1xx 屋内ゲートウェイ"
           }
         }
       },

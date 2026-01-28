@@ -37,39 +37,8 @@
       "products_sensor": "Capteur de température et d’humidité (CW-AIR-TH)",
       "products_replacement_sensors": "Capteurs de remplacement (bientôt disponible)",
       "case_studies": "Études de cas",
-      "about": "À propos",
-      "contact": "Contact"
-    },
-    "utility": {
-      "ui_app": "Application UI",
-      "ui_app_icon_aria": "Icône du lien vers l’application UI",
-      "system_status": "État du système",
-      "system_status_icon_aria": "Icône du lien vers l’état du système"
-    }
-  },
-  "footer": {
-    "about": {
-      "heading": "À propos de CropWatch",
-      "body": "Qualité et ROI depuis 2019. De grandes entreprises de la fabrication, de l’hôtellerie, de la chaîne du froid et de l’industrie nous font confiance dans le monde entier.",
-      "sub_body": "Nous combinons du matériel durci avec des experts opérationnels pour garantir une télémesure prête pour l’audit dès le premier jour.",
+        "secondary_cta": "Découvrir la gamme de passerelles"
       "phone_label": "Parlez à notre équipe :",
-      "phone_number": "+1 (813) 555-0123",
-      "cta": "Parler à un spécialiste IoT"
-    },
-    "link_groups": {
-      "socials": {
-        "title": "Réseaux sociaux",
-        "links": {
-          "linkedin": "LinkedIn",
-          "youtube": "YouTube",
-          "github": "GitHub"
-        }
-      },
-      "solutions": {
-        "title": "Solutions",
-        "links": {
-          "manufacturing": "Fabrication",
-          "logistics": "Logistique",
           "agriculture": "Agriculture",
           "energy": "Énergie"
         }
@@ -793,7 +762,7 @@
             ],
             "image_alt": "Passerelle Tektelic KONA Macro installée en extérieur"
           },
-          "kerlink_istation": {
+          "seeed_m2": {
             "name": "SenseCAP M2 LoRaWAN Gateway",
             "manufacturer": "SEEED Studio",
             "placement": "Intérieur",
@@ -801,7 +770,17 @@
             "recommended": [
               "Options Wi-Fi et Ethernet"
             ],
-            "image_alt": "Passerelle Kerlink Wirnet iStation montée sur un toit"
+            "image_alt": "Passerelle LoRaWAN SEEED Studio SenseCAP M2"
+          }
+          "ezurio_indoor": {
+            "name": "Sentrius RG1xx Indoor Gateway",
+            "manufacturer": "Ezurio Connectivity",
+            "placement": "Intérieur",
+            "summary": "La passerelle LoRaWAN Sentrius™ RG1xx offre une solution sécurisée, évolutive et robuste. Collectez des données jusqu’à 16 km via LoRaWAN et synchronisez-les vers le cloud via Wi-Fi/Ethernet.",
+            "recommended": [
+              "Options Wi-Fi et Ethernet (LTE en option pour les USA uniquement)"
+            ],
+            "image_alt": "Passerelle intérieure Ezurio Sentrius RG1xx"
           }
         }
       },

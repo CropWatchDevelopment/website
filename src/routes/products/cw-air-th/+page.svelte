@@ -4,8 +4,7 @@
 	import crossValidationDiagram from './images/crossvalidate.webp';
 	import deviceDetailImage from './images/device-detail.webp';
 	import locationDetailImage from './images/location-detail.webp';
-	import UIDemo from '$lib/components/UI-Demo.svelte';
-	import { _ } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 	import flyerDocument from './downloads/温度管理.pdf?url';
 	import csvDataSample from './downloads/CSV-Example.csv?url';
 
@@ -390,6 +389,7 @@
 	<meta property="og:title" content="CW-AIR-TH Sensor from CropWatch" />
 	<meta property="og:description" content="The highest quality temperature and humidity monitoring sensor on the market today." />
 	<meta property="og:url" content="https://www.cropwatch.com/products/cw-air-th" />
+	<meta property="og:locale" content={$locale} />
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
