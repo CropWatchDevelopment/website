@@ -1,7 +1,7 @@
 <script lang="ts">
     import { _ } from 'svelte-i18n';
     import gatewayImage from '$lib/images/slider-images/gateway_header-1280.webp'
-    import referImage from '$lib/images/slider-images/refer_header-1280.webp';
+    import greenhouseImage from '$lib/images/slider-images/greenhouse.webp';
     import liveStockImage from '$lib/images/slider-images/livestock_header-1024.webp';
     import insideFreezerImage from '$lib/images/slider-images/survive_the_cold.webp';
     type TextSide = 'left' | 'right';
@@ -54,7 +54,7 @@
             bodyKey: 'slider.slides.battery_life.body',
             cta: { labelKey: 'slider.slides.battery_life.cta', href: '/downloads/power-charts' },
             image: {
-                src: referImage,
+                src: greenhouseImage,
                 altKey: 'slider.slides.battery_life.image_alt'
             },
             textSide: 'right'

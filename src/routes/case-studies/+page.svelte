@@ -99,6 +99,7 @@
 		messages,
 		($messages) => $messages.case_studies?.closing as ClosingContent | undefined
 	);
+	const comingSoon = $state(true);
 
 	const caseStudies = derived(featured, ($featured) => {
 		if (!$featured?.cases) return [];
@@ -166,7 +167,7 @@
 	</section>
 {/if}
 
-{#if $featured}
+{#if $featured && !comingSoon}
 	<section class="bg-white py-20">
 		<div class="mx-auto w-full max-w-6xl px-4">
 			<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
@@ -262,6 +263,15 @@
 					</div>
 				{/each}
 			</div>
+		</div>
+	</section>
+	{:else}
+	<section class="flex items-center justify-center bg-white py-20">
+		<div class="text-center">
+			<h2 class="text-3xl font-semibold text-[#0b1730]">Case Studies & Our Clients Coming Soon!</h2>
+			<p class="mt-4 max-w-2xl text-base text-[#1c2d52]/80">
+				We're working hard to bring you our case studies. Stay tuned for updates!
+			</p>
 		</div>
 	</section>
 {/if}
