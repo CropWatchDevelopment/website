@@ -1,0 +1,18 @@
+{
+    "i18n-ally.localesPaths": [
+        "src/lib/i18n/locales"
+    ],
+    "i18n-ally.dirStructure": "file",
+    "i18n-ally.enabledParsers": [
+        "json"
+    ],
+    "i18n-ally.enabledFrameworks": [
+        "svelte"
+    ],
+    "i18n-ally.sourceLanguage": "en",
+    "i18n-ally.languages": [
+        "en",
+        "ja"
+    ],
+    "i18n-ally.keystyle": "nested"
+}
