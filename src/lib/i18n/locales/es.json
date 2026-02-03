@@ -39,8 +39,39 @@
     },
     "utility": {
       "ui_app": "UI App",
-      "secondary_cta": "Revisa el lineup de gateways",
+      "ui_app_icon_aria": "UI app link icon",
+      "system_status": "System Status",
+      "system_status_icon_aria": "System status link icon"
+    }
+  },
+  "footer": {
+    "about": {
+      "heading": "About CropWatch",
+      "body": "Delivering Quality & ROI since 2019. Trusted by leading manufacturers and hospitality, cold-chain, and enterprise operations worldwide.",
+      "sub_body": "We pair ruggedized hardware with operations experts to ensure compliance-ready telemetry from day one.",
+      "phone_label": "Talk to our team:",
+      "phone_number": "+1 (813) 555-0123",
+      "cta": "Talk to an IoT specialist"
+    },
+    "link_groups": {
       "socials": {
+        "title": "Social channels",
+        "links": {
+          "linkedin": "LinkedIn",
+          "youtube": "YouTube",
+          "github": "GitHub"
+        }
+      },
+      "solutions": {
+        "title": "Solutions",
+        "links": {
+          "manufacturing": "Manufacturing",
+          "logistics": "Logistics",
+          "agriculture": "Agriculture",
+          "energy": "Energy"
+        }
+      },
+      "products": {
         "title": "Products",
         "links": {
           "sensor_suite": "Sensor Suite",
@@ -67,7 +98,8 @@
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
         "sitemap": "Sitemap"
-      }
+      },
+      "registration": "**"
     }
   },
   "slider": {
@@ -490,6 +522,23 @@
               "label": "Yield improvement through targeted irrigation"
             }
           ]
+        },
+        "JA": {
+          "company": "JA - Japan Agricultureal Cooperatives Miyazaki",
+          "industry": "Agriculture - General",
+          "recap": "Japan Agricultural Cooperatives, also known as Nōkyō or JA Group, refers to the national group of 694 regional co-ops in Japan that supply members with input for production, undertake packaging, transportation, and marketing of agricultural products, and provide financial services.",
+          "badge": "End-to-end visibility",
+          "websiteUrl": "https://miyazaki.mz-ja.or.jp/",
+          "stats": [
+            {
+              "value": "8 hrs/week",
+              "label": "Reduced manual checks"
+            },
+            {
+              "value": "12%",
+              "label": "Faster HACCP audit preparation"
+            }
+          ]
         }
       }
     },
@@ -653,38 +702,7 @@
         "headline": "Gateways qualified for regulated environments",
         "body": "We stock LoRaWAN gateways that survive cold storage, rooftops, and dense industrial interiors. Every unit ships pre-provisioned with the latest firmware so your telemetry network is reliable from day one.",
         "primary_cta": "Plan your RF design",
-        "secondary_cta": "Review the gateway lineup",
-        "stats": [
-          {
-            "value": "6",
-            "label": "Qualified gateway SKUs"
-          },
-          {
-            "value": "3",
-            "label": "Indoor & outdoor form factors"
-          },
-          {
-            "value": "200+",
-            "label": "Deployments configured each year"
-          }
-        ]
-      },
-      "highlights": {
-        "eyebrow": "What to expect",
-        "items": [
-          {
-            "title": "Pre-provisioned & documented",
-            "body": "Serial numbers, QR codes, and CropWatch Command templates ship inside each crate so install teams can plug in and go."
-          },
-          {
-            "title": "Compliance-ready power options",
-            "body": "Support for PoE, LTE backhaul, redundant power, and lightning protection keeps auditors and facilities teams aligned."
-          },
-          {
-            "title": "Global operations support",
-            "body": "Our 24/7 operations desk monitors heartbeat telemetry and pushes security updates as new advisories drop."
-          }
-        ]
+        "secondary_cta": "Review the gateway lineup"
       },
       "lineup": {
         "eyebrow": "Gateway lineup",
