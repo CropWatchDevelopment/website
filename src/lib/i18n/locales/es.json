@@ -39,7 +39,7 @@
     },
     "utility": {
       "ui_app": "UI App",
-        "secondary_cta": "Revisa el lineup de gateways"
+      "secondary_cta": "Revisa el lineup de gateways",
       "socials": {
         "title": "Products",
         "links": {

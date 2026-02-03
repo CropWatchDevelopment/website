@@ -99,7 +99,7 @@
 									<img
 										src={milesightLogo}
 										alt="Milesight logo"
-										class="object-contain max-w-[60%]"
+										class="object-contain max-w-[60%] pt-5"
 									/>
 								</div>
 							</div>
@@ -171,7 +171,7 @@
 									<img
 										src={milesightLogo}
 										alt="Milesight logo"
-										class="object-contain max-w-[60%]"
+										class="object-contain max-w-[60%] pt-5"
 									/>
 								</div>
 							</div>
@@ -243,7 +243,7 @@
 									<img
 										src={tektelicLogo}
 										alt="Tektelic logo"
-										class="object-contain max-w-[60%]"
+										class="object-contain max-w-[60%] pt-5"
 									/>
 								</div>
 							</div>
@@ -315,7 +315,7 @@
 									<img
 										src={tektelicLogo}
 										alt="Tektelic logo"
-										class="object-contain max-w-[60%]"
+										class="object-contain max-w-[60%] pt-5"
 									/>
 								</div>
 							</div>
@@ -387,7 +387,7 @@
 									<img
 										src={tektelicLogo}
 										alt="Tektelic logo"
-										class="object-contain max-w-[60%]"
+										class="object-contain max-w-[60%] pt-5"
 									/>
 								</div>
 							</div>
