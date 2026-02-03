@@ -1,19 +1,17 @@
 <script lang="ts">
-	import { i18n } from '$lib/i18n';
-	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
+	import Footer from '$lib/components/Footer.svelte';
+	import Header from '$lib/components/Header.svelte';
 	import '../app.css';
-	import Header from '$lib/components/UI/Header.svelte';
-	import Footer from '$lib/components/UI/Footer.svelte';
 
 	let { children } = $props();
 </script>
 
-<ParaglideJS {i18n}>
-	<div class="flex min-h-screen flex-col">
-		<Header />
-		<main class="flex-grow">
-			{@render children()}
-		</main>
-		<Footer />
-	</div>
-</ParaglideJS>
+<div class="flex flex-col min-h-screen">
+	<Header />
+
+	<main class="flex flex-1 flex-col w-full mx-auto">
+		{@render children()}
+	</main>
+
+	<Footer />
+</div>

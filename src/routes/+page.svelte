@@ -1,327 +1,358 @@
 <script lang="ts">
-	import PLANT_IMAGE from '$lib/images/plant.avif';
-	import COLD_STORAGE_IMAGE from '$lib/images/refer.jpg';
-	import HOT_IMAGE from '$lib/images/hot.png';
-	import SectionCard from '$lib/components/UI/Section-Card.svelte';
-	// Removed FACTORY_IMAGE import as it's for Safety & Risk mitigation
-	// Removed BOSTON_IMAGE import as it's for smart city
-	import SAITO_IMAGE from '$lib/images/saito.jpg';
-	// import LineCarasol from '$lib/components/UI/Line-Carasol.svelte';
-	import * as m from '$lib/paraglide/messages.js';
-	import PriceCard from '$lib/components/UI/Price-Card.svelte';
-	import { languageTag } from '$lib/paraglide/runtime';
-	import { fly } from 'svelte/transition';
-	import { ChartColumnIncreasing, Sprout, CircleDollarSign, Shield, RadioTower, Route } from '@lucide/svelte';
-	import Modal from '$lib/components/UI/Modal.svelte';
-	// let submittingEmail = $state(false);
-	let showModalAffordable = $state(false);
-	let showModalService = $state(false);
-	let showModalHardware = $state(false);
-	let showModalCoverage = $state(false);
+	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
+	import PricingEn from '$lib/components/pricing/PricingEn.svelte';
+	import PricingJa from '$lib/components/pricing/PricingJa.svelte';
+	import Slider from '$lib/components/Slider.svelte';
+	import StandardsBanner from '$lib/components/StandardsBanner.svelte';
+	import { _, json, locale } from 'svelte-i18n';
 
-	let loaded = $state(true); // Set to true since we no longer need to wait for canvas initialization
+	type ProofPoint = {
+		id: string;
+		labelKey: string;
+		headlineKey: string;
+		bulletKeys: string[];
+		link?: { labelKey: string; href: string };
+	};
+
+	// Derive proof points from i18n structure
+	const proofPoints = $derived.by(() => {
+		const proofPointData = $json('home.proof_points') as Record<
+			string,
+			{ bullets?: Record<string, unknown>; link?: { href: string } }
+		> | null;
+		if (!proofPointData) return [] as ProofPoint[];
+
+		return Object.keys(proofPointData).map((key) => {
+			const pointData = proofPointData[key];
+			return {
+				id: key,
+				labelKey: `home.proof_points.${key}.eyebrow`,
+				headlineKey: `home.proof_points.${key}.headline`,
+				bulletKeys: pointData?.bullets
+					? Object.keys(pointData.bullets).map((i) => `home.proof_points.${key}.bullets.${i}`)
+					: [],
+				link: pointData?.link?.href
+					? { labelKey: `home.proof_points.${key}.link.label`, href: pointData.link.href }
+					: undefined
+			} satisfies ProofPoint;
+		});
+	});
+
+	// Derive hero content from i18n structure
+	const heroContent = $derived.by(() => {
+		const heroQuestions = $json('home.hero.questions');
+		const sidebarItems = $json('home.hero.sidebar.items');
+
+		return {
+			eyebrowKey: 'home.hero.eyebrow',
+			headlineKey: 'home.hero.headline_html',
+			bodyKey: 'home.hero.body_html',
+			questions: heroQuestions
+				? Object.keys(heroQuestions).map((i) => `home.hero.questions.${i}`)
+				: [],
+			primaryCtaKey: 'home.hero.primary_cta',
+			secondaryCtaKey: 'home.hero.secondary_cta',
+			sidebar: {
+				titleKey: 'home.hero.sidebar.title',
+				items: sidebarItems
+					? Object.keys(sidebarItems).map((key) => ({
+							termKey: `home.hero.sidebar.items.${key}.term`,
+							valueKey: `home.hero.sidebar.items.${key}.value_html`
+						}))
+					: []
+			}
+		} as const;
+	});
+
+	// Derive ROI snapshot from i18n structure
+	const roiSnapshot = $derived.by(() => {
+		const manualBullets = $json('home.hero.sidebar.comparison.manual.bullets');
+		const automatedBullets = $json('home.hero.sidebar.comparison.automated.bullets');
+		const stats = $json('home.hero.sidebar.stats');
+		const productivityBullets = $json('home.hero.sidebar.productivity.bullets');
+
+		return {
+			manualCard: {
+				titleKey: 'home.hero.sidebar.comparison.manual.title',
+				bulletKeys: manualBullets
+					? Object.keys(manualBullets).map(
+							(i) => `home.hero.sidebar.comparison.manual.bullets.${i}`
+						)
+					: []
+			},
+			automatedCard: {
+				titleKey: 'home.hero.sidebar.comparison.automated.title',
+				bulletKeys: automatedBullets
+					? Object.keys(automatedBullets).map(
+							(i) => `home.hero.sidebar.comparison.automated.bullets.${i}`
+						)
+					: []
+			},
+			stats: stats
+				? Object.keys(stats).map((key) => ({
+						titleKey: `home.hero.sidebar.stats.${key}.title`,
+						valueKey: `home.hero.sidebar.stats.${key}.value`,
+						bodyKey: `home.hero.sidebar.stats.${key}.body`
+					}))
+				: [],
+			productivity: {
+				titleKey: 'home.hero.sidebar.productivity.title',
+				bulletKeys: productivityBullets
+					? Object.keys(productivityBullets).map(
+							(i) => `home.hero.sidebar.productivity.bullets.${i}`
+						)
+					: []
+			}
+		};
+	});
+
+	// Icons mapped to industry keys
+	const industryIcons: Record<string, string> = {
+		cold_chain: '🧊',
+		protein: '🖼️',
+		hospitality: '🐔',
+		manufacturing: '🏭',
+		storage: '📦',
+		agriculture: '🧓'
+	};
+
+	// Derive industries from i18n structure
+	const industriesServed = $derived.by(() => {
+		const industries = $json('home.industries.cards');
+		if (!industries) return [];
+
+		return Object.keys(industries).map((key) => ({
+			icon: industryIcons[key] || '❓',
+			labelKey: `home.industries.cards.${key}.label`,
+			descriptionKey: `home.industries.cards.${key}.description`
+		}));
+	});
+
+	const industriesSection = {
+		eyebrowKey: 'home.industries.eyebrow',
+		headlineKey: 'home.industries.headline',
+		introKey: 'home.industries.intro'
+	} as const;
+
+	const closingCtas = {
+		eyebrowKey: 'home.closing.eyebrow',
+		headlineKey: 'home.closing.headline',
+		bodyKey: 'home.closing.body',
+		primaryKey: 'home.closing.primary_cta',
+		secondaryKey: 'home.closing.secondary_cta'
+	} as const;
 </script>
 
 <svelte:head>
-	<!-- Primary Meta Tags -->
-	<title>クロップウォッチ - IoT Monitoring</title>
-	<meta name="title" content="クロップウォッチ" />
-	<meta
-		name="description"
-		content="CropWatch the best IoT device for remote monitoring for your farm 🌱, building 🏢."
-	/>
-	<meta
-		name="keywords"
-		content="IoT Monitoring, クロップウォッチ, Cold Chain Management, Full service IoT"
-	/>
-	<meta name="author" content="CropWatch LLC" />
-
-	<meta
-		name="description"
-		content="CropWatch - Solving problems using IoT for Farming, Industry, and more"
-	/>
-	<meta name="keywords" content="CropWatch, IoT, Farming, Industry" />
-	<meta name="robots" content="index, follow" />
-	<link rel="preload" as="image" href={SAITO_IMAGE} />
-	<link rel="preload" as="image" href={PLANT_IMAGE} />
-	<link rel="preload" as="image" href={COLD_STORAGE_IMAGE} />
-	<link rel="preload" as="image" href={HOT_IMAGE} />
+	<title>{$_('home.meta.title')}</title>
+	<meta name="description" content={$_('home.meta.description')} />
+	<meta property="og:image" content="https://cropwatch.io/favicon.svg" />
+	<meta property="og:site_name" content="CropWatch" />
+	<meta property="og:type" content="website.home" />
+	<meta property="og:title" content="CropWatch" />
+	<meta property="og:description" content="Quality Temperature Monitoring Devices" />
+	<meta property="og:url" content="https://www.cropwatch.com/" />
 </svelte:head>
 
-<!-- Hero Section -->
-<section
-	id="home"
-	class="relative bg-blue-200 py-32 text-white bg-[url(/images/sensor-field2.jpg)] bg-cover bg-fixed min-h-screen"
-	style="background-image: url('{SAITO_IMAGE}'); background-position: center;"
-
->
-	<!-- Overlay for blur and darkening -->
-	<div class="backdrop-blur-xs absolute inset-0 bg-black bg-opacity-10"></div>
-	<!-- Content -->
-	<div class="container relative mx-auto text-center px-10 space-y-10">
-		{#if loaded}
-			<h1 class="text-5xl font-bold text-white xl:text-6xl"
-					transition:fly={{ y: 100, duration: 1000 }}>{m.home_hero_title()}</h1>
-			<p class="w-full bg-blue-300 rounded-lg mt-10 text-xl lg:mx-auto text-white-900 font-bold bg-opacity-70 p-4"
-				 transition:fly={{ y: 100, duration: 1000 , delay: 200 }}>
-				{m.home_hero_subtitle()}
-			</p>
-			<div class="mt-6 lg:w-1/2 lg:mx-auto pt-10" transition:fly={{ y: 100, duration: 1000 , delay: 500 }}>
-				<a href="/use-cases"
-					 class="bg-green-600 px-4 py-3 text-white text-lg rounded-md hover:bg-gray-200 flex justify-center">
-					{m.home_hero_button_label()}
-					<ChartColumnIncreasing size={30} class="ml-2 " />
-				</a>
-			</div>
-			<div class="mt-10">
-				<!-- If you add any hero image element here, consider adding explicit width/height and loading="lazy" if offscreen -->
-			</div>
-		{/if}
-	</div>
+<section id="slider" class="bg-[#11213c]">
+	<Slider />
+	<StandardsBanner />
 </section>
 
-
-<!-- Solutions Section -->
-<section id="solutions" class="relative bg-gray-100 py-20 bg-gradient-to-t from-white to-blue-300"
-				 style="overflow: hidden;">
-	<div class="container relative z-10 mx-auto text-center ">
-		<h2 class="text-3xl font-bold">{m.home_solutions_title()}</h2>
-		<p class="mt-4">{m.home_solutions_subtitle()}</p>
-		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
-			<SectionCard
-				image="/images/sensor-field.jpg"
-				title={m.home_solutions_farming_title()}
-				description={m.home_solutions_farming_description()}
-				link="/product/cw-ss"
-				class="bg-green-600"
-
-			/>
-
-			<SectionCard
-				image={COLD_STORAGE_IMAGE}
-				title={m.home_solutions_cold_storage_title()}
-				description={m.home_solutions_cold_storage_description()}
-				link="/product/cw-air-th"
-				class="bg-blue-500"
-			/>
-
-			<SectionCard
-				image={HOT_IMAGE}
-				title={m.home_solutions_heat_safety_title()}
-				description={m.home_solutions_heat_safety_description()}
-				link="/product/cw-air-th-safety"
-				class="bg-orange-500"
-			/>
-		</div>
-	</div>
-</section>
-<!--Underground Pause-->
-<section id="underground-img">
+<section class="relative overflow-hidden bg-white py-10">
 	<div
-		class="h-60 w-full bg-[url(/images/sensor-underground.png)] bg-contain relative lg:bg-cover lg:bg-fixed lg:bg-bottom lg:h-[30rem]">
-		<p
-			class="font-semibold text-3xl px-4 text-green-500 absolute bottom-6 right-5 mix-blend-lighten flex items-center lg:text-6xl lg:bottom-20">
-			Know your crops
-			<Sprout color="white" size="30" class="animate-bounce" />
-		</p>
+		class="absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-[#11213c]/10 to-transparent"
+		aria-hidden="true"
+	></div>
+	<div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-4">
+		<div class="grid gap-12 md:grid-cols-[1.35fr_1fr] md:items-start">
+			<div class="flex h-full flex-col gap-6">
+				<p class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+					{$_(heroContent.eyebrowKey)}
+				</p>
+				<h1 class="text-4xl font-semibold tracking-tight text-[#0b1730] md:text-5xl">
+					{@html $_(heroContent.headlineKey)}
+				</h1>
+				<p class="text-lg leading-relaxed text-[#15284a]/80">
+					{@html $_(heroContent.bodyKey)}
+				</p>
+				<div
+					class="grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-sm text-[#1c2d52] md:grid-cols-2"
+				>
+					{#each heroContent.questions as questionKey (questionKey)}
+						<div class="flex items-start gap-3">
+							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+							<p>{$_(questionKey)}</p>
+						</div>
+					{/each}
+				</div>
+
+				<!--VIDEO EXAMPLES SECTION-->
+
+				<div class="mt-auto flex flex-wrap gap-3">
+					<a
+						href="/contact"
+						class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
+					>
+						{$_(heroContent.primaryCtaKey)}
+					</a>
+					<a
+						href="/case-studies"
+						class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-6 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
+					>
+						{$_(heroContent.secondaryCtaKey)}
+					</a>
+				</div>
+			</div>
+			<div
+				class="h-full rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-lg shadow-[#0b1730]/5"
+			>
+				<h2 class="text-lg font-semibold text-[#0b1730]">{$_(heroContent.sidebar.titleKey)}</h2>
+				<hr class="my-4 border-[#d7e0f5]" />
+				<div class="space-y-6 text-sm text-[#1c2d52]">
+					<div class="grid gap-4 sm:grid-cols-2">
+						<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
+							<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+								{$_(roiSnapshot.manualCard.titleKey)}
+							</p>
+							<ul class="mt-4 space-y-3 text-[#1c2d52]/80">
+								{#each roiSnapshot.manualCard.bulletKeys as bulletKey (bulletKey)}
+									<li>{$_(bulletKey)}</li>
+								{/each}
+							</ul>
+						</div>
+						<div class="rounded-2xl border border-transparent bg-[#0b1730] p-5 text-white">
+							<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
+								{$_(roiSnapshot.automatedCard.titleKey)}
+							</p>
+							<ul class="mt-4 space-y-3 text-white/80">
+								{#each roiSnapshot.automatedCard.bulletKeys as bulletKey (bulletKey)}
+									<li>{$_(bulletKey)}</li>
+								{/each}
+							</ul>
+						</div>
+					</div>
+					<div class="grid gap-4 sm:grid-cols-2">
+						{#each roiSnapshot.stats as stat (stat.titleKey)}
+							<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
+								<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+									{$_(stat.titleKey)}
+								</p>
+								<p class="mt-2 text-2xl font-semibold text-[#0b1730]">{$_(stat.valueKey)}</p>
+								<p class="mt-2 text-[#1c2d52]/70">{$_(stat.bodyKey)}</p>
+							</div>
+						{/each}
+					</div>
+					<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
+						<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+							{$_(roiSnapshot.productivity.titleKey)}
+						</p>
+						<ul class="mt-3 space-y-3 text-[#1c2d52]/80">
+							{#each roiSnapshot.productivity.bulletKeys as bulletKey (bulletKey)}
+								<li>{$_(bulletKey)}</li>
+							{/each}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<section
+			class="grid gap-8 rounded-3xl border border-[#d7e0f5] bg-[#0b1730] px-6 py-10 md:grid-cols-3 md:px-10"
+		>
+			{#each proofPoints as card (card.id)}
+				<article class="flex flex-col space-y-4 text-white/90">
+					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
+						{$_(card.labelKey)}
+					</p>
+					<h3 class="text-xl font-semibold text-white">{$_(card.headlineKey)}</h3>
+					<ul class="space-y-3 text-sm leading-relaxed">
+						{#each card.bulletKeys as bulletKey (bulletKey)}
+							<li class="flex items-start gap-2">
+								<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+								<span>{$_(bulletKey)}</span>
+							</li>
+						{/each}
+					</ul>
+					<span class="flex-grow"></span>
+					{#if card.link}
+						<a
+							class="inline-flex items-center gap-2 text-sm font-semibold text-[#f2a516] transition hover:text-white"
+							href={card.link.href}
+						>
+							{$_(card.link.labelKey)}
+							<span aria-hidden="true">→</span>
+						</a>
+					{/if}
+				</article>
+			{/each}
+		</section>
 	</div>
 </section>
-<section class="py-20 bg-[#cfecff]">
-	<h2 class="text-6xl font-semibold p-10">Why <span class="text-green-500">Us</span>?</h2>
-	<div class="flex flex-col lg:flex-row items-center justify-between lg:px-12 px-4 space-y-10 lg:space-y-0">
-		<button onclick={() =>(showModalAffordable = true)}
-						class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-l-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
-			<p class="text-4xl font-semibold">Affordable Pricing</p>
-			<CircleDollarSign size={150} />
-			<p>Enjoy cost-effective solutions with transparent pricing, designed to deliver exceptional value compared to
-				industry standards.</p>
-		</button>
-		<Modal bind:showModal={showModalAffordable}>
-			{#snippet header()}
-				Affordable Pricing
-			{/snippet}
-			{#snippet children()}
-				<CircleDollarSign size={100} />
-				<p>Our pricing model is designed with farmers in mind, offering flexible plans that scale with your needs.
-					Whether you're managing a small family farm or a large agricultural enterprise, our IoT crop monitoring
-					solutions provide exceptional value without hidden costs. We offer straightforward subscription tiers,
-					one-time purchase options for hardware, and no long-term contracts, ensuring you only pay for what you need.
-					Compared to industry standards, our solutions deliver premium features at a fraction of the cost, empowering
-					you to maximize yields while minimizing expenses.</p>
-				<img src="https://images.unsplash.com/photo-1628282928695-29aaa1536c11?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Stack of coins representing affordable pricing" class="mt-4 w-full h-auto rounded-xl" />
-			{/snippet}
-		</Modal>
-		<button onclick={() =>(showModalService = true)}
-						class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
-			<p class="text-4xl font-semibold">End-to-End Service</p>
-			<Route size={150} />
-			<p>Experience seamless installation and setup at your location, ensuring a fully operational product from the
-				moment we complete the job.</p>
-		</button>
-		<Modal bind:showModal={showModalService}>
-			{#snippet header()}
-				End-to-End Service
-			{/snippet}
-			{#snippet children()}
-				<Route size={100} />
-				<p>Our end-to-end service ensures your IoT crop monitoring system is up and running with minimal effort on your
-					part. From initial consultation to final setup, our expert team handles everything—site assessment, hardware
-					installation, software configuration, and system testing. We provide on-site training to ensure your team is
-					confident in using the system. Post-installation, our dedicated support team is available 24/7 to address any
-					questions or issues, guaranteeing a hassle-free experience and a fully operational solution tailored to your
-					farm's unique needs.</p>
-				<img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" alt="Technician working on equipment for end-to-end service" class="mt-4 w-full h-auto rounded-xl" />
-			{/snippet}
-		</Modal>
-		<button onclick={() =>(showModalHardware = true)}
-						class="bg-emerald-900 text-white lg:w-1/3 lg:h-[45rem] text-center items-center rounded-md lg:rounded-none flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
-			<p class="text-4xl font-semibold">Long Lasting Hardware</p>
-			<Shield size={150} />
-			<p>Benefit from durable, high-quality hardware built to withstand the test of time, minimizing maintenance and
-				ensuring reliable performance.</p>
-		</button>
-		<Modal bind:showModal={showModalHardware}>
-			{#snippet header()}
-				Long Lasting Hardware
-			{/snippet}
-			{#snippet children()}
-				<Shield size={100} />
-				<p>Our IoT devices are engineered for durability and reliability in the harshest agricultural environments.
-					Constructed with weather-resistant materials, our sensors and monitoring equipment are designed to endure
-					extreme temperatures, moisture, and dust, ensuring consistent performance year-round. With a focus on
-					longevity, our hardware requires minimal maintenance, reducing downtime and operational costs. Each device
-					undergoes rigorous testing to meet the highest quality standards, providing you with a dependable solution
-					that supports your farm’s productivity for years to come.</p>
-				<img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f" alt="Close-up of durable IoT hardware components" class="mt-4 w-full h-auto rounded-xl" />
-			{/snippet}
-		</Modal>
-		<button onclick={() =>(showModalCoverage = true)}
-						class="bg-green-500 text-white lg:w-1/3 lg:h-[45rem] lg:rounded-r-xl lg:rounded-none rounded-md text-center items-center flex flex-col justify-center space-y-12 lg:space-y-20 py-20 px-8 hover:-translate-y-10 transition ease-in-out">
-			<p class="text-4xl font-semibold">The Best Signal Coverage</p>
-			<RadioTower size={150} />
-			<p>Achieve superior connectivity with our advanced systems, delivering unmatched signal coverage and powered by
-				long-lasting, low-maintenance batteries.</p>
-		</button>
-		<Modal bind:showModal={showModalCoverage}>
-			{#snippet header()}
-				The Best Signal Coverage
-			{/snippet}
-			{#snippet children()}
-				<RadioTower size={100} />
-				<p>Our IoT crop monitoring systems leverage cutting-edge connectivity technology to ensure seamless data
-					transmission across your entire farm, no matter the size or terrain. With advanced signal amplification and
-					low-power wide-area network (LPWAN) technology, our devices provide unmatched coverage, even in remote or
-					challenging environments. Powered by long-lasting, low-maintenance batteries, our systems minimize the need
-					for frequent replacements, ensuring continuous monitoring and real-time insights into soil health, moisture
-					levels, and crop conditions, all accessible from your smartphone or computer.</p>
-				<img src="https://images.unsplash.com/photo-1548244250-9aa08b58f204?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Radio tower ensuring superior signal coverage" class="mt-4 w-full h-auto rounded-xl" />
-			{/snippet}
-		</Modal>
-	</div>
-</section>
 
-<!-- Products Quickview Section -->
-<!-- <section id="products-quickview" class="bg-gray-600 py-10 text-white">
-	<div class="container mx-auto text-center">
-		<h2 class="text-3xl font-bold">{m.home_popular_products_title()}</h2>
-		<p class="mt-4">
-			{m.home_popular_products_subtitle()}<a href="#"><u>click here</u></a>.
-		</p>
-	</div>
-	<LineCarasol />
-</section> -->
-
-<!-- Pricing Section -->
-<section id="pricing" class="bg-gradient-to-t from-white to-[#cfecff]  py-20 px-4">
-	<div class="container mx-auto text-center">
-		<h2 class="text-3xl font-bold lg:text-5xl">{m.home_pricing_title()}</h2>
-		<p class="mt-4 font-light py-6 lg:text-2xl">{m.home_pricing_subtitle()}</p>
-		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-			<PriceCard
-				title="IoT"
-				description={m.price_1()}
-				features={languageTag() == 'ja'
-					? [
-							'データ2年分保存（データベース）',
-							'データの一元管理（アプリケーションサーバー）',
-							'LoRaWANサーバー',
-							'アラート通知※1',
-							'データダウンロード',
-							'レポート作成・自動配信',
-							'権限付与',
-							'無制限ログイン',
-							'APIアクセス'
-						]
-					: [
-							'Store data for 2 years (database)',
-							'Centralized data management (application server)',
-							'LoRaWAN Server',
-							'Alert notifications*1',
-							'Data download',
-							'Report generation and automatic distribution',
-							'Permission granting',
-							'Unlimited logins',
-							'API access'
-						]}
-				link="#"
-				color="bg-green-500"
-				buttonLabel={m.home_pricing_get_started()}
-			/>
-
-			<PriceCard
-				title={m.home_pricing_volume_agreement()}
-				description={m.price_3()}
-				features={languageTag() == 'ja'
-					? [
-							'大量のデバイスに関する交渉',
-							'第三者流通契約',
-							'デバイス＆ゲートウェイのレンタルパッケージ',
-							'パートナーシップと協業',
-							'単発プロジェクトおよび実験',
-							'カスタマイズされたソリューション',
-							'優先サポート',
-							'カスタムSLA'
-						]
-					: [
-							'Negotiate on large amounts of devices',
-							'3rd part distribution agreements',
-							'Device & gateway rental bundles',
-							'Partnerships & collaborations',
-							'One-off projects and experiments',
-							'Customized solutions',
-							'Priority support',
-							'Custom SLA'
-						]}
-				link="/contact-us"
-				color="bg-yellow-300"
-				buttonLabel={m.home_pricing_contact_us_options()}
-			/>
+<section class="bg-[#f5f7fb] py-20">
+	<div class="mx-auto w-full max-w-6xl px-4">
+		<div class="mb-12 text-center">
+			<p class="text-xs font-semibold tracking-[0.32em] text-[#2f5387] uppercase">
+				{$_(industriesSection.eyebrowKey)}
+			</p>
+			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">
+				{$_(industriesSection.headlineKey)}
+			</h2>
+			<p class="mt-3 text-base text-[#1c2d52]/80">
+				{$_(industriesSection.introKey)}
+			</p>
+		</div>
+		<div class="grid gap-6 md:grid-cols-3">
+			{#each industriesServed as industry (industry.labelKey)}
+				<div
+					class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
+				>
+					<div class="text-3xl">{industry.icon}</div>
+					<p class="mt-4 text-base font-semibold text-[#0b1730]">{$_(industry.labelKey)}</p>
+					<p class="mt-2 text-sm text-[#1c2d52]/70">{$_(industry.descriptionKey)}</p>
+				</div>
+			{/each}
 		</div>
 	</div>
-	<p class="p-6">{m.home_pricing_disclaimer_1()}</p>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="bg-gray-100 py-20">
-	<div class="container mx-auto text-center">
-		<h2 class="text-3xl font-bold">{m.home_contact_title()}</h2>
-		<p class="mt-4">{m.home_contact_subtitle()}</p>
-		<a
-			class="mt-6 inline-block rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-			href="contact-us">{m.contact_us()}</a
-		>
-	</div>
+<section class="bg-white py-20">
+	{#if ($locale ?? 'en') === 'ja'}
+		<PricingJa />
+	{:else}
+		<PricingEn />
+	{/if}
 </section>
 
-<!-- Remarks on Asterisk Section -->
-<section id="remarks" class="flex flex-col bg-gray-200 py-10 pl-3 text-left">
-	<ol>
-		<li>
-			<sm>※1</sm>
-			{m.home_disclaimer_1()}
-			<a class="cursor-pointer font-bold text-blue-900 underline" href="https://discord.com/"
-			>Discord</a
+<section class="relative overflow-hidden bg-[#0b1730] py-20">
+	<div
+		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
+		aria-hidden="true"
+	></div>
+	<div class="relative mx-auto w-full max-w-5xl px-4 text-center text-white">
+		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
+			{$_(closingCtas.eyebrowKey)}
+		</p>
+		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
+			{@html $_(closingCtas.headlineKey)}
+		</h2>
+		<p class="mt-4 text-base text-white/80">
+			{$_(closingCtas.bodyKey)}
+		</p>
+		<div class="mt-8 flex flex-wrap justify-center gap-4">
+			<a
+				href="/contact"
+				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 			>
-		</li>
-	</ol>
+				{$_(closingCtas.primaryKey)}
+			</a>
+			<a
+				href="/case-studies"
+				class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
+			>
+				{$_(closingCtas.secondaryKey)}
+			</a>
+		</div>
+	</div>
 </section>
