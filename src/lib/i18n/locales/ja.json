@@ -286,6 +286,7 @@
       }
     },
     "proof_points": {
+      "sensorFeatures": "CropWatch センサーの特長",
       "battery_life": {
         "eyebrow": "高い耐久性",
         "headline": "過酷な環境でも動き続ける堅牢設計",
