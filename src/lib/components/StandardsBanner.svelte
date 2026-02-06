@@ -1,6 +1,6 @@
 <script>
-	import ilacImage from '$lib/images/ilac-mra-certification-web.png';
-	import nistImage from '$lib/images/nist-traceable-web.png';
+	import ilacImage from '$lib/images/ilac-mra-certification-web.webp';
+	import nistImage from '$lib/images/nist-traceable-web.webp';
 	import isoImage from '$lib/images/iso-iec-17025-certified-web.png';
 	import haccp from '$lib/images/HACCP.webp';
 	import { locale } from 'svelte-i18n';

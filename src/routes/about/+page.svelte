@@ -119,15 +119,15 @@
 			initials: 'EH',
 			websiteUrl: 'https://www.xazdesign.com/',
 		},
-		{
-			name: '🇯🇵 山﨑 慶一朗', // i18n-ignore
-			title: 'Lawyer & Legal Advisor', // i18n-ignore
-			bio: 'Our Legal Advisor, providing expert counsel to ensure compliance and mitigate risks.', // i18n-ignore
-			src: keiichiroImage,
-			avatarAlt: '山﨑', // i18n-ignore
-			initials: '山﨑',
-			websiteUrl: 'https://kensei-law.jp/people/keiichiro-yamasaki/',
-		},
+		// {
+		// 	name: '🇯🇵 山﨑 慶一朗', // i18n-ignore
+		// 	title: 'Lawyer & Legal Advisor', // i18n-ignore
+		// 	bio: 'Our Legal Advisor, providing expert counsel to ensure compliance and mitigate risks.', // i18n-ignore
+		// 	src: keiichiroImage,
+		// 	avatarAlt: '山﨑', // i18n-ignore
+		// 	initials: '山﨑',
+		// 	websiteUrl: 'https://kensei-law.jp/people/keiichiro-yamasaki/',
+		// },
 	];
 
 	const leadershipTeam = $derived(
