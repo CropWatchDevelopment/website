@@ -1,5 +1,4 @@
 <script lang="ts">
-	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
 	import PricingEn from '$lib/components/pricing/PricingEn.svelte';
 	import PricingJa from '$lib/components/pricing/PricingJa.svelte';
 	import Slider from '$lib/components/Slider.svelte';
@@ -257,36 +256,41 @@
 			</div>
 		</div>
 
-		<section
-			class="grid gap-8 rounded-3xl border border-[#d7e0f5] bg-[#0b1730] px-6 py-10 md:grid-cols-3 md:px-10"
-		>
-			{#each proofPoints as card (card.id)}
-				<article class="flex flex-col space-y-4 text-white/90">
-					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-						{$_(card.labelKey)}
-					</p>
-					<h3 class="text-xl font-semibold text-white">{$_(card.headlineKey)}</h3>
-					<ul class="space-y-3 text-sm leading-relaxed">
-						{#each card.bulletKeys as bulletKey (bulletKey)}
-							<li class="flex items-start gap-2">
-								<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-								<span>{$_(bulletKey)}</span>
-							</li>
-						{/each}
-					</ul>
-					<span class="flex-grow"></span>
-					{#if card.link}
-						<a
-							class="inline-flex items-center gap-2 text-sm font-semibold text-[#f2a516] transition hover:text-white"
-							href={card.link.href}
-						>
-							{$_(card.link.labelKey)}
-							<span aria-hidden="true">→</span>
-						</a>
-					{/if}
-				</article>
-			{/each}
-		</section>
+		<div>
+			<h2 class="py-4 text-center text-3xl font-semibold text-[#0b1730]">
+				{$_('home.proof_points.sensorFeatures')}
+			</h2>
+			<section
+				class="grid gap-8 rounded-3xl border border-[#d7e0f5] bg-[#0b1730] px-6 py-10 md:grid-cols-3 md:px-10"
+			>
+				{#each proofPoints as card (card.id)}
+					<article class="flex flex-col space-y-4 text-white/90">
+						<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
+							{$_(card.labelKey)}
+						</p>
+						<h3 class="text-xl font-semibold text-white">{$_(card.headlineKey)}</h3>
+						<ul class="space-y-3 text-sm leading-relaxed">
+							{#each card.bulletKeys as bulletKey (bulletKey)}
+								<li class="flex items-start gap-2">
+									<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+									<span>{$_(bulletKey)}</span>
+								</li>
+							{/each}
+						</ul>
+						<span class="flex-grow"></span>
+						{#if card.link}
+							<a
+								class="inline-flex items-center gap-2 text-sm font-semibold text-[#f2a516] transition hover:text-white"
+								href={card.link.href}
+							>
+								{$_(card.link.labelKey)}
+								<span aria-hidden="true">→</span>
+							</a>
+						{/if}
+					</article>
+				{/each}
+			</section>
+		</div>
 	</div>
 </section>
 

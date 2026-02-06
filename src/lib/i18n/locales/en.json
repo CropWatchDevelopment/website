@@ -285,6 +285,7 @@
       }
     },
     "proof_points": {
+      "sensorFeatures": "CropWatch Sensor Features",
       "battery_life": {
         "eyebrow": "Battery Life That Outlasts Downtime",
         "headline": "10+ year runtime, even in 24/7 facilities",
@@ -1130,17 +1131,17 @@
           "description": "Backed by 24/7 operations teams"
         },
         "hubs": {
-          "title": "6 global hubs",
+          "title": "",
           "description": "Sensor fleets monitored around the clock"
         }
       },
       "sidebar": {
-        "title": "Built for demanding operators",
-        "intro": "Our teams blend RF engineering, industrial automation, and data science to deliver reliable insights where downtime is not an option.",
+        "title": "Built for you",
+        "intro": "Our team works around you, ensuring that you have the support and expertise needed to keep your operations running smoothly.",
         "points": [
-          "Certified specialists in HACCP, OSHA, and ISO 9001 compliance workflows.",
-          "Hybrid deployment model blending on-site technicians with remote command centers.",
-          "Industry partnerships with leading sensor manufacturers and cloud platforms."
+          "We have assembled the best engineers, developers, and operators with deep experience in building resilient IoT systems.",
+          "Our team is dedicated to continuous improvement, unlike others, we actively seek feedback from customers to enhance all parts of our system.",
+          "We prioritize reliability and ease-of-use in every design decision, ensuring our solutions meet the highest standards for industrial environments."
         ]
       }
     },
