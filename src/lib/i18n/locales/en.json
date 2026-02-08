@@ -97,7 +97,8 @@
       "links": {
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
-        "sitemap": "Sitemap"
+        "sitemap": "Sitemap",
+        "EULA": "End User License Agreement"
       },
       "registration": "**"
     }
@@ -370,10 +371,6 @@
             "devices_100_plus": {
               "label": "100+ devices",
               "value": "Contact us"
-            },
-            "calibration": {
-              "label": "Calibration",
-              "value": "Included, NIST-traceable"
             }
           }
         },
@@ -396,10 +393,6 @@
             "carrier_gateway": {
               "label": "Industrial carrier-grade",
               "value": "1899"
-            },
-            "rf_design": {
-              "label": "Site RF design",
-              "value": "Bundled with deployment"
             }
           }
         },

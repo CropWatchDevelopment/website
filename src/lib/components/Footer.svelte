@@ -129,6 +129,10 @@
 				</li>
 				<li class="flex items-center gap-3">
 					<span aria-hidden="true" class="text-white/40">|</span>
+					<a class="transition hover:text-[#f2a516]" href="/legal/EULA">{$_('footer.legal.links.EULA')}</a>
+				</li>
+				<li class="flex items-center gap-3">
+					<span aria-hidden="true" class="text-white/40">|</span>
 					<a class="transition hover:text-[#f2a516]" href="/sitemap">{$_('footer.legal.links.sitemap')}</a>
 				</li>
 			</ul>
