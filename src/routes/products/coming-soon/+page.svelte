@@ -1,58 +1,6 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
-
-	const benefits = [
-		{
-			icon: 'sensors',
-			titleKey: 'products.coming_soon.benefits.sensor_suite.title',
-			descriptionKey: 'products.coming_soon.benefits.sensor_suite.description'
-		},
-		{
-			icon: 'signal_cellular_alt',
-			titleKey: 'products.coming_soon.benefits.network.title',
-			descriptionKey: 'products.coming_soon.benefits.network.description'
-		},
-		{
-			icon: 'shield',
-			titleKey: 'products.coming_soon.benefits.compliance.title',
-			descriptionKey: 'products.coming_soon.benefits.compliance.description'
-		}
-	] as const;
-
-	const timeline = [
-		{
-			labelKey: 'products.coming_soon.timeline.discovery.label',
-			statusKey: 'products.coming_soon.timeline.discovery.status',
-			descriptionKey: 'products.coming_soon.timeline.discovery.description'
-		},
-		{
-			labelKey: 'products.coming_soon.timeline.pilot.label',
-			statusKey: 'products.coming_soon.timeline.pilot.status',
-			descriptionKey: 'products.coming_soon.timeline.pilot.description'
-		},
-		{
-			labelKey: 'products.coming_soon.timeline.launch.label',
-			statusKey: 'products.coming_soon.timeline.launch.status',
-			descriptionKey: 'products.coming_soon.timeline.launch.description'
-		}
-	] as const;
-
-	const faqItems = [
-		{
-			questionKey: 'products.coming_soon.faq.items.0.question',
-			answerKey: 'products.coming_soon.faq.items.0.answer'
-		},
-		{
-			questionKey: 'products.coming_soon.faq.items.1.question',
-			answerKey: 'products.coming_soon.faq.items.1.answer'
-		},
-		{
-			questionKey: 'products.coming_soon.faq.items.2.question',
-			answerKey: 'products.coming_soon.faq.items.2.answer'
-		}
-	] as const;
-	
 </script>
 
 <svelte:head>
