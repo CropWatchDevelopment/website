@@ -14,16 +14,6 @@
 			label: '日本語'
 		},
 		{
-			code: 'fr',
-			icon: '🇫🇷',
-			label: 'Français'
-		},
-		{
-			code: 'it',
-			icon: '🇮🇹',
-			label: 'Italiano'
-		},
-		{
 			code: 'es',
 			icon: '🇭🇳',
 			label: 'Español'

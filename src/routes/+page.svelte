@@ -3,143 +3,7 @@
 	import PricingJa from '$lib/components/pricing/PricingJa.svelte';
 	import Slider from '$lib/components/Slider.svelte';
 	import StandardsBanner from '$lib/components/StandardsBanner.svelte';
-	import { _, json, locale } from 'svelte-i18n';
-
-	type ProofPoint = {
-		id: string;
-		labelKey: string;
-		headlineKey: string;
-		bulletKeys: string[];
-		link?: { labelKey: string; href: string };
-	};
-
-	// Derive proof points from i18n structure
-	const proofPoints = $derived.by(() => {
-		const proofPointData = $json('home.proof_points') as Record<
-			string,
-			{ bullets?: Record<string, unknown>; link?: { href: string } }
-		> | null;
-		if (!proofPointData) return [] as ProofPoint[];
-
-		return Object.keys(proofPointData).map((key) => {
-			const pointData = proofPointData[key];
-			return {
-				id: key,
-				labelKey: `home.proof_points.${key}.eyebrow`,
-				headlineKey: `home.proof_points.${key}.headline`,
-				bulletKeys: pointData?.bullets
-					? Object.keys(pointData.bullets).map((i) => `home.proof_points.${key}.bullets.${i}`)
-					: [],
-				link: pointData?.link?.href
-					? { labelKey: `home.proof_points.${key}.link.label`, href: pointData.link.href }
-					: undefined
-			} satisfies ProofPoint;
-		});
-	});
-
-	// Derive hero content from i18n structure
-	const heroContent = $derived.by(() => {
-		const heroQuestions = $json('home.hero.questions');
-		const sidebarItems = $json('home.hero.sidebar.items');
-
-		return {
-			eyebrowKey: 'home.hero.eyebrow',
-			headlineKey: 'home.hero.headline_html',
-			bodyKey: 'home.hero.body_html',
-			questions: heroQuestions
-				? Object.keys(heroQuestions).map((i) => `home.hero.questions.${i}`)
-				: [],
-			primaryCtaKey: 'home.hero.primary_cta',
-			secondaryCtaKey: 'home.hero.secondary_cta',
-			sidebar: {
-				titleKey: 'home.hero.sidebar.title',
-				items: sidebarItems
-					? Object.keys(sidebarItems).map((key) => ({
-							termKey: `home.hero.sidebar.items.${key}.term`,
-							valueKey: `home.hero.sidebar.items.${key}.value_html`
-						}))
-					: []
-			}
-		} as const;
-	});
-
-	// Derive ROI snapshot from i18n structure
-	const roiSnapshot = $derived.by(() => {
-		const manualBullets = $json('home.hero.sidebar.comparison.manual.bullets');
-		const automatedBullets = $json('home.hero.sidebar.comparison.automated.bullets');
-		const stats = $json('home.hero.sidebar.stats');
-		const productivityBullets = $json('home.hero.sidebar.productivity.bullets');
-
-		return {
-			manualCard: {
-				titleKey: 'home.hero.sidebar.comparison.manual.title',
-				bulletKeys: manualBullets
-					? Object.keys(manualBullets).map(
-							(i) => `home.hero.sidebar.comparison.manual.bullets.${i}`
-						)
-					: []
-			},
-			automatedCard: {
-				titleKey: 'home.hero.sidebar.comparison.automated.title',
-				bulletKeys: automatedBullets
-					? Object.keys(automatedBullets).map(
-							(i) => `home.hero.sidebar.comparison.automated.bullets.${i}`
-						)
-					: []
-			},
-			stats: stats
-				? Object.keys(stats).map((key) => ({
-						titleKey: `home.hero.sidebar.stats.${key}.title`,
-						valueKey: `home.hero.sidebar.stats.${key}.value`,
-						bodyKey: `home.hero.sidebar.stats.${key}.body`
-					}))
-				: [],
-			productivity: {
-				titleKey: 'home.hero.sidebar.productivity.title',
-				bulletKeys: productivityBullets
-					? Object.keys(productivityBullets).map(
-							(i) => `home.hero.sidebar.productivity.bullets.${i}`
-						)
-					: []
-			}
-		};
-	});
-
-	// Icons mapped to industry keys
-	const industryIcons: Record<string, string> = {
-		cold_chain: '🧊',
-		protein: '🖼️',
-		hospitality: '🐔',
-		manufacturing: '🏭',
-		storage: '📦',
-		agriculture: '🧓'
-	};
-
-	// Derive industries from i18n structure
-	const industriesServed = $derived.by(() => {
-		const industries = $json('home.industries.cards');
-		if (!industries) return [];
-
-		return Object.keys(industries).map((key) => ({
-			icon: industryIcons[key] || '❓',
-			labelKey: `home.industries.cards.${key}.label`,
-			descriptionKey: `home.industries.cards.${key}.description`
-		}));
-	});
-
-	const industriesSection = {
-		eyebrowKey: 'home.industries.eyebrow',
-		headlineKey: 'home.industries.headline',
-		introKey: 'home.industries.intro'
-	} as const;
-
-	const closingCtas = {
-		eyebrowKey: 'home.closing.eyebrow',
-		headlineKey: 'home.closing.headline',
-		bodyKey: 'home.closing.body',
-		primaryKey: 'home.closing.primary_cta',
-		secondaryKey: 'home.closing.secondary_cta'
-	} as const;
+	import { _, locale } from 'svelte-i18n';
 </script>
 
 <svelte:head>
@@ -167,23 +31,41 @@
 		<div class="grid gap-12 md:grid-cols-[1.35fr_1fr] md:items-start">
 			<div class="flex h-full flex-col gap-6">
 				<p class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-					{$_(heroContent.eyebrowKey)}
+					{$_('home.hero.eyebrow')}
 				</p>
 				<h1 class="text-4xl font-semibold tracking-tight text-[#0b1730] md:text-5xl">
-					{@html $_(heroContent.headlineKey)}
+					{@html $_('home.hero.headline_html')}
 				</h1>
 				<p class="text-lg leading-relaxed text-[#15284a]/80">
-					{@html $_(heroContent.bodyKey)}
+					{@html $_('home.hero.body_html')}
 				</p>
 				<div
 					class="grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-sm text-[#1c2d52] md:grid-cols-2"
 				>
-					{#each heroContent.questions as questionKey (questionKey)}
-						<div class="flex items-start gap-3">
-							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-							<p>{$_(questionKey)}</p>
-						</div>
-					{/each}
+					<div class="flex items-start gap-3">
+						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+						<p>{$_('home.hero.questions.0')}</p>
+					</div>
+					<div class="flex items-start gap-3">
+						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+						<p>{$_('home.hero.questions.1')}</p>
+					</div>
+					<div class="flex items-start gap-3">
+						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+						<p>{$_('home.hero.questions.2')}</p>
+					</div>
+					<div class="flex items-start gap-3">
+						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+						<p>{$_('home.hero.questions.3')}</p>
+					</div>
+					<div class="flex items-start gap-3">
+						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+						<p>{$_('home.hero.questions.4')}</p>
+					</div>
+					<div class="flex items-start gap-3">
+						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
+						<p>{$_('home.hero.questions.5')}</p>
+					</div>
 				</div>
 
 				<!--VIDEO EXAMPLES SECTION-->
@@ -193,63 +75,76 @@
 						href="/contact"
 						class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
 					>
-						{$_(heroContent.primaryCtaKey)}
+						{$_('home.hero.primary_cta')}
 					</a>
 					<a
 						href="/case-studies"
 						class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-6 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
 					>
-						{$_(heroContent.secondaryCtaKey)}
+						{$_('home.hero.secondary_cta')}
 					</a>
 				</div>
 			</div>
 			<div
 				class="h-full rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-lg shadow-[#0b1730]/5"
 			>
-				<h2 class="text-lg font-semibold text-[#0b1730]">{$_(heroContent.sidebar.titleKey)}</h2>
+				<h2 class="text-lg font-semibold text-[#0b1730]">{$_('home.hero.sidebar.title')}</h2>
 				<hr class="my-4 border-[#d7e0f5]" />
 				<div class="space-y-6 text-sm text-[#1c2d52]">
 					<div class="grid gap-4 sm:grid-cols-2">
 						<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
 							<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-								{$_(roiSnapshot.manualCard.titleKey)}
+								{$_('home.hero.sidebar.comparison.manual.title')}
 							</p>
 							<ul class="mt-4 space-y-3 text-[#1c2d52]/80">
-								{#each roiSnapshot.manualCard.bulletKeys as bulletKey (bulletKey)}
-									<li>{$_(bulletKey)}</li>
-								{/each}
+								<li>{$_('home.hero.sidebar.comparison.manual.bullets.0')}</li>
+								<li>{$_('home.hero.sidebar.comparison.manual.bullets.1')}</li>
+								<li>{$_('home.hero.sidebar.comparison.manual.bullets.2')}</li>
 							</ul>
 						</div>
 						<div class="rounded-2xl border border-transparent bg-[#0b1730] p-5 text-white">
 							<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-								{$_(roiSnapshot.automatedCard.titleKey)}
+								{$_('home.hero.sidebar.comparison.automated.title')}
 							</p>
 							<ul class="mt-4 space-y-3 text-white/80">
-								{#each roiSnapshot.automatedCard.bulletKeys as bulletKey (bulletKey)}
-									<li>{$_(bulletKey)}</li>
-								{/each}
+								<li>{$_('home.hero.sidebar.comparison.automated.bullets.0')}</li>
+								<li>{$_('home.hero.sidebar.comparison.automated.bullets.1')}</li>
+								<li>{$_('home.hero.sidebar.comparison.automated.bullets.2')}</li>
 							</ul>
 						</div>
 					</div>
 					<div class="grid gap-4 sm:grid-cols-2">
-						{#each roiSnapshot.stats as stat (stat.titleKey)}
-							<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
-								<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-									{$_(stat.titleKey)}
-								</p>
-								<p class="mt-2 text-2xl font-semibold text-[#0b1730]">{$_(stat.valueKey)}</p>
-								<p class="mt-2 text-[#1c2d52]/70">{$_(stat.bodyKey)}</p>
-							</div>
-						{/each}
+						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
+							<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+								{$_('home.hero.sidebar.stats.time_saved.title')}
+							</p>
+							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">
+								{$_('home.hero.sidebar.stats.time_saved.value')}
+							</p>
+							<p class="mt-2 text-[#1c2d52]/70">
+								{$_('home.hero.sidebar.stats.time_saved.body')}
+							</p>
+						</div>
+						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
+							<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+								{$_('home.hero.sidebar.stats.labor_savings.title')}
+							</p>
+							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">
+								{$_('home.hero.sidebar.stats.labor_savings.value')}
+							</p>
+							<p class="mt-2 text-[#1c2d52]/70">
+								{$_('home.hero.sidebar.stats.labor_savings.body')}
+							</p>
+						</div>
 					</div>
 					<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
 						<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-							{$_(roiSnapshot.productivity.titleKey)}
+							{$_('home.hero.sidebar.productivity.title')}
 						</p>
 						<ul class="mt-3 space-y-3 text-[#1c2d52]/80">
-							{#each roiSnapshot.productivity.bulletKeys as bulletKey (bulletKey)}
-								<li>{$_(bulletKey)}</li>
-							{/each}
+							<li>{$_('home.hero.sidebar.productivity.bullets.0')}</li>
+							<li>{$_('home.hero.sidebar.productivity.bullets.1')}</li>
+							<li>{$_('home.hero.sidebar.productivity.bullets.2')}</li>
 						</ul>
 					</div>
 				</div>
@@ -263,32 +158,79 @@
 			<section
 				class="grid gap-8 rounded-3xl border border-[#d7e0f5] bg-[#0b1730] px-6 py-10 md:grid-cols-3 md:px-10"
 			>
-				{#each proofPoints as card (card.id)}
-					<article class="flex flex-col space-y-4 text-white/90">
-						<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-							{$_(card.labelKey)}
-						</p>
-						<h3 class="text-xl font-semibold text-white">{$_(card.headlineKey)}</h3>
-						<ul class="space-y-3 text-sm leading-relaxed">
-							{#each card.bulletKeys as bulletKey (bulletKey)}
-								<li class="flex items-start gap-2">
-									<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-									<span>{$_(bulletKey)}</span>
-								</li>
-							{/each}
-						</ul>
-						<span class="flex-grow"></span>
-						{#if card.link}
-							<a
-								class="inline-flex items-center gap-2 text-sm font-semibold text-[#f2a516] transition hover:text-white"
-								href={card.link.href}
-							>
-								{$_(card.link.labelKey)}
-								<span aria-hidden="true">→</span>
-							</a>
-						{/if}
-					</article>
-				{/each}
+				<article class="flex flex-col space-y-4 text-white/90">
+					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
+						{$_('home.proof_points.battery_life.eyebrow')}
+					</p>
+					<h3 class="text-xl font-semibold text-white">
+						{$_('home.proof_points.battery_life.headline')}
+					</h3>
+					<ul class="space-y-3 text-sm leading-relaxed">
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.battery_life.bullets.0')}</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.battery_life.bullets.1')}</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.battery_life.bullets.2')}</span>
+						</li>
+					</ul>
+					<span class="flex-grow"></span>
+				</article>
+				<article class="flex flex-col space-y-4 text-white/90">
+					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
+						{$_('home.proof_points.measurement_confidence.eyebrow')}
+					</p>
+					<h3 class="text-xl font-semibold text-white">
+						{$_('home.proof_points.measurement_confidence.headline')}
+					</h3>
+					<ul class="space-y-3 text-sm leading-relaxed">
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.measurement_confidence.bullets.0')}</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.measurement_confidence.bullets.1')}</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.measurement_confidence.bullets.2')}</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.measurement_confidence.bullets.3')}</span>
+						</li>
+					</ul>
+					<span class="flex-grow"></span>
+				</article>
+				<article class="flex flex-col space-y-4 text-white/90">
+					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
+						{$_('home.proof_points.connectivity.eyebrow')}
+					</p>
+					<h3 class="text-xl font-semibold text-white">
+						{$_('home.proof_points.connectivity.headline')}
+					</h3>
+					<ul class="space-y-3 text-sm leading-relaxed">
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.connectivity.bullets.0')}</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.connectivity.bullets.1')}</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
+							<span>{$_('home.proof_points.connectivity.bullets.2')}</span>
+						</li>
+					</ul>
+					<span class="flex-grow"></span>
+				</article>
 			</section>
 		</div>
 	</div>
@@ -298,25 +240,82 @@
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="mb-12 text-center">
 			<p class="text-xs font-semibold tracking-[0.32em] text-[#2f5387] uppercase">
-				{$_(industriesSection.eyebrowKey)}
+				{$_('home.industries.eyebrow')}
 			</p>
 			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">
-				{$_(industriesSection.headlineKey)}
+				{$_('home.industries.headline')}
 			</h2>
 			<p class="mt-3 text-base text-[#1c2d52]/80">
-				{$_(industriesSection.introKey)}
+				{$_('home.industries.intro')}
 			</p>
 		</div>
 		<div class="grid gap-6 md:grid-cols-3">
-			{#each industriesServed as industry (industry.labelKey)}
-				<div
-					class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
-				>
-					<div class="text-3xl">{industry.icon}</div>
-					<p class="mt-4 text-base font-semibold text-[#0b1730]">{$_(industry.labelKey)}</p>
-					<p class="mt-2 text-sm text-[#1c2d52]/70">{$_(industry.descriptionKey)}</p>
-				</div>
-			{/each}
+			<div
+				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
+			>
+				<div class="text-3xl">🧊</div>
+				<p class="mt-4 text-base font-semibold text-[#0b1730]">
+					{$_('home.industries.cards.cold_chain.label')}
+				</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/70">
+					{$_('home.industries.cards.cold_chain.description')}
+				</p>
+			</div>
+			<div
+				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
+			>
+				<div class="text-3xl">🖼️</div>
+				<p class="mt-4 text-base font-semibold text-[#0b1730]">
+					{$_('home.industries.cards.protein.label')}
+				</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/70">
+					{$_('home.industries.cards.protein.description')}
+				</p>
+			</div>
+			<div
+				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
+			>
+				<div class="text-3xl">🐔</div>
+				<p class="mt-4 text-base font-semibold text-[#0b1730]">
+					{$_('home.industries.cards.hospitality.label')}
+				</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/70">
+					{$_('home.industries.cards.hospitality.description')}
+				</p>
+			</div>
+			<div
+				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
+			>
+				<div class="text-3xl">🏭</div>
+				<p class="mt-4 text-base font-semibold text-[#0b1730]">
+					{$_('home.industries.cards.manufacturing.label')}
+				</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/70">
+					{$_('home.industries.cards.manufacturing.description')}
+				</p>
+			</div>
+			<div
+				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
+			>
+				<div class="text-3xl">📦</div>
+				<p class="mt-4 text-base font-semibold text-[#0b1730]">
+					{$_('home.industries.cards.storage.label')}
+				</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/70">
+					{$_('home.industries.cards.storage.description')}
+				</p>
+			</div>
+			<div
+				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
+			>
+				<div class="text-3xl">🧓</div>
+				<p class="mt-4 text-base font-semibold text-[#0b1730]">
+					{$_('home.industries.cards.agriculture.label')}
+				</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/70">
+					{$_('home.industries.cards.agriculture.description')}
+				</p>
+			</div>
 		</div>
 	</div>
 </section>
@@ -336,26 +335,26 @@
 	></div>
 	<div class="relative mx-auto w-full max-w-5xl px-4 text-center text-white">
 		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-			{$_(closingCtas.eyebrowKey)}
+			{$_('home.closing.eyebrow')}
 		</p>
 		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
-			{@html $_(closingCtas.headlineKey)}
+			{@html $_('home.closing.headline')}
 		</h2>
 		<p class="mt-4 text-base text-white/80">
-			{$_(closingCtas.bodyKey)}
+			{$_('home.closing.body')}
 		</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a
 				href="/contact"
 				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 			>
-				{$_(closingCtas.primaryKey)}
+				{$_('home.closing.primary_cta')}
 			</a>
 			<a
 				href="/case-studies"
 				class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 			>
-				{$_(closingCtas.secondaryKey)}
+				{$_('home.closing.secondary_cta')}
 			</a>
 		</div>
 	</div>

@@ -17,15 +17,17 @@ const CONTACT_RECIPIENTS = {
 
 const RECAPTCHA_ACTION = 'contact_form';
 const RECAPTCHA_MIN_SCORE = 0.5;
+const RECAPTCHA_TOKEN_MAX_AGE_MS = 2 * 60 * 1000;
 
 export const actions: Actions = {
-	default: async ({ request, getClientAddress }) => {
+	default: async ({ request, getClientAddress, url }) => {
 		const verification = await checkBotId();
 		if (verification.isBot) {
 			return fail(403, { message: 'Access denied.' });
 		}
 
 		const formData = await request.formData();
+		const clientIp = getClientAddress();
 		const recaptchaToken = getString(formData, 'g-recaptcha-response');
 		const firstName = getString(formData, 'firstName');
 		const lastName = getString(formData, 'lastName');
@@ -40,13 +42,19 @@ export const actions: Actions = {
 			return fail(400, { message: 'Invalid form submission.' });
 		}
 
-		const recaptchaOk = await verifyRecaptcha(
+		const recaptchaVerification = await verifyRecaptcha(
 			recaptchaToken,
-			getClientAddress(),
+			clientIp,
 			RECAPTCHA_ACTION,
-			RECAPTCHA_MIN_SCORE
+			RECAPTCHA_MIN_SCORE,
+			url.hostname
 		);
-		if (!recaptchaOk) {
+		if (!recaptchaVerification.ok) {
+			console.warn('reCAPTCHA verification failed', {
+				reason: recaptchaVerification.reason,
+				clientIp,
+				hostname: url.hostname
+			});
 			return fail(400, { message: 'reCAPTCHA verification failed.' });
 		}
 
@@ -91,12 +99,18 @@ function getString(formData: FormData, key: string) {
 	return typeof value === 'string' && value.trim().length > 0 ? value.trim() : null;
 }
 
+type RecaptchaVerificationResult = {
+	ok: boolean;
+	reason?: string;
+};
+
 async function verifyRecaptcha(
 	token: string,
 	clientIp: string | null,
 	action: string,
-	minScore: number
-) {
+	minScore: number,
+	expectedHostname: string
+): Promise<RecaptchaVerificationResult> {
 	const verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
 	const params = new URLSearchParams();
 	params.append('secret', PRIVATE_GOOGLE_RECAPTCHA_SECRET_KEY);
@@ -108,24 +122,91 @@ async function verifyRecaptcha(
 	try {
 		const recaptchaResponse = await fetch(verificationUrl, {
 			method: 'POST',
-			body: params
+			body: params,
+			signal: AbortSignal.timeout(7000)
 		});
 
 		if (!recaptchaResponse.ok) {
-			return false;
+			return {
+				ok: false,
+				reason: `verification_request_rejected:${recaptchaResponse.status}`
+			};
 		}
 
 		const recaptchaResult: {
 			success: boolean;
 			score?: number;
 			action?: string;
+			hostname?: string;
+			challenge_ts?: string;
 			['error-codes']?: string[];
 		} = await recaptchaResponse.json();
 
-		const isScoreAcceptable = (recaptchaResult.score ?? 0) >= minScore;
-		const actionMatches = recaptchaResult.action === action;
-		return recaptchaResult.success && isScoreAcceptable && actionMatches;
+		if (!recaptchaResult.success) {
+			return {
+				ok: false,
+				reason: `google_unsuccessful:${(recaptchaResult['error-codes'] ?? []).join(',') || 'unknown'}`
+			};
+		}
+
+		const score = recaptchaResult.score ?? 0;
+		if (score < minScore) {
+			return {
+				ok: false,
+				reason: `score_too_low:${score.toFixed(2)}`
+			};
+		}
+
+		if (recaptchaResult.action !== action) {
+			return {
+				ok: false,
+				reason: `action_mismatch:${recaptchaResult.action ?? 'missing'}`
+			};
+		}
+
+		const normalizedExpectedHostname = normalizeHostname(expectedHostname);
+		const normalizedResultHostname = normalizeHostname(recaptchaResult.hostname ?? '');
+		if (!normalizedResultHostname || normalizedResultHostname !== normalizedExpectedHostname) {
+			return {
+				ok: false,
+				reason: `hostname_mismatch:${recaptchaResult.hostname ?? 'missing'}`
+			};
+		}
+
+		if (!isRecaptchaTokenFresh(recaptchaResult.challenge_ts)) {
+			return {
+				ok: false,
+				reason: `token_expired_or_invalid:${recaptchaResult.challenge_ts ?? 'missing'}`
+			};
+		}
+
+		return { ok: true };
 	} catch (error) {
+		console.error('reCAPTCHA verification request failed', error);
+		return {
+			ok: false,
+			reason: 'verification_request_failed'
+		};
+	}
+}
+
+function normalizeHostname(hostname: string) {
+	return hostname
+		.trim()
+		.toLowerCase()
+		.replace(/^www\./, '');
+}
+
+function isRecaptchaTokenFresh(challengeTimestamp?: string) {
+	if (!challengeTimestamp) {
 		return false;
 	}
+
+	const challengeTs = Date.parse(challengeTimestamp);
+	if (Number.isNaN(challengeTs)) {
+		return false;
+	}
+
+	const tokenAgeMs = Date.now() - challengeTs;
+	return tokenAgeMs >= 0 && tokenAgeMs <= RECAPTCHA_TOKEN_MAX_AGE_MS;
 }

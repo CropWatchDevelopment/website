@@ -31,10 +31,6 @@ body {
 	color: var(--cw-ice-100);
 }
 
-.grecaptcha-badge {
-    visibility: hidden;
-}
-
 .visually-hidden {
 	border: 0;
 	clip: rect(0 0 0 0);
