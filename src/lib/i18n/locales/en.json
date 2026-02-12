@@ -109,7 +109,9 @@
 		},
 		"controls": {
 			"previous": "Previous slide",
-			"next": "Next slide"
+			"next": "Next slide",
+			"pause": "Pause",
+			"play": "Play"
 		},
 		"fallback": {
 			"no_slides": "No slides configured."
@@ -218,7 +220,7 @@
 		"hero": {
 			"eyebrow": "Industrial IoT That Pays For Itself",
 			"headline_html": "What makes CropWatch<sup><small>®</small></sup> different?",
-			"body_html": "CropWatch<sup><small>®</small></sup> specializes in building the most trusted industrial IoT systems for cold chain, manufacturing, hospitality, and complex environments. Our dual-sensor hardware, long-life battery design, and LoRaWAN® connectivity ensure reliable data from even the harshest sites. Combined with our proven deployment methodology and analytics platform, CropWatch<sup><small>®</small></sup> delivers measurable ROI and time savings to teams large and small. </br></br><p><b>Before continuing, if you already have a monitoring solution, ask yourself the following questions: </b></p>",
+			"body_html": "CropWatch<sup><small>®</small></sup> specializes in building the most trusted industrial IoT systems for cold-chain, livestock, temperature monitoring, and complex environments. Our dual-sensor hardware, long-life battery design, and LoRaWAN® connectivity ensure reliable data from even the harshest sites. Combined with our proven analytics platform, CropWatch<sup><small>®</small></sup> delivers measurable ROI and time savings to teams large and small. </br></br><p><b>Before continuing, if you already have a monitoring solution, ask yourself the following questions: </b></p>",
 			"questions": [
 				"Can your current sensors run for a full decade on a single battery?",
 				"What happens if your current sensor fails, or sends you wrong data? Will you know?",
