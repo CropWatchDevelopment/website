@@ -144,7 +144,7 @@
 								</a>
 							{:else}
 								<span class="text-[#2f5387]">
-									{colIdx === 0 && itemIdx === 0 ? $_(item.valueKey) : processPrice(item.valueKey)}
+									<!-- {colIdx === 0 && itemIdx === 0 ? $_(item.valueKey) : processPrice(item.valueKey)} -->
 								</span>
 							{/if}
 						</li>

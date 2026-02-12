@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
-	import { _ } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 
 	type PricingItem = {
 		labelKey: string;
@@ -114,7 +114,7 @@
 								<a class="text-[#2f5387] underline" href={item.href}>
 									{$_(item.valueKey)}
 								</a>
-							{:else}
+							{:else if $locale == 'en'}
 								<span class="text-[#2f5387]">{$_(item.valueKey)}</span>
 							{/if}
 						</li>
