@@ -69,6 +69,22 @@
 				</div>
 
 				<!--VIDEO EXAMPLES SECTION-->
+				<div>
+					{#if $locale === 'ja'}
+					aaa
+					{:else}
+					<iframe
+						class="w-full rounded-2xl border border-[#d7e0f5] shadow-lg shadow-[#0b1730]/5"
+						height="400"
+						src="https://www.youtube.com/embed/iiGCBuoFF20?si=ZgLpXY30PN0RTVqn"
+						title="YouTube video player"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin"
+						allowfullscreen
+					></iframe>
+					{/if}
+				</div>
 
 				<div class="mt-auto flex flex-wrap gap-3">
 					<a

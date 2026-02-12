@@ -108,7 +108,9 @@
 		},
 		"controls": {
 			"previous": "前のスライド",
-			"next": "次のスライド"
+			"next": "次のスライド",
+			"pause": "一時停止",
+			"play": "再生"
 		},
 		"fallback": {
 			"no_slides": "スライドが設定されていません。"

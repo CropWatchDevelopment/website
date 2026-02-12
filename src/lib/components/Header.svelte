@@ -136,7 +136,7 @@
 				</picture>
 				<div class="flex flex-col">
 					<span class="text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
-					<span class="text-xs text-white/80 uppercase">{$_('header.brand.tagline')}</span>
+					<span class="hidden md:inline text-xs text-white/80 uppercase">{$_('header.brand.tagline')}</span>
 				</div>
 			</a>
 
