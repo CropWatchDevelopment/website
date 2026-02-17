@@ -11,7 +11,7 @@
 	<div class="mx-auto max-w-5xl">
 		<header class="mb-12 text-center text-white">
 			<p class="mb-3 text-sm font-semibold tracking-[0.35em] text-[var(--cw-gold-400)]">LEGAL</p>
-			<h1 class="text-4xl font-bold leading-tight md:text-5xl">利用規約 / クッキーポリシー</h1>
+			<h1 class="text-4xl font-bold leading-tight md:text-5xl">クッキーポリシー</h1>
 			<p class="mt-6 text-base text-white/80">
 				本サービスにおけるクッキー等の利用目的、取得情報、そして利用者が選択できる管理方法についてご案内します。
 			</p>
