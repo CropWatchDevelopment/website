@@ -678,7 +678,10 @@
 		</section>
 
 		<p class="mt-10 text-right font-medium text-gray-700 dark:text-gray-300">
-			2024年8月1日　制定・施行 2025年10月19日　改訂
+			2024年8月1日　制定・施行
+		</p>
+        <p class="text-right font-medium text-gray-700 dark:text-gray-300">
+			2025年10月19日　改訂
 		</p>
 	</main>
 </div>

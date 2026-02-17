@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
-	import { _, json } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 
 	type PricingItem = {
 		labelKey: string;
@@ -14,56 +14,80 @@
 		items: PricingItem[];
 	};
 
-	type PricingColumnsJson = Record<
-		string,
-		{ lead?: string; title?: string; items?: Record<string, { label?: string; value?: string }> }
-	>;
-
-	const pricingHrefs: Record<string, string> = {
-		devices_100_plus: '/contact'
-	};
-
-	const pricingMatrix = $derived.by(() => {
-		const columns = $json('home.pricing.columns') as PricingColumnsJson | null;
-		if (!columns) return [] as PricingColumn[];
-
-		return Object.entries(columns).map(([columnKey, columnData]) => {
-			const baseKey = `home.pricing.columns.${columnKey}`;
-			const items = columnData?.items
-				? Object.entries(columnData.items).map(([itemKey]) => ({
-					labelKey: `${baseKey}.items.${itemKey}.label`,
-					valueKey: `${baseKey}.items.${itemKey}.value`,
-					href: pricingHrefs[itemKey]
-				}))
-				: [];
-
-			return {
-				titleKey: `${baseKey}.title`,
-				leadKey: `${baseKey}.lead`,
-				items
-			};
-		});
-	});
-
-	const pricingSection = {
-		eyebrowKey: 'home.pricing.eyebrow',
-		headlineKey: 'home.pricing.headline',
-		introKey: 'home.pricing.intro',
-		ctaKey: 'home.pricing.cta'
-	} as const;
+	const pricingMatrix: PricingColumn[] = [
+		{
+			titleKey: 'home.pricing.columns.sensors.title',
+			leadKey: 'home.pricing.columns.sensors.lead',
+			items: [
+				{
+					labelKey: 'home.pricing.columns.sensors.items.devices_0_10.label',
+					valueKey: 'home.pricing.columns.sensors.items.devices_0_10.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.sensors.items.devices_11_99.label',
+					valueKey: 'home.pricing.columns.sensors.items.devices_11_99.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.sensors.items.devices_100_plus.label',
+					valueKey: 'home.pricing.columns.sensors.items.devices_100_plus.value',
+					href: '/contact'
+				}
+			]
+		},
+		{
+			titleKey: 'home.pricing.columns.devices.title',
+			leadKey: 'home.pricing.columns.devices.lead',
+			items: [
+				{
+					labelKey: 'home.pricing.columns.devices.items.sensor.label',
+					valueKey: 'home.pricing.columns.devices.items.sensor.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.devices.items.relay.label',
+					valueKey: 'home.pricing.columns.devices.items.relay.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.devices.items.indoor_gateway.label',
+					valueKey: 'home.pricing.columns.devices.items.indoor_gateway.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.devices.items.carrier_gateway.label',
+					valueKey: 'home.pricing.columns.devices.items.carrier_gateway.value'
+				}
+			]
+		},
+		{
+			titleKey: 'home.pricing.columns.software.title',
+			leadKey: 'home.pricing.columns.software.lead',
+			items: [
+				{
+					labelKey: 'home.pricing.columns.software.items.retention.label',
+					valueKey: 'home.pricing.columns.software.items.retention.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.software.items.licences.label',
+					valueKey: 'home.pricing.columns.software.items.licences.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.software.items.onboarding.label',
+					valueKey: 'home.pricing.columns.software.items.onboarding.value'
+				}
+			]
+		}
+	];
 </script>
 
 <div class="mx-auto w-full max-w-6xl px-4">
 	<div class="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 		<div>
 			<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-				{$_(pricingSection.eyebrowKey)}
+				{$_('home.pricing.eyebrow')}
 			</p>
 			<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-				{$_(pricingSection.headlineKey)}
+				{$_('home.pricing.headline')}
 			</h2>
 			<p class="mt-3 max-w-2xl text-base text-[#1c2d52]/80">
-				{$_(pricingSection.introKey)}
+				{$_('home.pricing.intro')}
 			</p>
 		</div>
 		<a
@@ -71,7 +95,7 @@
 			class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-5 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387]"
 		>
 			<MaterialIcon name="concierge" collection="symbols" variant="outlined" />
-			{$_(pricingSection.ctaKey)}
+			{$_('home.pricing.cta')}
 		</a>
 	</div>
 	<div class="grid gap-6 md:grid-cols-3">
@@ -90,7 +114,7 @@
 								<a class="text-[#2f5387] underline" href={item.href}>
 									{$_(item.valueKey)}
 								</a>
-							{:else}
+							{:else if $locale == 'en'}
 								<span class="text-[#2f5387]">{$_(item.valueKey)}</span>
 							{/if}
 						</li>
