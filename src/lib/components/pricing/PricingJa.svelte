@@ -20,25 +20,6 @@
 
 	const pricingMatrix: PricingColumn[] = [
 		{
-			titleKey: 'home.pricing.columns.sensors.title',
-			leadKey: 'home.pricing.columns.sensors.lead',
-			items: [
-				{
-					labelKey: 'home.pricing.columns.sensors.items.devices_0_10.label',
-					valueKey: 'home.pricing.columns.sensors.items.devices_0_10.value'
-				},
-				{
-					labelKey: 'home.pricing.columns.sensors.items.devices_11_99.label',
-					valueKey: 'home.pricing.columns.sensors.items.devices_11_99.value'
-				},
-				{
-					labelKey: 'home.pricing.columns.sensors.items.devices_100_plus.label',
-					valueKey: 'home.pricing.columns.sensors.items.devices_100_plus.value',
-					href: '/contact'
-				}
-			]
-		},
-		{
 			titleKey: 'home.pricing.columns.devices.title',
 			leadKey: 'home.pricing.columns.devices.lead',
 			items: [
@@ -57,6 +38,25 @@
 				{
 					labelKey: 'home.pricing.columns.devices.items.carrier_gateway.label',
 					valueKey: 'home.pricing.columns.devices.items.carrier_gateway.value'
+				}
+			]
+		},
+		{
+			titleKey: 'home.pricing.columns.sensors.title',
+			leadKey: 'home.pricing.columns.sensors.lead',
+			items: [
+				{
+					labelKey: 'home.pricing.columns.sensors.items.devices_0_10.label',
+					valueKey: 'home.pricing.columns.sensors.items.devices_0_10.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.sensors.items.devices_11_99.label',
+					valueKey: 'home.pricing.columns.sensors.items.devices_11_99.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.sensors.items.devices_100_plus.label',
+					valueKey: 'home.pricing.columns.sensors.items.devices_100_plus.value',
+					href: '/contact'
 				}
 			]
 		},
@@ -144,7 +144,7 @@
 								</a>
 							{:else}
 								<span class="text-[#2f5387]">
-									<!-- {colIdx === 0 && itemIdx === 0 ? $_(item.valueKey) : processPrice(item.valueKey)} -->
+									{colIdx === 0 && itemIdx === 0 ? $_(item.valueKey) : processPrice(item.valueKey)}
 								</span>
 							{/if}
 						</li>
