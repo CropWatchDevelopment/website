@@ -1,5 +1,7 @@
 <script lang="ts">
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
+	import { getExchangeRate } from '$lib/data/exchange-rate';
+	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
 	type PricingItem = {
