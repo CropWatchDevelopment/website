@@ -1,10 +1,12 @@
 <script lang="ts">
-	import logo from '$lib/images/cropwatch_animated.svg';
+	import { onMount } from 'svelte';
 	import MaterialIcon from './MaterialIcon.svelte';
 	import LanguagePicker from './LanguagePicker.svelte';
 	import Search from './Search.svelte';
 	import Telephone from './Telephone.svelte';
 	import { _ } from 'svelte-i18n';
+	import logo from '$lib/images/cropwatch_animated.svg';
+	import christmas_logo from '$lib/images/christmas_cropwatch.svg';
 
 	interface NavItem {
 		id: string;
@@ -69,6 +71,18 @@
 	} as const;
 
 	let openMenu = $state<string | null>(null);
+	let headerLogo = $state(logo);
+
+	function isChristmasSeason(date = new Date()) {
+		const currentYear = date.getFullYear();
+		const startDate = new Date(currentYear, 10, 25, 0, 0, 0, 0); // Nov 25
+		const endDate = new Date(currentYear, 11, 30, 23, 59, 59, 999); // Dec 30
+		return date >= startDate && date <= endDate;
+	}
+
+	onMount(() => {
+		headerLogo = isChristmasSeason() ? christmas_logo : logo;
+	});
 
 	function toggleMenu(id: string) {
 		openMenu = openMenu === id ? null : id;
@@ -130,13 +144,20 @@
 				href="https://cropwatch.io/"
 				aria-label={$_('header.brand.home_aria')}
 			>
-				<picture class="h-14 w-14 overflow-hidden p-2">
-					<source srcset={logo} type="image/svg+xml" />
-					<img src={logo} alt={$_('header.brand.logo_alt')} class="h-full w-full object-contain" />
+				<picture class={isChristmasSeason() ? 'h-20 w-20 overflow-hidden' : 'h-14 w-14 overflow-hidden'}>
+					<source srcset={headerLogo} type="image/svg+xml" />
+					<img
+						id="header-logo"
+						src={headerLogo}
+						alt={$_('header.brand.logo_alt')}
+						class="h-full w-full object-contain"
+					/>
 				</picture>
 				<div class="flex flex-col">
 					<span class="text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
-					<span class="hidden md:inline text-xs text-white/80 uppercase">{$_('header.brand.tagline')}</span>
+					<span class="hidden text-xs text-white/80 uppercase md:inline"
+						>{$_('header.brand.tagline')}</span
+					>
 				</div>
 			</a>
 
