@@ -86,6 +86,11 @@
 							API
 						</a>
 					</li>
+					<li>
+						<a class="transition hover:text-[#f2a516]" href="https://cwui.cropwatch.io/" target="_blank" rel="noopener noreferrer">
+							CWUI (UI Components)
+						</a>
+					</li>
 				</ul>
 			</nav>
 
