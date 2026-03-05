@@ -36,11 +36,11 @@
 				<h1 class="text-4xl font-semibold tracking-tight text-[#0b1730] md:text-5xl">
 					{@html $_('home.hero.headline_html')}
 				</h1>
-				<p class="text-lg leading-relaxed text-[#15284a]/80">
+				<p class="text-lg leading-relaxed md:text-xl text-[#15284a]/80">
 					{@html $_('home.hero.body_html')}
 				</p>
 				<div
-					class="grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-sm text-[#1c2d52] md:grid-cols-2"
+					class="grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-md text-[#1c2d52] md:grid-cols-2"
 				>
 					<div class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
@@ -104,22 +104,22 @@
 			<div
 				class="h-full rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-lg shadow-[#0b1730]/5"
 			>
-				<h2 class="text-lg font-semibold text-[#0b1730]">{$_('home.hero.sidebar.title')}</h2>
+				<h2 class="text-2xl text-center font-semibold text-[#0b1730]">{$_('home.hero.sidebar.title')}</h2>
 				<hr class="my-4 border-[#d7e0f5]" />
 				<div class="space-y-6 text-sm text-[#1c2d52]">
 					<div class="grid gap-4 sm:grid-cols-2">
 						<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
-							<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+							<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
 								{$_('home.hero.sidebar.comparison.manual.title')}
 							</p>
-							<ul class="mt-4 space-y-3 text-[#1c2d52]/80">
+							<ul class="mt-4 text-md space-y-3 text-[#1c2d52]/80">
 								<li>{$_('home.hero.sidebar.comparison.manual.bullets.0')}</li>
 								<li>{$_('home.hero.sidebar.comparison.manual.bullets.1')}</li>
 								<li>{$_('home.hero.sidebar.comparison.manual.bullets.2')}</li>
 							</ul>
 						</div>
 						<div class="rounded-2xl border border-transparent bg-[#0b1730] p-5 text-white">
-							<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
+							<p class="text-lg font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
 								{$_('home.hero.sidebar.comparison.automated.title')}
 							</p>
 							<ul class="mt-4 space-y-3 text-white/80">
@@ -131,7 +131,7 @@
 					</div>
 					<div class="grid gap-4 sm:grid-cols-2">
 						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
-							<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+							<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
 								{$_('home.hero.sidebar.stats.time_saved.title')}
 							</p>
 							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">
@@ -142,7 +142,7 @@
 							</p>
 						</div>
 						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
-							<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+							<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
 								{$_('home.hero.sidebar.stats.labor_savings.title')}
 							</p>
 							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">
@@ -154,7 +154,7 @@
 						</div>
 					</div>
 					<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
-						<p class="text-xs font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
+						<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
 							{$_('home.hero.sidebar.productivity.title')}
 						</p>
 						<ul class="mt-3 space-y-3 text-[#1c2d52]/80">
