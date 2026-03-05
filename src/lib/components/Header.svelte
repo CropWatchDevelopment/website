@@ -183,7 +183,7 @@
 		class="hidden bg-gradient-to-b from-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)] md:block"
 	>
 		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
-			<ul class="flex items-center gap-6 text-sm text-white" id="mainMenu">
+			<ul class="flex items-center gap-6 text-sm text-white text-nowrap" id="mainMenu">
 				{#each navItems as item (item.id)}
 					<li
 						class="relative border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0"
@@ -241,14 +241,14 @@
 													ariaLabel={$_(child.ariaKey || 'header.navigation.opens_in_new_tab_aria')}
 												/>
 											{/if}
-											<span>{$_(child.labelKey)}</span>
+											<span class="text-nowrap">{$_(child.labelKey)}</span>
 										</a>
 									</li>
 								{/each}
 							</ul>
 						{:else}
 							<a
-								class="rounded px-2 py-1 font-medium transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+								class="rounded text-nowrap px-2 py-1 font-medium transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
 								href={item.href}
 							>
 								{$_(item.labelKey)}
@@ -261,7 +261,7 @@
 				{#each utilityLinks as link (link.href)}
 					<li class="border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0">
 						<a
-							class="rounded px-3 py-1 transition hover:bg-white/10 hover:text-white"
+							class="rounded text-nowrap px-3 py-1 transition hover:bg-white/10 hover:text-white"
 							target="_blank"
 							href={link.href}
 						>
@@ -343,14 +343,14 @@
 															size={20}
 														/>
 													{/if}
-													<span>{$_(child.labelKey)}</span>
+													<span class="text-nowrap">{$_(child.labelKey)}</span>
 												</a>
 											</li>
 										{/each}
 									</ul>
 								{/if}
 							{:else}
-								<a href={item.href} class="block py-2 font-medium" onclick={closeMobileMenu}>
+								<a href={item.href} class="block py-2 font-medium text-nowrap" onclick={closeMobileMenu}>
 									{$_(item.labelKey)}
 								</a>
 							{/if}
@@ -368,7 +368,7 @@
 								{#if link.icon}
 									<MaterialIcon name={link.icon} collection="symbols" variant="rounded" size={20} />
 								{/if}
-								<span>{$_(link.labelKey)}</span>
+								<span class="text-nowrap">{$_(link.labelKey)}</span>
 							</a>
 						</li>
 					{/each}
@@ -379,9 +379,9 @@
 				<!-- Mobile Top Links & Language -->
 				<div class="flex flex-col gap-4 pb-10">
 					{#each topLinks as link}
-						<a href={link.href} class="text-white/80" onclick={closeMobileMenu}
-							>{$_(link.labelKey)}</a
-						>
+						<a href={link.href} class="text-white/80 text-nowrap" onclick={closeMobileMenu}>
+							{$_(link.labelKey)}
+						</a>
 					{/each}
 					<div class="mt-2">
 						<LanguagePicker />
