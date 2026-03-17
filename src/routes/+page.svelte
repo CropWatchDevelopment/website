@@ -217,10 +217,6 @@
 							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
 							<span>{$_('home.proof_points.measurement_confidence.bullets.2')}</span>
 						</li>
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.measurement_confidence.bullets.3')}</span>
-						</li>
 					</ul>
 					<span class="flex-grow"></span>
 				</article>
