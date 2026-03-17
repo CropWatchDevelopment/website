@@ -11,6 +11,19 @@ export default defineConfig({
 	],
 	test: {
 		expect: { requireAssertions: true },
+		coverage: {
+			all: true,
+			include: ['static/christmas-header.js'],
+			provider: 'v8',
+			reporter: ['text'],
+			thresholds: {
+				perFile: true,
+				branches: 100,
+				functions: 100,
+				lines: 100,
+				statements: 100
+			}
+		},
 		projects: [
 			{
 				extends: './vite.config.ts',
