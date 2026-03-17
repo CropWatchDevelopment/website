@@ -87,7 +87,7 @@
 			titleKey: 'product_origin.origins.parts.title',
 			subtitleKey: 'product_origin.origins.parts.subtitle'
 		},
-		{ flag: ['🇺🇸/🇯🇵'], titleKey: 'product_origin.origins.programmed' },
+		{ flag: ['🇯🇵'], titleKey: 'product_origin.origins.programmed' },
 		{ flag: ['🌍'], titleKey: 'product_origin.origins.used_by_you' }
 	];
 
