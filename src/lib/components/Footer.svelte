@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
 	import Telephone from './Telephone.svelte';
+	import { loc } from '$lib/i18n/navigation';
 
 	let year = $derived(new Date().getFullYear());
 </script>
 
 <footer
-	class="relative overflow-hidden bg-gradient-to-b from-[var(--cw-blue-700)] via-[var(--cw-blue-900)] to-[var(--cw-blue-950)] text-white"
+	class="relative overflow-hidden bg-[var(--cw-blue-950)] text-white"
 >
 	<div
 		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_65%)] opacity-70"
@@ -35,7 +36,7 @@
 				</p> -->
 				<Telephone hideIcon={true} />
 				<a
-					href="/contact"
+					href={$loc('/contact')}
 					class="inline-flex items-center gap-2 rounded-full bg-[var(--cw-gold-500)] px-4 py-2 text-sm font-semibold text-[var(--cw-blue-950)] transition hover:bg-[var(--cw-gold-400)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-400)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--cw-blue-900)]"
 				>
 					{$_('footer.about.cta')}
@@ -67,17 +68,17 @@
 				<h3 class="text-sm font-semibold uppercase tracking-wide text-white/70">{$_('footer.link_groups.products.title')}</h3>
 				<ul class="space-y-2 text-sm text-white/75">
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="/products/cw-air-th">
+						<a class="transition hover:text-[#f2a516]" href={$loc("/products/cw-air-th")}>
 							{$_('footer.link_groups.products.links.cw-air-th')}
 						</a>
 					</li>
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="/products/gateways">
+						<a class="transition hover:text-[#f2a516]" href={$loc("/products/gateways")}>
 							{$_('footer.link_groups.products.links.gateways')}
 						</a>
 					</li>
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="/products/coming-soon">
+						<a class="transition hover:text-[#f2a516]" href={$loc("/products/coming-soon")}>
 							{$_('footer.link_groups.products.links.analytics')}
 						</a>
 					</li>
@@ -93,17 +94,17 @@
 				<h3 class="text-sm font-semibold uppercase tracking-wide text-white/70">{$_('footer.link_groups.connect.title')}</h3>
 				<ul class="space-y-2 text-sm text-white/75">
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="/contact">
+						<a class="transition hover:text-[#f2a516]" href={$loc('/contact')}>
 							{$_('footer.link_groups.connect.links.contact')}
 						</a>
 					</li>
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="/case-studies">
+						<a class="transition hover:text-[#f2a516]" href={$loc("/case-studies")}>
 							{$_('footer.link_groups.connect.links.case_studies')}
 						</a>
 					</li>
 					<li>
-						<a class="transition hover:text-[#f2a516]" href="/faq">
+						<a class="transition hover:text-[#f2a516]" href={$loc("/faq")}>
 							{$_('footer.link_groups.connect.links.faq')}
 						</a>
 					</li>
@@ -121,19 +122,19 @@
 				</li>
 				<li class="flex items-center gap-3">
 					<span aria-hidden="true" class="text-white/40">|</span>
-					<a class="transition hover:text-[#f2a516]" href="/legal/privacy-policy">{$_('footer.legal.links.privacy')}</a>
+					<a class="transition hover:text-[#f2a516]" href={$loc("/legal/privacy-policy")}>{$_('footer.legal.links.privacy')}</a>
 				</li>
 				<li class="flex items-center gap-3">
 					<span aria-hidden="true" class="text-white/40">|</span>
-					<a class="transition hover:text-[#f2a516]" href="/legal/terms-of-service">{$_('footer.legal.links.terms')}</a>
+					<a class="transition hover:text-[#f2a516]" href={$loc("/legal/terms-of-service")}>{$_('footer.legal.links.terms')}</a>
 				</li>
 				<li class="flex items-center gap-3">
 					<span aria-hidden="true" class="text-white/40">|</span>
-					<a class="transition hover:text-[#f2a516]" href="/legal/EULA">{$_('footer.legal.links.EULA')}</a>
+					<a class="transition hover:text-[#f2a516]" href={$loc("/legal/EULA")}>{$_('footer.legal.links.EULA')}</a>
 				</li>
 				<li class="flex items-center gap-3">
 					<span aria-hidden="true" class="text-white/40">|</span>
-					<a class="transition hover:text-[#f2a516]" href="/sitemap">{$_('footer.legal.links.sitemap')}</a>
+					<a class="transition hover:text-[#f2a516]" href={$loc("/sitemap")}>{$_('footer.legal.links.sitemap')}</a>
 				</li>
 			</ul>
 		</div>

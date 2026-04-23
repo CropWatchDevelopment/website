@@ -1,256 +1,174 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
-	import { onDestroy } from 'svelte';
 	import { _ } from 'svelte-i18n';
+	import { enhance } from '$app/forms';
+	import Seo from '$lib/components/redesign/Seo.svelte';
+	import { loc } from '$lib/i18n/navigation';
+	import type { ActionData } from './$types';
 
-	type RecaptchaClient = {
-		ready: (cb: () => void) => void;
-		execute: (
-			siteKey: string,
-			config: {
-				action: string;
-			}
-		) => Promise<string>;
-	};
+	let { form }: { form: ActionData } = $props();
 
-	type RecaptchaWindow = Window & {
-		grecaptcha?: RecaptchaClient;
-	};
+	let name = $state('');
+	let company = $state('');
+	let email = $state('');
+	let phone = $state('');
+	let industry = $state('');
+	let message = $state('');
 
-	const getRecaptchaClient = () => (window as RecaptchaWindow).grecaptcha;
+	let errors = $state<Record<string, string>>({});
+	let sent = $state(false);
+	let submitting = $state(false);
 
-	const recaptchaSiteKey = PUBLIC_RECAPTCHA_SITE_KEY;
-	const recaptchaRequired = Boolean(recaptchaSiteKey);
-	const recaptchaAction = 'contact_form';
-	type RecaptchaError = 'security_unavailable' | 'verification_failed' | null;
-	let recaptchaReady = $state(!recaptchaRequired);
-	let recaptchaBusy = $state(false);
-	let recaptchaError = $state<RecaptchaError>(null);
-	let recaptchaWatchTimer: ReturnType<typeof setTimeout> | null = null;
+	const industries = ['cold', 'ag', 'food', 'mfg', 'live', 'pub'];
 
-	if (browser && recaptchaRequired) {
-		const watchForRecaptcha = () => {
-			const recaptcha = getRecaptchaClient();
-			if (recaptcha) {
-				recaptcha.ready(() => {
-					recaptchaReady = true;
-				});
-			} else {
-				recaptchaWatchTimer = setTimeout(watchForRecaptcha, 250);
-			}
-		};
-		watchForRecaptcha();
+	function validate(): boolean {
+		const errs: Record<string, string> = {};
+		if (!name.trim()) errs.name = $_('rd.contact.form_err_required');
+		if (!email.trim()) errs.email = $_('rd.contact.form_err_required');
+		else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = $_('rd.contact.form_err_email');
+		if (!message.trim()) errs.message = $_('rd.contact.form_err_required');
+		errors = errs;
+		return Object.keys(errs).length === 0;
 	}
 
-	const handleSubmit = async (event: SubmitEvent) => {
-		if (!browser || !recaptchaRequired) {
-			return;
-		}
-
-		event.preventDefault();
-		recaptchaError = null;
-		const target = event.currentTarget as HTMLFormElement | null;
-		if (!target) return;
-		const recaptcha = getRecaptchaClient();
-		if (!recaptcha) {
-			recaptchaError = 'security_unavailable';
-			return;
-		}
-
-		recaptchaBusy = true;
-		try {
-			const token = await recaptcha.execute(recaptchaSiteKey, { action: recaptchaAction });
-			let tokenInput = target.querySelector<HTMLInputElement>('input[name="g-recaptcha-response"]');
-			if (!tokenInput) {
-				tokenInput = document.createElement('input');
-				tokenInput.type = 'hidden';
-				tokenInput.name = 'g-recaptcha-response';
-				target.appendChild(tokenInput);
-			}
-			tokenInput.value = token;
-			target.submit();
-		} catch (error) {
-			console.error('reCAPTCHA execution error', error);
-			recaptchaError = 'verification_failed';
-		} finally {
-			recaptchaBusy = false;
-		}
-	};
-
-	onDestroy(() => {
-		if (recaptchaWatchTimer) {
-			clearTimeout(recaptchaWatchTimer);
-		}
-	});
+	function splitName(full: string): { first: string; last: string } {
+		const parts = full.trim().split(/\s+/);
+		return { first: parts[0] ?? '', last: parts.slice(1).join(' ') || parts[0] || '' };
+	}
 </script>
 
-<svelte:head>
-	<title>{$_('contact.meta.title')}</title>
-	<meta name="description" content={$_('contact.meta.description')} />
-	{#if recaptchaSiteKey}
-		<script
-			src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-			async
-			defer
-		></script>
-	{/if}
-</svelte:head>
+<Seo
+	title={$_('rd.seo.contact.title')}
+	description={$_('rd.seo.contact.description')}
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'ContactPage',
+		name: $_('rd.seo.contact.title'),
+		description: $_('rd.seo.contact.description'),
+		url: 'https://www.cropwatch.io' + $loc('/contact')
+	}}
+/>
 
-<section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
-	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
-		aria-hidden="true"
-	></div>
-	<div class="relative mx-auto w-full max-w-6xl px-4">
-		<div class="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
-			<div class="space-y-6">
-				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-					{$_('contact.hero.eyebrow')}
-				</p>
-				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					{$_('contact.hero.headline')}
-				</h1>
-				<p class="text-base text-white/80">{$_('contact.hero.body')}</p>
-				<ul class="space-y-4 text-sm text-white/80">
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.0')}</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.1')}</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.2')}</span>
-					</li>
-				</ul>
-			</div>
-			<div
-				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
-			>
-				<h2 class="text-lg font-semibold text-white">{$_('contact.form.title')}</h2>
-				<p class="mt-2 text-sm text-white/70">{$_('contact.form.subtitle')}</p>
-				<form class="mt-6 space-y-5 text-sm" method="post" action="?" onsubmit={handleSubmit}>
-					<div class="grid gap-4 md:grid-cols-2">
-						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white"
-								>{$_('contact.form.fields.first_name.label')}</span
-							>
-							<input
-								name="firstName"
-								type="text"
-								required
-								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder={$_('contact.form.fields.first_name.placeholder')}
-							/>
-						</label>
-						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white">{$_('contact.form.fields.last_name.label')}</span
-							>
-							<input
-								name="lastName"
-								type="text"
-								required
-								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder={$_('contact.form.fields.last_name.placeholder')}
-							/>
-						</label>
+<section class="cw-section" style="padding-top:clamp(3rem,5vw,4.5rem);">
+	<div class="cw-container-narrow" style="text-align:center; margin-bottom:2.5rem;">
+		<span class="cw-eyebrow">{$_('rd.hdr.nav.contact')}</span>
+		<h1
+			style="margin:0.7rem 0 1rem; font-size:clamp(2rem,4.2vw,3rem); letter-spacing:-0.03em; color:var(--cw-blue-900); line-height:1.15;"
+		>
+			{$_('rd.contact.title')}
+		</h1>
+		<p
+			style="font-size:1.05rem; color:var(--cw-text-soft); max-width:38rem; margin:0 auto; line-height:1.65;"
+		>
+			{$_('rd.contact.body')}
+		</p>
+	</div>
+
+	<div class="cw-container">
+		<div class="contact-grid">
+			<aside class="contact-info">
+				<h3>{$_('rd.contact.info_title')}</h3>
+				<div class="contact-info-row">
+					<div class="contact-info-label">{$_('rd.contact.info_email')}</div>
+					<div class="contact-info-val">
+						<a href="mailto:hello@cropwatch.io">hello@cropwatch.io</a>
 					</div>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.email.label')}</span>
-						<input
-							name="email"
-							type="email"
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.email.placeholder')}
-						/>
+				</div>
+				<div class="contact-info-row">
+					<div class="contact-info-label">{$_('rd.contact.info_phone')}</div>
+					<div class="contact-info-val" style="font-family:var(--cw-mono);">
+						+81 (0) 985 000 000
+					</div>
+				</div>
+				<div class="contact-info-row">
+					<div class="contact-info-label">{$_('rd.contact.info_hours')}</div>
+					<div class="contact-info-val">{$_('rd.contact.info_hours_val')}</div>
+				</div>
+				<div class="contact-info-row">
+					<div class="contact-info-label">{$_('rd.contact.info_address')}</div>
+					<div class="contact-info-val">{$_('rd.contact.info_address_val')}</div>
+				</div>
+			</aside>
+
+			<form
+				class="contact-form"
+				method="POST"
+				novalidate
+				use:enhance={({ formData, cancel }) => {
+					if (!validate()) {
+						cancel();
+						return;
+					}
+					const { first, last } = splitName(name);
+					formData.set('firstName', first);
+					formData.set('lastName', last);
+					submitting = true;
+					return async ({ result, update }) => {
+						submitting = false;
+						if (result.type === 'success') sent = true;
+						await update({ reset: false });
+					};
+				}}
+			>
+				{#if sent || form?.success}
+					<div class="form-success">✓ {$_('rd.contact.form_success')}</div>
+				{/if}
+
+				<div class="form-row">
+					<div class="form-field" style="margin-bottom:0;">
+						<label for="cw-name">
+							{$_('rd.contact.form_name')}<span class="req">*</span>
+						</label>
+						<input id="cw-name" type="text" bind:value={name} />
+						{#if errors.name}<span class="err">{errors.name}</span>{/if}
+					</div>
+					<div class="form-field" style="margin-bottom:0;">
+						<label for="cw-company">{$_('rd.contact.form_company')}</label>
+						<input id="cw-company" name="company" type="text" bind:value={company} />
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-field" style="margin-bottom:0;">
+						<label for="cw-email">
+							{$_('rd.contact.form_email')}<span class="req">*</span>
+						</label>
+						<input id="cw-email" name="email" type="email" bind:value={email} />
+						{#if errors.email}<span class="err">{errors.email}</span>{/if}
+					</div>
+					<div class="form-field" style="margin-bottom:0;">
+						<label for="cw-phone">{$_('rd.contact.form_phone')}</label>
+						<input id="cw-phone" name="phone" type="tel" bind:value={phone} />
+					</div>
+				</div>
+
+				<div class="form-field">
+					<label for="cw-industry">{$_('rd.contact.form_industry')}</label>
+					<select id="cw-industry" name="industry" bind:value={industry}>
+						<option value="">{$_('rd.contact.form_industry_opt')}</option>
+						{#each industries as k (k)}
+							<option value={k}>{$_(`rd.ind.${k}.title`)}</option>
+						{/each}
+					</select>
+				</div>
+
+				<div class="form-field">
+					<label for="cw-message">
+						{$_('rd.contact.form_message')}<span class="req">*</span>
 					</label>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.company.label')}</span>
-						<input
-							name="company"
-							type="text"
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.company.placeholder')}
-						/>
-					</label>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.message.label')}</span>
-						<textarea
-							name="message"
-							rows={4}
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.message.placeholder')}
-						></textarea>
-					</label>
-					<input type="hidden" name="g-recaptcha-response" value="" aria-hidden="true" />
-					{#if recaptchaRequired}
-						<div class="space-y-2">
-							<p
-								class="rounded-xl border border-white/20 bg-white/5 px-3 py-2 text-xs text-white/80"
-								aria-live="polite"
-							>
-								{#if recaptchaError === 'security_unavailable'}
-									{$_('contact.errors.security_unavailable')}
-								{:else if recaptchaError === 'verification_failed'}
-									{$_('contact.errors.verification_failed')}
-								{:else}
-									{$_('contact.recaptcha.protected')}
-								{/if}
-							</p>
-							<p class="text-[11px] leading-relaxed text-white/65">
-								{$_('contact.recaptcha.google_disclosure_prefix')}
-								{' '}
-								<a
-									class="underline transition hover:text-white"
-									href="https://policies.google.com/privacy"
-									target="_blank"
-									rel="noreferrer"
-								>
-									{$_('contact.recaptcha.google_disclosure_privacy')}
-								</a>
-								{' '}
-								{$_('contact.recaptcha.google_disclosure_and')}
-								{' '}
-								<a
-									class="underline transition hover:text-white"
-									href="https://policies.google.com/terms"
-									target="_blank"
-									rel="noreferrer"
-								>
-									{$_('contact.recaptcha.google_disclosure_terms')}
-								</a>
-								{' '}
-								{$_('contact.recaptcha.google_disclosure_suffix')}
-							</p>
-						</div>
-					{:else}
-						<p
-							class="rounded-xl border border-dashed border-white/30 bg-white/5 px-3 py-2 text-xs text-white/80"
-						>
-							{$_('contact.recaptcha.missing_key_prefix')} <code>PUBLIC_RECAPTCHA_SITE_KEY</code>
-							{$_('contact.recaptcha.missing_key_suffix')}
-						</p>
-					{/if}
-					<!-- <label class="flex items-center gap-2 text-white/70">
-						<input type="checkbox" name="subscribe" class="h-4 w-4 rounded border-white/30 bg-white/10 text-[#f2a516] focus:ring-[#f2a516]" />
-						<span>Keep me updated on product releases and industry insights.</span>
-					</label> -->
-					<button
-						type="submit"
-						class="w-full rounded-full bg-[#f2a516] px-4 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-60"
-						disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
-						aria-disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
-					>
-						{$_('contact.form.submit')}
-					</button>
-				</form>
-			</div>
+					<textarea id="cw-message" name="message" rows="5" bind:value={message}></textarea>
+					<span class="hint">{$_('rd.contact.form_message_hint')}</span>
+					{#if errors.message}<span class="err">{errors.message}</span>{/if}
+				</div>
+
+				<button
+					type="submit"
+					class="cw-btn cw-btn-primary"
+					style="width:100%; justify-content:center; padding:1rem 1.4rem;"
+					disabled={submitting}
+				>
+					{submitting ? '…' : $_('rd.contact.form_submit')}
+				</button>
+			</form>
 		</div>
 	</div>
 </section>

@@ -4,9 +4,61 @@ import Header from '$lib/components/Header.svelte';
 import { afterNavigate } from '$app/navigation';
 import { PUBLIC_GA_MEASUREMENT_ID } from '$env/static/public';
 import { onMount } from 'svelte';
+import { localePath } from '$lib/i18n/navigation';
 import '../app.css';
 
-let { children } = $props();
+let { children, data } = $props();
+
+const SITE_ORIGIN = 'https://www.cropwatch.io';
+
+let canonicalPath = $derived(data?.canonicalPath ?? '/');
+let lang = $derived(data?.lang ?? 'ja');
+let canonicalUrl = $derived(SITE_ORIGIN + localePath(canonicalPath, lang));
+let jaUrl = $derived(SITE_ORIGIN + localePath(canonicalPath, 'ja'));
+let enUrl = $derived(SITE_ORIGIN + localePath(canonicalPath, 'en'));
+let ogLocale = $derived(
+	lang === 'ja' ? 'ja_JP' : lang === 'en' ? 'en_US' : lang === 'es' ? 'es_ES' : 'it_IT'
+);
+
+const siteOrgJsonLd = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'CropWatch',
+	url: SITE_ORIGIN,
+	logo: SITE_ORIGIN + '/favicon.svg',
+	sameAs: [
+		'https://www.linkedin.com/company/cropwatch-system',
+		'https://www.youtube.com/@cropwatch4407',
+		'https://github.com/CropWatchDevelopment'
+	],
+	address: {
+		'@type': 'PostalAddress',
+		addressCountry: 'JP',
+		addressRegion: 'Miyazaki'
+	},
+	contactPoint: [
+		{
+			'@type': 'ContactPoint',
+			email: 'hello@cropwatch.io',
+			contactType: 'customer support',
+			availableLanguage: ['Japanese', 'English']
+		}
+	]
+}).replace(/</g, '\\u003c');
+
+const siteWebsiteJsonLd = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: 'CropWatch',
+	url: SITE_ORIGIN,
+	inLanguage: ['ja', 'en']
+}).replace(/</g, '\\u003c');
+
+$effect(() => {
+	if (typeof document !== 'undefined') {
+		document.documentElement.lang = lang;
+	}
+});
 
 type Gtag = (...args: unknown[]) => void;
 type WindowWithGtag = Window & { dataLayer?: unknown[]; gtag?: Gtag };
@@ -101,6 +153,16 @@ onMount(() => {
 </script>
 
 <svelte:head>
+	<link rel="canonical" href={canonicalUrl} />
+	<link rel="alternate" hreflang="ja" href={jaUrl} />
+	<link rel="alternate" hreflang="en" href={enUrl} />
+	<link rel="alternate" hreflang="x-default" href={jaUrl} />
+	<meta property="og:locale" content={ogLocale} />
+	{#if lang !== 'ja'}<meta property="og:locale:alternate" content="ja_JP" />{/if}
+	{#if lang !== 'en'}<meta property="og:locale:alternate" content="en_US" />{/if}
+	<meta name="theme-color" content="#11213c" />
+	{@html `<script type="application/ld+json">${siteOrgJsonLd}<\/script>`}
+	{@html `<script type="application/ld+json">${siteWebsiteJsonLd}<\/script>`}
 	{#if PUBLIC_GA_MEASUREMENT_ID}
 		<script async src="https://www.googletagmanager.com/gtag/js?id={PUBLIC_GA_MEASUREMENT_ID}"></script>
 	{/if}

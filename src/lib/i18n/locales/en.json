@@ -778,7 +778,9 @@
 						"manufacturer": "🇨🇳 SEEED Studio",
 						"placement": "Indoors",
 						"summary": "Cost-effective indoor gateway great for small installations and light duty environments.",
-						"recommended": ["WiFi and Ethernet options"],
+						"recommended": [
+							"WiFi and Ethernet options"
+						],
 						"image_alt": "SEEED Studio SenseCAP M2 LoRaWAN gateway"
 					},
 					"ezurio_indoor": {
@@ -786,7 +788,9 @@
 						"manufacturer": "🇺🇸 Ezurio Connectivity",
 						"placement": "Indoors",
 						"summary": "The Sentrius™ RG1xx LoRaWAN-Enabled Gateway is the ultimate in secure, scalable, robust LoRaWAN solutions. Gather data from as far as 10 miles via LoRaWAN and sync to the cloud via Wi-Fi / Ethernet.",
-						"recommended": ["WiFi and Ethernet options, (LTE optional for USA only)"],
+						"recommended": [
+							"WiFi and Ethernet options, (LTE optional for USA only)"
+						],
 						"image_alt": "Ezurio Sentrius RG1xx Indoor Gateway"
 					}
 				}
@@ -1230,6 +1234,379 @@
 			"body": "If you are passionate about building reliable systems for industries where downtime is not an option, we would love to meet you.",
 			"primary_cta": "Explore open roles",
 			"secondary_cta": "Talk to our team"
+		}
+	},
+	"rd": {
+		"hdr": {
+			"welcome": "Welcome to CropWatch",
+			"global": "Global site",
+			"brand_tagline": "Environmental Monitoring",
+			"nav": {
+				"home": "Home",
+				"products": "Products",
+				"products_sensor": "CW-AIR-TH Sensor",
+				"products_gateways": "Gateways",
+				"products_soil": "Soil Sensors",
+				"case_studies": "Case Studies",
+				"about": "About",
+				"contact": "Contact",
+				"faq": "FAQ"
+			},
+			"util_app": "Open App",
+			"util_api": "API",
+			"util_status": "Status",
+			"contact_cta": "Get a quote"
+		},
+		"slider": {
+			"prev": "Previous slide",
+			"next": "Next slide"
+		},
+		"slide1": {
+			"badge": "Industry-Ready",
+			"title": "Sensors that survive the places your people can’t.",
+			"body": "Freezers, greenhouses, barns, and rooftops — our devices run for a decade on one battery, in the environments that break lesser hardware.",
+			"cta": "See deployments"
+		},
+		"slide2": {
+			"badge": "10-Year Battery",
+			"title": "One battery. Ten years. No reboots.",
+			"body": "A single D-cell lithium battery powers a CW-AIR-TH sensor for up to 10 years of continuous reporting — even in -40 °C cold-storage.",
+			"cta": "How it works"
+		},
+		"slide3": {
+			"badge": "LoRaWAN Coverage",
+			"title": "Kilometres of range. Through concrete walls.",
+			"body": "LoRaWAN pushes signal through buildings, freezer walls, and countryside where Wi-Fi and cellular simply don’t reach.",
+			"cta": "Explore gateways"
+		},
+		"slide4": {
+			"badge": "Built In Japan",
+			"title": "Designed, assembled and supported locally.",
+			"body": "TELEC-certified, FCC-certified, built in Miyazaki. You get direct engineer support — not a ticket queue.",
+			"cta": "Meet the team"
+		},
+		"clarity": {
+			"eyebrow": "What we actually do",
+			"headline_a": "CropWatch tells you ",
+			"headline_b": "what’s happening inside your facility",
+			"headline_c": ", 24 / 7, without anyone walking in with a clipboard.",
+			"sub": "We make wireless sensors that measure temperature, humidity, CO₂, and soil conditions — and a cloud dashboard that shows you those numbers live and alerts you when something goes wrong.",
+			"how_eyebrow": "How it works",
+			"how_title": "Three boxes, a dashboard, and alerts on your phone.",
+			"step1_title": "① Place the sensors",
+			"step1_body": "Mount our weatherproof sensor anywhere you need a reading — inside a walk-in, a greenhouse, a kitchen, or a paddock. No wiring.",
+			"step2_title": "② Add a gateway",
+			"step2_body": "One LoRaWAN gateway covers an entire facility — up to several kilometres outdoors. Plug it in and it finds your sensors.",
+			"step3_title": "③ See everything online",
+			"step3_body": "Numbers appear on your phone and computer in real time. Charts, history, exports — no app install for viewers.",
+			"step4_title": "④ Get alerts when it matters",
+			"step4_body": "A freezer warms up, a greenhouse overheats, a door is left open — you get a ping on LINE, email, or SMS within seconds."
+		},
+		"proof": {
+			"eyebrow": "Why operators stay",
+			"title": "Built for the hard places.",
+			"battery": {
+				"eyebrow": "Battery Life",
+				"title": "10-year autonomy",
+				"b1": "Single D-cell lithium battery, field-replaceable",
+				"b2": "Runs through -40 °C cold-storage without ageing",
+				"b3": "No solar panel, no mains wiring, no maintenance contract"
+			},
+			"accuracy": {
+				"eyebrow": "Measurement Trust",
+				"title": "Dual-sensor, NIST-traceable",
+				"b1": "ISO/IEC 17025 certified sensor options",
+				"b2": "Automatic out-of-range detection blocks bad data",
+				"b3": "±0.1 °C / ±0.5 %RH on the high-accuracy line"
+			},
+			"connect": {
+				"eyebrow": "Connectivity",
+				"title": "LoRaWAN + NFC",
+				"b1": "Km-range indoor / outdoor coverage from one gateway",
+				"b2": "FCC and TELEC certified — legal in Japan, US, EU",
+				"b3": "NFC commissioning — tap to configure, no app needed"
+			}
+		},
+		"ind": {
+			"eyebrow": "Where it ships",
+			"title": "Six industries, one platform.",
+			"intro": "The same hardware solves the same problem everywhere: tell me if something goes wrong, before it costs me money.",
+			"cold": {
+				"title": "Cold Chain & Logistics",
+				"body": "Reefer trailers, walk-in freezers, pharmaceutical storage. Catch compressor failures in minutes, not hours."
+			},
+			"ag": {
+				"title": "Agriculture",
+				"body": "Greenhouses, open fields, soil moisture. Frost alerts, irrigation triggers, yield optimization."
+			},
+			"food": {
+				"title": "Food Service & HACCP",
+				"body": "Restaurant kitchens, sushi cases, hot-hold buffets. HACCP-ready audit exports in one click."
+			},
+			"mfg": {
+				"title": "Manufacturing",
+				"body": "Raw-material storage, production climate, quality assurance logs tied to your ERP."
+			},
+			"live": {
+				"title": "Livestock",
+				"body": "Barn climate, THI (heat stress) alerts, ventilation monitoring. Independent of farm mains power."
+			},
+			"pub": {
+				"title": "Public & Research",
+				"body": "Weather networks, environmental compliance, public-infrastructure monitoring."
+			}
+		},
+		"cta": {
+			"eyebrow": "Ready to see your data?",
+			"title": "Start with one gateway and three sensors.",
+			"body": "A 90-day risk-free pilot. We spec the kit for your site, ship from Miyazaki, and have you seeing data inside a week.",
+			"primary": "Book a 20-minute demo",
+			"secondary": "See case studies"
+		},
+		"cwath": {
+			"model": "Model: CW-AIR-TH",
+			"title": "The wireless sensor you install once and forget.",
+			"body": "A weatherproof, battery-powered environmental sensor that measures temperature, humidity, and optional CO₂ for up to 10 years on one battery. Field-swappable sensors, NFC commissioning, dual-sensor fail-safe.",
+			"chip1": "IP67",
+			"chip2": "10-year battery",
+			"chip3": "LoRaWAN",
+			"chip4": "NFC config",
+			"chip5": "TELEC / FCC",
+			"cta1": "Request a quote",
+			"cta2": "Download datasheet",
+			"sensors_title": "Choose your sensor",
+			"sensors_body": "Three interchangeable sensor heads. Swap between them at any time with a screwdriver. Pick the trade-off that matches your use case.",
+			"sth": {
+				"name": "Standard T/H",
+				"range": "-40 °C to 85 °C · 0-100 %RH",
+				"accuracy": "±0.48 °C · ±1.8 %RH",
+				"note": "ISO/IEC 17025 certified, NIST-traceable. Most popular."
+			},
+			"cth": {
+				"name": "Climate + CO₂",
+				"range": "-10 °C to 60 °C · 400-5000 ppm",
+				"accuracy": "±1.5 °C · ±50 ppm CO₂",
+				"note": "RESET® and California Title 24 compatible."
+			},
+			"tth": {
+				"name": "High-accuracy T/H",
+				"range": "-40 °C to 85 °C · 0-100 %RH",
+				"accuracy": "±0.1 °C · ±0.5 %RH",
+				"note": "Lab-grade for pharmaceutical and research use."
+			},
+			"specs": {
+				"title": "Specifications",
+				"sensor_heads": "SENSOR HEADS",
+				"eyebrow": "SPECS",
+				"uses_eyebrow": "USE CASES",
+				"housing": "Housing",
+				"housing_val": "IP67 ASA resin (UL94HB)",
+				"temp": "Operating temperature",
+				"temp_val": "-40 °C to +80 °C",
+				"battery": "Battery",
+				"battery_val": "Li-SOCl₂ D-cell, user replaceable",
+				"life": "Battery life",
+				"life_val": "Up to 10 years",
+				"radio": "Radio",
+				"radio_val": "LoRaWAN AS923-1, US915",
+				"config": "Configuration",
+				"config_val": "NFC (tap to configure)",
+				"mount": "Mounting",
+				"mount_val": "Pole, DIN, wall, magnetic",
+				"cert": "Certifications",
+				"cert_val": "FCC, TELEC, RoHS"
+			},
+			"uses": {
+				"title": "What people install it for",
+				"ag": "Agriculture",
+				"ag_1": "Greenhouse climate",
+				"ag_2": "Crop storage",
+				"ag_3": "Frost prevention",
+				"ag_4": "Irrigation trigger",
+				"cold": "Cold Chain",
+				"cold_1": "Reefer transport",
+				"cold_2": "Walk-in freezers",
+				"cold_3": "HACCP compliance",
+				"cold_4": "Pharma storage",
+				"food": "Food Processing",
+				"food_1": "Production floor climate",
+				"food_2": "Storage monitoring",
+				"food_3": "Quality control",
+				"food_4": "CCP monitoring"
+			}
+		},
+		"gw": {
+			"model": "Model: CW-GW-XX",
+			"title": "One gateway. Your whole facility.",
+			"body": "LoRaWAN gateways that bridge your CropWatch sensors to the cloud. Indoor, outdoor, and enterprise-grade options — choose by range and environment, not by vendor lock-in.",
+			"chip1": "Up to 15 km outdoor",
+			"chip2": "Ethernet / 4G",
+			"chip3": "Hundreds of devices",
+			"chip4": "TELEC / FCC",
+			"models_eyebrow": "MODELS",
+			"models_title": "Three gateways, one network",
+			"models_body": "Every gateway speaks the same protocol as your sensors. Mix indoor and outdoor as your footprint grows.",
+			"indoor": {
+				"name": "Indoor Gateway",
+				"model": "CW-GW-IN",
+				"range": "500 m — 2 km indoor",
+				"desc": "Desktop unit for offices, restaurants, and single-building deployments. Plugs into your router — running in under 5 minutes."
+			},
+			"outdoor": {
+				"name": "Outdoor Gateway",
+				"model": "CW-GW-OUT",
+				"range": "5-10 km outdoor",
+				"desc": "IP67, pole-mounted, Ethernet or 4G backhaul. Covers farms, yards, and multi-building sites with a single unit."
+			},
+			"ent": {
+				"name": "Enterprise Gateway",
+				"model": "CW-GW-ENT",
+				"range": "10-15 km outdoor",
+				"desc": "8-channel high-throughput gateway for dense sensor networks, industrial zones, and co-op deployments."
+			},
+			"setup_eyebrow": "SETUP",
+			"setup_title": "Setup in three steps",
+			"setup_1_title": "① Plug it in",
+			"setup_1_body": "Power (PoE or DC) and Ethernet — or SIM card for 4G gateways. No port-forwarding, no firewall rules.",
+			"setup_2_title": "② Scan the QR",
+			"setup_2_body": "Your gateway is pre-claimed to your CropWatch account. Scan, confirm, done.",
+			"setup_3_title": "③ Sensors find it",
+			"setup_3_body": "Power up any CropWatch sensor and it joins automatically. No pairing, no IT tickets."
+		},
+		"about": {
+			"eyebrow": "About CropWatch",
+			"title": "We build the sensors we wished existed.",
+			"body1": "CropWatch started in Miyazaki, Japan in 2022. Our first customer was a refrigerated-logistics yard that had lost a pallet of seafood to a silent freezer failure. They had no budget for enterprise IoT and no appetite for a vendor who answered tickets from another time zone.",
+			"body2": "So we built what they needed: hardware that runs for a decade on one battery, a gateway that covers the whole yard, and alerts that fire before the damage is done. We ship from Miyazaki. We answer our own phone. We do on-site installs.",
+			"values_eyebrow": "VALUES",
+			"values_title": "What we care about",
+			"v1_title": "Hardware that lasts a decade",
+			"v1_body": "Every sensor is designed for 10-year autonomy in environments that destroy cheap hardware. We over-engineer on purpose.",
+			"v2_title": "No vendor lock-in",
+			"v2_body": "Open LoRaWAN. Open API. Your data is yours — export it, integrate it, leave at any time.",
+			"v3_title": "Engineers answer the phone",
+			"v3_body": "When you call us, you talk to the person who designed your device. No L1 script, no escalation matrix.",
+			"team_eyebrow": "TEAM",
+			"team_title": "The team",
+			"team_body": "A small, senior crew of firmware engineers, agronomists, and field-operations specialists. Based in Miyazaki with partners across Japan."
+		},
+		"contact": {
+			"title": "Tell us what you’re monitoring.",
+			"body": "Or what you wish you could monitor. We’ll spec a starter kit, map the rollout, and show where the first-quarter payoff should come from.",
+			"info_title": "Reach us directly",
+			"info_email": "Email",
+			"info_phone": "Phone",
+			"info_hours": "Hours",
+			"info_hours_val": "Mon–Fri, 9:00–18:00 JST",
+			"info_address": "Address",
+			"info_address_val": "Miyazaki, Japan",
+			"form_name": "Your name",
+			"form_company": "Company",
+			"form_email": "Email",
+			"form_phone": "Phone (optional)",
+			"form_industry": "Industry",
+			"form_industry_opt": "Select an industry…",
+			"form_message": "What do you want to monitor?",
+			"form_message_hint": "Tell us what you’re measuring today, or what you wish you could.",
+			"form_submit": "Send enquiry",
+			"form_success": "Thanks — we’ll get back within one business day.",
+			"form_err_required": "Required",
+			"form_err_email": "Please enter a valid email"
+		},
+		"faq": {
+			"title": "Questions we hear every week.",
+			"body": "Still stuck? Email support@cropwatch.io — an actual engineer will answer.",
+			"tab_general": "General",
+			"tab_hardware": "Hardware",
+			"tab_deploy": "Deployment",
+			"tab_billing": "Billing",
+			"g1_q": "What does CropWatch actually do?",
+			"g1_a": "We make wireless sensors (temperature, humidity, CO₂, soil) and a cloud platform. You install sensors in your facility; numbers appear on your phone; alerts fire when something goes wrong. That’s it.",
+			"g2_q": "Do I need an IT team to install this?",
+			"g2_a": "No. One gateway plugs into a spare Ethernet port. Sensors pair automatically. Most pilots are running within 90 minutes.",
+			"g3_q": "How is this different from a cheap Wi-Fi thermometer?",
+			"g3_a": "Wi-Fi thermometers die in freezers, have short range, and need a phone nearby. Our devices run for 10 years on one battery, work through concrete walls, and ship audit-grade reports.",
+			"h1_q": "How long does the battery really last?",
+			"h1_a": "Up to 10 years, reporting every 10 minutes, at typical temperatures. Cold deployments and higher reporting frequencies shorten this — we’ll calculate it for your use case.",
+			"h2_q": "Can I replace the sensor without buying a new device?",
+			"h2_a": "Yes. The sensor head is field-replaceable. No special tools required.",
+			"h3_q": "What’s the range of a gateway?",
+			"h3_a": "Indoor: 500 m to 2 km depending on walls. Outdoor: 5-15 km line-of-sight. A single outdoor gateway typically covers an entire farm or logistics yard.",
+			"d1_q": "How long does a pilot take?",
+			"d1_a": "A 3-sensor / 1-gateway starter kit is live in about 90 minutes. Multi-site rollouts take 1-4 weeks depending on scope.",
+			"d2_q": "Do you do on-site installation?",
+			"d2_a": "Yes, across Japan. We also support self-install with video calls and phone support.",
+			"d3_q": "Can I export the data?",
+			"d3_a": "Yes — CSV, Excel, or our public API. Your data is always yours.",
+			"b1_q": "Is there a trial?",
+			"b1_a": "Yes — 90-day risk-free pilot. If it doesn’t work for you, return the hardware and pay nothing.",
+			"b2_q": "What’s the monthly cost?",
+			"b2_a": "Hardware is a one-time purchase. Platform subscription scales with sensor count. Contact us for a facility-specific quote."
+		},
+		"cs": {
+			"kicker": "Case studies / 2024-2026",
+			"title_1": "Real facilities.",
+			"title_2": "Real numbers.",
+			"title_3": "Real audits passed.",
+			"body": "Five operators across cold chain, hospitality, agriculture, and poultry, each running CropWatch in production. Here is what they replaced, what they measured, and what they got back.",
+			"stat1": "Active deployments",
+			"stat1v": "5 operators",
+			"stat2": "Sensors in field",
+			"stat2v": "4,200+",
+			"stat3": "Cumulative uptime",
+			"stat3v": "99.97%",
+			"stat4": "Industries served",
+			"stat4v": "6",
+			"filter_all": "All sectors",
+			"filter_cold": "Cold chain",
+			"filter_hosp": "Hospitality",
+			"filter_ag": "Agriculture",
+			"filter_live": "Livestock",
+			"labels_problem": "Problem",
+			"labels_solution": "Solution",
+			"live_readout": "Live Readout"
+		},
+		"ftr": {
+			"tagline": "Environmental monitoring built for the places your people cannot be.",
+			"products": "Products",
+			"company": "Company",
+			"resources": "Resources",
+			"legal": "© 2026 CropWatch. All rights reserved.",
+			"privacy": "Privacy",
+			"terms": "Terms"
+		},
+		"seo": {
+			"site_name": "CropWatch",
+			"title_tpl": "{page} — CropWatch",
+			"default_image": "https://cropwatch.io/favicon.svg",
+			"home": {
+				"title": "Environmental monitoring for hard places",
+				"description": "Wireless temperature, humidity and CO₂ sensors built in Miyazaki, Japan. 10-year battery, LoRaWAN, HACCP and GMP-ready. Deploy in 90 minutes."
+			},
+			"cwath": {
+				"title": "CW-AIR-TH Wireless Temperature & Humidity Sensor",
+				"description": "IP67 wireless environmental sensor: 10-year battery, LoRaWAN, NFC commissioning, ISO/IEC 17025 certified. Swappable heads for T/H, CO₂, or high-accuracy."
+			},
+			"gateways": {
+				"title": "LoRaWAN Gateways — Indoor, Outdoor, Enterprise",
+				"description": "CW-GW-IN, CW-GW-OUT, and CW-GW-ENT. Up to 15 km outdoor range, Ethernet or 4G backhaul. Set up in minutes — no IT ticket, no port-forwarding."
+			},
+			"case_studies": {
+				"title": "Case Studies — Real CropWatch deployments",
+				"description": "Five operators across cold chain, hospitality, agriculture, and poultry running CropWatch in production. Problem, solution, measured results."
+			},
+			"about": {
+				"title": "About CropWatch — Built in Miyazaki, Japan",
+				"description": "We build the sensors we wished existed: 10-year battery life, open LoRaWAN, engineers who answer the phone. Miyazaki-based with Japan-wide support."
+			},
+			"contact": {
+				"title": "Contact CropWatch — Get a quote",
+				"description": "Tell us what you are monitoring and we will spec a starter kit within one business day. Email, phone, or the form — a real engineer replies."
+			},
+			"faq": {
+				"title": "FAQ — CropWatch IoT sensors and gateways",
+				"description": "Questions we hear every week. Battery life, deployment time, range, pricing and more — answered by the engineers who built the hardware."
+			}
 		}
 	}
 }

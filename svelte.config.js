@@ -19,6 +19,12 @@ const config = {
 				domains: ['cropwatch.io', 'website-iilojvva6-crop-watch-team.vercel.app'],
 			},
 		}),
+		prerender: {
+			// SvelteKit's crawler follows <link rel="alternate" hreflang> in <head>,
+			// but we list non-default language roots explicitly so prerendered pages
+			// exist for each locale even if an alternate tag is ever missed.
+			entries: ['*', '/en', '/en/about']
+		}
 
 	},
 	vitePlugin: {

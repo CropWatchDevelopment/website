@@ -1,57 +1,169 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
+	import ClosingCTA from '$lib/components/redesign/ClosingCTA.svelte';
+	import Seo from '$lib/components/redesign/Seo.svelte';
+	import { loc } from '$lib/i18n/navigation';
+	import { CS_DATA } from '$lib/components/redesign/caseStudiesData';
+
+	type Filter = 'all' | 'cold' | 'hosp' | 'ag' | 'live';
+	let filter = $state<Filter>('all');
+
+	let currentLang = $derived<'en' | 'ja'>(($locale ?? 'en').startsWith('ja') ? 'ja' : 'en');
+	let data = $derived(CS_DATA[currentLang]);
+	let filtered = $derived(filter === 'all' ? data : data.filter((d) => d.sector === filter));
+
+	const filters: { k: Filter; label: string }[] = [
+		{ k: 'all', label: 'rd.cs.filter_all' },
+		{ k: 'cold', label: 'rd.cs.filter_cold' },
+		{ k: 'hosp', label: 'rd.cs.filter_hosp' },
+		{ k: 'ag', label: 'rd.cs.filter_ag' },
+		{ k: 'live', label: 'rd.cs.filter_live' }
+	];
+
+	function pad2(n: number) {
+		return String(n).padStart(2, '0');
+	}
 </script>
 
-<svelte:head>
-	<title>{$_('case_studies.meta.title')}</title>
-	<meta name="description" content={$_('case_studies.meta.description')} />
-</svelte:head>
+<Seo
+	title={$_('rd.seo.case_studies.title')}
+	description={$_('rd.seo.case_studies.description')}
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: $_('rd.hdr.nav.home'), item: 'https://www.cropwatch.io' + $loc('/') },
+			{ '@type': 'ListItem', position: 2, name: $_('rd.hdr.nav.case_studies') }
+		]
+	}}
+/>
 
-<section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
-	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
-		aria-hidden="true"
-	></div>
-	<div class="relative mx-auto w-full max-w-6xl px-4">
-		<div class="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
-			<div class="space-y-6">
-				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-					{$_('case_studies.hero.eyebrow')}
-				</p>
-				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					{$_('case_studies.hero.headline')}
-				</h1>
-				<p class="text-base text-white/80">{$_('case_studies.hero.intro.0')}</p>
-				<p class="text-base text-white/80">{$_('case_studies.hero.intro.1')}</p>
-			</div>
-			<div
-				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
-			>
-				<h2 class="text-lg font-semibold text-white">{$_('case_studies.hero.snapshot.title')}</h2>
-				<ul class="mt-6 space-y-4 text-sm text-white/80">
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('case_studies.hero.snapshot.items.0')}</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('case_studies.hero.snapshot.items.1')}</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('case_studies.hero.snapshot.items.2')}</span>
-					</li>
-				</ul>
+<div class="cs-page">
+	<!-- Hero -->
+	<section class="cs-hero">
+		<div class="cw-container">
+			<div class="cs-hero-grid">
+				<div>
+					<p class="cs-hero-kicker">{$_('rd.cs.kicker')}</p>
+					<h1 class="cs-hero-title">
+						<span>{$_('rd.cs.title_1')}</span>
+						<span>{$_('rd.cs.title_2')}</span>
+						<span>{$_('rd.cs.title_3')}</span>
+					</h1>
+					<p class="cs-hero-body">{$_('rd.cs.body')}</p>
+				</div>
+				<div class="cs-hero-stats">
+					{#each [1, 2, 3, 4] as n}
+						<div class="cs-hero-stat">
+							<p class="cs-hero-stat-label">{$_(`rd.cs.stat${n}`)}</p>
+							<p class="cs-hero-stat-value">{$_(`rd.cs.stat${n}v`)}</p>
+						</div>
+					{/each}
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<section class="flex items-center justify-center bg-white py-20">
-	<div class="text-center">
-		<h2 class="text-3xl font-semibold text-[#0b1730]">Case Studies & Our Clients Coming Soon!</h2>
-		<p class="mt-4 max-w-2xl text-base text-[#1c2d52]/80">
-			We're working hard to bring you our case studies. Stay tuned for updates!
-		</p>
-	</div>
-</section>
+	<!-- Filter bar -->
+	<section class="cs-filter-bar">
+		<div class="cw-container">
+			<div class="cs-filter-row">
+				<div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+					{#each filters as f (f.k)}
+						<button
+							class="cs-chip {filter === f.k ? 'active' : ''}"
+							onclick={() => (filter = f.k)}
+							type="button"
+						>
+							{$_(f.label)}
+						</button>
+					{/each}
+				</div>
+				<p class="cs-filter-summary">{filtered.length} / {data.length}</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Cases -->
+	{#each filtered as c, idx (c.id)}
+		<section class="cs-case-section {idx % 2 === 1 ? 'alt' : ''}">
+			<div class="cw-container">
+				<article class="cs-card">
+					<div class="cs-case-head">
+						<div class="cs-case-order">Case {c.id} / {pad2(data.length)}</div>
+						<div class="cs-case-bc">
+							{#each c.bc as b, i}
+								{#if i > 0}
+									·
+								{/if}
+								{#if i === c.bc.length - 1}
+									<strong>{b}</strong>
+								{:else}
+									{b}
+								{/if}
+							{/each}
+						</div>
+						<div class="cs-case-status">
+							<span class="cs-status-dot"></span>
+							{c.status}
+						</div>
+					</div>
+					<div class="cs-case-body {idx % 2 === 1 ? 'reverse' : ''}">
+						<div class="cs-content">
+							<div class="cs-client">
+								<div class="cs-logo">{c.logoTxt}</div>
+								<div>
+									<p class="cs-client-meta">{c.clientMeta}</p>
+									<p class="cs-client-name">{c.company}</p>
+								</div>
+							</div>
+							<h2 class="cs-headline">{@html c.headline}</h2>
+							<div class="cs-detail">
+								<p class="cs-detail-label problem">{$_('rd.cs.labels_problem')}</p>
+								<p class="cs-detail-copy">{c.problem}</p>
+							</div>
+							<div class="cs-detail">
+								<p class="cs-detail-label solution">{$_('rd.cs.labels_solution')}</p>
+								<p class="cs-detail-copy">{c.solution}</p>
+							</div>
+							<blockquote class="cs-quote">
+								<p>{c.quote.text}</p>
+								<footer>{c.quote.who}</footer>
+							</blockquote>
+							<div class="cs-metrics">
+								{#each c.metrics as m, i (i)}
+									<div class="cs-metric">
+										<p class="cs-metric-value">
+											{m.v}{#if m.unit}<span>{m.unit}</span>{/if}
+										</p>
+										<p class="cs-metric-label">{m.l}</p>
+									</div>
+								{/each}
+							</div>
+						</div>
+						<div class="cs-visual">
+							<div class="cs-visual-shell">
+								<p class="cs-visual-eyebrow">{$_('rd.cs.live_readout')}</p>
+								<div class="cs-visual-tags">
+									{#each c.tags as tg, i (i)}
+										<span class="cs-visual-tag">{tg}</span>
+									{/each}
+								</div>
+								<div class="cs-readout">
+									{#each c.readout as r, i (i)}
+										<div class="cs-readout-row">
+											<span class="cs-readout-key">{r.k}</span>
+											<span class="cs-readout-val {r.cls}">{r.v}</span>
+										</div>
+									{/each}
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</section>
+	{/each}
+
+	<ClosingCTA showSecondary={false} />
+</div>

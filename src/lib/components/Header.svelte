@@ -5,6 +5,7 @@
 	import Search from './Search.svelte';
 	import Telephone from './Telephone.svelte';
 	import { _, locale } from 'svelte-i18n';
+	import { loc } from '$lib/i18n/navigation';
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import christmas_logo from '$lib/images/christmas_cropwatch.svg';
 
@@ -119,16 +120,16 @@
 <header class="relative z-40 bg-[var(--cw-blue-900)] text-white">
 	<!-- Top Bar (Desktop) -->
 	<div
-		class="mx-auto hidden flex-row items-center justify-between bg-[#ffffffde] px-4 text-sm md:flex"
+		class="mx-auto hidden flex-row items-center justify-between border-b border-[var(--cw-ice-200)] bg-[var(--cw-ice-50)] px-4 text-sm md:flex"
 	>
-		<div class="flex gap-2 py-3 text-sm font-semibold text-[#11213c]">
+		<div class="flex gap-2 py-2 text-sm font-medium text-[var(--cw-blue-800)]">
 			<span>{$_('header.topbar.welcome')}</span>
-			<span>|</span>
+			<span class="text-[var(--cw-ice-400)]">|</span>
 			<span>{$_('header.topbar.global_site')}</span>
 		</div>
-		<div class="flex items-center gap-4 py-3 text-[#11213c]">
+		<div class="flex items-center gap-4 py-2 text-[var(--cw-blue-800)]">
 			{#each topLinks as link (link.href)}
-				<a href={link.href} class="font-medium transition-colors hover:text-blue-600"
+				<a href={$loc(link.href)} class="font-medium transition-colors hover:text-[var(--cw-blue-600)]"
 					>{$_(link.labelKey)}</a
 				>
 			{/each}
@@ -138,7 +139,7 @@
 
 	<!-- Middle Bar -->
 	<div
-		class="bg-gradient-to-b from-[var(--cw-blue-600)] via-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-4 text-white shadow-[0_6px_18px_rgba(2,6,23,0.55)] ring-1 ring-white/5"
+		class="bg-[var(--cw-blue-800)] py-4 text-white shadow-[0_6px_18px_rgba(2,6,23,0.35)] ring-1 ring-white/5"
 	>
 		<div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-6 px-4">
 			<a
@@ -177,6 +178,12 @@
 			<div class="hidden flex-1 items-center justify-end gap-6 md:flex">
 				<Telephone />
 				<Search />
+				<a
+					href={$loc('/contact')}
+					class="inline-flex items-center gap-2 rounded-full bg-[var(--cw-gold-500)] px-4 py-2 text-sm font-semibold text-[var(--cw-blue-800)] transition hover:bg-[var(--cw-gold-400)] hover:-translate-y-px"
+				>
+					{$_('rd.hdr.contact_cta')}
+				</a>
 			</div>
 
 			<!-- Mobile Hamburger -->
@@ -192,7 +199,7 @@
 
 	<!-- Desktop Nav -->
 	<nav
-		class="hidden bg-gradient-to-b from-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)] md:block"
+		class="hidden bg-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.25)] border-t border-white/5 md:block"
 	>
 		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
 			<ul class="flex items-center gap-6 text-sm text-nowrap text-white" id="mainMenu">
@@ -239,7 +246,7 @@
 									<li class="z-10">
 										<a
 											class="flex items-center gap-2 px-4 py-2 text-sm font-medium transition hover:bg-gray-100 hover:text-gray-900"
-											href={child.href}
+											href={$loc(child.href)}
 											role="menuitem"
 											onclick={closeMenu}
 										>
@@ -261,7 +268,7 @@
 						{:else}
 							<a
 								class="rounded px-2 py-1 font-medium text-nowrap transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-								href={item.href}
+								href={$loc(item.href)}
 							>
 								{$_(item.labelKey)}
 							</a>
@@ -275,7 +282,7 @@
 						<a
 							class="rounded px-3 py-1 text-nowrap transition hover:bg-white/10 hover:text-white"
 							target="_blank"
-							href={link.href}
+							href={$loc(link.href)}
 						>
 							{#if link.icon}
 								<MaterialIcon
@@ -343,7 +350,7 @@
 										{#each item.children as child}
 											<li>
 												<a
-													href={child.href}
+													href={$loc(child.href)}
 													class="flex items-center gap-2 py-1 text-base text-white/80"
 													onclick={closeMobileMenu}
 												>
@@ -363,7 +370,7 @@
 								{/if}
 							{:else}
 								<a
-									href={item.href}
+									href={$loc(item.href)}
 									class="block py-2 font-medium text-nowrap"
 									onclick={closeMobileMenu}
 								>
@@ -380,7 +387,7 @@
 				<ul class="flex flex-col gap-4">
 					{#each utilityLinks as link}
 						<li>
-							<a href={link.href} target="_blank" class="flex items-center gap-2 text-white/80">
+							<a href={$loc(link.href)} target="_blank" class="flex items-center gap-2 text-white/80">
 								{#if link.icon}
 									<MaterialIcon name={link.icon} collection="symbols" variant="rounded" size={20} />
 								{/if}
@@ -395,7 +402,7 @@
 				<!-- Mobile Top Links & Language -->
 				<div class="flex flex-col gap-4 pb-10">
 					{#each topLinks as link}
-						<a href={link.href} class="text-nowrap text-white/80" onclick={closeMobileMenu}>
+						<a href={$loc(link.href)} class="text-nowrap text-white/80" onclick={closeMobileMenu}>
 							{$_(link.labelKey)}
 						</a>
 					{/each}
