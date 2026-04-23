@@ -4,7 +4,7 @@
 	import LanguagePicker from './LanguagePicker.svelte';
 	import Search from './Search.svelte';
 	import Telephone from './Telephone.svelte';
-	import { _ } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import christmas_logo from '$lib/images/christmas_cropwatch.svg';
 
@@ -156,7 +156,15 @@
 					/>
 				</picture>
 				<div class="flex flex-col">
-					<span class="text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
+					{#if $locale === 'en'}
+					<span class="text-lg font-semibold tracking-wide">
+							𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝
+						</span>
+						{:else}
+						<span class="text-lg font-semibold tracking-wide italic">
+							クロップウォッチ
+						</span>
+						{/if}
 					<span class="hidden text-xs text-white/80 uppercase md:inline"
 						>{$_('header.brand.tagline')}</span
 					>
