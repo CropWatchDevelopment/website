@@ -135,7 +135,7 @@
 		return Number(samples[nextIndex].toFixed(2));
 	}
 
-	const statusStyle = $derived(statusStyles[status] || statusStyles.loading);
+	const statusStyle = $derived(statusStyles[status as Status] || statusStyles.loading);
 
 	const computedDetailRows = $derived(
 		detailRowsProp.length > 0
@@ -163,7 +163,7 @@
 						unit: '',
 						icon: 'timer'
 					}
-			  ]
+				]
 	);
 </script>
 
@@ -174,9 +174,10 @@
 			type="button"
 			onclick={cycleStatus}
 			title={$_('ui_demo.status_indicator.title', { values: { status: $_(statusStyle.labelKey) } })}
-			aria-label={$_('ui_demo.status_indicator.aria', { values: { status: $_(statusStyle.labelKey) } })}
+			aria-label={$_('ui_demo.status_indicator.aria', {
+				values: { status: $_(statusStyle.labelKey) }
+			})}
 		>
-        
 			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 				<path
 					fill="currentColor"
@@ -251,7 +252,9 @@
 				<button
 					class="sensor-card__collapse"
 					type="button"
-					aria-label={expanded ? $_('ui_demo.details.collapse_aria') : $_('ui_demo.details.expand_aria')}
+					aria-label={expanded
+						? $_('ui_demo.details.collapse_aria')
+						: $_('ui_demo.details.expand_aria')}
 					onclick={toggleDetails}
 				>
 					<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -268,7 +271,10 @@
 							<li>
 								<div class="detail-item">
 									<div class="detail-item__info">
-										<span class={`detail-item__icon detail-item__icon--${row.icon ?? 'timer'}`} aria-hidden="true">
+										<span
+											class={`detail-item__icon detail-item__icon--${row.icon ?? 'timer'}`}
+											aria-hidden="true"
+										>
 											{#if row.icon === 'drop'}
 												<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 													<path
@@ -285,10 +291,7 @@
 												</svg>
 											{:else}
 												<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
-													<path
-														fill="currentColor"
-														d="M12 7v5l4.3 2.6-.8 1.3L11 13V7h1Z"
-													></path>
+													<path fill="currentColor" d="M12 7v5l4.3 2.6-.8 1.3L11 13V7h1Z"></path>
 												</svg>
 											{/if}
 										</span>
@@ -296,10 +299,7 @@
 											{row.label ?? (row.labelKey ? $_(row.labelKey) : '')}
 										</span>
 									</div>
-									<div
-										class="detail-item__value"
-										class:detail-item__value--muted={!row.unit}
-									>
+									<div class="detail-item__value" class:detail-item__value--muted={!row.unit}>
 										<span class="detail-item__number">
 											{row.value ?? (row.valueKey ? $_(row.valueKey) : '')}
 										</span>
@@ -365,8 +365,8 @@
 		--collapse-color: rgba(255, 255, 255, 0.7);
 		--detail-divider: rgba(255, 255, 255, 0.08);
 		--stat-hover-bg: rgba(255, 255, 255, 0.08);
-		--cta-bg: linear-gradient(180deg, #3c4357, #2c3244);
-		--cta-bg-hover: linear-gradient(180deg, #454c61, #2f3546);
+		--cta-bg: #2c3244;
+		--cta-bg-hover: #3c4357;
 		--cta-text: #f5f7ff;
 		--theme-btn-bg: rgba(255, 255, 255, 0.08);
 		--theme-btn-border: rgba(255, 255, 255, 0.15);
@@ -379,7 +379,7 @@
 		box-shadow: 0 12px 24px rgba(8, 10, 15, 0.55);
 		color: var(--text-primary);
 		overflow: hidden;
-		font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+		font-family: var(--cw-font-page);
 	}
 
 	.sensor-card[data-theme='light'] {
@@ -407,8 +407,8 @@
 		--collapse-color: #6b7ba7;
 		--detail-divider: rgba(15, 23, 42, 0.08);
 		--stat-hover-bg: rgba(47, 83, 135, 0.12);
-		--cta-bg: linear-gradient(180deg, #ffffff, #edf1fb);
-		--cta-bg-hover: linear-gradient(180deg, #f7f9ff, #e4e9f7);
+		--cta-bg: #edf1fb;
+		--cta-bg-hover: #e4e9f7;
 		--cta-text: #0b1730;
 		--theme-btn-bg: #edf1fb;
 		--theme-btn-border: #c7d5f2;
@@ -435,7 +435,9 @@
 		color: #20d16a;
 		background: var(--status-indicator-bg);
 		cursor: pointer;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
 	}
 
 	.status-indicator:hover,
@@ -499,7 +501,9 @@
 		justify-content: center;
 		color: var(--header-action-color);
 		cursor: pointer;
-		transition: transform 0.2s ease, background 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			background 0.2s ease;
 	}
 
 	.header-action:hover {
@@ -529,7 +533,7 @@
 		bottom: 12px;
 		width: 5px;
 		border-radius: 999px;
-		background: linear-gradient(180deg, var(--status-color, #53ff8a), #1b1f29);
+		background: var(--status-color, #53ff8a);
 		box-shadow: 0 0 10px var(--status-glow, rgba(37, 214, 114, 0.75));
 	}
 
@@ -591,7 +595,9 @@
 
 	.sensor-stat--action {
 		cursor: pointer;
-		transition: background 0.2s ease, transform 0.2s ease;
+		transition:
+			background 0.2s ease,
+			transform 0.2s ease;
 	}
 
 	.sensor-stat--action:hover,
@@ -735,7 +741,9 @@
 		justify-content: center;
 		gap: 0.4rem;
 		cursor: pointer;
-		transition: background 0.2s ease, transform 0.2s ease;
+		transition:
+			background 0.2s ease,
+			transform 0.2s ease;
 		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 	}
 
@@ -777,7 +785,9 @@
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 		cursor: pointer;
-		transition: background 0.2s ease, transform 0.2s ease;
+		transition:
+			background 0.2s ease,
+			transform 0.2s ease;
 	}
 
 	.sensor-card__theme-toggle:hover {

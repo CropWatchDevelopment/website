@@ -9,7 +9,10 @@
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
-	<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(47,83,135,0.25),transparent_60%)]" aria-hidden="true"></div>
+	<div
+		class="absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
+		aria-hidden="true"
+	></div>
 	<div class="relative mx-auto w-full max-w-6xl px-4">
 		<div class="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center">
 			<div class="space-y-6">
@@ -39,8 +42,12 @@
 					</a>
 				</div>
 			</div>
-			<div class="rounded-3xl border border-white/20 bg-white/10 p-8 shadow-xl shadow-black/30 backdrop-blur">
-				<h2 class="text-lg font-semibold text-white">{$_('products.coming_soon.hero.sidebar.title')}</h2>
+			<div
+				class="rounded-3xl border border-white/20 bg-white/10 p-8 shadow-xl shadow-black/30 backdrop-blur"
+			>
+				<h2 class="text-lg font-semibold text-white">
+					{$_('products.coming_soon.hero.sidebar.title')}
+				</h2>
 				<p class="mt-3 text-sm text-white/70">{$_('products.coming_soon.hero.sidebar.intro')}</p>
 				<ul class="mt-6 space-y-4 text-sm text-white/80">
 					<li class="flex items-start gap-3">

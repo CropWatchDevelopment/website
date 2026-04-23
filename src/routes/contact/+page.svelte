@@ -99,7 +99,7 @@
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
 	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
+		class="absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
 		aria-hidden="true"
 	></div>
 	<div class="relative mx-auto w-full max-w-6xl px-4">

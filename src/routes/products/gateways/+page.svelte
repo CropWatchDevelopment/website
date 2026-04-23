@@ -19,16 +19,20 @@
 	<meta name="description" content={$_('products.gateways.meta.description')} />
 </svelte:head>
 
-<section class="relative isolate overflow-hidden bg-gradient-to-br from-[var(--cw-blue-900)] via-[var(--cw-blue-950)] to-black py-24 text-white">
-	<div class="pointer-events-none absolute inset-y-0 right-0 w-2/3 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),_transparent_55%)]"></div>
-	<div class="pointer-events-none absolute -left-10 top-1/2 h-40 w-40 rounded-full bg-[var(--cw-gold-500)]/20 blur-3xl"></div>
+<section class="relative isolate overflow-hidden bg-[var(--cw-blue-900)] py-24 text-white">
+	<div
+		class="pointer-events-none absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
+	></div>
+	<div
+		class="pointer-events-none absolute bottom-10 -left-16 h-40 w-40 rounded-full border border-[var(--cw-gold-500)]/20"
+	></div>
 	<div class="relative mx-auto w-full max-w-6xl px-4">
 		<div class="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
 			<div class="space-y-7">
-				<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--cw-gold-400)]">
+				<p class="text-xs font-semibold tracking-[0.32em] text-[var(--cw-gold-400)] uppercase">
 					{$_('products.gateways.hero.eyebrow')}
 				</p>
-				<h1 class="text-4xl font-bold leading-tight md:text-5xl">
+				<h1 class="text-4xl leading-tight font-bold md:text-5xl">
 					{$_('products.gateways.hero.headline')}
 				</h1>
 				<p class="text-base text-white/80 md:text-lg">
@@ -37,7 +41,7 @@
 				<div class="flex flex-wrap gap-4">
 					<a
 						href="/contact"
-						class="inline-flex items-center justify-center rounded-full bg-[var(--cw-gold-500)] px-7 py-3 text-sm font-semibold text-[var(--cw-blue-950)] transition hover:bg-[var(--cw-gold-400)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+						class="inline-flex items-center justify-center rounded-full bg-[var(--cw-gold-500)] px-7 py-3 text-sm font-semibold text-[var(--cw-blue-950)] transition hover:bg-[var(--cw-gold-400)] focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
 					>
 						{$_('products.gateways.hero.primary_cta')}
 					</a>
@@ -56,7 +60,7 @@
 <section id="lineup" class="bg-[#f5f7fb] py-24">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="mx-auto max-w-3xl text-center">
-			<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--cw-blue-700)]">
+			<p class="text-xs font-semibold tracking-[0.32em] text-[var(--cw-blue-700)] uppercase">
 				{$_('products.gateways.lineup.eyebrow')}
 			</p>
 			<h2 class="mt-3 text-3xl font-semibold text-[var(--cw-blue-950)] md:text-4xl">
@@ -67,9 +71,13 @@
 			</p>
 		</div>
 		<div class="mt-14 grid gap-10 lg:grid-cols-2">
-			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
-				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
-					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+			<article
+				class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70"
+			>
+				<div
+					class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-slate-900/5 sm:aspect-[16/10]"
+				>
+					<div class="absolute inset-0 bg-black/5"></div>
 					<img
 						src={ug65Image}
 						alt={$_('products.gateways.lineup.items.ug65.image_alt')}
@@ -82,13 +90,15 @@
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
 							{$_('products.gateways.lineup.items.ug65.name')}
 						</h3>
-						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+						<span
+							class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold tracking-wide text-[var(--cw-gold-500)] uppercase"
+						>
 							{$_('products.gateways.lineup.items.ug65.placement')}
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.manufacturer')}
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
@@ -99,26 +109,29 @@
 									<img
 										src={milesightLogo}
 										alt="Milesight logo"
-										class="object-contain max-w-[60%] pt-5"
+										class="max-w-[60%] object-contain pt-5"
 									/>
 								</div>
 							</div>
 						</div>
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.recommended')}
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.ug65.recommended.0')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.ug65.recommended.1')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.ug65.recommended.2')}</span>
 								</li>
 							</ul>
@@ -132,16 +145,20 @@
 							href="https://www.milesight-iot.com/iot/lorawan-gateway/ug65/"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)] focus-visible:outline-none"
 						>
 							{$_('products.gateways.lineup.cta.view_manufacturer')}
 						</a>
 					</div>
 				</div>
 			</article>
-			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
-				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
-					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+			<article
+				class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70"
+			>
+				<div
+					class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-slate-900/5 sm:aspect-[16/10]"
+				>
+					<div class="absolute inset-0 bg-black/5"></div>
 					<img
 						src={ug67Image}
 						alt={$_('products.gateways.lineup.items.ug67.image_alt')}
@@ -154,13 +171,15 @@
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
 							{$_('products.gateways.lineup.items.ug67.name')}
 						</h3>
-						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+						<span
+							class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold tracking-wide text-[var(--cw-gold-500)] uppercase"
+						>
 							{$_('products.gateways.lineup.items.ug67.placement')}
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.manufacturer')}
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
@@ -171,26 +190,29 @@
 									<img
 										src={milesightLogo}
 										alt="Milesight logo"
-										class="object-contain max-w-[60%] pt-5"
+										class="max-w-[60%] object-contain pt-5"
 									/>
 								</div>
 							</div>
 						</div>
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.recommended')}
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.ug67.recommended.0')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.ug67.recommended.1')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.ug67.recommended.2')}</span>
 								</li>
 							</ul>
@@ -204,16 +226,20 @@
 							href="https://www.milesight-iot.com/iot/lorawan-gateway/ug67/"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)] focus-visible:outline-none"
 						>
 							{$_('products.gateways.lineup.cta.view_manufacturer')}
 						</a>
 					</div>
 				</div>
 			</article>
-			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
-				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
-					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+			<article
+				class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70"
+			>
+				<div
+					class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-slate-900/5 sm:aspect-[16/10]"
+				>
+					<div class="absolute inset-0 bg-black/5"></div>
 					<img
 						src={konaMicroImage}
 						alt={$_('products.gateways.lineup.items.kona_micro.image_alt')}
@@ -226,13 +252,15 @@
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
 							{$_('products.gateways.lineup.items.kona_micro.name')}
 						</h3>
-						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+						<span
+							class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold tracking-wide text-[var(--cw-gold-500)] uppercase"
+						>
 							{$_('products.gateways.lineup.items.kona_micro.placement')}
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.manufacturer')}
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
@@ -243,26 +271,29 @@
 									<img
 										src={tektelicLogo}
 										alt="Tektelic logo"
-										class="object-contain max-w-[60%] pt-5"
+										class="max-w-[60%] object-contain pt-5"
 									/>
 								</div>
 							</div>
 						</div>
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.recommended')}
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.0')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.1')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.2')}</span>
 								</li>
 							</ul>
@@ -276,16 +307,20 @@
 							href="https://tektelic.com/products/gateways/kona-micro/"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)] focus-visible:outline-none"
 						>
 							{$_('products.gateways.lineup.cta.view_manufacturer')}
 						</a>
 					</div>
 				</div>
 			</article>
-			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
-				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
-					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+			<article
+				class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70"
+			>
+				<div
+					class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-slate-900/5 sm:aspect-[16/10]"
+				>
+					<div class="absolute inset-0 bg-black/5"></div>
 					<img
 						src={konaEnterpriseImage}
 						alt={$_('products.gateways.lineup.items.kona_enterprise.image_alt')}
@@ -298,13 +333,15 @@
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
 							{$_('products.gateways.lineup.items.kona_enterprise.name')}
 						</h3>
-						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+						<span
+							class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold tracking-wide text-[var(--cw-gold-500)] uppercase"
+						>
 							{$_('products.gateways.lineup.items.kona_enterprise.placement')}
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.manufacturer')}
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
@@ -315,26 +352,29 @@
 									<img
 										src={tektelicLogo}
 										alt="Tektelic logo"
-										class="object-contain max-w-[60%] pt-5"
+										class="max-w-[60%] object-contain pt-5"
 									/>
 								</div>
 							</div>
 						</div>
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.recommended')}
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.0')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.1')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.2')}</span>
 								</li>
 							</ul>
@@ -348,16 +388,20 @@
 							href="https://tektelic.com/products/gateways/kona-enterprise/"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)] focus-visible:outline-none"
 						>
 							{$_('products.gateways.lineup.cta.view_manufacturer')}
 						</a>
 					</div>
 				</div>
 			</article>
-			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
-				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
-					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+			<article
+				class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70"
+			>
+				<div
+					class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-slate-900/5 sm:aspect-[16/10]"
+				>
+					<div class="absolute inset-0 bg-black/5"></div>
 					<img
 						src={konaMacroImage}
 						alt={$_('products.gateways.lineup.items.kona_macro.image_alt')}
@@ -370,13 +414,15 @@
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
 							{$_('products.gateways.lineup.items.kona_macro.name')}
 						</h3>
-						<span class="inline-flex items-center rounded-full border border-[var(--cw-emerald-500)] bg-[var(--cw-emerald-900)] px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-emerald-900)]">
+						<span
+							class="inline-flex items-center rounded-full border border-[var(--cw-emerald-500)] bg-[var(--cw-emerald-900)] px-4 py-1 text-xs font-semibold tracking-wide text-[var(--cw-emerald-900)] uppercase"
+						>
 							{$_('products.gateways.lineup.items.kona_macro.placement')}
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.manufacturer')}
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
@@ -387,26 +433,29 @@
 									<img
 										src={tektelicLogo}
 										alt="Tektelic logo"
-										class="object-contain max-w-[60%] pt-5"
+										class="max-w-[60%] object-contain pt-5"
 									/>
 								</div>
 							</div>
 						</div>
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.recommended')}
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.0')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.1')}</span>
 								</li>
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.2')}</span>
 								</li>
 							</ul>
@@ -420,16 +469,20 @@
 							href="https://tektelic.com/products/gateways/kona-macro/"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)] focus-visible:outline-none"
 						>
 							{$_('products.gateways.lineup.cta.view_manufacturer')}
 						</a>
 					</div>
 				</div>
 			</article>
-			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
-				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
-					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+			<article
+				class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70"
+			>
+				<div
+					class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-slate-900/5 sm:aspect-[16/10]"
+				>
+					<div class="absolute inset-0 bg-black/5"></div>
 					<img
 						src={seeedImage}
 						alt={$_('products.gateways.lineup.items.seeed_m2.image_alt')}
@@ -442,13 +495,15 @@
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
 							{$_('products.gateways.lineup.items.seeed_m2.name')}
 						</h3>
-						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+						<span
+							class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold tracking-wide text-[var(--cw-gold-500)] uppercase"
+						>
 							{$_('products.gateways.lineup.items.seeed_m2.placement')}
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.manufacturer')}
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
@@ -456,21 +511,18 @@
 									{$_('products.gateways.lineup.items.seeed_m2.manufacturer')}
 								</span>
 								<div class="flex w-full items-center justify-center">
-									<img
-										src={seeedLogo}
-										alt="Seeed Studio logo"
-										class="object-contain max-w-[60%]"
-									/>
+									<img src={seeedLogo} alt="Seeed Studio logo" class="max-w-[60%] object-contain" />
 								</div>
 							</div>
 						</div>
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.recommended')}
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.seeed_m2.recommended.0')}</span>
 								</li>
 							</ul>
@@ -484,16 +536,20 @@
 							href="https://www.seeedstudio.com/SenseCAP-M2-LoRaWAN-Gateway-p-5758.html"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)] focus-visible:outline-none"
 						>
 							{$_('products.gateways.lineup.cta.view_manufacturer')}
 						</a>
 					</div>
 				</div>
 			</article>
-			<article class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70">
-				<div class="relative flex w-full items-center justify-center overflow-hidden bg-slate-900/5 aspect-[4/3] sm:aspect-[16/10]">
-					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
+			<article
+				class="flex flex-col overflow-hidden rounded-[28px] border border-white/40 bg-white shadow-xl shadow-slate-200/70"
+			>
+				<div
+					class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-slate-900/5 sm:aspect-[16/10]"
+				>
+					<div class="absolute inset-0 bg-black/5"></div>
 					<img
 						src={ezurioImage}
 						alt={$_('products.gateways.lineup.items.ezurio_indoor.image_alt')}
@@ -506,13 +562,15 @@
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
 							{$_('products.gateways.lineup.items.ezurio_indoor.name')}
 						</h3>
-						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
+						<span
+							class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold tracking-wide text-[var(--cw-gold-500)] uppercase"
+						>
 							{$_('products.gateways.lineup.items.ezurio_indoor.placement')}
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.manufacturer')}
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
@@ -520,21 +578,18 @@
 									{$_('products.gateways.lineup.items.ezurio_indoor.manufacturer')}
 								</span>
 								<div class="flex w-full items-center justify-center">
-									<img
-										src={ezurioLogo}
-										alt="Ezurio logo"
-										class="object-contain max-w-[60%]"
-									/>
+									<img src={ezurioLogo} alt="Ezurio logo" class="max-w-[60%] object-contain" />
 								</div>
 							</div>
 						</div>
 						<div>
-							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
+							<p class="text-xs tracking-[0.32em] text-slate-400 uppercase">
 								{$_('products.gateways.lineup.fields.recommended')}
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
-									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
+									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"
+									></span>
 									<span>{$_('products.gateways.lineup.items.ezurio_indoor.recommended.0')}</span>
 								</li>
 							</ul>
@@ -548,7 +603,7 @@
 							href="https://www.ezurio.com/iot-devices/lorawan-iot-devices/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)] focus-visible:outline-none"
 						>
 							{$_('products.gateways.lineup.cta.view_manufacturer')}
 						</a>
@@ -559,11 +614,13 @@
 	</div>
 </section>
 
-<section class="relative isolate overflow-hidden bg-gradient-to-br from-[var(--cw-blue-900)] via-[#0b1730] to-black py-24 text-white">
-	<div class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--cw-gold-500)] to-transparent"></div>
-	<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_70%)]"></div>
+<section class="relative isolate overflow-hidden bg-[var(--cw-blue-900)] py-24 text-white">
+	<div class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[var(--cw-gold-500)]"></div>
+	<div
+		class="pointer-events-none absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
+	></div>
 	<div class="mx-auto w-full max-w-5xl px-4 text-center">
-		<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--cw-gold-500)]">
+		<p class="text-xs font-semibold tracking-[0.32em] text-[var(--cw-gold-500)] uppercase">
 			{$_('products.gateways.cta.eyebrow')}
 		</p>
 		<h2 class="mt-4 text-3xl font-semibold md:text-4xl">
@@ -575,7 +632,7 @@
 		<div class="mt-10 flex flex-wrap justify-center gap-4">
 			<a
 				href="/contact"
-				class="inline-flex items-center justify-center rounded-full bg-[var(--cw-gold-500)] px-7 py-3 text-sm font-semibold text-[var(--cw-blue-950)] transition hover:bg-[var(--cw-gold-400)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+				class="inline-flex items-center justify-center rounded-full bg-[var(--cw-gold-500)] px-7 py-3 text-sm font-semibold text-[var(--cw-blue-950)] transition hover:bg-[var(--cw-gold-400)] focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
 			>
 				{$_('products.gateways.cta.primary_cta')}
 			</a>

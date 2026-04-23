@@ -140,7 +140,7 @@
 
 <section class="relative overflow-hidden bg-[#0b1730] py-16 text-white md:py-20">
 	<div
-		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(47,83,135,0.4),_transparent_55%)]"
+		class="pointer-events-none absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
 		aria-hidden="true"
 	></div>
 

@@ -23,10 +23,7 @@
 </section>
 
 <section class="relative overflow-hidden bg-white py-10">
-	<div
-		class="absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-[#11213c]/10 to-transparent"
-		aria-hidden="true"
-	></div>
+	<div class="absolute inset-x-0 top-0 h-px bg-[#d7e0f5]" aria-hidden="true"></div>
 	<div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-4">
 		<div class="grid gap-12 md:grid-cols-[1.35fr_1fr] md:items-start">
 			<div class="flex h-full flex-col gap-6">
@@ -36,11 +33,11 @@
 				<h1 class="text-4xl font-semibold tracking-tight text-[#0b1730] md:text-5xl">
 					{@html $_('home.hero.headline_html')}
 				</h1>
-				<p class="text-lg leading-relaxed md:text-xl text-[#15284a]/80">
+				<p class="text-lg leading-relaxed text-[#15284a]/80 md:text-xl">
 					{@html $_('home.hero.body_html')}
 				</p>
 				<div
-					class="grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-md text-[#1c2d52] md:grid-cols-2"
+					class="text-md grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-[#1c2d52] md:grid-cols-2"
 				>
 					<div class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
@@ -71,18 +68,18 @@
 				<!--VIDEO EXAMPLES SECTION-->
 				<div>
 					{#if $locale === 'ja'}
-					aaa
+						aaa
 					{:else}
-					<iframe
-						class="w-full rounded-2xl border border-[#d7e0f5] shadow-lg shadow-[#0b1730]/5"
-						height="400"
-						src="https://www.youtube.com/embed/iiGCBuoFF20?si=ZgLpXY30PN0RTVqn"
-						title="YouTube video player"
-						frameborder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-						referrerpolicy="strict-origin-when-cross-origin"
-						allowfullscreen
-					></iframe>
+						<iframe
+							class="w-full rounded-2xl border border-[#d7e0f5] shadow-lg shadow-[#0b1730]/5"
+							height="400"
+							src="https://www.youtube.com/embed/iiGCBuoFF20?si=ZgLpXY30PN0RTVqn"
+							title="YouTube video player"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							referrerpolicy="strict-origin-when-cross-origin"
+							allowfullscreen
+						></iframe>
 					{/if}
 				</div>
 
@@ -104,7 +101,9 @@
 			<div
 				class="h-full rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-lg shadow-[#0b1730]/5"
 			>
-				<h2 class="text-2xl text-center font-semibold text-[#0b1730]">{$_('home.hero.sidebar.title')}</h2>
+				<h2 class="text-center text-2xl font-semibold text-[#0b1730]">
+					{$_('home.hero.sidebar.title')}
+				</h2>
 				<hr class="my-4 border-[#d7e0f5]" />
 				<div class="space-y-6 text-sm text-[#1c2d52]">
 					<div class="grid gap-4 sm:grid-cols-2">
@@ -112,7 +111,7 @@
 							<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
 								{$_('home.hero.sidebar.comparison.manual.title')}
 							</p>
-							<ul class="mt-4 text-md space-y-3 text-[#1c2d52]/80">
+							<ul class="text-md mt-4 space-y-3 text-[#1c2d52]/80">
 								<li>{$_('home.hero.sidebar.comparison.manual.bullets.0')}</li>
 								<li>{$_('home.hero.sidebar.comparison.manual.bullets.1')}</li>
 								<li>{$_('home.hero.sidebar.comparison.manual.bullets.2')}</li>
@@ -342,7 +341,7 @@
 
 <section class="relative overflow-hidden bg-[#0b1730] py-20">
 	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
+		class="absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
 		aria-hidden="true"
 	></div>
 	<div class="relative mx-auto w-full max-w-5xl px-4 text-center text-white">

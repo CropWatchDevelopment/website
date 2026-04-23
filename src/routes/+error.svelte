@@ -237,7 +237,11 @@
 
 <section class="relative overflow-hidden bg-[#0b1730] py-16 text-white sm:py-20">
 	<div
-		class="absolute inset-0 bg-[radial-gradient(1200px_circle_at_20%_10%,_rgba(242,165,22,0.18),_transparent_55%),radial-gradient(900px_circle_at_70%_30%,_rgba(47,83,135,0.35),_transparent_55%),radial-gradient(700px_circle_at_60%_110%,_rgba(255,255,255,0.08),_transparent_45%)]"
+		class="absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
+		aria-hidden="true"
+	></div>
+	<div
+		class="absolute bottom-10 -left-16 h-40 w-40 rounded-full border border-[#f2a516]/20"
 		aria-hidden="true"
 	></div>
 	<div class="relative mx-auto w-full max-w-6xl px-4">

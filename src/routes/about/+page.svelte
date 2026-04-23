@@ -100,7 +100,7 @@
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
 	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(47,83,135,0.25),transparent_60%)]"
+		class="absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
 		aria-hidden="true"
 	></div>
 	<div class="relative mx-auto w-full max-w-6xl px-4">
@@ -171,8 +171,7 @@
 				>
 					<div class="flex items-center gap-4">
 						<div
-							class="flex h-20 w-20 items-center justify-center rounded-full text-xl font-semibold text-white"
-							style="background-image: linear-gradient(to bottom right, #11213c, #2f5387, #f2a516);"
+							class="flex h-20 w-20 items-center justify-center rounded-full bg-[#11213c] text-xl font-semibold text-white ring-2 ring-[#f2a516]/40"
 						>
 							{#if leader.src}
 								<img
@@ -199,11 +198,11 @@
 								href={leader.linkedinUrl}
 								target="_blank"
 								rel="noopener noreferrer"
-									class="inline-flex items-center gap-2 rounded-full border border-[#2f5387]/30 px-4 py-2 text-sm font-medium text-[#2f5387] transition hover:border-[#2f5387] hover:bg-[#2f5387] hover:text-white"
-									aria-label={$_('about.leadership.actions.linkedin_aria', {
-										values: { name: getLeaderName(leader) }
-									})}
-								>
+								class="inline-flex items-center gap-2 rounded-full border border-[#2f5387]/30 px-4 py-2 text-sm font-medium text-[#2f5387] transition hover:border-[#2f5387] hover:bg-[#2f5387] hover:text-white"
+								aria-label={$_('about.leadership.actions.linkedin_aria', {
+									values: { name: getLeaderName(leader) }
+								})}
+							>
 								<span aria-hidden="true" class="text-base font-semibold">in</span>
 								<span>{$_('about.leadership.actions.linkedin')}</span>
 							</a>
@@ -213,11 +212,11 @@
 								href={leader.githubUrl}
 								target="_blank"
 								rel="noopener noreferrer"
-									class="inline-flex items-center gap-2 rounded-full border border-[#0b1730]/30 px-4 py-2 text-sm font-medium text-[#0b1730] transition hover:border-[#0b1730] hover:bg-[#0b1730] hover:text-white"
-									aria-label={$_('about.leadership.actions.github_aria', {
-										values: { name: getLeaderName(leader) }
-									})}
-								>
+								class="inline-flex items-center gap-2 rounded-full border border-[#0b1730]/30 px-4 py-2 text-sm font-medium text-[#0b1730] transition hover:border-[#0b1730] hover:bg-[#0b1730] hover:text-white"
+								aria-label={$_('about.leadership.actions.github_aria', {
+									values: { name: getLeaderName(leader) }
+								})}
+							>
 								<MaterialIcon name="code" class="text-base font-semibold" />
 								<span>{$_('about.leadership.actions.github')}</span>
 							</a>
@@ -227,11 +226,11 @@
 								href={leader.websiteUrl}
 								target="_blank"
 								rel="noopener noreferrer"
-									class="inline-flex items-center gap-2 rounded-full border border-[#0b1730]/30 px-4 py-2 text-sm font-medium text-[#0b1730] transition hover:border-[#0b1730] hover:bg-[#0b1730] hover:text-white"
-									aria-label={$_('about.leadership.actions.github_aria', {
-										values: { name: getLeaderName(leader) }
-									})}
-								>
+								class="inline-flex items-center gap-2 rounded-full border border-[#0b1730]/30 px-4 py-2 text-sm font-medium text-[#0b1730] transition hover:border-[#0b1730] hover:bg-[#0b1730] hover:text-white"
+								aria-label={$_('about.leadership.actions.github_aria', {
+									values: { name: getLeaderName(leader) }
+								})}
+							>
 								<MaterialIcon name="language" class="text-base font-semibold" />
 								<span>Website</span>
 							</a>

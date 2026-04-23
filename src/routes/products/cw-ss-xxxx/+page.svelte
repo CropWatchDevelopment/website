@@ -169,11 +169,12 @@
 	<meta property="og:locale" content={$locale} />
 </svelte:head>
 
-<section
-	class="relative isolate overflow-hidden bg-gradient-to-br from-[#081525] via-[#0f2238] to-[#1d4a31] py-24 text-white"
->
+<section class="relative isolate overflow-hidden bg-[#0b1730] py-24 text-white">
 	<div
-		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(111,161,74,0.24),_transparent_34%),radial-gradient(circle_at_bottom_right,_rgba(242,165,22,0.18),_transparent_28%)]"
+		class="pointer-events-none absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
+	></div>
+	<div
+		class="pointer-events-none absolute bottom-10 -left-16 h-40 w-40 rounded-full border border-[#f2a516]/20"
 	></div>
 	<div
 		class="relative mx-auto grid w-full max-w-6xl gap-12 px-4 lg:grid-cols-[0.92fr_1.08fr] lg:items-center"
@@ -421,7 +422,7 @@
 
 <section class="relative overflow-hidden bg-[#0b1730] py-24 text-white">
 	<div
-		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(111,161,74,0.18),_transparent_32%),radial-gradient(circle_at_bottom_left,_rgba(242,165,22,0.12),_transparent_26%)]"
+		class="pointer-events-none absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
 	></div>
 	<div class="relative mx-auto grid w-full max-w-6xl gap-10 px-4 lg:grid-cols-[1.08fr_0.92fr]">
 		<div>
@@ -583,7 +584,7 @@
 	</div>
 </section>
 
-<section class="bg-gradient-to-br from-[#0f2238] via-[#11213c] to-[#1c4631] py-24 text-white">
+<section class="bg-[#11213c] py-24 text-white">
 	<div class="mx-auto grid w-full max-w-6xl gap-8 px-4 lg:grid-cols-[1fr_auto] lg:items-end">
 		<div>
 			<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">Next step</p>

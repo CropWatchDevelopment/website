@@ -114,10 +114,10 @@
 	}
 </script>
 
-<header class="relative z-40 bg-[var(--cw-blue-900)] text-white">
+<header class="relative z-40 border-b border-[var(--cw-ice-200)] bg-white text-[var(--cw-text)]">
 	<!-- Top Bar (Desktop) -->
 	<div
-		class="mx-auto hidden flex-row items-center justify-between bg-[#ffffffde] px-4 text-sm md:flex"
+		class="mx-auto hidden flex-row items-center justify-between border-b border-[var(--cw-ice-200)] bg-[var(--cw-ice-50)] px-4 text-sm md:flex"
 	>
 		<div class="flex gap-2 py-3 text-sm font-semibold text-[#11213c]">
 			<span>{$_('header.topbar.welcome')}</span>
@@ -135,9 +135,7 @@
 	</div>
 
 	<!-- Middle Bar -->
-	<div
-		class="bg-gradient-to-b from-[var(--cw-blue-600)] via-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-4 text-white shadow-[0_6px_18px_rgba(2,6,23,0.55)] ring-1 ring-white/5"
-	>
+	<div class="bg-[var(--cw-blue-800)] py-4 text-white shadow-[var(--cw-shadow-soft)]">
 		<div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-6 px-4">
 			<a
 				class="flex min-w-[220px] items-center gap-4"
@@ -156,7 +154,7 @@
 					/>
 				</picture>
 				<div class="flex flex-col">
-					<span class="text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
+					<span class="cw-header-wordmark text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
 					<span class="hidden text-xs text-white/80 uppercase md:inline"
 						>{$_('header.brand.tagline')}</span
 					>
@@ -182,7 +180,7 @@
 
 	<!-- Desktop Nav -->
 	<nav
-		class="hidden bg-gradient-to-b from-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)] md:block"
+		class="hidden border-t border-white/10 bg-[var(--cw-blue-900)] py-3 shadow-[var(--cw-shadow-soft)] md:block"
 	>
 		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
 			<ul class="flex items-center gap-6 text-sm text-nowrap text-white" id="mainMenu">

@@ -6,23 +6,27 @@
 	/>
 </svelte:head>
 
-<div class="relative isolate px-6 py-16">
-	<div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-white/5 to-black/40"></div>
+<div class="cw-legal-page relative isolate px-6">
+	<div class="pointer-events-none absolute inset-0 -z-10 bg-[#0b1730]"></div>
 	<div class="mx-auto max-w-5xl">
 		<header class="mb-12 text-center text-white">
 			<p class="mb-3 text-sm font-semibold tracking-[0.35em] text-[var(--cw-gold-400)]">LEGAL</p>
-			<h1 class="text-4xl font-bold leading-tight md:text-5xl">クッキーポリシー</h1>
+			<h1 class="text-4xl leading-tight font-bold md:text-5xl">クッキーポリシー</h1>
 			<p class="mt-6 text-base text-white/80">
 				本サービスにおけるクッキー等の利用目的、取得情報、そして利用者が選択できる管理方法についてご案内します。
 			</p>
-			<div class="mx-auto mt-8 h-1 w-28 rounded-full bg-gradient-to-r from-transparent via-[var(--cw-gold-500)] to-transparent"></div>
+			<div class="mx-auto mt-8 h-1 w-28 rounded-full bg-[var(--cw-gold-500)]"></div>
 		</header>
 
 		<main
 			class="relative overflow-hidden rounded-3xl bg-white/95 p-8 shadow-2xl ring-1 ring-black/5 backdrop-blur-sm dark:bg-[#0f1f3d]/90 dark:text-white dark:ring-white/10"
 		>
-			<div class="pointer-events-none absolute -left-20 top-10 h-40 w-40 rounded-full bg-[var(--cw-gold-500)]/10 blur-3xl"></div>
-			<div class="pointer-events-none absolute -bottom-12 right-0 h-32 w-32 rounded-full bg-[var(--cw-blue-600)]/10 blur-3xl"></div>
+			<div
+				class="pointer-events-none absolute top-10 -left-20 h-40 w-40 rounded-full bg-[var(--cw-gold-500)]/10 blur-3xl"
+			></div>
+			<div
+				class="pointer-events-none absolute right-0 -bottom-12 h-32 w-32 rounded-full bg-[var(--cw-blue-600)]/10 blur-3xl"
+			></div>
 
 			<section class="relative mb-10 space-y-4">
 				<h2 class="text-2xl font-semibold text-[var(--cw-blue-900)] dark:text-white">
@@ -51,7 +55,9 @@
 						本サービスで利用している代表的なクッキー等の内容は以下のとおりです。
 					</p>
 				</div>
-				<div class="overflow-hidden rounded-2xl border border-gray-200 shadow-sm dark:border-gray-700">
+				<div
+					class="overflow-hidden rounded-2xl border border-gray-200 shadow-sm dark:border-gray-700"
+				>
 					<table class="w-full border-collapse text-left text-sm">
 						<thead class="bg-[var(--cw-blue-900)] text-white">
 							<tr>
@@ -63,12 +69,16 @@
 						</thead>
 						<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
 							<tr class="bg-white/95 dark:bg-transparent">
-								<td class="align-top px-6 py-4 text-[var(--cw-blue-900)] dark:text-gray-100">
+								<td class="px-6 py-4 align-top text-[var(--cw-blue-900)] dark:text-gray-100">
 									Google Analytics
 								</td>
-								<td class="align-top px-6 py-4 text-[var(--cw-blue-900)] dark:text-gray-100">Google LLC</td>
-								<td class="align-top px-6 py-4 text-[var(--cw-blue-900)]/80 dark:text-gray-300">
-									<div class="mb-2 font-semibold text-[var(--cw-blue-900)] dark:text-gray-100">【例】</div>
+								<td class="px-6 py-4 align-top text-[var(--cw-blue-900)] dark:text-gray-100"
+									>Google LLC</td
+								>
+								<td class="px-6 py-4 align-top text-[var(--cw-blue-900)]/80 dark:text-gray-300">
+									<div class="mb-2 font-semibold text-[var(--cw-blue-900)] dark:text-gray-100">
+										【例】
+									</div>
 									<ul class="list-disc space-y-1 pl-4">
 										<li>IPアドレス</li>
 										<li>端末固有のユニークID</li>
@@ -78,22 +88,26 @@
 										<li>滞在時間等</li>
 									</ul>
 								</td>
-								<td class="align-top px-6 py-4 text-[var(--cw-blue-900)]/80 dark:text-gray-300">
-									<div class="mb-2 font-semibold text-[var(--cw-blue-900)] dark:text-gray-100">【例】</div>
+								<td class="px-6 py-4 align-top text-[var(--cw-blue-900)]/80 dark:text-gray-300">
+									<div class="mb-2 font-semibold text-[var(--cw-blue-900)] dark:text-gray-100">
+										【例】
+									</div>
 									<p>
 										本サービスの利用状況を把握し、サービス向上および利用者の興味やニーズにより適した機能を提供するため
 									</p>
 								</td>
 							</tr>
 							<tr class="bg-white/95 dark:bg-transparent">
-								<td class="align-top px-6 py-4 text-[var(--cw-blue-900)] dark:text-gray-100">
+								<td class="px-6 py-4 align-top text-[var(--cw-blue-900)] dark:text-gray-100">
 									sb-dpaoqrcfswnzknixwkll-auth-token.X
 								</td>
-								<td class="align-top px-6 py-4 text-[var(--cw-blue-900)] dark:text-gray-100">Supabase Inc</td>
-								<td class="align-top px-6 py-4 text-[var(--cw-blue-900)]/80 dark:text-gray-300">
+								<td class="px-6 py-4 align-top text-[var(--cw-blue-900)] dark:text-gray-100"
+									>Supabase Inc</td
+								>
+								<td class="px-6 py-4 align-top text-[var(--cw-blue-900)]/80 dark:text-gray-300">
 									利用者のJavaScript Webトークン（JWT）およびリフレッシュトークン
 								</td>
-								<td class="align-top px-6 py-4 text-[var(--cw-blue-900)]/80 dark:text-gray-300">
+								<td class="px-6 py-4 align-top text-[var(--cw-blue-900)]/80 dark:text-gray-300">
 									認証および認可に使用
 								</td>
 							</tr>
@@ -114,7 +128,9 @@
 				</p>
 			</section>
 
-			<div class="mt-12 text-right text-sm font-medium text-[var(--cw-blue-900)]/70 dark:text-gray-300">
+			<div
+				class="mt-12 text-right text-sm font-medium text-[var(--cw-blue-900)]/70 dark:text-gray-300"
+			>
 				2024年8月1日　制定・施行
 			</div>
 		</main>

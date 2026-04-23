@@ -15,14 +15,18 @@
 	<meta name="description" content="Your payment has been processed successfully." />
 </svelte:head>
 
-<section class="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-[#11213c] py-20 text-white">
+<section
+	class="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-[#11213c] py-20 text-white"
+>
 	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
+		class="absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
 		aria-hidden="true"
 	></div>
 
 	<div class="relative mx-auto w-full max-w-lg px-4">
-		<div class="flex flex-col items-center rounded-3xl border border-white/20 bg-[#0b1730]/80 p-10 text-center shadow-xl shadow-black/30 backdrop-blur">
+		<div
+			class="flex flex-col items-center rounded-3xl border border-white/20 bg-[#0b1730]/80 p-10 text-center shadow-xl shadow-black/30 backdrop-blur"
+		>
 			<!-- Animated success checkmark -->
 			<div class="mb-6">
 				<svg
@@ -99,7 +103,9 @@
 				class="inline-flex items-center gap-2 rounded-xl bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#0b1730] shadow-lg shadow-[#f2a516]/20 transition-all hover:bg-[#ffbb34] hover:shadow-[#f2a516]/30"
 			>
 				<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-					<path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 9H8v2h5v-2zm3 4H8v2h8v-2zm-3-8V3.5L18.5 9H13z"/>
+					<path
+						d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 9H8v2h5v-2zm3 4H8v2h8v-2zm-3-8V3.5L18.5 9H13z"
+					/>
 				</svg>
 				View Billing &amp; Payment History
 			</a>

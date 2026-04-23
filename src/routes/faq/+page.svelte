@@ -83,7 +83,7 @@
 					question: 'What if MY internet or MY gateway goes down?',
 					answer:
 						'No worries! Problems happen. All devices we offer(and are manufactured by CropWatch) have local (on-device) storage and can handle continuous network outages for up to 30 days when the device transmits at a 10 minute interval. When connectivity is restored, all buffered data is automatically uploaded to the cloud without any user intervention.'
-				},
+				}
 			]
 		},
 		{
@@ -160,7 +160,8 @@ This is superior to generic NIST-traceability, which may be internally documente
 						'No, the device does not authenticate with the gateway ever, instead, data is simply sent through the gateway to our servers, and they are where the authorization happens.'
 				},
 				{
-					question: 'If my gateway goes offline, and I have another one nearby, will the device use the other gateway?',
+					question:
+						'If my gateway goes offline, and I have another one nearby, will the device use the other gateway?',
 					answer:
 						'Any gateway is capable of receiving data from any device within range, so yes, if another gateway is nearby, it will receive the data and forward it to our servers.'
 				},
@@ -185,10 +186,11 @@ This is superior to generic NIST-traceability, which may be internally documente
 						'When a device has a weak signal, it will transmit data to the gateway, if the gateway hears the signal, it will transmit a "receipt" back to the device, if the device does not hear the receipt, it will try to resend the data up to 3 additional times (4 total). Each transmission attempt uses additional power, which can drain the battery faster. Therefore, maintaining a strong signal helps conserve battery life by reducing the number of transmission attempts needed.'
 				},
 				{
-					question: 'The power useage of the device is low enough that the battery shoud not die after 10 years, why do you always say it only last 10 years?',
+					question:
+						'The power useage of the device is low enough that the battery shoud not die after 10 years, why do you always say it only last 10 years?',
 					answer:
 						'While the battery does contain enough power to last longer than 10 years, the battery chemistry itsself has a natural degradation over time, regardless of power usage. So even though the battery technically contains enough power to run longer than 10 years, the battery itsself may expire at or slightly before the 10 year mark, and we say 10 years to be safe.'
-				},
+				}
 			]
 		}
 	];
@@ -209,7 +211,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 		{
 			title: 'Power & Sensor Lifecycle',
 			description:
-				'Battery longevity charts, calibration intervals, and replacement SOPs for technicians.',
+				'Battery longevity charts, calibration intervals, and replacement SOPs for technicians.'
 			// link: { label: 'View lifecycle resources', href: '/resources/battery-lifecycle' }
 		}
 	];
@@ -277,7 +279,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
 	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
+		class="absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
 		aria-hidden="true"
 	></div>
 	<div class="relative mx-auto w-full max-w-6xl px-4">
@@ -354,9 +356,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="mb-12 text-center">
 			<p class="text-xs font-semibold tracking-[0.32em] text-[#2f5387] uppercase">Knowledge base</p>
-			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">
-				Answers to common questions
-			</h2>
+			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">Answers to common questions</h2>
 			<p class="mt-3 text-base text-[#1c2d52]/80">
 				Here is a collection of the most common questions we get from customers during deployments.
 			</p>
@@ -475,7 +475,7 @@ This is superior to generic NIST-traceability, which may be internally documente
 
 <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
 	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
+		class="absolute top-10 -right-20 h-56 w-56 rounded-full border border-white/10"
 		aria-hidden="true"
 	></div>
 	<div class="relative mx-auto w-full max-w-5xl px-4 text-center">
