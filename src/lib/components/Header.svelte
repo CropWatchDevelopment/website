@@ -4,7 +4,7 @@
 	import LanguagePicker from './LanguagePicker.svelte';
 	import Search from './Search.svelte';
 	import Telephone from './Telephone.svelte';
-	import { _ } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import christmas_logo from '$lib/images/christmas_cropwatch.svg';
 
@@ -114,6 +114,8 @@
 	}
 </script>
 
+
+
 <header class="relative z-40 bg-[var(--cw-blue-900)] text-white">
 	<!-- Top Bar (Desktop) -->
 	<div
@@ -144,7 +146,9 @@
 				href="https://cropwatch.io/"
 				aria-label={$_('header.brand.home_aria')}
 			>
-				<picture class={isChristmasSeason() ? 'h-20 w-20 overflow-hidden' : 'h-14 w-14 overflow-hidden'}>
+				<picture
+					class={isChristmasSeason() ? 'h-20 w-20 overflow-hidden' : 'h-14 w-14 overflow-hidden'}
+				>
 					<source srcset={headerLogo} type="image/svg+xml" />
 					<img
 						id="header-logo"
@@ -154,7 +158,15 @@
 					/>
 				</picture>
 				<div class="flex flex-col">
-					<span class="text-lg font-semibold tracking-wide">𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝</span>
+					{#if $locale === 'en'}
+					<span class="text-lg font-semibold tracking-wide">
+							𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝
+						</span>
+						{:else}
+						<span class="text-lg font-semibold tracking-wide italic">
+							クロップウォッチ
+						</span>
+						{/if}
 					<span class="hidden text-xs text-white/80 uppercase md:inline"
 						>{$_('header.brand.tagline')}</span
 					>
@@ -183,7 +195,7 @@
 		class="hidden bg-gradient-to-b from-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)] md:block"
 	>
 		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
-			<ul class="flex items-center gap-6 text-sm text-white text-nowrap" id="mainMenu">
+			<ul class="flex items-center gap-6 text-sm text-nowrap text-white" id="mainMenu">
 				{#each navItems as item (item.id)}
 					<li
 						class="relative border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0"
@@ -219,7 +231,7 @@
 								</svg>
 							</button>
 							<ul
-								class={`absolute top-full left-0 z-10 mt-2 w-52 rounded-md bg-white py-2 text-gray-800 shadow-lg ring-1 ring-black/5 transition-[opacity,transform] duration-150 ${openMenu === item.id ? 'visible translate-y-0 opacity-100' : 'pointer-events-none invisible -translate-y-2 opacity-0'}`}
+								class={`absolute top-full left-0 z-10 mt-2 w-max max-w-[calc(100vw-2rem)] min-w-52 rounded-md bg-white py-2 text-gray-800 shadow-lg ring-1 ring-black/5 transition-[opacity,transform] duration-150 ${openMenu === item.id ? 'visible translate-y-0 opacity-100' : 'pointer-events-none invisible -translate-y-2 opacity-0'}`}
 								role="menu"
 								aria-hidden={openMenu !== item.id}
 							>
@@ -248,7 +260,7 @@
 							</ul>
 						{:else}
 							<a
-								class="rounded text-nowrap px-2 py-1 font-medium transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+								class="rounded px-2 py-1 font-medium text-nowrap transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
 								href={item.href}
 							>
 								{$_(item.labelKey)}
@@ -261,7 +273,7 @@
 				{#each utilityLinks as link (link.href)}
 					<li class="border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0">
 						<a
-							class="rounded text-nowrap px-3 py-1 transition hover:bg-white/10 hover:text-white"
+							class="rounded px-3 py-1 text-nowrap transition hover:bg-white/10 hover:text-white"
 							target="_blank"
 							href={link.href}
 						>
@@ -350,7 +362,11 @@
 									</ul>
 								{/if}
 							{:else}
-								<a href={item.href} class="block py-2 font-medium text-nowrap" onclick={closeMobileMenu}>
+								<a
+									href={item.href}
+									class="block py-2 font-medium text-nowrap"
+									onclick={closeMobileMenu}
+								>
 									{$_(item.labelKey)}
 								</a>
 							{/if}
@@ -379,7 +395,7 @@
 				<!-- Mobile Top Links & Language -->
 				<div class="flex flex-col gap-4 pb-10">
 					{#each topLinks as link}
-						<a href={link.href} class="text-white/80 text-nowrap" onclick={closeMobileMenu}>
+						<a href={link.href} class="text-nowrap text-white/80" onclick={closeMobileMenu}>
 							{$_(link.labelKey)}
 						</a>
 					{/each}

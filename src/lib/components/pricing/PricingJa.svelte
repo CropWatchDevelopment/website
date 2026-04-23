@@ -32,6 +32,10 @@
 					valueKey: 'home.pricing.columns.devices.items.relay.value'
 				},
 				{
+					labelKey: 'home.pricing.columns.devices.items.other_sensors.label',
+					valueKey: 'home.pricing.columns.devices.items.other_sensors.value'
+				},
+				{
 					labelKey: 'home.pricing.columns.devices.items.indoor_gateway.label',
 					valueKey: 'home.pricing.columns.devices.items.indoor_gateway.value'
 				},
@@ -73,8 +77,16 @@
 					valueKey: 'home.pricing.columns.software.items.licences.value'
 				},
 				{
-					labelKey: 'home.pricing.columns.software.items.onboarding.label',
-					valueKey: 'home.pricing.columns.software.items.onboarding.value'
+					labelKey: 'home.pricing.columns.software.items.alart.label',
+					valueKey: 'home.pricing.columns.software.items.alart.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.software.items.report.label',
+					valueKey: 'home.pricing.columns.software.items.report.value'
+				},
+				{
+					labelKey: 'home.pricing.columns.software.items.api.label',
+					valueKey: 'home.pricing.columns.software.items.api.value'
 				}
 			]
 		}
