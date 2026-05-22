@@ -5,10 +5,22 @@
 	import { loc } from '$lib/i18n/navigation';
 
 	const team = [
-		{ initials: 'KC', name: 'Kevin Cantrell', role: 'Founder & CEO' },
-		{ initials: 'SH', name: 'Sayaka Hoshino', role: 'Customer Success' },
-		{ initials: 'JZ', name: 'Jose Zuniga', role: 'Firmware & Cloud' },
-		{ initials: 'SO', name: 'Sigurd Øyen', role: 'Engineering' }
+		{
+			initials: 'KC',
+			nameKey: 'rd.about.names.kevin_cantrell',
+			roleKey: 'rd.about.roles.founder_ceo'
+		},
+		{
+			initials: 'SH',
+			nameKey: 'rd.about.names.sayaka',
+			roleKey: 'rd.about.roles.customer_success'
+		},
+		{
+			initials: 'JZ',
+			nameKey: 'rd.about.names.jose_zuniga',
+			roleKey: 'rd.about.roles.firmware_cloud'
+		},
+		{ initials: 'SO', nameKey: 'rd.about.names.sigurd_oyen', roleKey: 'rd.about.roles.engineering' }
 	];
 
 	const values = ['v1', 'v2', 'v3'];
@@ -82,8 +94,8 @@
 			{#each team as m (m.initials)}
 				<div class="team-card">
 					<div class="team-avatar">{m.initials}</div>
-					<h4>{m.name}</h4>
-					<p>{m.role}</p>
+					<h4>{$_(m.nameKey)}</h4>
+					<p>{$_(m.roleKey)}</p>
 				</div>
 			{/each}
 		</div>

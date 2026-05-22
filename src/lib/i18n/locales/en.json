@@ -1114,6 +1114,12 @@
 		}
 	},
 	"about": {
+		"names": {
+			"kevin_cantrell": "Kevin Cantrell",
+			"jose_zuniga": "Jose Ramiro Zuniga",
+			"sayaka": "Sayaka Cantrell",
+			"sigurd_oyen": "Sigurd Øyen"
+		},
 		"meta": {
 			"title": "About CropWatch | Industrial IoT Built for Reliability",
 			"description": "Discover CropWatch's mission, leadership, and milestones as we deliver resilient IoT networks for cold storage, hospitality, and manufacturing."
@@ -1488,7 +1494,19 @@
 			"v3_body": "When you call us, you talk to the person who designed your device. No L1 script, no escalation matrix.",
 			"team_eyebrow": "TEAM",
 			"team_title": "The team",
-			"team_body": "A small, senior crew of firmware engineers, agronomists, and field-operations specialists. Based in Miyazaki with partners across Japan."
+			"team_body": "A small, senior crew of firmware engineers, agronomists, and field-operations specialists. Based in Miyazaki with partners across Japan.",
+			"names": {
+				"kevin_cantrell": "Kevin Cantrell",
+				"sayaka": "Sayaka Cantrell",
+				"jose_zuniga": "Jose Ramiro Zuniga",
+				"sigurd_oyen": "Sigurd Øyen"
+			},
+			"roles": {
+				"founder_ceo": "Founder & CEO",
+				"customer_success": "Customer Success",
+				"firmware_cloud": "Firmware & Cloud",
+				"engineering": "Engineering"
+			}
 		},
 		"contact": {
 			"title": "Tell us what you’re monitoring.",
@@ -1548,7 +1566,7 @@
 			"title_1": "Real facilities.",
 			"title_2": "Real numbers.",
 			"title_3": "Real audits passed.",
-			"body": "Five operators across cold chain, hospitality, agriculture, and poultry, each running CropWatch in production. Here is what they replaced, what they measured, and what they got back.",
+			"body": "Here are five highlighted operators across cold chain, hospitality, agriculture, and poultry, each running CropWatch in production. Here is what they replaced, what they measured, and what they got back.",
 			"stat1": "Active deployments",
 			"stat1v": "5 operators",
 			"stat2": "Sensors in field",

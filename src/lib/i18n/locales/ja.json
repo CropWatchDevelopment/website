@@ -1126,6 +1126,12 @@
 		}
 	},
 	"about": {
+		"names": {
+			"kevin_cantrell": "Kevin Cantrell",
+			"jose_zuniga": "Jose Ramiro Zuniga",
+			"sayaka": "池水 彩",
+			"sigurd_oyen": "Sigurd Øyen"
+		},
 		"meta": {
 			"title": "CropWatch について | 信頼性を追求した産業用 IoT",
 			"description": "CropWatch のミッション、リーダーシップ、マイルストーンをご紹介。コールドストレージ、ホスピタリティ、製造業向けに堅牢な IoT ネットワークを提供しています。"
@@ -1500,7 +1506,19 @@
 			"v3_body": "お電話いただければ、そのデバイスを設計したエンジニア本人が対応します。一次受付もエスカレーションもありません。",
 			"team_eyebrow": "チーム",
 			"team_title": "チーム",
-			"team_body": "ファームウェアエンジニア、農学者、現場運用スペシャリストによる少数精鋭。宮崎を拠点に、日本全国のパートナーと連携しています。"
+			"team_body": "ファームウェアエンジニア、農学者、現場運用スペシャリストによる少数精鋭。宮崎を拠点に、日本全国のパートナーと連携しています。",
+			"names": {
+				"kevin_cantrell": "ケビン・カントレル",
+				"sayaka": "池水 彩",
+				"jose_zuniga": "ホセ・ラミロ・ズニガ",
+				"sigurd_oyen": "シグルド・オイエン"
+			},
+			"roles": {
+				"founder_ceo": "創業者・CEO",
+				"customer_success": "カスタマーサクセス",
+				"firmware_cloud": "ファームウェア・クラウド",
+				"engineering": "エンジニアリング"
+			}
 		},
 		"contact": {
 			"title": "何を監視したいか、教えてください。",

@@ -93,6 +93,22 @@
 		openMenu = null;
 	}
 
+	function handleWindowClick(event: MouseEvent) {
+		if (!openMenu || isMobileMenuOpen) {
+			return;
+		}
+
+		const target = event.target;
+		if (!(target instanceof Element)) {
+			closeMenu();
+			return;
+		}
+
+		if (!target.closest('[data-desktop-menu-root="true"]')) {
+			closeMenu();
+		}
+	}
+
 	const topLinks = [
 		{ href: '/contact', labelKey: 'common.actions.contact' }
 		// { href: '/support', labelKey: 'common.actions.support' }
@@ -114,6 +130,8 @@
 		}
 	}
 </script>
+
+<svelte:window onclick={handleWindowClick} />
 
 
 
@@ -205,6 +223,7 @@
 			<ul class="flex items-center gap-6 text-sm text-nowrap text-white" id="mainMenu">
 				{#each navItems as item (item.id)}
 					<li
+						data-desktop-menu-root="true"
 						class="relative border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0"
 					>
 						{#if item.children}
@@ -268,7 +287,7 @@
 						{:else}
 							<a
 								class="rounded px-2 py-1 font-medium text-nowrap transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-								href={$loc(item.href)}
+								href={$loc(item.href!)}
 							>
 								{$_(item.labelKey)}
 							</a>
@@ -347,7 +366,7 @@
 								</button>
 								{#if openMenu === item.id}
 									<ul class="mt-2 ml-4 flex flex-col gap-3 border-l border-white/20 pl-4">
-										{#each item.children as child}
+										{#each item.children as child (child.href)}
 											<li>
 												<a
 													href={$loc(child.href)}
@@ -370,7 +389,7 @@
 								{/if}
 							{:else}
 								<a
-									href={$loc(item.href)}
+									href={$loc(item.href!)}
 									class="block py-2 font-medium text-nowrap"
 									onclick={closeMobileMenu}
 								>
@@ -385,7 +404,7 @@
 
 				<!-- Mobile Utility Links -->
 				<ul class="flex flex-col gap-4">
-					{#each utilityLinks as link}
+					{#each utilityLinks as link (link.href)}
 						<li>
 							<a href={$loc(link.href)} target="_blank" class="flex items-center gap-2 text-white/80">
 								{#if link.icon}
@@ -401,7 +420,7 @@
 
 				<!-- Mobile Top Links & Language -->
 				<div class="flex flex-col gap-4 pb-10">
-					{#each topLinks as link}
+					{#each topLinks as link (link.href)}
 						<a href={$loc(link.href)} class="text-nowrap text-white/80" onclick={closeMobileMenu}>
 							{$_(link.labelKey)}
 						</a>
