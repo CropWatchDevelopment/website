@@ -1,0 +1,78 @@
+name: Deploy (Vercel)
+
+# Routes each branch to its own Vercel project:
+#   master        -> website       (cropwatch.io)
+#   Japan-website -> japan-website  (cropwatch.co.jp)
+#
+# Native Vercel Git auto-deploys for these two branches are disabled in
+# vercel.json (git.deploymentEnabled), so this workflow is the single source
+# of production deployments for them.
+#
+# Requires repo secret VERCEL_TOKEN (a Vercel access token scoped to the
+# CropWatch Team). VERCEL_ORG_ID and the project IDs are not secret.
+
+on:
+  push:
+    branches:
+      - master
+      - Japan-website
+  workflow_dispatch: {}
+
+# Keep master and Japan-website deploys independent; only cancel a
+# superseded run of the *same* branch.
+concurrency:
+  group: vercel-deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: team_xEjL2mC9qSUzZalfMENxzJyV
+    steps:
+      - name: Resolve target Vercel project
+        id: target
+        run: |
+          if [ "${{ github.ref_name }}" = "master" ]; then
+            echo "project_id=prj_PCZSorn0mGcEaoiLzSGjpev45kft" >> "$GITHUB_OUTPUT"
+            echo "node_version=22" >> "$GITHUB_OUTPUT"
+            echo "label=website (cropwatch.io)" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.ref_name }}" = "Japan-website" ]; then
+            echo "project_id=prj_pKxBByWbBApbUJC4ml66Xt5BffSU" >> "$GITHUB_OUTPUT"
+            echo "node_version=24" >> "$GITHUB_OUTPUT"
+            echo "label=japan-website (cropwatch.co.jp)" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::Branch ${{ github.ref_name }} has no Vercel project mapping"
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.target.outputs.node_version }}
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel project settings
+        env:
+          VERCEL_PROJECT_ID: ${{ steps.target.outputs.project_id }}
+        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Build
+        env:
+          VERCEL_PROJECT_ID: ${{ steps.target.outputs.project_id }}
+        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Deploy to production
+        env:
+          VERCEL_PROJECT_ID: ${{ steps.target.outputs.project_id }}
+        run: |
+          echo "Deploying '${{ github.ref_name }}' -> ${{ steps.target.outputs.label }}"
+          url="$(vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}")"
+          echo "Deployed: $url"
+          echo "### Deployed \`${{ github.ref_name }}\` to ${{ steps.target.outputs.label }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "$url" >> "$GITHUB_STEP_SUMMARY"
