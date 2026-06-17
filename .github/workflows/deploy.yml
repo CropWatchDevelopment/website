@@ -54,6 +54,11 @@ jobs:
         with:
           node-version: ${{ steps.target.outputs.node_version }}
 
+      # The project uses pnpm (package.json#packageManager). Corepack provides
+      # the exact pinned pnpm version so `vercel build` can install deps.
+      - name: Enable Corepack (pnpm)
+        run: corepack enable
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
