@@ -1,409 +1,155 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import MaterialIcon from './MaterialIcon.svelte';
-	import LanguagePicker from './LanguagePicker.svelte';
-	import Search from './Search.svelte';
-	import Telephone from './Telephone.svelte';
-	import { _, locale } from 'svelte-i18n';
-	import logo from '$lib/images/cropwatch_animated.svg';
-	import christmas_logo from '$lib/images/christmas_cropwatch.svg';
+	import { page } from '$app/state';
+	import { afterNavigate } from '$app/navigation';
 
-	interface NavItem {
-		id: string;
-		labelKey: string;
-		href?: string;
-		children?: { labelKey: string; href: string; icon?: string; ariaKey?: string }[];
-	}
+	const LOGO = '/assets/logos/cropwatch_static.svg';
 
-	const navItems: NavItem[] = [
-		{ id: 'home', labelKey: 'header.navigation.home', href: '/' },
-		{
-			id: 'products',
-			labelKey: 'header.navigation.products',
-			children: [
-				{
-					labelKey: 'header.navigation.products_sensor',
-					href: '/products/cw-air-th',
-					icon: 'device_thermostat'
-				},
-				{
-					labelKey: 'header.navigation.products_gateways',
-					href: '/products/gateways',
-					icon: 'router'
-				},
-				{
-					labelKey: 'header.navigation.products_replacement_sensors',
-					href: '/products/coming-soon',
-					icon: 'settings_input_hdmi'
-				}
-			]
-		},
-		{ id: 'case-studies', labelKey: 'header.navigation.case_studies', href: '/case-studies' },
-		{ id: 'about', labelKey: 'header.navigation.about', href: '/about' },
-		{ id: 'contact', labelKey: 'header.navigation.contact', href: '/contact' }
-	] as const;
+	type Product = { href: string; icon: string; t: string; d: string };
 
-	const utilityLinks = [
-		{
-			labelKey: 'header.utility.ui_app',
-			href: 'https://app.cropwatch.io/',
-			icon: 'exit_to_app',
-			ariaKey: 'header.utility.ui_app_icon_aria'
-		},
-		{
-			labelKey: 'API',
-			href: 'https://api.cropwatch.io',
-			icon: 'api',
-			ariaKey: 'header.utility.api_icon_aria'
-		},
-		{
-			labelKey: 'header.utility.system_status',
-			icon: 'monitor_heart',
-			href: 'https://stats.uptimerobot.com/1Z6H85HuHq',
-			ariaKey: 'header.utility.system_status_icon_aria'
-		}
-	] as const;
+	const products: Product[] = [
+		{ href: '/cold-chain', icon: 'ac_unit', t: 'Cold-Chain Monitoring', d: 'Freezers, walk-ins, restaurants, pharma' },
+		{ href: '/livestock', icon: 'pets', t: 'Livestock Monitoring', d: 'Poultry houses, barns, dairy' },
+		{ href: '/agriculture', icon: 'eco', t: 'Agricultural Monitoring', d: 'Greenhouse, field, soil & canopy' },
+		{ href: '/replacement-sensors', icon: 'cable', t: 'Replacement Sensors', d: 'Field-swappable, ISO 17025 certified' },
+		{ href: '/replacement-case', icon: 'deployed_code', t: 'Replacement Sensor Case', d: 'Rugged IP66 enclosure, 3D view' }
+	];
 
-	const KEYBOARD_KEYS = {
-		ESCAPE: 'Escape',
-		SPACE: ' ',
-		ENTER: 'Enter'
-	} as const;
+	const productPaths = products.map((p) => p.href);
 
-	let openMenu = $state<string | null>(null);
-	let headerLogo = $state(logo);
+	let menuOpen = $state(false);
 
-	function isChristmasSeason(date = new Date()) {
-		const currentYear = date.getFullYear();
-		const startDate = new Date(currentYear, 10, 25, 0, 0, 0, 0); // Nov 25
-		const endDate = new Date(currentYear, 11, 30, 23, 59, 59, 999); // Dec 30
-		return date >= startDate && date <= endDate;
-	}
+	const path = $derived(page.url.pathname);
+	const isHome = $derived(path === '/');
+	const isProducts = $derived(productPaths.includes(path));
+	const isNews = $derived(path === '/news');
+	const isContact = $derived(path === '/contact');
 
-	onMount(() => {
-		headerLogo = isChristmasSeason() ? christmas_logo : logo;
+	// Close the mobile menu after any navigation, and lock body scroll while open.
+	afterNavigate(() => (menuOpen = false));
+	$effect(() => {
+		document.body.style.overflow = menuOpen ? 'hidden' : '';
+		return () => (document.body.style.overflow = '');
 	});
 
-	function toggleMenu(id: string) {
-		openMenu = openMenu === id ? null : id;
-	}
-
-	function closeMenu() {
-		openMenu = null;
-	}
-
-	const topLinks = [
-		{ href: '/contact', labelKey: 'common.actions.contact' }
-		// { href: '/support', labelKey: 'common.actions.support' }
-	] as const;
-
-	let isMobileMenuOpen = $state(false);
-
-	function toggleMobileMenu() {
-		isMobileMenuOpen = !isMobileMenuOpen;
-		if (typeof document !== 'undefined') {
-			document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-		}
-	}
-
-	function closeMobileMenu() {
-		isMobileMenuOpen = false;
-		if (typeof document !== 'undefined') {
-			document.body.style.overflow = '';
-		}
+	function onKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape' && menuOpen) menuOpen = false;
 	}
 </script>
 
-
-
-<header class="relative z-40 bg-[var(--cw-blue-900)] text-white">
-	<!-- Top Bar (Desktop) -->
-	<div
-		class="mx-auto hidden flex-row items-center justify-between bg-[#ffffffde] px-4 text-sm md:flex"
-	>
-		<div class="flex gap-2 py-3 text-sm font-semibold text-[#11213c]">
-			<span>{$_('header.topbar.welcome')}</span>
-			<span>|</span>
-			<span>{$_('header.topbar.global_site')}</span>
-		</div>
-		<div class="flex items-center gap-4 py-3 text-[#11213c]">
-			{#each topLinks as link (link.href)}
-				<a href={link.href} class="font-medium transition-colors hover:text-blue-600"
-					>{$_(link.labelKey)}</a
-				>
-			{/each}
-			<LanguagePicker />
+<header class="hdr">
+	<div class="hdr__top">
+		<div class="wrap hdr__top-in">
+			<div class="hdr__welcome">
+				<strong>CropWatch</strong><span class="sep">|</span><span>United States &amp; Global</span>
+			</div>
+			<div class="hdr__top-links">
+				<a href="tel:+18338214357"><span class="material-symbols-rounded">call</span> +1 (833) 821-4357</a>
+				<a href="mailto:sales@cropwatch.io">sales@cropwatch.io</a>
+				<a class="lang" href="https://cropwatch.co.jp"><span class="material-symbols-rounded">language</span> 日本語</a>
+			</div>
 		</div>
 	</div>
 
-	<!-- Middle Bar -->
-	<div
-		class="bg-gradient-to-b from-[var(--cw-blue-600)] via-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-4 text-white shadow-[0_6px_18px_rgba(2,6,23,0.55)] ring-1 ring-white/5"
-	>
-		<div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-6 px-4">
-			<a
-				class="flex min-w-[220px] items-center gap-4"
-				href="https://cropwatch.io/"
-				aria-label={$_('header.brand.home_aria')}
-			>
-				<picture
-					class={isChristmasSeason() ? 'h-20 w-20 overflow-hidden' : 'h-14 w-14 overflow-hidden'}
-				>
-					<source srcset={headerLogo} type="image/svg+xml" />
-					<img
-						id="header-logo"
-						src={headerLogo}
-						alt={$_('header.brand.logo_alt')}
-						class="h-full w-full object-contain"
-					/>
-				</picture>
-				<div class="flex flex-col">
-					{#if $locale === 'en'}
-					<span class="text-lg font-semibold tracking-wide">
-							𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝
-						</span>
-						{:else}
-						<span class="text-lg font-semibold tracking-wide italic">
-							クロップウォッチ
-						</span>
-						{/if}
-					<span class="hidden text-xs text-white/80 uppercase md:inline"
-						>{$_('header.brand.tagline')}</span
-					>
-				</div>
+	<div class="hdr__bar">
+		<div class="wrap hdr__main">
+			<a class="brand" href="/" aria-label="CropWatch home">
+				<img src={LOGO} alt="CropWatch" class="brand__mark" width="46" height="46" />
+				<span class="brand__txt">
+					<span class="brand__name">CropWatch</span>
+					<span class="brand__tag">Quality monitoring devices</span>
+				</span>
 			</a>
 
-			<!-- Desktop Actions -->
-			<div class="hidden flex-1 items-center justify-end gap-6 md:flex">
-				<Telephone />
-				<Search />
+			<nav class="nav" aria-label="Primary">
+				<a class="nav__item" class:is-current={isHome} href="/">Home</a>
+
+				<div class="navdrop">
+					<a class="nav__item" class:is-current={isProducts} href="/cold-chain">
+						Products <span class="material-symbols-rounded">expand_more</span>
+					</a>
+					<div class="pd">
+						<div class="pd__inner">
+							{#each products as p (p.href)}
+								<a class="pd__item" href={p.href}>
+									<span class="pd__ic"><span class="material-symbols-rounded">{p.icon}</span></span>
+									<span class="pd__tx"><b>{p.t}</b><span>{p.d}</span></span>
+								</a>
+							{/each}
+							<a class="pd__all" href="/cold-chain">
+								All products &amp; sensors <span class="material-symbols-rounded">arrow_forward</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<a class="nav__item" href="/#why">Why CropWatch</a>
+				<a class="nav__item" class:is-current={isNews} href="/news">News</a>
+				<a class="nav__item" class:is-current={isContact} href="/contact">Contact</a>
+			</nav>
+
+			<div class="hdr__actions">
+				<a href="https://app.cropwatch.io" class="util"><span class="material-symbols-rounded">exit_to_app</span> App</a>
+				<a href="https://api.cropwatch.io" class="util"><span class="material-symbols-rounded">api</span> API</a>
+				<a href="/contact" class="cta-pill">Book a demo</a>
 			</div>
 
-			<!-- Mobile Hamburger -->
-			<button
-				class="p-2 text-white focus:outline-none md:hidden"
-				onclick={toggleMobileMenu}
-				aria-label="Toggle menu"
-			>
-				<MaterialIcon name={isMobileMenuOpen ? 'close' : 'menu'} size={32} />
+			<button class="burger" type="button" aria-label="Open menu" onclick={() => (menuOpen = true)}>
+				<span class="material-symbols-rounded">menu</span>
 			</button>
 		</div>
 	</div>
+</header>
 
-	<!-- Desktop Nav -->
-	<nav
-		class="hidden bg-gradient-to-b from-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)] md:block"
-	>
-		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
-			<ul class="flex items-center gap-6 text-sm text-nowrap text-white" id="mainMenu">
-				{#each navItems as item (item.id)}
-					<li
-						class="relative border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0"
-					>
-						{#if item.children}
-							<button
-								class="flex items-center gap-1 rounded px-2 py-1 font-medium transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-								aria-expanded={openMenu === item.id}
-								onclick={() => toggleMenu(item.id)}
-								onkeydown={(event) => {
-									if (event.key === KEYBOARD_KEYS.ESCAPE) {
-										closeMenu();
-									}
+<svelte:window onkeydown={onKeydown} />
 
-									if (event.key === KEYBOARD_KEYS.SPACE || event.key === KEYBOARD_KEYS.ENTER) {
-										event.preventDefault();
-										toggleMenu(item.id);
-									}
-								}}
-							>
-								<span>{$_(item.labelKey)}</span>
-								<svg
-									class={`h-4 w-4 transition-transform ${openMenu === item.id ? 'rotate-180' : ''}`}
-									viewBox="0 0 20 20"
-									fill="currentColor"
-									aria-hidden="true"
-								>
-									<path
-										fill-rule="evenodd"
-										d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08"
-										clip-rule="evenodd"
-									/>
-								</svg>
-							</button>
-							<ul
-								class={`absolute top-full left-0 z-10 mt-2 w-max max-w-[calc(100vw-2rem)] min-w-52 rounded-md bg-white py-2 text-gray-800 shadow-lg ring-1 ring-black/5 transition-[opacity,transform] duration-150 ${openMenu === item.id ? 'visible translate-y-0 opacity-100' : 'pointer-events-none invisible -translate-y-2 opacity-0'}`}
-								role="menu"
-								aria-hidden={openMenu !== item.id}
-							>
-								{#each item.children as child (child.href)}
-									<li class="z-10">
-										<a
-											class="flex items-center gap-2 px-4 py-2 text-sm font-medium transition hover:bg-gray-100 hover:text-gray-900"
-											href={child.href}
-											role="menuitem"
-											onclick={closeMenu}
-										>
-											{#if child.icon}
-												<MaterialIcon
-													name={child.icon || 'open_in_new'}
-													collection="symbols"
-													variant="rounded"
-													size={20}
-													class="text-gray-500"
-													ariaLabel={$_(child.ariaKey || 'header.navigation.opens_in_new_tab_aria')}
-												/>
-											{/if}
-											<span class="text-nowrap">{$_(child.labelKey)}</span>
-										</a>
-									</li>
-								{/each}
-							</ul>
-						{:else}
-							<a
-								class="rounded px-2 py-1 font-medium text-nowrap transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-								href={item.href}
-							>
-								{$_(item.labelKey)}
-							</a>
-						{/if}
-					</li>
-				{/each}
-			</ul>
-			<ul id="utilityLinks" class="flex items-center gap-4 text-sm font-semibold text-white/80">
-				{#each utilityLinks as link (link.href)}
-					<li class="border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0">
-						<a
-							class="rounded px-3 py-1 text-nowrap transition hover:bg-white/10 hover:text-white"
-							target="_blank"
-							href={link.href}
-						>
-							{#if link.icon}
-								<MaterialIcon
-									name={link.icon}
-									collection="symbols"
-									variant="rounded"
-									size={16}
-									class="mr-1 inline-block align-middle"
-									ariaLabel={$_(link.ariaKey)}
-								/>
-							{/if}
-							{$_(link.labelKey)}
-						</a>
-					</li>
-				{/each}
-			</ul>
+<div class="m-menu" hidden={!menuOpen} role="dialog" aria-modal="true" aria-label="Site menu">
+	<button class="m-scrim" type="button" aria-label="Close menu" onclick={() => (menuOpen = false)}></button>
+	<div class="m-menu__head">
+		<span class="brand__name" style="color:#fff">Menu</span>
+		<button class="m-close" type="button" aria-label="Close menu" onclick={() => (menuOpen = false)}>
+			<span class="material-symbols-rounded">close</span>
+		</button>
+	</div>
+	<nav class="m-nav">
+		<a class="m-link" href="/">Home</a>
+
+		<div class="m-group">
+			<a class="m-link" href="/cold-chain">Products</a>
+			{#each products as p (p.href)}
+				<a class="m-sub" href={p.href}><span class="material-symbols-rounded">{p.icon}</span>{p.t}</a>
+			{/each}
+		</div>
+
+		<a class="m-link" href="/#why">Why CropWatch</a>
+		<a class="m-link" href="/news">News</a>
+		<a class="m-link" href="/contact">Contact</a>
+
+		<a class="cta-pill cta-pill--lg" style="margin-top:18px;justify-content:center" href="/contact">Book a demo</a>
+		<div class="m-util">
+			<a href="https://app.cropwatch.io"><span class="material-symbols-rounded">exit_to_app</span> Open the app</a>
+			<a href="https://api.cropwatch.io"><span class="material-symbols-rounded">api</span> API docs</a>
+			<a href="https://cropwatch.co.jp"><span class="material-symbols-rounded">language</span> 日本語 (.co.jp)</a>
 		</div>
 	</nav>
+</div>
 
-	<!-- Mobile Menu Overlay -->
-	{#if isMobileMenuOpen}
-		<div
-			class="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-[var(--cw-blue-900)] text-white md:hidden"
-		>
-			<div class="flex items-center justify-between border-b border-white/10 p-4">
-				<span class="text-lg font-semibold tracking-wide">Menu</span>
-				<button class="p-2" onclick={closeMobileMenu} aria-label="Close menu">
-					<MaterialIcon name="close" size={32} />
-				</button>
-			</div>
-
-			<div class="flex flex-col gap-6 p-6">
-				<!-- Mobile Search & Phone -->
-				<div class="flex flex-col gap-4">
-					<Search />
-					<Telephone />
-				</div>
-
-				<hr class="border-white/10" />
-
-				<!-- Mobile Nav Items -->
-				<ul class="flex flex-col gap-4 text-lg">
-					{#each navItems as item (item.id)}
-						<li>
-							{#if item.children}
-								<button
-									class="flex w-full items-center justify-between py-2 font-medium"
-									onclick={() => toggleMenu(item.id)}
-								>
-									<span>{$_(item.labelKey)}</span>
-									<svg
-										class={`h-5 w-5 transition-transform ${openMenu === item.id ? 'rotate-180' : ''}`}
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path
-											fill-rule="evenodd"
-											d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08"
-											clip-rule="evenodd"
-										/>
-									</svg>
-								</button>
-								{#if openMenu === item.id}
-									<ul class="mt-2 ml-4 flex flex-col gap-3 border-l border-white/20 pl-4">
-										{#each item.children as child}
-											<li>
-												<a
-													href={child.href}
-													class="flex items-center gap-2 py-1 text-base text-white/80"
-													onclick={closeMobileMenu}
-												>
-													{#if child.icon}
-														<MaterialIcon
-															name={child.icon}
-															collection="symbols"
-															variant="rounded"
-															size={20}
-														/>
-													{/if}
-													<span class="text-nowrap">{$_(child.labelKey)}</span>
-												</a>
-											</li>
-										{/each}
-									</ul>
-								{/if}
-							{:else}
-								<a
-									href={item.href}
-									class="block py-2 font-medium text-nowrap"
-									onclick={closeMobileMenu}
-								>
-									{$_(item.labelKey)}
-								</a>
-							{/if}
-						</li>
-					{/each}
-				</ul>
-
-				<hr class="border-white/10" />
-
-				<!-- Mobile Utility Links -->
-				<ul class="flex flex-col gap-4">
-					{#each utilityLinks as link}
-						<li>
-							<a href={link.href} target="_blank" class="flex items-center gap-2 text-white/80">
-								{#if link.icon}
-									<MaterialIcon name={link.icon} collection="symbols" variant="rounded" size={20} />
-								{/if}
-								<span class="text-nowrap">{$_(link.labelKey)}</span>
-							</a>
-						</li>
-					{/each}
-				</ul>
-
-				<hr class="border-white/10" />
-
-				<!-- Mobile Top Links & Language -->
-				<div class="flex flex-col gap-4 pb-10">
-					{#each topLinks as link}
-						<a href={link.href} class="text-nowrap text-white/80" onclick={closeMobileMenu}>
-							{$_(link.labelKey)}
-						</a>
-					{/each}
-					<div class="mt-2">
-						<LanguagePicker />
-					</div>
-				</div>
-			</div>
-		</div>
-	{/if}
-</header>
+<style>
+	/* Transparent backdrop that closes the menu on click/keyboard (accessible
+	   replacement for a click handler on the overlay div). The panel and head
+	   sit above it so only the scrim area dismisses the menu. */
+	.m-scrim {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: default;
+	}
+	.m-menu :global(.m-menu__head),
+	.m-menu :global(.m-nav) {
+		position: relative;
+		z-index: 1;
+	}
+</style>

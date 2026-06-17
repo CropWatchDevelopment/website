@@ -1,0 +1,35 @@
+/* ============================================================
+   CropWatch — Fonts (cropwatch.io / US-Global build)
+   ============================================================
+   Inter for UI + marketing, JetBrains Mono for data/readings,
+   Material Symbols Rounded for iconography. Loaded from Google
+   Fonts. The Japanese self-hosted faces are intentionally not
+   wired here — this is the English/Global site (.io). Japanese
+   glyphs, if any, fall through to Noto Sans JP.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+/* Material Symbols Rounded — the brand icon set. */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+.material-symbols-rounded {
+	font-family: 'Material Symbols Rounded';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-rounded.fill {
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

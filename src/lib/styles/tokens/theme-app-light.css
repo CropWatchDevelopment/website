@@ -1,0 +1,122 @@
+/* ============================================================
+   CropWatch App — Light Theme
+   ============================================================
+   High-contrast professional light theme for the CropWatch
+   application. Slate grays for depth, sapphire blue for intent.
+   Ported from @cropwatchdevelopment/cwui theme-light.css.
+   Applied via [data-theme="light"].
+   ============================================================ */
+
+[data-theme='light'] {
+	color-scheme: light;
+
+	/* ── Surface / Background ──────────────────────────── */
+	--cw-bg-base: #d6e0ea;
+	--cw-bg-surface: #f7fafc;
+	--cw-bg-surface-elevated: #fbfdff;
+	--cw-bg-surface-callout: #279ec4d4;
+	--cw-bg-elevated: #e8eff5;
+	--cw-bg-overlay: #94a3b8;
+	--cw-bg-muted: #dee7f0;
+	--cw-bg-subtle: #ccd8e4;
+	--cw-bg-table-row: #f8fbfd;
+	--cw-bg-table-row-hover: #e8eff5;
+	--cw-bg-table-row-alt: #e3ebf3;
+	--cw-bg-table-row-alt-hover: #d8e3ed;
+	--cw-header-bg: var(--cw-green-standard);
+
+	/* ── Button gradients ──────────────────────────────── */
+	--cw-button-primary-bg: linear-gradient(180deg, #40546b 0%, #2d3d4f 100%);
+	--cw-button-primary-bg-hover: linear-gradient(180deg, #4a6079 0%, #36485d 100%);
+	--cw-button-primary-bg-active: linear-gradient(180deg, #36485d 0%, #263444 100%);
+	--cw-button-primary-border: #223140;
+	--cw-button-primary-border-hover: #2b3d50;
+	--cw-button-primary-text: #f8fbfd;
+	--cw-button-primary-shadow: 0 12px 22px -16px rgba(16, 27, 40, 0.58);
+
+	--cw-button-secondary-bg: linear-gradient(180deg, #f8fbfd 0%, #edf3f8 100%);
+	--cw-button-secondary-bg-hover: linear-gradient(180deg, #eef4f9 0%, #e2ebf3 100%);
+	--cw-button-secondary-bg-active: linear-gradient(180deg, #e5edf5 0%, #d8e2ed 100%);
+	--cw-button-secondary-border: #98adbf;
+	--cw-button-secondary-border-hover: #889fb4;
+	--cw-button-secondary-text: #13253a;
+	--cw-button-secondary-shadow: 0 8px 18px -16px rgba(36, 54, 74, 0.42);
+
+	--cw-button-info-bg: linear-gradient(180deg, #1177a4 0%, #085b85 100%);
+	--cw-button-info-bg-hover: linear-gradient(180deg, #0f6f9c 0%, #074f75 100%);
+	--cw-button-info-bg-active: linear-gradient(180deg, #0a628d 0%, #053f5d 100%);
+	--cw-button-info-border: #074f75;
+	--cw-button-info-border-hover: #0a628d;
+	--cw-button-info-text: #ffffff;
+	--cw-button-info-shadow: 0 12px 22px -18px rgba(6, 67, 97, 0.48);
+
+	--cw-button-danger-bg: linear-gradient(180deg, #c12727 0%, #a61b1b 100%);
+	--cw-button-danger-bg-hover: linear-gradient(180deg, #b32020 0%, #931717 100%);
+	--cw-button-danger-bg-active: linear-gradient(180deg, #9f1d1d 0%, #7f1414 100%);
+	--cw-button-danger-border: #8f1919;
+	--cw-button-danger-border-hover: #7f1414;
+	--cw-button-danger-text: #fff7f7;
+	--cw-button-danger-shadow: 0 12px 22px -18px rgba(104, 17, 17, 0.44);
+
+	/* ── Text ──────────────────────────────────────────── */
+	--cw-text-primary: #07111d;
+	--cw-text-secondary: #1f3144;
+	--cw-text-muted: #465b72;
+	--cw-text-disabled: #8397ac;
+	--cw-text-inverse: #fbfdff;
+
+	/* ── Border ────────────────────────────────────────── */
+	--cw-border-default: #99aec1;
+	--cw-border-muted: #b0c0ce;
+	--cw-border-strong: #70869d;
+
+	/* ── Accent / Primary ──────────────────────────────── */
+	--cw-accent: #2c6cb7;
+	--cw-accent-hover: #255f9d;
+	--cw-accent-active: #194a7d;
+	--cw-accent-bg: #dbeafe;
+	--cw-accent-text: #1d4f8e;
+	--cw-status-loading: #7c3aed;
+
+	/* ── Tones ─────────────────────────────────────────── */
+	--cw-tone-primary-bg-subtle: color-mix(in srgb, #2563eb 14%, transparent);
+	--cw-tone-primary-text: #1e40af;
+	--cw-tone-primary-border: #93c5fd;
+	--cw-tone-primary-solid-bg: #2563eb;
+	--cw-tone-primary-solid-text: #ffffff;
+
+	--cw-tone-secondary-bg-subtle: color-mix(in srgb, #475569 12%, transparent);
+	--cw-tone-secondary-text: #334155;
+	--cw-tone-secondary-border: #b2c0cf;
+	--cw-tone-secondary-solid-bg: #475569;
+	--cw-tone-secondary-solid-text: #ffffff;
+
+	--cw-tone-info-bg-subtle: color-mix(in srgb, #0284c7 12%, transparent);
+	--cw-tone-info-text: #075985;
+	--cw-tone-info-border: #7dd3fc;
+	--cw-tone-info-solid-bg: #0284c7;
+	--cw-tone-info-solid-text: #ffffff;
+
+	--cw-tone-warning-bg-subtle: color-mix(in srgb, #d97706 18%, transparent);
+	--cw-tone-warning-text: #92400e;
+	--cw-tone-warning-border: #f3d983;
+	--cw-tone-warning-solid-bg: #d97706;
+	--cw-tone-warning-solid-text: #ffffff;
+
+	--cw-tone-danger-bg-subtle: color-mix(in srgb, #dc2626 12%, transparent);
+	--cw-tone-danger-text: #991b1b;
+	--cw-tone-danger-border: #fca5a5;
+	--cw-tone-danger-solid-bg: #dc2626;
+	--cw-tone-danger-solid-text: #ffffff;
+
+	--cw-tone-success-bg-subtle: color-mix(in srgb, #059669 12%, transparent);
+	--cw-tone-success-text: #166534;
+	--cw-tone-success-border: #86efac;
+	--cw-tone-success-solid-bg: #059669;
+	--cw-tone-success-solid-text: #ffffff;
+
+	/* ── Focus + scrollbar ─────────────────────────────── */
+	--cw-focus-ring-color: #2c6cb7;
+	--cw-scrollbar-thumb: #b3c1d0;
+	--cw-scrollbar-track: #dfe7ef;
+}
