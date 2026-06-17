@@ -1,22 +1,18 @@
-<script lang="ts">
-	import { _ } from 'svelte-i18n';
-</script>
-
 <svelte:head>
-	<title>{$_('sitemap.meta.title')}</title>
-	<meta name="description" content={$_('sitemap.meta.description')} />
+	<title>サイトマップ | CropWatch® 産業用 IoT プラットフォーム</title>
+	<meta name="description" content="CropWatch の製品ページ、導入事例、サポート、法的情報などすべての公開ページを一覧でご確認いただけます。" />
 </svelte:head>
 
 <section class="bg-[#0b1730] py-20 text-white">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-			{$_('sitemap.hero.eyebrow')}
+			サイトマップ
 		</p>
 		<h1 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-			{$_('sitemap.hero.headline')}
+			CropWatch のすべてのページをこの一覧で
 		</h1>
 		<p class="mt-4 max-w-2xl text-base text-white/80">
-			{$_('sitemap.hero.body')}
+			製品詳細、導入事例、サポートリソース、法的情報へのリンクを素早く見つけるためにご活用ください。
 		</p>
 	</div>
 </section>
@@ -26,7 +22,7 @@
 		<div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 			<div class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5">
 				<h2 class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-					{$_('sitemap.sections.primary.heading')}
+					主要ページ
 				</h2>
 				<ul class="mt-4 space-y-3 text-sm text-[#1c2d52]/80">
 					<li>
@@ -34,7 +30,7 @@
 							href="/"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('header.navigation.home')}</span>
+							<span>ホーム</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -43,7 +39,7 @@
 							href="/products/cw-air-th"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('header.navigation.products')}</span>
+							<span>製品</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -52,7 +48,7 @@
 							href="/case-studies"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('header.navigation.case_studies')}</span>
+							<span>導入事例</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -61,7 +57,7 @@
 							href="/about"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('header.navigation.about')}</span>
+							<span>会社情報</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -70,7 +66,7 @@
 							href="/contact"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('header.navigation.contact')}</span>
+							<span>お問い合わせ</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -79,7 +75,7 @@
 
 			<div class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5">
 				<h2 class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-					{$_('sitemap.sections.resources.heading')}
+					リソース & ツール
 				</h2>
 				<ul class="mt-4 space-y-3 text-sm text-[#1c2d52]/80">
 					<li>
@@ -87,7 +83,7 @@
 							href="https://stats.uptimerobot.com/1Z6H85HuHq"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('header.utility.system_status')}</span>
+							<span>システムステータス</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -96,7 +92,7 @@
 							href="https://app.cropwatch.io/"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('header.utility.ui_app')}</span>
+							<span>UI アプリ</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -105,7 +101,7 @@
 							href="/technology/lorawan"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('sitemap.links.lorawan')}</span>
+							<span>LoRaWAN テクノロジー概要</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -114,7 +110,7 @@
 							href="/case-studies"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('sitemap.links.case_study_archive')}</span>
+							<span>導入事例アーカイブ</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -123,7 +119,7 @@
 
 			<div class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5">
 				<h2 class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-					{$_('sitemap.sections.support.heading')}
+					サポート & ヘルプ
 				</h2>
 				<ul class="mt-4 space-y-3 text-sm text-[#1c2d52]/80">
 					<li>
@@ -131,7 +127,7 @@
 							href="/contact"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('common.actions.contact')}</span>
+							<span>お問い合わせ</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -140,7 +136,7 @@
 							href="/#pricing"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('sitemap.links.pricing')}</span>
+							<span>料金の概要</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -149,7 +145,7 @@
 							href="/faq"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('sitemap.links.faq')}</span>
+							<span>よくある質問</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -158,7 +154,7 @@
 							href="/sitemap"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('sitemap.links.sitemap')}</span>
+							<span>サイトマップ</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -167,7 +163,7 @@
 
 			<div class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5">
 				<h2 class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-					{$_('sitemap.sections.legal.heading')}
+					法務・コンプライアンス
 				</h2>
 				<ul class="mt-4 space-y-3 text-sm text-[#1c2d52]/80">
 					<li>
@@ -175,7 +171,7 @@
 							href="/legal/terms-of-service"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('sitemap.links.terms')}</span>
+							<span>利用規約</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -184,7 +180,7 @@
 							href="/legal/privacy-policy"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('sitemap.links.privacy')}</span>
+							<span>プライバシーポリシー</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>
@@ -193,7 +189,7 @@
 							href="/robots.txt"
 							class="inline-flex items-center gap-2 text-[#2f5387] transition hover:text-[#0b1730]"
 						>
-							<span>{$_('sitemap.links.robots')}</span>
+							<span>robots.txt</span>
 							<span aria-hidden="true">→</span>
 						</a>
 					</li>

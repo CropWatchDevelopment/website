@@ -6,7 +6,6 @@
 	import sedarImage from '$lib/images/team/Sedar_Korur.jpg'; // i18n-ignore
 	import efecanImage from '$lib/images/team/Efecan_Hepaksaz.webp'; // i18n-ignore
 
-	import { _, locale } from 'svelte-i18n';
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
 
 	type Leader = {
@@ -89,13 +88,13 @@
 	];
 
 	function getLeaderName(leader: LeaderSource): string {
-		return leader.nameByLocale?.[$locale as string] ?? leader.name;
+		return leader.nameByLocale?.ja ?? leader.name;
 	}
 </script>
 
 <svelte:head>
-	<title>{$_('about.meta.title')}</title>
-	<meta name="description" content={$_('about.meta.description')} />
+	<title>CropWatch について | 信頼性を追求した産業用 IoT</title>
+	<meta name="description" content="CropWatch のミッション、リーダーシップ、マイルストーンをご紹介。コールドストレージ、ホスピタリティ、製造業向けに堅牢な IoT ネットワークを提供しています。" />
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
@@ -107,28 +106,28 @@
 		<div class="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
 			<div class="space-y-6">
 				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-					{$_('about.hero.eyebrow')}
+					私たちのストーリー
 				</p>
 				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					{$_('about.hero.headline')}
+					今に至るまで
 				</h1>
-				<p class="text-base text-white/80">{$_('about.hero.paragraphs.0')}</p>
-				<p class="text-base text-white/80">{$_('about.hero.paragraphs.1')}</p>
+				<p class="text-base text-white/80">私たちは、過酷な農業環境でも確実に動作するデバイスの開発から事業をスタートしました。その過程で、「高い信頼性」「正確な測定」「使いやすさ」、そして「電波が届きにくい場所でも安定する通信」といった考え方が、他の産業分野でも強く求められていることに気づきました。</p>
+				<p class="text-base text-white/80">現在、CropWatch はコールドチェーン、宿泊・観光施設、製造業、農業など、さまざまな現場の運用を支え、コンプライアンスと業務効率を両立する堅牢な IoT ネットワークを提供しています。私たちの使命は創業当初から変わりません。環境を問わず、信頼できるデータと実用的な知見を現場に届けるIoTソリューションを提供することです。</p>
 				<div class="grid gap-4 text-sm text-white/80 md:grid-cols-2">
 					<div class="rounded-2xl border border-white/20 bg-white/10 px-5 py-4">
 						<p class="text-sm font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-							{$_('about.hero.stats.uptime.title')}
+							99.98% の稼働率
 						</p>
 						<p class="mt-2 text-base font-semibold text-white">
-							{$_('about.hero.stats.uptime.description')}
+							24/7 のオペレーションチームが支援
 						</p>
 					</div>
 					<div class="rounded-2xl border border-white/20 bg-white/10 px-5 py-4">
 						<p class="text-sm font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-							{$_('about.hero.stats.hubs.title')}
+							世界 6 拠点
 						</p>
 						<p class="mt-2 text-base font-semibold text-white">
-							{$_('about.hero.stats.hubs.description')}
+							常時監視されるセンサーフリート
 						</p>
 					</div>
 				</div>
@@ -136,20 +135,20 @@
 			<div
 				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
 			>
-				<h2 class="text-lg font-semibold text-white">{$_('about.hero.sidebar.title')}</h2>
-				<p class="mt-3 text-sm text-white/70">{$_('about.hero.sidebar.intro')}</p>
+				<h2 class="text-lg font-semibold text-white">事業内容</h2>
+				<p class="mt-3 text-sm text-white/70">CropWatchは、屋内・屋外を問わず、現場で信頼できる環境データを収集・可視化するIoT監視・管理サービスを提供しています。</p>
 				<ul class="mt-6 space-y-4 text-sm text-white/80">
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('about.hero.sidebar.points.0')}</span>
+						<span>環境データ測定・収集</span>
 					</li>
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('about.hero.sidebar.points.1')}</span>
+						<span>データ可視化クラウドサービス提供</span>
 					</li>
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('about.hero.sidebar.points.2')}</span>
+						<span>環境センサー開発・販売</span>
 					</li>
 				</ul>
 			</div>
@@ -160,10 +159,10 @@
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-			{$_('about.leadership.eyebrow')}
+			リーダーシップ
 		</p>
-		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">{$_('about.leadership.headline')}</h2>
-		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">{$_('about.leadership.intro')}</p>
+		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">すべての展開を導く経験豊富なオペレーター</h2>
+		<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">CropWatchの開発に取り組んでいる高度なスキルを持ったスタッフを紹介します。</p>
 		<div class="mt-10 grid gap-6 md:grid-cols-2">
 			{#each leadershipTeamSource as leader (leader.initials)}
 				<article
@@ -200,12 +199,10 @@
 								target="_blank"
 								rel="noopener noreferrer"
 									class="inline-flex items-center gap-2 rounded-full border border-[#2f5387]/30 px-4 py-2 text-sm font-medium text-[#2f5387] transition hover:border-[#2f5387] hover:bg-[#2f5387] hover:text-white"
-									aria-label={$_('about.leadership.actions.linkedin_aria', {
-										values: { name: getLeaderName(leader) }
-									})}
+									aria-label={`Open ${getLeaderName(leader)}'s LinkedIn profile`}
 								>
 								<span aria-hidden="true" class="text-base font-semibold">in</span>
-								<span>{$_('about.leadership.actions.linkedin')}</span>
+								<span>LinkedIn</span>
 							</a>
 						{/if}
 						{#if leader.githubUrl}
@@ -214,12 +211,10 @@
 								target="_blank"
 								rel="noopener noreferrer"
 									class="inline-flex items-center gap-2 rounded-full border border-[#0b1730]/30 px-4 py-2 text-sm font-medium text-[#0b1730] transition hover:border-[#0b1730] hover:bg-[#0b1730] hover:text-white"
-									aria-label={$_('about.leadership.actions.github_aria', {
-										values: { name: getLeaderName(leader) }
-									})}
+									aria-label={`Open ${getLeaderName(leader)}'s GitHub profile`}
 								>
 								<MaterialIcon name="code" class="text-base font-semibold" />
-								<span>{$_('about.leadership.actions.github')}</span>
+								<span>GitHub</span>
 							</a>
 						{/if}
 						{#if leader.websiteUrl}
@@ -228,9 +223,7 @@
 								target="_blank"
 								rel="noopener noreferrer"
 									class="inline-flex items-center gap-2 rounded-full border border-[#0b1730]/30 px-4 py-2 text-sm font-medium text-[#0b1730] transition hover:border-[#0b1730] hover:bg-[#0b1730] hover:text-white"
-									aria-label={$_('about.leadership.actions.github_aria', {
-										values: { name: getLeaderName(leader) }
-									})}
+									aria-label={`Open ${getLeaderName(leader)}'s GitHub profile`}
 								>
 								<MaterialIcon name="language" class="text-base font-semibold" />
 								<span>Website</span>

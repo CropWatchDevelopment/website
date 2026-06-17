@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
-
 	import ug65Image from './images/ug65-lorawan-gateway.png';
 	import ug67Image from './images/Milesight-UG67-gateway.png';
 	import konaMicroImage from './images/kona-micro.png';
@@ -15,8 +13,8 @@
 </script>
 
 <svelte:head>
-	<title>{$_('products.gateways.meta.title')}</title>
-	<meta name="description" content={$_('products.gateways.meta.description')} />
+	<title>LoRaWAN ゲートウェイ | CropWatch®</title>
+	<meta name="description" content="メーカー情報、屋内外の対応、推奨用途をひと目で確認できる CropWatch のゲートウェイ ラインアップです。" />
 </svelte:head>
 
 <section class="relative isolate overflow-hidden bg-gradient-to-br from-[var(--cw-blue-900)] via-[var(--cw-blue-950)] to-black py-24 text-white">
@@ -26,26 +24,26 @@
 		<div class="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
 			<div class="space-y-7">
 				<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--cw-gold-400)]">
-					{$_('products.gateways.hero.eyebrow')}
+					ゲートウェイラインナップ
 				</p>
 				<h1 class="text-4xl font-bold leading-tight md:text-5xl">
-					{$_('products.gateways.hero.headline')}
+					用途別に最適化されたゲートウェイ
 				</h1>
 				<p class="text-base text-white/80 md:text-lg">
-					{$_('products.gateways.hero.body')}
+					低温環境や屋外設置、金属・コンクリート構造物内など、電波条件が厳しい現場でも安定稼働するLoRaWAN ゲートウェイのみを採用しています。設置前に通信状況を確認し、最適な位置へ設置することで、安定した通信環境を確保します。
 				</p>
 				<div class="flex flex-wrap gap-4">
 					<a
 						href="/contact"
 						class="inline-flex items-center justify-center rounded-full bg-[var(--cw-gold-500)] px-7 py-3 text-sm font-semibold text-[var(--cw-blue-950)] transition hover:bg-[var(--cw-gold-400)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
 					>
-						{$_('products.gateways.hero.primary_cta')}
+						RF 設計を相談する
 					</a>
 					<a
 						href="#lineup"
 						class="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 					>
-						{$_('products.gateways.hero.secondary_cta')}
+						ラインアップを確認
 					</a>
 				</div>
 			</div>
@@ -57,13 +55,13 @@
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<div class="mx-auto max-w-3xl text-center">
 			<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--cw-blue-700)]">
-				{$_('products.gateways.lineup.eyebrow')}
+				ゲートウェイ一覧
 			</p>
 			<h2 class="mt-3 text-3xl font-semibold text-[var(--cw-blue-950)] md:text-4xl">
-				{$_('products.gateways.lineup.headline')}
+				小型ノードからキャリアグレードまで一括供給
 			</h2>
 			<p class="mt-4 text-base text-slate-600">
-				{$_('products.gateways.lineup.intro')}
+				現場の要件に合わせて最適なゲートウェイを組み合わせることで、過剰な設備投資を抑えつつ、強固なLoRaWANカバレッジを実現します。
 			</p>
 		</div>
 		<div class="mt-14 grid gap-10 lg:grid-cols-2">
@@ -72,7 +70,7 @@
 					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
 					<img
 						src={ug65Image}
-						alt={$_('products.gateways.lineup.items.ug65.image_alt')}
+						alt="作業台に置かれた Milesight UG65 ゲートウェイ"
 						loading="lazy"
 						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
 					/>
@@ -80,20 +78,20 @@
 				<div class="flex flex-1 flex-col gap-5 p-7">
 					<div class="flex flex-wrap items-center justify-between gap-4">
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
-							{$_('products.gateways.lineup.items.ug65.name')}
+							Milesight UG65 屋内モデル
 						</h3>
 						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
-							{$_('products.gateways.lineup.items.ug65.placement')}
+							屋内・半屋外 (IP65)
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.manufacturer')}
+								メーカー
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
 								<span class="text-base font-medium text-slate-900">
-									{$_('products.gateways.lineup.items.ug65.manufacturer')}
+									Milesight
 								</span>
 								<div class="flex w-full items-center justify-center">
 									<img
@@ -106,26 +104,26 @@
 						</div>
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.recommended')}
+								推奨用途
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.ug65.recommended.0')}</span>
+									<span>冷蔵室・品質管理ラボ・製造オフィス</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.ug65.recommended.1')}</span>
+									<span>ホテルや飲食のバックヤード監視</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.ug65.recommended.2')}</span>
+									<span>屋上にアクセスできない倉庫のカバレッジ</span>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<p class="text-sm leading-relaxed text-slate-600">
-						{$_('products.gateways.lineup.items.ug65.summary')}
+						イーサネットと Wi-Fi、LTEを備えた高性能ゲートウェイ。コンパクトで様々な場所で活用できます。
 					</p>
 					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
 						<a
@@ -134,7 +132,7 @@
 							rel="noopener noreferrer"
 							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
 						>
-							{$_('products.gateways.lineup.cta.view_manufacturer')}
+							メーカーサイトを見る
 						</a>
 					</div>
 				</div>
@@ -144,7 +142,7 @@
 					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
 					<img
 						src={ug67Image}
-						alt={$_('products.gateways.lineup.items.ug67.image_alt')}
+						alt="屋外ポールに取り付けられた Milesight UG67 ゲートウェイ"
 						loading="lazy"
 						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
 					/>
@@ -152,20 +150,20 @@
 				<div class="flex flex-1 flex-col gap-5 p-7">
 					<div class="flex flex-wrap items-center justify-between gap-4">
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
-							{$_('products.gateways.lineup.items.ug67.name')}
+							Milesight UG67 屋外モデル
 						</h3>
 						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
-							{$_('products.gateways.lineup.items.ug67.placement')}
+							屋外 (IP67・ポール取付)
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.manufacturer')}
+								メーカー
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
 								<span class="text-base font-medium text-slate-900">
-									{$_('products.gateways.lineup.items.ug67.manufacturer')}
+									Milesight
 								</span>
 								<div class="flex w-full items-center justify-center">
 									<img
@@ -178,26 +176,26 @@
 						</div>
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.recommended')}
+								推奨用途
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.ug67.recommended.0')}</span>
+									<span>風雨にさらされる食品工場の屋上・ヤード</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.ug67.recommended.1')}</span>
+									<span>数 km に及ぶ農業・物流ルート</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.ug67.recommended.2')}</span>
+									<span>LTE + Ethernet 冗長バックホールが必要な施設</span>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<p class="text-sm leading-relaxed text-slate-600">
-						{$_('products.gateways.lineup.items.ug67.summary')}
+						耐雷サージを備えた 8 チャネルゲートウェイ。屋上やヤード、遠隔境界をカバーします。
 					</p>
 					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
 						<a
@@ -206,7 +204,7 @@
 							rel="noopener noreferrer"
 							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
 						>
-							{$_('products.gateways.lineup.cta.view_manufacturer')}
+							メーカーサイトを見る
 						</a>
 					</div>
 				</div>
@@ -216,7 +214,7 @@
 					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
 					<img
 						src={konaMicroImage}
-						alt={$_('products.gateways.lineup.items.kona_micro.image_alt')}
+						alt="デスク上の Tektelic KONA Micro ゲートウェイ"
 						loading="lazy"
 						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
 					/>
@@ -224,20 +222,20 @@
 				<div class="flex flex-1 flex-col gap-5 p-7">
 					<div class="flex flex-wrap items-center justify-between gap-4">
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
-							{$_('products.gateways.lineup.items.kona_micro.name')}
+							Tektelic KONA Micro
 						</h3>
 						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
-							{$_('products.gateways.lineup.items.kona_micro.placement')}
+							屋内 (小型/卓上)
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.manufacturer')}
+								メーカー
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
 								<span class="text-base font-medium text-slate-900">
-									{$_('products.gateways.lineup.items.kona_micro.manufacturer')}
+									Tektelic
 								</span>
 								<div class="flex w-full items-center justify-center">
 									<img
@@ -250,26 +248,26 @@
 						</div>
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.recommended')}
+								推奨用途
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.0')}</span>
+									<span>小売店舗・ホスピタリティスイート・テストキッチン</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.1')}</span>
+									<span>期間限定の設置やパイロット導入</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_micro.recommended.2')}</span>
+									<span>司令室や保守室でのバックアップカバレッジ</span>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<p class="text-sm leading-relaxed text-slate-600">
-						{$_('products.gateways.lineup.items.kona_micro.summary')}
+						PoE で動作するコンパクトなゲートウェイ。臨時カバレッジや冗長マイクロセルに最適です。
 					</p>
 					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
 						<a
@@ -278,7 +276,7 @@
 							rel="noopener noreferrer"
 							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
 						>
-							{$_('products.gateways.lineup.cta.view_manufacturer')}
+							メーカーサイトを見る
 						</a>
 					</div>
 				</div>
@@ -288,7 +286,7 @@
 					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
 					<img
 						src={konaEnterpriseImage}
-						alt={$_('products.gateways.lineup.items.kona_enterprise.image_alt')}
+						alt="斜めから見た Tektelic KONA Enterprise ゲートウェイ"
 						loading="lazy"
 						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
 					/>
@@ -296,20 +294,20 @@
 				<div class="flex flex-1 flex-col gap-5 p-7">
 					<div class="flex flex-wrap items-center justify-between gap-4">
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
-							{$_('products.gateways.lineup.items.kona_enterprise.name')}
+							Tektelic KONA Enterprise
 						</h3>
 						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
-							{$_('products.gateways.lineup.items.kona_enterprise.placement')}
+							屋外 (ラック/壁面)
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.manufacturer')}
+								メーカー
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
 								<span class="text-base font-medium text-slate-900">
-									{$_('products.gateways.lineup.items.kona_enterprise.manufacturer')}
+									Tektelic
 								</span>
 								<div class="flex w-full items-center justify-center">
 									<img
@@ -322,26 +320,26 @@
 						</div>
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.recommended')}
+								推奨用途
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.0')}</span>
+									<span>ネットワーク部門を持つ病院や大学</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.1')}</span>
+									<span>多層のホテルやコンベンションセンター</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_enterprise.recommended.2')}</span>
+									<span>IT 連携が必須の制御室</span>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<p class="text-sm leading-relaxed text-slate-600">
-						{$_('products.gateways.lineup.items.kona_enterprise.summary')}
+						デュアルコンセントレータと LTE フェイルオーバー、SNMP を備えたエンタープライズ向けゲートウェイ。
 					</p>
 					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
 						<a
@@ -350,7 +348,7 @@
 							rel="noopener noreferrer"
 							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
 						>
-							{$_('products.gateways.lineup.cta.view_manufacturer')}
+							メーカーサイトを見る
 						</a>
 					</div>
 				</div>
@@ -360,7 +358,7 @@
 					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
 					<img
 						src={konaMacroImage}
-						alt={$_('products.gateways.lineup.items.kona_macro.image_alt')}
+						alt="屋外に設置された Tektelic KONA Macro ゲートウェイ"
 						loading="lazy"
 						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
 					/>
@@ -368,20 +366,20 @@
 				<div class="flex flex-1 flex-col gap-5 p-7">
 					<div class="flex flex-wrap items-center justify-between gap-4">
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
-							{$_('products.gateways.lineup.items.kona_macro.name')}
+							Tektelic KONA Macro
 						</h3>
 						<span class="inline-flex items-center rounded-full border border-[var(--cw-emerald-500)] bg-[var(--cw-emerald-900)] px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-emerald-900)]">
-							{$_('products.gateways.lineup.items.kona_macro.placement')}
+							屋外 (キャリアグレード)
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.manufacturer')}
+								メーカー
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
 								<span class="text-base font-medium text-slate-900">
-									{$_('products.gateways.lineup.items.kona_macro.manufacturer')}
+									Tektelic
 								</span>
 								<div class="flex w-full items-center justify-center">
 									<img
@@ -394,26 +392,26 @@
 						</div>
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.recommended')}
+								推奨用途
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.0')}</span>
+									<span>大規模製造キャンパスや港湾</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.1')}</span>
+									<span>数千エーカー規模の農業オペレーション</span>
 								</li>
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.kona_macro.recommended.2')}</span>
+									<span>SLA 稼働が求められる自治体・公共インフラ</span>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<p class="text-sm leading-relaxed text-slate-600">
-						{$_('products.gateways.lineup.items.kona_macro.summary')}
+						長距離カバレッジと冗長ラジオを備え、高い稼働 SLA に対応するキャリアグレード屋外ゲートウェイです。
 					</p>
 					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
 						<a
@@ -422,7 +420,7 @@
 							rel="noopener noreferrer"
 							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
 						>
-							{$_('products.gateways.lineup.cta.view_manufacturer')}
+							メーカーサイトを見る
 						</a>
 					</div>
 				</div>
@@ -432,7 +430,7 @@
 					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
 					<img
 						src={seeedImage}
-						alt={$_('products.gateways.lineup.items.seeed_m2.image_alt')}
+						alt="SEEED Studio SenseCAP M2 LoRaWAN ゲートウェイ"
 						loading="lazy"
 						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
 					/>
@@ -440,20 +438,20 @@
 				<div class="flex flex-1 flex-col gap-5 p-7">
 					<div class="flex flex-wrap items-center justify-between gap-4">
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
-							{$_('products.gateways.lineup.items.seeed_m2.name')}
+							SenseCAP M2 LoRaWAN Gateway
 						</h3>
 						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
-							{$_('products.gateways.lineup.items.seeed_m2.placement')}
+							屋内
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.manufacturer')}
+								メーカー
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
 								<span class="text-base font-medium text-slate-900">
-									{$_('products.gateways.lineup.items.seeed_m2.manufacturer')}
+									SEEED Studio
 								</span>
 								<div class="flex w-full items-center justify-center">
 									<img
@@ -466,18 +464,18 @@
 						</div>
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.recommended')}
+								推奨用途
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.seeed_m2.recommended.0')}</span>
+									<span>Wi‑Fi と Ethernet オプション</span>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<p class="text-sm leading-relaxed text-slate-600">
-						{$_('products.gateways.lineup.items.seeed_m2.summary')}
+						小規模導入やライトな運用に適したコスト効率の高い屋内向けゲートウェイです。
 					</p>
 					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
 						<a
@@ -486,7 +484,7 @@
 							rel="noopener noreferrer"
 							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
 						>
-							{$_('products.gateways.lineup.cta.view_manufacturer')}
+							メーカーサイトを見る
 						</a>
 					</div>
 				</div>
@@ -496,7 +494,7 @@
 					<div class="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
 					<img
 						src={ezurioImage}
-						alt={$_('products.gateways.lineup.items.ezurio_indoor.image_alt')}
+						alt="Ezurio Sentrius RG1xx 屋内ゲートウェイ"
 						loading="lazy"
 						class="h-full w-full object-contain p-6 sm:p-8 md:p-10"
 					/>
@@ -504,20 +502,20 @@
 				<div class="flex flex-1 flex-col gap-5 p-7">
 					<div class="flex flex-wrap items-center justify-between gap-4">
 						<h3 class="text-2xl font-semibold text-[var(--cw-blue-950)]">
-							{$_('products.gateways.lineup.items.ezurio_indoor.name')}
+							Sentrius RG1xx Indoor Gateway
 						</h3>
 						<span class="inline-flex items-center rounded-full border border-[var(--cw-gold-500)]/50 bg-[var(--cw-gold-500)]/15 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--cw-gold-500)]">
-							{$_('products.gateways.lineup.items.ezurio_indoor.placement')}
+							屋内
 						</span>
 					</div>
 					<div class="grid gap-2 sm:grid-cols-2">
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.manufacturer')}
+								メーカー
 							</p>
 							<div class="mt-2 flex flex-col items-start gap-2">
 								<span class="text-base font-medium text-slate-900">
-									{$_('products.gateways.lineup.items.ezurio_indoor.manufacturer')}
+									Ezurio Connectivity
 								</span>
 								<div class="flex w-full items-center justify-center">
 									<img
@@ -530,18 +528,18 @@
 						</div>
 						<div>
 							<p class="text-xs uppercase tracking-[0.32em] text-slate-400">
-								{$_('products.gateways.lineup.fields.recommended')}
+								推奨用途
 							</p>
 							<ul class="mt-3 space-y-1 text-sm text-slate-700">
 								<li class="flex items-start gap-2">
 									<span class="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--cw-gold-500)]"></span>
-									<span>{$_('products.gateways.lineup.items.ezurio_indoor.recommended.0')}</span>
+									<span>Wi‑Fi と Ethernet オプション（米国のみ LTE オプション）</span>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<p class="text-sm leading-relaxed text-slate-600">
-						{$_('products.gateways.lineup.items.ezurio_indoor.summary')}
+						Sentrius™ RG1xx は安全性・拡張性・堅牢性に優れた LoRaWAN ゲートウェイです。最大 10 マイルのデータ収集と Wi‑Fi/Ethernet 経由のクラウド同期に対応します。
 					</p>
 					<div class="mt-auto rounded-2xl bg-slate-50 px-4 py-4">
 						<a
@@ -550,7 +548,7 @@
 							rel="noopener noreferrer"
 							class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--cw-blue-900)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--cw-blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cw-gold-500)]"
 						>
-							{$_('products.gateways.lineup.cta.view_manufacturer')}
+							メーカーサイトを見る
 						</a>
 					</div>
 				</div>
@@ -564,26 +562,26 @@
 	<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_70%)]"></div>
 	<div class="mx-auto w-full max-w-5xl px-4 text-center">
 		<p class="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--cw-gold-500)]">
-			{$_('products.gateways.cta.eyebrow')}
+			ご相談ください
 		</p>
 		<h2 class="mt-4 text-3xl font-semibold md:text-4xl">
-			{$_('products.gateways.cta.headline')}
+			RF エンジニアが直接サポート
 		</h2>
 		<p class="mt-4 text-base text-white/80">
-			{$_('products.gateways.cta.body')}
+			延床面積、建材、監査要件をご共有いただければ、最適なゲートウェイ配置と CropWatch Command 上の設定までまとめてご提案します。
 		</p>
 		<div class="mt-10 flex flex-wrap justify-center gap-4">
 			<a
 				href="/contact"
 				class="inline-flex items-center justify-center rounded-full bg-[var(--cw-gold-500)] px-7 py-3 text-sm font-semibold text-[var(--cw-blue-950)] transition hover:bg-[var(--cw-gold-400)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
 			>
-				{$_('products.gateways.cta.primary_cta')}
+				設計ワークショップを予約
 			</a>
 			<a
 				href="/contact#details"
 				class="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 			>
-				{$_('products.gateways.cta.secondary_cta')}
+				図面を送る
 			</a>
 		</div>
 	</div>

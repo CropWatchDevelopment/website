@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
 	import gatewayImage from '$lib/images/slider-images/gateway_header-1280.webp';
 	import greenhouseImage from '$lib/images/slider-images/greenhouse.webp';
 	import liveStockImage from '$lib/images/slider-images/livestock_header-1024.webp';
@@ -37,49 +36,49 @@
 	const DEFAULT_SLIDES: Slide[] = [
 		{
 			id: 'industry-ready',
-			badgeKey: 'slider.slides.industry_ready.badge',
-			titleKey: 'slider.slides.industry_ready.title',
-			bodyKey: 'slider.slides.industry_ready.body',
-			cta: { labelKey: 'slider.slides.industry_ready.cta', href: '/contact' },
+			badge: '🏭 産業用グレードIoT',
+			title: '壊れない 狂わない 止まらない',
+			body: '高湿度・振動・埃の中でも正確に動作する産業グレード設計。信頼の品質で、どんな現場にも安心を。',
+			cta: { label: 'IoT スペシャリストに相談する', href: '/contact' },
 			image: {
 				src: gatewayImage,
-				altKey: 'slider.slides.industry_ready.image_alt'
+				alt: '加工施設内で稼働するゲートウェイ監視ハードウェア'
 			},
 			textSide: 'right'
 		},
 		{
 			id: 'battery-life',
-			badgeKey: 'slider.slides.battery_life.badge',
-			titleKey: 'slider.slides.battery_life.title',
-			bodyKey: 'slider.slides.battery_life.body',
-			cta: { labelKey: 'slider.slides.battery_life.cta', href: '/downloads/power-charts' },
+			badge: '🔋 長寿命バッテリー',
+			title: '省電力設計で長期運用を実現',
+			body: '10分間隔の送信で、冷凍庫でも屋外でも最大10年稼働。現場で交換可能な設計により、保守コストを最小限に抑えます。',
+			cta: { label: '電源チャートを見る', href: '/downloads/power-charts' },
 			image: {
 				src: greenhouseImage,
-				altKey: 'slider.slides.battery_life.image_alt'
+				alt: 'CropWatch センサー機器のクローズアップ'
 			},
 			textSide: 'right'
 		},
 		{
 			id: 'wireless-signal',
-			badgeKey: 'slider.slides.wireless_signal.badge',
-			titleKey: 'slider.slides.wireless_signal.title',
-			bodyKey: 'slider.slides.wireless_signal.body',
-			cta: { labelKey: 'slider.slides.wireless_signal.cta', href: '/technology/lorawan' },
+			badge: '📡 強力な無線信号',
+			title: '届かない場所をつなぐ技術',
+			body: 'LoRaWAN® の高い浸透力で、従来の無線が届かなかった環境でも安定した通信を実現。人の移動や巡回を必要としない、効率的で信頼性の高い運用を実現します。',
+			cta: { label: 'LoRaWAN® について学ぶ', href: '/technology/lorawan' },
 			image: {
 				src: liveStockImage,
-				altKey: 'slider.slides.wireless_signal.image_alt'
+				alt: '技術者が LoRaWAN ゲートウェイを設定している様子'
 			},
 			textSide: 'left'
 		},
 		{
 			id: 'survive-the-cold',
-			badgeKey: 'slider.slides.survive_the_cold.badge',
-			titleKey: 'slider.slides.survive_the_cold.title',
-			bodyKey: 'slider.slides.survive_the_cold.body',
-			cta: { labelKey: 'slider.slides.survive_the_cold.cta', href: '/technology/lorawan' },
+			badge: '❄️ 凍てつく環境を生き抜く',
+			title: '極低温対応設計',
+			body: '過酷な冷蔵・冷凍環境での動作を前提に設計。-40℃の温度帯でも高い信頼性でデータを取得し、安定したモニタリングを実現します。',
+			cta: { label: '事例を確認する', href: '/technology/lorawan' },
 			image: {
 				src: insideFreezerImage,
-				altKey: 'slider.slides.survive_the_cold.image_alt'
+				alt: 'CropWatch sensor installed inside a freezer'
 			},
 			textSide: 'left'
 		}
@@ -180,13 +179,13 @@
 			class="flex flex-col"
 			role="group"
 			aria-roledescription="carousel"
-			aria-label={$_('slider.aria.group_label')}
+			aria-label="CropWatch ハイライトカルーセル"
 		>
 			{#if activeSlide}
 				<div class="relative overflow-hidden shadow-2xl">
 					<img
 						src={activeSlide.image.src}
-						alt={activeSlide.image.altKey ? $_(activeSlide.image.altKey) : activeSlide.image.alt}
+						alt={activeSlide.image.alt}
 						class="absolute inset-0 h-full w-full object-cover"
 						fetchpriority="high"
 					/>
@@ -202,7 +201,7 @@
 								class="absolute top-1/2 left-3 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/10 text-lg text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white md:left-4"
 								onclick={previousSlide}
 								onkeydown={handleArrowKey}
-								aria-label={$_('slider.controls.previous')}
+								aria-label="前のスライド"
 							>
 								‹
 							</button>
@@ -211,7 +210,7 @@
 								class="absolute top-1/2 right-3 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/10 text-lg text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white md:right-4"
 								onclick={nextSlide}
 								onkeydown={handleArrowKey}
-								aria-label={$_('slider.controls.next')}
+								aria-label="次のスライド"
 							>
 								›
 							</button>
@@ -219,44 +218,32 @@
 								type="button"
 								class="absolute bottom-4 left-1/2 z-10 inline-flex h-10 -translate-x-1/2 items-center justify-center gap-2 rounded-full border border-white/35 bg-[#0c2b52]/70 px-4 text-xs font-semibold tracking-wide text-white uppercase backdrop-blur transition hover:bg-[#0c2b52]/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 								onclick={toggleAutoplay}
-								aria-label={isPaused ? $_('slider.controls.play') : $_('slider.controls.pause')}
+								aria-label={isPaused ? '再生' : '一時停止'}
 								aria-pressed={!isPaused}
 							>
 								<span aria-hidden="true" class="font-mono text-sm leading-none"
 									>{isPaused ? '>' : '||'}</span
 								>
-								<span>{isPaused ? $_('slider.controls.play') : $_('slider.controls.pause')}</span>
+								<span>{isPaused ? '再生' : '一時停止'}</span>
 							</button>
 						{/if}
 						<div
 							class={`relative max-w-xl rounded-3xl bg-[#0c2b52]/85 px-7 py-7 text-left text-white shadow-xl backdrop-blur ${activeSlide.textSide === 'right' ? 'md:mr-16 md:ml-auto md:text-right' : 'md:mr-auto md:ml-16 md:text-left'}`}
 						>
-							{#if activeSlide.badgeKey || activeSlide.badge}
+							{#if activeSlide.badge}
 								<p
 									class="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide text-white/80 uppercase"
 								>
 									<span>
-										{#if activeSlide.badgeKey}
-											{$_(activeSlide.badgeKey)}
-										{:else if activeSlide.badge}
-											{activeSlide.badge}
-										{/if}
+										{activeSlide.badge}
 									</span>
 								</p>
 							{/if}
 							<h2 class="text-3xl font-bold tracking-tight md:text-4xl">
-								{#if activeSlide.titleKey}
-									{$_(activeSlide.titleKey)}
-								{:else}
-									{activeSlide.title}
-								{/if}
+								{activeSlide.title}
 							</h2>
 							<p class="mt-3 text-base text-white/85 md:text-lg">
-								{#if activeSlide.bodyKey}
-									{$_(activeSlide.bodyKey)}
-								{:else}
-									{activeSlide.body}
-								{/if}
+								{activeSlide.body}
 							</p>
 							{#if activeSlide.cta}
 								<div
@@ -266,11 +253,7 @@
 										href={activeSlide.cta.href}
 										class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-8 py-3 text-sm font-semibold text-[#11213c] shadow-md transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 									>
-										{#if activeSlide.cta.labelKey}
-											{$_(activeSlide.cta.labelKey)}
-										{:else}
-											{activeSlide.cta.label}
-										{/if}
+										{activeSlide.cta.label}
 									</a>
 								</div>
 							{/if}
@@ -278,7 +261,7 @@
 					</div>
 				</div>
 			{:else}
-				<p class="text-center text-white/70">{$_('slider.fallback.no_slides')}</p>
+				<p class="text-center text-white/70">スライドが設定されていません。</p>
 			{/if}
 		</div>
 	</div>

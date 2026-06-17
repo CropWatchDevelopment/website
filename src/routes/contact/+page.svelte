@@ -2,7 +2,6 @@
 	import { browser } from '$app/environment';
 	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 	import { onDestroy } from 'svelte';
-	import { _ } from 'svelte-i18n';
 
 	type RecaptchaClient = {
 		ready: (cb: () => void) => void;
@@ -86,8 +85,8 @@
 </script>
 
 <svelte:head>
-	<title>{$_('contact.meta.title')}</title>
-	<meta name="description" content={$_('contact.meta.description')} />
+	<title>CropWatch へお問い合わせ | IoT スペシャリストに相談</title>
+	<meta name="description" content="施設ウォークスルーの予約や、堅牢な産業用 IoT 展開の設計について CropWatch のスペシャリストにご相談ください。" />
 	{#if recaptchaSiteKey}
 		<script
 			src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
@@ -106,86 +105,86 @@
 		<div class="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
 			<div class="space-y-6">
 				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-					{$_('contact.hero.eyebrow')}
+					お問い合わせ
 				</p>
 				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					{$_('contact.hero.headline')}
+					産業用 IoT チームとの戦略セッションを予約
 				</h1>
-				<p class="text-base text-white/80">{$_('contact.hero.body')}</p>
+				<p class="text-base text-white/80">施設の目標や課題を共有いただければ、LoRaWAN カバレッジ設計からセンサー選定、分析導入、コンプライアンス対応までを含むビジネスケースをカスタムでご提案します。</p>
 				<ul class="space-y-4 text-sm text-white/80">
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.0')}</span>
+						<span>現地ウォークスルー、ライブデモ、PoV パイロットを実施。</span>
 					</li>
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.1')}</span>
+						<span>冷凍倉庫、製造、ホスピタリティなど各業界向けの設計ガイダンス。</span>
 					</li>
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.2')}</span>
+						<span>経営層の承認を加速させる ROI モデリングをご提供。</span>
 					</li>
 				</ul>
 			</div>
 			<div
 				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
 			>
-				<h2 class="text-lg font-semibold text-white">{$_('contact.form.title')}</h2>
-				<p class="mt-2 text-sm text-white/70">{$_('contact.form.subtitle')}</p>
+				<h2 class="text-lg font-semibold text-white">まずはご相談ください</h2>
+				<p class="mt-2 text-sm text-white/70">フォームにご入力いただければ、1 営業日以内にご連絡します。</p>
 				<form class="mt-6 space-y-5 text-sm" method="post" action="?" onsubmit={handleSubmit}>
 					<div class="grid gap-4 md:grid-cols-2">
 						<label class="flex flex-col gap-2">
 							<span class="font-medium text-white"
-								>{$_('contact.form.fields.first_name.label')}</span
+								>名</span
 							>
 							<input
 								name="firstName"
 								type="text"
 								required
 								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder={$_('contact.form.fields.first_name.placeholder')}
+								placeholder="太郎"
 							/>
 						</label>
 						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white">{$_('contact.form.fields.last_name.label')}</span
+							<span class="font-medium text-white">姓</span
 							>
 							<input
 								name="lastName"
 								type="text"
 								required
 								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder={$_('contact.form.fields.last_name.placeholder')}
+								placeholder="山田"
 							/>
 						</label>
 					</div>
 					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.email.label')}</span>
+						<span class="font-medium text-white">業務用メールアドレス</span>
 						<input
 							name="email"
 							type="email"
 							required
 							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.email.placeholder')}
+							placeholder="you@company.com"
 						/>
 					</label>
 					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.company.label')}</span>
+						<span class="font-medium text-white">会社名</span>
 						<input
 							name="company"
 							type="text"
 							required
 							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.company.placeholder')}
+							placeholder="Acme Foods"
 						/>
 					</label>
 					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.message.label')}</span>
+						<span class="font-medium text-white">ご相談内容</span>
 						<textarea
 							name="message"
 							rows={4}
 							required
 							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.message.placeholder')}
+							placeholder="施設情報や課題、希望スケジュールをご記入ください。"
 						></textarea>
 					</label>
 					<input type="hidden" name="g-recaptcha-response" value="" aria-hidden="true" />
@@ -196,15 +195,15 @@
 								aria-live="polite"
 							>
 								{#if recaptchaError === 'security_unavailable'}
-									{$_('contact.errors.security_unavailable')}
+									セキュリティチェックを利用できません。ページを再読み込みしてからお試しください。
 								{:else if recaptchaError === 'verification_failed'}
-									{$_('contact.errors.verification_failed')}
+									検証に失敗しました。もう一度お試しください。
 								{:else}
-									{$_('contact.recaptcha.protected')}
+									Google reCAPTCHA (v3) によって保護されています。
 								{/if}
 							</p>
 							<p class="text-[11px] leading-relaxed text-white/65">
-								{$_('contact.recaptcha.google_disclosure_prefix')}
+								このサイトは reCAPTCHA によって保護されており、Google の
 								{' '}
 								<a
 									class="underline transition hover:text-white"
@@ -212,10 +211,10 @@
 									target="_blank"
 									rel="noreferrer"
 								>
-									{$_('contact.recaptcha.google_disclosure_privacy')}
+									プライバシーポリシー
 								</a>
 								{' '}
-								{$_('contact.recaptcha.google_disclosure_and')}
+								と
 								{' '}
 								<a
 									class="underline transition hover:text-white"
@@ -223,18 +222,18 @@
 									target="_blank"
 									rel="noreferrer"
 								>
-									{$_('contact.recaptcha.google_disclosure_terms')}
+									利用規約
 								</a>
 								{' '}
-								{$_('contact.recaptcha.google_disclosure_suffix')}
+								が適用されます。
 							</p>
 						</div>
 					{:else}
 						<p
 							class="rounded-xl border border-dashed border-white/30 bg-white/5 px-3 py-2 text-xs text-white/80"
 						>
-							{$_('contact.recaptcha.missing_key_prefix')} <code>PUBLIC_RECAPTCHA_SITE_KEY</code>
-							{$_('contact.recaptcha.missing_key_suffix')}
+							CAPTCHA を有効にするには <code>PUBLIC_RECAPTCHA_SITE_KEY</code>
+							を設定してください。
 						</p>
 					{/if}
 					<!-- <label class="flex items-center gap-2 text-white/70">
@@ -247,7 +246,7 @@
 						disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
 						aria-disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
 					>
-						{$_('contact.form.submit')}
+						送信する
 					</button>
 				</form>
 			</div>

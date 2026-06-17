@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { slide } from 'svelte/transition';
-	import { _ } from 'svelte-i18n';
 
 	type Status = 'online' | 'offline' | 'loading' | 'partialError';
 	type DetailRow = {
@@ -60,22 +59,22 @@
 	const lastUpdate = $derived(props.lastUpdate);
 	const detailRowsProp = $derived(props.detailRows ?? []);
 
-	const statusStyles: Record<Status, { color: string; glow: string; labelKey: string }> = {
+	const statusStyles: Record<Status, { color: string; glow: string; label: string }> = {
 		loading: {
 			color: '#f2a516',
 			glow: 'rgba(242,165,22,0.5)',
-			labelKey: 'ui_demo.status.loading'
+			label: '接続中'
 		},
-		online: { color: '#20d16a', glow: 'rgba(32,209,106,0.5)', labelKey: 'ui_demo.status.online' },
+		online: { color: '#20d16a', glow: 'rgba(32,209,106,0.5)', label: 'オンライン' },
 		partialError: {
 			color: '#ff784f',
 			glow: 'rgba(255,120,79,0.45)',
-			labelKey: 'ui_demo.status.partial_error'
+			label: '部分エラー'
 		},
 		offline: {
 			color: '#f25555',
 			glow: 'rgba(242,85,85,0.45)',
-			labelKey: 'ui_demo.status.offline'
+			label: 'オフライン'
 		}
 	};
 
@@ -143,23 +142,22 @@
 			: [
 					{
 						id: 'humidity',
-						labelKey: 'ui_demo.detail_rows.humidity',
+						label: '湿度',
 						value: secondaryValue.toFixed(2),
 						unit: secondaryUnit,
 						icon: 'drop'
 					},
 					{
 						id: 'temperature',
-						labelKey: 'ui_demo.detail_rows.temperature',
+						label: '温度',
 						value: primaryValue.toFixed(2),
 						unit: primaryUnit,
 						icon: 'thermo'
 					},
 					{
 						id: 'updated',
-						labelKey: 'ui_demo.detail_rows.updated',
-						value: lastUpdate ?? null,
-						valueKey: 'ui_demo.defaults.last_update',
+						label: '最終更新',
+						value: lastUpdate ?? '8分17秒前',
 						unit: '',
 						icon: 'timer'
 					}
@@ -173,8 +171,8 @@
 			class="status-indicator"
 			type="button"
 			onclick={cycleStatus}
-			title={$_('ui_demo.status_indicator.title', { values: { status: $_(statusStyle.labelKey) } })}
-			aria-label={$_('ui_demo.status_indicator.aria', { values: { status: $_(statusStyle.labelKey) } })}
+			title={`現在のステータス: ${statusStyle.label}。クリックすると状態が切り替わります。`}
+			aria-label={`ステータスを切り替え (現在 ${statusStyle.label})`}
 		>
         
 			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -187,13 +185,13 @@
 		<div class="sensor-card__title-group">
 			<div class="sensor-card__title">{title || '<LOCATION NAME>'}</div>
 			<span class="sensor-card__status-pill" style={`--pill-color:${statusStyle.color}`}>
-				{$_(statusStyle.labelKey)}
+				{statusStyle.label}
 			</span>
 		</div>
 		<button
 			class="header-action"
 			type="button"
-			aria-label={$_('ui_demo.header.view_device_aria')}
+			aria-label="デバイスを表示"
 			onclick={() => emitState({ stepId: 'location-page' })}
 		>
 			<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -215,7 +213,7 @@
 							type="button"
 							class="sensor-stat sensor-stat--action"
 							onclick={() => cycleStat('temperature')}
-							title={$_('ui_demo.stats.temperature_title')}
+							title="温度のサンプルを切り替える"
 						>
 							<span class="sensor-stat__icon sensor-stat__icon--temp" aria-hidden="true">
 								<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -233,7 +231,7 @@
 							type="button"
 							class="sensor-stat sensor-stat--action"
 							onclick={() => cycleStat('humidity')}
-							title={$_('ui_demo.stats.humidity_title')}
+							title="湿度のサンプルを切り替える"
 						>
 							<span class="sensor-stat__icon sensor-stat__icon--humidity" aria-hidden="true">
 								<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -251,7 +249,7 @@
 				<button
 					class="sensor-card__collapse"
 					type="button"
-					aria-label={expanded ? $_('ui_demo.details.collapse_aria') : $_('ui_demo.details.expand_aria')}
+					aria-label={expanded ? '詳細を閉じる' : '詳細を開く'}
 					onclick={toggleDetails}
 				>
 					<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
@@ -262,7 +260,7 @@
 
 			{#if expanded}
 				<div class="sensor-card__details" transition:slide={{ duration: 220 }}>
-					<h4>{$_('ui_demo.details.heading')}</h4>
+					<h4>詳細</h4>
 					<ul>
 						{#each computedDetailRows as row (row.id)}
 							<li>
@@ -293,7 +291,7 @@
 											{/if}
 										</span>
 										<span class="detail-item__label">
-											{row.label ?? (row.labelKey ? $_(row.labelKey) : '')}
+											{row.label ?? ''}
 										</span>
 									</div>
 									<div
@@ -301,7 +299,7 @@
 										class:detail-item__value--muted={!row.unit}
 									>
 										<span class="detail-item__number">
-											{row.value ?? (row.valueKey ? $_(row.valueKey) : '')}
+											{row.value ?? ''}
 										</span>
 										{#if row.unit}
 											<span class="detail-item__unit">{row.unit}</span>
@@ -317,7 +315,7 @@
 						type="button"
 						onclick={() => emitState({ stepId: 'device-detail-page' })}
 					>
-						<span>{$_('ui_demo.details.cta')}</span>
+						<span>デバイス詳細を見る</span>
 						<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
 							<path fill="currentColor" d="M10 6v12l6-6-6-6Z"></path>
 						</svg>
@@ -326,14 +324,14 @@
 			{/if}
 		</div>
 		<div class="sensor-card__footer">
-			<p class="sensor-card__hint">{$_('ui_demo.hint.text')}</p>
+			<p class="sensor-card__hint">カードを操作するとウォークスルー表示が連動します。</p>
 			<button
 				type="button"
 				class="sensor-card__theme-toggle"
 				onclick={toggleTheme}
-				aria-label={$_('ui_demo.theme_toggle.aria')}
+				aria-label="カードの表示を切り替える"
 			>
-				{mode === 'dark' ? $_('ui_demo.theme_toggle.light') : $_('ui_demo.theme_toggle.dark')}
+				{mode === 'dark' ? 'ライトモード' : 'ダークモード'}
 			</button>
 		</div>
 	</section>

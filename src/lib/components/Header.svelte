@@ -1,66 +1,64 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import MaterialIcon from './MaterialIcon.svelte';
-	import LanguagePicker from './LanguagePicker.svelte';
 	import Search from './Search.svelte';
 	import Telephone from './Telephone.svelte';
-	import { _, locale } from 'svelte-i18n';
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import christmas_logo from '$lib/images/christmas_cropwatch.svg';
 
 	interface NavItem {
 		id: string;
-		labelKey: string;
+		label: string;
 		href?: string;
-		children?: { labelKey: string; href: string; icon?: string; ariaKey?: string }[];
+		children?: { label: string; href: string; icon?: string; aria?: string }[];
 	}
 
 	const navItems: NavItem[] = [
-		{ id: 'home', labelKey: 'header.navigation.home', href: '/' },
+		{ id: 'home', label: 'ホーム', href: '/' },
 		{
 			id: 'products',
-			labelKey: 'header.navigation.products',
+			label: '製品',
 			children: [
 				{
-					labelKey: 'header.navigation.products_sensor',
+					label: '温度・湿度センサー (CW-AIR-TH)',
 					href: '/products/cw-air-th',
 					icon: 'device_thermostat'
 				},
 				{
-					labelKey: 'header.navigation.products_gateways',
+					label: 'LoRaWAN Gateways',
 					href: '/products/gateways',
 					icon: 'router'
 				},
 				{
-					labelKey: 'header.navigation.products_replacement_sensors',
+					label: 'Replacement Sensors (Coming Soon)',
 					href: '/products/coming-soon',
 					icon: 'settings_input_hdmi'
 				}
 			]
 		},
-		{ id: 'case-studies', labelKey: 'header.navigation.case_studies', href: '/case-studies' },
-		{ id: 'about', labelKey: 'header.navigation.about', href: '/about' },
-		{ id: 'contact', labelKey: 'header.navigation.contact', href: '/contact' }
+		{ id: 'case-studies', label: '導入事例', href: '/case-studies' },
+		{ id: 'about', label: '会社情報', href: '/about' },
+		{ id: 'contact', label: 'お問い合わせ', href: '/contact' }
 	] as const;
 
 	const utilityLinks = [
 		{
-			labelKey: 'header.utility.ui_app',
+			label: 'UI アプリ',
 			href: 'https://app.cropwatch.io/',
 			icon: 'exit_to_app',
-			ariaKey: 'header.utility.ui_app_icon_aria'
+			aria: 'UI アプリリンクのアイコン'
 		},
 		{
-			labelKey: 'API',
+			label: 'API',
 			href: 'https://api.cropwatch.io',
 			icon: 'api',
-			ariaKey: 'header.utility.api_icon_aria'
+			aria: 'API リンクのアイコン'
 		},
 		{
-			labelKey: 'header.utility.system_status',
+			label: 'システムステータス',
 			icon: 'monitor_heart',
 			href: 'https://stats.uptimerobot.com/1Z6H85HuHq',
-			ariaKey: 'header.utility.system_status_icon_aria'
+			aria: 'システムステータスリンクのアイコン'
 		}
 	] as const;
 
@@ -93,8 +91,8 @@
 	}
 
 	const topLinks = [
-		{ href: '/contact', labelKey: 'common.actions.contact' }
-		// { href: '/support', labelKey: 'common.actions.support' }
+		{ href: '/contact', label: 'お問い合わせ' }
+		// { href: '/support', label: 'サポート' }
 	] as const;
 
 	let isMobileMenuOpen = $state(false);
@@ -121,18 +119,12 @@
 	<div
 		class="mx-auto hidden flex-row items-center justify-between bg-[#ffffffde] px-4 text-sm md:flex"
 	>
-		<div class="flex gap-2 py-3 text-sm font-semibold text-[#11213c]">
-			<span>{$_('header.topbar.welcome')}</span>
-			<span>|</span>
-			<span>{$_('header.topbar.global_site')}</span>
-		</div>
 		<div class="flex items-center gap-4 py-3 text-[#11213c]">
 			{#each topLinks as link (link.href)}
 				<a href={link.href} class="font-medium transition-colors hover:text-blue-600"
-					>{$_(link.labelKey)}</a
+					>{link.label}</a
 				>
 			{/each}
-			<LanguagePicker />
 		</div>
 	</div>
 
@@ -144,7 +136,7 @@
 			<a
 				class="flex min-w-[220px] items-center gap-4"
 				href="https://cropwatch.io/"
-				aria-label={$_('header.brand.home_aria')}
+				aria-label="CropWatch ホーム"
 			>
 				<picture
 					class={isChristmasSeason() ? 'h-20 w-20 overflow-hidden' : 'h-14 w-14 overflow-hidden'}
@@ -153,22 +145,16 @@
 					<img
 						id="header-logo"
 						src={headerLogo}
-						alt={$_('header.brand.logo_alt')}
+						alt="CropWatch のロゴ"
 						class="h-full w-full object-contain"
 					/>
 				</picture>
 				<div class="flex flex-col">
-					{#if $locale === 'en'}
-					<span class="text-lg font-semibold tracking-wide">
-							𝘾𝙧𝙤𝙥𝙒𝙖𝙩𝙘𝙝
-						</span>
-						{:else}
-						<span class="text-lg font-semibold tracking-wide italic">
-							クロップウォッチ
-						</span>
-						{/if}
+					<span class="text-lg font-semibold tracking-wide italic">
+						クロップウォッチ
+					</span>
 					<span class="hidden text-xs text-white/80 uppercase md:inline"
-						>{$_('header.brand.tagline')}</span
+						>品質と信頼で支えるIoTソリューション</span
 					>
 				</div>
 			</a>
@@ -216,7 +202,7 @@
 									}
 								}}
 							>
-								<span>{$_(item.labelKey)}</span>
+								<span>{item.label}</span>
 								<svg
 									class={`h-4 w-4 transition-transform ${openMenu === item.id ? 'rotate-180' : ''}`}
 									viewBox="0 0 20 20"
@@ -250,10 +236,10 @@
 													variant="rounded"
 													size={20}
 													class="text-gray-500"
-													ariaLabel={$_(child.ariaKey || 'header.navigation.opens_in_new_tab_aria')}
+													ariaLabel={child.aria || '新しいタブで開く'}
 												/>
 											{/if}
-											<span class="text-nowrap">{$_(child.labelKey)}</span>
+											<span class="text-nowrap">{child.label}</span>
 										</a>
 									</li>
 								{/each}
@@ -263,7 +249,7 @@
 								class="rounded px-2 py-1 font-medium text-nowrap transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
 								href={item.href}
 							>
-								{$_(item.labelKey)}
+								{item.label}
 							</a>
 						{/if}
 					</li>
@@ -284,10 +270,10 @@
 									variant="rounded"
 									size={16}
 									class="mr-1 inline-block align-middle"
-									ariaLabel={$_(link.ariaKey)}
+									ariaLabel={link.aria}
 								/>
 							{/if}
-							{$_(link.labelKey)}
+							{link.label}
 						</a>
 					</li>
 				{/each}
@@ -325,7 +311,7 @@
 									class="flex w-full items-center justify-between py-2 font-medium"
 									onclick={() => toggleMenu(item.id)}
 								>
-									<span>{$_(item.labelKey)}</span>
+									<span>{item.label}</span>
 									<svg
 										class={`h-5 w-5 transition-transform ${openMenu === item.id ? 'rotate-180' : ''}`}
 										viewBox="0 0 20 20"
@@ -355,7 +341,7 @@
 															size={20}
 														/>
 													{/if}
-													<span class="text-nowrap">{$_(child.labelKey)}</span>
+													<span class="text-nowrap">{child.label}</span>
 												</a>
 											</li>
 										{/each}
@@ -367,7 +353,7 @@
 									class="block py-2 font-medium text-nowrap"
 									onclick={closeMobileMenu}
 								>
-									{$_(item.labelKey)}
+									{item.label}
 								</a>
 							{/if}
 						</li>
@@ -384,7 +370,7 @@
 								{#if link.icon}
 									<MaterialIcon name={link.icon} collection="symbols" variant="rounded" size={20} />
 								{/if}
-								<span class="text-nowrap">{$_(link.labelKey)}</span>
+								<span class="text-nowrap">{link.label}</span>
 							</a>
 						</li>
 					{/each}
@@ -396,12 +382,9 @@
 				<div class="flex flex-col gap-4 pb-10">
 					{#each topLinks as link}
 						<a href={link.href} class="text-nowrap text-white/80" onclick={closeMobileMenu}>
-							{$_(link.labelKey)}
+							{link.label}
 						</a>
 					{/each}
-					<div class="mt-2">
-						<LanguagePicker />
-					</div>
 				</div>
 			</div>
 		</div>

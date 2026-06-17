@@ -2,17 +2,16 @@
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
 	import { getExchangeRate } from '$lib/data/exchange-rate';
 	import { onMount } from 'svelte';
-	import { _ } from 'svelte-i18n';
 
 	type PricingItem = {
-		labelKey: string;
-		valueKey: string;
+		label: string;
+		value: string;
 		href?: string;
 	};
 
 	type PricingColumn = {
-		titleKey: string;
-		leadKey: string;
+		title: string;
+		lead: string;
 		items: PricingItem[];
 	};
 
@@ -20,80 +19,80 @@
 
 	const pricingMatrix: PricingColumn[] = [
 		{
-			titleKey: 'home.pricing.columns.devices.title',
-			leadKey: 'home.pricing.columns.devices.lead',
+			title: 'LoRaWAN®デバイス&ゲートウェイ',
+			lead: '温湿度センサーをはじめ、その他センサーも必要に応じて提供します。',
 			items: [
 				{
-					labelKey: 'home.pricing.columns.devices.items.sensor.label',
-					valueKey: 'home.pricing.columns.devices.items.sensor.value'
+					label: '温度・湿度センサー',
+					value: ' '
 				},
 				{
-					labelKey: 'home.pricing.columns.devices.items.relay.label',
-					valueKey: 'home.pricing.columns.devices.items.relay.value'
+					label: 'アラートシステム',
+					value: ' '
 				},
 				{
-					labelKey: 'home.pricing.columns.devices.items.other_sensors.label',
-					valueKey: 'home.pricing.columns.devices.items.other_sensors.value'
+					label: 'その他センサー',
+					value: ' '
 				},
 				{
-					labelKey: 'home.pricing.columns.devices.items.indoor_gateway.label',
-					valueKey: 'home.pricing.columns.devices.items.indoor_gateway.value'
+					label: '屋内用ゲートウェイ',
+					value: ' '
 				},
 				{
-					labelKey: 'home.pricing.columns.devices.items.carrier_gateway.label',
-					valueKey: 'home.pricing.columns.devices.items.carrier_gateway.value'
+					label: '屋外用ゲートウェイ',
+					value: ' '
 				}
 			]
 		},
 		{
-			titleKey: 'home.pricing.columns.sensors.title',
-			leadKey: 'home.pricing.columns.sensors.lead',
+			title: 'IoTモニタリング月額費用',
+			lead: '測定品質を保ちながら、無駄のないコスト運用を実現します。',
 			items: [
 				{
-					labelKey: 'home.pricing.columns.sensors.items.devices_0_10.label',
-					valueKey: 'home.pricing.columns.sensors.items.devices_0_10.value'
+					label: '基本料金（10台分込み）',
+					value: '¥16,500'
 				},
 				{
-					labelKey: 'home.pricing.columns.sensors.items.devices_11_99.label',
-					valueKey: 'home.pricing.columns.sensors.items.devices_11_99.value'
+					label: '追加デバイス（11台目〜）',
+					value: '¥880/台'
 				},
 				{
-					labelKey: 'home.pricing.columns.sensors.items.devices_100_plus.label',
-					valueKey: 'home.pricing.columns.sensors.items.devices_100_plus.value',
+					label: '100+ 台',
+					value: 'お問い合わせください',
 					href: '/contact'
 				}
 			]
 		},
 		{
-			titleKey: 'home.pricing.columns.software.title',
-			leadKey: 'home.pricing.columns.software.lead',
+			title: 'ソフトウェア & ダッシュボード',
+			lead: '運用を止めないためのダッシュボードとサポートで、日々の業務を支えます。',
 			items: [
 				{
-					labelKey: 'home.pricing.columns.software.items.retention.label',
-					valueKey: 'home.pricing.columns.software.items.retention.value'
+					label: 'データ保存期間',
+					value: '直近２年間'
 				},
 				{
-					labelKey: 'home.pricing.columns.software.items.licences.label',
-					valueKey: 'home.pricing.columns.software.items.licences.value'
+					label: 'ユーザーライセンス',
+					value: '無制限'
 				},
 				{
-					labelKey: 'home.pricing.columns.software.items.alart.label',
-					valueKey: 'home.pricing.columns.software.items.alart.value'
+					label: 'アラート通知',
+					value: 'メール送信 / サイレン'
 				},
 				{
-					labelKey: 'home.pricing.columns.software.items.report.label',
-					valueKey: 'home.pricing.columns.software.items.report.value'
+					label: 'レポート',
+					value: 'メール送信 / ダウンロード'
 				},
 				{
-					labelKey: 'home.pricing.columns.software.items.api.label',
-					valueKey: 'home.pricing.columns.software.items.api.value'
+					label: 'API',
+					value: ' '
 				}
 			]
 		}
 	];
 
-	function processPrice(valueKey: string): string {
-		const raw = $_(valueKey);
+	function processPrice(value: string): string {
+		const raw = value;
 		// Capture currency mark plus number (handles commas and optional whitespace)
 		const match = raw.match(/([¥￥]?\s*-?\d[\d,]*(?:\.\d+)?)/);
 		if (!match) return raw;
@@ -121,13 +120,13 @@
 	<div class="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 		<div>
 			<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-				{$_('home.pricing.eyebrow')}
+				導入価格と維持コスト
 			</p>
 			<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-				{$_('home.pricing.headline')}
+				成長を妨げない透明な料金体系
 			</h2>
 			<p class="mt-3 max-w-2xl text-base text-[#1c2d52]/80">
-				{$_('home.pricing.intro')}
+				すべての導入には、現場設計、ネットワーク構築、機器の設置が含まれます。設置後すぐに運用を開始できるよう、導入時の作業を一括でサポートします。
 			</p>
 		</div>
 		<a
@@ -135,28 +134,28 @@
 			class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-5 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387]"
 		>
 			<MaterialIcon name="concierge" collection="symbols" variant="outlined" />
-			{$_('home.pricing.cta')}
+			見積りを依頼
 		</a>
 	</div>
 	<div class="grid gap-6 md:grid-cols-3">
-		{#each pricingMatrix as column, colIdx (column.titleKey)}
+		{#each pricingMatrix as column, colIdx (column.title)}
 			<div
 				class="flex h-full flex-col rounded-3xl border border-[#d7e0f5] bg-[#f9fbff] p-7 shadow-sm shadow-[#0b1730]/5"
 			>
-				<h3 class="text-lg font-semibold text-[#0b1730]">{$_(column.titleKey)}</h3>
-				<p class="mt-3 text-sm text-[#1c2d52]/75">{$_(column.leadKey)}</p>
+				<h3 class="text-lg font-semibold text-[#0b1730]">{column.title}</h3>
+				<p class="mt-3 text-sm text-[#1c2d52]/75">{column.lead}</p>
 				<hr class="my-5 border-[#d7e0f5]" />
 				<ul class="space-y-4 text-sm text-[#1c2d52]">
-					{#each column.items as item, itemIdx (item.labelKey)}
+					{#each column.items as item, itemIdx (item.label)}
 						<li class="flex items-start justify-between gap-4">
-							<span class="font-medium">{$_(item.labelKey)}</span>
+							<span class="font-medium">{item.label}</span>
 							{#if item.href}
 								<a class="text-[#2f5387] underline" href={item.href}>
-									{colIdx === 0 && itemIdx === 0 ? $_(item.valueKey) : processPrice(item.valueKey)}
+									{colIdx === 0 && itemIdx === 0 ? item.value : processPrice(item.value)}
 								</a>
 							{:else}
 								<span class="text-[#2f5387]">
-									{colIdx === 0 && itemIdx === 0 ? $_(item.valueKey) : processPrice(item.valueKey)}
+									{colIdx === 0 && itemIdx === 0 ? item.value : processPrice(item.value)}
 								</span>
 							{/if}
 						</li>

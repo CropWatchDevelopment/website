@@ -1,48 +1,48 @@
 export type SitemapLink = {
-	labelKey: string;
+	label: string;
 	href: string;
 };
 
 export type SitemapSection = {
-	headingKey: string;
+	heading: string;
 	links: SitemapLink[];
 };
 
 export const sitemapSections: SitemapSection[] = [
 	{
-		headingKey: 'sitemap.sections.primary.heading',
+		heading: '主要ページ',
 		links: [
-			{ labelKey: 'header.navigation.home', href: '/' },
-			{ labelKey: 'header.navigation.products', href: '/products/cw-air-th' },
-			{ labelKey: 'header.navigation.case_studies', href: '/case-studies' },
-			{ labelKey: 'header.navigation.about', href: '/about' },
-			{ labelKey: 'header.navigation.contact', href: '/contact' }
+			{ label: 'ホーム', href: '/' },
+			{ label: '製品', href: '/products/cw-air-th' },
+			{ label: '導入事例', href: '/case-studies' },
+			{ label: '会社情報', href: '/about' },
+			{ label: 'お問い合わせ', href: '/contact' }
 		]
 	},
 	{
-		headingKey: 'sitemap.sections.resources.heading',
+		heading: 'リソース & ツール',
 		links: [
-			{ labelKey: 'header.utility.system_status', href: 'https://stats.uptimerobot.com/1Z6H85HuHq' },
-			{ labelKey: 'header.utility.ui_app', href: 'https://app.cropwatch.io/' },
-			{ labelKey: 'sitemap.links.lorawan', href: '/technology/lorawan' },
-			{ labelKey: 'sitemap.links.case_study_archive', href: '/case-studies' }
+			{ label: 'システムステータス', href: 'https://stats.uptimerobot.com/1Z6H85HuHq' },
+			{ label: 'UI アプリ', href: 'https://app.cropwatch.io/' },
+			{ label: 'LoRaWAN テクノロジー概要', href: '/technology/lorawan' },
+			{ label: '導入事例アーカイブ', href: '/case-studies' }
 		]
 	},
 	{
-		headingKey: 'sitemap.sections.support.heading',
+		heading: 'サポート & ヘルプ',
 		links: [
-			{ labelKey: 'common.actions.contact', href: '/contact' },
-			{ labelKey: 'sitemap.links.pricing', href: '/#pricing' },
-			{ labelKey: 'sitemap.links.faq', href: '/faq' },
-			{ labelKey: 'sitemap.links.sitemap', href: '/sitemap' }
+			{ label: 'お問い合わせ', href: '/contact' },
+			{ label: '料金の概要', href: '/#pricing' },
+			{ label: 'よくある質問', href: '/faq' },
+			{ label: 'サイトマップ', href: '/sitemap' }
 		]
 	},
 	{
-		headingKey: 'sitemap.sections.legal.heading',
+		heading: '法務・コンプライアンス',
 		links: [
-			{ labelKey: 'sitemap.links.terms', href: '/legal/terms-of-service' },
-			{ labelKey: 'sitemap.links.privacy', href: '/legal/privacy-policy' },
-			{ labelKey: 'sitemap.links.robots', href: '/robots.txt' }
+			{ label: '利用規約', href: '/legal/terms-of-service' },
+			{ label: 'プライバシーポリシー', href: '/legal/privacy-policy' },
+			{ label: 'robots.txt', href: '/robots.txt' }
 		]
 	}
 ];

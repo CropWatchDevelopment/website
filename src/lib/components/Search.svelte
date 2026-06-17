@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
-	import { onDestroy } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { sitemapLinks } from '$lib/data/sitemap';
 
 	type Suggestion = {
-		labelKey: string;
 		href: string;
 		label: string;
 	};
@@ -28,18 +25,10 @@
 	let container: HTMLElement | null = null;
 	let hideTimer: number | undefined;
 
-	let translate = (key: string) => key;
-	const unsubscribe = _.subscribe((fn) => {
-		translate = fn;
-	});
-
-	onDestroy(unsubscribe);
-
 	const suggestionSource = $derived<Suggestion[]>(
 		sitemapLinks.map((link) => ({
-			labelKey: link.labelKey,
 			href: link.href,
-			label: translate(link.labelKey)
+			label: link.label
 		}))
 	);
 
@@ -188,7 +177,7 @@
 		role="search"
 		onsubmit={handleSubmit}
 	>
-		<label class="sr-only" for="header-search">{$_('header.search.label')}</label>
+		<label class="sr-only" for="header-search">CropWatch を検索</label>
 			<input
 				bind:this={searchInput}
 				bind:value={searchQuery}
@@ -196,7 +185,7 @@
 				class="w-full border-none bg-transparent text-white placeholder:text-white/70 focus:outline-none"
 				type="search"
 			name="q"
-			placeholder={$_('header.search.placeholder')}
+			placeholder="サイト内検索"
 			autocomplete="off"
 				role="combobox"
 				aria-autocomplete="list"
@@ -212,7 +201,7 @@
 		<button
 			type="submit"
 			class="ml-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white transition hover:bg-white/40"
-			aria-label={$_('header.search.submit_aria')}
+			aria-label="検索"
 		>
 			<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 				<path
@@ -229,9 +218,9 @@
 			class="absolute z-20 mt-2 w-full overflow-hidden rounded-2xl border border-white/20 bg-white/95 text-sm shadow-lg shadow-black/10 backdrop-blur"
 			id={LISTBOX_ID}
 			role="listbox"
-			aria-label={$_('header.search.label')}
+			aria-label="CropWatch を検索"
 		>
-			{#each suggestions as suggestion, index (suggestion.labelKey ?? `${suggestion.href}-${index}`)}
+			{#each suggestions as suggestion, index (suggestion.href)}
 				<li>
 					<button
 						type="button"

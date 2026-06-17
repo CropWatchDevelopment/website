@@ -2,14 +2,16 @@
 	import ProductOrigin from '$lib/components/product-origin.svelte';
 	import deviceSideViewImage from './images/device-side-view.webp';
 	import crossValidationDiagram from './images/crossvalidate.webp';
-	import { _, locale } from 'svelte-i18n';
 	import flyerDocument from './downloads/温度管理.pdf?url';
 	import csvDataSample from './downloads/CSV-Example.csv?url';
 </script>
 
 <svelte:head>
-	<title>{$_('products.cw_air_th.page.meta.title')}</title>
-	<meta name="description" content={$_('products.cw_air_th.page.meta.description')} />
+	<title>CropWatch CW Air TH | 産業用温湿度センサー</title>
+	<meta
+		name="description"
+		content="CW Air TH センサーを導入して、コールドストレージ、ホスピタリティ、産業環境全体で信頼性の高い温度・湿度監視を実現しましょう。"
+	/>
 	<meta property="og:image" content="https://cropwatch.io/favicon.svg" />
 	<meta property="og:site_name" content="CropWatch" />
 	<meta property="og:type" content="website.product" />
@@ -19,7 +21,7 @@
 		content="The highest quality temperature and humidity monitoring sensor on the market today."
 	/>
 	<meta property="og:url" content="https://www.cropwatch.com/products/cw-air-th" />
-	<meta property="og:locale" content={$locale} />
+	<meta property="og:locale" content="ja_JP" />
 </svelte:head>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
@@ -31,25 +33,25 @@
 		<div class="grid gap-12 md:grid-cols-[1.1fr_1fr] md:items-center">
 			<div class="space-y-6">
 				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-					{$_('products.cw_air_th.page.hero.badge')}
+					CW-Air-TH 温度湿度ー
 				</p>
 				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					{$_('products.cw_air_th.page.hero.title')}
+					信頼できるモニタリングを、もっと確実に
 				</h1>
-				<p class="text-base text-white/80">{@html $_('products.cw_air_th.page.hero.paragraphs.0')}</p>
-				<p class="text-base text-white/80">{@html $_('products.cw_air_th.page.hero.paragraphs.1')}</p>
+				<p class="text-base text-white/80">CW Air TH センサーは高精度センシング、長寿命電源、LoRaWAN 接続を組み合わせ、コールドストレージやホスピタリティ、産業拠点の状況をリアルタイムに可視化します。</p>
+				<p class="text-base text-white/80">CropWatch Command の一部として導入すれば、プロアクティブなアラート、コンプライアンス文書化、そしてすべての施設で予測可能な運用を同時に実現できます。</p>
 				<div class="flex flex-wrap gap-4">
 					<a
 						href="/contact"
 						class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 					>
-						{$_('products.cw_air_th.page.hero.primary_cta')}
+						専門家に相談する
 					</a>
 					<a
 						href="/demo"
 						class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 					>
-						{$_('products.cw_air_th.page.hero.secondary_cta')}
+						プラットフォームのデモを見る
 					</a>
 				</div>
 			</div>
@@ -57,28 +59,28 @@
 				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
 			>
 				<h2 class="text-lg font-semibold text-white">
-					{$_('products.cw_air_th.page.hero.sidebar.title')}
+					要求の厳しい現場のため設計
 				</h2>
 				<picture>
 					<source srcset={deviceSideViewImage} type="image/webp" />
 					<img
 						src={deviceSideViewImage}
-						alt={$_('products.cw_air_th.page.hero.sidebar.image_alt')}
+						alt="CW Air TH センサーの側面"
 						class="mt-4 w-full rounded-lg border border-white/10 shadow-md shadow-black/20"
 					/>
 				</picture>
 				<ul class="mt-6 space-y-4 text-sm text-white/80">
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{@html $_('products.cw_air_th.page.hero.sidebar.bullets.0')}</span>
+						<span>HACCP、FDA、ISO に準拠したプログラムで検証済み。</span>
 					</li>
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{@html $_('products.cw_air_th.page.hero.sidebar.bullets.1')}</span>
+						<span>CropWatch<sup><small>®</small></sup> ゲートウェイ向けにプリプロビジョニング済みで、手動設定を不要にします。</span>
 					</li>
 					<li class="flex items-start gap-3">
 						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{@html $_('products.cw_air_th.page.hero.sidebar.bullets.2')}</span>
+						<span>CropWatch<sup><small>®</small></sup> Command から予測分析とアラート配信にアクセス。</span>
 					</li>
 				</ul>
 			</div>
@@ -89,42 +91,42 @@
 <section class="bg-white py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-			{$_('products.cw_air_th.page.sections.capabilities.eyebrow')}
+			主な特長
 		</p>
 		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-			{$_('products.cw_air_th.page.sections.capabilities.headline')}
+			信頼できるコールドチェーンモニタリング
 		</h2>
 
 		<section class="cold-chain-hero" aria-labelledby="cold-chain-heading">
 			<p class="mt-4 text-[#0b1730]/80">
-				{@html $_('products.cw_air_th.page.sections.capabilities.paragraphs.0')}
+				当社のコールドチェーンセンサーは、実環境の中でも特に過酷な条件で行う<strong>徹底したテスト</strong>を経て他社との差別化を実現しています。センサーやデバイスの故障を防ぎ、極限環境でもデータの完全性を守るなど、あらゆる設計判断が信頼性を基準に行われています。
 			</p>
 			<p class="my-4 mt-4 text-[#0b1730]/80">
-				{@html $_('products.cw_air_th.page.sections.capabilities.paragraphs.1')}
+				一般的なデバイスとは異なり、当社のシステムには<strong>インテリジェントなクロスバリデーション機構</strong>が備わっており、センサー精度を常に検証し、問題になる前に異常を検知します。つまり、重要な問いである <em>「センサーが正しい値を報告しなくなったらどうなるのか？」</em> に確実に答えます。
 			</p>
 			<p class="mt-4 text-[#0b1730]/80">
-				{@html $_('products.cw_air_th.page.sections.capabilities.paragraphs.2')}
+				CropWatch の目的はシンプルです。<strong>業界で最も信頼性が高く正確なコールドチェーンデータを提供すること</strong>。データに裏付けられた確信を持って意思決定できるよう支援します。
 			</p>
 		</section>
 
 		<div class="mt-12 grid gap-10 text-[#1c2d52]/80 md:grid-cols-[1.05fr_1fr] md:items-center">
 			<div class="space-y-4">
 				<h3 class="text-2xl font-semibold text-[#0b1730]">
-					{$_('products.cw_air_th.page.sections.capabilities.diagram.headline')}
+					安全運用を支えるクロスバリデーション & フェイルストップ
 				</h3>
-				<p>{$_('products.cw_air_th.page.sections.capabilities.diagram.body.0')}</p>
+				<p>CW-Air-TH は交換可能なセンサー同士を常にクロスチェックし、ダッシュボードに届く前にすべての値を検証します。一次プローブがドリフトしたり許容範囲を外れたりすると、即座に異常としてフラグを立て通知します。</p>
 				<ul class="space-y-3 text-sm">
 					<li class="flex gap-3">
 						<span class="mt-1 h-2 w-2 flex-none rounded-full bg-[#f2a516]"></span>
-						<span>{$_('products.cw_air_th.page.sections.capabilities.diagram.bullets.0')}</span>
+						<span>デュアルチャネル比較でライブテレメトリを相互検証。</span>
 					</li>
 					<li class="flex gap-3">
 						<span class="mt-1 h-2 w-2 flex-none rounded-full bg-[#f2a516]"></span>
-						<span>{$_('products.cw_air_th.page.sections.capabilities.diagram.bullets.1')}</span>
+						<span>自動フェイルストップで、不正確なデータがダッシュボードに届く前に遮断。</span>
 					</li>
 					<li class="flex gap-3">
 						<span class="mt-1 h-2 w-2 flex-none rounded-full bg-[#f2a516]"></span>
-						<span>{$_('products.cw_air_th.page.sections.capabilities.diagram.bullets.2')}</span>
+						<span>例外イベントはコンプライアンスログへ即同期し、監査に必要な検証記録を提示。</span>
 					</li>
 				</ul>
 			</div>
@@ -132,7 +134,7 @@
 				<source srcset={crossValidationDiagram} type="image/webp" />
 				<img
 					src={crossValidationDiagram}
-					alt={$_('products.cw_air_th.page.sections.capabilities.diagram.image_alt')}
+					alt="交換可能なセンサーをクロスバリデーションする CW Air TH の図解"
 					class="w-full max-w-md rounded-3xl border border-[#d7e0f5] bg-white p-4 shadow-sm shadow-[#0b1730]/10"
 				/>
 			</picture>
@@ -141,27 +143,27 @@
 		<div class="mt-10 grid gap-6 text-sm text-[#1c2d52]/80 md:grid-cols-2">
 			<div class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5">
 				<p class="text-base font-semibold text-[#0b1730]">
-					{$_('products.cw_air_th.features.rugged.title')}
+					産業用堅牢エンクロージャ
 				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/80">{$_('products.cw_air_th.features.rugged.body')}</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/80">IP67 の筐体と防湿コーティング済み電子基板で、冷凍庫や荷捌き場、生産フロアでもセンサーが稼働し続けます。</p>
 			</div>
 			<div class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5">
 				<p class="text-base font-semibold text-[#0b1730]">
-					{$_('products.cw_air_th.features.precision.title')}
+					高精度モニタリング
 				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/80">{$_('products.cw_air_th.features.precision.body')}</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/80">高精度デジタルセンサーが ±0.2°C の温度、±2% RH の湿度測定を提供し、コンプライアンス対応のレポートを可能にします。</p>
 			</div>
 			<div class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5">
 				<p class="text-base font-semibold text-[#0b1730]">
-					{$_('products.cw_air_th.features.battery.title')}
+					マルチイヤーのバッテリー寿命
 				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/80">{$_('products.cw_air_th.features.battery.body')}</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/80">フィールド交換可能なリチウムバッテリーと低消費電力ファームウェアにより、10 年以上の連続テレメトリを実現します。</p>
 			</div>
 			<div class="rounded-3xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 shadow-sm shadow-[#0b1730]/5">
 				<p class="text-base font-semibold text-[#0b1730]">
-					{$_('products.cw_air_th.features.lorawan.title')}
+					LoRaWAN 接続
 				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/80">{$_('products.cw_air_th.features.lorawan.body')}</p>
+				<p class="mt-2 text-sm text-[#1c2d52]/80">堅牢な LoRaWAN 接続で、密集した設備や断熱材の厚いコールドストレージでも安定した送信を維持します。</p>
 			</div>
 		</div>
 	</div>
@@ -170,10 +172,10 @@
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-			{$_('products.cw_air_th.page.sections.specifications.eyebrow')}
+			技術仕様
 		</p>
 		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-			{$_('products.cw_air_th.page.sections.specifications.headline')}
+			信頼性を前提に設計
 		</h2>
 		<div
 			class="mt-8 overflow-hidden rounded-3xl border border-[#d7e0f5] bg-white shadow-sm shadow-[#0b1730]/5"
@@ -183,99 +185,99 @@
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.sensor.label')}</th
+								>センサー</th
 							>
-							<td class="px-6 py-4 text-sm text-[#0b1730]">{$_('products.cw_air_th.specs.sensor.value')}</td>
+							<td class="px-6 py-4 text-sm text-[#0b1730]">Sensirion x1 SHT40 & x1 SHT43、True NIST、ISO17025 認証付き</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.temperature_range.label')}</th
+								>温度範囲</th
 							>
 							<td class="px-6 py-4 text-sm text-[#0b1730]">
-								{$_('products.cw_air_th.specs.temperature_range.value')}
+								-40°C 〜 85°C (キャリブレーション済み)
 							</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.humidity_range.label')}</th
+								>湿度範囲</th
 							>
 							<td class="px-6 py-4 text-sm text-[#0b1730]">
-								{$_('products.cw_air_th.specs.humidity_range.value')}
+								0% 〜 100% RH (結露なし)
 							</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.heater.label')}</th
+								>内蔵ヒーター</th
 							>
-							<td class="px-6 py-4 text-sm text-[#0b1730]">{$_('products.cw_air_th.specs.heater.value')}</td>
+							<td class="px-6 py-4 text-sm text-[#0b1730]">低温環境での結露を防止</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.temperature_accuracy.label')}</th
+								>温度精度</th
 							>
 							<td class="px-6 py-4 text-sm text-[#0b1730]">
-								{$_('products.cw_air_th.specs.temperature_accuracy.value')}
+								-10°C〜50°C で ±0.2°C
 							</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.humidity_accuracy.label')}</th
+								>湿度精度</th
 							>
 							<td class="px-6 py-4 text-sm text-[#0b1730]">
-								{$_('products.cw_air_th.specs.humidity_accuracy.value')}
+								10%〜90% で ±2% RH
 							</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.ingress.label')}</th
+								>防水・防塵性能</th
 							>
-							<td class="px-6 py-4 text-sm text-[#0b1730]">{$_('products.cw_air_th.specs.ingress.value')}</td>
+							<td class="px-6 py-4 text-sm text-[#0b1730]">IP67 エンクロージャ</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.protocol.label')}</th
+								>無線プロトコル</th
 							>
-							<td class="px-6 py-4 text-sm text-[#0b1730]">{$_('products.cw_air_th.specs.protocol.value')}</td>
+							<td class="px-6 py-4 text-sm text-[#0b1730]">LoRaWAN 1.0.4 クラス A、各地域バンド対応</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.battery.label')}</th
+								>バッテリー</th
 							>
-							<td class="px-6 py-4 text-sm text-[#0b1730]">{$_('products.cw_air_th.specs.battery.value')}</td>
+							<td class="px-6 py-4 text-sm text-[#0b1730]">Li-SOCl2 (塩化チオニルリチウム)、現場交換可能</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.dimensions.label')}</th
+								>寸法</th
 							>
 							<td class="px-6 py-4 text-sm text-[#0b1730]">
-								{$_('products.cw_air_th.specs.dimensions.value')}
+								120 mm × 70 mm × 35 mm
 							</td>
 						</tr>
 						<tr class="border-b border-[#d7e0f5]/80">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.operating_life.label')}</th
+								>稼働寿命</th
 							>
 							<td class="px-6 py-4 text-sm text-[#0b1730]">
-								{$_('products.cw_air_th.specs.operating_life.value')}
+								10 分間隔で10 年
 							</td>
 						</tr>
 						<tr class="last:border-none">
 							<th
 								class="w-1/3 bg-[#f5f7fb] px-6 py-4 text-left text-xs font-semibold tracking-[0.18em] text-[#2f5387] uppercase"
-								>{$_('products.cw_air_th.specs.certifications.label')}</th
+								>認証</th
 							>
 							<td class="px-6 py-4 text-sm text-[#0b1730]">
-								{$_('products.cw_air_th.specs.certifications.value')}
+								FCC、CE、IC、HACCP 適合素材
 							</td>
 						</tr>
 					</tbody>
@@ -289,13 +291,13 @@
 		<div class="grid gap-10 md:grid-cols-[1.15fr_1fr] md:items-center">
 			<div class="space-y-6">
 				<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-					{$_('products.cw_air_th.page.sections.kit.eyebrow')}
+					導入キット
 				</p>
 				<h2 class="text-3xl font-semibold text-[#0b1730]">
-					{$_('products.cw_air_th.page.sections.kit.headline')}
+					数日で稼働開始できる一式を同梱
 				</h2>
 				<p class="text-base text-[#1c2d52]/80">
-					{@html $_('products.cw_air_th.page.sections.kit.body_html')}
+					すべての CW Air TH センサーは事前設定済みで CropWatch<sup><small>®</small></sup> Command に即参加でき、規制対象環境向けに調整した取り付けオプションとドキュメントを同梱しています。
 				</p>
 			</div>
 				<div
@@ -304,23 +306,23 @@
 					<ul class="space-y-4 text-sm text-[#1c2d52]/80">
 						<li class="flex items-start gap-3">
 							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-							<span>{$_('products.cw_air_th.kit.items.sensor')}</span>
+							<span>事前設定済みファームウェアを搭載した CW Air TH センサー</span>
 						</li>
 						<li class="flex items-start gap-3">
 							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-							<span>{$_('products.cw_air_th.kit.items.credentials')}</span>
+							<span>LoRaWAN アクティベーション認証情報と QR 配備タグ</span>
 						</li>
 						<li class="flex items-start gap-3">
 							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-							<span>{$_('products.cw_air_th.kit.items.mounting')}</span>
+							<span>ステンレス製マウンティングブラケット、取付け金具、粘着パッド</span>
 						</li>
 						<li class="flex items-start gap-3">
 							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-							<span>{$_('products.cw_air_th.kit.items.calibration')}</span>
+							<span>キャリブレーション証明書と検証ドキュメント</span>
 						</li>
 						<li class="flex items-start gap-3">
 							<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-							<span>{$_('products.cw_air_th.kit.items.playbook')}</span>
+							<span>設置およびコールドストレージ運用プレイブック</span>
 						</li>
 					</ul>
 				</div>
@@ -331,45 +333,45 @@
 <section class="bg-[#f5f7fb] py-20">
 	<div class="mx-auto w-full max-w-6xl px-4">
 		<p class="text-xs font-semibold tracking-[0.28em] text-[#2f5387] uppercase">
-			{$_('products.cw_air_th.page.sections.deployment.eyebrow')}
+			導入方法
 		</p>
 		<h2 class="mt-3 text-3xl font-semibold text-[#0b1730]">
-			{$_('products.cw_air_th.page.sections.deployment.headline')}
+			実績あるロールアウトワークフロー
 		</h2>
 			<p class="mt-4 max-w-3xl text-base text-[#1c2d52]/80">
-				{$_('products.cw_air_th.page.sections.deployment.body')}
+				ハイブリッドな導入モデルで工期を短縮しつつ、関係者全員に必要なトレーニング、テレメトリ、レポートを提供します。
 			</p>
 			<div class="mt-10 grid gap-8 md:grid-cols-4">
 				<div class="rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
 					<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
-						{$_('products.cw_air_th.deployment.steps.site_planning.title')}
+						サイトプランニング
 					</p>
 					<p class="mt-3 text-sm text-[#1c2d52]/80">
-						{$_('products.cw_air_th.deployment.steps.site_planning.body')}
+						CropWatch のスペシャリストが施設ゾーンをマッピングし、ゲートウェイ設置とテレメトリ間隔をコンプライアンス要件に合わせます。
 					</p>
 				</div>
 				<div class="rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
 					<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
-						{$_('products.cw_air_th.deployment.steps.install.title')}
+						迅速な設置
 					</p>
 					<p class="mt-3 text-sm text-[#1c2d52]/80">
-						{$_('products.cw_air_th.deployment.steps.install.body')}
+						技術者が磁石・粘着・ブラケットなどのハードウェアでセンサーを取り付け、生産を止めません。
 					</p>
 				</div>
 				<div class="rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
 					<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
-						{$_('products.cw_air_th.deployment.steps.validation.title')}
+						自動バリデーション
 					</p>
 					<p class="mt-3 text-sm text-[#1c2d52]/80">
-						{$_('products.cw_air_th.deployment.steps.validation.body')}
+						センサーがベースラインのキャリブレーションチェックを実施し、CropWatch Command に登録して継続監視を開始します。
 					</p>
 				</div>
 				<div class="rounded-3xl border border-[#d7e0f5] bg-white p-6 shadow-sm shadow-[#0b1730]/5">
 					<p class="text-sm font-semibold tracking-[0.18em] text-[#2f5387] uppercase">
-						{$_('products.cw_air_th.deployment.steps.insight.title')}
+						インサイト提供
 					</p>
 					<p class="mt-3 text-sm text-[#1c2d52]/80">
-						{$_('products.cw_air_th.deployment.steps.insight.body')}
+						リアルタイムダッシュボード、アラート、監査対応レポートで、異常をエスカレーション前に解決できます。
 					</p>
 				</div>
 			</div>
@@ -459,26 +461,26 @@
 	></div>
 	<div class="relative mx-auto w-full max-w-5xl px-4 text-center">
 		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-			{$_('products.cw_air_th.page.sections.closing.eyebrow')}
+			CW Air TH を体験する
 		</p>
 		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
-			{$_('products.cw_air_th.page.sections.closing.headline')}
+			ウォークスルーを予約するかパイロットを開始
 		</h2>
 		<p class="mt-4 text-base text-white/80">
-			{@html $_('products.cw_air_th.page.sections.closing.body')}
+			CropWatch<sup><small>®</small></sup> スペシャリストとともに、センサー配置、ゲートウェイ、分析設計を行い、環境のコンプライアンスと効率性を高めましょう。
 		</p>
 		<div class="mt-8 flex flex-wrap justify-center gap-4">
 			<a
 				href="/contact"
 				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 			>
-				{$_('products.cw_air_th.page.sections.closing.primary_cta')}
+				導入計画を相談
 			</a>
 			<a
 				href="/case-studies"
 				class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
 			>
-				{$_('products.cw_air_th.page.sections.closing.secondary_cta')}
+				導入事例を見る
 			</a>
 		</div>
 	</div>

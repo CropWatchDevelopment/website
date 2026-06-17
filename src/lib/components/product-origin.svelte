@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
-
 	type CountryPart = { partNumber: string; manufacturer: string };
 	type Country = { flag: string; name: string; partList: CountryPart[] };
 
@@ -80,20 +78,20 @@
 	];
 
 	const origins = [
-		{ flag: ['🇳🇴'], titleKey: 'product_origin.origins.designed' },
-		{ flag: ['🇯🇵'], titleKey: 'product_origin.origins.manufactured' },
+		{ flag: ['🇳🇴'], title: 'ノルウェーで設計' },
+		{ flag: ['🇯🇵'], title: '日本で製造・組立' },
 		{
 			country: countryList,
-			titleKey: 'product_origin.origins.parts.title',
-			subtitleKey: 'product_origin.origins.parts.subtitle'
+			title: '使用部品の供給元:',
+			subtitle: '日本、韓国、米国、台湾、アイルランド、スイス'
 		},
-		{ flag: ['🇯🇵'], titleKey: 'product_origin.origins.programmed' },
-		{ flag: ['🌍'], titleKey: 'product_origin.origins.used_by_you' }
+		{ flag: ['🇯🇵'], title: '日本でプログラム' },
+		{ flag: ['🌍'], title: '世界中のお客様にご利用いただいています' }
 	];
 
-	const footnoteKeys = [
-		'product_origin.note.line1',
-		'product_origin.note.line2'
+	const footnotes = [
+		'* 上記に記載のない国の部品は製品に使用していません。',
+		'* すべての製品は鉛フリーかつ RoHS に準拠しています。'
 	];
 
 	let onFlagHover = (event: MouseEvent, country: Country) => {
@@ -112,7 +110,7 @@
 	<div
 		class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-center gap-5 px-4 md:flex-nowrap"
 	>
-		{#each origins as origin, index (origin.titleKey)}
+		{#each origins as origin, index (origin.title)}
 			<div class="flex min-w-[100px] flex-1 flex-col items-center text-center md:flex-[0_0_240px] md:max-w-[200px]">
 				{#if origin.flag}
 					<div class="flex items-center gap-1">
@@ -128,7 +126,7 @@
 								class="flex aspect-square w-full min-w-[84px] flex-col items-center justify-center rounded-2xl bg-[#f5f7fb] text-center shadow-sm shadow-[#0b1730]/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f5387]"
 								onmousemove={(e) => onFlagHover(e, coo)}
 								onmouseleave={hideTooltip}
-								aria-label={$_('product_origin.aria.view_parts', { country: coo.name })}
+								aria-label={`${coo.name} から調達した部品を見る`}
 							>
 								<span class="text-[clamp(1.2rem,3vw,2.4rem)] leading-none">{coo.flag}</span>
 								<!-- <p class="text-[clamp(0.58rem,1.2vw,0.85rem)] font-semibold text-[#1c2d52]">
@@ -139,11 +137,11 @@
 					</div>
 				{/if}
 				<p class="mt-2 text-[clamp(0.62rem,1.4vw,0.95rem)] font-semibold text-[#1c2d52]">
-					{$_(origin.titleKey)}
+					{origin.title}
 				</p>
-				{#if origin.subtitleKey}
+				{#if origin.subtitle}
 					<small class="mt-1 text-[clamp(0.5rem,1.1vw,0.8rem)] text-[#1c2d52]/80">
-						{$_(origin.subtitleKey)}
+						{origin.subtitle}
 					</small>
 				{/if}
 			</div>
@@ -184,8 +182,8 @@
 		{/each}
 	</div>
 	<div class="mt-6 flex flex-col gap-1 px-4 text-left text-[clamp(0.55rem,1.15vw,0.85rem)] text-[#1c2d52]/70">
-		{#each footnoteKeys as footnoteKey}
-			<small>{$_(footnoteKey)}</small>
+		{#each footnotes as footnote}
+			<small>{footnote}</small>
 		{/each}
 	</div>
 </section>
@@ -196,7 +194,7 @@
 		style={`top: ${mousePosition.y + 16}px; left: ${mousePosition.x + 16}px;`}
 	>
 		<p class="text-sm font-semibold text-[#0b1730]">
-			{$_('product_origin.tooltip.heading', { country: hoveringCountry.name })}
+			{`${hoveringCountry.name} からの部品:`}
 		</p>
 		<ul class="mt-3 space-y-2 text-sm text-[#1c2d52]/80">
 			{#each hoveringCountry.partList as part (part.partNumber)}

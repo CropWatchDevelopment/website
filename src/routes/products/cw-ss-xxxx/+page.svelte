@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { locale } from 'svelte-i18n';
 
 	import fieldInstallImage from './images/field-install.webp';
 	import greenhouseBedInstallImage from './images/greenhouse-bed-install.webp';
@@ -166,7 +165,7 @@
 		content="Continuous soil moisture, soil temperature, and EC telemetry for open-field and protected agriculture."
 	/>
 	<meta property="og:url" content="https://www.cropwatch.com/products/cw-ss-xxxx" />
-	<meta property="og:locale" content={$locale} />
+	<meta property="og:locale" content="ja_JP" />
 </svelte:head>
 
 <section
