@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@babylonjs/core':
+        specifier: ^9.13.0
+        version: 9.13.0
+      '@babylonjs/loaders':
+        specifier: ^9.13.0
+        version: 9.13.0(@babylonjs/core@9.13.0)(babylonjs-gltf2interface@9.13.0)
       botid:
         specifier: ^1.5.10
         version: 1.5.10
@@ -154,6 +160,15 @@ packages:
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
+
+  '@babylonjs/core@9.13.0':
+    resolution: {integrity: sha512-QJa3Eetlj8ycIxZ8s7XcYOTOP8Y8v5K69bvcJ7psFeI9cE+p9xZBSlck4rd8/t1BImcngJ9BxhoCEnaF7R1spQ==}
+
+  '@babylonjs/loaders@9.13.0':
+    resolution: {integrity: sha512-IXoP3ULrake0MjhLvMIJybutocJN5B/b+Ld7GVsRzXzSfv6hfQ7q63jDI6U0QIEX+FhYHU7qmjdVv0uuO/vvzA==}
+    peerDependencies:
+      '@babylonjs/core': ^9.0.0
+      babylonjs-gltf2interface: ^9.0.0
 
   '@bcoe/v8-coverage@1.0.2':
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
@@ -1281,6 +1296,9 @@ packages:
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
     engines: {node: '>= 0.4'}
+
+  babylonjs-gltf2interface@9.13.0:
+    resolution: {integrity: sha512-G1476kl/+wyFjztY2Z56TXzSGAo6q1GKH7d6iqKkmZ0UsmN5xYQyDcgdnaZg8tpHn3Urp4vRE9Jl9FMsm1LYcA==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -2620,6 +2638,13 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
+  '@babylonjs/core@9.13.0': {}
+
+  '@babylonjs/loaders@9.13.0(@babylonjs/core@9.13.0)(babylonjs-gltf2interface@9.13.0)':
+    dependencies:
+      '@babylonjs/core': 9.13.0
+      babylonjs-gltf2interface: 9.13.0
+
   '@bcoe/v8-coverage@1.0.2': {}
 
   '@csstools/color-helpers@5.1.0': {}
@@ -3527,6 +3552,8 @@ snapshots:
   async-sema@3.1.1: {}
 
   axobject-query@4.1.0: {}
+
+  babylonjs-gltf2interface@9.13.0: {}
 
   balanced-match@1.0.2: {}
 

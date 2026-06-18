@@ -1,12 +1,14 @@
 /* ============================================================
-   cropwatch.io (US / Global) — global stylesheet entry point
+   cropwatch.io (US / Global) - global stylesheet entry point
    ============================================================
    Pulls in the CropWatch design system (tokens + themes) and the
    public-website layers, in the same order the design prototype
-   linked them: design-system → site base → .io extensions.
+   linked them: design-system → site base → product → .io extensions.
    Imported once from src/routes/+layout.svelte.
    ============================================================ */
 
 @import './lib/styles/design-system.css'; /* tokens, fonts, themes, base reset */
 @import './lib/styles/site.css'; /* sapphire/emerald public-site base */
+@import './lib/styles/product.css'; /* product-page layers (specs, related, 3D stage) */
 @import './lib/styles/cw.css'; /* .io page-specific extensions */
+@import './lib/styles/ag.css'; /* agriculture page (soil/air/light stack + charts) */

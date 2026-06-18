@@ -1,5 +1,5 @@
 /* ============================================================
-   CropWatch Public Website — Sapphire / Emerald Theme
+   CropWatch Public Website - Sapphire / Emerald Theme
    ============================================================
    The "forward" marketing look: lighter than the current navy
    site, built on a sapphire-blue primary paired with an emerald
@@ -45,7 +45,7 @@
 	--web-accent-soft: var(--cw-emerald-50);
 	--web-accent-contrast: #ffffff;
 
-	/* ── Gold (sparingly — highlight pips, certifications) */
+	/* ── Gold (sparingly - highlight pips, certifications) */
 	--web-gold: var(--cw-gold-500);
 
 	/* ── Effects ───────────────────────────────────────── */
