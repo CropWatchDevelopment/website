@@ -1,0 +1,139 @@
+/* ============================================================
+   CropWatch — Raw Palette Tokens
+   ============================================================
+   Ported verbatim from @cropwatchdevelopment/cwui tokens.css,
+   plus CropWatch brand-mark colors and the public-website
+   sapphire / emerald / navy families.
+   Semantic aliases live in the theme files.
+   ============================================================ */
+
+:root {
+	/* ── Neutrals (slate / navy-tinted) ───────────────── */
+	--cw-gray-50: #f8fafc;
+	--cw-gray-100: #f1f5f9;
+	--cw-gray-200: #e2e8f0;
+	--cw-gray-300: #cbd5e1;
+	--cw-gray-400: #94a3b8;
+	--cw-gray-500: #64748b;
+	--cw-gray-600: #475569;
+	--cw-gray-700: #334155;
+	--cw-gray-800: #1e293b;
+	--cw-gray-850: #172033;
+	--cw-gray-900: #0f172b;
+	--cw-gray-950: #020618;
+
+	/* ── Brand / Primary (bright teal-cyan) ───────────── */
+	--cw-primary-50: #e6fffa;
+	--cw-primary-100: #b2f5ea;
+	--cw-primary-200: #81e6d9;
+	--cw-primary-300: #4fd1c5;
+	--cw-primary-400: #38b2ac;
+	--cw-primary-500: #00d4aa;
+	--cw-primary-600: #00b894;
+	--cw-primary-700: #00997a;
+	--cw-primary-800: #007a62;
+	--cw-primary-900: #05433a;
+
+	/* ── Secondary (slate-blue) ───────────────────────── */
+	--cw-secondary-50: #f8fafc;
+	--cw-secondary-100: #f1f5f9;
+	--cw-secondary-200: #e2e8f0;
+	--cw-secondary-300: #cbd5e1;
+	--cw-secondary-400: #94a3b8;
+	--cw-secondary-500: #64748b;
+	--cw-secondary-600: #475569;
+	--cw-secondary-700: #334155;
+	--cw-secondary-800: #1e293b;
+	--cw-secondary-900: #0f172a;
+
+	/* ── Info (sky) ───────────────────────────────────── */
+	--cw-info-50: #f0f9ff;
+	--cw-info-100: #e0f2fe;
+	--cw-info-200: #bae6fd;
+	--cw-info-300: #7dd3fc;
+	--cw-info-400: #38bdf8;
+	--cw-info-500: #0ea5e9;
+	--cw-info-600: #0284c7;
+	--cw-info-700: #0369a1;
+	--cw-info-800: #075985;
+	--cw-info-900: #0c4a6e;
+
+	/* ── Warning (amber) ──────────────────────────────── */
+	--cw-warning-50: #fffbeb;
+	--cw-warning-100: #fef3c7;
+	--cw-warning-200: #f0e4b3;
+	--cw-warning-300: #f3d983;
+	--cw-warning-400: #fbbf24;
+	--cw-warning-500: #ecba63;
+	--cw-warning-600: #ecdc49;
+	--cw-warning-700: #f3cc1c;
+	--cw-warning-800: #fddc1e;
+	--cw-warning-900: #eed600;
+
+	/* ── Danger (red) ─────────────────────────────────── */
+	--cw-danger-50: #f76767;
+	--cw-danger-100: #f84c4c;
+	--cw-danger-200: #f73b3b;
+	--cw-danger-300: #f51d1d;
+	--cw-danger-400: #f51f1f;
+	--cw-danger-500: #eb2f2f;
+	--cw-danger-600: #dd0f0f;
+	--cw-danger-700: #b91c1c;
+	--cw-danger-800: #991b1b;
+	--cw-danger-900: #7f1d1d;
+
+	/* ── Success (emerald) ────────────────────────────── */
+	--cw-success-50: #ecfdf5;
+	--cw-success-100: #d1fae5;
+	--cw-success-200: #a7f3d0;
+	--cw-success-300: #6ee7b7;
+	--cw-success-400: #34d399;
+	--cw-success-500: #10b981;
+	--cw-success-600: #059669;
+	--cw-success-700: #047857;
+	--cw-success-800: #065f46;
+	--cw-success-900: #064e3b;
+
+	/* ── Brand mark colors (the tree logo) ────────────── */
+	--cw-bark: #b86b40;       /* trunk + branches */
+	--cw-leaf: #4eba3d;       /* leaf circles */
+	--cw-green-standard: #006045; /* deep CropWatch green, light-theme header */
+
+	/* ── Public website: Navy / Ice / Gold (current site) */
+	--cw-navy-950: #040814;
+	--cw-navy-900: #0a1a34;
+	--cw-navy-850: #0f1f3d;
+	--cw-navy-800: #11213c;
+	--cw-navy-700: #1f3b64;
+	--cw-navy-600: #2f5387;
+	--cw-ink: #0b1730;        /* primary headline ink on light */
+	--cw-ice-100: #e7ecff;
+	--cw-ice-200: #cfd8ff;
+	--cw-ice-400: #9ab0d6;
+	--cw-gold-500: #f2a516;
+	--cw-gold-400: #ffbb34;
+
+	/* ── Public website: Sapphire (lighter, forward look) */
+	--cw-sapphire-50: #eef4fc;
+	--cw-sapphire-100: #d8e6f8;
+	--cw-sapphire-200: #b4ccf0;
+	--cw-sapphire-300: #7da9e0;
+	--cw-sapphire-400: #4d82cb;
+	--cw-sapphire-500: #2c6cb7;
+	--cw-sapphire-600: #245a9c;
+	--cw-sapphire-700: #1d4f8e;
+	--cw-sapphire-800: #173d6e;
+	--cw-sapphire-900: #11213c;
+
+	/* ── Public website: Emerald (paired accent) ──────── */
+	--cw-emerald-50: #e9f9f1;
+	--cw-emerald-100: #c8efdc;
+	--cw-emerald-200: #93e0bd;
+	--cw-emerald-300: #57cd99;
+	--cw-emerald-400: #20b377;
+	--cw-emerald-500: #0e9960;
+	--cw-emerald-600: #0a7d4f;
+	--cw-emerald-700: #086241;
+	--cw-emerald-800: #064e35;
+	--cw-emerald-900: #04392a;
+}

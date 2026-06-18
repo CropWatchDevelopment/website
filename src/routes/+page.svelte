@@ -1,373 +1,467 @@
-<script lang="ts">
-	import PricingEn from '$lib/components/pricing/PricingEn.svelte';
-	import PricingJa from '$lib/components/pricing/PricingJa.svelte';
-	import Slider from '$lib/components/Slider.svelte';
-	import StandardsBanner from '$lib/components/StandardsBanner.svelte';
-	import { _, locale } from 'svelte-i18n';
-</script>
-
+<!--
+	Sectors splitter — the site's first landing page.
+	A full-viewport "choose your industry" funnel that routes visitors into the
+	three product worlds. The shared header renders in its slim, logo-only
+	"splash" variant and the footer is suppressed (handled in +layout.svelte) so
+	nothing competes with the choice. Ported from the design's sectors.html.
+-->
 <svelte:head>
-	<title>{$_('home.meta.title')}</title>
-	<meta name="description" content={$_('home.meta.description')} />
-	<meta property="og:image" content="https://cropwatch.io/favicon.svg" />
-	<meta property="og:site_name" content="CropWatch" />
-	<meta property="og:type" content="website.home" />
-	<meta property="og:title" content="CropWatch" />
-	<meta property="og:description" content="Quality Temperature Monitoring Devices" />
-	<meta property="og:url" content="https://www.cropwatch.com/" />
+	<title>Choose Your Industry — Cold-Chain, Agriculture &amp; Livestock Monitoring | CropWatch</title>
+	<meta
+		name="description"
+		content="Find the right CropWatch monitoring solution for your business. Cold-chain & refrigeration for restaurants, hotels, schools and hospitals; agriculture & greenhouse for farms; and climate monitoring for poultry & livestock."
+	/>
+	<meta
+		name="keywords"
+		content="cold chain monitoring, refrigeration monitoring, agriculture monitoring, greenhouse monitoring, poultry monitoring, livestock monitoring, choose industry, temperature monitoring solutions"
+	/>
+	<meta property="og:title" content="Choose your industry — CropWatch environmental monitoring" />
+	<meta
+		property="og:description"
+		content="Cold-chain, agriculture and livestock monitoring you can defend in any audit. Pick your industry to see how CropWatch fits."
+	/>
+	<meta property="og:type" content="website" />
+	<link rel="canonical" href="https://cropwatch.io/" />
+	<link rel="preload" as="image" href="/assets/photos/sector-coldchain.webp" />
+	<link rel="preload" as="image" href="/assets/photos/sector-agriculture.webp" />
+	<link rel="preload" as="image" href="/assets/photos/sector-livestock.webp" />
 </svelte:head>
 
-<section id="slider" class="bg-[#11213c]">
-	<Slider />
-	<StandardsBanner />
-</section>
+<div class="split-hero">
+	<div class="panels">
+		<span class="sh-prompt">Choose your industry</span>
 
-<section class="relative overflow-hidden bg-white py-10">
-	<div
-		class="absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-[#11213c]/10 to-transparent"
-		aria-hidden="true"
-	></div>
-	<div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-4">
-		<div class="grid gap-12 md:grid-cols-[1.35fr_1fr] md:items-start">
-			<div class="flex h-full flex-col gap-6">
-				<p class="text-sm font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-					{$_('home.hero.eyebrow')}
-				</p>
-				<h1 class="text-4xl font-semibold tracking-tight text-[#0b1730] md:text-5xl">
-					{@html $_('home.hero.headline_html')}
-				</h1>
-				<p class="text-lg leading-relaxed md:text-xl text-[#15284a]/80">
-					{@html $_('home.hero.body_html')}
-				</p>
-				<div
-					class="grid gap-3 rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-6 text-md text-[#1c2d52] md:grid-cols-2"
+		<!-- COLD CHAIN — full-height left -->
+		<a class="panel panel--cold" href="/cold-chain">
+			<img
+				class="panel__img"
+				src="/assets/photos/sector-coldchain.webp"
+				alt="CropWatch sensor mounted above a commercial cold room door"
+				width="870"
+				height="1930"
+				fetchpriority="high"
+			/>
+			<div class="panel__scrim"></div>
+			<div class="panel__in">
+				<span class="panel__eyebrow"
+					><span class="material-symbols-rounded">ac_unit</span> Cold-chain &amp; refrigeration</span
 				>
-					<div class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<p>{$_('home.hero.questions.0')}</p>
-					</div>
-					<div class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<p>{$_('home.hero.questions.1')}</p>
-					</div>
-					<div class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<p>{$_('home.hero.questions.2')}</p>
-					</div>
-					<div class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<p>{$_('home.hero.questions.3')}</p>
-					</div>
-					<div class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<p>{$_('home.hero.questions.4')}</p>
-					</div>
-					<div class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<p>{$_('home.hero.questions.5')}</p>
-					</div>
-				</div>
-
-				<!--VIDEO EXAMPLES SECTION-->
-				<div>
-					{#if $locale === 'ja'}
-					aaa
-					{:else}
-					<iframe
-						class="w-full rounded-2xl border border-[#d7e0f5] shadow-lg shadow-[#0b1730]/5"
-						height="400"
-						src="https://www.youtube.com/embed/iiGCBuoFF20?si=ZgLpXY30PN0RTVqn"
-						title="YouTube video player"
-						frameborder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-						referrerpolicy="strict-origin-when-cross-origin"
-						allowfullscreen
-					></iframe>
-					{/if}
-				</div>
-
-				<div class="mt-auto flex flex-wrap gap-3">
-					<a
-						href="/contact"
-						class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
+				<h2 class="panel__h">
+					<span class="panel__hic material-symbols-rounded">ac_unit</span>Cold-Chain Insights
+				</h2>
+				<p class="panel__sub">
+					Walk-ins, freezers and display cases for restaurants, hotels, schools, hospitals and cold
+					storage — with HACCP-ready records an inspector can trust.
+				</p>
+				<div class="panel__tags">
+					<span>Restaurants</span><span>Hospitality</span><span>Hospitals</span><span
+						>Cold storage</span
 					>
-						{$_('home.hero.primary_cta')}
-					</a>
-					<a
-						href="/case-studies"
-						class="inline-flex items-center gap-2 rounded-full border border-[#d7e0f5] px-6 py-3 text-sm font-semibold text-[#2f5387] transition hover:border-[#2f5387] hover:text-[#2f5387] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f5387]"
-					>
-						{$_('home.hero.secondary_cta')}
-					</a>
 				</div>
+				<span class="panel__cta"
+					>Explore cold-chain <span class="material-symbols-rounded">arrow_forward</span></span
+				>
 			</div>
-			<div
-				class="h-full rounded-3xl border border-[#d7e0f5] bg-white p-8 shadow-lg shadow-[#0b1730]/5"
-			>
-				<h2 class="text-2xl text-center font-semibold text-[#0b1730]">{$_('home.hero.sidebar.title')}</h2>
-				<hr class="my-4 border-[#d7e0f5]" />
-				<div class="space-y-6 text-sm text-[#1c2d52]">
-					<div class="grid gap-4 sm:grid-cols-2">
-						<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
-							<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-								{$_('home.hero.sidebar.comparison.manual.title')}
-							</p>
-							<ul class="mt-4 text-md space-y-3 text-[#1c2d52]/80">
-								<li>{$_('home.hero.sidebar.comparison.manual.bullets.0')}</li>
-								<li>{$_('home.hero.sidebar.comparison.manual.bullets.1')}</li>
-								<li>{$_('home.hero.sidebar.comparison.manual.bullets.2')}</li>
-							</ul>
-						</div>
-						<div class="rounded-2xl border border-transparent bg-[#0b1730] p-5 text-white">
-							<p class="text-lg font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-								{$_('home.hero.sidebar.comparison.automated.title')}
-							</p>
-							<ul class="mt-4 space-y-3 text-white/80">
-								<li>{$_('home.hero.sidebar.comparison.automated.bullets.0')}</li>
-								<li>{$_('home.hero.sidebar.comparison.automated.bullets.1')}</li>
-								<li>{$_('home.hero.sidebar.comparison.automated.bullets.2')}</li>
-							</ul>
-						</div>
-					</div>
-					<div class="grid gap-4 sm:grid-cols-2">
-						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
-							<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-								{$_('home.hero.sidebar.stats.time_saved.title')}
-							</p>
-							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">
-								{$_('home.hero.sidebar.stats.time_saved.value')}
-							</p>
-							<p class="mt-2 text-[#1c2d52]/70">
-								{$_('home.hero.sidebar.stats.time_saved.body')}
-							</p>
-						</div>
-						<div class="rounded-2xl border border-[#d7e0f5] bg-white p-5">
-							<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-								{$_('home.hero.sidebar.stats.labor_savings.title')}
-							</p>
-							<p class="mt-2 text-2xl font-semibold text-[#0b1730]">
-								{$_('home.hero.sidebar.stats.labor_savings.value')}
-							</p>
-							<p class="mt-2 text-[#1c2d52]/70">
-								{$_('home.hero.sidebar.stats.labor_savings.body')}
-							</p>
-						</div>
-					</div>
-					<div class="rounded-2xl border border-[#d7e0f5] bg-[#f5f7fb] p-5">
-						<p class="text-lg font-semibold tracking-[0.22em] text-[#2f5387] uppercase">
-							{$_('home.hero.sidebar.productivity.title')}
-						</p>
-						<ul class="mt-3 space-y-3 text-[#1c2d52]/80">
-							<li>{$_('home.hero.sidebar.productivity.bullets.0')}</li>
-							<li>{$_('home.hero.sidebar.productivity.bullets.1')}</li>
-							<li>{$_('home.hero.sidebar.productivity.bullets.2')}</li>
-						</ul>
-					</div>
+		</a>
+
+		<!-- AGRICULTURE — top right -->
+		<a class="panel panel--agri" href="/agriculture">
+			<img
+				class="panel__img"
+				src="/assets/photos/sector-agriculture.webp"
+				alt="CropWatch sensor monitoring a commercial pepper greenhouse"
+				width="1560"
+				height="703"
+			/>
+			<div class="panel__scrim"></div>
+			<div class="panel__in">
+				<span class="panel__eyebrow"
+					><span class="material-symbols-rounded">eco</span> Agriculture &amp; greenhouse</span
+				>
+				<h2 class="panel__h">
+					<span class="panel__hic material-symbols-rounded">potted_plant</span>Agricultural Monitoring
+				</h2>
+				<p class="panel__sub">
+					Soil, air and canopy climate across greenhouses, fields, orchards and vineyards — spot
+					frost, heat and humidity risk early.
+				</p>
+				<div class="panel__tags">
+					<span>Greenhouse</span><span>Open field</span><span>Soil &amp; canopy</span>
 				</div>
+				<span class="panel__cta"
+					>Explore agriculture <span class="material-symbols-rounded">arrow_forward</span></span
+				>
 			</div>
-		</div>
+		</a>
 
-		<div>
-			<h2 class="py-4 text-center text-3xl font-semibold text-[#0b1730]">
-				{$_('home.proof_points.sensorFeatures')}
-			</h2>
-			<section
-				class="grid gap-8 rounded-3xl border border-[#d7e0f5] bg-[#0b1730] px-6 py-10 md:grid-cols-3 md:px-10"
-			>
-				<article class="flex flex-col space-y-4 text-white/90">
-					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-						{$_('home.proof_points.battery_life.eyebrow')}
-					</p>
-					<h3 class="text-xl font-semibold text-white">
-						{$_('home.proof_points.battery_life.headline')}
-					</h3>
-					<ul class="space-y-3 text-sm leading-relaxed">
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.battery_life.bullets.0')}</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.battery_life.bullets.1')}</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.battery_life.bullets.2')}</span>
-						</li>
-					</ul>
-					<span class="flex-grow"></span>
-				</article>
-				<article class="flex flex-col space-y-4 text-white/90">
-					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-						{$_('home.proof_points.measurement_confidence.eyebrow')}
-					</p>
-					<h3 class="text-xl font-semibold text-white">
-						{$_('home.proof_points.measurement_confidence.headline')}
-					</h3>
-					<ul class="space-y-3 text-sm leading-relaxed">
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.measurement_confidence.bullets.0')}</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.measurement_confidence.bullets.1')}</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.measurement_confidence.bullets.2')}</span>
-						</li>
-					</ul>
-					<span class="flex-grow"></span>
-				</article>
-				<article class="flex flex-col space-y-4 text-white/90">
-					<p class="text-xs font-semibold tracking-[0.22em] text-[#f2a516] uppercase">
-						{$_('home.proof_points.connectivity.eyebrow')}
-					</p>
-					<h3 class="text-xl font-semibold text-white">
-						{$_('home.proof_points.connectivity.headline')}
-					</h3>
-					<ul class="space-y-3 text-sm leading-relaxed">
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.connectivity.bullets.0')}</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.connectivity.bullets.1')}</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<span class="mt-1 h-2 w-2 rounded-full bg-white/60"></span>
-							<span>{$_('home.proof_points.connectivity.bullets.2')}</span>
-						</li>
-					</ul>
-					<span class="flex-grow"></span>
-				</article>
-			</section>
-		</div>
+		<!-- LIVESTOCK — bottom right -->
+		<a class="panel panel--live" href="/livestock">
+			<img
+				class="panel__img"
+				src="/assets/photos/sector-livestock.webp"
+				alt="Interior of a commercial poultry house monitored by CropWatch"
+				width="1376"
+				height="620"
+			/>
+			<div class="panel__scrim"></div>
+			<div class="panel__in">
+				<span class="panel__eyebrow"
+					><span class="material-symbols-rounded">pets</span> Poultry &amp; livestock</span
+				>
+				<h2 class="panel__h">
+					<span class="panel__hic material-symbols-rounded">pets</span>Livestock Monitoring
+				</h2>
+				<p class="panel__sub">
+					Per-zone climate for poultry houses, barns and dairy — catch heat stress and ventilation
+					faults before they cost you animals.
+				</p>
+				<div class="panel__tags">
+					<span>Poultry</span><span>Barns</span><span>Dairy</span>
+				</div>
+				<span class="panel__cta"
+					>Explore livestock <span class="material-symbols-rounded">arrow_forward</span></span
+				>
+			</div>
+		</a>
 	</div>
-</section>
+</div>
 
-<section class="bg-[#f5f7fb] py-20">
-	<div class="mx-auto w-full max-w-6xl px-4">
-		<div class="mb-12 text-center">
-			<p class="text-xs font-semibold tracking-[0.32em] text-[#2f5387] uppercase">
-				{$_('home.industries.eyebrow')}
-			</p>
-			<h2 class="mt-4 text-3xl font-semibold text-[#0b1730]">
-				{$_('home.industries.headline')}
-			</h2>
-			<p class="mt-3 text-base text-[#1c2d52]/80">
-				{$_('home.industries.intro')}
-			</p>
-		</div>
-		<div class="grid gap-6 md:grid-cols-3">
-			<div
-				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
-			>
-				<div class="text-3xl">🧊</div>
-				<p class="mt-4 text-base font-semibold text-[#0b1730]">
-					{$_('home.industries.cards.cold_chain.label')}
-				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/70">
-					{$_('home.industries.cards.cold_chain.description')}
-				</p>
-			</div>
-			<div
-				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
-			>
-				<div class="text-3xl">🖼️</div>
-				<p class="mt-4 text-base font-semibold text-[#0b1730]">
-					{$_('home.industries.cards.protein.label')}
-				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/70">
-					{$_('home.industries.cards.protein.description')}
-				</p>
-			</div>
-			<div
-				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
-			>
-				<div class="text-3xl">🐔</div>
-				<p class="mt-4 text-base font-semibold text-[#0b1730]">
-					{$_('home.industries.cards.hospitality.label')}
-				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/70">
-					{$_('home.industries.cards.hospitality.description')}
-				</p>
-			</div>
-			<div
-				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
-			>
-				<div class="text-3xl">🏭</div>
-				<p class="mt-4 text-base font-semibold text-[#0b1730]">
-					{$_('home.industries.cards.manufacturing.label')}
-				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/70">
-					{$_('home.industries.cards.manufacturing.description')}
-				</p>
-			</div>
-			<div
-				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
-			>
-				<div class="text-3xl">📦</div>
-				<p class="mt-4 text-base font-semibold text-[#0b1730]">
-					{$_('home.industries.cards.storage.label')}
-				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/70">
-					{$_('home.industries.cards.storage.description')}
-				</p>
-			</div>
-			<div
-				class="rounded-3xl border border-[#d7e0f5] bg-white p-6 text-center shadow-sm shadow-[#0b1730]/5 transition hover:-translate-y-1 hover:shadow-md"
-			>
-				<div class="text-3xl">🧓</div>
-				<p class="mt-4 text-base font-semibold text-[#0b1730]">
-					{$_('home.industries.cards.agriculture.label')}
-				</p>
-				<p class="mt-2 text-sm text-[#1c2d52]/70">
-					{$_('home.industries.cards.agriculture.description')}
-				</p>
-			</div>
-		</div>
-	</div>
-</section>
+<style>
+	/* ── Sector splitter — full viewport, no page scroll ──────────────────────
+	   .split-hero is a <div> here (not <main>) because the shared layout already
+	   provides the <main> landmark. position:fixed makes it cover the viewport;
+	   the sticky header (z-index:40) still paints over its top edge. */
+	.split-hero {
+		position: fixed;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+	}
 
-<section class="bg-white py-20">
-	{#if ($locale ?? 'en') === 'ja'}
-		<PricingJa />
-	{:else}
-		<PricingEn />
-	{/if}
-</section>
+	/* the three-panel grid: cold-chain spans the full-height left column */
+	.panels {
+		flex: 1;
+		min-height: 0;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas:
+			'cold agri'
+			'cold live';
+		gap: 0;
+	}
+	.panel {
+		position: relative;
+		overflow: hidden;
+		display: block;
+		isolation: isolate;
+	}
+	.panel--cold {
+		grid-area: cold;
+	}
+	.panel--agri {
+		grid-area: agri;
+	}
+	.panel--live {
+		grid-area: live;
+	}
 
-<section class="relative overflow-hidden bg-[#0b1730] py-20">
-	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
-		aria-hidden="true"
-	></div>
-	<div class="relative mx-auto w-full max-w-5xl px-4 text-center text-white">
-		<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-			{$_('home.closing.eyebrow')}
-		</p>
-		<h2 class="mt-5 text-3xl font-semibold md:text-4xl">
-			{@html $_('home.closing.headline')}
-		</h2>
-		<p class="mt-4 text-base text-white/80">
-			{$_('home.closing.body')}
-		</p>
-		<div class="mt-8 flex flex-wrap justify-center gap-4">
-			<a
-				href="/contact"
-				class="inline-flex items-center gap-2 rounded-full bg-[#f2a516] px-6 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-			>
-				{$_('home.closing.primary_cta')}
-			</a>
-			<a
-				href="/case-studies"
-				class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
-			>
-				{$_('home.closing.secondary_cta')}
-			</a>
-		</div>
-	</div>
-</section>
+	.panel__img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: -2;
+		transform: scale(1.04);
+		transition:
+			transform 5s var(--cw-ease-default),
+			filter var(--cw-duration-slow);
+	}
+	.panel--cold .panel__img {
+		object-position: center 30%;
+	}
+	/* Direction-aware scrims: dark exactly where the text sits, so white copy
+	   stays legible no matter how light or busy the photo behind it is. */
+	.panel__scrim {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		transition: background var(--cw-duration-slow);
+		background: linear-gradient(
+			180deg,
+			rgba(8, 16, 34, 0.14) 0%,
+			rgba(8, 16, 34, 0.34) 38%,
+			rgba(8, 16, 34, 0.8) 72%,
+			rgba(8, 16, 34, 0.93) 100%
+		);
+	}
+	.panel--cold .panel__scrim {
+		background: linear-gradient(
+			102deg,
+			rgba(8, 16, 34, 0.9) 0%,
+			rgba(8, 16, 34, 0.74) 26%,
+			rgba(8, 16, 34, 0.42) 52%,
+			rgba(8, 16, 34, 0.34) 100%
+		);
+	}
+
+	.panel:hover .panel__img {
+		transform: scale(1.1);
+	}
+	.panel:hover .panel__scrim {
+		background: linear-gradient(
+			180deg,
+			rgba(11, 40, 86, 0.22) 0%,
+			rgba(14, 153, 96, 0.16) 34%,
+			rgba(8, 16, 34, 0.82) 72%,
+			rgba(8, 16, 34, 0.95) 100%
+		);
+	}
+	.panel--cold:hover .panel__scrim {
+		background: linear-gradient(
+			102deg,
+			rgba(8, 16, 34, 0.9) 0%,
+			rgba(8, 16, 34, 0.74) 26%,
+			rgba(8, 16, 34, 0.42) 52%,
+			rgba(8, 16, 34, 0.34) 100%
+		);
+	}
+
+	/* dividing lines */
+	.panels::before,
+	.panels::after {
+		content: '';
+		position: absolute;
+		z-index: 10;
+		pointer-events: none;
+		background: linear-gradient(
+			var(--_g, 180deg),
+			rgba(255, 255, 255, 0),
+			rgba(255, 255, 255, 0.55),
+			rgba(255, 255, 255, 0)
+		);
+	}
+	/* vertical line at 50% */
+	.panels::before {
+		top: 6%;
+		bottom: 6%;
+		left: 50%;
+		width: 2px;
+		transform: translateX(-1px);
+		--_g: 180deg;
+	}
+	/* horizontal line across the right half */
+	.panels::after {
+		left: 50%;
+		right: 6%;
+		top: 50%;
+		height: 2px;
+		transform: translateY(-1px);
+		background: linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 0),
+			rgba(255, 255, 255, 0.55),
+			rgba(255, 255, 255, 0)
+		);
+	}
+
+	/* panel content */
+	.panel__in {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding: clamp(22px, 3.4vw, 56px);
+		color: #fff;
+		gap: 6px;
+	}
+	.panel--cold .panel__in {
+		justify-content: center;
+	}
+	.panel__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: #fff;
+		text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	}
+	.panel__eyebrow .material-symbols-rounded {
+		font-size: 18px;
+		color: var(--cw-emerald-300, #6ee7b7);
+	}
+	.panel__hic {
+		font-size: 0.82em;
+		line-height: 1;
+		vertical-align: -0.12em;
+		margin-right: 0.26em;
+		color: #fff;
+		text-shadow:
+			0 2px 4px rgba(0, 0, 0, 0.55),
+			0 6px 28px rgba(0, 0, 0, 0.5);
+	}
+	.panel__h {
+		color: #fff;
+		font-size: clamp(28px, 3.2vw, 52px);
+		line-height: 1.02;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		margin: 0;
+		text-shadow:
+			0 2px 4px rgba(0, 0, 0, 0.55),
+			0 6px 28px rgba(0, 0, 0, 0.5);
+	}
+	.panel--cold .panel__h {
+		font-size: clamp(34px, 4vw, 62px);
+	}
+	.panel__sub {
+		font-size: clamp(14px, 1.15vw, 18px);
+		color: rgba(255, 255, 255, 0.94);
+		max-width: 46ch;
+		line-height: 1.5;
+		margin: 4px 0 0;
+		text-shadow:
+			0 1px 3px rgba(0, 0, 0, 0.6),
+			0 2px 14px rgba(0, 0, 0, 0.55);
+	}
+	.panel__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 7px;
+		margin-top: 4px;
+	}
+	.panel__tags span {
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.92);
+		background: rgba(255, 255, 255, 0.12);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		padding: 4px 11px;
+		border-radius: 9999px;
+		backdrop-filter: blur(4px);
+	}
+	.panel__cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 9px;
+		margin-top: 16px;
+		align-self: flex-start;
+		font-size: 15px;
+		font-weight: 700;
+		color: var(--cw-ink);
+		background: #fff;
+		padding: 12px 22px;
+		border-radius: 9999px;
+		box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+		transition:
+			transform var(--cw-duration-normal),
+			box-shadow var(--cw-duration-normal),
+			background var(--cw-duration-normal);
+	}
+	.panel__cta .material-symbols-rounded {
+		font-size: 19px;
+		transition: transform var(--cw-duration-normal);
+	}
+	.panel:hover .panel__cta {
+		background: var(--web-accent);
+		color: #fff;
+		transform: translateY(-2px);
+		box-shadow: 0 16px 40px -12px rgba(14, 153, 96, 0.7);
+	}
+	.panel:hover .panel__cta .material-symbols-rounded {
+		transform: translateX(4px);
+	}
+
+	/* center prompt chip (hidden by default, kept for parity with the design) */
+	.sh-prompt {
+		position: absolute;
+		z-index: 20;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: rgba(8, 16, 34, 0.74);
+		border: 1px solid rgba(255, 255, 255, 0.22);
+		backdrop-filter: blur(10px);
+		color: #fff;
+		font-size: 12.5px;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		padding: 9px 18px;
+		border-radius: 9999px;
+		white-space: nowrap;
+		box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.7);
+		display: none;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.panel__in > * {
+			opacity: 0;
+			transform: translateY(16px);
+			animation: shIn 0.7s var(--cw-ease-default) forwards;
+		}
+		.panel--cold .panel__in > * {
+			animation-delay: 0.1s;
+		}
+		.panel--agri .panel__in > * {
+			animation-delay: 0.2s;
+		}
+		.panel--live .panel__in > * {
+			animation-delay: 0.3s;
+		}
+		.panel__in > *:nth-child(2) {
+			animation-delay: 0.06s;
+		}
+		@keyframes shIn {
+			to {
+				opacity: 1;
+				transform: none;
+			}
+		}
+	}
+
+	/* ── Responsive: stack vertically on mobile ──────────────────────────────
+	   The fixed full-viewport layout only makes sense on wide screens; below
+	   860px the panels stack and the page scrolls normally. */
+	@media (max-width: 860px) {
+		.split-hero {
+			position: relative;
+			inset: auto;
+			min-height: 100svh;
+		}
+		.panels {
+			grid-template-columns: 1fr;
+			grid-template-rows: none;
+			grid-template-areas:
+				'cold'
+				'agri'
+				'live';
+		}
+		.panels::before,
+		.panels::after {
+			display: none;
+		}
+		.panel {
+			min-height: 64svh;
+		}
+		.panel--cold .panel__in {
+			justify-content: flex-end;
+		}
+		.panel + .panel {
+			border-top: 2px solid rgba(255, 255, 255, 0.5);
+		}
+		.panel__sub {
+			max-width: none;
+		}
+	}
+	@media (max-width: 480px) {
+		.panel {
+			min-height: 58svh;
+		}
+	}
+</style>
