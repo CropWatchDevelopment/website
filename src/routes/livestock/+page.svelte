@@ -21,7 +21,7 @@
 		'Broiler and layer house temperature and humidity mapping',
 		'Barn and dairy shed climate, zone by zone',
 		'Instant alerts on ventilation or heating failures',
-		'10-year battery, no wiring, LoRaWAN range up to 15 km',
+		'10-year battery, no wiring, LoRaWAN range up to 5 miles',
 		'Self-auditing hardware that flags faults instead of hiding them'
 	]}
 />

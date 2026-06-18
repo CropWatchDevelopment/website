@@ -54,6 +54,17 @@ body { margin: 0; -webkit-font-smoothing: antialiased; }
 .m-util a { display: flex; align-items: center; gap: 9px; padding: 11px 6px; font-size: 14px; font-weight: 600; color: var(--web-primary); }
 .m-util .material-symbols-rounded { font-size: 20px; }
 
+/* ── Sectors splash (root landing) ───────────────────────────
+   On the full-viewport "choose your industry" page the shared header renders
+   in a slim, logo-only variant: no top strip, primary nav, right-side actions
+   or burger. Higher specificity than the responsive rules below, so the burger
+   stays hidden at every width. */
+.hdr--splash .hdr__top,
+.hdr--splash .hdr__actions,
+.hdr--splash .nav,
+.hdr--splash .burger { display: none; }
+.hdr--splash .hdr__main { max-width: none; padding-left: 24px; }
+
 @media (max-width: 980px) {
   .burger { display: inline-flex; }
   .hdr__actions { display: none; }

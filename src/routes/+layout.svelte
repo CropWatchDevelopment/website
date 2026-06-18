@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/state';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '../app.css';
 
 	let { children } = $props();
+
+	// The root sectors splitter is a self-contained full-viewport funnel: the
+	// header collapses to a logo-only bar and the footer is dropped entirely.
+	const splash = $derived(page.url.pathname === '/');
 
 	let observer: IntersectionObserver | null = null;
 
@@ -47,10 +52,12 @@
 	});
 </script>
 
-<Header />
+<Header {splash} />
 
 <main>
 	{@render children()}
 </main>
 
-<Footer />
+{#if !splash}
+	<Footer />
+{/if}

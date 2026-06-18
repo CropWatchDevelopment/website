@@ -42,7 +42,7 @@
 				{/if}
 				<div class="hero__ctas" style="margin-top:26px">
 					<a href="/contact" class="cta-pill cta-pill--lg"><span>Book a demo</span> <span class="material-symbols-rounded">arrow_forward</span></a>
-					<a href="/" class="cta-ghost cta-pill--lg"><span class="material-symbols-rounded">arrow_back</span> <span>Back to home</span></a>
+					<a href="/home" class="cta-ghost cta-pill--lg"><span class="material-symbols-rounded">arrow_back</span> <span>Back to home</span></a>
 				</div>
 			</div>
 			<div class="split__media split__media--tall">

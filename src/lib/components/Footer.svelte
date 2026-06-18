@@ -6,7 +6,7 @@
 <footer class="ftr">
 	<div class="wrap ftr__grid">
 		<div class="ftr__about">
-			<a class="brand brand--ftr" href="/">
+			<a class="brand brand--ftr" href="/home">
 				<img src={LOGO} alt="" class="brand__mark" width="36" height="36" />
 				<span class="brand__name">CropWatch</span>
 			</a>

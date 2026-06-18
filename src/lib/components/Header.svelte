@@ -16,10 +16,13 @@
 
 	const productPaths = products.map((p) => p.href);
 
+	// On the root sectors splash the header collapses to a slim, logo-only bar.
+	let { splash = false } = $props();
+
 	let menuOpen = $state(false);
 
 	const path = $derived(page.url.pathname);
-	const isHome = $derived(path === '/');
+	const isHome = $derived(path === '/home');
 	const isProducts = $derived(productPaths.includes(path));
 	const isNews = $derived(path === '/news');
 	const isContact = $derived(path === '/contact');
@@ -36,7 +39,7 @@
 	}
 </script>
 
-<header class="hdr">
+<header class="hdr" class:hdr--splash={splash}>
 	<div class="hdr__top">
 		<div class="wrap hdr__top-in">
 			<div class="hdr__welcome">
@@ -52,7 +55,7 @@
 
 	<div class="hdr__bar">
 		<div class="wrap hdr__main">
-			<a class="brand" href="/" aria-label="CropWatch home">
+			<a class="brand" href="/home" aria-label="CropWatch home">
 				<img src={LOGO} alt="CropWatch" class="brand__mark" width="46" height="46" />
 				<span class="brand__txt">
 					<span class="brand__name">CropWatch</span>
@@ -61,7 +64,7 @@
 			</a>
 
 			<nav class="nav" aria-label="Primary">
-				<a class="nav__item" class:is-current={isHome} href="/">Home</a>
+				<a class="nav__item" class:is-current={isHome} href="/home">Home</a>
 
 				<div class="navdrop">
 					<a class="nav__item" class:is-current={isProducts} href="/cold-chain">
@@ -82,7 +85,7 @@
 					</div>
 				</div>
 
-				<a class="nav__item" href="/#why">Why CropWatch</a>
+				<a class="nav__item" href="/home#why">Why CropWatch</a>
 				<a class="nav__item" class:is-current={isNews} href="/news">News</a>
 				<a class="nav__item" class:is-current={isContact} href="/contact">Contact</a>
 			</nav>
@@ -111,7 +114,7 @@
 		</button>
 	</div>
 	<nav class="m-nav">
-		<a class="m-link" href="/">Home</a>
+		<a class="m-link" href="/home">Home</a>
 
 		<div class="m-group">
 			<a class="m-link" href="/cold-chain">Products</a>
@@ -120,7 +123,7 @@
 			{/each}
 		</div>
 
-		<a class="m-link" href="/#why">Why CropWatch</a>
+		<a class="m-link" href="/home#why">Why CropWatch</a>
 		<a class="m-link" href="/news">News</a>
 		<a class="m-link" href="/contact">Contact</a>
 

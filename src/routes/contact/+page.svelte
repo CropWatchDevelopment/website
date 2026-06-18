@@ -59,7 +59,7 @@
 			</div>
 		</div>
 		<p style="text-align:center;margin-top:32px">
-			<a href="/" class="cta-ghost cta-pill--lg"><span class="material-symbols-rounded">arrow_back</span> <span>Back to home</span></a>
+			<a href="/home" class="cta-ghost cta-pill--lg"><span class="material-symbols-rounded">arrow_back</span> <span>Back to home</span></a>
 		</p>
 	</div>
 </section>
