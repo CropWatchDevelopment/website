@@ -8,10 +8,10 @@
 		<div class="ftr__about">
 			<a class="brand brand--ftr" href="/home">
 				<img src={LOGO} alt="" class="brand__mark" width="36" height="36" />
-				<span class="brand__name">CropWatch</span>
+				<span class="brand__name">CropWatch<sup><small>®</small></sup></span>
 			</a>
 			<p>
-				Quality environmental monitoring for cold storage, food service, agriculture, and livestock —
+				Quality environmental monitoring for cold storage, food service, agriculture, and livestock -
 				with measurement you can defend in any audit.
 			</p>
 			<a href="/contact" class="cta-pill cta-pill--gold">Contact us</a>
@@ -41,7 +41,6 @@
 			<a href="/contact">Contact</a>
 			<a href="https://app.cropwatch.io">Open the app</a>
 			<a href="https://api.cropwatch.io">API</a>
-			<a href="https://cropwatch.co.jp">日本語 (.co.jp)</a>
 		</nav>
 	</div>
 

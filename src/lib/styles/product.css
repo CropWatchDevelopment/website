@@ -1,0 +1,56 @@
+/* CropWatch product page - extends site.css tokens.
+   Ported from the design bundle's assets/product.css. The breadcrumb (.pcrumb)
+   lives in the reusable Breadcrumbs.svelte component instead of here. */
+
+/* Hero (3D-stage product pages, e.g. replacement-sensors / -case) */
+.phero { background: var(--web-hero-wash), var(--web-bg); padding-block: 40px 60px; }
+.phero__grid { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 48px; align-items: center; }
+
+.pstage { position: relative; border-radius: var(--web-radius-card); background:
+    radial-gradient(120% 100% at 50% 12%, #ffffff 0%, #eaf1fb 60%, #dde8f6 100%);
+  border: 1px solid var(--web-border); box-shadow: var(--web-shadow-card); overflow: hidden; aspect-ratio: 1 / 1; }
+.pstage canvas { width: 100%; height: 100%; display: block; outline: none; touch-action: none; }
+.pstage__hint { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--web-muted); background: rgba(255,255,255,.78); backdrop-filter: blur(4px);
+  padding: 6px 12px; border-radius: var(--cw-radius-pill); border: 1px solid var(--web-border); }
+.pstage__hint .material-symbols-rounded { font-size: 16px; }
+.pstage__badge { position: absolute; top: 16px; left: 16px; display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--web-accent); background: var(--web-accent-soft);
+  padding: 6px 12px; border-radius: var(--cw-radius-pill); }
+.pstage__badge .material-symbols-rounded { font-size: 16px; }
+.pstage__loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--web-muted); font-size: 13px; }
+
+.pcopy h1 { font-size: var(--cw-text-6xl); }
+.pcopy .psub { font-size: var(--cw-text-xl); color: var(--web-muted); font-weight: 500; margin-top: 6px; }
+.pcopy .lead { font-size: var(--cw-text-lg); }
+.spec-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 26px; }
+.spec-chips span { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--web-primary);
+  background: var(--web-primary-soft); padding: 7px 13px; border-radius: var(--cw-radius-pill); }
+.spec-chips span .material-symbols-rounded { font-size: 17px; }
+.pcopy__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Spec table */
+.pspecs { padding-block: 64px; background: var(--web-bg-soft); }
+.pspecs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; max-width: 940px; margin: 32px auto 0; }
+.spec-row { display: flex; justify-content: space-between; gap: 16px; padding: 15px 4px; border-bottom: 1px solid var(--web-border); }
+.spec-row dt { font-size: 14px; color: var(--web-muted); }
+.spec-row dd { font-size: 14px; font-weight: 600; color: var(--cw-ink); margin: 0; text-align: right; font-family: var(--cw-font-mono); }
+
+/* Related */
+.prelated { padding-block: 64px; }
+.prelated__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.rel-card { display: flex; align-items: center; gap: 16px; background: var(--web-surface); border: 1px solid var(--web-border);
+  border-radius: var(--web-radius-card); padding: 22px; box-shadow: var(--web-shadow-card); transition: transform var(--cw-duration-normal) var(--cw-ease-default); }
+.rel-card:hover { transform: translateY(-4px); }
+.rel-card__ic { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; flex: none;
+  border-radius: var(--cw-radius-2xl); background: var(--web-primary-soft); color: var(--web-primary); }
+.rel-card__ic .material-symbols-rounded { font-size: 26px; }
+.rel-card b { font-size: 15px; color: var(--cw-ink); }
+.rel-card span { display: block; font-size: 12.5px; color: var(--web-muted); margin-top: 2px; }
+
+@media (max-width: 980px) {
+  .phero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .pcopy h1 { font-size: var(--cw-text-5xl); }
+  .pspecs__grid { grid-template-columns: 1fr; }
+  .prelated__grid { grid-template-columns: 1fr; }
+}

@@ -1,5 +1,5 @@
 /* ============================================================
-   CropWatch.io (US / Global) — site extensions on top of site.css
+   CropWatch.io (US / Global) - site extensions on top of site.css
    Everything here uses the design-system tokens. [data-theme="web"]
    ============================================================ */
 
@@ -100,7 +100,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; }
   color: var(--web-primary); background: var(--web-primary-soft); padding: 7px 13px; border-radius: var(--cw-radius-pill); }
 .hero__badges .material-symbols-rounded { font-size: 17px; }
 
-/* ── "Why CropWatch" — 4 differentiators hit list ────────── */
+/* ── "Why CropWatch" - 4 differentiators hit list ────────── */
 .why4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .why-card { position: relative; background: var(--web-surface); border: 1px solid var(--web-border); border-radius: var(--web-radius-card);
   padding: 26px 24px 28px; box-shadow: var(--web-shadow-card); transition: transform var(--cw-duration-normal), box-shadow var(--cw-duration-normal); }
@@ -326,4 +326,20 @@ select.finput { appearance: none; background-image: url("data:image/svg+xml,%3Cs
   .pagehero h1 { font-size: var(--cw-text-4xl); }
   .form-card { padding: 24px; }
   .news-feat__body { padding: 26px; }
+}
+
+/* ── Air-quality parameter cards (livestock) ─────────────── */
+.param-target { display: flex; align-items: center; gap: 7px; margin: 12px 0 12px; padding: 8px 12px;
+  background: var(--web-accent-soft); border-radius: var(--cw-radius-lg); font-family: var(--cw-font-mono);
+  font-size: 12.5px; font-weight: 600; color: var(--cw-emerald-700, #0a7a4d); line-height: 1.35; }
+.param-target .material-symbols-rounded { font-size: 17px; color: var(--web-accent); flex: none; }
+.param-opt { display: inline-block; vertical-align: middle; margin-left: 8px; font-size: 11px; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase; color: var(--web-muted); background: var(--web-bg-soft);
+  border: 1px solid var(--web-border); padding: 2px 9px; border-radius: 9999px; font-family: var(--cw-font-family); }
+.param-note { display: flex; align-items: flex-start; gap: 11px; max-width: 920px; margin: 30px auto 0;
+  background: var(--cw-ink); color: var(--web-on-ink-muted); border-radius: var(--cw-radius-2xl);
+  padding: 18px 22px; font-size: 15px; line-height: 1.55; }
+.param-note .material-symbols-rounded { font-size: 22px; color: var(--cw-gold-400, #f2a516); flex: none; margin-top: 1px; }
+@media (max-width: 760px) {
+  .ind-grid[style*="repeat(2"] { grid-template-columns: 1fr !important; }
 }

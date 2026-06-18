@@ -6,7 +6,7 @@
 	<title>News &amp; Updates | CropWatch</title>
 	<meta
 		name="description"
-		content="Product news, certifications and field stories from CropWatch — wireless environmental monitoring for cold storage, food service, agriculture and livestock."
+		content="Product news, certifications and field stories from CropWatch - wireless environmental monitoring for cold storage, food service, agriculture and livestock."
 	/>
 	<link rel="canonical" href="https://cropwatch.io/news" />
 </svelte:head>

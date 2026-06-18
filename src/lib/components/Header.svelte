@@ -43,22 +43,21 @@
 	<div class="hdr__top">
 		<div class="wrap hdr__top-in">
 			<div class="hdr__welcome">
-				<strong>CropWatch</strong><span class="sep">|</span><span>United States &amp; Global</span>
+				<strong><i>CropWatch<sup><small>®</small></sup></i></strong><span class="sep">|</span><span>United States &amp; Global</span>
 			</div>
 			<div class="hdr__top-links">
-				<a href="tel:+18338214357"><span class="material-symbols-rounded">call</span> +1 (833) 821-4357</a>
+				<a href="tel:+(978)381-3105"><span class="material-symbols-rounded">call</span> +1 (978) 381-3105</a>
 				<a href="mailto:sales@cropwatch.io">sales@cropwatch.io</a>
-				<a class="lang" href="https://cropwatch.co.jp"><span class="material-symbols-rounded">language</span> 日本語</a>
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="hdr__bar">
 		<div class="wrap hdr__main">
 			<a class="brand" href="/home" aria-label="CropWatch home">
 				<img src={LOGO} alt="CropWatch" class="brand__mark" width="46" height="46" />
 				<span class="brand__txt">
-					<span class="brand__name">CropWatch</span>
+					<span class="brand__name">CropWatch<sup><small>®</small></sup></span>
 					<span class="brand__tag">Quality monitoring devices</span>
 				</span>
 			</a>

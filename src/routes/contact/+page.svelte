@@ -16,11 +16,10 @@
 <section class="pagehero">
 	<div class="wrap">
 		<p class="eyebrow">Contact</p>
-		<h1>See your own coolers on the dashboard this week.</h1>
+		<h1>Ready for better monitoring?</h1>
 		<p>
-			Tell us what you need to keep in range. We'll map the sensors, gateways and alerts — and show
-			you the audit trail it produces. A full demo-request form is being ported from the design;
-			until then, reach us directly below.
+			Tell us what you need to keep in range. We'll map the sensors, gateways and alerts - and show
+			you the audit trail it produces. We can also connect you to a distributor or integrator partner if you prefer.
 		</p>
 	</div>
 </section>
@@ -32,7 +31,7 @@
 				<h3><span class="material-symbols-rounded">call</span> Sales</h3>
 				<p>
 					Book a demo or get a quote.<br />
-					<a href="tel:+18338214357" class="mono">+1 (833) 821-4357</a><br />
+					<a href="tel:+19783813105" class="mono">+1 (978) 381-3105</a><br />
 					<a href="mailto:sales@cropwatch.io">sales@cropwatch.io</a>
 				</p>
 			</div>
@@ -47,7 +46,7 @@
 				<h3><span class="material-symbols-rounded">apps</span> App &amp; API</h3>
 				<p>
 					<a href="https://app.cropwatch.io">app.cropwatch.io</a> · <a href="https://api.cropwatch.io">api.cropwatch.io</a><br />
-					Unlimited users, rules, API and reports — included.
+					Unlimited users, rules, API and reports - included.
 				</p>
 			</div>
 			<div class="cinfo__card">

@@ -1,21 +1,21 @@
 <!--
-	Sectors splitter — the site's first landing page.
+	Sectors splitter - the site's first landing page.
 	A full-viewport "choose your industry" funnel that routes visitors into the
 	three product worlds. The shared header renders in its slim, logo-only
 	"splash" variant and the footer is suppressed (handled in +layout.svelte) so
 	nothing competes with the choice. Ported from the design's sectors.html.
 -->
 <svelte:head>
-	<title>Choose Your Industry — Cold-Chain, Agriculture &amp; Livestock Monitoring | CropWatch</title>
+	<title>Choose Your Industry - Cold-Chain, Agriculture &amp; Livestock Monitoring | CropWatch</title>
 	<meta
 		name="description"
-		content="Find the right CropWatch monitoring solution for your business. Cold-chain & refrigeration for restaurants, hotels, schools and hospitals; agriculture & greenhouse for farms; and climate monitoring for poultry & livestock."
+		content="Find the right CropWatch monitoring solution for your business. Cold-chain & refrigeration for restaurants, hotels, schools; agriculture & greenhouse for farms; and climate monitoring for poultry & livestock."
 	/>
 	<meta
 		name="keywords"
 		content="cold chain monitoring, refrigeration monitoring, agriculture monitoring, greenhouse monitoring, poultry monitoring, livestock monitoring, choose industry, temperature monitoring solutions"
 	/>
-	<meta property="og:title" content="Choose your industry — CropWatch environmental monitoring" />
+	<meta property="og:title" content="Choose your industry - CropWatch environmental monitoring" />
 	<meta
 		property="og:description"
 		content="Cold-chain, agriculture and livestock monitoring you can defend in any audit. Pick your industry to see how CropWatch fits."
@@ -31,7 +31,7 @@
 	<div class="panels">
 		<span class="sh-prompt">Choose your industry</span>
 
-		<!-- COLD CHAIN — full-height left -->
+		<!-- COLD CHAIN - full-height left -->
 		<a class="panel panel--cold" href="/cold-chain">
 			<img
 				class="panel__img"
@@ -43,18 +43,15 @@
 			/>
 			<div class="panel__scrim"></div>
 			<div class="panel__in">
-				<span class="panel__eyebrow"
-					><span class="material-symbols-rounded">ac_unit</span> Cold-chain &amp; refrigeration</span
-				>
+				<span class="panel__eyebrow">Cold-chain &amp; refrigeration</span>
 				<h2 class="panel__h">
 					<span class="panel__hic material-symbols-rounded">ac_unit</span>Cold-Chain Insights
 				</h2>
 				<p class="panel__sub">
-					Walk-ins, freezers and display cases for restaurants, hotels, schools, hospitals and cold
-					storage — with HACCP-ready records an inspector can trust.
+					Walk-ins, freezers and display cases for restaurants, hotels, schools - with HACCP-ready records an inspector can trust.
 				</p>
 				<div class="panel__tags">
-					<span>Restaurants</span><span>Hospitality</span><span>Hospitals</span><span
+					<span>Restaurants</span><span>Hospitality</span><span>Schools</span><span
 						>Cold storage</span
 					>
 				</div>
@@ -64,7 +61,7 @@
 			</div>
 		</a>
 
-		<!-- AGRICULTURE — top right -->
+		<!-- AGRICULTURE - top right -->
 		<a class="panel panel--agri" href="/agriculture">
 			<img
 				class="panel__img"
@@ -75,14 +72,12 @@
 			/>
 			<div class="panel__scrim"></div>
 			<div class="panel__in">
-				<span class="panel__eyebrow"
-					><span class="material-symbols-rounded">eco</span> Agriculture &amp; greenhouse</span
-				>
+				<span class="panel__eyebrow">Agriculture &amp; greenhouse</span>
 				<h2 class="panel__h">
 					<span class="panel__hic material-symbols-rounded">potted_plant</span>Agricultural Monitoring
 				</h2>
 				<p class="panel__sub">
-					Soil, air and canopy climate across greenhouses, fields, orchards and vineyards — spot
+					Soil, air and canopy climate across greenhouses, fields, orchards and vineyards - spot
 					frost, heat and humidity risk early.
 				</p>
 				<div class="panel__tags">
@@ -94,7 +89,7 @@
 			</div>
 		</a>
 
-		<!-- LIVESTOCK — bottom right -->
+		<!-- LIVESTOCK - bottom right -->
 		<a class="panel panel--live" href="/livestock">
 			<img
 				class="panel__img"
@@ -105,14 +100,12 @@
 			/>
 			<div class="panel__scrim"></div>
 			<div class="panel__in">
-				<span class="panel__eyebrow"
-					><span class="material-symbols-rounded">pets</span> Poultry &amp; livestock</span
-				>
+				<span class="panel__eyebrow">Poultry &amp; livestock</span>
 				<h2 class="panel__h">
-					<span class="panel__hic material-symbols-rounded">pets</span>Livestock Monitoring
+					<span class="panel__hic material-symbols-rounded">raven</span>Livestock Monitoring
 				</h2>
 				<p class="panel__sub">
-					Per-zone climate for poultry houses, barns and dairy — catch heat stress and ventilation
+					Per-zone climate for poultry houses, barns and dairy - catch heat stress and ventilation
 					faults before they cost you animals.
 				</p>
 				<div class="panel__tags">
@@ -127,7 +120,7 @@
 </div>
 
 <style>
-	/* ── Sector splitter — full viewport, no page scroll ──────────────────────
+	/* ── Sector splitter - full viewport, no page scroll ──────────────────────
 	   .split-hero is a <div> here (not <main>) because the shared layout already
 	   provides the <main> landmark. position:fixed makes it cover the viewport;
 	   the sticky header (z-index:40) still paints over its top edge. */

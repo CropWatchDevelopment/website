@@ -1,4 +1,4 @@
-/* CropWatch public website — forward sapphire/emerald look.
+/* CropWatch public website - forward sapphire/emerald look.
    Built on the design-system tokens (styles.css → [data-theme="web"]). */
 
 .web { background: var(--web-bg); color: var(--web-text); font-family: var(--cw-font-family); }
@@ -44,7 +44,7 @@ h1, h2, h3, h4 { color: var(--web-heading); letter-spacing: -0.02em; line-height
 
 .hdr__bar { background: linear-gradient(180deg, var(--cw-sapphire-700) 0%, var(--cw-sapphire-800) 100%); border-bottom: 1px solid rgba(255,255,255,.10); box-shadow: 0 10px 26px -14px rgba(11,23,48,.5); }
 .hdr__main { display: flex; align-items: center; gap: 32px; padding-block: 14px; }
-/* Brand bar on sapphire — light text */
+/* Brand bar on sapphire - light text */
 .hdr__bar .brand__name { color: #fff; }
 .hdr__bar .brand__tag { color: rgba(255,255,255,.72); }
 .hdr__bar .nav__item { color: rgba(255,255,255,.92); }

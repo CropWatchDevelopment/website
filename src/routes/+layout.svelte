@@ -14,7 +14,7 @@
 
 	let observer: IntersectionObserver | null = null;
 
-	// Reveal-on-scroll — ported from the design's cw-chrome.js.
+	// Reveal-on-scroll - ported from the design's cw-chrome.js.
 	// Respects reduced-motion and degrades gracefully without IntersectionObserver.
 	function initReveal() {
 		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

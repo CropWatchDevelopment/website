@@ -30,7 +30,7 @@
 				<h2 style="font-size:var(--cw-text-3xl)">What this page will cover</h2>
 				<p class="lead" style="max-width:none">
 					This section of the new cropwatch.io site is being built out from the approved design.
-					Here's what it will include — in the meantime, book a demo and we'll walk you through it
+					Here's what it will include - in the meantime, book a demo and we'll walk you through it
 					directly.
 				</p>
 				{#if points.length}

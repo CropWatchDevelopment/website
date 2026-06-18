@@ -1,6 +1,6 @@
 <svelte:head>
 	<title
-		>CropWatch — Wireless temperature &amp; environmental monitoring for cold storage, restaurants,
+		>CropWatch - Wireless temperature &amp; environmental monitoring for cold storage, restaurants,
 		farming &amp; livestock (USA)</title
 	>
 	<meta
@@ -11,7 +11,7 @@
 		name="keywords"
 		content="temperature monitoring, cold chain monitoring, restaurant refrigeration monitoring, walk-in cooler sensor, HACCP logging, hotel kitchen temperature, school cafeteria monitoring, hospital pharmacy fridge monitoring, agriculture sensors, greenhouse monitoring, poultry house monitoring, livestock barn climate, LoRaWAN sensor, ISO 17025 calibration, NIST traceable"
 	/>
-	<meta property="og:title" content="CropWatch — Environmental monitoring you can defend in any audit" />
+	<meta property="og:title" content="CropWatch - Environmental monitoring you can defend in any audit" />
 	<meta
 		property="og:description"
 		content="Wireless temperature & humidity monitoring for cold storage, food service, agriculture and livestock. User-replaceable, ISO/IEC 17025 certified, dual-sensor verified."
@@ -25,7 +25,7 @@
 	<div class="wrap hero__grid">
 		<div class="hero__copy">
 			<p class="eyebrow">Environmental monitoring, proven</p>
-			<h1>Know every freezer, field and barn is in range — without walking the floor.</h1>
+			<h1>Know every freezer, field and barn is in range - without walking the floor.</h1>
 			<p class="lead">
 				CropWatch puts rugged wireless sensors in your coolers, kitchens, greenhouses and poultry
 				houses, then turns every reading into audit-ready proof. No clipboards. No 2&nbsp;a.m.
@@ -33,9 +33,9 @@
 			</p>
 			<ul class="proof">
 				<li><span class="material-symbols-rounded">check</span> <span>Pass your next health or HACCP audit</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Catch a failing cooler before product is lost</span></li>
+				<li><span class="material-symbols-rounded">check</span> <span>Catch a failing cooler <u>before</u> product is lost</span></li>
 				<li><span class="material-symbols-rounded">check</span> <span>Swap a sensor yourself in 60 seconds</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Trust the reading — or the system fails safe</span></li>
+				<li><span class="material-symbols-rounded">check</span> <span>Trust the reading - or the system fails safe</span></li>
 			</ul>
 			<div class="hero__ctas">
 				<a href="/contact" class="cta-pill cta-pill--lg"><span>Book a demo</span> <span class="material-symbols-rounded">arrow_forward</span></a>
@@ -71,7 +71,7 @@
 	</div>
 </section>
 
-<!-- ░░ Why us — 4 differentiators (short) ░░ -->
+<!-- ░░ Why us - 4 differentiators (short) ░░ -->
 <section class="section scroll-pad" id="why">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
@@ -86,22 +86,22 @@
 			<article class="why-card" data-reveal>
 				<span class="why-card__ic"><span class="material-symbols-rounded">cached</span></span>
 				<h3>User-replaceable sensors</h3>
-				<p>Pop the cap, swap the calibrated module, re-pair. No truck roll, no service contract, no downtime — anyone on your team can do it in under a minute.</p>
+				<p>Pop the cap, swap the calibrated module, re-pair. No truck roll, no service contract, no downtime - anyone on your team can do it in under a minute.</p>
 			</article>
 			<article class="why-card" data-reveal="1">
 				<span class="why-card__ic"><span class="material-symbols-rounded">verified</span></span>
 				<h3>ISO/IEC 17025 certified</h3>
-				<p>Every sensor ships with a downloadable calibration certificate tied to its individual serial number — NIST-traceable proof, ready for any inspector.</p>
+				<p>Every sensor ships with a downloadable calibration certificate tied to its individual serial number - NIST-traceable proof, ready for any inspector.</p>
 			</article>
 			<article class="why-card" data-reveal="2">
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>Dual-sensor verified</h3>
-				<p>Two independent sensors cross-check every reading. If they disagree, the device flags an error and refuses to publish — so bad data never reaches your records.</p>
+				<p>Two independent sensors cross-check every reading. If they disagree, the device flags an error and refuses to publish - so bad data never reaches your records.</p>
 			</article>
 			<article class="why-card" data-reveal="3">
 				<span class="why-card__ic"><span class="material-symbols-rounded">health_and_safety</span></span>
 				<h3>Self-auditing hardware</h3>
-				<p>The device continuously checks and corrects itself. If anything drifts out of spec, it tells you — instead of silently logging numbers you can't trust.</p>
+				<p>The device continuously checks and corrects itself. If anything drifts out of spec, it tells you - instead of silently logging numbers you can't trust.</p>
 			</article>
 		</div>
 	</div>
@@ -114,7 +114,7 @@
 			<p class="eyebrow">One dashboard, every location</p>
 			<h2>See every reading the moment it lands.</h2>
 			<p class="section__intro">
-				Live status, history, and alerts for every sensor across every site — on the web, your
+				Live status, history, and alerts for every sensor across every site - on the web, your
 				phone, or pulled straight into a spreadsheet.
 			</p>
 		</div>
@@ -122,7 +122,7 @@
 			<div class="dashbar"><i></i><i></i><i></i><span class="url">app.cropwatch.io/locations</span></div>
 			<div class="dash">
 				<div class="dash__top">
-					<h4>Riverside Foods — All locations</h4>
+					<h4>Riverside Foods - All locations</h4>
 					<span class="dash__count">18 sensors</span>
 					<span class="dash__spacer"></span>
 					<span class="dash__pill ok"><span class="material-symbols-rounded">check_circle</span> 16 in range</span>
@@ -138,7 +138,7 @@
 							</div>
 						</div>
 						<div class="dcard ok">
-							<div class="dcard__h"><b class="dcard__lab">Freezer B — Line 2</b></div>
+							<div class="dcard__h"><b class="dcard__lab">Freezer B - Line 2</b></div>
 							<div class="dcard__stats">
 								<div><div class="dstat__v t">−18.6<small> °C</small></div><div class="dstat__l">Temp</div></div>
 								<div><div class="dstat__v h">42<small> %</small></div><div class="dstat__l">Humidity</div></div>
@@ -153,12 +153,12 @@
 						</div>
 						<div class="dcard bad">
 							<div class="dcard__h"><b class="dcard__lab">Receiving Dock D</b></div>
-							<div class="dcard__err"><span class="material-symbols-rounded">gpp_maybe</span> Sensor mismatch — reading withheld</div>
+							<div class="dcard__err"><span class="material-symbols-rounded">gpp_maybe</span> Sensor mismatch - reading withheld</div>
 						</div>
 					</div>
 					<div class="dpanel">
-						<h5>Walk-in Cooler A — 24 h</h5>
-						<span class="sub">Temperature · °C · safe band 0–5 °C</span>
+						<h5>Walk-in Cooler A - 24 h</h5>
+						<span class="sub">Temperature · °C · safe band 0-5 °C</span>
 						<svg class="chart" viewBox="0 0 320 116" preserveAspectRatio="none" aria-hidden="true">
 							<defs>
 								<linearGradient id="ga" x1="0" y1="0" x2="0" y2="1">
@@ -199,10 +199,10 @@
 		<div class="diff-row" data-reveal>
 			<div class="diff-row__copy">
 				<p class="eyebrow">01 · Field-serviceable</p>
-				<h3>Swap a sensor yourself — in under a minute.</h3>
+				<h3>Swap a sensor yourself - in under a minute.</h3>
 				<p>When a calibrated module reaches end of life, you don't book a technician or ship the unit back. You unclip the old module and snap in a new pre-calibrated one.</p>
 				<ul class="diff-list">
-					<li><span class="material-symbols-rounded">check</span> Pre-calibrated replacement modules — no recalibration on site</li>
+					<li><span class="material-symbols-rounded">check</span> Pre-calibrated replacement modules - no recalibration on site</li>
 					<li><span class="material-symbols-rounded">check</span> Tool-free cap; the gateway re-pairs automatically</li>
 					<li><span class="material-symbols-rounded">check</span> Zero downtime, zero truck rolls, zero service contracts</li>
 				</ul>
@@ -222,7 +222,7 @@
 			<div class="diff-row__copy">
 				<p class="eyebrow">02 · Provable accuracy</p>
 				<h3>A certificate for every serial number.</h3>
-				<p>Each sensor is calibrated in an ISO/IEC 17025 accredited process and ships with its own NIST-traceable certificate — downloadable any time, matched to the exact device on your wall.</p>
+				<p>Each sensor is calibrated in an ISO/IEC 17025 accredited process and ships with its own NIST-traceable certificate - downloadable any time, matched to the exact device on your wall.</p>
 				<ul class="diff-list">
 					<li><span class="material-symbols-rounded">check</span> Per-serial-number certificates, not a generic batch sheet</li>
 					<li><span class="material-symbols-rounded">check</span> ±0.3 °C accuracy, traceable to national standards</li>
@@ -247,11 +247,11 @@
 			<div class="diff-row__copy">
 				<p class="eyebrow">03 · Fail-safe by design</p>
 				<h3>Two sensors. One verified truth.</h3>
-				<p>Every device carries two independent sensing elements that cross-check each other on every reading. Agree, and the reading is published. Disagree, and the device fails safe — flagging a fault instead of writing a number you can't trust.</p>
+				<p>Every device carries two independent sensing elements that cross-check each other on every reading. Agree, and the reading is published. Disagree, and the device fails safe - flagging a fault instead of writing a number you can't trust.</p>
 				<ul class="diff-list">
 					<li><span class="material-symbols-rounded">check</span> Dual-element cross-validation on every sample</li>
 					<li><span class="material-symbols-rounded">check</span> A drifting element is caught before it pollutes your log</li>
-					<li><span class="material-symbols-rounded">check</span> "No data" beats "wrong data" — every time</li>
+					<li><span class="material-symbols-rounded">check</span> "No data" beats "wrong data" - every time</li>
 				</ul>
 			</div>
 			<div class="diff-row__media"><div class="diff-art">
@@ -267,18 +267,18 @@
 			<div class="diff-row__copy">
 				<p class="eyebrow">04 · Always honest</p>
 				<h3>Hardware that audits itself.</h3>
-				<p>The device runs continuous self-checks on its electronics and power, correcting for known drift and raising a fault the moment anything falls out of spec — so the only readings you ever see are ones the device stands behind.</p>
+				<p>The device runs continuous self-checks on its electronics and power, correcting for known drift and raising a fault the moment anything falls out of spec - so the only readings you ever see are ones the device stands behind.</p>
 				<ul class="diff-list">
 					<li><span class="material-symbols-rounded">check</span> Continuous self-diagnostics and drift correction</li>
 					<li><span class="material-symbols-rounded">check</span> Battery, link and sensor health reported up front</li>
-					<li><span class="material-symbols-rounded">check</span> Faults surface as alerts — never hidden in the data</li>
+					<li><span class="material-symbols-rounded">check</span> Faults surface as alerts - never hidden in the data</li>
 				</ul>
 			</div>
 			<div class="diff-row__media"><div class="diff-art">
 				<div class="schem">
 					<div class="schem__tile"><span class="material-symbols-rounded">memory</span><div><b>Self-check loop</b><span>electronics · power · clock</span></div></div>
 					<div class="schem__tile schem__tile--ok"><span class="material-symbols-rounded">tune</span><div><b>Auto-corrects known drift</b><span>stays in spec</span></div></div>
-					<div class="schem__tile schem__tile--ok"><span class="material-symbols-rounded">battery_5_bar</span><div><b>Health reported</b><span>10-yr battery · RSSI</span></div></div>
+					<div class="schem__tile schem__tile--ok"><span class="material-symbols-rounded">charger</span><div><b>Health reported</b><span>10-yr battery · RSSI</span></div></div>
 				</div>
 			</div></div>
 		</div>
@@ -308,11 +308,11 @@
 				<span class="ribbon">Included</span>
 				<h3><span class="material-symbols-rounded">verified</span> CropWatch</h3>
 				<ul>
-					<li><span class="material-symbols-rounded">check</span> Unlimited users — invite your whole team and auditors</li>
+					<li><span class="material-symbols-rounded">check</span> Unlimited users - invite your whole team and auditors</li>
 					<li><span class="material-symbols-rounded">check</span> Unlimited alert rules &amp; recipients (SMS, email, webhook)</li>
 					<li><span class="material-symbols-rounded">check</span> Full public API access for Excel, Sheets &amp; BI</li>
 					<li><span class="material-symbols-rounded">check</span> Unlimited scheduled &amp; on-demand reports</li>
-					<li><span class="material-symbols-rounded">check</span> Swap your own sensors — no service contract</li>
+					<li><span class="material-symbols-rounded">check</span> Swap your own sensors - no service contract</li>
 				</ul>
 			</div>
 		</div>
@@ -354,7 +354,7 @@
 <section class="proofband">
 	<div class="wrap proofband__grid">
 		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr</p><p class="stat__body">User-replaceable cells. No wiring, no gateways to babysit.</p></div>
-		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.3 °C</p><p class="stat__body">NIST-traceable, ISO/IEC 17025 calibrated — defensible in an audit.</p></div>
+		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.8 °F</p><p class="stat__body">NIST-traceable, ISO/IEC 17025 calibrated - defensible in an audit.</p></div>
 		<div class="stat" data-reveal="2"><p class="stat__eyebrow">Range</p><p class="stat__value stat__value--accent">5 miles</p><p class="stat__body">LoRaWAN coverage from a single gateway across a whole site.</p></div>
 		<div class="stat" data-reveal="3"><p class="stat__eyebrow">Bad readings logged</p><p class="stat__value">0</p><p class="stat__body">Dual-sensor verification means wrong data never reaches your records.</p></div>
 	</div>
@@ -365,7 +365,7 @@
 	<div class="wrap closing__in" data-reveal>
 		<p class="eyebrow eyebrow--gold">Ready when you are</p>
 		<h2>See your own coolers on the dashboard this week.</h2>
-		<p>Tell us what you need to keep in range. We'll map the sensors, gateways, and alerts — and show you the audit trail it produces.</p>
+		<p>Tell us what you need to keep in range. We'll map the sensors, gateways, and alerts - and show you the audit trail it produces.</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="cta-pill cta-pill--lg">Book a demo</a>
 			<a href="/cold-chain" class="cta-ghost cta-ghost--light cta-pill--lg">Explore products</a>

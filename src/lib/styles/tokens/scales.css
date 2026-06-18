@@ -1,5 +1,5 @@
 /* ============================================================
-   CropWatch — Scale Tokens
+   CropWatch - Scale Tokens
    ============================================================
    Spacing, typography, radii, shadows, motion, z-index, focus.
    Ported from @cropwatchdevelopment/cwui tokens.css.
@@ -21,14 +21,14 @@
 
 	/* ── Typography ───────────────────────────────────── */
 	/* Latin renders in Inter; Japanese glyphs fall through (per-glyph) to the
-	   Japanese default — BIZ UDPGothic (Morisawa BIZ UD Gothic, proportional,
-	   self-hosted & complete) — then Yu Gothic, then Hiragino / Noto Sans JP. */
+	   Japanese default - BIZ UDPGothic (Morisawa BIZ UD Gothic, proportional,
+	   self-hosted & complete) - then Yu Gothic, then Hiragino / Noto Sans JP. */
 	--cw-font-family: 'Inter', 'BIZ UDPGothic', 'Yu Gothic', YuGothic,
 		'游ゴシック', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
 	/* Japanese-only stack (use when an element is known to hold JP text) */
 	--cw-font-jp: 'BIZ UDPGothic', 'Yu Gothic', YuGothic, '游ゴシック',
 		'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-	/* Fixed-width (tategaki/tabular) Japanese — BIZ UDGothic, mono-spaced UD */
+	/* Fixed-width (tategaki/tabular) Japanese - BIZ UDGothic, mono-spaced UD */
 	--cw-font-jp-tabular: 'BIZ UDGothic', 'BIZ UDPGothic', 'Yu Gothic',
 		'Hiragino Kaku Gothic ProN', 'Noto Sans JP', monospace;
 	--cw-font-mono: 'JetBrains Mono', 'Fira Mono', 'Cascadia Code', monospace;
