@@ -51,7 +51,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="hdr__bar">
 		<div class="wrap hdr__main">
 			<a class="brand" href="/home" aria-label="CropWatch home">
@@ -77,7 +77,7 @@
 									<span class="pd__tx"><b>{p.t}</b><span>{p.d}</span></span>
 								</a>
 							{/each}
-							<a class="pd__all" href="/cold-chain">
+							<a class="pd__all" href="/">
 								All products &amp; sensors <span class="material-symbols-rounded">arrow_forward</span>
 							</a>
 						</div>
