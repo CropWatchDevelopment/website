@@ -1,0 +1,131 @@
+/* ============================================================
+   CropWatch App - Dark Theme (default)
+   ============================================================
+   Semantic tokens for the CropWatch application, dark mode.
+   Ported from @cropwatchdevelopment/cwui theme-dark.css.
+   Applied via :root or [data-theme="dark"].
+   ============================================================ */
+
+:root,
+[data-theme='dark'] {
+	color-scheme: dark;
+
+	/* ── Surface / Background ──────────────────────────── */
+	--cw-bg-base: #172335;
+	--cw-bg-surface: #2d3243;
+	--cw-bg-surface-elevated: #2b3c54;
+	--cw-bg-surface-callout: #000000;
+	--cw-bg-elevated: #324661;
+	--cw-bg-elevated2: #252d37;
+	--cw-bg-overlay: #566b87;
+	--cw-bg-muted: #31455e;
+	--cw-bg-subtle: #3d5570;
+	--cw-bg-table-row: color-mix(in srgb, var(--cw-info-700) 6%, var(--cw-bg-surface));
+	--cw-bg-table-row-hover: color-mix(in srgb, var(--cw-info-700) 20%, var(--cw-bg-surface));
+	--cw-bg-table-row-alt: color-mix(in srgb, var(--cw-info-700) 14%, var(--cw-bg-surface));
+	--cw-bg-table-row-alt-hover: color-mix(in srgb, var(--cw-info-700) 24%, var(--cw-bg-surface));
+	--cw-header-bg: #1a1d2a;
+
+	/* ── Button gradients ──────────────────────────────── */
+	--cw-button-primary-bg: linear-gradient(180deg, #45515e 0%, #313b46 100%);
+	--cw-button-primary-bg-hover: linear-gradient(180deg, #536170 0%, #394550 100%);
+	--cw-button-primary-bg-active: linear-gradient(180deg, #3f4b58 0%, #2b333d 100%);
+	--cw-button-primary-border: #75889a;
+	--cw-button-primary-border-hover: #8fa2b4;
+	--cw-button-primary-text: #ffffff;
+	--cw-button-primary-shadow:
+		inset 0 1px 0 color-mix(in srgb, #ffffff 14%, transparent),
+		0 6px 16px color-mix(in srgb, #050a16 48%, transparent);
+
+	--cw-button-secondary-bg: linear-gradient(180deg, #314a72 0%, #2c4265 100%);
+	--cw-button-secondary-bg-hover: linear-gradient(180deg, #3e5f92 0%, #35537f 100%);
+	--cw-button-secondary-bg-active: linear-gradient(180deg, #2e486e 0%, #273d5c 100%);
+	--cw-button-secondary-border: #6282b8;
+	--cw-button-secondary-border-hover: #7fa2dc;
+	--cw-button-secondary-text: #f4f8ff;
+	--cw-button-secondary-shadow:
+		inset 0 1px 0 color-mix(in srgb, #ffffff 12%, transparent),
+		0 5px 14px color-mix(in srgb, #050a16 44%, transparent);
+
+	--cw-button-info-bg: linear-gradient(180deg, #1177a4 0%, #085b85 100%);
+	--cw-button-info-bg-hover: linear-gradient(180deg, #0f6f9c 0%, #074f75 100%);
+	--cw-button-info-bg-active: linear-gradient(180deg, #0a628d 0%, #053f5d 100%);
+	--cw-button-info-border: #188dc3;
+	--cw-button-info-border-hover: #36a4d7;
+	--cw-button-info-text: #f8fcff;
+	--cw-button-info-shadow:
+		inset 0 1px 0 color-mix(in srgb, #ffffff 12%, transparent),
+		0 6px 16px color-mix(in srgb, #03121c 54%, transparent);
+
+	--cw-button-danger-bg: linear-gradient(180deg, #c12727 0%, #a61b1b 100%);
+	--cw-button-danger-bg-hover: linear-gradient(180deg, #b32020 0%, #931717 100%);
+	--cw-button-danger-bg-active: linear-gradient(180deg, #9f1d1d 0%, #7f1414 100%);
+	--cw-button-danger-border: #de4b4b;
+	--cw-button-danger-border-hover: #f06c6c;
+	--cw-button-danger-text: #fff7f7;
+	--cw-button-danger-shadow:
+		inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent),
+		0 6px 16px color-mix(in srgb, #140404 56%, transparent);
+
+	/* ── Text ──────────────────────────────────────────── */
+	--cw-text-primary: #f4f8fc;
+	--cw-text-secondary: #eaf1f8;
+	--cw-text-muted: #c7d3e0;
+	--cw-text-disabled: #92a3b7;
+	--cw-text-inverse: #07111d;
+
+	/* ── Border ────────────────────────────────────────── */
+	--cw-border-default: #647c97;
+	--cw-border-muted: #516883;
+	--cw-border-strong: #839ab4;
+
+	/* ── Accent / Primary ──────────────────────────────── */
+	--cw-accent: var(--cw-primary-500);
+	--cw-accent-hover: var(--cw-primary-400);
+	--cw-accent-active: var(--cw-primary-600);
+	--cw-accent-bg: var(--cw-primary-900);
+	--cw-accent-text: var(--cw-primary-300);
+	--cw-status-loading: #a855f7;
+
+	/* ── Tones (bg-subtle / text / border / solid) ─────── */
+	--cw-tone-primary-bg-subtle: color-mix(in srgb, var(--cw-primary-900) 40%, transparent);
+	--cw-tone-primary-text: var(--cw-primary-300);
+	--cw-tone-primary-border: var(--cw-primary-700);
+	--cw-tone-primary-solid-bg: var(--cw-primary-600);
+	--cw-tone-primary-solid-text: #fff;
+
+	--cw-tone-secondary-bg-subtle: color-mix(in srgb, var(--cw-secondary-800) 40%, transparent);
+	--cw-tone-secondary-text: var(--cw-secondary-300);
+	--cw-tone-secondary-border: var(--cw-secondary-600);
+	--cw-tone-secondary-solid-bg: var(--cw-secondary-600);
+	--cw-tone-secondary-solid-text: #fff;
+
+	--cw-tone-info-bg-subtle: color-mix(in srgb, var(--cw-info-900) 40%, transparent);
+	--cw-tone-info-text: var(--cw-info-300);
+	--cw-tone-info-border: var(--cw-info-700);
+	--cw-tone-info-solid-bg: var(--cw-info-600);
+	--cw-tone-info-solid-text: #fff;
+
+	--cw-tone-warning-bg-subtle: var(--cw-warning-500);
+	--cw-tone-warning-text: var(--cw-gray-950);
+	--cw-tone-warning-border: var(--cw-warning-700);
+	--cw-tone-warning-solid-bg: var(--cw-warning-600);
+	--cw-tone-warning-solid-text: var(--cw-gray-950);
+
+	--cw-tone-danger-bg-subtle: color-mix(in srgb, var(--cw-danger-900) 40%, transparent);
+	--cw-tone-danger-text: var(--cw-danger-300);
+	--cw-tone-danger-border: var(--cw-danger-700);
+	--cw-tone-danger-solid-bg: var(--cw-danger-600);
+	--cw-tone-danger-solid-text: #fff;
+
+	--cw-tone-success-bg-subtle: color-mix(in srgb, var(--cw-success-900) 40%, transparent);
+	--cw-tone-success-text: var(--cw-success-300);
+	--cw-tone-success-border: var(--cw-success-700);
+	--cw-tone-success-solid-bg: var(--cw-success-600);
+	--cw-tone-success-solid-text: #fff;
+
+	/* ── Focus + scrollbar ─────────────────────────────── */
+	--cw-focus-ring-color: var(--cw-primary-500);
+	--cw-scrollbar-thumb: #5f7691;
+	--cw-scrollbar-track: #172335;
+}

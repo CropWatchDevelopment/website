@@ -1,256 +1,141 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
-	import { onDestroy } from 'svelte';
-	import { _ } from 'svelte-i18n';
+	import { tick } from 'svelte';
 
-	type RecaptchaClient = {
-		ready: (cb: () => void) => void;
-		execute: (
-			siteKey: string,
-			config: {
-				action: string;
-			}
-		) => Promise<string>;
-	};
+	// Demo-request form ported from the design. Submission is client-side only for
+	// now: native validation gates the submit, then we swap in the success card -
+	// matching the design's behaviour. Wire `payload` to a real endpoint when the
+	// inbound API is ready.
+	let submitted = $state(false);
+	let formEl: HTMLFormElement | undefined = $state();
+	let successEl: HTMLDivElement | undefined = $state();
 
-	type RecaptchaWindow = Window & {
-		grecaptcha?: RecaptchaClient;
-	};
-
-	const getRecaptchaClient = () => (window as RecaptchaWindow).grecaptcha;
-
-	const recaptchaSiteKey = PUBLIC_RECAPTCHA_SITE_KEY;
-	const recaptchaRequired = Boolean(recaptchaSiteKey);
-	const recaptchaAction = 'contact_form';
-	type RecaptchaError = 'security_unavailable' | 'verification_failed' | null;
-	let recaptchaReady = $state(!recaptchaRequired);
-	let recaptchaBusy = $state(false);
-	let recaptchaError = $state<RecaptchaError>(null);
-	let recaptchaWatchTimer: ReturnType<typeof setTimeout> | null = null;
-
-	if (browser && recaptchaRequired) {
-		const watchForRecaptcha = () => {
-			const recaptcha = getRecaptchaClient();
-			if (recaptcha) {
-				recaptcha.ready(() => {
-					recaptchaReady = true;
-				});
-			} else {
-				recaptchaWatchTimer = setTimeout(watchForRecaptcha, 250);
-			}
-		};
-		watchForRecaptcha();
+	async function handleSubmit(e: SubmitEvent) {
+		e.preventDefault();
+		if (!formEl || !formEl.checkValidity()) {
+			formEl?.reportValidity();
+			return;
+		}
+		// const payload = Object.fromEntries(new FormData(formEl));  // -> send to API
+		submitted = true;
+		await tick();
+		successEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 	}
-
-	const handleSubmit = async (event: SubmitEvent) => {
-		if (!browser || !recaptchaRequired) {
-			return;
-		}
-
-		event.preventDefault();
-		recaptchaError = null;
-		const target = event.currentTarget as HTMLFormElement | null;
-		if (!target) return;
-		const recaptcha = getRecaptchaClient();
-		if (!recaptcha) {
-			recaptchaError = 'security_unavailable';
-			return;
-		}
-
-		recaptchaBusy = true;
-		try {
-			const token = await recaptcha.execute(recaptchaSiteKey, { action: recaptchaAction });
-			let tokenInput = target.querySelector<HTMLInputElement>('input[name="g-recaptcha-response"]');
-			if (!tokenInput) {
-				tokenInput = document.createElement('input');
-				tokenInput.type = 'hidden';
-				tokenInput.name = 'g-recaptcha-response';
-				target.appendChild(tokenInput);
-			}
-			tokenInput.value = token;
-			target.submit();
-		} catch (error) {
-			console.error('reCAPTCHA execution error', error);
-			recaptchaError = 'verification_failed';
-		} finally {
-			recaptchaBusy = false;
-		}
-	};
-
-	onDestroy(() => {
-		if (recaptchaWatchTimer) {
-			clearTimeout(recaptchaWatchTimer);
-		}
-	});
 </script>
 
 <svelte:head>
-	<title>{$_('contact.meta.title')}</title>
-	<meta name="description" content={$_('contact.meta.description')} />
-	{#if recaptchaSiteKey}
-		<script
-			src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-			async
-			defer
-		></script>
-	{/if}
+	<title>Contact &amp; Book a Demo | CropWatch</title>
+	<meta
+		name="description"
+		content="Book a CropWatch demo or talk to sales and support. We'll map the sensors, gateways and alerts for your coolers, barns, greenhouses or cold storage and show you the audit trail it produces."
+	/>
+	<link rel="canonical" href="https://cropwatch.io/contact" />
 </svelte:head>
 
-<section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
-	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
-		aria-hidden="true"
-	></div>
-	<div class="relative mx-auto w-full max-w-6xl px-4">
-		<div class="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
-			<div class="space-y-6">
-				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-					{$_('contact.hero.eyebrow')}
-				</p>
-				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					{$_('contact.hero.headline')}
-				</h1>
-				<p class="text-base text-white/80">{$_('contact.hero.body')}</p>
-				<ul class="space-y-4 text-sm text-white/80">
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.0')}</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.1')}</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>{$_('contact.hero.bullets.2')}</span>
-					</li>
-				</ul>
-			</div>
-			<div
-				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
-			>
-				<h2 class="text-lg font-semibold text-white">{$_('contact.form.title')}</h2>
-				<p class="mt-2 text-sm text-white/70">{$_('contact.form.subtitle')}</p>
-				<form class="mt-6 space-y-5 text-sm" method="post" action="?" onsubmit={handleSubmit}>
-					<div class="grid gap-4 md:grid-cols-2">
-						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white"
-								>{$_('contact.form.fields.first_name.label')}</span
-							>
-							<input
-								name="firstName"
-								type="text"
-								required
-								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder={$_('contact.form.fields.first_name.placeholder')}
-							/>
-						</label>
-						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white">{$_('contact.form.fields.last_name.label')}</span
-							>
-							<input
-								name="lastName"
-								type="text"
-								required
-								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder={$_('contact.form.fields.last_name.placeholder')}
-							/>
-						</label>
-					</div>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.email.label')}</span>
-						<input
-							name="email"
-							type="email"
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.email.placeholder')}
-						/>
-					</label>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.company.label')}</span>
-						<input
-							name="company"
-							type="text"
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.company.placeholder')}
-						/>
-					</label>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">{$_('contact.form.fields.message.label')}</span>
-						<textarea
-							name="message"
-							rows={4}
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder={$_('contact.form.fields.message.placeholder')}
-						></textarea>
-					</label>
-					<input type="hidden" name="g-recaptcha-response" value="" aria-hidden="true" />
-					{#if recaptchaRequired}
-						<div class="space-y-2">
-							<p
-								class="rounded-xl border border-white/20 bg-white/5 px-3 py-2 text-xs text-white/80"
-								aria-live="polite"
-							>
-								{#if recaptchaError === 'security_unavailable'}
-									{$_('contact.errors.security_unavailable')}
-								{:else if recaptchaError === 'verification_failed'}
-									{$_('contact.errors.verification_failed')}
-								{:else}
-									{$_('contact.recaptcha.protected')}
-								{/if}
-							</p>
-							<p class="text-[11px] leading-relaxed text-white/65">
-								{$_('contact.recaptcha.google_disclosure_prefix')}
-								{' '}
-								<a
-									class="underline transition hover:text-white"
-									href="https://policies.google.com/privacy"
-									target="_blank"
-									rel="noreferrer"
-								>
-									{$_('contact.recaptcha.google_disclosure_privacy')}
-								</a>
-								{' '}
-								{$_('contact.recaptcha.google_disclosure_and')}
-								{' '}
-								<a
-									class="underline transition hover:text-white"
-									href="https://policies.google.com/terms"
-									target="_blank"
-									rel="noreferrer"
-								>
-									{$_('contact.recaptcha.google_disclosure_terms')}
-								</a>
-								{' '}
-								{$_('contact.recaptcha.google_disclosure_suffix')}
-							</p>
-						</div>
-					{:else}
-						<p
-							class="rounded-xl border border-dashed border-white/30 bg-white/5 px-3 py-2 text-xs text-white/80"
-						>
-							{$_('contact.recaptcha.missing_key_prefix')} <code>PUBLIC_RECAPTCHA_SITE_KEY</code>
-							{$_('contact.recaptcha.missing_key_suffix')}
-						</p>
-					{/if}
-					<!-- <label class="flex items-center gap-2 text-white/70">
-						<input type="checkbox" name="subscribe" class="h-4 w-4 rounded border-white/30 bg-white/10 text-[#f2a516] focus:ring-[#f2a516]" />
-						<span>Keep me updated on product releases and industry insights.</span>
-					</label> -->
-					<button
-						type="submit"
-						class="w-full rounded-full bg-[#f2a516] px-4 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-60"
-						disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
-						aria-disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
-					>
-						{$_('contact.form.submit')}
-					</button>
-				</form>
-			</div>
-		</div>
+<section class="pagehero">
+	<div class="wrap">
+		<p class="eyebrow">Contact</p>
+		<h1>Ready for better monitoring?</h1>
+		<p>
+			Tell us what you need to keep in range. We'll map the sensors, gateways and alerts - and show
+			you the audit trail it produces. We can also connect you to a distributor or integrator partner if you prefer.
+		</p>
 	</div>
+</section>
+
+<section class="section section--tight">
+	<div class="wrap contact-grid">
+		<!-- form -->
+		<div data-reveal>
+			{#if !submitted}
+				<form class="form-card" bind:this={formEl} onsubmit={handleSubmit} novalidate>
+					<h2 style="font-size:var(--cw-text-2xl);margin-bottom:6px">Book a demo or request a quote</h2>
+					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">We'll reply within one business day.</p>
+					<div class="frow">
+						<div class="ffield"><label for="first">First name <span class="req">*</span></label><input id="first" class="finput" name="first" required /></div>
+						<div class="ffield"><label for="last">Last name <span class="req">*</span></label><input id="last" class="finput" name="last" required /></div>
+					</div>
+					<div class="frow">
+						<div class="ffield"><label for="email">Work email <span class="req">*</span></label><input id="email" class="finput" type="email" name="email" required /></div>
+						<div class="ffield"><label for="phone">Phone</label><input id="phone" class="finput" type="tel" name="phone" /></div>
+					</div>
+					<div class="frow">
+						<div class="ffield"><label for="company">Company <span class="req">*</span></label><input id="company" class="finput" name="company" required /></div>
+						<div class="ffield"><label for="role">Role</label><input id="role" class="finput" name="role" placeholder="e.g. QA Manager" /></div>
+					</div>
+					<div class="frow">
+						<div class="ffield"><label for="industry">Industry</label>
+							<select id="industry" class="finput" name="industry">
+								<option value="">Select...</option>
+								<option>Restaurant / food service</option>
+								<option>Hotel / hospitality</option>
+								<option>School / university</option>
+								<option>Hospital / pharmacy</option>
+								<option>Grocery / retail</option>
+								<option>Cold storage / warehousing</option>
+								<option>Food manufacturing</option>
+								<option>Farming / greenhouse</option>
+								<option>Poultry / livestock</option>
+								<option>Other</option>
+							</select>
+						</div>
+						<div class="ffield"><label for="sites">Locations to monitor</label>
+							<select id="sites" class="finput" name="sites">
+								<option value="">Select...</option>
+								<option>1 site</option>
+								<option>2-5 sites</option>
+								<option>6-20 sites</option>
+								<option>20+ sites</option>
+							</select>
+						</div>
+					</div>
+					<div class="ffield"><label for="message">How can we help?</label><textarea id="message" class="finput" name="message" placeholder="What do you need to keep in range? How many coolers, houses or fields?"></textarea></div>
+					<label class="fcheck"><input type="checkbox" name="consent" required /> <span>I'd like CropWatch to contact me about monitoring for my organization. I can unsubscribe at any time.</span></label>
+					<button type="submit" class="cta-pill cta-pill--lg" style="width:100%;justify-content:center;margin-top:22px;border:none;cursor:pointer;font-family:inherit">Send request <span class="material-symbols-rounded">arrow_forward</span></button>
+					<p class="form-note">Prefer email? Reach us at <a href="mailto:sales@cropwatch.io" style="color:var(--web-primary);font-weight:600">sales@cropwatch.io</a></p>
+				</form>
+			{:else}
+				<div class="form-card" bind:this={successEl} style="text-align:center">
+					<span class="material-symbols-rounded" style="font-size:56px;color:var(--web-accent)">mark_email_read</span>
+					<h2 style="font-size:var(--cw-text-2xl);margin:12px 0 8px">Thanks - request received.</h2>
+					<p style="color:var(--web-muted);max-width:42ch;margin:0 auto">A CropWatch specialist will reach out within one business day to schedule your demo. In the meantime, explore the <a href="/cold-chain" style="color:var(--web-primary);font-weight:600">products</a>.</p>
+				</div>
+			{/if}
+		</div>
+
+		<!-- info -->
+		<aside class="cinfo" data-reveal>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">call</span> Sales</h3>
+				<p>
+					Book a demo or get a quote.<br />
+					<a href="tel:+19783813105" class="mono">+1 (978) 381-3105</a><br />
+					<a href="mailto:sales@cropwatch.io">sales@cropwatch.io</a>
+				</p>
+			</div>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">support_agent</span> Support</h3>
+				<p>
+					Already running CropWatch?<br />
+					<a href="mailto:support@cropwatch.io">support@cropwatch.io</a>
+				</p>
+			</div>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">apps</span> App &amp; API</h3>
+				<p>
+					<a href="https://app.cropwatch.io">app.cropwatch.io</a> · <a href="https://api.cropwatch.io">api.cropwatch.io</a><br />
+					Unlimited users, rules, API and reports - included.
+				</p>
+			</div>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">language</span> Japan</h3>
+				<p>
+					Based in Japan?
+					<a href="https://cropwatch.co.jp">www.cropwatch.co.jp (日本語)</a>
+				</p>
+			</div>
+		</aside>
+	</div>
+	<p style="text-align:center;margin-top:32px">
+		<a href="/home" class="cta-ghost cta-pill--lg"><span class="material-symbols-rounded">arrow_back</span> <span>Back to home</span></a>
+	</p>
 </section>

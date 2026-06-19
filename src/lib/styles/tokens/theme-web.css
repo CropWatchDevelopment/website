@@ -1,0 +1,67 @@
+/* ============================================================
+   CropWatch Public Website - Sapphire / Emerald Theme
+   ============================================================
+   The "forward" marketing look: lighter than the current navy
+   site, built on a sapphire-blue primary paired with an emerald
+   action accent over predominantly white / ice surfaces. Deep
+   navy (--cw-ink) carries headlines and full-bleed contrast
+   bands. Scope these with [data-theme="web"] on the marketing
+   surface so they never collide with the app themes.
+
+   Use the --web-* names in marketing pages; they read from the
+   sapphire / emerald / navy palette families in palette.css.
+   ============================================================ */
+
+[data-theme='web'] {
+	color-scheme: light;
+
+	/* ── Surfaces ──────────────────────────────────────── */
+	--web-bg: #ffffff;                 /* page base */
+	--web-bg-soft: #f5f8fc;            /* alternating section band */
+	--web-bg-tint: #eef4fc;            /* sapphire-tinted callout */
+	--web-surface: #ffffff;           /* cards */
+	--web-surface-ink: var(--cw-ink); /* dark contrast band / footer */
+	--web-border: #d7e0f5;            /* hairline on light */
+	--web-border-strong: #b4ccf0;
+
+	/* ── Text ──────────────────────────────────────────── */
+	--web-text: #15284a;              /* body */
+	--web-heading: var(--cw-ink);     /* #0b1730 headlines */
+	--web-muted: #4a5d7e;             /* secondary copy */
+	--web-on-ink: #e7ecff;            /* body text on navy bands */
+	--web-on-ink-muted: rgba(231, 236, 255, 0.72);
+
+	/* ── Sapphire (primary brand blue) ─────────────────── */
+	--web-primary: var(--cw-sapphire-500);
+	--web-primary-hover: var(--cw-sapphire-600);
+	--web-primary-active: var(--cw-sapphire-700);
+	--web-primary-soft: var(--cw-sapphire-50);
+	--web-eyebrow: var(--cw-sapphire-600);
+
+	/* ── Emerald (action / CTA accent) ─────────────────── */
+	--web-accent: var(--cw-emerald-500);
+	--web-accent-hover: var(--cw-emerald-600);
+	--web-accent-active: var(--cw-emerald-700);
+	--web-accent-soft: var(--cw-emerald-50);
+	--web-accent-contrast: #ffffff;
+
+	/* ── Gold (sparingly - highlight pips, certifications) */
+	--web-gold: var(--cw-gold-500);
+
+	/* ── Effects ───────────────────────────────────────── */
+	--web-shadow-card: 0 12px 30px -14px rgba(11, 23, 48, 0.16);
+	--web-shadow-raised: 0 22px 48px -22px rgba(11, 23, 48, 0.28);
+	--web-radius-card: var(--cw-radius-3xl);
+	--web-radius-pill: var(--cw-radius-pill);
+
+	/* Hero / contrast-band wash */
+	--web-hero-wash: radial-gradient(
+			circle at 12% 0%,
+			rgba(44, 108, 183, 0.10),
+			transparent 55%
+		),
+		radial-gradient(circle at 100% 20%, rgba(14, 153, 96, 0.08), transparent 50%); /* @kind other */
+
+	background-color: var(--web-bg);
+	color: var(--web-text);
+}

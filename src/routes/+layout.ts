@@ -1,10 +1,4 @@
-import { browser } from '$app/environment'
-import '$lib/i18n' // Import to initialize. Important :)
-import { locale, waitLocale } from 'svelte-i18n'
-
-export const load = async () => {
-	if (browser) {
-		locale.set(window.navigator.language)
-	}
-	await waitLocale()
-}
+// The .io US/Global marketing site is fully static - prerender every route
+// for fast first paint and clean SEO. (Vercel adapter serves these as static
+// assets.) Override per-route if a page later needs server-side data.
+export const prerender = true;
