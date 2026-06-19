@@ -23,11 +23,15 @@
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://cropwatch.io/" />
 	<!-- Preload only the LCP image (full-height cold-chain panel) so it never
-	     competes with the smaller agri/livestock panels for early bandwidth. -->
+	     competes with the smaller agri/livestock panels for early bandwidth.
+	     imagesrcset/imagesizes mirror the <img> below so the preload fetches the
+	     exact responsive variant the browser will use (no wasted download). -->
 	<link
 		rel="preload"
 		as="image"
 		href="/assets/photos/sector-coldchain.webp"
+		imagesrcset="/assets/photos/sector-coldchain-sm.webp 640w, /assets/photos/sector-coldchain.webp 870w"
+		imagesizes="(max-width: 860px) 100vw, 50vw"
 		fetchpriority="high"
 	/>
 </svelte:head>
@@ -41,6 +45,8 @@
 			<img
 				class="panel__img"
 				src="/assets/photos/sector-coldchain.webp"
+				srcset="/assets/photos/sector-coldchain-sm.webp 640w, /assets/photos/sector-coldchain.webp 870w"
+				sizes="(max-width: 860px) 100vw, 50vw"
 				alt="CropWatch sensor mounted above a commercial cold room door"
 				width="870"
 				height="1930"
