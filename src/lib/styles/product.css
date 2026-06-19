@@ -46,7 +46,10 @@
   border-radius: var(--cw-radius-2xl); background: var(--web-primary-soft); color: var(--web-primary); }
 .rel-card__ic .material-symbols-rounded { font-size: 26px; }
 .rel-card b { font-size: 15px; color: var(--cw-ink); }
-.rel-card span { display: block; font-size: 12.5px; color: var(--web-muted); margin-top: 2px; }
+/* Scope text styling to the label wrapper (sibling of the icon) so it can't
+   clobber the icon container's flex centering — .rel-card__ic is a <span> too. */
+.rel-card__ic + span { display: block; }
+.rel-card__ic + span span { display: block; font-size: 12.5px; color: var(--web-muted); margin-top: 2px; }
 
 @media (max-width: 980px) {
   .phero__grid { grid-template-columns: 1fr; gap: 32px; }
