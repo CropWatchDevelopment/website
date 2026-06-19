@@ -124,8 +124,8 @@
 				<div class="step__n">1</div>
 				<h3>Mount the sensor</h3>
 				<p>
-					Stick or screw a battery-powered sensor inside each cooler, freezer or display case. No
-					wiring, no drilling into the box.
+					Magnet, Velcro, or adhesive - a battery-powered sensor inside each cooler, freezer or display case. No
+					wiring, <u>no drilling</u> into the box.
 				</p>
 			</div>
 			<div class="step" data-reveal="1">
@@ -159,10 +159,13 @@
 <!-- split: HACCP -->
 <section class="section section--tint">
 	<div class="wrap split">
-		<div class="split__media split__media--tall" data-reveal>
+		<div class="split__media" data-reveal>
 			<img
-				src="/assets/photos/coldchain-fridge.webp"
-				alt="CropWatch sensor monitoring a commercial refrigerator full of prepared food in a restaurant kitchen"
+				src="/assets/photos/coldchain-haccp-report.webp"
+				alt="Example CropWatch weekly air-quality report shown alongside a Sensirion ISO/IEC 17025 certificate of calibration"
+				width="1200"
+				height="900"
+				style="height:auto;object-fit:contain;background:#fff"
 			/>
 		</div>
 		<div data-reveal>
@@ -229,13 +232,13 @@
 				<h3>Dual-sensor design - error, never a lie</h3>
 				<p>
 					Two independent elements cross-check every reading. If they disagree, the device refuses
-					to publish and raises an error code instead. You will never log an inaccurate number - "no
-					data" beats "wrong data" every single time.
+					to publish and raises an error code instead. You will never log an inaccurate number - <b><u>"No
+					Data" beats "Wrong Data" every single time.</u></b>
 				</p>
 			</article>
 			<article class="feat" data-reveal="2">
 				<span class="feat__icon"><span class="material-symbols-rounded">cached</span></span>
-				<h3>Field-replaceable - no calibration downtime</h3>
+				<h3>Field-replaceable - no calibration, no downtime</h3>
 				<p>
 					On-site calibration eats hours and, without lab-grade reference equipment, introduces
 					error. CropWatch skips it entirely: snap in a pre-calibrated module in under a minute. No
@@ -271,6 +274,37 @@
 					An unmatched track record for long-term sensor stability, backed by people who actually
 					pick up when you need them. The hardware self-audits and flags drift before it misleads
 					you - and we're there when it counts.
+				</p>
+			</article>
+			<article class="feat" data-reveal>
+				<span class="feat__icon"><span class="material-symbols-rounded">summarize</span></span>
+				<h3>Audit reports that write themselves</h3>
+				<p>
+					Your logged data becomes a clean, inspector-ready PDF automatically - temperature history,
+					every excursion, the alarms that fired and who acknowledged them, timestamped and
+					formatted without anyone touching a spreadsheet. Pull one on demand the moment an auditor
+					asks, or schedule it to land in your inbox.
+				</p>
+				<a
+					href="/assets/reports/cropwatch-sample-report.pdf"
+					download
+					style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:14px;font-weight:700;color:var(--web-accent);text-decoration:none"
+				>
+					<span class="material-symbols-rounded" style="font-size:18px">download</span> Download a sample
+					report (PDF)
+				</a>
+			</article>
+			<article class="feat" data-reveal="1">
+				<span class="feat__icon feat__icon--accent"
+					><span class="material-symbols-rounded">shield_with_heart</span></span
+				>
+				<h3>Fail-safe hardware that recovers itself</h3>
+				<p>
+					Ordinary sensors give up the moment something glitches. CropWatch is built around EN
+					50271-compatible safeguard circuitry - the functional-safety discipline used in
+					life-critical gas detection - so a power dip, transient or internal fault can't quietly
+					end the watch. The hardware catches the fault, holds a safe state and restarts itself back
+					into monitoring automatically - no manual reset, no service call, no gap in your record.
 				</p>
 			</article>
 		</div>
