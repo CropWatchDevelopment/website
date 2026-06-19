@@ -2,11 +2,19 @@
 import Footer from '$lib/components/Footer.svelte';
 import Header from '$lib/components/Header.svelte';
 import { afterNavigate } from '$app/navigation';
+import { page } from '$app/state';
 import { PUBLIC_GA_MEASUREMENT_ID } from '$env/static/public';
 import { onMount } from 'svelte';
+import { alternatesFor } from '$lib/seo/alternates';
 import '../app.css';
 
 let { children } = $props();
+
+// hreflang alternates linking this page to its cropwatch.io (en) counterpart.
+// This is the Japan-website branch (ja); the .io branch calls
+// alternatesFor('en', ...) against the same shared map. Pages with no
+// cross-site equivalent return null and emit nothing.
+const alternates = $derived(alternatesFor('ja', page.url.pathname));
 
 type Gtag = (...args: unknown[]) => void;
 type WindowWithGtag = Window & { dataLayer?: unknown[]; gtag?: Gtag };
@@ -104,6 +112,9 @@ onMount(() => {
 	{#if PUBLIC_GA_MEASUREMENT_ID}
 		<script async src="https://www.googletagmanager.com/gtag/js?id={PUBLIC_GA_MEASUREMENT_ID}"></script>
 	{/if}
+	{#each alternates ?? [] as alt (alt.hreflang)}
+		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+	{/each}
 </svelte:head>
 
 <div class="flex flex-col min-h-screen">
