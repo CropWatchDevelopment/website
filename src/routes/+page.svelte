@@ -22,9 +22,14 @@
 	/>
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://cropwatch.io/" />
-	<link rel="preload" as="image" href="/assets/photos/sector-coldchain.webp" />
-	<link rel="preload" as="image" href="/assets/photos/sector-agriculture.webp" />
-	<link rel="preload" as="image" href="/assets/photos/sector-livestock.webp" />
+	<!-- Preload only the LCP image (full-height cold-chain panel) so it never
+	     competes with the smaller agri/livestock panels for early bandwidth. -->
+	<link
+		rel="preload"
+		as="image"
+		href="/assets/photos/sector-coldchain.webp"
+		fetchpriority="high"
+	/>
 </svelte:head>
 
 <div class="split-hero">
@@ -41,7 +46,6 @@
 				height="1930"
 				fetchpriority="high"
 			/>
-			<div class="panel__scrim"></div>
 			<div class="panel__in">
 				<span class="panel__eyebrow">Cold-chain &amp; refrigeration</span>
 				<h2 class="panel__h">
@@ -66,11 +70,13 @@
 			<img
 				class="panel__img"
 				src="/assets/photos/sector-agriculture.webp"
+				srcset="/assets/photos/sector-agriculture-sm.webp 800w, /assets/photos/sector-agriculture.webp 1200w, /assets/photos/sector-agriculture-lg.webp 1560w"
+				sizes="(max-width: 860px) 100vw, 50vw"
 				alt="CropWatch sensor monitoring a commercial pepper greenhouse"
-				width="1560"
-				height="703"
+				width="1200"
+				height="541"
+				decoding="async"
 			/>
-			<div class="panel__scrim"></div>
 			<div class="panel__in">
 				<span class="panel__eyebrow">Agriculture &amp; greenhouse</span>
 				<h2 class="panel__h">
@@ -94,11 +100,13 @@
 			<img
 				class="panel__img"
 				src="/assets/photos/sector-livestock.webp"
+				srcset="/assets/photos/sector-livestock-sm.webp 800w, /assets/photos/sector-livestock.webp 1200w, /assets/photos/sector-livestock-lg.webp 1376w"
+				sizes="(max-width: 860px) 100vw, 50vw"
 				alt="Interior of a commercial poultry house monitored by CropWatch"
-				width="1376"
-				height="620"
+				width="1200"
+				height="541"
+				decoding="async"
 			/>
-			<div class="panel__scrim"></div>
 			<div class="panel__in">
 				<span class="panel__eyebrow">Poultry &amp; livestock</span>
 				<h2 class="panel__h">
@@ -174,50 +182,49 @@
 	.panel--cold .panel__img {
 		object-position: center 30%;
 	}
-	/* Direction-aware scrims: dark exactly where the text sits, so white copy
-	   stays legible no matter how light or busy the photo behind it is. */
-	.panel__scrim {
-		position: absolute;
-		inset: 0;
-		z-index: -1;
+	/* Direction-aware wash, applied to .panel__in (the text's own ancestor)
+	   rather than a separate sibling layer. Two wins: the white copy sits on a
+	   genuinely dark background where the photo is bright, and contrast tooling
+	   evaluates the text against this wash instead of the page behind it. */
+	.panel__in {
 		transition: background var(--cw-duration-slow);
 		background: linear-gradient(
 			180deg,
-			rgba(8, 16, 34, 0.14) 0%,
-			rgba(8, 16, 34, 0.34) 38%,
-			rgba(8, 16, 34, 0.8) 72%,
-			rgba(8, 16, 34, 0.93) 100%
+			rgba(8, 16, 34, 0.18) 0%,
+			rgba(8, 16, 34, 0.4) 38%,
+			rgba(8, 16, 34, 0.84) 72%,
+			rgba(8, 16, 34, 0.96) 100%
 		);
 	}
-	.panel--cold .panel__scrim {
+	.panel--cold .panel__in {
 		background: linear-gradient(
 			102deg,
-			rgba(8, 16, 34, 0.9) 0%,
-			rgba(8, 16, 34, 0.74) 26%,
-			rgba(8, 16, 34, 0.42) 52%,
-			rgba(8, 16, 34, 0.34) 100%
+			rgba(8, 16, 34, 0.92) 0%,
+			rgba(8, 16, 34, 0.78) 26%,
+			rgba(8, 16, 34, 0.5) 52%,
+			rgba(8, 16, 34, 0.4) 100%
 		);
 	}
 
 	.panel:hover .panel__img {
 		transform: scale(1.1);
 	}
-	.panel:hover .panel__scrim {
+	.panel:hover .panel__in {
 		background: linear-gradient(
 			180deg,
-			rgba(11, 40, 86, 0.22) 0%,
-			rgba(14, 153, 96, 0.16) 34%,
-			rgba(8, 16, 34, 0.82) 72%,
-			rgba(8, 16, 34, 0.95) 100%
+			rgba(11, 40, 86, 0.3) 0%,
+			rgba(14, 153, 96, 0.22) 34%,
+			rgba(8, 16, 34, 0.85) 72%,
+			rgba(8, 16, 34, 0.96) 100%
 		);
 	}
-	.panel--cold:hover .panel__scrim {
+	.panel--cold:hover .panel__in {
 		background: linear-gradient(
 			102deg,
-			rgba(8, 16, 34, 0.9) 0%,
-			rgba(8, 16, 34, 0.74) 26%,
-			rgba(8, 16, 34, 0.42) 52%,
-			rgba(8, 16, 34, 0.34) 100%
+			rgba(8, 16, 34, 0.92) 0%,
+			rgba(8, 16, 34, 0.78) 26%,
+			rgba(8, 16, 34, 0.5) 52%,
+			rgba(8, 16, 34, 0.4) 100%
 		);
 	}
 
@@ -283,10 +290,6 @@
 		text-transform: uppercase;
 		color: #fff;
 		text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-	}
-	.panel__eyebrow .material-symbols-rounded {
-		font-size: 18px;
-		color: var(--cw-emerald-300, #6ee7b7);
 	}
 	.panel__hic {
 		font-size: 0.82em;

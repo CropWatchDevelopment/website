@@ -8,10 +8,14 @@
    glyphs, if any, fall through to Noto Sans JP.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap');
-
-/* Material Symbols Rounded - the brand icon set. */
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+/* Font stylesheets are deliberately NOT @imported here. Buried this deep
+   (app.css -> design-system.css -> fonts.css -> Google) a remote @import
+   creates a serial request chain that blocks first paint. The Google Fonts
+   <link> tags live in src/app.html instead, where they are discovered
+   immediately and loaded without blocking render. Material Symbols is also
+   pinned there to a single static instance (~361 KB) instead of the full
+   ~5 MB variable font. The .material-symbols-rounded class below still styles
+   the icons; only the network fetch moved. */
 
 .material-symbols-rounded {
 	font-family: 'Material Symbols Rounded';

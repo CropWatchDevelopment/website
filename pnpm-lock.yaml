@@ -11,6 +11,9 @@ importers:
       botid:
         specifier: ^1.5.10
         version: 1.5.10
+      nodemailer:
+        specifier: ^7.0.13
+        version: 7.0.13
     devDependencies:
       '@eslint/compat':
         specifier: ^1.4.1
@@ -75,9 +78,6 @@ importers:
       mdsvex:
         specifier: ^0.12.6
         version: 0.12.6(svelte@5.49.1)
-      nodemailer:
-        specifier: ^7.0.13
-        version: 7.0.13
       playwright:
         specifier: ^1.58.1
         version: 1.58.1

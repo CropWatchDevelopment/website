@@ -1,25 +1,36 @@
 <script lang="ts">
 	import { tick } from 'svelte';
+	import { enhance } from '$app/forms';
+	import type { SubmitFunction } from '@sveltejs/kit';
 
-	// Demo-request form ported from the design. Submission is client-side only for
-	// now: native validation gates the submit, then we swap in the success card -
-	// matching the design's behaviour. Wire `payload` to a real endpoint when the
-	// inbound API is ready.
+	// Demo-request form. Native validation gates the submit, then it POSTs to the
+	// `default` action in +page.server.ts (nodemailer -> kevin@cropwatch.io). On
+	// success we swap in the confirmation card; on failure we surface the reason
+	// and keep what the visitor typed so nothing is lost.
 	let submitted = $state(false);
-	let formEl: HTMLFormElement | undefined = $state();
+	let sending = $state(false);
+	let errorMsg = $state('');
 	let successEl: HTMLDivElement | undefined = $state();
 
-	async function handleSubmit(e: SubmitEvent) {
-		e.preventDefault();
-		if (!formEl || !formEl.checkValidity()) {
-			formEl?.reportValidity();
-			return;
-		}
-		// const payload = Object.fromEntries(new FormData(formEl));  // -> send to API
-		submitted = true;
-		await tick();
-		successEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-	}
+	const submit: SubmitFunction = () => {
+		sending = true;
+		errorMsg = '';
+		return async ({ result }) => {
+			sending = false;
+			if (result.type === 'success') {
+				submitted = true;
+				await tick();
+				successEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			} else if (result.type === 'failure') {
+				errorMsg =
+					(result.data?.error as string) ??
+					'Something went wrong. Please try again, or email kevin@cropwatch.io directly.';
+			} else if (result.type === 'error') {
+				errorMsg =
+					'Something went wrong. Please try again, or email kevin@cropwatch.io directly.';
+			}
+		};
+	};
 </script>
 
 <svelte:head>
@@ -47,7 +58,7 @@
 		<!-- form -->
 		<div data-reveal>
 			{#if !submitted}
-				<form class="form-card" bind:this={formEl} onsubmit={handleSubmit} novalidate>
+				<form class="form-card" method="POST" use:enhance={submit}>
 					<h2 style="font-size:var(--cw-text-2xl);margin-bottom:6px">Book a demo or request a quote</h2>
 					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">We'll reply within one business day.</p>
 					<div class="frow">
@@ -90,7 +101,10 @@
 					</div>
 					<div class="ffield"><label for="message">How can we help?</label><textarea id="message" class="finput" name="message" placeholder="What do you need to keep in range? How many coolers, houses or fields?"></textarea></div>
 					<label class="fcheck"><input type="checkbox" name="consent" required /> <span>I'd like CropWatch to contact me about monitoring for my organization. I can unsubscribe at any time.</span></label>
-					<button type="submit" class="cta-pill cta-pill--lg" style="width:100%;justify-content:center;margin-top:22px;border:none;cursor:pointer;font-family:inherit">Send request <span class="material-symbols-rounded">arrow_forward</span></button>
+					{#if errorMsg}
+						<p role="alert" style="margin:18px 0 0;padding:12px 14px;border-radius:10px;background:#fdecec;border:1px solid #f5b5b5;color:#9b1c1c;font-size:14px">{errorMsg}</p>
+					{/if}
+					<button type="submit" disabled={sending} class="cta-pill cta-pill--lg" style="width:100%;justify-content:center;margin-top:22px;border:none;cursor:pointer;font-family:inherit">{sending ? 'Sending...' : 'Send request'} <span class="material-symbols-rounded">arrow_forward</span></button>
 					<p class="form-note">Prefer email? Reach us at <a href="mailto:sales@cropwatch.io" style="color:var(--web-primary);font-weight:600">sales@cropwatch.io</a></p>
 				</form>
 			{:else}
