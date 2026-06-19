@@ -4,9 +4,16 @@
 	import { page } from '$app/state';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import { alternatesFor } from '$lib/seo/alternates';
 	import '../app.css';
 
 	let { children } = $props();
+
+	// hreflang alternates linking this page to its cropwatch.co.jp (ja)
+	// counterpart. This is the .io (en) branch; the Japan-website branch calls
+	// alternatesFor('ja', ...) against the same map. Pages with no cross-site
+	// equivalent return null and emit nothing (keeping their self-canonical).
+	const alternates = $derived(alternatesFor('en', page.url.pathname));
 
 	// The root sectors splitter is a self-contained full-viewport funnel: the
 	// header collapses to a logo-only bar and the footer is dropped entirely.
@@ -51,6 +58,12 @@
 		initReveal();
 	});
 </script>
+
+<svelte:head>
+	{#each alternates ?? [] as alt (alt.hreflang)}
+		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+	{/each}
+</svelte:head>
 
 <Header {splash} />
 
