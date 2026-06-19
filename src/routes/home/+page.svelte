@@ -1,3 +1,37 @@
+<script lang="ts">
+	// Component-sourcing breakdown for the "trusted parts" section. Counts come
+	// from the BOM: 29 distinct parts placed 60 times, from 16 manufacturers
+	// across 7 countries. Colours are per-country chart hues (also used for the
+	// donut ring, the legend dot and each bar).
+	const sourcing = [
+		{ code: 'us', name: 'United States', parts: 9, pct: 31, mfrs: 7, color: '#14b8a6' },
+		{ code: 'jp', name: 'Japan', parts: 7, pct: 24, mfrs: 2, color: '#3b82f6' },
+		{ code: 'tw', name: 'Taiwan', parts: 7, pct: 24, mfrs: 2, color: '#f59e0b' },
+		{ code: 'ch', name: 'Switzerland', parts: 2, pct: 7, mfrs: 2, color: '#22c55e' },
+		{ code: 'ie', name: 'Ireland', parts: 2, pct: 7, mfrs: 1, color: '#a855f7' },
+		{ code: 'kr', name: 'South Korea', parts: 1, pct: 3, mfrs: 1, color: '#f87171' },
+		{ code: 'de', name: 'Germany', parts: 1, pct: 3, mfrs: 1, color: '#94a3b8' }
+	];
+
+	const sourcingStats = [
+		{ value: '29', label: 'Distinct parts' },
+		{ value: '7', label: 'Countries' },
+		{ value: '16', label: 'Manufacturers' },
+		{ value: '60', label: 'Total placements' }
+	];
+
+	// Build the donut ring from the part counts (which sum to exactly 29 -> 100%)
+	// rather than the rounded percentages, so there's no thin gap at the end.
+	const partsTotal = sourcing.reduce((sum, c) => sum + c.parts, 0);
+	let acc = 0;
+	const donutStops = sourcing.map((c) => {
+		const start = acc;
+		acc += (c.parts / partsTotal) * 100;
+		return `${c.color} ${start.toFixed(2)}% ${acc.toFixed(2)}%`;
+	});
+	const donutBg = `conic-gradient(${donutStops.join(', ')})`;
+</script>
+
 <svelte:head>
 	<title
 		>CropWatch - Wireless temperature &amp; environmental monitoring for cold storage, restaurants,
@@ -25,17 +59,15 @@
 	<div class="wrap hero__grid">
 		<div class="hero__copy">
 			<p class="eyebrow">Environmental monitoring, proven</p>
-			<h1>Know every freezer, field and barn is in range - without walking the floor.</h1>
+			<h1>Why choose CropWatch? There are many options, but only one you can trust.</h1>
 			<p class="lead">
-				CropWatch puts rugged wireless sensors in your coolers, kitchens, greenhouses and poultry
-				houses, then turns every reading into audit-ready proof. No clipboards. No 2&nbsp;a.m.
-				surprises. No bad data.
+				CropWatch is built from the ground up to give you confidence at every step - from the sensor that has been engineered to be provably accurate, to our backend infrastructure that data moves through, to the software you use to access it. We designed the whole stack to be something you can trust - so you can spend less time worrying about your monitoring and more time running your business.
 			</p>
 			<ul class="proof">
-				<li><span class="material-symbols-rounded">check</span> <span>Pass your next health or HACCP audit</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Catch a failing cooler <u>before</u> product is lost</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Swap a sensor yourself in 60 seconds</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Trust the reading - or the system fails safe</span></li>
+				<li><span class="material-symbols-rounded">check</span> <span>Devices that ensure you get correct data, or none at all</span></li>
+				<li><span class="material-symbols-rounded">check</span> <span>Networking that ensure data arrives even when your internet fails you</span></li>
+				<li><span class="material-symbols-rounded">check</span> <span>An infrastructure that assumes the worst will happen, and is ready to handle it.</span></li>
+				<li><span class="material-symbols-rounded">check</span> <span>Real humans that care about the outcomes as much as you do</span></li>
 			</ul>
 			<div class="hero__ctas">
 				<a href="/contact" class="cta-pill cta-pill--lg"><span>Book a demo</span> <span class="material-symbols-rounded">arrow_forward</span></a>
@@ -76,7 +108,7 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">Why CropWatch</p>
-			<h2>Four reasons buyers in the U.S. switch to CropWatch.</h2>
+			<h2>Four reasons companies large and small switch to CropWatch</h2>
 			<p class="section__intro">
 				Most monitoring systems make you trust a single sensor, lock you into a technician for every
 				swap, and quietly log numbers that may be wrong. We built ours the opposite way.
@@ -85,7 +117,7 @@
 		<div class="why4">
 			<article class="why-card" data-reveal>
 				<span class="why-card__ic"><span class="material-symbols-rounded">cached</span></span>
-				<h3>User-replaceable sensors</h3>
+				<h3>User-replaceable sensors & batteries</h3>
 				<p>Pop the cap, swap the calibrated module, re-pair. No truck roll, no service contract, no downtime - anyone on your team can do it in under a minute.</p>
 			</article>
 			<article class="why-card" data-reveal="1">
@@ -107,181 +139,131 @@
 	</div>
 </section>
 
+<!-- ░░ Trusted parts / global sourcing ░░ -->
+<section class="section section--tint">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow">Where our parts come from</p>
+			<h2>Our trusted device is built with trusted parts from trusted places.</h2>
+			<p class="section__intro">
+				Every CropWatch device is assembled from components we hand-pick for reliability - sourced
+				from established manufacturers across seven countries, so quality is never left to chance.
+			</p>
+		</div>
+
+		<div class="src-stats" data-reveal>
+			{#each sourcingStats as s (s.label)}
+				<div class="src-stat">
+					<strong>{s.value}</strong>
+					<span>{s.label}</span>
+				</div>
+			{/each}
+		</div>
+
+		<div class="src-grid" data-reveal>
+			<div class="src-donut__wrap">
+				<div
+					class="src-donut"
+					style="background:{donutBg}"
+					role="img"
+					aria-label="Component count by country of origin"
+				>
+					<div class="src-donut__hole">
+						<strong>{partsTotal}</strong>
+						<span>Parts</span>
+					</div>
+				</div>
+			</div>
+
+			<ul class="src-list">
+				{#each sourcing as c (c.code)}
+					<li class="src-row">
+						<span class="src-row__dot" style="background:{c.color}"></span>
+						<img
+							class="src-row__flag"
+							src="/assets/flags/{c.code}.svg"
+							alt=""
+							width="22"
+							height="16"
+							loading="lazy"
+						/>
+						<span class="src-row__name">{c.name}</span>
+						<span class="src-row__bar"
+							><span style="width:{c.pct}%;background:{c.color}"></span></span
+						>
+						<span class="src-row__meta"
+							><b>{c.parts}</b> · {c.pct}% · {c.mfrs} mfr{c.mfrs > 1 ? 's' : ''}</span
+						>
+					</li>
+				{/each}
+			</ul>
+		</div>
+	</div>
+</section>
+
 <!-- ░░ Dashboard mockup ░░ -->
 <section class="section section--navy section--tight">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">One dashboard, every location</p>
-			<h2>See every reading the moment it lands.</h2>
+			<p class="eyebrow">Simple by design</p>
+			<h2>All your locations, grouped and glanceable.</h2>
 			<p class="section__intro">
-				Live status, history, and alerts for every sensor across every site - on the web, your
-				phone, or pulled straight into a spreadsheet.
+				Sensors organize themselves by site and zone, color-coded so anything that needs
+				attention jumps out and everything else fades into the background - the same clean
+				view on the desktop on your wall and the phone in your pocket. Your team spends its
+				day on the work that matters, not on chasing temperatures.
 			</p>
 		</div>
-		<div class="dashwrap" data-reveal>
-			<div class="dashbar"><i></i><i></i><i></i><span class="url">app.cropwatch.io/locations</span></div>
-			<div class="dash">
-				<div class="dash__top">
-					<h4>Riverside Foods - All locations</h4>
-					<span class="dash__count">18 sensors</span>
-					<span class="dash__spacer"></span>
-					<span class="dash__pill ok"><span class="material-symbols-rounded">check_circle</span> 16 in range</span>
-					<span class="dash__pill warn"><span class="material-symbols-rounded">error</span> 1 alert · 1 fault</span>
+
+		<div class="ui-devices" data-reveal>
+			<figure class="ui-device ui-device--desktop">
+				<div class="ui-device__frame ui-device__frame--window">
+					<img
+						src="/assets/screenshots/app-desktop.webp"
+						alt="CropWatch desktop dashboard with sensors grouped into zones, each showing live temperature and humidity"
+						width="1600"
+						height="844"
+						loading="lazy"
+					/>
 				</div>
-				<div class="dash__grid">
-					<div class="dcards">
-						<div class="dcard ok">
-							<div class="dcard__h"><b class="dcard__lab">Walk-in Cooler A</b></div>
-							<div class="dcard__stats">
-								<div><div class="dstat__v t">3.4<small> °C</small></div><div class="dstat__l">Temp</div></div>
-								<div><div class="dstat__v h">61<small> %</small></div><div class="dstat__l">Humidity</div></div>
-							</div>
-						</div>
-						<div class="dcard ok">
-							<div class="dcard__h"><b class="dcard__lab">Freezer B - Line 2</b></div>
-							<div class="dcard__stats">
-								<div><div class="dstat__v t">−18.6<small> °C</small></div><div class="dstat__l">Temp</div></div>
-								<div><div class="dstat__v h">42<small> %</small></div><div class="dstat__l">Humidity</div></div>
-							</div>
-						</div>
-						<div class="dcard warn">
-							<div class="dcard__h"><b class="dcard__lab">Prep Cooler C</b></div>
-							<div class="dcard__stats">
-								<div><div class="dstat__v t">7.9<small> °C</small></div><div class="dstat__l">Temp · high</div></div>
-								<div><div class="dstat__v h">58<small> %</small></div><div class="dstat__l">Humidity</div></div>
-							</div>
-						</div>
-						<div class="dcard bad">
-							<div class="dcard__h"><b class="dcard__lab">Receiving Dock D</b></div>
-							<div class="dcard__err"><span class="material-symbols-rounded">gpp_maybe</span> Sensor mismatch - reading withheld</div>
-						</div>
-					</div>
-					<div class="dpanel">
-						<h5>Walk-in Cooler A - 24 h</h5>
-						<span class="sub">Temperature · °C · safe band 0-5 °C</span>
-						<svg class="chart" viewBox="0 0 320 116" preserveAspectRatio="none" aria-hidden="true">
-							<defs>
-								<linearGradient id="ga" x1="0" y1="0" x2="0" y2="1">
-									<stop offset="0" stop-color="#00d4aa" stop-opacity="0.35" />
-									<stop offset="1" stop-color="#00d4aa" stop-opacity="0" />
-								</linearGradient>
-							</defs>
-							<rect x="0" y="40" width="320" height="40" fill="#10b981" opacity="0.10" />
-							<line x1="0" y1="40" x2="320" y2="40" stroke="#3a4861" stroke-width="1" stroke-dasharray="3 4" />
-							<line x1="0" y1="80" x2="320" y2="80" stroke="#3a4861" stroke-width="1" stroke-dasharray="3 4" />
-							<path d="M0,66 L40,62 L80,68 L120,58 L160,64 L200,55 L240,60 L280,57 L320,61 L320,116 L0,116 Z" fill="url(#ga)" />
-							<path d="M0,66 L40,62 L80,68 L120,58 L160,64 L200,55 L240,60 L280,57 L320,61" fill="none" stroke="#00d4aa" stroke-width="2.2" stroke-linejoin="round" />
-						</svg>
-						<div class="alerts">
-							<div class="alert g"><span class="material-symbols-rounded">check_circle</span><div><b>Freezer B back in range</b> <span>−18.6 °C</span></div><time>09:42</time></div>
-							<div class="alert a"><span class="material-symbols-rounded">warning</span><div><b>Prep Cooler C above 5 °C</b> <span>SMS + email sent</span></div><time>11:18</time></div>
-							<div class="alert r"><span class="material-symbols-rounded">gpp_maybe</span><div><b>Dock D sensor mismatch</b> <span>reading withheld</span></div><time>11:25</time></div>
-						</div>
-					</div>
+				<figcaption>
+					<span class="material-symbols-rounded">desktop_windows</span> PC &amp; web dashboard
+				</figcaption>
+			</figure>
+			<figure class="ui-device ui-device--phone">
+				<div class="ui-device__frame">
+					<img
+						src="/assets/screenshots/app-mobile.webp"
+						alt="CropWatch Android home-screen widget showing online, offline and alert counts above sensors grouped by location"
+						width="480"
+						height="1005"
+						loading="lazy"
+					/>
 				</div>
-			</div>
+				<figcaption>
+					<span class="material-symbols-rounded">phone_android</span> Android widget
+				</figcaption>
+			</figure>
 		</div>
-		<p style="text-align:center;margin-top:22px" data-reveal>
+
+		<ul class="ui-points" data-reveal>
+			<li>
+				<span class="material-symbols-rounded">location_on</span>
+				<div><b>Grouped by location</b><span>Sensors roll up by site and zone - you read "Storage Room B", never a wall of device IDs.</span></div>
+			</li>
+			<li>
+				<span class="material-symbols-rounded">visibility</span>
+				<div><b>Glanceable status</b><span>Online, offline and alerts sit up top; green-to-red cards show what needs you in a single glance.</span></div>
+			</li>
+			<li>
+				<span class="material-symbols-rounded">devices</span>
+				<div><b>Same view everywhere</b><span>Desktop, phone widget or a quick search - one simple interface, nothing to learn.</span></div>
+			</li>
+		</ul>
+
+		<p style="text-align:center;margin-top:36px" data-reveal>
 			<a href="/contact" class="cta-pill cta-pill--lg">See it on your own coolers <span class="material-symbols-rounded">arrow_forward</span></a>
 		</p>
-	</div>
-</section>
-
-<!-- ░░ Differentiators expanded ░░ -->
-<section class="section section--tint">
-	<div class="wrap">
-		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent">How it's built differently</p>
-			<h2>The details that keep you out of trouble.</h2>
-		</div>
-
-		<!-- 1 replaceable -->
-		<div class="diff-row" data-reveal>
-			<div class="diff-row__copy">
-				<p class="eyebrow">01 · Field-serviceable</p>
-				<h3>Swap a sensor yourself - in under a minute.</h3>
-				<p>When a calibrated module reaches end of life, you don't book a technician or ship the unit back. You unclip the old module and snap in a new pre-calibrated one.</p>
-				<ul class="diff-list">
-					<li><span class="material-symbols-rounded">check</span> Pre-calibrated replacement modules - no recalibration on site</li>
-					<li><span class="material-symbols-rounded">check</span> Tool-free cap; the gateway re-pairs automatically</li>
-					<li><span class="material-symbols-rounded">check</span> Zero downtime, zero truck rolls, zero service contracts</li>
-				</ul>
-				<p style="margin-top:18px"><a href="/replacement-sensors" class="cta-ghost">Replacement sensors <span class="material-symbols-rounded">arrow_forward</span></a></p>
-			</div>
-			<div class="diff-row__media"><div class="diff-art">
-				<div class="schem">
-					<div class="schem__tile"><span class="material-symbols-rounded">lock_open</span><div><b>1 · Unclip the cap</b><span>tool-free</span></div></div>
-					<div class="schem__tile"><span class="material-symbols-rounded">cached</span><div><b>2 · Swap the module</b><span>pre-calibrated</span></div></div>
-					<div class="schem__tile schem__tile--ok"><span class="material-symbols-rounded">cell_tower</span><div><b>3 · Auto re-pairs</b><span>back online &lt; 60 s</span></div></div>
-				</div>
-			</div></div>
-		</div>
-
-		<!-- 2 iso -->
-		<div class="diff-row" data-reveal>
-			<div class="diff-row__copy">
-				<p class="eyebrow">02 · Provable accuracy</p>
-				<h3>A certificate for every serial number.</h3>
-				<p>Each sensor is calibrated in an ISO/IEC 17025 accredited process and ships with its own NIST-traceable certificate - downloadable any time, matched to the exact device on your wall.</p>
-				<ul class="diff-list">
-					<li><span class="material-symbols-rounded">check</span> Per-serial-number certificates, not a generic batch sheet</li>
-					<li><span class="material-symbols-rounded">check</span> ±0.3 °C accuracy, traceable to national standards</li>
-					<li><span class="material-symbols-rounded">check</span> Download the PDF straight from the dashboard for an auditor</li>
-				</ul>
-			</div>
-			<div class="diff-row__media"><div class="diff-art">
-				<div class="schem" style="max-width:340px">
-					<div class="schem__tile" style="flex-direction:column;align-items:stretch;gap:10px">
-						<div style="display:flex;align-items:center;gap:10px"><span class="material-symbols-rounded" style="color:var(--web-accent)">workspace_premium</span><b style="font-size:13px">Calibration Certificate</b></div>
-						<div style="font-family:var(--cw-font-mono);font-size:11.5px;color:var(--web-muted);line-height:1.7">
-							Model&nbsp;&nbsp;CW-AIR-TH<br />Serial&nbsp;&nbsp;CW-7F3A-29155<br />Std&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ISO/IEC 17025<br />Accuracy ±0.3 °C / ±2 %RH<br />Trace&nbsp;&nbsp;&nbsp;NIST
-						</div>
-						<span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--web-accent)"><span class="material-symbols-rounded" style="font-size:17px">download</span> Download PDF</span>
-					</div>
-				</div>
-			</div></div>
-		</div>
-
-		<!-- 3 dual -->
-		<div class="diff-row" data-reveal>
-			<div class="diff-row__copy">
-				<p class="eyebrow">03 · Fail-safe by design</p>
-				<h3>Two sensors. One verified truth.</h3>
-				<p>Every device carries two independent sensing elements that cross-check each other on every reading. Agree, and the reading is published. Disagree, and the device fails safe - flagging a fault instead of writing a number you can't trust.</p>
-				<ul class="diff-list">
-					<li><span class="material-symbols-rounded">check</span> Dual-element cross-validation on every sample</li>
-					<li><span class="material-symbols-rounded">check</span> A drifting element is caught before it pollutes your log</li>
-					<li><span class="material-symbols-rounded">check</span> "No data" beats "wrong data" - every time</li>
-				</ul>
-			</div>
-			<div class="diff-row__media"><div class="diff-art">
-				<div class="schem">
-					<div class="schem__tile schem__tile--ok"><span class="material-symbols-rounded">check_circle</span><div><b>Sensor A 3.4 °C · Sensor B 3.5 °C</b><span>agree → published</span></div></div>
-					<div class="schem__tile schem__tile--bad"><span class="material-symbols-rounded">gpp_maybe</span><div><b>Sensor A 3.4 °C · Sensor B 6.1 °C</b><span>mismatch → reading withheld</span></div></div>
-				</div>
-			</div></div>
-		</div>
-
-		<!-- 4 self-audit -->
-		<div class="diff-row" data-reveal>
-			<div class="diff-row__copy">
-				<p class="eyebrow">04 · Always honest</p>
-				<h3>Hardware that audits itself.</h3>
-				<p>The device runs continuous self-checks on its electronics and power, correcting for known drift and raising a fault the moment anything falls out of spec - so the only readings you ever see are ones the device stands behind.</p>
-				<ul class="diff-list">
-					<li><span class="material-symbols-rounded">check</span> Continuous self-diagnostics and drift correction</li>
-					<li><span class="material-symbols-rounded">check</span> Battery, link and sensor health reported up front</li>
-					<li><span class="material-symbols-rounded">check</span> Faults surface as alerts - never hidden in the data</li>
-				</ul>
-			</div>
-			<div class="diff-row__media"><div class="diff-art">
-				<div class="schem">
-					<div class="schem__tile"><span class="material-symbols-rounded">memory</span><div><b>Self-check loop</b><span>electronics · power · clock</span></div></div>
-					<div class="schem__tile schem__tile--ok"><span class="material-symbols-rounded">tune</span><div><b>Auto-corrects known drift</b><span>stays in spec</span></div></div>
-					<div class="schem__tile schem__tile--ok"><span class="material-symbols-rounded">charger</span><div><b>Health reported</b><span>10-yr battery · RSSI</span></div></div>
-				</div>
-			</div></div>
-		</div>
 	</div>
 </section>
 
@@ -290,7 +272,7 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">No surprise invoices</p>
-			<h2>The software is included. All of it.</h2>
+			<h2>The software is included, We don't hide fees</h2>
 			<p class="section__intro">Most platforms charge per seat, per rule, or per export. We don't. Buy the sensors once and the entire platform comes with them.</p>
 		</div>
 		<div class="vs" data-reveal>
@@ -319,33 +301,8 @@
 		<div class="incl">
 			<div class="incl-card" data-reveal><span class="material-symbols-rounded">group</span><b>Unlimited users</b><span>Whole team + auditors</span><span class="free">No per-seat fees</span></div>
 			<div class="incl-card" data-reveal="1"><span class="material-symbols-rounded">notifications_active</span><b>Unlimited rules</b><span>SMS · email · webhook</span><span class="free">Included</span></div>
-			<div class="incl-card" data-reveal="2"><span class="material-symbols-rounded">api</span><b>Full API</b><span>api.cropwatch.io</span><span class="free">Included</span></div>
+			<div class="incl-card" data-reveal="2"><span class="material-symbols-rounded">api</span><b>Full API & MCP Access</b><span><a href="https://api.cropwatch.io">api.cropwatch.io</a></span><span class="free">Included</span></div>
 			<div class="incl-card" data-reveal="3"><span class="material-symbols-rounded">summarize</span><b>Unlimited reports</b><span>Scheduled &amp; PDF</span><span class="free">Included</span></div>
-		</div>
-	</div>
-</section>
-
-<!-- ░░ Industries (SEO) ░░ -->
-<section class="section section--tint scroll-pad" id="industries">
-	<div class="wrap">
-		<div class="section__head" data-reveal>
-			<p class="eyebrow">Where CropWatch works</p>
-			<h2>One platform for everything that has to stay in range.</h2>
-			<p class="section__intro">From a hospital pharmacy fridge to an open field, the same rugged devices and the same dashboard cover it.</p>
-		</div>
-		<div class="industries">
-			<a class="ind-chip" href="/cold-chain" data-reveal><span class="material-symbols-rounded">restaurant</span><span><b>Restaurants</b><span>Coolers, freezers, prep lines</span></span></a>
-			<a class="ind-chip" href="/cold-chain" data-reveal><span class="material-symbols-rounded">hotel</span><span><b>Hotels &amp; hospitality</b><span>Kitchens, banquet, bars</span></span></a>
-			<a class="ind-chip" href="/cold-chain" data-reveal><span class="material-symbols-rounded">school</span><span><b>Schools &amp; universities</b><span>Cafeterias, labs, dining</span></span></a>
-			<a class="ind-chip" href="/cold-chain" data-reveal><span class="material-symbols-rounded">local_hospital</span><span><b>Hospitals &amp; pharma</b><span>Vaccine &amp; medication fridges</span></span></a>
-			<a class="ind-chip" href="/cold-chain" data-reveal><span class="material-symbols-rounded">warehouse</span><span><b>Cold storage &amp; warehousing</b><span>Walk-ins, blast freezers</span></span></a>
-			<a class="ind-chip" href="/cold-chain" data-reveal><span class="material-symbols-rounded">grocery</span><span><b>Grocery &amp; food retail</b><span>Display cases, back-of-house</span></span></a>
-			<a class="ind-chip" href="/agriculture" data-reveal><span class="material-symbols-rounded">agriculture</span><span><b>Farming &amp; agriculture</b><span>Field, soil &amp; canopy</span></span></a>
-			<a class="ind-chip" href="/agriculture" data-reveal><span class="material-symbols-rounded">eco</span><span><b>Greenhouses</b><span>Climate &amp; humidity</span></span></a>
-			<a class="ind-chip" href="/livestock" data-reveal><span class="material-symbols-rounded">egg</span><span><b>Poultry</b><span>Broiler &amp; layer houses</span></span></a>
-			<a class="ind-chip" href="/livestock" data-reveal><span class="material-symbols-rounded">pets</span><span><b>Livestock &amp; dairy</b><span>Barn &amp; shed climate</span></span></a>
-			<a class="ind-chip" href="/cold-chain" data-reveal><span class="material-symbols-rounded">factory</span><span><b>Food manufacturing</b><span>Process &amp; storage</span></span></a>
-			<a class="ind-chip" href="/cold-chain" data-reveal><span class="material-symbols-rounded">local_shipping</span><span><b>Distribution &amp; logistics</b><span>Docks &amp; reefers</span></span></a>
 		</div>
 	</div>
 </section>
@@ -353,7 +310,7 @@
 <!-- ░░ Proof band ░░ -->
 <section class="proofband">
 	<div class="wrap proofband__grid">
-		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr</p><p class="stat__body">User-replaceable cells. No wiring, no gateways to babysit.</p></div>
+		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr+</p><p class="stat__body">User-replaceable cells. No wiring, no gateways to babysit.</p></div>
 		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.8 °F</p><p class="stat__body">NIST-traceable, ISO/IEC 17025 calibrated - defensible in an audit.</p></div>
 		<div class="stat" data-reveal="2"><p class="stat__eyebrow">Range</p><p class="stat__value stat__value--accent">5 miles</p><p class="stat__body">LoRaWAN coverage from a single gateway across a whole site.</p></div>
 		<div class="stat" data-reveal="3"><p class="stat__eyebrow">Bad readings logged</p><p class="stat__value">0</p><p class="stat__body">Dual-sensor verification means wrong data never reaches your records.</p></div>
@@ -372,3 +329,263 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	/* ── Trusted parts / global sourcing ─────────────────────────────────────
+	   Built on the design-system tokens (--web-* / --cw-*) so it matches the
+	   marketing theme. Data + donut ring are computed in the script above. */
+	.src-stats {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 16px;
+		margin-top: 8px;
+	}
+	.src-stat {
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: var(--cw-radius-2xl);
+		padding: 20px 22px;
+		box-shadow: var(--web-shadow-card);
+	}
+	.src-stat strong {
+		display: block;
+		font-size: var(--cw-text-4xl);
+		font-weight: 700;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		color: var(--web-heading);
+	}
+	.src-stat span {
+		display: block;
+		margin-top: 8px;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--web-muted);
+	}
+
+	.src-grid {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		gap: 48px;
+		margin-top: 24px;
+		padding: 32px;
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: var(--web-radius-card);
+		box-shadow: var(--web-shadow-card);
+	}
+	.src-donut__wrap {
+		display: flex;
+		justify-content: center;
+	}
+	.src-donut {
+		position: relative;
+		width: 220px;
+		height: 220px;
+		border-radius: 50%;
+	}
+	.src-donut__hole {
+		position: absolute;
+		inset: 22%;
+		border-radius: 50%;
+		background: var(--web-surface);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.src-donut__hole strong {
+		font-size: var(--cw-text-3xl);
+		font-weight: 700;
+		line-height: 1;
+		color: var(--web-heading);
+	}
+	.src-donut__hole span {
+		margin-top: 4px;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--web-muted);
+	}
+
+	.src-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+	.src-row {
+		display: grid;
+		grid-template-columns: 10px 22px minmax(110px, 160px) 1fr auto;
+		align-items: center;
+		gap: 10px;
+	}
+	.src-row__dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+	}
+	.src-row__flag {
+		width: 22px;
+		height: 16px;
+		border-radius: 3px;
+		object-fit: cover;
+		box-shadow: 0 0 0 1px rgba(8, 16, 34, 0.12);
+		display: block;
+	}
+	.src-row__name {
+		font-size: 15px;
+		font-weight: 700;
+		color: var(--web-heading);
+		white-space: nowrap;
+	}
+	.src-row__bar {
+		height: 8px;
+		border-radius: 9999px;
+		background: var(--web-bg-soft);
+		overflow: hidden;
+	}
+	.src-row__bar span {
+		display: block;
+		height: 100%;
+		border-radius: 9999px;
+	}
+	.src-row__meta {
+		font-size: 13px;
+		color: var(--web-muted);
+		white-space: nowrap;
+	}
+	.src-row__meta b {
+		font-weight: 700;
+		color: var(--web-heading);
+	}
+
+	@media (max-width: 980px) {
+		.src-stats {
+			grid-template-columns: 1fr 1fr;
+		}
+		.src-grid {
+			grid-template-columns: 1fr;
+			gap: 28px;
+			padding: 24px;
+		}
+	}
+	@media (max-width: 560px) {
+		.src-row {
+			grid-template-columns: 10px 22px 1fr auto;
+		}
+		.src-row__bar {
+			display: none;
+		}
+	}
+
+	/* ── App UI showcase (navy section) ──────────────────────────────────────
+	   Each device sits in its own column - no overlap - bottom-aligned on a shared
+	   shelf with a labelled caption. flex-wrap + per-device flex-basis means a
+	   third device (e.g. an iPad/tablet figure) can be dropped in later. */
+	.ui-devices {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: center;
+		gap: 28px 40px;
+		max-width: 1000px;
+		margin: 40px auto 0;
+	}
+	.ui-device {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.ui-device--desktop {
+		flex: 1 1 460px;
+		max-width: 640px;
+	}
+	.ui-device--phone {
+		flex: 0 1 188px;
+	}
+	.ui-device__frame img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	/* The desktop screenshot gets a window frame; the phone already has its own
+	   bezel, so it just floats with a drop-shadow. */
+	.ui-device__frame--window {
+		border-radius: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.85);
+		overflow: hidden;
+	}
+	.ui-device--phone .ui-device__frame img {
+		filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.55));
+	}
+	.ui-device figcaption {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		margin-top: 18px;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		color: var(--web-on-ink-muted);
+	}
+	.ui-device figcaption .material-symbols-rounded {
+		font-size: 18px;
+		color: var(--cw-emerald-300, #6ee7b7);
+	}
+
+	.ui-points {
+		list-style: none;
+		margin: 76px auto 0;
+		padding: 0;
+		max-width: 1000px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 26px;
+	}
+	.ui-points li {
+		display: flex;
+		gap: 12px;
+		align-items: flex-start;
+	}
+	.ui-points li > .material-symbols-rounded {
+		flex: none;
+		font-size: 24px;
+		color: var(--cw-emerald-300, #6ee7b7);
+	}
+	.ui-points b {
+		display: block;
+		margin-bottom: 3px;
+		font-size: 15px;
+		color: #fff;
+	}
+	.ui-points span {
+		display: block;
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--web-on-ink-muted);
+	}
+
+	@media (max-width: 860px) {
+		/* Devices wrap to their own rows; keep them centered and comfortably sized. */
+		.ui-device--desktop {
+			flex-basis: 100%;
+		}
+		.ui-device--phone {
+			flex-basis: 200px;
+		}
+		.ui-points {
+			grid-template-columns: 1fr;
+			gap: 18px;
+			margin-top: 44px;
+		}
+	}
+</style>
