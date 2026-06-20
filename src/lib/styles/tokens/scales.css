@@ -23,7 +23,7 @@
 	/* Latin renders in Inter; Japanese glyphs fall through (per-glyph) to the
 	   Japanese default - BIZ UDPGothic (Morisawa BIZ UD Gothic, proportional,
 	   self-hosted & complete) - then Yu Gothic, then Hiragino / Noto Sans JP. */
-	--cw-font-family: 'Inter', 'BIZ UDPGothic', 'Yu Gothic', YuGothic,
+	--cw-font-family: 'Inter', 'Inter Fallback', 'BIZ UDPGothic', 'Yu Gothic', YuGothic,
 		'游ゴシック', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
 	/* Japanese-only stack (use when an element is known to hold JP text) */
 	--cw-font-jp: 'BIZ UDPGothic', 'Yu Gothic', YuGothic, '游ゴシック',

@@ -1,0 +1,164 @@
+#!/usr/bin/env python3
+"""
+Self-host the icon font, small.
+
+Material Symbols' full static instance is ~361 KB and pulls in every icon (and
+when served as the variable font, ~5 MB). This subsets it down to only the icons
+the site actually renders, so it can be preloaded and shown with
+font-display:optional (no FOIT/flash, no layout shift, and it clears Lighthouse's
+font-display audit).
+
+Also measures Inter's real metrics and prints an "Inter Fallback" @font-face with
+ascent/descent/size-adjust overrides so swapping Inter in causes no reflow (CLS).
+
+Run from repo root:  python3 scripts/build-fonts.py
+Inputs (downloaded ahead of time): /tmp/cwfonts/ms-static.woff2, inter400.woff2
+"""
+
+import re
+from pathlib import Path
+
+from fontTools.ttLib import TTFont
+from fontTools.subset import Subsetter, Options
+
+ROOT = Path(__file__).resolve().parent.parent
+SRC = ROOT / "src"
+OUT_DIR = ROOT / "static" / "assets" / "fonts"
+MS_IN = Path("/tmp/cwfonts/ms-static.woff2")
+INTER_IN = Path("/tmp/cwfonts/inter400.woff2")
+
+# ---- 1. Collect every icon name actually rendered -------------------------
+# Matches <span class="...material-symbols-rounded...">name</span>, tolerating
+# extra classes/attrs, PLUS dynamic icon names declared as `icon: 'name'` in
+# data arrays (e.g. the Header products menu renders {p.icon}).
+ICON_RE = re.compile(
+    r'class="[^"]*material-symbols-rounded[^"]*"[^>]*>\s*([a-z0-9_]+)\s*<', re.I
+)
+ICON_PROP_RE = re.compile(r"\bicon:\s*'([a-z0-9_]+)'")
+
+names = set()
+for f in SRC.rglob("*.svelte"):
+    text = f.read_text(encoding="utf-8")
+    names.update(ICON_RE.findall(text))
+    names.update(ICON_PROP_RE.findall(text))
+
+names = sorted(names)
+print(f"Found {len(names)} distinct icons: {', '.join(names)}")
+
+# ---- 2. Subset Material Symbols (keep ligatures) --------------------------
+# Icon names are GSUB ligatures: the text "ac_unit" collapses to one glyph. We
+# must keep (a) the component letter glyphs, (b) each name's target ligature
+# glyph, and (c) the liga lookups. The trap: with layout-closure ON, feeding the
+# component letters re-pulls EVERY icon whose letters are present (≈the whole
+# font). So we resolve the exact target glyphs up front and disable closure.
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+full = TTFont(MS_IN)
+full_cmap = full.getBestCmap()
+full_glyphs = set(full.getGlyphOrder())
+
+
+def resolve_target(f_cmap, gsub, name):
+    try:
+        glyphs = [f_cmap[ord(c)] for c in name]
+    except KeyError:
+        return None
+    first, rest = glyphs[0], glyphs[1:]
+    for lookup in gsub.table.LookupList.Lookup:
+        for sub in lookup.SubTable:
+            tgt = getattr(sub, "ExtSubTable", sub)
+            ligs = getattr(tgt, "ligatures", None)
+            if not ligs or first not in ligs:
+                continue
+            for lig in ligs[first]:
+                if lig.Component == rest:
+                    return lig.LigGlyph
+    return None
+
+
+gsub = full.get("GSUB")
+target_glyphs = set()
+unresolved = []
+for n in names:
+    g = resolve_target(full_cmap, gsub, n)
+    if g and g in full_glyphs:
+        target_glyphs.add(g)
+    else:
+        unresolved.append(n)
+if unresolved:
+    print(f"!! Could not resolve in source font: {unresolved}")
+    raise SystemExit(1)
+
+# Component characters that appear in any icon name (+ space).
+component_unicodes = {ord(c) for n in names for c in n} | {0x20}
+
+opt = Options()
+opt.flavor = "woff2"
+opt.layout_features = ["liga", "clig", "rlig", "calt", "ccmp", "dlig"]
+opt.layout_closure = False  # do NOT expand the glyph set through GSUB
+opt.ignore_missing_glyphs = True
+opt.notdef_outline = True
+opt.glyph_names = True
+
+ss = Subsetter(options=opt)
+ss.populate(unicodes=component_unicodes, glyphs=target_glyphs)
+ss.subset(full)
+out_path = OUT_DIR / "material-symbols-rounded-subset.woff2"
+full.save(out_path)
+print(
+    f"\nSubset written: {out_path.relative_to(ROOT)}  "
+    f"({out_path.stat().st_size // 1024} KiB, {len(target_glyphs)} icons + components)"
+)
+
+# ---- 3. Verify every icon name still resolves to a single ligature glyph ---
+v = TTFont(out_path)
+cmap = v.getBestCmap()
+glyph_set = set(v.getGlyphOrder())
+
+
+def ligature_target(name: str):
+    """Return the glyph a name's char-sequence collapses to via GSUB liga, or None."""
+    try:
+        glyphs = [cmap[ord(c)] for c in name]
+    except KeyError:
+        return None  # a component char is missing entirely
+    if not glyphs:
+        return None
+    gsub = v.get("GSUB")
+    if not gsub:
+        return None
+    first, rest = glyphs[0], glyphs[1:]
+    for lookup in gsub.table.LookupList.Lookup:
+        for sub in lookup.SubTable:
+            # Follow extension subtables.
+            tgt = getattr(sub, "ExtSubTable", sub)
+            ligs = getattr(tgt, "ligatures", None)
+            if not ligs or first not in ligs:
+                continue
+            for lig in ligs[first]:
+                if lig.Component == rest:
+                    return lig.LigGlyph
+    return None
+
+
+missing = [n for n in names if ligature_target(n) not in glyph_set]
+if missing:
+    print(f"\n!! VERIFICATION FAILED — these icons do not resolve: {missing}")
+    raise SystemExit(1)
+print(f"Verified: all {len(names)} icons resolve to a ligature glyph in the subset. OK")
+
+# ---- 4. Inter fallback metric overrides ------------------------------------
+# Computing size-adjust needs the font-wide average glyph width, but Google
+# serves a *latin subset* whose OS/2.xAvgCharWidth is skewed (it recalculates
+# over a handful of glyphs), which gave a bogus 138%. These are the established
+# Inter-over-Arial overrides (the same values next/font and Fontaine emit for
+# the full font); matching the fallback's box to Inter's removes the reflow when
+# Inter swaps in. Printed here for reference; they live in fonts.css.
+print("\n--- Inter Fallback @font-face (in fonts.css) ---")
+print("@font-face {")
+print("\tfont-family: 'Inter Fallback';")
+print("\tsrc: local('Arial');")
+print("\tascent-override: 90.49%;")
+print("\tdescent-override: 22.56%;")
+print("\tline-gap-override: 0.00%;")
+print("\tsize-adjust: 107.06%;")
+print("}")

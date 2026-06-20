@@ -8,14 +8,38 @@
    glyphs, if any, fall through to Noto Sans JP.
    ============================================================ */
 
-/* Font stylesheets are deliberately NOT @imported here. Buried this deep
-   (app.css -> design-system.css -> fonts.css -> Google) a remote @import
-   creates a serial request chain that blocks first paint. The Google Fonts
-   <link> tags live in src/app.html instead, where they are discovered
-   immediately and loaded without blocking render. Material Symbols is also
-   pinned there to a single static instance (~361 KB) instead of the full
-   ~5 MB variable font. The .material-symbols-rounded class below still styles
-   the icons; only the network fetch moved. */
+/* The Inter / JetBrains Mono stylesheets are NOT @imported here. Buried this
+   deep (app.css -> design-system.css -> fonts.css -> Google) a remote @import
+   creates a serial request chain that blocks first paint, so those <link> tags
+   live in src/app.html where they are discovered immediately. */
+
+/* Material Symbols is self-hosted as a SUBSET (only the icons this site renders,
+   ~11 KB vs the ~361 KB full static instance / ~5 MB variable font). It is
+   preloaded in app.html and shown with font-display:swap: tiny + preloaded means
+   it's ready by first paint, so there's no flash of ligature text or layout
+   shift, and Lighthouse's font-display audit is satisfied. Regenerate with
+   scripts/build-fonts.py whenever the set of icons used changes. */
+@font-face {
+	font-family: 'Material Symbols Rounded';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/assets/fonts/material-symbols-rounded-subset.woff2') format('woff2');
+}
+
+/* Metric-matched fallback for Inter (size-adjust + ascent/descent overrides,
+   the standard Inter-over-Arial values). While Inter is loading, text is laid
+   out in this box-identical fallback, so the swap to Inter causes no reflow
+   (kills the font-swap contribution to CLS). Sits right after Inter in the
+   stack (see --cw-font-family in scales.css). */
+@font-face {
+	font-family: 'Inter Fallback';
+	src: local('Arial');
+	ascent-override: 90.49%;
+	descent-override: 22.56%;
+	line-gap-override: 0%;
+	size-adjust: 107.06%;
+}
 
 .material-symbols-rounded {
 	font-family: 'Material Symbols Rounded';
