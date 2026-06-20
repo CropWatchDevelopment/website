@@ -23,10 +23,12 @@
 		const win = window as WindowWithGtag;
 		win.dataLayer = win.dataLayer || [];
 		if (!win.gtag) {
-			// Queue calls onto the data layer until gtag.js (loaded via the head
-			// <script>) takes over and processes them in order.
-			win.gtag = function gtag(...args: unknown[]) {
-				win.dataLayer!.push(args);
+			// gtag.js ONLY processes data-layer entries that are the live `arguments`
+			// object — a real array (rest params) is silently ignored, so events
+			// queue but never send. Push `arguments`, like the canonical snippet.
+			// eslint-disable-next-line prefer-rest-params
+			win.gtag = function gtag() {
+				win.dataLayer!.push(arguments);
 			};
 		}
 		return win.gtag ?? null;
