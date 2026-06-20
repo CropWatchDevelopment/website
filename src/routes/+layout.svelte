@@ -4,6 +4,7 @@
 	import { page } from '$app/state';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import Analytics from '$lib/components/Analytics.svelte';
 	import { alternatesFor } from '$lib/seo/alternates';
 	import '../app.css';
 
@@ -64,6 +65,8 @@
 		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 	{/each}
 </svelte:head>
+
+<Analytics />
 
 <Header {splash} />
 
