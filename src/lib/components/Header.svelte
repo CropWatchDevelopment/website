@@ -5,7 +5,6 @@
 	import Telephone from './Telephone.svelte';
 	import logo from '$lib/images/cropwatch_animated.svg';
 	import christmas_logo from '$lib/images/christmas_cropwatch.svg';
-
 	interface NavItem {
 		id: string;
 		label: string;
