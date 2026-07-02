@@ -1,0 +1,162 @@
+/* ============================================================
+   CropWatch Design System — Tokens (ported from claude.ai/design
+   "Japan Website" project: palette.css + scales.css + theme-web.css
+   + the Material Symbols base rule). Loaded globally in +layout.svelte.
+   The Japanese marketing surface runs on [data-theme="web"] (set on
+   <html> in app.html) over body.jp (see cropwatch-site.css).
+   ============================================================ */
+
+/* ── Raw palette ─────────────────────────────────────────── */
+:root {
+	/* Neutrals (slate / navy-tinted) */
+	--cw-gray-50: #f8fafc;
+	--cw-gray-100: #f1f5f9;
+	--cw-gray-200: #e2e8f0;
+	--cw-gray-300: #cbd5e1;
+	--cw-gray-400: #94a3b8;
+	--cw-gray-500: #64748b;
+	--cw-gray-600: #475569;
+	--cw-gray-700: #334155;
+	--cw-gray-800: #1e293b;
+	--cw-gray-850: #172033;
+	--cw-gray-900: #0f172b;
+	--cw-gray-950: #020618;
+
+	/* Danger (red) */
+	--cw-danger-500: #eb2f2f;
+	--cw-danger-600: #dd0f0f;
+
+	/* Success (emerald) */
+	--cw-success-500: #10b981;
+
+	/* Brand mark colors (the tree logo) */
+	--cw-bark: #b86b40;
+	--cw-leaf: #4eba3d;
+	--cw-green-standard: #006045;
+
+	/* Public website: Navy / Ice / Gold */
+	--cw-navy-950: #040814;
+	--cw-navy-900: #0a1a34;
+	--cw-navy-850: #0f1f3d;
+	--cw-navy-800: #11213c;
+	--cw-navy-700: #1f3b64;
+	--cw-navy-600: #2f5387;
+	--cw-ink: #0b1730; /* primary headline ink on light */
+	--cw-ice-100: #e7ecff;
+	--cw-ice-200: #cfd8ff;
+	--cw-ice-400: #9ab0d6;
+	--cw-gold-500: #f2a516;
+	--cw-gold-400: #ffbb34;
+
+	/* Public website: Sapphire (primary) */
+	--cw-sapphire-50: #eef4fc;
+	--cw-sapphire-100: #d8e6f8;
+	--cw-sapphire-200: #b4ccf0;
+	--cw-sapphire-300: #7da9e0;
+	--cw-sapphire-400: #4d82cb;
+	--cw-sapphire-500: #2c6cb7;
+	--cw-sapphire-600: #245a9c;
+	--cw-sapphire-700: #1d4f8e;
+	--cw-sapphire-800: #173d6e;
+	--cw-sapphire-900: #11213c;
+
+	/* Public website: Emerald (accent) */
+	--cw-emerald-50: #e9f9f1;
+	--cw-emerald-100: #c8efdc;
+	--cw-emerald-200: #93e0bd;
+	--cw-emerald-300: #57cd99;
+	--cw-emerald-400: #20b377;
+	--cw-emerald-500: #0e9960;
+	--cw-emerald-600: #0a7d4f;
+	--cw-emerald-700: #086241;
+	--cw-emerald-800: #064e35;
+	--cw-emerald-900: #04392a;
+}
+
+/* ── Scale tokens ────────────────────────────────────────── */
+:root {
+	--cw-font-family: 'Inter', 'BIZ UDPGothic', 'Yu Gothic', YuGothic, '游ゴシック',
+		'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+	--cw-font-jp: 'BIZ UDPGothic', 'Yu Gothic', YuGothic, '游ゴシック',
+		'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+	--cw-font-mono: 'JetBrains Mono', 'Fira Mono', 'Cascadia Code', monospace;
+
+	--cw-radius-sm: 0.25rem;
+	--cw-radius-md: 0.375rem;
+	--cw-radius-lg: 0.5rem;
+	--cw-radius-xl: 0.75rem;
+	--cw-radius-2xl: 1rem;
+	--cw-radius-3xl: 1.5rem;
+	--cw-radius-pill: 9999px;
+	--cw-radius-full: 9999px;
+
+	--cw-shadow-soft: 0 12px 30px -12px rgba(11, 23, 48, 0.18);
+
+	--cw-tracking-eyebrow: 0.22em;
+}
+
+/* ── Public website theme: Sapphire / Emerald ────────────── */
+[data-theme='web'] {
+	color-scheme: light;
+
+	--web-bg: #ffffff;
+	--web-bg-soft: #f5f8fc;
+	--web-bg-tint: #eef4fc;
+	--web-surface: #ffffff;
+	--web-surface-ink: var(--cw-ink);
+	--web-border: #d7e0f5;
+	--web-border-strong: #b4ccf0;
+
+	--web-text: #15284a;
+	--web-heading: var(--cw-ink);
+	--web-muted: #4a5d7e;
+	--web-on-ink: #e7ecff;
+	--web-on-ink-muted: rgba(231, 236, 255, 0.72);
+
+	--web-primary: var(--cw-sapphire-500);
+	--web-primary-hover: var(--cw-sapphire-600);
+	--web-primary-active: var(--cw-sapphire-700);
+	--web-primary-soft: var(--cw-sapphire-50);
+	--web-eyebrow: var(--cw-sapphire-600);
+
+	--web-accent: var(--cw-emerald-500);
+	--web-accent-hover: var(--cw-emerald-600);
+	--web-accent-active: var(--cw-emerald-700);
+	--web-accent-soft: var(--cw-emerald-50);
+	--web-accent-contrast: #ffffff;
+
+	--web-gold: var(--cw-gold-500);
+
+	--web-shadow-card: 0 12px 30px -14px rgba(11, 23, 48, 0.16);
+	--web-shadow-raised: 0 22px 48px -22px rgba(11, 23, 48, 0.28);
+	--web-radius-card: var(--cw-radius-3xl);
+	--web-radius-pill: var(--cw-radius-pill);
+
+	--web-hero-wash: radial-gradient(circle at 12% 0%, rgba(44, 108, 183, 0.1), transparent 55%),
+		radial-gradient(circle at 100% 20%, rgba(14, 153, 96, 0.08), transparent 50%);
+
+	background-color: var(--web-bg);
+	color: var(--web-text);
+}
+
+/* ── Material Symbols Rounded base rule (font loaded via <link> in app.html) ── */
+.material-symbols-rounded {
+	font-family: 'Material Symbols Rounded';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-rounded.fill {
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

@@ -1,47 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://cropwatch.io/</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/about</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/case-studies</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/contact</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/faq</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/products/cw-air-th</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/products/gateways</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/products/coming-soon</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/legal/terms-of-service</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/legal/privacy-policy</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
-    <loc>https://cropwatch.io/sitemap</loc>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-</urlset>
+https://cropwatch.co.jp/
+https://cropwatch.co.jp/sectors
+https://cropwatch.co.jp/cold-chain
+https://cropwatch.co.jp/agriculture
+https://cropwatch.co.jp/livestock
+https://cropwatch.co.jp/technology
+https://cropwatch.co.jp/replacement-sensors
+https://cropwatch.co.jp/replacement-case
+https://cropwatch.co.jp/testimonials
+https://cropwatch.co.jp/help
+https://cropwatch.co.jp/contact
+https://cropwatch.co.jp/legal/privacy-policy
+https://cropwatch.co.jp/legal/terms-of-service
+https://cropwatch.co.jp/legal/EULA

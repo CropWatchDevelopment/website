@@ -5,6 +5,9 @@
 @plugin '@tailwindcss/typography';
 /* stylelint-enable at-rule-no-unknown */
 
+/* Legacy navy palette kept for any remaining Tailwind-based pages
+   (legal/*). The marketing surface uses the design tokens in
+   $lib/styles/cropwatch-tokens.css instead. */
 :root {
 	--cw-blue-950: #040814;
 	--cw-blue-900: #0a1a34;
@@ -17,18 +20,6 @@
 	--cw-ice-400: #9ab0d6;
 	--cw-gold-500: #f2a516;
 	--cw-gold-400: #ffbb34;
-}
-
-body {
-	min-height: 100vh;
-	margin: 0;
-	background-attachment: fixed;
-	background-color: var(--cw-blue-900);
-	background-size: 120vw 120vh;
-	background-image:
-		radial-gradient(50% 50% at 50% 0%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 50%),
-		linear-gradient(180deg, var(--cw-blue-700) 0%, var(--cw-blue-850) 45%, var(--cw-blue-950) 100%);
-	color: var(--cw-ice-100);
 }
 
 .visually-hidden {

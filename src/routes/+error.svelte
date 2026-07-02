@@ -49,7 +49,7 @@
 					'Use the sitemap to navigate to the correct destination.'
 				],
 				primaryAction: { label: 'Go to homepage', href: '/' },
-				secondaryAction: { label: 'Open sitemap', href: '/sitemap' }
+				secondaryAction: { label: 'Open help', href: '/help' }
 			};
 		}
 
@@ -185,13 +185,13 @@
 			title: 'Knowledge base',
 			description: 'Troubleshooting guides and answers to common questions.',
 			icon: 'library_books',
-			cta: { label: 'Browse FAQ', href: '/faq' }
+			cta: { label: 'Open help', href: '/help' }
 		},
 		{
 			title: 'Sitemap',
 			description: 'A full list of available pages and resources.',
 			icon: 'map',
-			cta: { label: 'Open sitemap', href: '/sitemap' }
+			cta: { label: 'Open help', href: '/help' }
 		}
 	];
 

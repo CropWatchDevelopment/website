@@ -1,255 +1,252 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
-	import { onDestroy } from 'svelte';
+import { browser } from '$app/environment';
+import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
+import { onDestroy } from 'svelte';
 
-	type RecaptchaClient = {
-		ready: (cb: () => void) => void;
-		execute: (
-			siteKey: string,
-			config: {
-				action: string;
-			}
-		) => Promise<string>;
+let { form } = $props();
+
+type RecaptchaClient = {
+	ready: (cb: () => void) => void;
+	execute: (siteKey: string, config: { action: string }) => Promise<string>;
+};
+type RecaptchaWindow = Window & { grecaptcha?: RecaptchaClient };
+
+const getRecaptchaClient = () => (window as RecaptchaWindow).grecaptcha;
+
+const recaptchaSiteKey = PUBLIC_RECAPTCHA_SITE_KEY;
+const recaptchaRequired = Boolean(recaptchaSiteKey);
+const recaptchaAction = 'contact_form';
+type RecaptchaError = 'security_unavailable' | 'verification_failed' | null;
+let recaptchaReady = $state(!recaptchaRequired);
+let recaptchaBusy = $state(false);
+let recaptchaError = $state<RecaptchaError>(null);
+let recaptchaWatchTimer: ReturnType<typeof setTimeout> | null = null;
+
+if (browser && recaptchaRequired) {
+	const watchForRecaptcha = () => {
+		const recaptcha = getRecaptchaClient();
+		if (recaptcha) {
+			recaptcha.ready(() => {
+				recaptchaReady = true;
+			});
+		} else {
+			recaptchaWatchTimer = setTimeout(watchForRecaptcha, 250);
+		}
 	};
+	watchForRecaptcha();
+}
 
-	type RecaptchaWindow = Window & {
-		grecaptcha?: RecaptchaClient;
-	};
+const handleSubmit = async (event: SubmitEvent) => {
+	const target = event.currentTarget as HTMLFormElement | null;
+	if (!target) return;
 
-	const getRecaptchaClient = () => (window as RecaptchaWindow).grecaptcha;
-
-	const recaptchaSiteKey = PUBLIC_RECAPTCHA_SITE_KEY;
-	const recaptchaRequired = Boolean(recaptchaSiteKey);
-	const recaptchaAction = 'contact_form';
-	type RecaptchaError = 'security_unavailable' | 'verification_failed' | null;
-	let recaptchaReady = $state(!recaptchaRequired);
-	let recaptchaBusy = $state(false);
-	let recaptchaError = $state<RecaptchaError>(null);
-	let recaptchaWatchTimer: ReturnType<typeof setTimeout> | null = null;
-
-	if (browser && recaptchaRequired) {
-		const watchForRecaptcha = () => {
-			const recaptcha = getRecaptchaClient();
-			if (recaptcha) {
-				recaptcha.ready(() => {
-					recaptchaReady = true;
-				});
-			} else {
-				recaptchaWatchTimer = setTimeout(watchForRecaptcha, 250);
-			}
-		};
-		watchForRecaptcha();
+	// Native validation first (required fields, email format, consent).
+	if (!target.checkValidity()) {
+		event.preventDefault();
+		target.reportValidity();
+		return;
 	}
 
-	const handleSubmit = async (event: SubmitEvent) => {
-		if (!browser || !recaptchaRequired) {
-			return;
-		}
+	if (!browser || !recaptchaRequired) {
+		return; // no reCAPTCHA configured → submit natively
+	}
 
-		event.preventDefault();
-		recaptchaError = null;
-		const target = event.currentTarget as HTMLFormElement | null;
-		if (!target) return;
-		const recaptcha = getRecaptchaClient();
-		if (!recaptcha) {
-			recaptchaError = 'security_unavailable';
-			return;
-		}
+	event.preventDefault();
+	recaptchaError = null;
+	const recaptcha = getRecaptchaClient();
+	if (!recaptcha) {
+		recaptchaError = 'security_unavailable';
+		return;
+	}
 
-		recaptchaBusy = true;
-		try {
-			const token = await recaptcha.execute(recaptchaSiteKey, { action: recaptchaAction });
-			let tokenInput = target.querySelector<HTMLInputElement>('input[name="g-recaptcha-response"]');
-			if (!tokenInput) {
-				tokenInput = document.createElement('input');
-				tokenInput.type = 'hidden';
-				tokenInput.name = 'g-recaptcha-response';
-				target.appendChild(tokenInput);
-			}
-			tokenInput.value = token;
-			target.submit();
-		} catch (error) {
-			console.error('reCAPTCHA execution error', error);
-			recaptchaError = 'verification_failed';
-		} finally {
-			recaptchaBusy = false;
+	recaptchaBusy = true;
+	try {
+		const token = await recaptcha.execute(recaptchaSiteKey, { action: recaptchaAction });
+		let tokenInput = target.querySelector<HTMLInputElement>('input[name="g-recaptcha-response"]');
+		if (!tokenInput) {
+			tokenInput = document.createElement('input');
+			tokenInput.type = 'hidden';
+			tokenInput.name = 'g-recaptcha-response';
+			target.appendChild(tokenInput);
 		}
-	};
+		tokenInput.value = token;
+		target.submit();
+	} catch (error) {
+		console.error('reCAPTCHA execution error', error);
+		recaptchaError = 'verification_failed';
+	} finally {
+		recaptchaBusy = false;
+	}
+};
 
-	onDestroy(() => {
-		if (recaptchaWatchTimer) {
-			clearTimeout(recaptchaWatchTimer);
-		}
-	});
+onDestroy(() => {
+	if (recaptchaWatchTimer) clearTimeout(recaptchaWatchTimer);
+});
 </script>
 
 <svelte:head>
-	<title>CropWatch へお問い合わせ | IoT スペシャリストに相談</title>
-	<meta name="description" content="施設ウォークスルーの予約や、堅牢な産業用 IoT 展開の設計について CropWatch のスペシャリストにご相談ください。" />
+	<title>お問い合わせ・無料デモのご予約｜CropWatch 日本</title>
+	<meta
+		name="description"
+		content="CropWatch（クロップウォッチ）へのお問い合わせ・無料デモのご予約はこちら。冷蔵庫・鶏舎・ハウス・畑など、見守りたい場所をお聞かせください。最適なセンサー・受信機・通知の設定をご提案します。"
+	/>
 	{#if recaptchaSiteKey}
-		<script
-			src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-			async
-			defer
-		></script>
+		<script src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`} async defer></script>
 	{/if}
 </svelte:head>
 
-<section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
-	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(47,83,135,0.25),_transparent_60%)]"
-		aria-hidden="true"
-	></div>
-	<div class="relative mx-auto w-full max-w-6xl px-4">
-		<div class="grid gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
-			<div class="space-y-6">
-				<p class="text-xs font-semibold tracking-[0.32em] text-[#f2a516] uppercase">
-					お問い合わせ
-				</p>
-				<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-					産業用 IoT チームとの戦略セッションを予約
-				</h1>
-				<p class="text-base text-white/80">施設の目標や課題を共有いただければ、LoRaWAN カバレッジ設計からセンサー選定、分析導入、コンプライアンス対応までを含むビジネスケースをカスタムでご提案します。</p>
-				<ul class="space-y-4 text-sm text-white/80">
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>現地ウォークスルー、ライブデモ、PoV パイロットを実施。</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>冷凍倉庫、製造、ホスピタリティなど各業界向けの設計ガイダンス。</span>
-					</li>
-					<li class="flex items-start gap-3">
-						<span class="mt-1 h-2 w-2 rounded-full bg-[#f2a516]"></span>
-						<span>経営層の承認を加速させる ROI モデリングをご提供。</span>
-					</li>
-				</ul>
-			</div>
-			<div
-				class="rounded-3xl border border-white/20 bg-[#0b1730]/80 p-8 shadow-xl shadow-black/30 backdrop-blur"
-			>
-				<h2 class="text-lg font-semibold text-white">まずはご相談ください</h2>
-				<p class="mt-2 text-sm text-white/70">フォームにご入力いただければ、1 営業日以内にご連絡します。</p>
-				<form class="mt-6 space-y-5 text-sm" method="post" action="?" onsubmit={handleSubmit}>
-					<div class="grid gap-4 md:grid-cols-2">
-						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white"
-								>名</span
-							>
-							<input
-								name="firstName"
-								type="text"
-								required
-								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder="太郎"
-							/>
-						</label>
-						<label class="flex flex-col gap-2">
-							<span class="font-medium text-white">姓</span
-							>
-							<input
-								name="lastName"
-								type="text"
-								required
-								class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-								placeholder="山田"
-							/>
-						</label>
+<section class="pagehero">
+	<div class="wrap pagehero__in" data-reveal>
+		<p class="eyebrow"><span class="material-symbols-rounded">mail</span> お問い合わせ</p>
+		<h1>見守りたい場所を、お聞かせください。</h1>
+		<p class="hero__kicker">初めての方でも、安心。<span class="u">電話でもメールでも、お気軽に。</span></p>
+		<p>冷蔵庫・鶏舎・ハウス・畑など、監視したい場所をお知らせください。<b>必要なセンサー・受信機・通知の設定をご提案</b>し、どんな記録が残るのかをご覧いただけます。デモは20分ほどです。</p>
+		<p class="pagehero__note"><span class="material-symbols-rounded">check_circle</span> ご相談・お見積もりは無料です。無理な勧誘はいたしません。</p>
+	</div>
+</section>
+
+<section class="section section--tight">
+	<div class="wrap contact-grid">
+		<!-- フォーム -->
+		<div data-reveal>
+			{#if form?.success}
+				<div class="form-card" style="text-align:center">
+					<span class="material-symbols-rounded" style="font-size:56px;color:var(--web-accent)">mark_email_read</span>
+					<h2 style="font-size:22px;margin:12px 0 8px">送信ありがとうございました。</h2>
+					<p style="color:var(--web-muted);max-width:42ch;margin:0 auto">
+						担当者より1営業日以内にご連絡いたします。その間に、<a href="/sectors" style="color:var(--web-primary);font-weight:600">製品の一覧</a>もご覧ください。
+					</p>
+				</div>
+			{:else}
+				<form class="form-card" id="demoForm" method="post" action="?" onsubmit={handleSubmit}>
+					<h2 style="font-size:22px;margin-bottom:6px">無料デモ・お見積もりのご依頼</h2>
+					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">1営業日以内にご返信します。</p>
+
+					{#if form?.message}
+						<p class="form-error" role="alert">{form.message}</p>
+					{/if}
+
+					<div class="frow">
+						<div class="ffield"><label for="lastName">姓 <span class="req">*</span></label><input id="lastName" class="finput" name="lastName" required /></div>
+						<div class="ffield"><label for="firstName">名 <span class="req">*</span></label><input id="firstName" class="finput" name="firstName" required /></div>
 					</div>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">業務用メールアドレス</span>
-						<input
-							name="email"
-							type="email"
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder="you@company.com"
-						/>
-					</label>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">会社名</span>
-						<input
-							name="company"
-							type="text"
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder="Acme Foods"
-						/>
-					</label>
-					<label class="flex flex-col gap-2">
-						<span class="font-medium text-white">ご相談内容</span>
-						<textarea
-							name="message"
-							rows={4}
-							required
-							class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-white/50 focus:border-[#f2a516] focus:outline-none"
-							placeholder="施設情報や課題、希望スケジュールをご記入ください。"
-						></textarea>
-					</label>
+					<div class="frow">
+						<div class="ffield"><label for="company">会社・店舗名 <span class="req">*</span></label><input id="company" class="finput" name="company" required /></div>
+						<div class="ffield"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" class="finput" type="email" name="email" required /></div>
+					</div>
+					<div class="frow">
+						<div class="ffield"><label for="phone">電話番号</label><input id="phone" class="finput" type="tel" name="phone" /></div>
+						<div class="ffield"><label for="industry">業種</label>
+							<select id="industry" class="finput" name="industry">
+								<option value="">選択してください…</option>
+								<option>飲食店・フードサービス</option>
+								<option>ホテル・宿泊</option>
+								<option>学校・給食施設</option>
+								<option>病院・薬局</option>
+								<option>スーパー・小売</option>
+								<option>冷蔵倉庫・物流</option>
+								<option>食品工場</option>
+								<option>農業・ハウス栽培</option>
+								<option>畜産・養鶏</option>
+								<option>その他</option>
+							</select>
+						</div>
+					</div>
+					<div class="ffield"><label for="sites">監視したい場所の数</label>
+						<select id="sites" class="finput" name="sites">
+							<option value="">選択してください…</option>
+							<option>1か所</option>
+							<option>2〜5か所</option>
+							<option>6〜20か所</option>
+							<option>20か所以上</option>
+						</select>
+					</div>
+					<div class="ffield"><label for="message">ご相談内容 <span class="req">*</span></label><textarea id="message" class="finput" name="message" required placeholder="見守りたい場所や台数など、お気軽にご記入ください。"></textarea></div>
+					<label class="fcheck"><input type="checkbox" name="consent" required /> <span>CropWatch からの監視サービスに関するご連絡を希望します。いつでも配信を停止できます。</span></label>
+
 					<input type="hidden" name="g-recaptcha-response" value="" aria-hidden="true" />
 					{#if recaptchaRequired}
-						<div class="space-y-2">
-							<p
-								class="rounded-xl border border-white/20 bg-white/5 px-3 py-2 text-xs text-white/80"
-								aria-live="polite"
-							>
-								{#if recaptchaError === 'security_unavailable'}
-									セキュリティチェックを利用できません。ページを再読み込みしてからお試しください。
-								{:else if recaptchaError === 'verification_failed'}
-									検証に失敗しました。もう一度お試しください。
-								{:else}
-									Google reCAPTCHA (v3) によって保護されています。
-								{/if}
-							</p>
-							<p class="text-[11px] leading-relaxed text-white/65">
-								このサイトは reCAPTCHA によって保護されており、Google の
-								{' '}
-								<a
-									class="underline transition hover:text-white"
-									href="https://policies.google.com/privacy"
-									target="_blank"
-									rel="noreferrer"
-								>
-									プライバシーポリシー
-								</a>
-								{' '}
-								と
-								{' '}
-								<a
-									class="underline transition hover:text-white"
-									href="https://policies.google.com/terms"
-									target="_blank"
-									rel="noreferrer"
-								>
-									利用規約
-								</a>
-								{' '}
-								が適用されます。
-							</p>
-						</div>
-					{:else}
-						<p
-							class="rounded-xl border border-dashed border-white/30 bg-white/5 px-3 py-2 text-xs text-white/80"
-						>
-							CAPTCHA を有効にするには <code>PUBLIC_RECAPTCHA_SITE_KEY</code>
-							を設定してください。
+						<p class="form-note" aria-live="polite">
+							{#if recaptchaError === 'security_unavailable'}
+								セキュリティチェックを利用できません。ページを再読み込みしてからお試しください。
+							{:else if recaptchaError === 'verification_failed'}
+								検証に失敗しました。もう一度お試しください。
+							{:else}
+								Google reCAPTCHA (v3) によって保護されています。
+							{/if}
 						</p>
 					{/if}
-					<!-- <label class="flex items-center gap-2 text-white/70">
-						<input type="checkbox" name="subscribe" class="h-4 w-4 rounded border-white/30 bg-white/10 text-[#f2a516] focus:ring-[#f2a516]" />
-						<span>Keep me updated on product releases and industry insights.</span>
-					</label> -->
+
 					<button
 						type="submit"
-						class="w-full rounded-full bg-[#f2a516] px-4 py-3 text-sm font-semibold text-[#11213c] transition hover:bg-[#ffbb34] focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-60"
+						class="btn btn--accent btn--lg"
+						style="width:100%;margin-top:22px"
 						disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
 						aria-disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
 					>
-						送信する
+						送信する <span class="material-symbols-rounded">arrow_forward</span>
 					</button>
+					<p class="form-note">メールでのご連絡は <a href="mailto:info@cropwatch.co.jp" style="color:var(--web-primary);font-weight:600">info@cropwatch.co.jp</a> まで</p>
 				</form>
+			{/if}
+		</div>
+
+		<!-- 連絡先 -->
+		<aside class="cinfo" data-reveal>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">call</span> お電話</h3>
+				<p><a class="mono" href="tel:0120000000">0120-000-000</a><br><a href="mailto:info@cropwatch.co.jp">info@cropwatch.co.jp</a></p>
+				<p class="cinfo__note">※ 連絡先は仮の表示です。</p>
 			</div>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">support_agent</span> サポート</h3>
+				<p>すでにご利用中のお客さまは <a href="mailto:support@cropwatch.co.jp">support@cropwatch.co.jp</a> へ。</p>
+			</div>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">schedule</span> 受付時間</h3>
+				<p>平日 9:00〜18:00<br>※ アラートと画面は24時間365日動いています。</p>
+			</div>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">location_on</span> 所在地</h3>
+				<p>〒100-0001<br>東京都千代田区（仮）</p>
+			</div>
+		</aside>
+	</div>
+</section>
+
+<section class="closing">
+	<div class="wrap closing__in" data-reveal>
+		<p class="eyebrow eyebrow--gold" style="justify-content:center"><span class="material-symbols-rounded">lightbulb</span> まだ迷っている方へ</p>
+		<h2>選ばれる理由を、もう一度。</h2>
+		<p>自分で交換できるセンサー、校正証明書、二重チェック、そして番犬機能。CropWatch の安心の仕組みをご覧ください。</p>
+		<div class="closing__ctas">
+			<a href="/technology" class="btn btn--accent btn--lg">止まらない仕組みを見る</a>
+			<a href="/testimonials" class="btn btn--outline-light btn--lg">お客様の声を読む</a>
 		</div>
 	</div>
 </section>
+
+<style>
+	.contact-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 36px; align-items: start; }
+	.form-card { background: #fff; border: 1px solid var(--web-border); border-radius: 24px; padding: 38px; box-shadow: var(--web-shadow-card); }
+	.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+	.ffield { margin-bottom: 16px; display: flex; flex-direction: column; }
+	.ffield label { font-size: 14px; font-weight: 700; color: var(--web-heading); margin-bottom: 7px; }
+	.ffield .req { color: var(--cw-danger-500); }
+	.finput { font-family: inherit; font-size: 15px; padding: 12px 14px; border: 1px solid var(--web-border-strong); border-radius: 12px; background: #fff; color: var(--web-text); width: 100%; transition: border-color .15s, box-shadow .15s; }
+	.finput:focus { outline: none; border-color: var(--web-primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--web-primary) 18%, transparent); }
+	textarea.finput { min-height: 110px; resize: vertical; }
+	.fcheck { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--web-muted); line-height: 1.7; margin-top: 6px; }
+	.fcheck input { margin-top: 4px; }
+	.form-note { font-size: 13.5px; color: var(--web-muted); margin: 16px 0 0; text-align: center; }
+	.form-error { font-size: 14px; color: var(--cw-danger-600); background: #fdeef0; border: 1px solid #fbe0e2; border-radius: 12px; padding: 12px 14px; margin: 0 0 18px; }
+	.cinfo { display: grid; gap: 16px; }
+	.cinfo__card { background: #fff; border: 1px solid var(--web-border); border-radius: 18px; padding: 24px 26px; box-shadow: var(--web-shadow-card); }
+	.cinfo__card h3 { display: flex; align-items: center; gap: 9px; font-size: 16px; margin-bottom: 10px; }
+	.cinfo__card h3 .material-symbols-rounded { color: var(--web-primary); font-size: 22px; }
+	.cinfo__card p { font-size: 14.5px; color: var(--web-muted); line-height: 1.9; margin: 0; }
+	.cinfo__card a { color: var(--web-primary); font-weight: 600; }
+	.cinfo__card .mono { font-family: var(--cw-font-mono); font-size: 16px; }
+	.cinfo__note { font-size: 12px; color: var(--web-muted); margin-top: 8px; }
+	@media (max-width:880px){ .contact-grid{grid-template-columns:1fr;} .frow{grid-template-columns:1fr;} .form-card{padding:28px;} }
+</style>

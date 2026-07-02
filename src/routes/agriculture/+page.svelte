@@ -1,0 +1,139 @@
+<svelte:head>
+	<title>農業・ハウスの環境監視｜温室・露地・土壌の温度・湿度・CO₂｜CropWatch 日本</title>
+	<meta
+		name="description"
+		content="ハウス栽培・露地・果樹のための、ワイヤレス環境監視。土壌・空気・光の状態をまとめて見守り、霜・高温・乾燥のリスクを早めに通知。電池式・ワイヤレスで配線工事は不要です。"
+	/>
+</svelte:head>
+
+<div class="crumb"><div class="wrap crumb__in">
+	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+	<a href="/sectors">製品</a><span class="material-symbols-rounded">chevron_right</span>
+	<b>農業・ハウスの監視</b>
+</div></div>
+
+<section class="hero">
+	<div class="wrap hero__grid">
+		<div class="hero__copy" data-reveal>
+			<p class="eyebrow"><span class="material-symbols-rounded">eco</span> 農業・ハウスの環境監視</p>
+			<h1>土から空気まで、<br><span class="hl">畑の環境をまとめて見守る。</span></h1>
+			<p class="hero__kicker">霧の夜も、猛暑の日も。<span class="u">作物が危ないサインを、先に教えます。</span></p>
+			<p class="hero__lead">ハウス・露地・果樹園の<b>温度・湿度・二酸化炭素・土壌の状態</b>を、ワイヤレスで自動監視。<b>霜・高温・乾燥のサインを早めに通知</b>し、大切な作物を守ります。1台の受信機で、離れたハウスや畑までまとめてカバーできます。</p>
+			<p class="hero__for"><span class="lab"><span class="material-symbols-rounded">groups</span>こんな現場に</span><span class="t">ハウス栽培</span><span class="t">露地</span><span class="t">果樹</span><span class="t">土壌管理</span></p>
+			<ul class="hero__points">
+				<li><span class="material-symbols-rounded">check</span><span class="pt"><b>霧・高温・乾燥を早めに通知</b><span>危険な変化を察知してお知らせし、対策の時間を確保できます。</span></span></li>
+				<li><span class="material-symbols-rounded">check</span><span class="pt"><b>ハウスも畑も1台でカバー</b><span>電波は見通しで最大15km。複数のハウスや離れた畑もつなげます。</span></span></li>
+				<li><span class="material-symbols-rounded">check</span><span class="pt"><b>配線工事は不要</b><span>電池式・ワイヤレスで、電源のない畑にも置くだけで使えます。</span></span></li>
+			</ul>
+			<div class="hero__ctas">
+				<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する <span class="material-symbols-rounded">arrow_forward</span></a>
+				<a href="#sensor" class="btn btn--ghost btn--lg">推奨センサーを見る</a>
+			</div>
+			<p class="hero__micro"><span class="material-symbols-rounded">verified</span> ハウスや畑の様子に合わせてご提案します。ご相談は無料です。</p>
+		</div>
+		<div class="hero__media" data-reveal>
+			<img src="/assets/photos/greenhouse-peppers.webp" alt="ハウス栽培の環境を監視するCropWatchセンサー" />
+			<div class="hero__chip"><span class="dot"></span><div><b>ハウスA</b><span>22.4 ℃ ・ 68 %RH ・ 正常</span></div></div>
+		</div>
+	</div>
+</section>
+
+<!-- 何が測れる -->
+<section class="section">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow eyebrow--accent"><span class="material-symbols-rounded">layers</span> 土・空気・光</p>
+			<h2>作物の生育に関わる要素を、ひとつに。</h2>
+			<p>1つの数値だけでなく、根の周りから空気の状態まで。育成環境を幅広く見守ります。</p>
+		</div>
+		<div class="boxgrid boxgrid--3">
+			<div class="box" data-reveal="0"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">grass</span></span><h3>土壌</h3><p>土の水分・温度を把握。かん水のタイミングや根の環境づくりに役立ちます。</p></div>
+			<div class="box" data-reveal="1"><span class="box__ic"><span class="material-symbols-rounded">air</span></span><h3>空気</h3><p>気温・湿度・二酸化炭素を監視。むれ・乾燥・換気の状態が分かります。</p></div>
+			<div class="box" data-reveal="2"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">wb_sunny</span></span><h3>光</h3><p>作物が受ける光の量を計測。日々の生育管理の目安になります。</p></div>
+		</div>
+	</div>
+</section>
+
+<!-- 早期通知 -->
+<section class="section section--soft">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow eyebrow--accent"><span class="material-symbols-rounded">notifications_active</span> 早めの一手</p>
+			<h2>こんなサインを、見逃しません。</h2>
+		</div>
+		<div class="boxgrid boxgrid--3">
+			<div class="box" data-reveal="0"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">ac_unit</span></span><h3>霜・冷え込み</h3><p>夜間に気温が下がりすぎると通知。対策の時間を確保できます。</p></div>
+			<div class="box" data-reveal="1"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">local_fire_department</span></span><h3>高温</h3><p>ハウス内の温度上がりすぎを早めに察知し、換気の判断を助けます。</p></div>
+			<div class="box" data-reveal="2"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">water_drop</span></span><h3>乾燥</h3><p>湿度や土壌の乾きを把握し、かん水のタイミングを逃しません。</p></div>
+		</div>
+	</div>
+</section>
+
+<!-- カバー範囲 split -->
+<section class="section">
+	<div class="wrap split">
+		<div data-reveal>
+			<p class="eyebrow"><span class="material-symbols-rounded">cell_tower</span> 配線いらず</p>
+			<h2>1台の受信機で、農場全体を。</h2>
+			<p class="split__lead">電波（LoRaWAN）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。通信費も工事も抑えられます。</p>
+			<ul class="checklist">
+				<li><span class="material-symbols-rounded">check</span> 複数のハウス・畑をまとめて監視</li>
+				<li><span class="material-symbols-rounded">check</span> 携帯回線の通信費がかからない</li>
+				<li><span class="material-symbols-rounded">check</span> ケーブルの埋設工事が不要</li>
+			</ul>
+		</div>
+		<div class="split__media" data-reveal>
+			<img src="/assets/imagery/greenhouse.webp" alt="ハウス栽培の環境を監視する様子" />
+		</div>
+	</div>
+</section>
+
+<!-- 現場ギャラリー -->
+<section class="section section--soft">
+	<div class="wrap">
+		<div class="section__head" data-reveal><p class="eyebrow"><span class="material-symbols-rounded">image</span> 導入の現場</p><h2>作物の育つ場所で使われています。</h2></div>
+		<div class="gallery">
+			<figure data-reveal="0"><img src="/assets/photos/greenhouse-peppers.webp" alt="ピーマンのハウス" /><figcaption><b>ピーマンのハウス</b><span>温度・湿度・CO₂を監視</span></figcaption></figure>
+			<figure data-reveal="1"><img src="/assets/photos/greenhouse-cucumber.webp" alt="きゅうりのハウス" /><figcaption><b>きゅうりのハウス</b><span>むれ・乾燥を早期に察知</span></figcaption></figure>
+			<figure data-reveal="2"><img src="/assets/photos/field-soybean.webp" alt="露地の大豆畑" /><figcaption><b>露地の畑</b><span>霜・高温のサインを通知</span></figcaption></figure>
+		</div>
+	</div>
+</section>
+
+<!-- 推奨センサー -->
+<section class="section scroll-pad" id="sensor">
+	<div class="wrap">
+		<div class="section__head" data-reveal><p class="eyebrow"><span class="material-symbols-rounded">sensors</span> 推奨センサー</p><h2>土壌＋空気＋光を、ひとつの仕組みで</h2></div>
+		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
+			<div class="spec-row"><dt>空気センサー</dt><dd>CW-AIR-THC（温度・湿度・CO₂）</dd></div>
+			<div class="spec-row"><dt>土壌センサー</dt><dd>土の水分・温度</dd></div>
+			<div class="spec-row"><dt>光センサー</dt><dd>作物が受ける光の量</dd></div>
+			<div class="spec-row"><dt>電池寿命</dt><dd>最長10年（交換可能）</dd></div>
+			<div class="spec-row"><dt>通信</dt><dd>LoRaWAN（電波）／受信機1台で最大15km</dd></div>
+		</dl>
+	</div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--soft">
+	<div class="wrap">
+		<div class="section__head" data-reveal><p class="eyebrow"><span class="material-symbols-rounded">quiz</span> よくあるご質問</p><h2>農業・ハウスの監視 Q&amp;A</h2></div>
+		<div class="faq" data-reveal>
+			<details><summary>離れた畑でも使えますか？ <span class="material-symbols-rounded">add</span></summary><p>はい。電波は見通しで最大15kmまで届くため、母屋から離れた畑やハウスも1台の受信機でつなげます。</p></details>
+			<details><summary>むずかしい設定は必要ですか？ <span class="material-symbols-rounded">add</span></summary><p>いりません。センサーを置くだけで自動的に記録が始まります。通知の条件は画面でかんたんに設定できます。</p></details>
+			<details><summary>雨や直射日光に当たっても大丈夫ですか？ <span class="material-symbols-rounded">add</span></summary><p>頑丈な防塵・防水ケース（IP66）に入っており、屋外でも安心して使えます。</p></details>
+		</div>
+	</div>
+</section>
+
+<section class="closing">
+	<div class="wrap closing__in" data-reveal>
+		<p class="eyebrow eyebrow--gold" style="justify-content:center"><span class="material-symbols-rounded">waving_hand</span> まずはお気軽に</p>
+		<h2>次の判断を、データで支えませんか。</h2>
+		<p>ハウスや畑の様子をお聞かせください。土壌・空気・光のセンサーと受信機、通知の設定をご提案します。</p>
+		<div class="closing__ctas">
+			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
+			<a href="/sectors" class="btn btn--outline-light btn--lg">業種から探す</a>
+		</div>
+	</div>
+</section>

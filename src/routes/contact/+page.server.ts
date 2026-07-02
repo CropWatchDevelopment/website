@@ -34,6 +34,9 @@ export const actions: Actions = {
 		const email = getString(formData, 'email');
 		const company = getString(formData, 'company');
 		const message = getString(formData, 'message');
+		const phone = getString(formData, 'phone');
+		const industry = getString(formData, 'industry');
+		const sites = getString(formData, 'sites');
 
 		if (!PRIVATE_GOOGLE_RECAPTCHA_SECRET_KEY) {
 			return fail(500, { message: 'reCAPTCHA configuration missing.' });
@@ -81,6 +84,9 @@ export const actions: Actions = {
 					`Sender name: ${fullName || 'Not provided'}`,
 					`Sender email: ${email}`,
 					`Company: ${company}`,
+					`Phone: ${phone ?? 'Not provided'}`,
+					`Industry: ${industry ?? 'Not provided'}`,
+					`Sites to monitor: ${sites ?? 'Not provided'}`,
 					'--- Message ---',
 					message
 				].join('\n')

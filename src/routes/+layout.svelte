@@ -4,9 +4,12 @@ import Header from '$lib/components/Header.svelte';
 import { afterNavigate } from '$app/navigation';
 import { page } from '$app/state';
 import { PUBLIC_GA_MEASUREMENT_ID } from '$env/static/public';
-import { onMount } from 'svelte';
+import { onMount, tick } from 'svelte';
 import { alternatesFor } from '$lib/seo/alternates';
 import '../app.css';
+import '$lib/styles/cropwatch-tokens.css';
+import '$lib/styles/cropwatch-site.css';
+import '$lib/styles/cropwatch-chrome.css';
 
 let { children } = $props();
 
@@ -40,9 +43,74 @@ const trackPageView = () => {
 		page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
 		page_title: document.title
 	});
-	};
+};
+
+// ── Material Symbols icon-font guard ──────────────────────────
+// Reveal icons only once the icon font is confirmed loaded, so raw
+// ligature text ("call", "expand_more"…) never flashes and wrecks the
+// layout. Mirrors the guard in cropwatch-site.css (html:not(.ms-ready)).
+const ensureIcons = () => {
+	const FONT = "24px 'Material Symbols Rounded'";
+	const reveal = () => document.documentElement.classList.add('ms-ready');
+	try {
+		if (
+			!(
+				document.fonts &&
+				typeof document.fonts.load === 'function' &&
+				typeof document.fonts.check === 'function'
+			)
+		) {
+			reveal();
+			return;
+		}
+		const check = () => {
+			if (document.fonts.check(FONT)) {
+				reveal();
+				return true;
+			}
+			return false;
+		};
+		document.fonts.load(FONT).then(check).catch(() => {});
+		if (document.fonts.ready) document.fonts.ready.then(check);
+		let tries = 0;
+		const iv = setInterval(() => {
+			if (check() || ++tries > 30) clearInterval(iv);
+		}, 300);
+	} catch {
+		reveal();
+	}
+};
+
+// ── Reveal-on-scroll for [data-reveal] elements ───────────────
+let revealObserver: IntersectionObserver | null = null;
+const scanReveal = () => {
+	if (typeof window === 'undefined') return;
+	const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-in)'));
+	const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (reduce || !('IntersectionObserver' in window)) {
+		els.forEach((el) => el.classList.add('is-in'));
+		return;
+	}
+	if (!revealObserver) {
+		revealObserver = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((en) => {
+					if (en.isIntersecting) {
+						en.target.classList.add('is-in');
+						revealObserver?.unobserve(en.target);
+					}
+				});
+			},
+			{ threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+		);
+	}
+	els.forEach((el) => revealObserver!.observe(el));
+};
 
 onMount(() => {
+	ensureIcons();
+	scanReveal();
+
 	if (!PUBLIC_GA_MEASUREMENT_ID || typeof window === 'undefined') return;
 
 	const gtag = ensureGtag();
@@ -54,7 +122,7 @@ onMount(() => {
 		const target = event.target as HTMLElement | null;
 		if (!target) return;
 
-			const tracked = target.closest('[data-ga-click]') as HTMLElement | null;
+		const tracked = target.closest('[data-ga-click]') as HTMLElement | null;
 		if (tracked) {
 			const label = tracked.getAttribute('data-ga-click') ?? tracked.textContent?.trim() ?? 'ui_element';
 			clickGtag('event', 'click', {
@@ -68,44 +136,49 @@ onMount(() => {
 			return;
 		}
 
-			const link = target.closest('a[href]') as HTMLAnchorElement | null;
-			if (!link) return;
-			const href = link.href;
-			if (!href) return;
+		const link = target.closest('a[href]') as HTMLAnchorElement | null;
+		if (!link) return;
+		const href = link.href;
+		if (!href) return;
 
-			let linkDomain: string | undefined;
-			let outbound = false;
-			try {
-				const url = new URL(href, window.location.href);
-				linkDomain = url.hostname;
-				outbound = url.origin !== window.location.origin;
-			} catch {
-				linkDomain = undefined;
-				outbound = false;
-			}
+		let linkDomain: string | undefined;
+		let outbound = false;
+		try {
+			const url = new URL(href, window.location.href);
+			linkDomain = url.hostname;
+			outbound = url.origin !== window.location.origin;
+		} catch {
+			linkDomain = undefined;
+			outbound = false;
+		}
 
-			const linkLabel = link.textContent?.trim();
+		const linkLabel = link.textContent?.trim();
 		clickGtag('event', 'click', {
 			event_category: 'link',
 			event_label: linkLabel ? linkLabel.slice(0, 100) : href,
 			link_url: href,
 			link_domain: linkDomain,
-				outbound,
-				page_location: window.location.href,
-				transport_type: 'beacon'
-			});
-		};
+			outbound,
+			page_location: window.location.href,
+			transport_type: 'beacon'
+		});
+	};
 
 	gtag('js', new Date());
 	gtag('config', PUBLIC_GA_MEASUREMENT_ID, { send_page_view: false });
 	trackPageView();
-	afterNavigate(() => trackPageView());
 	document.addEventListener('click', handleClick);
 
-		return () => {
-			document.removeEventListener('click', handleClick);
-		};
-	});
+	return () => {
+		document.removeEventListener('click', handleClick);
+	};
+});
+
+afterNavigate(async () => {
+	await tick();
+	scanReveal();
+	trackPageView();
+});
 </script>
 
 <svelte:head>
@@ -117,10 +190,10 @@ onMount(() => {
 	{/each}
 </svelte:head>
 
-<div class="flex flex-col min-h-screen">
+<div class="flex min-h-screen flex-col">
 	<Header />
 
-	<main class="flex flex-1 flex-col w-full mx-auto">
+	<main class="flex-1 flex flex-col">
 		{@render children()}
 	</main>
 

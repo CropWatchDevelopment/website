@@ -51,7 +51,7 @@
 						本サービスで利用している代表的なクッキー等の内容は以下のとおりです。
 					</p>
 				</div>
-				<div class="overflow-hidden rounded-2xl border border-gray-200 shadow-sm dark:border-gray-700">
+				<div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm dark:border-gray-700">
 					<table class="w-full border-collapse text-left text-sm">
 						<thead class="bg-[var(--cw-blue-900)] text-white">
 							<tr>
