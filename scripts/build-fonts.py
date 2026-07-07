@@ -12,7 +12,13 @@ Also measures Inter's real metrics and prints an "Inter Fallback" @font-face wit
 ascent/descent/size-adjust overrides so swapping Inter in causes no reflow (CLS).
 
 Run from repo root:  python3 scripts/build-fonts.py
-Inputs (downloaded ahead of time): /tmp/cwfonts/ms-static.woff2, inter400.woff2
+
+Input: a full Material Symbols Rounded font at /tmp/cwfonts/ms-static.woff2. If it
+is missing (e.g. /tmp was cleared), the subset can't be rebuilt and silently goes
+stale as new icons are added. Recreate it by pinning the variable font to a static
+instance:
+  curl -sL 'https://raw.githubusercontent.com/google/material-design-icons/master/variablefont/MaterialSymbolsRounded%5BFILL%2CGRAD%2Copsz%2Cwght%5D.woff2' -o /tmp/cwfonts/ms-variable.woff2
+  python3 -c "from fontTools.ttLib import TTFont; from fontTools.varLib.instancer import instantiateVariableFont as inst; f=TTFont('/tmp/cwfonts/ms-variable.woff2'); inst(f, {'FILL':0,'wght':400,'GRAD':0,'opsz':24}, inplace=True); f.flavor='woff2'; f.save('/tmp/cwfonts/ms-static.woff2')"
 """
 
 import re
@@ -85,8 +91,12 @@ for n in names:
     else:
         unresolved.append(n)
 if unresolved:
-    print(f"!! Could not resolve in source font: {unresolved}")
-    raise SystemExit(1)
+    # Don't hard-fail on a single bad name (e.g. a typo or a non-Material-Symbols
+    # icon): that would silently freeze the WHOLE subset as stale. Skip the bad
+    # names loudly and build the subset from the ones that do resolve.
+    print(f"!! Skipping {len(unresolved)} name(s) not found in the source font "
+          f"(typo or not a valid Material Symbol?): {unresolved}")
+    names = [n for n in names if n not in set(unresolved)]
 
 # Component characters that appear in any icon name (+ space).
 component_unicodes = {ord(c) for n in names for c in n} | {0x20}
