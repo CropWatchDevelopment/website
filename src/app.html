@@ -4,8 +4,6 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/assets/logos/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 		<!-- Self-hosted icon font (subset, ~11 KB): preload so it's ready by first
 		     paint, then font-display:swap renders it with no flash or layout shift. -->
@@ -17,29 +15,11 @@
 			crossorigin
 		/>
 
-		<!-- Text faces (Inter + JetBrains Mono) load non-render-blocking: fetch the
-		     stylesheet as media="print" so it never blocks first paint, then flip
-		     it to "all" on load. display=swap pairs with the metric-matched
-		     'Inter Fallback' (see fonts.css) so the swap causes no reflow. Noto
-		     Sans JP is intentionally dropped - this English/Global site has only a
-		     few stray JP glyphs, which the system JP fonts in the stack cover. -->
-		<link
-			rel="preload"
-			as="style"
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-			media="print"
-			onload="this.media='all'"
-		/>
-		<noscript>
-			<link
-				rel="stylesheet"
-				href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-			/>
-		</noscript>
+		<!-- Text faces (Inter Variable + JetBrains Mono Variable) are self-hosted via
+		     @fontsource and imported in the root +layout.svelte, so they load
+		     same-origin (immutable-cached) with no third-party round-trip. The
+		     metric-matched 'Inter Fallback' (see fonts.css) still absorbs the swap so
+		     there's no reflow. -->
 		%sveltekit.head%
 	</head>
 	<body class="web" data-sveltekit-preload-data="hover">
