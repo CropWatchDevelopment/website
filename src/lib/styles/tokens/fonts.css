@@ -2,16 +2,17 @@
    CropWatch - Fonts (cropwatch.io / US-Global build)
    ============================================================
    Inter for UI + marketing, JetBrains Mono for data/readings,
-   Material Symbols Rounded for iconography. Loaded from Google
-   Fonts. The Japanese self-hosted faces are intentionally not
-   wired here - this is the English/Global site (.io). Japanese
-   glyphs, if any, fall through to Noto Sans JP.
+   Material Symbols Rounded for iconography. Inter + JetBrains Mono
+   are self-hosted (@fontsource-variable, imported in the root
+   +layout.svelte) so they load same-origin with no third-party
+   round-trip. Japanese glyphs, if any, fall through to the JP
+   stack (BIZ UDPGothic -> Yu Gothic -> Noto Sans JP).
    ============================================================ */
 
-/* The Inter / JetBrains Mono stylesheets are NOT @imported here. Buried this
-   deep (app.css -> design-system.css -> fonts.css -> Google) a remote @import
-   creates a serial request chain that blocks first paint, so those <link> tags
-   live in src/app.html where they are discovered immediately. */
+/* Inter Variable + JetBrains Mono Variable come in via JS imports in
+   +layout.svelte (import '@fontsource-variable/inter'), which Vite bundles into
+   the app CSS and rewrites to hashed, immutable, same-origin woff2 - no remote
+   @import chain, so first paint isn't blocked. */
 
 /* Material Symbols is self-hosted as a SUBSET (only the icons this site renders,
    ~11 KB vs the ~361 KB full static instance / ~5 MB variable font). It is

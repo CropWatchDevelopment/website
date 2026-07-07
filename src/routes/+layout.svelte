@@ -6,6 +6,10 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Analytics from '$lib/components/Analytics.svelte';
 	import { alternatesFor } from '$lib/seo/alternates';
+	// Self-hosted text faces (replace the former Google Fonts <link>s in app.html):
+	// same-origin, immutable-cached, no third-party connection blocking first paint.
+	import '@fontsource-variable/inter';
+	import '@fontsource-variable/jetbrains-mono';
 	import '../app.css';
 
 	let { children } = $props();
