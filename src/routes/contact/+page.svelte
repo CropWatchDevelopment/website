@@ -59,8 +59,8 @@
 		<div data-reveal>
 			{#if !submitted}
 				<form class="form-card" method="POST" use:enhance={submit}>
-					<h2 style="font-size:var(--cw-text-2xl);margin-bottom:6px">Book a demo or request a quote</h2>
-					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">We'll reply within one business day.</p>
+					<h2 style="font-size:var(--cw-text-2xl);margin-bottom:6px">Let's chat!</h2>
+					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">Send us a message, and we will get back to you ASAP.</p>
 					<div class="frow">
 						<div class="ffield"><label for="first">First name <span class="req">*</span></label><input id="first" class="finput" name="first" required /></div>
 						<div class="ffield"><label for="last">Last name <span class="req">*</span></label><input id="last" class="finput" name="last" required /></div>
@@ -105,7 +105,6 @@
 						<p role="alert" style="margin:18px 0 0;padding:12px 14px;border-radius:10px;background:#fdecec;border:1px solid #f5b5b5;color:#9b1c1c;font-size:14px">{errorMsg}</p>
 					{/if}
 					<button type="submit" disabled={sending} class="cta-pill cta-pill--lg" style="width:100%;justify-content:center;margin-top:22px;border:none;cursor:pointer;font-family:inherit">{sending ? 'Sending...' : 'Send request'} <span class="material-symbols-rounded">arrow_forward</span></button>
-					<p class="form-note">Prefer email? Reach us at <a href="mailto:sales@cropwatch.io" style="color:var(--web-primary);font-weight:600">sales@cropwatch.io</a></p>
 				</form>
 			{:else}
 				<div class="form-card" bind:this={successEl} style="text-align:center">
@@ -123,14 +122,14 @@
 				<p>
 					Book a demo or get a quote.<br />
 					<a href="tel:+19783813105" class="mono">+1 (978) 381-3105</a><br />
-					<a href="mailto:sales@cropwatch.io">sales@cropwatch.io</a>
+					<a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a>
 				</p>
 			</div>
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">support_agent</span> Support</h3>
 				<p>
 					Already running CropWatch?<br />
-					<a href="mailto:support@cropwatch.io">support@cropwatch.io</a>
+					<a href="mailto:kevin@cropwatch.io">kevin@cropwatch.io</a>
 				</p>
 			</div>
 			<div class="cinfo__card">
@@ -143,7 +142,7 @@
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">language</span> Japan</h3>
 				<p>
-					Based in Japan?
+					Need service in Japan? See our Japanese site:<br />
 					<a href="https://cropwatch.co.jp">www.cropwatch.co.jp (日本語)</a>
 				</p>
 			</div>

@@ -63,7 +63,7 @@
 			</a>
 
 			<nav class="nav" aria-label="Primary">
-				<a class="nav__item" class:is-current={isHome} href="/home">Home</a>
+				<a class="nav__item" class:is-current={isHome} href="/home">Why CropWatch?</a>
 
 				<div class="navdrop">
 					<a class="nav__item" class:is-current={isProducts} href="/cold-chain">
@@ -84,7 +84,6 @@
 					</div>
 				</div>
 
-				<a class="nav__item" href="/home#why">Why CropWatch</a>
 				<a class="nav__item" class:is-current={isNews} href="/news">News</a>
 				<a class="nav__item" class:is-current={isContact} href="/contact">Contact</a>
 			</nav>
