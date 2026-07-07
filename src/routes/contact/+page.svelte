@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 	import { onDestroy } from 'svelte';
 
@@ -95,6 +96,8 @@
 		></script>
 	{/if}
 </svelte:head>
+
+<Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: 'お問い合わせ' }]} />
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
 	<div

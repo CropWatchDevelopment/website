@@ -1,5 +1,8 @@
 <script lang="ts">
 	import ProductOrigin from '$lib/components/product-origin.svelte';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { productSchema } from '$lib/seo/schema';
 	import deviceSideViewImage from './images/device-side-view.webp';
 	import crossValidationDiagram from './images/crossvalidate.webp';
 	import flyerDocument from './downloads/温度管理.pdf?url';
@@ -23,6 +26,24 @@
 	<meta property="og:url" content="https://www.cropwatch.com/products/cw-air-th" />
 	<meta property="og:locale" content="ja_JP" />
 </svelte:head>
+
+<Breadcrumbs
+	items={[
+		{ label: 'ホーム', href: '/' },
+		{ label: '製品' },
+		{ label: '温度・湿度センサー (CW-AIR-TH)' }
+	]}
+/>
+<JsonLd
+	data={productSchema({
+		name: '温度・湿度センサー (CW-AIR-TH)',
+		sku: 'CW-AIR-TH',
+		category: '温湿度センサー',
+		description:
+			'CW Air TH センサーを導入して、コールドストレージ、ホスピタリティ、産業環境全体で信頼性の高い温度・湿度監視を実現しましょう。',
+		url: '/products/cw-air-th'
+	})}
+/>
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
 	<div

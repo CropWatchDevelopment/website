@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import kevinImage from '$lib/images/team/Kevin_Cantrell.jpeg';
 	import sigurdImage from '$lib/images/team/Sigurd_Øyen.jpeg'; // i18n-ignore
 	import joseImage from '$lib/images/team/Jose_Ramiro_Zuniga.jpg'; // i18n-ignore
@@ -96,6 +97,8 @@
 	<title>CropWatch について | 信頼性を追求した産業用 IoT</title>
 	<meta name="description" content="CropWatch のミッション、リーダーシップ、マイルストーンをご紹介。コールドストレージ、ホスピタリティ、製造業向けに堅牢な IoT ネットワークを提供しています。" />
 </svelte:head>
+
+<Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '会社情報' }]} />
 
 <section class="relative overflow-hidden bg-[#11213c] py-20 text-white">
 	<div

@@ -1,11 +1,20 @@
 <script lang="ts">
 	import MaterialIcon from '$lib/components/MaterialIcon.svelte';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 </script>
 
 <svelte:head>
 	<title>交換用センサーキット 近日公開 | CropWatch®</title>
 	<meta name="description" content="CropWatch の交換用センサーキットの最新情報をお届けします。利点、展開スケジュール、パイロット参加方法をご確認ください。" />
 </svelte:head>
+
+<Breadcrumbs
+	items={[
+		{ label: 'ホーム', href: '/' },
+		{ label: '製品' },
+		{ label: '交換用センサー（近日公開）' }
+	]}
+/>
 
 <section class="relative overflow-hidden bg-[#0b1730] py-20 text-white">
 	<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(47,83,135,0.25),transparent_60%)]" aria-hidden="true"></div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import ug65Image from './images/ug65-lorawan-gateway.png';
 	import ug67Image from './images/Milesight-UG67-gateway.png';
 	import konaMicroImage from './images/kona-micro.png';
@@ -16,6 +17,14 @@
 	<title>LoRaWAN ゲートウェイ | CropWatch®</title>
 	<meta name="description" content="メーカー情報、屋内外の対応、推奨用途をひと目で確認できる CropWatch のゲートウェイ ラインアップです。" />
 </svelte:head>
+
+<Breadcrumbs
+	items={[
+		{ label: 'ホーム', href: '/' },
+		{ label: '製品' },
+		{ label: 'LoRaWAN ゲートウェイ' }
+	]}
+/>
 
 <section class="relative isolate overflow-hidden bg-gradient-to-br from-[var(--cw-blue-900)] via-[var(--cw-blue-950)] to-black py-24 text-white">
 	<div class="pointer-events-none absolute inset-y-0 right-0 w-2/3 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),_transparent_55%)]"></div>

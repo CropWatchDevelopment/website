@@ -2,6 +2,20 @@
 	import PricingJa from '$lib/components/pricing/PricingJa.svelte';
 	import Slider from '$lib/components/Slider.svelte';
 	import StandardsBanner from '$lib/components/StandardsBanner.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { videoObjectSchema } from '$lib/seo/schema';
+
+	// Home-page product video. VideoObject only emits once a real uploadDate is
+	// set (Google requires it) - left blank to avoid shipping an invalid date.
+	const HOME_VIDEO = {
+		name: 'CropWatch 産業用グレードIoT 環境モニタリング',
+		description:
+			'コールドチェーン、製造、ホスピタリティ向けの堅牢な産業用IoT。長距離センサー、LoRaWAN ゲートウェイ、アナリティクスの紹介動画。',
+		uploadDate: '', // TODO(confirm): 'YYYY-MM-DD' publish date of youtu.be/iiGCBuoFF20
+		embedUrl: 'https://www.youtube.com/embed/iiGCBuoFF20',
+		thumbnailUrl: 'https://i.ytimg.com/vi/iiGCBuoFF20/maxresdefault.jpg'
+	};
+	const videoLd = HOME_VIDEO.uploadDate ? videoObjectSchema(HOME_VIDEO) : null;
 </script>
 
 <svelte:head>
@@ -17,6 +31,10 @@
 	<meta property="og:description" content="Quality Temperature Monitoring Devices" />
 	<meta property="og:url" content="https://www.cropwatch.com/" />
 </svelte:head>
+
+{#if videoLd}
+	<JsonLd data={videoLd} />
+{/if}
 
 <section id="slider" class="bg-[#11213c]">
 	<Slider />

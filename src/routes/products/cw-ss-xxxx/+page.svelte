@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { productSchema } from '$lib/seo/schema';
 
 	import fieldInstallImage from './images/field-install.webp';
 	import greenhouseBedInstallImage from './images/greenhouse-bed-install.webp';
@@ -167,6 +170,24 @@
 	<meta property="og:url" content="https://www.cropwatch.com/products/cw-ss-xxxx" />
 	<meta property="og:locale" content="ja_JP" />
 </svelte:head>
+
+<Breadcrumbs
+	items={[
+		{ label: 'ホーム', href: '/' },
+		{ label: '製品' },
+		{ label: '土壌センサー (CW-SS-XXXX)' }
+	]}
+/>
+<JsonLd
+	data={productSchema({
+		name: 'Soil Sensor (CW-SS-XXXX)',
+		sku: 'CW-SS-XXXX',
+		category: '土壌センサー',
+		description:
+			'Deploy the CropWatch CW-SS-XXXX soil sensor to monitor soil moisture, temperature, and EC across row crops, vegetable beds, and greenhouse environments.',
+		url: '/products/cw-ss-xxxx'
+	})}
+/>
 
 <section
 	class="relative isolate overflow-hidden bg-gradient-to-br from-[#081525] via-[#0f2238] to-[#1d4a31] py-24 text-white"

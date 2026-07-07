@@ -7,6 +7,8 @@ import { PUBLIC_GA_MEASUREMENT_ID } from '$env/static/public';
 import { onMount } from 'svelte';
 import { alternatesFor } from '$lib/seo/alternates';
 import { assets } from '$app/paths';
+import JsonLd from '$lib/components/JsonLd.svelte';
+import { organizationSchema, websiteSchema } from '$lib/seo/schema';
 import '../app.css';
 
 let { children, data } = $props();
@@ -120,6 +122,9 @@ onMount(() => {
 		<script defer src="{assets}/christmas-header.js"></script>
 	{/if}
 </svelte:head>
+
+<!-- Site-wide publisher identity: one Organization + WebSite per page. -->
+<JsonLd data={[organizationSchema(), websiteSchema()]} />
 
 <div class="flex flex-col min-h-screen">
 	<Header />
