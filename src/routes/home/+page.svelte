@@ -195,8 +195,29 @@
 							><b>{c.parts}</b> · {c.pct}% · {c.mfrs} mfr{c.mfrs > 1 ? 's' : ''}</span
 						>
 					</li>
-				{/each}
+					{/each}
+					<li class="src-row">
+						<span class="src-row__dot" style="background:green"></span>
+						<img
+							class="src-row__flag"
+							src="/assets/flags/jp.svg"
+							alt=""
+							width="22"
+							height="16"
+							loading="lazy"
+						/>
+						<span class="src-row__name">
+							Manufactured & <br /> Assembled
+						</span>
+						<span class="src-row__bar">
+							<span style="width:100%;background:green"></span>
+						</span>
+						<span class="src-row__meta">
+							🛠️ · 100%
+						</span>
+					</li>
 			</ul>
+			<small><sup>*</sup>Our hardware <b><u><i>ONLY</i></u></b> contains parts from countries in the chart above.</small>
 		</div>
 	</div>
 </section>
