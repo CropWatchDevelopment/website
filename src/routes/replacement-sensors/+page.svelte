@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import PartsOrigin from '$lib/components/PartsOrigin.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import { productSchema } from '$lib/seo/schema';
 	import { initSensorViewer, SENSORS } from '$lib/sensors3d';
@@ -198,6 +199,23 @@
 				<h3>Traceable</h3>
 				<p>Every swap is logged - what changed, when, and by whom.</p>
 			</article>
+		</div>
+	</div>
+</section>
+
+<!-- parts origin -->
+<section class="section section--tint">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow">Built to a bill of materials</p>
+			<h2>Where the parts come from.</h2>
+			<p class="section__intro">
+				Every CropWatch sensor board is assembled from 29 distinct parts across 7 countries and 16
+				manufacturers - chosen for reliability, not the lowest bid.
+			</p>
+		</div>
+		<div data-reveal>
+			<PartsOrigin />
 		</div>
 	</div>
 </section>

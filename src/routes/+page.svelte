@@ -116,7 +116,7 @@
 			<div class="panel__in">
 				<span class="panel__eyebrow">Poultry &amp; livestock</span>
 				<h2 class="panel__h">
-					<span class="panel__hic material-symbols-rounded">raven</span>Livestock Monitoring
+					<span class="panel__hic material-symbols-rounded">pets</span>Livestock Monitoring
 				</h2>
 				<p class="panel__sub">
 					Per-zone climate for poultry houses, barns and dairy - catch heat stress and ventilation
