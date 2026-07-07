@@ -1,7 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { productSchema } from '$lib/seo/schema';
 	import { initDeviceViewer } from '$lib/deviceViewer';
+
+	// The rugged IP66 enclosure as a single Product (bare - no price/rating, so
+	// valid but not rich-snippet eligible).
+	const caseLd = productSchema({
+		name: 'Replacement Sensor Case (CW-CASE)',
+		sku: 'CW-CASE',
+		category: 'Sensor enclosure',
+		description:
+			'The rugged, UV-stable IP66 enclosure that houses every CropWatch sensor. Field-replaceable and washdown-ready, built for freezers, barns and open fields.',
+		url: '/replacement-case'
+	});
 
 	// Spin up the 3D case viewer on #deviceCanvas (Babylon is bundled locally,
 	// loaded lazily). Dispose the engine when the page unmounts.
@@ -47,6 +60,8 @@
 		{ label: 'Replacement Sensor Case' }
 	]}
 />
+
+<JsonLd data={caseLd} />
 
 <!-- 3D hero -->
 <section class="phero">

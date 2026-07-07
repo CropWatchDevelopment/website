@@ -4,8 +4,9 @@
 	 *
 	 * Pass an ordered list of crumbs from the site root to the current page. The
 	 * final crumb is rendered as the current page - no link, `aria-current="page"`.
-	 * The component also emits a matching schema.org `BreadcrumbList` so the trail
-	 * is eligible for breadcrumb rich results in search.
+	 * The component also emits a matching schema.org `BreadcrumbList` (via the
+	 * shared breadcrumbSchema builder + <JsonLd>) so the trail is eligible for
+	 * breadcrumb rich results in search.
 	 *
 	 * Usage:
 	 *   <Breadcrumbs
@@ -16,36 +17,28 @@
 	 *     ]}
 	 *   />
 	 */
+	import JsonLd from './JsonLd.svelte';
+	import { breadcrumbSchema } from '$lib/seo/schema';
+
 	export interface Crumb {
 		label: string;
 		/** Absolute or root-relative path. Omit on the final (current) crumb. */
 		href?: string;
 	}
 
-	let { items, origin = 'https://cropwatch.io' }: { items: Crumb[]; origin?: string } =
-		$props();
+	let { items }: { items: Crumb[] } = $props();
 
 	const lastIndex = $derived(items.length - 1);
 
-	// BreadcrumbList JSON-LD: absolute URLs from each href; the current page omits
-	// `item`. `<` is escaped so a label can never break out of the script tag.
-	const jsonLd = $derived(
-		JSON.stringify({
-			'@context': 'https://schema.org',
-			'@type': 'BreadcrumbList',
-			itemListElement: items.map((crumb, i) => ({
-				'@type': 'ListItem',
-				position: i + 1,
-				name: crumb.label,
-				...(crumb.href ? { item: origin + crumb.href } : {})
-			}))
-		}).replace(/</g, '\\u003c')
+	// BreadcrumbList JSON-LD from the shared builder: absolute URLs (this site's
+	// origin, via site.ts) from each href; the current/name-only crumb omits
+	// `item`. Escaping is handled inside <JsonLd>.
+	const breadcrumbLd = $derived(
+		breadcrumbSchema(items.map((crumb) => ({ name: crumb.label, path: crumb.href })))
 	);
 </script>
 
-<svelte:head>
-	{@html `<script type="application/ld+json">${jsonLd}</script>`}
-</svelte:head>
+<JsonLd data={breadcrumbLd} />
 
 <nav class="pcrumb" aria-label="Breadcrumb">
 	<div class="wrap">

@@ -1,11 +1,25 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { productSchema } from '$lib/seo/schema';
 	import { initSensorViewer, SENSORS } from '$lib/sensors3d';
 
 	// Render the first sensor's panel server-side (real content for SEO / no-JS);
 	// the viewer overwrites it as tabs are clicked.
 	const first = SENSORS[0];
+
+	// One Product per sensor module (name + SKU + description). Bare Products (no
+	// price/rating): valid + entity-strengthening, not rich-snippet eligible.
+	const productsLd = SENSORS.map((s) =>
+		productSchema({
+			name: `${s.name} (${s.tag})`,
+			sku: s.tag,
+			description: s.blurb,
+			category: 'Environmental sensor',
+			url: '/replacement-sensors'
+		})
+	);
 
 	// Tabs + spec panel render immediately; Babylon loads from CDN and the 3D
 	// scene spins up lazily when the #sensorTypes section nears the viewport.
@@ -41,6 +55,8 @@
 		{ label: 'Replacement Sensors' }
 	]}
 />
+
+<JsonLd data={productsLd} />
 
 <!-- hero -->
 <section class="hero">

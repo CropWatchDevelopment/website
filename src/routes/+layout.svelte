@@ -6,6 +6,8 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Analytics from '$lib/components/Analytics.svelte';
 	import { alternatesFor } from '$lib/seo/alternates';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { organizationSchema, websiteSchema } from '$lib/seo/schema';
 	// Self-hosted text faces (replace the former Google Fonts <link>s in app.html):
 	// same-origin, immutable-cached, no third-party connection blocking first paint.
 	import '@fontsource-variable/inter';
@@ -69,6 +71,9 @@
 		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 	{/each}
 </svelte:head>
+
+<!-- Site-wide publisher identity: exactly one Organization + WebSite per page. -->
+<JsonLd data={[organizationSchema(), websiteSchema()]} />
 
 <Analytics />
 
