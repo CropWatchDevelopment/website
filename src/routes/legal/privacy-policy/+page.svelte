@@ -1,3 +1,13 @@
+<script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
+
+	const title = 'プライバシーポリシー｜CropWatch 日本';
+	const description =
+		'合同会社クロップウォッチのプライバシーポリシー。個人情報の取扱い、利用目的、管理・保護、開示請求への対応についてご案内します。';
+</script>
+
+<Seo {title} {description} />
+
 <div class="mx-auto max-w-4xl px-6 py-12">
 	<header class="mb-8">
 		<h1 class="mb-4 text-center text-4xl font-bold text-gray-900 dark:text-white">

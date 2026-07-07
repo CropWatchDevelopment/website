@@ -1,4 +1,43 @@
 <script lang="ts">
+import Seo from '$lib/components/Seo.svelte';
+import JsonLd from '$lib/components/JsonLd.svelte';
+import { breadcrumbSchema, faqSchema } from '$lib/seo/schema';
+
+const title = 'ヘルプ・使い方ガイド｜温度監視センサーのトラブル解決｜CropWatch 日本';
+const description =
+	'CropWatch（クロップウォッチ）の使い方ガイドとよくあるトラブルの解決方法。センサーの設置、通知の設定、記録のダウンロード、センサーの交換を動画つきで解説します。';
+
+const faq = [
+	{
+		q: 'センサーがオフラインになっている／データが届かない',
+		a: '受信機（ゲートウェイ）とセンサーの通信が途切れている可能性があります。受信機の電源ランプを確認し、センサーと受信機の距離や間に厚い金属の壁がないかを確認します。センサー前面のボタンを長押しして再起動し、電池残量が少ない場合は交換してください。'
+	},
+	{
+		q: '通知（アラート）が届かない',
+		a: '対象デバイスに通知ルールが設定されているか、送り先メールアドレスが正しいか（迷惑メールフォルダを含む）を確認します。スマホの通知をオンにし、遅延時間が長すぎないか（例：60分を10分に短縮）も確認してください。'
+	},
+	{
+		q: '電池残量が少ないと表示される',
+		a: '低温環境では電池の消耗が早まることがあります。アプリで電池残量を確認し（20%以下で交換の目安）、指定の電池（同じ型番）に向きへ注意して交換します。交換後に表示が回復するか確認してください。'
+	},
+	{
+		q: '温度の数値がおかしい・実際とずれている',
+		a: 'センサーが吹き出し口や扉の近くに置かれていないか確認し、扉の開閉直後は数分待ってから確認します。本体に霜や水滴が付いていないかも確認してください。各センサーには校正証明書があり、大きくずれる場合はサポートへご連絡ください。'
+	},
+	{
+		q: 'アプリにログインできない',
+		a: 'メールアドレスとパスワードに誤りがないか確認し、ログイン画面の「パスワードをお忘れですか？」から再設定できます。インターネット接続を確認してページを再読み込みし、別のブラウザや最新版のアプリでもお試しください。'
+	}
+];
+
+const ld = [
+	breadcrumbSchema([
+		{ name: 'ホーム', path: '/' },
+		{ name: 'ヘルプ・使い方ガイド', path: '/help' }
+	]),
+	faqSchema(faq)
+];
+
 // Video facade: load the YouTube iframe only when the user clicks play.
 // Set each .ytbox's data-yt="VIDEO_ID" to wire a real video.
 function playVideo(event: Event) {
@@ -22,13 +61,13 @@ function onKey(event: KeyboardEvent) {
 }
 </script>
 
-<svelte:head>
-	<title>ヘルプ・使い方ガイド｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="CropWatch（クロップウォッチ）の使い方ガイドとよくあるトラブルの解決方法。センサーの設置、通知の設定、記録のダウンロード、センサーの交換を動画つきで解説します。"
-	/>
-</svelte:head>
+<Seo {title} {description} />
+<JsonLd data={ld} />
+
+<div class="crumb"><div class="wrap crumb__in">
+	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+	<b>ヘルプ・使い方ガイド</b>
+</div></div>
 
 <section class="pagehero">
 	<div class="wrap pagehero__in" data-reveal>

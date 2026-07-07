@@ -1,14 +1,29 @@
 <script lang="ts">
 import PartsOrigin from '$lib/components/PartsOrigin.svelte';
+import Seo from '$lib/components/Seo.svelte';
+import JsonLd from '$lib/components/JsonLd.svelte';
+import { breadcrumbSchema } from '$lib/seo/schema';
+import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+
+const related = [
+	{ href: '/cold-chain', label: 'コールドチェーン温度監視', sub: '冷蔵庫・冷凍庫の遠隔監視' },
+	{ href: '/livestock', label: 'スマート畜産・養鶏', sub: '鶏舎・畜舎の温度監視' },
+	{ href: '/agriculture', label: 'スマート農業・ハウス', sub: 'ハウス・露地・土壌の環境監視' },
+	{ href: '/column/lorawan-toha', label: 'LoRaWANとは？', sub: 'コラム' }
+];
+
+const title = '技術・設計｜現場に強い、センサー基板のつくり｜CropWatch 日本';
+const description =
+	'CropWatch のセンサー基板の設計と技術。ご自分で交換できる電池とセンサー、樹脂で封止した頑丈な基板、厚い壁も通すLoRaWAN、記録を守るFRAMメモリ、機器を見張る「番犬機能」まで。止まらず・届いて・失わない監視の理由をご紹介します。';
+
+const ld = breadcrumbSchema([
+	{ name: 'ホーム', path: '/' },
+	{ name: '技術・設計', path: '/technology' }
+]);
 </script>
 
-<svelte:head>
-	<title>技術・設計｜現場に強い、センサー基板のつくり｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="CropWatch のセンサー基板の設計と技術。ご自分で交換できる電池とセンサー、樹脂で封止した頑丈な基板、厚い壁も通すLoRaWAN、記録を守るFRAMメモリ、機器を見張る「番犬機能」まで。止まらず・届いて・失わない監視の理由をご紹介します。"
-	/>
-</svelte:head>
+<Seo {title} {description} />
+<JsonLd data={ld} />
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
@@ -172,6 +187,8 @@ import PartsOrigin from '$lib/components/PartsOrigin.svelte';
 		</div>
 	</div>
 </section>
+
+<RelatedLinks links={related} />
 
 <!-- クロージング -->
 <section class="closing">

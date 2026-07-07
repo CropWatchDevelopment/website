@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 740">
+	<title>ダブルセンサー健全性チェックの仕組み</title>
+	<desc>2つの温湿度センサーの測定値を回帰分析に反映し、過去の関係性と比較して通常データまたはエラーとして処理する流れ</desc>
+	<defs>
+		<marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+			<path d="M1 1l7 4-7 4z" fill="#2c6cb7" />
+		</marker>
+		<marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+			<path d="M1 1l7 4-7 4z" fill="#0e9960" />
+		</marker>
+		<marker id="arrow-red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+			<path d="M1 1l7 4-7 4z" fill="#dd0f0f" />
+		</marker>
+	</defs>
+
+	<rect x="1" y="1" width="358" height="738" rx="22" fill="#f8fafc" stroke="#d7e0f5" stroke-width="2" />
+	<text x="20" y="38" fill="#245a9c" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="12" font-weight="700">10分ごとのデータ取得</text>
+	<text x="20" y="70" fill="#0b1730" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="20" font-weight="800">2系統で測定し、関係性を確認</text>
+
+	<rect x="18" y="102" width="154" height="116" rx="16" fill="#ffffff" stroke="#b4ccf0" stroke-width="2" />
+	<circle cx="47" cy="135" r="15" fill="#eef4fc" />
+	<path d="M47 124v17m0 0a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0-11a4 4 0 0 0-4 4v18" fill="none" stroke="#2c6cb7" stroke-linecap="round" stroke-width="3" />
+	<text x="70" y="132" fill="#4a5d7e" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="10" font-weight="700">センサー A</text>
+	<text x="70" y="153" fill="#0b1730" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="17" font-weight="800">SHT43</text>
+	<text x="34" y="190" fill="#4a5d7e" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="11">温度・湿度を独立測定</text>
+
+	<rect x="188" y="102" width="154" height="116" rx="16" fill="#ffffff" stroke="#93e0bd" stroke-width="2" />
+	<circle cx="217" cy="135" r="15" fill="#e9f9f1" />
+	<path d="M217 124v17m0 0a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0-11a4 4 0 0 0-4 4v18" fill="none" stroke="#0e9960" stroke-linecap="round" stroke-width="3" />
+	<text x="240" y="132" fill="#4a5d7e" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="10" font-weight="700">センサー B</text>
+	<text x="240" y="153" fill="#0b1730" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="17" font-weight="800">SHT40</text>
+	<text x="204" y="190" fill="#4a5d7e" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="11">温度・湿度を独立測定</text>
+
+	<path d="M95 219v34h57" fill="none" stroke="#2c6cb7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" marker-end="url(#arrow-blue)" />
+	<path d="M265 219v34h-57" fill="none" stroke="#0e9960" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" marker-end="url(#arrow-green)" />
+
+	<rect x="18" y="270" width="324" height="184" rx="18" fill="#11213c" />
+	<text x="40" y="303" fill="#9ab0d6" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="11" font-weight="700">健全性チェック</text>
+	<text x="40" y="333" fill="#e7ecff" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="17" font-weight="800">両方の測定値を回帰分析へ反映</text>
+	<line x1="40" y1="352" x2="320" y2="352" stroke="#2f5387" stroke-width="1" />
+	<circle cx="50" cy="378" r="11" fill="#2c6cb7" />
+	<text x="50" y="382" fill="#ffffff" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="10" font-weight="800" text-anchor="middle">1</text>
+	<text x="70" y="382" fill="#cfd8ff" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="12">両方の値を同時に取得</text>
+	<circle cx="50" cy="408" r="11" fill="#2c6cb7" />
+	<text x="50" y="412" fill="#ffffff" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="10" font-weight="800" text-anchor="middle">2</text>
+	<text x="70" y="412" fill="#cfd8ff" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="12">これまでの関係性を更新</text>
+	<circle cx="50" cy="438" r="11" fill="#2c6cb7" />
+	<text x="50" y="442" fill="#ffffff" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="10" font-weight="800" text-anchor="middle">3</text>
+	<text x="70" y="442" fill="#cfd8ff" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="12">関係性からの乖離を確認</text>
+
+	<path d="M112 455v32" fill="none" stroke="#0e9960" stroke-linecap="round" stroke-width="3" marker-end="url(#arrow-green)" />
+	<rect x="18" y="494" width="324" height="92" rx="17" fill="#e9f9f1" stroke="#57cd99" stroke-width="2" />
+	<circle cx="57" cy="540" r="18" fill="#0e9960" />
+	<path d="M49 540l6 6 12-14" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" />
+	<text x="88" y="531" fill="#086241" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="12" font-weight="700">関係性の範囲内</text>
+	<text x="88" y="558" fill="#04392a" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="16" font-weight="800">通常データとして記録</text>
+
+	<path d="M248 455v147" fill="none" stroke="#dd0f0f" stroke-linecap="round" stroke-width="3" marker-end="url(#arrow-red)" />
+	<rect x="18" y="610" width="324" height="92" rx="17" fill="#fff1f1" stroke="#eb2f2f" stroke-width="2" />
+	<circle cx="57" cy="656" r="18" fill="#dd0f0f" />
+	<path d="M50 649l14 14m0-14-14 14" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="4" />
+	<text x="88" y="647" fill="#a20c0c" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="12" font-weight="700">関係性から大きく乖離</text>
+	<text x="88" y="674" fill="#741010" font-family="Inter, 'Noto Sans JP', sans-serif" font-size="16" font-weight="800">通常データにせずエラー表示</text>
+</svg>

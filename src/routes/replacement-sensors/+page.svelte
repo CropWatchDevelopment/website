@@ -1,21 +1,37 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 import { initSensorViewer, SENSORS } from '$lib/sensors3d';
+import Seo from '$lib/components/Seo.svelte';
+import JsonLd from '$lib/components/JsonLd.svelte';
+import { breadcrumbSchema, productSchema } from '$lib/seo/schema';
 import '$lib/styles/sensors3d.css';
 
 // 最初のセンサーはサーバー側でも描画（実データ／JSなしでも見える）。
 // ビューアはタブ操作に合わせてこの内容を差し替えます。
 const first = SENSORS[0];
 onMount(() => initSensorViewer());
+
+const title = '交換用センサー｜自分で60秒で交換・校正証明書つき｜CropWatch 日本';
+const description =
+	'校正済みで、すぐ使える交換用センサーモジュール。業者を呼ばず、だれでも60秒で交換できます。1台ごとにISO/IEC 17025の校正証明書つき。温度・湿度・CO₂・土壌など用途に合わせて選べます。';
+
+const ld = [
+	breadcrumbSchema([
+		{ name: 'ホーム', path: '/' },
+		{ name: '製品', path: '/sectors' },
+		{ name: '交換用センサー', path: '/replacement-sensors' }
+	]),
+	productSchema({
+		name: 'CropWatch 交換用センサーモジュール',
+		description:
+			'ユーザー自身が60秒で交換できる校正済みセンサーモジュール。温度・湿度・CO₂・土壌に対応し、1台ごとにISO/IEC 17025の校正証明書が付属します。',
+		category: '交換用センサー'
+	})
+];
 </script>
 
-<svelte:head>
-	<title>交換用センサー｜自分で60秒で交換・校正証明書つき｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="校正済みで、すぐ使える交換用センサーモジュール。業者を呼ばず、だれでも60秒で交換できます。1台ごとにISO/IEC 17025の校正証明書つき。温度・湿度・CO₂・土壌など用途に合わせて選べます。"
-	/>
-</svelte:head>
+<Seo {title} {description} />
+<JsonLd data={ld} />
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>

@@ -2,6 +2,19 @@
 import { browser } from '$app/environment';
 import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 import { onDestroy } from 'svelte';
+import Seo from '$lib/components/Seo.svelte';
+import JsonLd from '$lib/components/JsonLd.svelte';
+import { breadcrumbSchema } from '$lib/seo/schema';
+
+const title =
+	'お問い合わせ・無料デモのご予約｜温度監視・スマート農業・スマート畜産｜CropWatch 日本';
+const description =
+	'CropWatch（クロップウォッチ）へのお問い合わせ・無料デモのご予約はこちら。冷蔵庫・鶏舎・ハウス・畑など、見守りたい場所をお聞かせください。最適なセンサー・受信機・通知の設定をご提案します。';
+
+const contactLd = breadcrumbSchema([
+	{ name: 'ホーム', path: '/' },
+	{ name: 'お問い合わせ', path: '/contact' }
+]);
 
 let { form } = $props();
 
@@ -84,24 +97,26 @@ onDestroy(() => {
 });
 </script>
 
+<Seo {title} {description} />
+<JsonLd data={contactLd} />
+
 <svelte:head>
-	<title>お問い合わせ・無料デモのご予約｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="CropWatch（クロップウォッチ）へのお問い合わせ・無料デモのご予約はこちら。冷蔵庫・鶏舎・ハウス・畑など、見守りたい場所をお聞かせください。最適なセンサー・受信機・通知の設定をご提案します。"
-	/>
 	{#if recaptchaSiteKey}
 		<script src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`} async defer></script>
 	{/if}
 </svelte:head>
 
+<div class="crumb"><div class="wrap crumb__in">
+	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+	<b>お問い合わせ</b>
+</div></div>
+
 <section class="pagehero">
 	<div class="wrap pagehero__in" data-reveal>
 		<p class="eyebrow"><span class="material-symbols-rounded">mail</span> お問い合わせ</p>
-		<h1>見守りたい場所を、お聞かせください。</h1>
-		<p class="hero__kicker">初めての方でも、安心。<span class="u">電話でもメールでも、お気軽に。</span></p>
-		<p>冷蔵庫・鶏舎・ハウス・畑など、監視したい場所をお知らせください。<b>必要なセンサー・受信機・通知の設定をご提案</b>し、どんな記録が残るのかをご覧いただけます。デモは20分ほどです。</p>
-		<p class="pagehero__note"><span class="material-symbols-rounded">check_circle</span> ご相談・お見積もりは無料です。無理な勧誘はいたしません。</p>
+		<h1>監視したい場所や課題をお聞かせください。</h1>
+		<p class="hero__kicker">導入前のご相談も、電話・メールでお気軽に。</p>
+		<p>現場に合わせたセンサー構成、ゲートウェイ設置、通知方法をご提案し、導入後もデータが安定して届くようサポートします。</p>
 	</div>
 </section>
 
@@ -119,8 +134,8 @@ onDestroy(() => {
 				</div>
 			{:else}
 				<form class="form-card" id="demoForm" method="post" action="?" onsubmit={handleSubmit}>
-					<h2 style="font-size:22px;margin-bottom:6px">無料デモ・お見積もりのご依頼</h2>
-					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">1営業日以内にご返信します。</p>
+					<h2 style="font-size:22px;margin-bottom:6px">問い合わせ</h2>
+					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">5営業日以内にご返信します。</p>
 
 					{#if form?.message}
 						<p class="form-error" role="alert">{form.message}</p>
@@ -142,7 +157,7 @@ onDestroy(() => {
 								<option>飲食店・フードサービス</option>
 								<option>ホテル・宿泊</option>
 								<option>学校・給食施設</option>
-								<option>病院・薬局</option>
+								<option>工場</option>
 								<option>スーパー・小売</option>
 								<option>冷蔵倉庫・物流</option>
 								<option>食品工場</option>
@@ -186,7 +201,7 @@ onDestroy(() => {
 					>
 						送信する <span class="material-symbols-rounded">arrow_forward</span>
 					</button>
-					<p class="form-note">メールでのご連絡は <a href="mailto:info@cropwatch.co.jp" style="color:var(--web-primary);font-weight:600">info@cropwatch.co.jp</a> まで</p>
+					<!-- <p class="form-note">メールでのご連絡は <a href="mailto:info@cropwatch.co.jp" style="color:var(--web-primary);font-weight:600">info@cropwatch.co.jp</a> まで</p> -->
 				</form>
 			{/if}
 		</div>
@@ -195,20 +210,19 @@ onDestroy(() => {
 		<aside class="cinfo" data-reveal>
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">call</span> お電話</h3>
-				<p><a class="mono" href="tel:0120000000">0120-000-000</a><br><a href="mailto:info@cropwatch.co.jp">info@cropwatch.co.jp</a></p>
-				<p class="cinfo__note">※ 連絡先は仮の表示です。</p>
+				<p><a class="mono" href="tel:080-4282-3390">080-4282-3390</a><br><a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a></p>
 			</div>
-			<div class="cinfo__card">
+			<!-- <div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">support_agent</span> サポート</h3>
-				<p>すでにご利用中のお客さまは <a href="mailto:support@cropwatch.co.jp">support@cropwatch.co.jp</a> へ。</p>
-			</div>
+				<p>すでにご利用中のお客さまは <a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a> へ。</p>
+			</div> -->
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">schedule</span> 受付時間</h3>
-				<p>平日 9:00〜18:00<br>※ アラートと画面は24時間365日動いています。</p>
+				<p>平日 9:00〜18:00</p>
 			</div>
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">location_on</span> 所在地</h3>
-				<p>〒100-0001<br>東京都千代田区（仮）</p>
+				<p>〒881-0001<br>宮崎県西都市南方806-5</p>
 			</div>
 		</aside>
 	</div>
@@ -217,11 +231,11 @@ onDestroy(() => {
 <section class="closing">
 	<div class="wrap closing__in" data-reveal>
 		<p class="eyebrow eyebrow--gold" style="justify-content:center"><span class="material-symbols-rounded">lightbulb</span> まだ迷っている方へ</p>
-		<h2>選ばれる理由を、もう一度。</h2>
-		<p>自分で交換できるセンサー、校正証明書、二重チェック、そして番犬機能。CropWatch の安心の仕組みをご覧ください。</p>
+		<h2>導入から運用サポートまで</h2>
+		<p>CropWatchは、設置後の通信確認や運用サポートまで一貫して対応。現場で安心して使い続けられる環境づくりを支えます。</p>
 		<div class="closing__ctas">
 			<a href="/technology" class="btn btn--accent btn--lg">止まらない仕組みを見る</a>
-			<a href="/testimonials" class="btn btn--outline-light btn--lg">お客様の声を読む</a>
+			<a href="/testimonials" class="btn btn--outline-light btn--lg">お客様の声を見る</a>
 		</div>
 	</div>
 </section>
@@ -247,6 +261,5 @@ onDestroy(() => {
 	.cinfo__card p { font-size: 14.5px; color: var(--web-muted); line-height: 1.9; margin: 0; }
 	.cinfo__card a { color: var(--web-primary); font-weight: 600; }
 	.cinfo__card .mono { font-family: var(--cw-font-mono); font-size: 16px; }
-	.cinfo__note { font-size: 12px; color: var(--web-muted); margin-top: 8px; }
 	@media (max-width:880px){ .contact-grid{grid-template-columns:1fr;} .frow{grid-template-columns:1fr;} .form-card{padding:28px;} }
 </style>

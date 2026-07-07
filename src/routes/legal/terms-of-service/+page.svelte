@@ -1,10 +1,12 @@
-<svelte:head>
-	<title>CropWatch | 利用規約 / クッキーポリシー</title>
-	<meta
-		name="description"
-		content="合同会社クロップウォッチが提供するサービスに関するクッキーの利用方針および利用者の権利についてのご案内。"
-	/>
-</svelte:head>
+<script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
+
+	const title = '利用規約・クッキーポリシー｜CropWatch 日本';
+	const description =
+		'合同会社クロップウォッチが提供するサービスに関するクッキーの利用方針および利用者の権利についてのご案内。';
+</script>
+
+<Seo {title} {description} />
 
 <div class="relative isolate px-6 py-16">
 	<div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-white/5 to-black/40"></div>

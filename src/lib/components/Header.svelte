@@ -4,9 +4,9 @@ import { afterNavigate } from '$app/navigation';
 
 // 仮の日本連絡先（後で差し替え）— placeholder Japan contact details.
 const JP = {
-	tel: '0120-000-000',
-	telHref: 'tel:0120000000',
-	email: 'info@cropwatch.co.jp'
+	tel: '080-4282-3390',
+	telHref: 'tel:08042823390',
+	email: 'sayaka@cropwatch.io'
 };
 
 const LOGO = '/cropwatch_icons/cropwatch_static.svg';
@@ -15,9 +15,9 @@ type Product = { href: string; icon: string; t: string; d: string };
 type NavLink = { key: string; href: string; label: string; children?: Product[] };
 
 const PRODUCTS: Product[] = [
-	{ href: '/cold-chain', icon: 'ac_unit', t: '冷蔵・冷凍の温度監視', d: '飲食店・ホテル・病院・倉庫' },
-	{ href: '/livestock', icon: 'pets', t: '畜産・養鶏の環境監視', d: '鶏舎・畜舎・酪農' },
-	{ href: '/agriculture', icon: 'eco', t: '農業・ハウスの監視', d: 'ハウス・露地・土壌' },
+	{ href: '/cold-chain', icon: 'ac_unit', t: 'コールドチェーン温度監視', d: '飲食店・ホテル・工場・倉庫' },
+	{ href: '/livestock', icon: 'pets', t: 'スマート畜産・養鶏', d: '鶏舎・畜舎・酪農' },
+	{ href: '/agriculture', icon: 'eco', t: 'スマート農業・ハウス', d: 'ハウス・露地・土壌' },
 	{ href: '/replacement-sensors', icon: 'cable', t: '交換用センサー', d: '自分で交換・校正証明書つき' },
 	{ href: '/replacement-case', icon: 'deployed_code', t: '交換用ケース', d: '頑丈な防塵防水ケース（3D）' }
 ];
@@ -65,7 +65,7 @@ afterNavigate(() => closeMenu());
 		<div class="wrap hdr__top-in">
 			<div class="hdr__top-left">
 				<span class="flag">🇯🇵</span><strong>CropWatch 日本</strong><span class="sep">|</span><span
-					>品質の高い温度監視機器</span
+					>産業用環境監視サービス</span
 				>
 			</div>
 			<div class="hdr__top-links">
@@ -77,9 +77,9 @@ afterNavigate(() => closeMenu());
 					<span class="material-symbols-rounded">mail</span>
 					{JP.email}
 				</a>
-				<a class="hdr__lang" href="https://cropwatch.io">
+				<!-- <a class="hdr__lang" href="https://cropwatch.io">
 					<span class="material-symbols-rounded">language</span> English
-				</a>
+				</a> -->
 			</div>
 		</div>
 	</div>
@@ -89,7 +89,7 @@ afterNavigate(() => closeMenu());
 			<a class="brand" href="/" aria-label="CropWatch ホーム">
 				<img src={LOGO} alt="CropWatch" class="brand__mark" />
 				<span class="brand__txt">
-					<span class="brand__name">CropWatch</span>
+					<span class="brand__name">CropWatch<sup>®</sup></span>
 					<span class="brand__tag">クロップウォッチ 日本</span>
 				</span>
 			</a>

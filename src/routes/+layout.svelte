@@ -6,6 +6,8 @@ import { page } from '$app/state';
 import { PUBLIC_GA_MEASUREMENT_ID } from '$env/static/public';
 import { onMount, tick } from 'svelte';
 import { alternatesFor } from '$lib/seo/alternates';
+import JsonLd from '$lib/components/JsonLd.svelte';
+import { organizationSchema, websiteSchema } from '$lib/seo/schema';
 import '../app.css';
 import '$lib/styles/cropwatch-tokens.css';
 import '$lib/styles/cropwatch-site.css';
@@ -18,6 +20,9 @@ let { children } = $props();
 // alternatesFor('en', ...) against the same shared map. Pages with no
 // cross-site equivalent return null and emit nothing.
 const alternates = $derived(alternatesFor('ja', page.url.pathname));
+
+// Site-wide publisher identity + WebSite entity, emitted on every page.
+const siteLd = [organizationSchema(), websiteSchema()];
 
 type Gtag = (...args: unknown[]) => void;
 type WindowWithGtag = Window & { dataLayer?: unknown[]; gtag?: Gtag };
@@ -189,6 +194,8 @@ afterNavigate(async () => {
 		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 	{/each}
 </svelte:head>
+
+<JsonLd data={siteLd} />
 
 <div class="flex min-h-screen flex-col">
 	<Header />

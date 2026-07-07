@@ -61,6 +61,7 @@ h1, h2, h3, h4 { color: var(--web-heading); margin: 0; line-height: 1.45; letter
 [data-reveal="2"] { transition-delay: .16s; }
 [data-reveal="3"] { transition-delay: .24s; }
 @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1; transform: none; transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 /* ============================================================
    Buttons

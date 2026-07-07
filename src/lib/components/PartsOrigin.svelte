@@ -95,6 +95,9 @@ const set = (i: number | null) => (active = i);
 			{/each}
 		</div>
 	</div>
+	<div>
+		<p><sup>*</sup><small>このグラフに表示されていない国は、当社のセンサーボードに部品が存在しないことを意味します。</small></p>
+	</div>
 </div>
 
 <style>

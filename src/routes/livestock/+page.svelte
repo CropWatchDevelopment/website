@@ -1,10 +1,38 @@
-<svelte:head>
-	<title>畜産・養鶏の環境監視｜鶏舎の温度・湿度をワイヤレスで見守る｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="鶏舎・畜舎の温度・湿度を10分ごとに自動送信し、環境の変化を24時間見える化。暑熱ストレス・換気不良・温度ムラの早期発見を支援します。LoRaWANで電波の届きにくい場所も配線工事なしで設置。ISO/IEC 17025校正証明書つき。"
-	/>
-</svelte:head>
+<script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { breadcrumbSchema, productSchema } from '$lib/seo/schema';
+	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+
+	const related = [
+		{ href: '/cold-chain', label: 'コールドチェーン温度監視', sub: '冷蔵庫・冷凍庫の遠隔監視' },
+		{ href: '/agriculture', label: 'スマート農業・ハウス', sub: 'ハウス・露地・土壌の環境監視' },
+		{ href: '/column/keisha-shonetsu-taisaku', label: '鶏舎の暑熱対策', sub: 'コラム' }
+	];
+
+	const title =
+		'スマート畜産・養鶏IoT｜鶏舎・畜舎の温度・湿度を遠隔監視するワイヤレスセンサー｜CropWatch 日本';
+	const description =
+		'スマート畜産・養鶏IoTのための鶏舎・畜舎の環境モニタリング。温度・湿度を10分ごとに自動送信し、暑熱対策や換気の判断に役立つ環境データを24時間見える化。家禽・畜産の暑熱ストレスや換気不良を早期に発見します。LoRaWANで配線工事なし、ISO/IEC 17025校正証明書つき。';
+
+	const ld = [
+		breadcrumbSchema([
+			{ name: 'ホーム', path: '/' },
+			{ name: '製品', path: '/sectors' },
+			{ name: '畜産・養鶏の監視', path: '/livestock' }
+		]),
+		productSchema({
+			name: 'CropWatch 畜産・養鶏向け 温度・湿度監視センサー',
+			description:
+				'スマート畜産・養鶏IoT向けの電池駆動LoRaWAN環境センサー。鶏舎・畜舎の温度・湿度・CO₂を遠隔で見える化し、暑熱ストレスや換気不良の早期発見を支援します。',
+			image: 'https://cropwatch.co.jp/assets/imagery/device-side-view.webp',
+			category: 'スマート畜産 / 畜産IoT'
+		})
+	];
+</script>
+
+<Seo {title} {description} />
+<JsonLd data={ld} />
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
@@ -16,10 +44,10 @@
 <section class="lsf-hero">
 	<div class="wrap lsf-hero__grid">
 		<div class="lsf-hero__copy" data-reveal>
-			<span class="lsf-eyebrow"><span class="lsf-dot"></span> 温度・湿度を見守るワイヤレスセンサー</span>
+			<span class="lsf-eyebrow"><span class="lsf-dot"></span> 鶏舎・畜舎の温度・湿度を見守るワイヤレスセンサー</span>
 			<h1>環境の変化を見逃さず、<br>飼育<span class="lsf-hl">リスク</span>を低減。</h1>
 			<p class="lsf-lead">
-				温度・湿度を10分ごとに自動送信し、鶏舎内の環境変化を24時間見える化します。電波が届きにくい場所でもLoRaWANにより安定したデータ送信が可能。暑熱ストレス、換気不良、温度ムラなどの早期発見を支援し、鶏の健康と安定した飼育管理に貢献します。
+				養鶏IoT・スマート畜産のワイヤレスセンサーが、鶏舎・畜舎の温度・湿度を10分ごとに自動送信し、鶏舎内の環境モニタリングを24時間見える化します。電波が届きにくい場所でもLoRaWANにより安定したデータ送信が可能。暑熱ストレス、換気不良、温度ムラなどの早期発見を支援し、鶏や家畜の健康と安定した飼育管理に貢献します。
 			</p>
 			<div class="lsf-hero__ctas">
 				<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する <span class="material-symbols-rounded">arrow_forward</span></a>
@@ -68,7 +96,7 @@
 		<div class="lsf-feats">
 			<div class="lsf-feat" data-reveal="0">
 				<span class="lsf-feat__ic lsf-feat__ic--blue"><span class="material-symbols-rounded">thermostat</span></span>
-				<div><h3>暑熱リスクを見逃さない</h3><p>温度・湿度を自動で記録し、鶏や家畜に負担がかかる環境変化を見える化します。</p></div>
+				<div><h3>鶏舎の暑熱対策をサポート</h3><p>鶏舎・畜舎の温度・湿度を自動で記録し、家禽や家畜に負担がかかる環境変化を見える化。夏場の暑熱対策や換気の判断に役立ちます。</p></div>
 			</div>
 			<div class="lsf-feat" data-reveal="1">
 				<span class="lsf-feat__ic lsf-feat__ic--gold"><span class="material-symbols-rounded fill">notifications_active</span></span>
@@ -117,6 +145,8 @@
 		</div>
 	</div>
 </section>
+
+<RelatedLinks links={related} />
 
 <!-- ═══ クロージング ═══ -->
 <section class="closing">

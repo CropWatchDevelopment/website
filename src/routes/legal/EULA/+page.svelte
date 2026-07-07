@@ -1,10 +1,11 @@
-<svelte:head>
-	<title>CropWatch | サービス利用規約</title>
-	<meta
-		name="description"
-		content="合同会社クロップウォッチが提供するサービス利用規約のご案内。"
-	/>
-</svelte:head>
+<script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
+
+	const title = 'サービス利用規約（EULA）｜CropWatch 日本';
+	const description = '合同会社クロップウォッチが提供するサービス利用規約のご案内。';
+</script>
+
+<Seo {title} {description} />
 
 <div class="mx-auto max-w-4xl px-6 py-12">
 	<header class="mb-8">

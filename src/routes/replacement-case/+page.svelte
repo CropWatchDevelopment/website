@@ -1,5 +1,26 @@
 <script lang="ts">
 import { onMount } from 'svelte';
+import Seo from '$lib/components/Seo.svelte';
+import JsonLd from '$lib/components/JsonLd.svelte';
+import { breadcrumbSchema, productSchema } from '$lib/seo/schema';
+
+const title = '交換用ケース｜頑丈な防塵防水（IP66）ケース・3Dで見る｜CropWatch 日本';
+const description =
+	'CropWatchのすべてのセンサーが入る、頑丈な防塵・防水（IP66）ケース。冷凍庫の霜・鶏舎の洗浄・畑の直射日光やホコリから中身を守ります。3Dで回転させて確認できます。校正済みモジュールはそのまま装着可能。';
+
+const ld = [
+	breadcrumbSchema([
+		{ name: 'ホーム', path: '/' },
+		{ name: '製品', path: '/sectors' },
+		{ name: '交換用ケース', path: '/replacement-case' }
+	]),
+	productSchema({
+		name: 'CropWatch 交換用ケース CW-CASE',
+		description:
+			'頑丈な防塵・防水（IP66）ケース。冷凍庫の霜、鶏舎の洗浄、畑の直射日光やホコリから中身を守ります。校正済みセンサーモジュールをそのまま装着できます。',
+		category: '交換用ケース'
+	})
+];
 
 // Load Babylon.js + the CW-AIR-TH 3D viewer (static/assets/device.js) on the
 // client only, after the <canvas> is in the DOM. device.js is an IIFE that
@@ -45,13 +66,8 @@ onMount(() => {
 });
 </script>
 
-<svelte:head>
-	<title>交換用ケース｜頑丈な防塵防水（IP66）ケース・3Dで見る｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="CropWatchのすべてのセンサーが入る、頑丈な防塵・防水（IP66）ケース。冷凍庫の霜・鶏舎の洗浄・畑の直射日光やホコリから中身を守ります。3Dで回転させて確認できます。校正済みモジュールはそのまま装着可能。"
-	/>
-</svelte:head>
+<Seo {title} {description} />
+<JsonLd data={ld} />
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>

@@ -1,4 +1,17 @@
 <script lang="ts">
+import Seo from '$lib/components/Seo.svelte';
+import JsonLd from '$lib/components/JsonLd.svelte';
+import { breadcrumbSchema } from '$lib/seo/schema';
+
+const title = 'お客様の声・導入事例｜温度監視・スマート農業・スマート畜産｜CropWatch 日本';
+const description =
+	'CropWatch（クロップウォッチ）を導入したお客様の声・導入事例。宮崎・シーガイアのガーデンビュッフェ「パインテラス」やTK-EBISUの養鶏をはじめ、飲食・ホテル・倉庫・農業・畜産の現場で、温度監視と記録の手間がどう変わったかをご紹介します。';
+
+const testimonialsLd = breadcrumbSchema([
+	{ name: 'ホーム', path: '/' },
+	{ name: 'お客様の声', path: '/testimonials' }
+]);
+
 type Who = { icon?: string; initial?: string; name: string; role: string };
 type Testimonial = {
 	href: string;
@@ -10,14 +23,14 @@ type Testimonial = {
 	chips: string[];
 	who: Who;
 	caseStudy?: boolean; // shows the "導入事例" badge (a real, named customer)
-	featured?: boolean; // 2-column hero card
+	view?: 'tall' | 'wide'; // 'tall' = 2-column hero (tall side photo); 'wide' (default) = standard card (wide banner photo on top)
 };
 
 const TESTIMONIALS: Testimonial[] = [
 	{
 		href: '/cold-chain',
 		tag: { icon: 'restaurant', label: '飲食・ホテル' },
-		img: '/assets/photos/seagaia-pine-terrace.webp',
+		img: '/assets/photos/seagaia.webp',
 		biz: 'ガーデンビュッフェ「パインテラス」',
 		loc: '宮崎市・シーガイア',
 		quote:
@@ -29,7 +42,7 @@ const TESTIMONIALS: Testimonial[] = [
 			role: 'フェニックス・シーガイア・リゾート ／ 宮崎'
 		},
 		caseStudy: true,
-		featured: true
+		view: 'wide'
 	},
 	{
 		href: '/livestock',
@@ -63,7 +76,8 @@ const TESTIMONIALS: Testimonial[] = [
 		quote:
 			'複数の冷蔵倉庫をひとつの画面で見られるようになり、巡回の手間が大きく減りました。報告書もそのまま出せるので、月次のまとめが早いです。',
 		chips: ['複数拠点を一元監視', '帳票出力', '巡回削減'],
-		who: { initial: '高', name: '高橋 物流 様', role: '城北ロジスティクス ／ 倉庫管理' }
+		who: { initial: '高', name: '高橋 物流 様', role: '城北ロジスティクス ／ 倉庫管理' },
+		view: 'tall'
 	},
 	{
 		href: '/replacement-sensors',
@@ -90,13 +104,13 @@ const TESTIMONIALS: Testimonial[] = [
 ];
 </script>
 
-<svelte:head>
-	<title>お客様の声｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="CropWatch（クロップウォッチ）を導入したお客様の声。宮崎・シーガイアのガーデンビュッフェ「パインテラス」をはじめ、飲食・ホテル・倉庫・農業・畜産の現場で、温度監視と記録の手間がどう変わったかをご紹介します。"
-	/>
-</svelte:head>
+<Seo {title} {description} />
+<JsonLd data={testimonialsLd} />
+
+<div class="crumb"><div class="wrap crumb__in">
+	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+	<b>お客様の声</b>
+</div></div>
 
 <section class="section section--soft">
 	<div class="wrap">
@@ -108,7 +122,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 		<div class="tgrid">
 			{#each TESTIMONIALS as t, i (t.biz + t.href)}
-				<a class="tcard" class:tcard--feat={t.featured} href={t.href} data-reveal={i % 3}>
+				<a class="tcard" class:tcard--tall={t.view === 'tall'} href={t.href} data-reveal={i % 3}>
 					<div class="tphoto" style="background-image:url('{t.img}')">
 						<span class="tcard__tag"><span class="material-symbols-rounded">{t.tag.icon}</span> {t.tag.label}</span>
 						{#if t.caseStudy}
@@ -182,21 +196,21 @@ const TESTIMONIALS: Testimonial[] = [
 		box-shadow: var(--web-shadow-raised);
 	}
 
-	/* Featured (first / real) card spans 2 columns on wide screens */
-	.tcard--feat {
+	/* Tall layout (view: 'tall'): 2-column hero card with a tall side photo, spans 2 columns on wide screens */
+	.tcard--tall {
 		grid-column: span 2;
 		flex-direction: row;
 	}
-	.tcard--feat .tphoto {
+	.tcard--tall .tphoto {
 		flex: 1 1 46%;
 		height: auto;
 		min-height: 300px;
 		border-radius: 0;
 	}
-	.tcard--feat .tcard__body {
+	.tcard--tall .tcard__body {
 		flex: 1 1 54%;
 	}
-	.tcard--feat .tcard__quote {
+	.tcard--tall .tcard__quote {
 		font-size: 16px;
 	}
 
@@ -337,7 +351,7 @@ const TESTIMONIALS: Testimonial[] = [
 		.tgrid {
 			grid-template-columns: repeat(2, 1fr);
 		}
-		.tcard--feat {
+		.tcard--tall {
 			grid-column: span 2;
 		}
 	}
@@ -345,15 +359,15 @@ const TESTIMONIALS: Testimonial[] = [
 		.tgrid {
 			grid-template-columns: 1fr;
 		}
-		.tcard--feat {
+		.tcard--tall {
 			grid-column: auto;
 			flex-direction: column;
 		}
-		.tcard--feat .tphoto,
-		.tcard--feat .tcard__body {
+		.tcard--tall .tphoto,
+		.tcard--tall .tcard__body {
 			flex: none;
 		}
-		.tcard--feat .tphoto {
+		.tcard--tall .tphoto {
 			min-height: 0;
 			height: 178px;
 		}

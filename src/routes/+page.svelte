@@ -1,4 +1,11 @@
 <script lang="ts">
+import Seo from '$lib/components/Seo.svelte';
+
+const title =
+	'温度監視・環境モニタリングのCropWatch 日本｜コールドチェーン・スマート農業・スマート畜産';
+const description =
+	'コールドチェーンの温度監視、スマート農業、スマート畜産・養鶏IoT。冷蔵庫・冷凍庫から鶏舎・ハウスまで、同じセンサーと同じ画面で見える化する、置くだけのワイヤレス温度・環境監視システム。';
+
 type Panel = {
 	href: string;
 	img: string;
@@ -16,23 +23,23 @@ const PANELS: Panel[] = [
 		icon: 'ac_unit',
 		eyebrow: '冷蔵・冷凍',
 		title: 'コールドチェーン',
-		desc: '飲食・ホテル・病院・倉庫の冷蔵庫と冷凍庫を、24時間自動で見守ります。'
+		desc: '飲食・ホテル・工場・倉庫の冷蔵庫・冷凍庫の温度を24時間自動で見守る、HACCP対応のコールドチェーン温度監視。'
 	},
 	{
 		href: '/livestock',
 		img: '/assets/photos/sector-livestock.webp',
 		icon: 'pets',
 		eyebrow: '畜産・養鶏',
-		title: '畜産・養鶏',
-		desc: '鶏舎・畜舎・酪農の温度・湿度・ガスを見守り、異常を早めに通知します。'
+		title: 'スマート畜産・養鶏',
+		desc: '鶏舎・畜舎・酪農の温度・湿度・CO₂を見守る養鶏IoT・スマート畜産。異常を早めに通知します。'
 	},
 	{
 		href: '/agriculture',
 		img: '/assets/photos/agriculture-peppers.webp',
 		icon: 'eco',
 		eyebrow: '農業・ハウス',
-		title: '農業・ハウス',
-		desc: 'ハウス・露地・土壌の環境をまとめて監視。霜・高温・乾燥を早めに察知します。'
+		title: 'スマート農業・ハウス',
+		desc: 'ハウス・露地・土壌の環境をまとめて監視するスマート農業・農業IoT。霜・高温・乾燥を早めに察知します。'
 	}
 ];
 
@@ -110,13 +117,7 @@ function tapPanel(i: number, event: MouseEvent) {
 }
 </script>
 
-<svelte:head>
-	<title>CropWatch 日本 — 現場を選んでください｜冷蔵・冷凍／畜産／農業の温度監視</title>
-	<meta
-		name="description"
-		content="見守りたい現場をお選びください。冷蔵・冷凍（コールドチェーン）、畜産・養鶏、農業・ハウス。同じセンサーと同じ画面で、置くだけのワイヤレス温度・環境監視。"
-	/>
-</svelte:head>
+<Seo {title} {description} />
 
 <section class="splitter" aria-label="導入先から選ぶ">
 	<!-- No pointerleave reset: the last section the pointer opened stays
@@ -134,13 +135,20 @@ function tapPanel(i: number, event: MouseEvent) {
 			<span class="intro__spine" aria-hidden="true"><span class="intro__spine-txt">導入先から選ぶ</span></span>
 			<div class="cell__fix intro__in">
 				<p class="intro__eyebrow"><span class="material-symbols-rounded">explore</span> 導入先から選ぶ</p>
-				<h1 class="intro__title">あなたの現場は、どれですか？</h1>
+				<h1 class="intro__title">あなたの現場は、どこでですか？</h1>
 				<p class="intro__desc">
-					見守りたい現場をお選びください。冷蔵・冷凍、畜産、農業——どれも<b>同じセンサーと同じ画面</b>で、置くだけ監視です。
+					つながらない。止まる。記録が残らない。
 				</p>
+				<p class="intro__desc text-nowrap">
+					CropWatchは、そんな現場の課題を前提に設計された産業用環境データ監視システムです。
+				</p>
+				<p>
+					LoRaWAN通信と堅牢なハードウェア設計により、厳しい環境でも安定したデータ収集を実現します。
+				</p>
+				<p>&nbsp;</p>
 				<p class="intro__hint">
 					<span class="material-symbols-rounded">touch_app</span>
-					気になる業種を選ぶと、CropWatch がどう役立つかをご覧いただけます。
+					業種を選んで、現場の見える化をはじめましょう。
 				</p>
 				<a class="btn btn--primary intro__special" href="/technology">
 					CropWatch の強みを見る <span class="material-symbols-rounded">arrow_forward</span>
@@ -298,11 +306,7 @@ function tapPanel(i: number, event: MouseEvent) {
 		font-size: clamp(0.95rem, 1.1vw, 1.05rem);
 		line-height: 1.95;
 		color: var(--web-muted);
-		margin: 0 0 1.6rem;
-		max-width: 30rem;
-	}
-	.intro__desc b {
-		color: var(--web-text);
+		max-width: 40rem;
 	}
 	.intro__hint {
 		display: flex;

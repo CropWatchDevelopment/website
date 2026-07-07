@@ -1,10 +1,26 @@
-<svelte:head>
-	<title>業種から探す｜冷蔵・冷凍／農業・ハウス／畜産・養鶏の監視｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="あなたの業種に合ったCropWatchの監視をお選びください。飲食・ホテル・病院・倉庫の冷蔵冷凍、農業・ハウス、畜産・養鶏。同じセンサーと同じ画面で、現場に合わせてご提案します。"
-	/>
-</svelte:head>
+<script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { breadcrumbSchema } from '$lib/seo/schema';
+
+	const title =
+		'業種から探す｜コールドチェーン温度監視・スマート農業・スマート畜産｜CropWatch 日本';
+	const description =
+		'あなたの業種に合ったCropWatchの温度監視・環境モニタリングをお選びください。飲食・ホテル・工場・倉庫のコールドチェーン、スマート農業・ハウス、スマート畜産・養鶏。同じセンサーと同じ画面で、現場に合わせてご提案します。';
+
+	const ld = breadcrumbSchema([
+		{ name: 'ホーム', path: '/' },
+		{ name: '業種から探す', path: '/sectors' }
+	]);
+</script>
+
+<Seo {title} {description} />
+<JsonLd data={ld} />
+
+<div class="crumb"><div class="wrap crumb__in">
+	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+	<b>業種から探す</b>
+</div></div>
 
 <section class="pagehero">
 	<div class="wrap pagehero__in" data-reveal>
@@ -22,9 +38,9 @@
 			<div class="sector__img" style="background-image:url('/assets/photos/sector-coldchain.webp')"></div>
 			<div class="sector__body">
 				<p class="eyebrow"><span class="material-symbols-rounded">ac_unit</span> 冷蔵・冷凍</p>
-				<h2>飲食・ホテル・病院・倉庫の冷蔵冷凍監視</h2>
-				<p>冷蔵庫・冷凍庫・ショーケースを24時間自動で監視。温度が外れたらすぐ通知し、HACCP対応の記録が自動で残ります。</p>
-				<div class="sector__tags"><span>飲食店</span><span>ホテル</span><span>病院・薬局</span><span>冷蔵倉庫</span><span>学校給食</span></div>
+				<h2>飲食・ホテル・倉庫のコールドチェーン温度監視</h2>
+				<p>冷蔵庫・冷凍庫・ショーケースの温度を24時間自動で遠隔監視。温度が外れたらすぐ通知し、HACCP対応の記録が自動で残ります。</p>
+				<div class="sector__tags"><span>飲食店</span><span>ホテル</span><span>冷蔵倉庫</span><span>学校給食</span><span>HACCP温度管理</span></div>
 				<span class="btn btn--primary">くわしく見る <span class="material-symbols-rounded">arrow_forward</span></span>
 			</div>
 		</a>
@@ -33,9 +49,9 @@
 			<div class="sector__img" style="background-image:url('/assets/photos/sector-agriculture.webp')"></div>
 			<div class="sector__body">
 				<p class="eyebrow"><span class="material-symbols-rounded">eco</span> 農業・ハウス</p>
-				<h2>ハウス・露地・土壌の環境監視</h2>
-				<p>土壌・空気・光の状態をまとめて見守り、霜・高温・乾燥のサインを早めに通知。1台の受信機で農場全体をカバーします。</p>
-				<div class="sector__tags"><span>ハウス栽培</span><span>露地</span><span>果樹</span><span>土壌</span></div>
+				<h2>スマート農業：ハウス・露地・土壌の環境監視</h2>
+				<p>農業IoTで土壌・空気・光の状態をまとめて見守り、霜・高温・乾燥のサインを早めに通知。1台の受信機で農場全体をカバーします。</p>
+				<div class="sector__tags"><span>ハウス栽培</span><span>施設園芸</span><span>露地</span><span>果樹</span><span>土壌</span></div>
 				<span class="btn btn--primary">くわしく見る <span class="material-symbols-rounded">arrow_forward</span></span>
 			</div>
 		</a>
@@ -44,9 +60,9 @@
 			<div class="sector__img" style="background-image:url('/assets/photos/sector-livestock.webp')"></div>
 			<div class="sector__body">
 				<p class="eyebrow"><span class="material-symbols-rounded">pets</span> 畜産・養鶏</p>
-				<h2>鶏舎・畜舎・酪農の環境監視</h2>
-				<p>温度・湿度・二酸化炭素・アンモニアを見守り、暑さや換気の異常を早めに通知。長い鶏舎も端から端まで把握できます。</p>
-				<div class="sector__tags"><span>養鶏</span><span>畜舎</span><span>酪農</span></div>
+				<h2>スマート畜産：鶏舎・畜舎・酪農の環境監視</h2>
+				<p>養鶏IoTで温度・湿度・二酸化炭素・アンモニアを見守り、暑熱対策や換気の異常を早めに通知。長い鶏舎も端から端まで把握できます。</p>
+				<div class="sector__tags"><span>養鶏IoT</span><span>畜舎</span><span>酪農</span><span>暑熱対策</span></div>
 				<span class="btn btn--primary">くわしく見る <span class="material-symbols-rounded">arrow_forward</span></span>
 			</div>
 		</a>

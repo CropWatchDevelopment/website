@@ -1,10 +1,65 @@
-<svelte:head>
-	<title>冷蔵・冷凍の温度監視｜10分ごとの自動記録でHACCP・監査対応｜CropWatch 日本</title>
-	<meta
-		name="description"
-		content="電池駆動のLoRaWANセンサーが冷蔵・冷凍庫の温度・湿度を10分ごとに自動記録。電波が届きにくい過酷な環境からも安定送信し、日々の温度管理からHACCP対応・監査時の記録提出までを効率化。ISO/IEC 17025校正証明書つき。"
-	/>
-</svelte:head>
+<script lang="ts">
+	import DoubleSensorSection from '$lib/components/cold-chain/DoubleSensorSection.svelte';
+	import FieldReplacementSection from '$lib/components/cold-chain/FieldReplacementSection.svelte';
+	import Seo from '$lib/components/Seo.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { breadcrumbSchema, faqSchema, productSchema } from '$lib/seo/schema';
+	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+
+	const related = [
+		{ href: '/livestock', label: 'スマート畜産・養鶏', sub: '鶏舎・畜舎の温度監視' },
+		{ href: '/agriculture', label: 'スマート農業・ハウス', sub: 'ハウス・露地・土壌の環境監視' },
+		{ href: '/column/haccp-gimuka', label: 'HACCP義務化とは？', sub: 'コラム' },
+		{ href: '/column/cold-chain-toha', label: 'コールドチェーンとは？', sub: 'コラム' }
+	];
+
+	const title =
+		'コールドチェーン温度監視システム｜冷蔵庫・冷凍庫の遠隔温度監視とHACCP自動記録｜CropWatch 日本';
+	const description =
+		'コールドチェーンの温度監視システム。電池駆動のLoRaWANセンサーが冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録し、スマホやPCから遠隔監視できます。HACCP義務化に対応した温度記録の自動化から監査時の記録提出までを効率化。ISO/IEC 17025校正証明書つき。';
+
+	const faq = [
+		{
+			q: '通信が途切れた場合、記録は失われますか？',
+			a: 'センサーの内部メモリに測定データを保存します。通信が復旧すると、保存していたデータを自動送信します。'
+		},
+		{
+			q: 'HACCPの義務化に対応できますか？',
+			a: 'はい。冷蔵庫・冷凍庫の温度を自動で記録し、HACCPで求められる温度管理の記録と保存を効率化します。紙の記録や手書き転記をなくし、監査時にもそのまま提出できます。'
+		},
+		{
+			q: '離れた場所から冷蔵庫・冷凍庫の温度を確認できますか？',
+			a: 'はい。測定データはクラウドに送信され、スマートフォンやPCから遠隔で温度を監視できます。複数拠点の冷蔵庫・冷凍庫もまとめて確認できます。'
+		},
+		{
+			q: '現場で校正や補正を行う必要はありますか？',
+			a: '原則として現場での校正や補正は行いません。工場出荷時に校正・検査された検知部を使用し、必要に応じて検知部のみを交換する運用を推奨しています。'
+		},
+		{
+			q: '監査用の記録を出力できますか？',
+			a: 'はい。日次・週次レポートの自動送信に加え、直近2年間分のデータをCSVで出力できます。校正証明書も標準で添付します。'
+		}
+	];
+
+	const ld = [
+		breadcrumbSchema([
+			{ name: 'ホーム', path: '/' },
+			{ name: '製品', path: '/sectors' },
+			{ name: '冷蔵・冷凍の監視', path: '/cold-chain' }
+		]),
+		faqSchema(faq),
+		productSchema({
+			name: 'CropWatch 冷蔵・冷凍向け 温度・湿度監視センサー',
+			description:
+				'コールドチェーン向けの電池駆動LoRaWAN温度・湿度センサー。冷蔵庫・冷凍庫の温度を10分ごとに自動記録し、遠隔監視とHACCP対応の温度記録を実現するクラウド温度監視システムです。',
+			image: 'https://cropwatch.co.jp/assets/imagery/device-side-view.webp',
+			category: '温度監視システム'
+		})
+	];
+</script>
+
+<Seo {title} {description} />
+<JsonLd data={ld} />
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
@@ -16,14 +71,13 @@
 <section class="cc-hero">
 	<div class="wrap cc-hero__grid">
 		<div class="cc-hero__copy" data-reveal>
-			<span class="cc-eyebrow"><span class="cc-dot"></span> 温度・湿度を見守るワイヤレスセンサー</span>
+			<span class="cc-eyebrow"><span class="cc-dot"></span> コールドチェーンの温度・湿度を見守るワイヤレスセンサー</span>
 			<h1>10分ごとの記録で、<br>品質トラブルの<span class="cc-hl">リスク</span>を低減。</h1>
 			<p class="cc-lead">
-				電池駆動のLoRaWANセンサーが温度と湿度を24時間自動で記録。電波が届きにくい過酷な環境からも、安定してデータを送信します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
+				電池駆動のLoRaWANセンサーが冷蔵庫・冷凍庫の温度と湿度を24時間自動で記録し、スマホやPCから遠隔監視できます。電波が届きにくい過酷な環境からも、安定してデータを送信。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化する温度監視システムです。
 			</p>
 			<div class="cc-hero__ctas">
 				<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する <span class="material-symbols-rounded">arrow_forward</span></a>
-				<span class="cc-note"><span class="material-symbols-rounded">co2</span> CO₂の測定にも対応（オプション）</span>
 			</div>
 		</div>
 
@@ -48,74 +102,262 @@
 			<div><b>±0.48<i>°C</i></b><span>測定精度</span></div>
 			<div><b>10年</b><span>電池で最長10年稼働</span></div>
 			<div><b>10分</b><span>収集頻度</span></div>
-			<div><b class="cc-inf">∞</b><span>ユーザー無制限</span></div>
+			<a href="#double-sensor" aria-label="交差検証の詳細を見る">
+				<b>交差検証</b><span>ユーザー無制限</span>
+			</a>
 		</div>
 	</div>
 </section>
 
-<!-- ═══ 選ばれる理由 ═══ -->
+<!-- 記録・通知・レポート -->
+<section class="section">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow eyebrow--accent">
+				<span class="material-symbols-rounded">autorenew</span> 温度管理を自動化
+			</p>
+			<h2>毎日の記録から監査対応まで</h2>
+			<p>手書きや転記に使っていた時間を減らし、異常の把握と記録の確認をスムーズにします。</p>
+		</div>
+		<div class="boxgrid boxgrid--3">
+			<div class="box" data-reveal="0">
+				<span class="box__ic"><span class="material-symbols-rounded">schedule</span></span>
+				<h3>10分ごとに自動記録</h3>
+				<p>
+					クラウド対応の温度データロガーとして、温度・湿度を24時間収集して保存。日々の見回りや手書きによる記録漏れのリスクを抑えます。
+				</p>
+			</div>
+			<div class="box" data-reveal="1">
+				<span class="box__ic box__ic--gold"
+					><span class="material-symbols-rounded fill">notifications_active</span></span
+				>
+				<h3>異常をすばやく通知</h3>
+				<p>
+					設定したしきい値に達すると、メールや現場のパトランプで通知。早めの確認と対応につなげます。
+				</p>
+			</div>
+			<div class="box" data-reveal="2">
+				<span class="box__ic box__ic--accent"
+					><span class="material-symbols-rounded">summarize</span></span
+				>
+				<h3>レポート作成を効率化</h3>
+				<p>
+					日次・週次レポートを自動送信。保存したデータはCSVでも出力でき、監査や社内報告に活用できます。
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- 選ばれる理由 -->
 <section class="section section--soft">
 	<div class="wrap">
-		<div class="cc-rule" data-reveal><span>選ばれる理由</span><i></i></div>
-		<div class="cc-feats">
-			<div class="cc-feat" data-reveal="0">
-				<span class="cc-feat__ic cc-feat__ic--blue"><span class="material-symbols-rounded">schedule</span></span>
-				<div><h3>自動記録で、確認作業をもっとラクに</h3><p>温度・湿度データを自動で収集・保存。毎日の見回り負担を減らし、記録漏れのリスクを抑えます。</p></div>
+		<div class="section__head" data-reveal>
+			<p class="eyebrow eyebrow--accent">
+				<span class="material-symbols-rounded">verified_user</span> 継続運用を支える仕組み
+			</p>
+			<h2>止めない、見落とさない、疑わしい値をそのまま使わない。</h2>
+			<p>冷蔵庫や冷凍庫の厳しい環境でも、記録を継続しながら測定状態を確認できる設計です。</p>
+		</div>
+		<div class="boxgrid boxgrid--3">
+			<div class="box" data-reveal="0">
+				<span class="box__ic box__ic--accent"
+					><span class="material-symbols-rounded">save</span></span
+				>
+				<h3>停電や通信断にも対応</h3>
+				<p>
+					通信できない間は内部メモリに測定データを保存。復旧後に自動送信し、記録の欠損を防ぎます。
+				</p>
 			</div>
-			<div class="cc-feat" data-reveal="1">
-				<span class="cc-feat__ic cc-feat__ic--blue"><span class="material-symbols-rounded fill">notifications_active</span></span>
-				<div><h3>異常をすばやく通知</h3><p>温度上昇や換気異常をメールやパトランプでお知らせ。見落としを防ぎ、早めの対応につなげます。</p></div>
+			<div class="box" data-reveal="1">
+				<span class="box__ic"><span class="material-symbols-rounded">fact_check</span></span>
+				<h3>スイス製高精度センサー採用</h3>
+				<p>
+					信頼性の高いSensirion社製SHT43とSHT40をダブルで搭載。いずれも認定機関にて校正後、個別に試験が行われたデジタル温湿度センサーです。				</p>
 			</div>
-			<div class="cc-feat" data-reveal="0">
-				<span class="cc-feat__ic cc-feat__ic--green"><span class="material-symbols-rounded">summarize</span></span>
-				<div><h3>報告書作成もスムーズに</h3><p>保存されたデータから報告書を作成。監査前の準備や、社内外への提出資料づくりの負担を軽減します。</p></div>
-			</div>
-			<div class="cc-feat" data-reveal="1">
-				<span class="cc-feat__ic cc-feat__ic--gold"><span class="material-symbols-rounded fill">cell_tower</span></span>
-				<div><h3>「届かない」を理由に、温度管理を諦めない</h3><p>LoRaWAN通信で、冷凍庫の奥や離れた場所など、これまで確認できなかった環境も見える化します。</p></div>
-			</div>
-			<div class="cc-feat" data-reveal="0">
-				<span class="cc-feat__ic cc-feat__ic--green"><span class="material-symbols-rounded">save</span></span>
-				<div><h3>通信が途切れても、記録は止まらない</h3><p>通信障害や停電発生時は、本体メモリにデータを保存。データ欠損のリスクを防ぎます。</p></div>
-			</div>
-			<div class="cc-feat" data-reveal="1">
-				<span class="cc-feat__ic cc-feat__ic--blue"><span class="material-symbols-rounded">fact_check</span></span>
-				<div><h3>Wセンサーで、測定値の信頼性をチェック</h3><p>異常な測定値を送信しない<span class="cc-u">クロスチェック機能</span>を搭載。日々の温度管理の信頼性を高めます。</p></div>
-			</div>
-			<div class="cc-feat cc-feat--wide" data-reveal>
-				<span class="cc-feat__ic cc-feat__ic--ink"><span class="material-symbols-rounded">api</span></span>
-				<div><h3>OpenAPI・MCP によるデータ連携</h3><p>記録したデータは、ExcelやGoogleスプレッドシートなど、使い慣れたツールに取り込めます。専用画面だけに縛られず、既存の管理方法に合わせて活用できます。</p></div>
+			<div class="box" data-reveal="2">
+				<span class="box__ic box__ic--gold"
+					><span class="material-symbols-rounded fill">cell_tower</span></span
+				>
+				<h3>冷凍庫の奥までつながる</h3>
+				<p>LoRaWAN通信で、Wi-Fiや携帯の電波が届かない厚い壁や冷凍庫内、離れた倉庫からもデータを安定して送信します。</p>
 			</div>
 		</div>
 	</div>
 </section>
 
-<!-- ═══ 安心の公的認証 ═══ -->
-<section class="section section--tight">
+<DoubleSensorSection />
+
+<FieldReplacementSection />
+
+<!-- 導入の現場 -->
+<section class="section section--soft">
 	<div class="wrap">
-		<div class="cc-comp" data-reveal>
-			<div class="cc-comp__copy">
-				<p class="cc-comp__eyebrow">安心の公的認証</p>
-				<h2>すべてのセンサーに、監査でそのまま使える公式の校正証明書付き。</h2>
-				<p class="cc-comp__sub">ISO/IEC 17025認証取得 ・ NISTトレーサブル ・ HACCP対応 ・ ILAC-MRA認証</p>
-				<span class="cc-chip"><span class="cc-chip__lab">搭載センサー</span> SHT43 &amp; SHT40</span>
-			</div>
-			<div class="cc-comp__badges">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow"><span class="material-symbols-rounded">image</span> 導入の現場</p>
+			<h2>温度を守る場所に、工事なしで設置。</h2>
+			<p>電池式・ワイヤレスなので、電源や配線を引きにくい冷蔵・冷凍設備にも設置できます。</p>
+		</div>
+		<div class="gallery">
+			<figure data-reveal="0">
+				<img src="/assets/photos/coldchain-freezer.webp" alt="食品を保管する業務用冷凍庫" />
+				<figcaption><b>業務用冷凍庫</b><span>低温環境の温度・湿度を継続監視</span></figcaption>
+			</figure>
+			<figure data-reveal="1">
+				<img src="/assets/photos/coldchain-fridge.webp" alt="食品を保管する業務用冷蔵庫" />
+				<figcaption><b>業務用冷蔵庫</b><span>日々の記録と異常通知を自動化</span></figcaption>
+			</figure>
+			<figure data-reveal="2">
+				<img
+					src="/assets/photos/coldchain-door.webp"
+					alt="冷蔵・冷凍設備の出入口に設置されたCropWatchセンサー"
+				/>
+				<figcaption>
+					<b>冷蔵・冷凍設備の出入口</b><span>配線工事なしでセンサーを設置</span>
+				</figcaption>
+			</figure>
+		</div>
+	</div>
+</section>
+
+<!-- 校正・認証 -->
+<section class="section">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow eyebrow--accent">
+				<span class="material-symbols-rounded">workspace_premium</span> 校正・認証
+			</p>
+			<h2>測定の根拠を、記録と一緒に残せます。</h2>
+			<p>
+				SHT43には個体ごとのISO/IEC 17025に基づく3点温度校正証明書を発行。監査時の確認を支えます。
+			</p>
+		</div>
+		<div class="badgewall">
+			<div class="badgewall__card" data-reveal="0">
 				<img src="/assets/badges/iso-iec-17025.png" alt="ISO/IEC 17025 校正" />
+				<b>ISO/IEC 17025</b><span>認定校正に基づく証明書</span>
+			</div>
+			<div class="badgewall__card" data-reveal="1">
 				<img src="/assets/badges/nist-traceable.webp" alt="NIST トレーサブル" />
-				<img src="/assets/badges/HACCP.webp" alt="HACCP 対応" />
-				<img src="/assets/badges/ilac-mra.webp" alt="ILAC-MRA 認定" />
+				<b>NISTトレーサブル</b><span>測定のトレーサビリティ</span>
+			</div>
+			<div class="badgewall__card" data-reveal="2">
+				<img src="/assets/badges/HACCP.webp" alt="HACCP対応" />
+				<b>HACCP対応</b><span>温度管理記録を効率化</span>
+			</div>
+			<div class="badgewall__card" data-reveal="3">
+				<img src="/assets/badges/ilac-mra.webp" alt="ILAC-MRA認定" />
+				<b>ILAC-MRA</b><span>国際相互承認の枠組み</span>
 			</div>
 		</div>
 	</div>
 </section>
 
-<!-- ═══ クロージング ═══ -->
+<!-- 主な仕様 -->
+<section class="section section--soft">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow"><span class="material-symbols-rounded">tune</span> 主な仕様</p>
+			<h2>長期運用に必要な機能を、標準で。</h2>
+		</div>
+		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
+			<div class="spec-row">
+				<dt>測定</dt>
+				<dd>温度・湿度（CO₂はオプション）</dd>
+			</div>
+			<div class="spec-row">
+				<dt>搭載センサー</dt>
+				<dd>Sensirion SHT43・SHT41</dd>
+			</div>
+			<div class="spec-row">
+				<dt>データ収集</dt>
+				<dd>10分ごと／直近2年間分を保存／CSV出力</dd>
+			</div>
+			<div class="spec-row">
+				<dt>通信</dt>
+				<dd>LoRaWAN／通信断時は内部メモリへ保存し、復旧後に自動送信</dd>
+			</div>
+			<div class="spec-row">
+				<dt>電池寿命</dt>
+				<dd>最長10年（交換可能）</dd>
+			</div>
+			<div class="spec-row">
+				<dt>データ連携</dt>
+				<dd>APIによる外部システム連携／ユーザー数無制限</dd>
+			</div>
+		</dl>
+	</div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow"><span class="material-symbols-rounded">quiz</span> よくあるご質問</p>
+			<h2>冷蔵・冷凍の温度監視 Q&amp;A</h2>
+		</div>
+		<div class="faq" data-reveal>
+			<details>
+				<summary
+					>通信が途切れた場合、記録は失われますか？ <span class="material-symbols-rounded">add</span
+					></summary
+				>
+				<p>
+					センサーの内部メモリに測定データを保存します。通信が復旧すると、保存していたデータを自動送信します。
+				</p>
+			</details>
+			<details>
+				<summary
+					>HACCPの義務化に対応できますか？ <span class="material-symbols-rounded">add</span
+					></summary
+				>
+				<p>
+					はい。冷蔵庫・冷凍庫の温度を自動で記録し、HACCPで求められる温度管理の記録と保存を効率化します。紙の記録や手書き転記をなくし、監査時にもそのまま提出できます。
+				</p>
+			</details>
+			<details>
+				<summary
+					>離れた場所から冷蔵庫・冷凍庫の温度を確認できますか？ <span class="material-symbols-rounded"
+						>add</span
+					></summary
+				>
+				<p>
+					はい。測定データはクラウドに送信され、スマートフォンやPCから遠隔で温度を監視できます。複数拠点の冷蔵庫・冷凍庫もまとめて確認できます。
+				</p>
+			</details>
+			<details>
+				<summary
+					>現場で校正や補正を行う必要はありますか？ <span class="material-symbols-rounded">add</span
+					></summary
+				>
+				<p>
+					原則として現場での校正や補正は行いません。工場出荷時に校正・検査された検知部を使用し、必要に応じて検知部のみを交換する運用を推奨しています。
+				</p>
+			</details>
+			<details>
+				<summary
+					>監査用の記録を出力できますか？ <span class="material-symbols-rounded">add</span></summary
+				>
+				<p>
+					はい。日次・週次レポートの自動送信に加え、直近2年間分のデータをCSVで出力できます。校正証明書も標準で添付します。
+				</p>
+			</details>
+		</div>
+	</div>
+</section>
+
+<RelatedLinks links={related} />
+
+<!-- クロージング -->
 <section class="closing">
 	<div class="wrap closing__in" data-reveal>
-		<p class="eyebrow eyebrow--gold" style="justify-content:center"><span class="material-symbols-rounded">waving_hand</span> まずはお気軽に</p>
+		<p class="eyebrow eyebrow--gold" style="justify-content:center">
+			<span class="material-symbols-rounded">waving_hand</span> まずはお気軽に
+		</p>
 		<h2>冷蔵・冷凍の温度管理、自動化しませんか。</h2>
-		<p>見守りたい冷蔵庫・冷凍庫・倉庫の様子をお聞かせください。最適なセンサーと通知の設定を、無料でご提案します。</p>
+		<p>
+			見守りたい冷蔵庫・冷凍庫・倉庫の様子をお聞かせください。最適なセンサーと通知の設定を、無料でご提案します。
+		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
 			<a href="/replacement-sensors" class="btn btn--outline-light btn--lg">センサーを見る</a>
@@ -193,19 +435,6 @@
 		gap: 14px;
 		margin-top: 22px;
 	}
-	.cc-note {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		font-family: var(--cw-font-mono);
-		font-size: 12.5px;
-		font-weight: 600;
-		color: var(--cw-ice-400);
-	}
-	.cc-note .material-symbols-rounded {
-		font-size: 18px;
-	}
-
 	/* device + floating reading card */
 	.cc-hero__media {
 		position: relative;
@@ -277,205 +506,50 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		margin-top: 26px;
-		border: 1px solid rgba(231, 236, 255, 0.16);
+		border: 1px solid var(--cw-emerald-300);
 		border-radius: 16px;
 		overflow: hidden;
-		background: rgba(231, 236, 255, 0.06);
-		backdrop-filter: blur(2px);
+		background: var(--cw-emerald-50);
+		box-shadow: 0 18px 40px -28px rgba(4, 57, 42, 0.8);
 	}
-	.cc-stats > div {
+	.cc-stats > * {
 		padding: 14px 16px;
 		text-align: center;
-		border-right: 1px solid rgba(231, 236, 255, 0.16);
+		border-right: 1px solid var(--cw-emerald-200);
 	}
-	.cc-stats > div:last-child {
+	.cc-stats > :last-child {
 		border-right: none;
+	}
+	.cc-stats > a {
+		transition:
+			background-color 180ms var(--jp-ease),
+			box-shadow 180ms var(--jp-ease);
+	}
+	.cc-stats > a:hover {
+		background: var(--cw-emerald-100);
+	}
+	.cc-stats > a:focus-visible {
+		outline: 3px solid var(--cw-emerald-600);
+		outline-offset: -4px;
+		box-shadow: inset 0 0 0 1px var(--cw-emerald-50);
 	}
 	.cc-stats b {
 		display: block;
 		font-family: var(--cw-font-mono);
 		font-size: clamp(20px, 3vw, 26px);
 		font-weight: 700;
-		color: #fff;
+		color: var(--cw-emerald-900);
 	}
 	.cc-stats b i {
 		font-style: normal;
 		font-size: 0.6em;
 	}
-	.cc-inf {
-		line-height: 0.8;
-	}
 	.cc-stats span {
 		font-size: 11px;
-		color: rgba(231, 236, 255, 0.72);
+		font-weight: 600;
+		color: var(--cw-emerald-800);
 		margin-top: 3px;
 		display: block;
-	}
-
-	/* ═══ Feature grid ═══ */
-	.cc-rule {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-		margin-bottom: 18px;
-	}
-	.cc-rule span {
-		font-size: 12px;
-		font-weight: 700;
-		letter-spacing: 0.18em;
-		color: var(--cw-sapphire-600);
-	}
-	.cc-rule i {
-		flex: 1;
-		height: 1px;
-		background: var(--web-border);
-	}
-	.cc-feats {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 12px;
-	}
-	.cc-feat {
-		display: flex;
-		align-items: center;
-		gap: 14px;
-		padding: 16px 18px;
-		border: 1px solid var(--web-border);
-		border-left: 4px solid var(--web-accent);
-		border-radius: 14px;
-		background: #fff;
-		box-shadow: var(--web-shadow-card);
-	}
-	.cc-feat h3 {
-		font-size: 16px;
-		font-weight: 700;
-		color: var(--cw-ink);
-		line-height: 1.35;
-	}
-	.cc-feat p {
-		font-size: 13.5px;
-		line-height: 1.7;
-		color: var(--web-muted);
-		margin: 4px 0 0;
-	}
-	.cc-u {
-		text-decoration: underline;
-		text-decoration-color: var(--web-accent);
-		text-underline-offset: 2px;
-	}
-	.cc-feat__ic {
-		flex: none;
-		width: 42px;
-		height: 42px;
-		border-radius: 11px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.cc-feat__ic .material-symbols-rounded {
-		font-size: 23px;
-	}
-	.cc-feat__ic--blue {
-		background: var(--web-bg-tint);
-		color: var(--web-primary);
-	}
-	.cc-feat__ic--green {
-		background: var(--web-accent-soft);
-		color: var(--web-accent);
-	}
-	.cc-feat__ic--gold {
-		background: color-mix(in srgb, var(--web-gold) 16%, #fff);
-		color: var(--web-gold);
-	}
-	.cc-feat__ic--ink {
-		background: #fff;
-		color: var(--cw-ink);
-		border: 1px solid var(--web-border);
-	}
-	.cc-feat--wide {
-		grid-column: 1 / -1;
-		border-color: var(--web-border-strong);
-		border-left-color: var(--web-primary);
-		background: var(--web-primary-soft);
-		box-shadow: none;
-	}
-
-	/* ═══ Compliance strip ═══ */
-	.cc-comp {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 24px;
-		padding: 24px 28px;
-		border-radius: 20px;
-		background: var(--cw-ink);
-		position: relative;
-		overflow: hidden;
-	}
-	.cc-comp::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background: radial-gradient(circle at 92% 50%, rgba(242, 165, 22, 0.16), transparent 42%);
-		pointer-events: none;
-	}
-	.cc-comp__copy {
-		position: relative;
-		max-width: 46ch;
-	}
-	.cc-comp__eyebrow {
-		font-size: 11px;
-		font-weight: 700;
-		letter-spacing: 0.16em;
-		color: var(--web-gold);
-		margin: 0;
-	}
-	.cc-comp__copy h2 {
-		font-size: clamp(1.1rem, 1.7vw, 1.35rem);
-		font-weight: 700;
-		color: #fff;
-		line-height: 1.45;
-		margin: 8px 0 0;
-	}
-	.cc-comp__sub {
-		font-size: 12.5px;
-		color: rgba(231, 236, 255, 0.72);
-		margin: 8px 0 0;
-	}
-	.cc-chip {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font-family: var(--cw-font-mono);
-		font-size: 12px;
-		font-weight: 700;
-		color: #fff;
-		margin-top: 12px;
-		padding: 4px 12px;
-		border: 1px solid rgba(231, 236, 255, 0.22);
-		border-radius: 999px;
-		background: rgba(231, 236, 255, 0.08);
-	}
-	.cc-chip__lab {
-		font-family: var(--jp-font);
-		font-size: 9px;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		color: var(--cw-ice-400);
-	}
-	.cc-comp__badges {
-		position: relative;
-		flex: none;
-		display: flex;
-		align-items: center;
-		gap: 16px;
-		background: rgba(255, 255, 255, 0.96);
-		padding: 12px 18px;
-		border-radius: 14px;
-	}
-	.cc-comp__badges img {
-		height: 52px;
-		width: auto;
 	}
 
 	/* ═══ Responsive ═══ */
@@ -500,33 +574,16 @@
 			flex-wrap: wrap;
 		}
 	}
-	@media (max-width: 760px) {
-		.cc-feats {
-			grid-template-columns: 1fr;
-		}
-		.cc-comp {
-			flex-direction: column;
-			align-items: flex-start;
-		}
-		.cc-comp__badges {
-			align-self: stretch;
-			justify-content: center;
-			flex-wrap: wrap;
-		}
-	}
 	@media (max-width: 600px) {
 		.cc-stats {
 			grid-template-columns: 1fr 1fr;
 		}
-		.cc-stats > div:nth-child(2) {
+		.cc-stats > :nth-child(2) {
 			border-right: none;
 		}
-		.cc-stats > div:nth-child(1),
-		.cc-stats > div:nth-child(2) {
-			border-bottom: 1px solid rgba(231, 236, 255, 0.16);
-		}
-		.cc-comp__badges img {
-			height: 42px;
+		.cc-stats > :nth-child(1),
+		.cc-stats > :nth-child(2) {
+			border-bottom: 1px solid var(--cw-emerald-200);
 		}
 	}
 </style>
