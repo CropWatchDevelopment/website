@@ -91,6 +91,14 @@
 						<span class="cc-read__sub">急速冷凍庫対応</span>
 					</div>
 				</div>
+				<div class="cc-read">
+					<span class="material-symbols-rounded fill cc-read__ic" style="color:#0e9960">humidity_percentage</span>
+					<div class="cc-read__tx">
+						<span class="cc-read__lab">測定湿度</span>
+						<span class="cc-read__val">0<i>%RH</i> – 100<i>%RH</i></span>
+						<span class="cc-read__sub">結露環境にも対応</span>
+					</div>
+				</div>
 			</div>
 			<img src="/assets/imagery/device-side-view.webp" alt="CropWatch 温度・湿度センサー" class="cc-device" />
 		</div>
@@ -267,7 +275,7 @@
 			</div>
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
-				<dd>Sensirion SHT43・SHT41</dd>
+				<dd>Sensirion SHT43 / SHT40</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ収集</dt>
@@ -283,7 +291,7 @@
 			</div>
 			<div class="spec-row">
 				<dt>データ連携</dt>
-				<dd>APIによる外部システム連携／ユーザー数無制限</dd>
+				<dd>OpenAPI・MCPによる外部システム連携／ユーザー数無制限</dd>
 			</div>
 		</dl>
 	</div>
