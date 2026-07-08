@@ -21,6 +21,11 @@ let { children } = $props();
 // cross-site equivalent return null and emit nothing.
 const alternates = $derived(alternatesFor('ja', page.url.pathname));
 
+// The /403 region-gate is a standalone full-screen English page; it renders
+// without the Japanese header/footer chrome. (SvelteKit can't escape the root
+// layout via naming, so we opt this one route out here.)
+const bare = $derived(page.url.pathname === '/403');
+
 // Site-wide publisher identity + WebSite entity, emitted on every page.
 const siteLd = [organizationSchema(), websiteSchema()];
 
@@ -198,11 +203,15 @@ afterNavigate(async () => {
 <JsonLd data={siteLd} />
 
 <div class="flex min-h-screen flex-col">
-	<Header />
+	{#if !bare}
+		<Header />
+	{/if}
 
 	<main class="flex-1 flex flex-col">
 		{@render children()}
 	</main>
 
-	<Footer />
+	{#if !bare}
+		<Footer />
+	{/if}
 </div>

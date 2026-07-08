@@ -375,7 +375,7 @@
    display: grid;
    grid-template-columns: 1.6fr repeat(3, 1fr);
    gap: 40px;
-   padding-block: 58px;
+   padding-block: 45px;
 }
 
 .ftr__about .brand__name {

@@ -71,10 +71,10 @@
 <section class="cc-hero">
 	<div class="wrap cc-hero__grid">
 		<div class="cc-hero__copy" data-reveal>
-			<span class="cc-eyebrow"><span class="cc-dot"></span> コールドチェーンの温度・湿度を見守るワイヤレスセンサー</span>
+			<span class="cc-eyebrow"><span class="cc-dot"></span> コールドチェーンの温度・湿度を見守る産業用ワイヤレスデバイス</span>
 			<h1>10分ごとの記録で、<br>品質トラブルの<span class="cc-hl">リスク</span>を低減。</h1>
 			<p class="cc-lead">
-				電池駆動のLoRaWANセンサーが冷蔵庫・冷凍庫の温度と湿度を24時間自動で記録し、スマホやPCから遠隔監視できます。電波が届きにくい過酷な環境からも、安定してデータを送信。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化する温度監視システムです。
+				バッテリー駆動のLoRaWAN®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
 			</p>
 			<div class="cc-hero__ctas">
 				<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する <span class="material-symbols-rounded">arrow_forward</span></a>
@@ -82,36 +82,52 @@
 		</div>
 
 		<div class="cc-hero__media" data-reveal>
-			<div class="cc-reads">
-				<div class="cc-read">
-					<span class="material-symbols-rounded fill cc-read__ic" style="color:#0ea5e9">device_thermostat</span>
-					<div class="cc-read__tx">
-						<span class="cc-read__lab">測定温度</span>
-						<span class="cc-read__val">−40<i>°C</i> – +85<i>°C</i></span>
-						<span class="cc-read__sub">急速冷凍庫対応</span>
+			<div class="cc-media-top">
+				<div class="cc-reads">
+					<div class="cc-read">
+						<span class="material-symbols-rounded fill cc-read__ic" style="color:#0ea5e9">device_thermostat</span>
+						<div class="cc-read__tx">
+							<span class="cc-read__lab">測定温度</span>
+							<span class="cc-read__val">−40<i>°C</i> – +85<i>°C</i></span>
+							<span class="cc-read__sub">急速冷凍庫対応</span>
+						</div>
+					</div>
+					<div class="cc-read">
+						<span class="material-symbols-rounded fill cc-read__ic" style="color:#0e9960">humidity_percentage</span>
+						<div class="cc-read__tx">
+							<span class="cc-read__lab">測定湿度</span>
+							<span class="cc-read__val">0<i>%RH</i> – 100<i>%RH</i></span>
+							<span class="cc-read__sub">結露環境にも対応</span>
+						</div>
 					</div>
 				</div>
-				<div class="cc-read">
-					<span class="material-symbols-rounded fill cc-read__ic" style="color:#0e9960">humidity_percentage</span>
-					<div class="cc-read__tx">
-						<span class="cc-read__lab">測定湿度</span>
-						<span class="cc-read__val">0<i>%RH</i> – 100<i>%RH</i></span>
-						<span class="cc-read__sub">結露環境にも対応</span>
-					</div>
-				</div>
+				<img src="/assets/imagery/device-side-view.webp" alt="CropWatch 温度・湿度センサー" class="cc-device" />
 			</div>
-			<img src="/assets/imagery/device-side-view.webp" alt="CropWatch 温度・湿度センサー" class="cc-device" />
+
+			<!-- どのデバイスからでも — cross-device graphic (matches CropWatch TH flyer) -->
+			<figure class="cc-anydevice">
+				<img
+					src="/assets/imagery/multi-device.svg"
+					alt="スマホ・タブレット・パソコンで確認"
+					class="cc-anydevice__img"
+					id="cc-anydevice__img"
+				/>
+				<figcaption class="cc-anydevice__cap">
+					スマホ・タブレット・パソコン。どのデバイスからでも<br />
+					<b>24時間365日</b>いつでもどこからでも確認できます。
+				</figcaption>
+			</figure>
 		</div>
 	</div>
 
 	<!-- 実績ストリップ -->
 	<div class="wrap">
 		<div class="cc-stats" data-reveal>
-			<div><b>±0.48<i>°C</i></b><span>測定精度</span></div>
-			<div><b>10年</b><span>電池で最長10年稼働</span></div>
-			<div><b>10分</b><span>収集頻度</span></div>
+			<div><b>配線不要</b><span>無線タイプ</span></div>
+			<div><b>電源不要</b><span>最長10年バッテリー稼働</span></div>
+			<div><b>センサー<sup>x2</sup></b><span>データ整合性の自動検証</span></div>
 			<a href="#double-sensor" aria-label="交差検証の詳細を見る">
-				<b>交差検証</b><span>ユーザー無制限</span>
+				<b>工事不要</b><span>穴あけ不要</span>
 			</a>
 		</div>
 	</div>
@@ -395,7 +411,8 @@
 		display: grid;
 		grid-template-columns: 1.35fr 1fr;
 		gap: 28px;
-		align-items: center;
+		/* bottom-align so the CTA button and the multi-device caption share a baseline */
+		align-items: end;
 	}
 	.cc-eyebrow {
 		display: inline-flex;
@@ -406,7 +423,7 @@
 		background: rgba(231, 236, 255, 0.1);
 		border: 1px solid rgba(231, 236, 255, 0.18);
 		color: var(--cw-ice-400);
-		font-size: 11px;
+		font-size: 15px;
 		font-weight: 700;
 		letter-spacing: 0.12em;
 	}
@@ -447,13 +464,24 @@
 	.cc-hero__media {
 		position: relative;
 		display: flex;
-		align-items: center;
-		justify-content: center;
+		flex-direction: column;
+		gap: 24px;
 		min-height: 240px;
+	}
+	/* area 2 — device (rotated, left-aligned) + floating reading cards (top-right) */
+	.cc-media-top {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		min-height: 150px;
+		padding-top: 18px;
 	}
 	.cc-device {
 		width: 100%;
-		max-width: 220px;
+		max-width: 208px;
+		margin-left: 6px;
+		transform: rotate(-12deg);
 		filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.45));
 	}
 	.cc-reads {
@@ -464,6 +492,31 @@
 		flex-direction: column;
 		gap: 8px;
 		z-index: 2;
+	}
+
+	/* area 1 — "どのデバイスからでも" cross-device graphic */
+	.cc-anydevice {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
+		text-align: center;
+	}
+	.cc-anydevice__img {
+		width: 100%;
+		max-width: 230px;
+		height: auto;
+		filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.4));
+	}
+	.cc-anydevice__cap {
+		font-size: 13px;
+		line-height: 1.85;
+		color: rgba(231, 236, 255, 0.82);
+	}
+	.cc-anydevice__cap b {
+		color: #34d399;
+		font-weight: 800;
 	}
 	.cc-read {
 		display: flex;
@@ -548,10 +601,6 @@
 		font-weight: 700;
 		color: var(--cw-emerald-900);
 	}
-	.cc-stats b i {
-		font-style: normal;
-		font-size: 0.6em;
-	}
 	.cc-stats span {
 		font-size: 11px;
 		font-weight: 600;
@@ -569,17 +618,27 @@
 		.cc-hero__media {
 			order: -1;
 			min-height: 0;
+			gap: 18px;
+		}
+		.cc-media-top {
+			min-height: 0;
+			padding-top: 0;
 			justify-content: flex-start;
 			gap: 14px;
 			flex-wrap: wrap;
 		}
 		.cc-device {
-			max-width: 150px;
+			max-width: 140px;
+			transform: rotate(-8deg);
 		}
 		.cc-reads {
 			position: static;
 			flex-direction: row;
 			flex-wrap: wrap;
+		}
+		.cc-anydevice {
+			align-items: flex-start;
+			text-align: left;
 		}
 	}
 	@media (max-width: 600px) {

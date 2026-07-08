@@ -132,18 +132,18 @@ function tapPanel(i: number, event: MouseEvent) {
 			onpointerenter={() => (hovered = null)}
 		>
 			<!-- slanted label shown when the intro is tucked into a sliver -->
-			<span class="intro__spine" aria-hidden="true"><span class="intro__spine-txt">導入先から選ぶ</span></span>
+			<span class="intro__spine" aria-hidden="true"><span class="intro__spine-txt">クロップウォッチへようこそ!</span></span>
 			<div class="cell__fix intro__in">
-				<p class="intro__eyebrow"><span class="material-symbols-rounded">explore</span> 導入先から選ぶ</p>
-				<h1 class="intro__title">あなたの現場は、どこでですか？</h1>
+				<p class="intro__eyebrow"><span class="material-symbols-rounded">explore</span> クロップウォッチへようこそ!</p>
+				<h1 class="intro__title">あなたの現場は、どこですか？</h1>
 				<p class="intro__desc">
 					つながらない。止まる。記録が残らない。
 				</p>
 				<p class="intro__desc text-nowrap">
 					CropWatchは、そんな現場の課題を前提に設計された産業用環境データ監視システムです。
 				</p>
-				<p>
-					LoRaWAN通信と堅牢なハードウェア設計により、厳しい環境でも安定したデータ収集を実現します。
+				<p class="intro__desc">
+					LoRaWAN通信と堅牢なハードウェア設計により、厳しい環境でも安定したデータ収集を実現。配線工事は不要で、バッテリーのみで最長10年間の稼働に対応します。
 				</p>
 				<p>&nbsp;</p>
 				<p class="intro__hint">

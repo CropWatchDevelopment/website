@@ -12,8 +12,8 @@
 				<span class="brand__name">CropWatch<sup>®</sup></span>
 			</a>
 			<p>
-				コールドチェーン・スマート農業・スマート畜産向けのワイヤレス温度監視・環境モニタリング。
-				記録作業の自動化と、監査対応に使えるデータ管理を。
+				Wi-Fiも携帯も届かない現場に、10年稼働のIoTを。
+				コールドチェーン・鶏舎・農業のための環境監視ソリューション。
 			</p>
 			<a href="/contact" class="btn btn--accent">お問い合わせ</a>
 		</div>
@@ -21,8 +21,8 @@
 		<nav class="ftr__col">
 			<h4>製品</h4>
 			<a href="/cold-chain">コールドチェーン温度監視</a>
-			<a href="/livestock">スマート畜産・養鶏の監視</a>
-			<a href="/agriculture">スマート農業・ハウスの監視</a>
+			<a href="/livestock">畜産・養鶏の監視</a>
+			<a href="/agriculture">農業・ハウスの監視</a>
 			<a href="/replacement-sensors">交換用センサー</a>
 			<a href="/replacement-case">交換用ケース</a>
 		</nav>
