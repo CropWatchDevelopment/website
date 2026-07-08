@@ -1,5 +1,5 @@
 <script lang="ts">
-	const JP = { tel: '080-4282-3390', telHref: 'tel:08042823390' };
+	const JP = { tel: '080-4284-3390', telHref: 'tel:08042843390' };
 	const LOGO = '/cropwatch_icons/cropwatch_static.svg';
 	const year = new Date().getFullYear();
 </script>

@@ -4,8 +4,8 @@ import { afterNavigate } from '$app/navigation';
 
 // 仮の日本連絡先（後で差し替え）— placeholder Japan contact details.
 const JP = {
-	tel: '080-4282-3390',
-	telHref: 'tel:08042823390',
+	tel: '080-4284-3390',
+	telHref: 'tel:08042843390',
 	email: 'sayaka@cropwatch.io'
 };
 
@@ -26,7 +26,6 @@ const NAV: NavLink[] = [
 	{ key: 'home', href: '/', label: 'ホーム' },
 	{ key: 'products', href: '/sectors', label: '製品', children: PRODUCTS },
 	{ key: 'tech', href: '/technology', label: '技術' },
-	{ key: 'sectors', href: '/sectors', label: '業種から探す' },
 	{ key: 'testimonials', href: '/testimonials', label: 'お客様の声' },
 	{ key: 'help', href: '/help', label: 'ヘルプ' },
 	{ key: 'contact', href: '/contact', label: 'お問い合わせ' }

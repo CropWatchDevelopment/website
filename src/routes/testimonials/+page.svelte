@@ -23,7 +23,7 @@ type Testimonial = {
 	chips: string[];
 	who: Who;
 	caseStudy?: boolean; // shows the "導入事例" badge (a real, named customer)
-	view?: 'tall' | 'wide'; // 'tall' = 2-column hero (tall side photo); 'wide' (default) = standard card (wide banner photo on top)
+	view?: 'tall' | 'wide' | 'dwide'; // 'tall' = 2-column hero (tall side photo); 'wide' (default) = standard card (wide banner photo on top); 'dwide' = double-wide (spans 2 columns, banner photo on top)
 };
 
 const TESTIMONIALS: Testimonial[] = [
@@ -42,7 +42,7 @@ const TESTIMONIALS: Testimonial[] = [
 			role: 'フェニックス・シーガイア・リゾート ／ 宮崎'
 		},
 		caseStudy: true,
-		view: 'wide'
+		view: 'dwide'
 	},
 	{
 		href: '/livestock',
@@ -100,6 +100,18 @@ const TESTIMONIALS: Testimonial[] = [
 			'機器が一時的に止まっても自動で復旧してくれるので、忙しい時間帯でも気にしなくて済みます。記録作業がなくなり、接客に集中できています。',
 		chips: ['自動復旧（番犬機能）', '記録の自動化', '通知'],
 		who: { initial: '中', name: '中村 翔 様', role: 'ビストロ・ノルド ／ 店長' }
+	},
+	{
+		href: '/cold-chain',
+		tag: { icon: 'storefront', label: '飲食・小売' },
+		img: '/assets/photos/JA_Saito.webp',
+		biz: 'JA 宮崎中央（フレッシュマート）',
+		loc: 'スーパーマーケット（生鮮売場）',
+		quote:
+			'複数店舗の冷蔵ショーケースとバックヤードの冷凍庫を、店舗ごとに見て回るのが大変でした。CropWatch を入れてからは全店の温度をひとつの画面で確認でき、基準を外れた売場だけにすぐ気づけます。開店前の温度チェックも記録が自動で残るので、担当者による差もなくなりました。',
+		chips: ['売場ケースの温度監視', '複数店舗を一元管理', '帳票出力'],
+		who: { initial: '佐', name: '佐藤 健 様', role: 'フレッシュマート ／ 店舗運営部' },
+		view: 'dwide'
 	}
 ];
 </script>
@@ -122,7 +134,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 		<div class="tgrid">
 			{#each TESTIMONIALS as t, i (t.biz + t.href)}
-				<a class="tcard" class:tcard--tall={t.view === 'tall'} href={t.href} data-reveal={i % 3}>
+				<a class="tcard" class:tcard--tall={t.view === 'tall'} class:tcard--dwide={t.view === 'dwide'} href={t.href} data-reveal={i % 3}>
 					<div class="tphoto" style="background-image:url('{t.img}')">
 						<span class="tcard__tag"><span class="material-symbols-rounded">{t.tag.icon}</span> {t.tag.label}</span>
 						{#if t.caseStudy}
@@ -211,6 +223,17 @@ const TESTIMONIALS: Testimonial[] = [
 		flex: 1 1 54%;
 	}
 	.tcard--tall .tcard__quote {
+		font-size: 16px;
+	}
+
+	/* Double-wide layout (view: 'dwide'): standard banner-on-top card that spans 2 columns */
+	.tcard--dwide {
+		grid-column: span 2;
+	}
+	.tcard--dwide .tphoto {
+		height: 240px;
+	}
+	.tcard--dwide .tcard__quote {
 		font-size: 16px;
 	}
 
@@ -358,6 +381,12 @@ const TESTIMONIALS: Testimonial[] = [
 	@media (max-width: 760px) {
 		.tgrid {
 			grid-template-columns: 1fr;
+		}
+		.tcard--dwide {
+			grid-column: auto;
+		}
+		.tcard--dwide .tphoto {
+			height: 178px;
 		}
 		.tcard--tall {
 			grid-column: auto;
