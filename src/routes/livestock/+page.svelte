@@ -44,7 +44,7 @@
 <section class="lsf-hero">
 	<div class="wrap lsf-hero__grid">
 		<div class="lsf-hero__copy" data-reveal>
-			<span class="lsf-eyebrow"><span class="lsf-dot"></span> 鶏舎・畜舎の温度・湿度を見守るワイヤレスセンサー</span>
+			<span class="lsf-eyebrow"><span class="lsf-dot"></span> 鶏舎・畜舎の温度・湿度・CO₂を見守る産業用ワイヤレスデバイス</span>
 			<h1>環境の変化を見逃さず、<br>飼育<span class="lsf-hl">リスク</span>を低減。</h1>
 			<p class="lsf-lead">
 				養鶏IoT・スマート畜産のワイヤレスセンサーが、鶏舎・畜舎の温度・湿度を15分ごとに自動送信し、鶏舎内の環境モニタリングを24時間見える化します。電波が届きにくい場所でもLoRaWANにより安定したデータ送信が可能。暑熱ストレス、換気不良、温度ムラなどの早期発見を支援し、鶏や家畜の健康と安定した飼育管理に貢献します。
@@ -56,6 +56,7 @@
 		</div>
 
 		<div class="lsf-hero__media" data-reveal>
+			<div class="lsf-media-top">
 			<div class="lsf-reads">
 				<div class="lsf-read">
 					<span class="material-symbols-rounded fill lsf-read__ic" style="color:#0ea5e9">device_thermostat</span>
@@ -75,16 +76,30 @@
 				</div>
 			</div>
 			<img src="/assets/imagery/device-side-view.webp" alt="CropWatch 温度・湿度センサー" class="lsf-device" />
+			</div>
+
+			<!-- どのデバイスからでも — cross-device graphic (matches CropWatch TH flyer) -->
+			<figure class="lsf-anydevice">
+				<img
+					src="/assets/imagery/multi-device.svg"
+					alt="スマホ・タブレット・パソコンで確認"
+					class="lsf-anydevice__img"
+				/>
+				<figcaption class="lsf-anydevice__cap">
+					スマホ・タブレット・パソコン、どのデバイスからでも<br />
+					<b>24時間365日</b>いつでもどこからでも確認できます。
+				</figcaption>
+			</figure>
 		</div>
 	</div>
 
 	<!-- 実績ストリップ -->
 	<div class="wrap">
 		<div class="lsf-stats" data-reveal>
-			<div><b>±0.48<i>°C</i></b><span>測定精度</span></div>
-			<div><b>10年</b><span>電池</span></div>
-			<div><b>15分</b><span>収集頻度</span></div>
-			<div><b class="lsf-inf">∞</b><span>ユーザー無制限</span></div>
+			<div><b>配線不要</b><span>無線タイプ</span></div>
+			<div><b>電源工事不要</b><span>コンセント不要</span></div>
+			<div><b>最長10年</b><span>バッテリーのみで稼働</span></div>
+			<div><b>簡単設置</b><span>置くだけ・すぐ稼働</span></div>
 		</div>
 	</div>
 </section>
@@ -108,7 +123,7 @@
 			</div>
 			<div class="lsf-feat" data-reveal="1">
 				<span class="lsf-feat__ic lsf-feat__ic--blue"><span class="material-symbols-rounded">insights</span></span>
-				<div><h3>過去データで改善につなげる</h3><p>暑さ対策や換気の見直し、季節ごとの環境変化を把握し、経験だけに頼らない管理を支えます。</p></div>
+				<div><h3>過去データで改善につなげる</h3><p>暑さや換気不良などの傾向を把握することで、病気や死亡リスクの低減につなげます。</p></div>
 			</div>
 			<div class="lsf-feat" data-reveal="0">
 				<span class="lsf-feat__ic lsf-feat__ic--green"><span class="material-symbols-rounded">save</span></span>
@@ -122,6 +137,10 @@
 				<span class="lsf-feat__ic lsf-feat__ic--earth"><span class="material-symbols-rounded">cell_tower</span></span>
 				<div><h3>つながりにくい場所も、簡単設置</h3><p>LoRaWAN通信により、Wi-Fiや携帯電話の電波が届きにくい場所でもデータ収集が可能です。無線タイプ・バッテリー方式のため、配線工事や電源工事は不要。必要な場所にすばやく簡単に設置できます。</p></div>
 			</div>
+			<div class="lsf-feat lsf-feat--wide" data-reveal>
+				<span class="lsf-feat__ic lsf-feat__ic--earth"><span class="material-symbols-rounded fill">verified_user</span></span>
+				<div><h3>過酷な環境でも壊れにくく、長く使える</h3><p>基板にコンフォーマルコーティングとポッティング処理を施し、高湿度・粉じん・温度変化による故障リスクを低減。鶏舎の過酷な環境での長期運用を見据え、壊れにくく安定して使える設計にしています。</p></div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -134,7 +153,7 @@
 				<p class="lsf-comp__eyebrow">安心の公的認証</p>
 				<h2>すべてのセンサーに、監査でそのまま使える公式の校正証明書付き。</h2>
 				<p class="lsf-comp__sub">ISO/IEC 17025認証取得 ・ NISTトレーサブル ・ HACCP対応 ・ ILAC-MRA認証</p>
-				<span class="lsf-chip">搭載センサー：SHT40 / SCD41</span>
+				<span class="lsf-chip">搭載センサー：センシリオン社 SHT40 / SCD41</span>
 			</div>
 			<div class="lsf-comp__badges">
 				<img src="/assets/badges/iso-iec-17025.png" alt="ISO/IEC 17025 校正" />
@@ -248,9 +267,41 @@
 	.lsf-hero__media {
 		position: relative;
 		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		min-height: 240px;
+	}
+	.lsf-media-top {
+		position: relative;
+		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 240px;
+		min-height: 150px;
+		padding-top: 18px;
+	}
+	/* どのデバイスからでも — cross-device graphic */
+	.lsf-anydevice {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 14px;
+		text-align: center;
+	}
+	.lsf-anydevice__img {
+		width: 100%;
+		max-width: 230px;
+		height: auto;
+		filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.4));
+	}
+	.lsf-anydevice__cap {
+		font-size: 13px;
+		line-height: 1.85;
+		color: rgba(255, 248, 240, 0.9);
+	}
+	.lsf-anydevice__cap b {
+		color: #34d399;
+		font-weight: 800;
 	}
 	.lsf-device {
 		width: 100%;
@@ -335,13 +386,6 @@
 		font-size: clamp(20px, 3vw, 26px);
 		font-weight: 700;
 		color: #fff;
-	}
-	.lsf-stats b i {
-		font-style: normal;
-		font-size: 0.6em;
-	}
-	.lsf-inf {
-		line-height: 0.8;
 	}
 	.lsf-stats span {
 		font-size: 11.5px;
@@ -507,6 +551,11 @@
 		.lsf-hero__media {
 			order: -1;
 			min-height: 0;
+			gap: 18px;
+		}
+		.lsf-media-top {
+			min-height: 0;
+			padding-top: 0;
 			justify-content: flex-start;
 			gap: 14px;
 			flex-wrap: wrap;
@@ -519,6 +568,10 @@
 			position: static;
 			flex-direction: row;
 			flex-wrap: wrap;
+		}
+		.lsf-anydevice {
+			align-items: flex-start;
+			text-align: left;
 		}
 	}
 	@media (max-width: 760px) {

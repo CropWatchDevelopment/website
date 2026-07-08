@@ -72,12 +72,12 @@
 	<div class="wrap cc-hero__grid">
 		<div class="cc-hero__copy" data-reveal>
 			<span class="cc-eyebrow"><span class="cc-dot"></span> コールドチェーンの温度・湿度を見守る産業用ワイヤレスデバイス</span>
-			<h1>10分ごとの記録で、<br>品質トラブルの<span class="cc-hl">リスク</span>を低減。</h1>
+			<h1>10分ごとの記録で、<br>品質トラブルの<span class="cc-hl">リスク</span>を低減</h1>
 			<p class="cc-lead">
 				バッテリー駆動のLoRaWAN®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
 			</p>
 			<div class="cc-hero__ctas">
-				<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する <span class="material-symbols-rounded">arrow_forward</span></a>
+				<a href="/contact" class="btn btn--accent btn--lg">通信テストを予約する<span class="material-symbols-rounded">arrow_forward</span></a>
 			</div>
 		</div>
 
@@ -148,7 +148,7 @@
 				<span class="box__ic"><span class="material-symbols-rounded">schedule</span></span>
 				<h3>10分ごとに自動記録</h3>
 				<p>
-					クラウド対応の温度データロガーとして、温度・湿度を24時間収集して保存。日々の見回りや手書きによる記録漏れのリスクを抑えます。
+					温度・湿度を24時間自動で収集し、保存。日々の見回りや手書きによる記録漏れのリスクを抑えます。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
@@ -180,8 +180,8 @@
 			<p class="eyebrow eyebrow--accent">
 				<span class="material-symbols-rounded">verified_user</span> 継続運用を支える仕組み
 			</p>
-			<h2>止めない、見落とさない、疑わしい値をそのまま使わない。</h2>
-			<p>冷蔵庫や冷凍庫の厳しい環境でも、記録を継続しながら測定状態を確認できる設計です。</p>
+			<h2>止めない記録、信頼できる測定、届きにくい場所まで確実につなぐ</h2>
+			<p>冷凍設備の厳しい環境でもデータを継続して記録し、測定値の異常や通信断にも備えた設計です。</p>
 		</div>
 		<div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0">
@@ -197,7 +197,7 @@
 				<span class="box__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>スイス製高精度センサー採用</h3>
 				<p>
-					信頼性の高いSensirion社製SHT43とSHT40をダブルで搭載。いずれも認定機関にて校正後、個別に試験が行われたデジタル温湿度センサーです。				</p>
+					信頼性の高いセンシリオン社SHT43とSHT40をダブルで搭載。いずれも認定機関にて校正後、個別に試験が行われたデジタル温湿度センサーです。				</p>
 			</div>
 			<div class="box" data-reveal="2">
 				<span class="box__ic box__ic--gold"
@@ -219,7 +219,7 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">image</span> 導入の現場</p>
-			<h2>温度を守る場所に、工事なしで設置。</h2>
+			<h2>温度を守る場所に、工事なしで設置</h2>
 			<p>電池式・ワイヤレスなので、電源や配線を引きにくい冷蔵・冷凍設備にも設置できます。</p>
 		</div>
 		<div class="gallery">
@@ -253,7 +253,7 @@
 			</p>
 			<h2>測定の根拠を、記録と一緒に残せます。</h2>
 			<p>
-				SHT43には個体ごとのISO/IEC 17025に基づく3点温度校正証明書を発行。監査時の確認を支えます。
+				SHT43には個体ごとのISO/IEC 17025に基づく3点温度校正証明書を発行。
 			</p>
 		</div>
 		<div class="badgewall">
@@ -287,11 +287,17 @@
 		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
 			<div class="spec-row">
 				<dt>測定</dt>
-				<dd>温度・湿度（CO₂はオプション）</dd>
+				<dd>温度・湿度</dd>
 			</div>
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
-				<dd>Sensirion SHT43 / SHT40</dd>
+				<dd>センシリオン SHT40 / SHT43 *校正証明書付き</dd>
+			</div>
+			<div class="spec-row">
+				<dt>動作温度範囲</dt>
+				<dd>-40°C - +85°C</dd>
+				<dt>動作湿度範囲</dt>
+				<dd>0% - 100% RH (結露)</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ収集</dt>
@@ -299,7 +305,7 @@
 			</div>
 			<div class="spec-row">
 				<dt>通信</dt>
-				<dd>LoRaWAN／通信断時は内部メモリへ保存し、復旧後に自動送信</dd>
+				<dd>LoRaWAN<sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信</dd>
 			</div>
 			<div class="spec-row">
 				<dt>電池寿命</dt>
@@ -378,12 +384,12 @@
 		<p class="eyebrow eyebrow--gold" style="justify-content:center">
 			<span class="material-symbols-rounded">waving_hand</span> まずはお気軽に
 		</p>
-		<h2>冷蔵・冷凍の温度管理、自動化しませんか。</h2>
+		<h2>冷蔵・冷凍設備の温度管理を自動化しませんか?</h2>
 		<p>
-			見守りたい冷蔵庫・冷凍庫・倉庫の様子をお聞かせください。最適なセンサーと通知の設定を、無料でご提案します。
+			監視した冷蔵庫・冷凍庫・倉庫の様子をお聞かせください。最適なセンサーと通知の設定をご提案します。
 		</p>
 		<div class="closing__ctas">
-			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
+			<a href="/contact" class="btn btn--accent btn--lg">問い合わせ</a>
 			<a href="/replacement-sensors" class="btn btn--outline-light btn--lg">センサーを見る</a>
 		</div>
 	</div>

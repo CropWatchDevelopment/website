@@ -123,7 +123,7 @@ afterNavigate(() => closeMenu());
 				<a href="https://app.cropwatch.io" class="util">
 					<span class="material-symbols-rounded">exit_to_app</span> アプリ
 				</a>
-				<a href="/contact" class="btn btn--accent">無料デモを予約</a>
+				<a href="/contact" class="btn btn--accent">相談予約</a>
 				<button class="burger" type="button" aria-label="メニューを開く" onclick={openMenu}>
 					<span class="material-symbols-rounded">menu</span>
 				</button>

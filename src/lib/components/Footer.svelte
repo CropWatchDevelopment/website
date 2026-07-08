@@ -15,7 +15,6 @@
 				Wi-Fiも携帯も届かない現場に、10年稼働のIoTを。
 				コールドチェーン・鶏舎・農業のための環境監視ソリューション。
 			</p>
-			<a href="/contact" class="btn btn--accent">お問い合わせ</a>
 		</div>
 
 		<nav class="ftr__col">
