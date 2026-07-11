@@ -40,10 +40,10 @@ export const SENSORS: Sensor[] = [
 			'冷蔵・冷凍設備や食品保管環境に適した標準センサー。気温・相対湿度を測定し、2系統のセンサーで測定値を照合。安定した温湿度管理を支えます。',
 		measures: ['温度', '湿度', '露点'],
 		specs: [
+			['温度測定範囲', '−40〜+85℃'],
+			['湿度測定範囲','0%〜100% (結露)'],
 			['精度', '±0.48℃ / ±1.8%RH'],
-			['測定範囲', '−40〜+85℃'],
 			['年間ドリフト', 'typ. <0.01℃/y'],
-			['筐体', '食品対応・IP66'],
 			['チェック機能', '2系統センサーで測定値を確認']
 		]
 	},
@@ -58,7 +58,10 @@ export const SENSORS: Sensor[] = [
 		measures: ['CO₂', '温度', '湿度', 'VPD'],
 		specs: [
 			['CO₂測定範囲', '400〜5,000ppm'],
-			['CO₂方式', 'NDIR'],
+			['精度','測定範囲により異なる'],
+			['CO₂測定方式', 'NDIR'],
+			['温度測定範囲', '−40〜+85℃'],
+			['湿度測定範囲','0%〜100% (結露)'],
 			['精度', '±0.2℃ / ±1.8%RH'],
 			['算出値', 'VPD（kPa）']
 		]
@@ -76,7 +79,6 @@ export const SENSORS: Sensor[] = [
 			['波長範囲', '350〜1000nm（PAR）'],
 			['測定値', 'PPFD µmol/m²/s'],
 			['算出値', 'DLI mol/m²/日'],
-			['筐体', 'UV耐性・IP66']
 		]
 	},
 	{
@@ -86,13 +88,13 @@ export const SENSORS: Sensor[] = [
 		name: '土壌センサー',
 		tag: 'CW-SS-TME',
 		blurb:
-			'頑丈な地中プローブで、根の周りを見える化。土壌水分・地温・EC（電気伝導度）を測り、かん水や施肥の判断に使えます。',
+			'頑丈な地中プローブで、土壌の中の状態を見える化。土壌水分・地温・EC（電気伝導度）を測定し、かん水や施肥の判断に活用できます。',
 		measures: ['土壌水分', '地温', 'EC'],
 		specs: [
-			['土壌の水分量（VWC）', 'センサー測定値から算出'],
+			['土壌水分量（VWC）', '測定値から算出'],
 			['土壌水分', '0〜100%（±8%）'],
 			['土壌EC', '0〜3.0 mS/cm（±20%）'],
-			['高EC範囲', '3.0〜8.0 mS/cm（±40%）'],
+			['', '3.0〜8.0 mS/cm（±40%）'],
 			['地温', '-20℃〜70℃'],
 			['プローブ', 'ステンレス・IP68']
 		]
@@ -122,6 +124,18 @@ export function initSensorViewer(): (() => void) | void {
 	const holders: Record<string, any> = {}; // id -> normalized TransformNode
 	const TARGET = 6; // world-space size every model's longest edge is scaled to
 
+	function sensorFromUrl(): Sensor {
+		const requestedId = new URL(window.location.href).searchParams.get('sensor');
+		return SENSORS.find((sensor) => sensor.id === requestedId) || SENSORS[0];
+	}
+
+	function updateSensorUrl(id: string) {
+		const url = new URL(window.location.href);
+		if (url.searchParams.get('sensor') === id) return;
+		url.searchParams.set('sensor', id);
+		window.history.pushState(window.history.state, '', url);
+	}
+
 	function setStatus(txt: string, spinning: boolean) {
 		if (!statusEl) return;
 		statusEl.innerHTML = spinning
@@ -149,6 +163,9 @@ export function initSensorViewer(): (() => void) | void {
 				.join('');
 		document.querySelectorAll('.v3d-tab').forEach((t) =>
 			t.classList.toggle('is-active', t.getAttribute('data-id') === s.id)
+		);
+		document.querySelectorAll<HTMLButtonElement>('.v3d-tab').forEach((tab) =>
+			tab.setAttribute('aria-pressed', String(tab.dataset.id === s.id))
 		);
 	}
 
@@ -224,10 +241,15 @@ export function initSensorViewer(): (() => void) | void {
 			});
 	}
 
-	function choose(s: Sensor) {
+	function choose(s: Sensor, updateUrl = false) {
 		activeId = s.id;
 		setPanel(s);
 		if (scene) loadModel(s);
+		if (updateUrl) updateSensorUrl(s.id);
+	}
+
+	function onPopState() {
+		choose(sensorFromUrl());
 	}
 
 	function initScene(canvas: HTMLCanvasElement) {
@@ -299,10 +321,13 @@ export function initSensorViewer(): (() => void) | void {
 			'</b><span>' +
 			s.tag +
 			'</span></span>';
-		b.addEventListener('click', () => choose(s));
+		b.addEventListener('click', () => choose(s, true));
 		tabsEl.appendChild(b);
 	});
-	setPanel(SENSORS[0]);
+	const initialSensor = sensorFromUrl();
+	activeId = initialSensor.id;
+	setPanel(initialSensor);
+	window.addEventListener('popstate', onPopState);
 
 	// Lazy-start when the section nears the viewport.
 	let io: IntersectionObserver | null = null;
@@ -327,6 +352,7 @@ export function initSensorViewer(): (() => void) | void {
 	return () => {
 		disposed = true;
 		io?.disconnect();
+		window.removeEventListener('popstate', onPopState);
 		window.removeEventListener('resize', onResize);
 		if (engine) engine.dispose();
 	};

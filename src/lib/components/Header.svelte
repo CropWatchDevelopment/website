@@ -19,7 +19,7 @@ const PRODUCTS: Product[] = [
 	{ href: '/livestock', icon: 'pets', t: 'スマート畜産・養鶏', d: '鶏舎・畜舎・酪農' },
 	{ href: '/agriculture', icon: 'eco', t: 'スマート農業・ハウス', d: 'ハウス・露地・土壌' },
 	{ href: '/replacement-sensors', icon: 'cable', t: '交換用センサー', d: '自分で交換・校正証明書つき' },
-	{ href: '/replacement-case', icon: 'deployed_code', t: '交換用ケース', d: '頑丈な防塵防水ケース（3D）' }
+	// { href: '/replacement-case', icon: 'deployed_code', t: '交換用ケース', d: '頑丈な防塵防水ケース（3D）' }
 ];
 
 const NAV: NavLink[] = [
