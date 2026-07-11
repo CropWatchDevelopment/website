@@ -128,9 +128,6 @@ onDestroy(() => {
 				<div class="form-card" style="text-align:center">
 					<span class="material-symbols-rounded" style="font-size:56px;color:var(--web-accent)">mark_email_read</span>
 					<h2 style="font-size:22px;margin:12px 0 8px">送信ありがとうございました。</h2>
-					<p style="color:var(--web-muted);max-width:42ch;margin:0 auto">
-						担当者より1営業日以内にご連絡いたします。その間に、<a href="/sectors" style="color:var(--web-primary);font-weight:600">製品の一覧</a>もご覧ください。
-					</p>
 				</div>
 			{:else}
 				<form class="form-card" id="demoForm" method="post" action="?" onsubmit={handleSubmit}>

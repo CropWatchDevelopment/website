@@ -178,7 +178,6 @@ const TESTIMONIALS: Testimonial[] = [
 		<p>20分ほどのデモで、画面・通知・残る記録のサンプルをご覧いただけます。</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
-			<a href="/sectors" class="btn btn--outline-light btn--lg">業種から探す</a>
 		</div>
 	</div>
 </section>

@@ -29,7 +29,6 @@
 		<nav class="ftr__col">
 			<h4>情報</h4>
 			<a href="/technology">技術</a>
-			<a href="/sectors">業種から探す</a>
 			<a href="/testimonials">お客様の声</a>
 			<a href="/column">コラム</a>
 			<a href="/help">ヘルプ</a>

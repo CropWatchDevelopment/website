@@ -12,7 +12,6 @@ type Entry = { path: string; lastmod: string; priority: string; changefreq: stri
 
 const STATIC_ENTRIES: Entry[] = [
 	{ path: '/', lastmod: STATIC_LASTMOD, priority: '1.0', changefreq: 'weekly' },
-	{ path: '/sectors', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },
 	{ path: '/cold-chain', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },
 	{ path: '/agriculture', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },
 	{ path: '/livestock', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },

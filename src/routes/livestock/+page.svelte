@@ -18,7 +18,6 @@
 	const ld = [
 		breadcrumbSchema([
 			{ name: 'ホーム', path: '/' },
-			{ name: '製品', path: '/sectors' },
 			{ name: '畜産・養鶏の監視', path: '/livestock' }
 		]),
 		productSchema({
@@ -36,7 +35,6 @@
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<a href="/sectors">製品</a><span class="material-symbols-rounded">chevron_right</span>
 	<b>畜産・養鶏の監視</b>
 </div></div>
 

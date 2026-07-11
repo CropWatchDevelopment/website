@@ -24,7 +24,6 @@ const PRODUCTS: Product[] = [
 
 const NAV: NavLink[] = [
 	{ key: 'home', href: '/', label: 'ホーム' },
-	{ key: 'products', href: '/sectors', label: '製品', children: PRODUCTS },
 	{ key: 'tech', href: '/technology', label: '技術' },
 	{ key: 'testimonials', href: '/testimonials', label: 'お客様の声' },
 	{ key: 'help', href: '/help', label: 'ヘルプ' },
@@ -38,7 +37,6 @@ const activeKey = $derived.by(() => {
 	if (path === '/') return 'home';
 	if (PRODUCT_PATHS.has(path)) return 'products';
 	if (path === '/technology') return 'tech';
-	if (path === '/sectors') return 'sectors';
 	if (path === '/testimonials') return 'testimonials';
 	if (path === '/help') return 'help';
 	if (path === '/contact') return 'contact';

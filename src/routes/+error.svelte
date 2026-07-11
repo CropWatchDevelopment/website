@@ -42,7 +42,6 @@
 
 	const links = [
 		{ icon: 'home', title: 'ホーム', desc: 'トップページへ', href: '/' },
-		{ icon: 'category', title: '業種から探す', desc: '農業・畜産・コールドチェーン', href: '/sectors' },
 		{ icon: 'memory', title: '技術・製品', desc: 'センサーと仕組み', href: '/technology' },
 		{ icon: 'reviews', title: '導入事例', desc: 'お客様の声', href: '/testimonials' },
 		{ icon: 'help', title: 'ヘルプ', desc: 'よくある質問', href: '/help' },

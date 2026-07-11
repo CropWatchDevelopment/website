@@ -11,7 +11,6 @@ const description =
 const ld = [
 	breadcrumbSchema([
 		{ name: 'ホーム', path: '/' },
-		{ name: '製品', path: '/sectors' },
 		{ name: '交換用ケース', path: '/replacement-case' }
 	]),
 	productSchema({
@@ -71,7 +70,6 @@ onMount(() => {
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<a href="/sectors">製品</a><span class="material-symbols-rounded">chevron_right</span>
 	<b>交換用ケース</b>
 </div></div>
 

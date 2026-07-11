@@ -42,7 +42,6 @@
 	const ld = [
 		breadcrumbSchema([
 			{ name: 'ホーム', path: '/' },
-			{ name: '製品', path: '/sectors' },
 			{ name: '農業・ハウスの監視', path: '/agriculture' }
 		]),
 		faqSchema(faq),
@@ -61,7 +60,6 @@
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<a href="/sectors">製品</a><span class="material-symbols-rounded">chevron_right</span>
 	<b>農業・ハウスの監視</b>
 </div></div>
 
@@ -190,7 +188,6 @@
 		<p>ハウスや畑の様子をお聞かせください。土壌・空気・光のセンサーと受信機、通知の設定をご提案します。</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
-			<a href="/sectors" class="btn btn--outline-light btn--lg">業種から探す</a>
 		</div>
 	</div>
 </section>
