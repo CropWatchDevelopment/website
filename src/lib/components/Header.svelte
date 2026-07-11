@@ -24,6 +24,7 @@ const PRODUCTS: Product[] = [
 
 const NAV: NavLink[] = [
 	{ key: 'home', href: '/', label: 'ホーム' },
+	{ key: 'products', href: '', label: '製品', children: PRODUCTS },
 	{ key: 'tech', href: '/technology', label: '技術' },
 	{ key: 'testimonials', href: '/testimonials', label: 'お客様の声' },
 	{ key: 'help', href: '/help', label: 'ヘルプ' },
@@ -95,10 +96,15 @@ afterNavigate(() => closeMenu());
 				{#each NAV as item (item.key)}
 					{#if item.children}
 						<div class="navdrop">
-							<a class="nav__item" class:is-current={activeKey === item.key} href={item.href}>
+							<button
+								type="button"
+								class="nav__item"
+								class:is-current={activeKey === item.key}
+								aria-haspopup="true"
+							>
 								{item.label}
 								<span class="material-symbols-rounded">expand_more</span>
-							</a>
+							</button>
 							<div class="pd">
 								{#each item.children as p (p.href)}
 									<a class="pd__item" href={p.href}>
@@ -141,7 +147,7 @@ afterNavigate(() => closeMenu());
 			{#each NAV as item (item.key)}
 				{#if item.children}
 					<div class="m-group">
-						<a class="m-link" href={item.href} onclick={closeMenu}>{item.label}</a>
+						<div class="m-link">{item.label}</div>
 						{#each item.children as p (p.href)}
 							<a class="m-sub" href={p.href} onclick={closeMenu}>
 								<span class="material-symbols-rounded">{p.icon}</span>{p.t}
