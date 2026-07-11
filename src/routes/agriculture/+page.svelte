@@ -60,6 +60,7 @@
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+	<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
 	<b>農業・ハウスの監視</b>
 </div></div>
 
