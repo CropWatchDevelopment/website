@@ -51,7 +51,7 @@
 			name: 'CropWatch 冷蔵・冷凍向け 温度・湿度監視センサー',
 			description:
 				'コールドチェーン向けの電池駆動LoRaWAN温度・湿度センサー。冷蔵庫・冷凍庫の温度を10分ごとに自動記録し、遠隔監視とHACCP対応の温度記録を実現するクラウド温度監視システムです。',
-			image: 'https://cropwatch.co.jp/assets/imagery/device-side-view.webp',
+			image: 'https://cropwatch.co.jp/assets/imagery/device-top-view.webp',
 			category: '温度監視システム'
 		})
 	];
@@ -100,7 +100,7 @@
 						</div>
 					</div>
 				</div>
-				<img src="/assets/imagery/device-side-view.webp" alt="CropWatch 温度・湿度センサー" class="cc-device" />
+				<img src="/assets/imagery/device-top-view.webp" alt="CropWatch 温度・湿度センサー" class="cc-device" />
 			</div>
 
 			<!-- どのデバイスからでも — cross-device graphic (matches CropWatch TH flyer) -->
@@ -484,8 +484,8 @@
 	}
 	.cc-device {
 		width: 100%;
-		max-width: 208px;
-		margin-left: 6px;
+		max-width: 100px;
+		margin-left: 35px;
 		transform: rotate(-12deg);
 		filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.45));
 	}
