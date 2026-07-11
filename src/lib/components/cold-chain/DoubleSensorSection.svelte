@@ -1,14 +1,18 @@
+<script lang="ts">
+	let { interval = 10 }: { interval?: number } = $props();
+</script>
+
 <section class="section scroll-pad" id="double-sensor">
 	<div class="wrap">
 		<div class="section__head double-sensor__head" data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">sensors</span> 測定値の信頼性</p>
-			<h2>2つのセンサーで、10分ごとに健全性を確認</h2>
+			<h2>2つのセンサーで、{interval}分ごとに健全性を確認</h2>
 		</div>
 
 		<div class="double-sensor__layout">
 			<div class="double-sensor__copy" data-reveal>
 				<p>
-					2つのセンサーから取得したデータをこれまでの測定データの傾向と照らし合わせ、通常とは異なるズレがないかを自動でチェックします。異常が見つかった場合は、その測定結果は使用せず、システム上にエラーとして表示されます。10分に1回のデータ取得ごとにセンサーの状態を確認し、異常が検知された場合は、誤った測定データを記録・送信しない仕組みを採用しています。
+					2つのセンサーから取得したデータをこれまでの測定データの傾向と照らし合わせ、通常とは異なるズレがないかを自動でチェックします。異常が見つかった場合は、その測定結果は使用せず、システム上にエラーとして表示されます。{interval}分に1回のデータ取得ごとにセンサーの状態を確認し、異常が検知された場合は、誤った測定データを記録・送信しない仕組みを採用しています。
 				</p>
 			</div>
 

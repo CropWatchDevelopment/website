@@ -41,11 +41,11 @@ const ld = [
 <!-- 交換が安全な理由 -->
 <section class="section section--navy section--tight">
 	<div class="wrap">
-		<div class="section__head" data-reveal><p class="eyebrow" style="color:var(--cw-sapphire-300)"><span class="material-symbols-rounded">security</span> 交換しても安心</p><h2 style="color:#fff">新しいモジュールは、使う前に自分を証明します。</h2></div>
+		<div class="section__head" data-reveal><p class="eyebrow" style="color:var(--cw-sapphire-300)"><span class="material-symbols-rounded">security</span> 交換しても安心</p><h2 style="color:#fff">交換できるセンサーで、長く続けられる環境モニタリングを</h2></div>
 		<div class="boxgrid boxgrid--3">
-			<div class="box" data-reveal="0" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">fact_check</span></span><h3 style="color:#fff">二重チェック</h3><p style="color:var(--web-on-ink-muted)">2つのセンサーがたがいに確認。合わない値は記録しません。</p></div>
-			<div class="box" data-reveal="1" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">pets</span></span><h3 style="color:#fff">番犬機能</h3><p style="color:var(--web-on-ink-muted)">万一固まっても自動で復旧。監視が途切れません。</p></div>
-			<div class="box" data-reveal="2" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">workspace_premium</span></span><h3 style="color:#fff">校正済み</h3><p style="color:var(--web-on-ink-muted)">工場で校正してから出荷。証明書つきで届きます。</p></div>
+			<div class="box" data-reveal="0" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">fact_check</span></span><h3 style="color:#fff">自分で交換できる設計</h3><p style="color:var(--web-on-ink-muted)">センサー部はお客様自身で交換できるため、必要なタイミングでスムーズに交換できます。</p></div>
+			<div class="box" data-reveal="1" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">pets</span></span><h3 style="color:#fff">交換時の負担を軽減</h3><p style="color:var(--web-on-ink-muted)">本体をそのまま活用し、必要なセンサー部だけを交換。停止時間や交換コストを大幅に抑えます。</p></div>
+			<div class="box" data-reveal="2" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">workspace_premium</span></span><h3 style="color:#fff">長期運用を支える</h3><p style="color:var(--web-on-ink-muted)">センサーの劣化や測定項目の変更にも対応し、継続したデータ収集を支えます。</p></div>
 		</div>
 	</div>
 </section>
@@ -55,8 +55,8 @@ const ld = [
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow eyebrow--accent"><span class="material-symbols-rounded">view_in_ar</span> 4つのモジュール、ひとつの仕組み</p>
-			<h2>モジュールを選ぶ。使い方は同じ。</h2>
-			<p>どのセンサーも、同じケース・同じソケット・同じ画面。現場に合わせて種類を混ぜても、どれもご自分で交換できます。ドラッグしてぐるっと見てみてください。</p>
+			<h2>設定不要でかんたん交換</h2>
+			<p>交換用センサーは取り付けるだけで使用でき、お客様による設定作業は必要ありません。</p>
 		</div>
 		<div class="v3d" data-reveal>
 			<div class="v3d-tabs" id="v3dTabs"></div>
