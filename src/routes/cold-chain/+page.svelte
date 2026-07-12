@@ -66,12 +66,15 @@
 	<b>冷蔵・冷凍の監視</b>
 </div></div>
 
-<!-- ═══ ヒーロー ═══ -->
+<!-- ═══ ヒーロー（現場写真バックドロップ） ═══ -->
 <section class="cc-hero">
-	<div class="wrap cc-hero__grid">
+	<div class="cc-hero__bg" style="background-image:url('/assets/photos/coldchain-freezer.webp')"></div>
+	<div class="cc-hero__scrim"></div>
+
+	<div class="wrap cc-hero__inner">
 		<div class="cc-hero__copy" data-reveal>
 			<span class="cc-eyebrow"><span class="cc-dot"></span> コールドチェーンの温度・湿度を見守る産業用ワイヤレスデバイス</span>
-			<h1>10分ごとの記録で、<br>品質トラブルの<span class="cc-hl">リスク</span>を低減</h1>
+			<h1>10分ごとの記録で、<br />品質トラブルの<span class="cc-hl">リスク</span>を低減</h1>
 			<p class="cc-lead">
 				バッテリー駆動のLoRaWAN®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
 			</p>
@@ -80,47 +83,35 @@
 			</div>
 		</div>
 
-		<div class="cc-hero__media" data-reveal>
-			<div class="cc-media-top">
-				<div class="cc-reads">
-					<div class="cc-read">
-						<span class="material-symbols-rounded fill cc-read__ic" style="color:#0ea5e9">device_thermostat</span>
-						<div class="cc-read__tx">
-							<span class="cc-read__lab">測定温度</span>
-							<span class="cc-read__val">−40<i>°C</i> – +85<i>°C</i></span>
-							<span class="cc-read__sub">急速冷凍庫対応</span>
-						</div>
-					</div>
-					<div class="cc-read">
-						<span class="material-symbols-rounded fill cc-read__ic" style="color:#0e9960">humidity_percentage</span>
-						<div class="cc-read__tx">
-							<span class="cc-read__lab">測定湿度</span>
-							<span class="cc-read__val">0<i>%RH</i> – 100<i>%RH</i></span>
-							<span class="cc-read__sub">結露環境にも対応</span>
-						</div>
-					</div>
-				</div>
-				<img src="/assets/imagery/device-top-view.webp" alt="CropWatch 温度・湿度センサー" class="cc-device" />
+		<!-- リアルタイム測定パネル -->
+		<aside class="cc-panel" data-reveal>
+			<div class="cc-panel__head"><span class="cc-panel__pulse"></span> リアルタイム測定</div>
+			<ul class="cc-panel__reads">
+				<li>
+					<span class="material-symbols-rounded fill" style="color:#0ea5e9">device_thermostat</span>
+					<span class="cc-panel__tx">
+						<span class="cc-panel__lab">温度</span>
+						<span class="cc-panel__note">急速冷凍庫対応</span>
+					</span>
+					<span class="cc-panel__val">−40<i>°C</i> 〜 +85<i>°C</i></span>
+				</li>
+				<li>
+					<span class="material-symbols-rounded fill" style="color:#0e9960">humidity_percentage</span>
+					<span class="cc-panel__tx">
+						<span class="cc-panel__lab">湿度</span>
+						<span class="cc-panel__note">結露環境にも対応</span>
+					</span>
+					<span class="cc-panel__val">0 〜 100<i>%RH</i></span>
+				</li>
+			</ul>
+			<div class="cc-panel__foot">
+				<span class="material-symbols-rounded">schedule</span> 10分ごとに自動記録・24時間365日どこからでも
 			</div>
-
-			<!-- どのデバイスからでも — cross-device graphic (matches CropWatch TH flyer) -->
-			<figure class="cc-anydevice">
-				<img
-					src="/assets/imagery/multi-device.svg"
-					alt="スマホ・タブレット・パソコンで確認"
-					class="cc-anydevice__img"
-					id="cc-anydevice__img"
-				/>
-				<figcaption class="cc-anydevice__cap">
-					スマホ・タブレット・パソコン。どのデバイスからでも<br />
-					<b>24時間365日</b>いつでもどこからでも確認できます。
-				</figcaption>
-			</figure>
-		</div>
+		</aside>
 	</div>
 
 	<!-- 実績ストリップ -->
-	<div class="wrap">
+	<div class="wrap cc-hero__statwrap">
 		<div class="cc-stats" data-reveal>
 			<div><b>配線不要</b><span>無線タイプ</span></div>
 			<div><b>電源不要</b><span>最長10年バッテリー稼働</span></div>
@@ -223,8 +214,8 @@
 		</div>
 		<div class="gallery">
 			<figure data-reveal="0">
-				<img src="/assets/photos/coldchain-freezer.webp" alt="食品を保管する業務用冷凍庫" />
-				<figcaption><b>業務用冷凍庫</b><span>低温環境の温度・湿度を継続監視</span></figcaption>
+				<img src="/assets/photos/coldchain-drawer.webp" alt="食品を保管する業務用の冷蔵ドロワー" />
+				<figcaption><b>業務用冷蔵ドロワー</b><span>引き出し式の冷蔵設備の温度も見える化</span></figcaption>
 			</figure>
 			<figure data-reveal="1">
 				<img src="/assets/photos/coldchain-fridge.webp" alt="食品を保管する業務用冷蔵庫" />
@@ -326,51 +317,12 @@
 			<h2>冷蔵・冷凍の温度監視 Q&amp;A</h2>
 		</div>
 		<div class="faq" data-reveal>
-			<details>
-				<summary
-					>通信が途切れた場合、記録は失われますか？ <span class="material-symbols-rounded">add</span
-					></summary
-				>
-				<p>
-					センサーの内部メモリに測定データを保存します。通信が復旧すると、保存していたデータを自動送信します。
-				</p>
-			</details>
-			<details>
-				<summary
-					>HACCPの義務化に対応できますか？ <span class="material-symbols-rounded">add</span
-					></summary
-				>
-				<p>
-					はい。冷蔵庫・冷凍庫の温度を自動で記録し、HACCPで求められる温度管理の記録と保存を効率化します。紙の記録や手書き転記をなくし、監査時にもそのまま提出できます。
-				</p>
-			</details>
-			<details>
-				<summary
-					>離れた場所から冷蔵庫・冷凍庫の温度を確認できますか？ <span class="material-symbols-rounded"
-						>add</span
-					></summary
-				>
-				<p>
-					はい。測定データはクラウドに送信され、スマートフォンやPCから遠隔で温度を監視できます。複数拠点の冷蔵庫・冷凍庫もまとめて確認できます。
-				</p>
-			</details>
-			<details>
-				<summary
-					>現場で校正や補正を行う必要はありますか？ <span class="material-symbols-rounded">add</span
-					></summary
-				>
-				<p>
-					原則として現場での校正や補正は行いません。工場出荷時に校正・検査された検知部を使用し、必要に応じて検知部のみを交換する運用を推奨しています。
-				</p>
-			</details>
-			<details>
-				<summary
-					>監査用の記録を出力できますか？ <span class="material-symbols-rounded">add</span></summary
-				>
-				<p>
-					はい。日次・週次レポートの自動送信に加え、直近2年間分のデータをCSVで出力できます。校正証明書も標準で添付します。
-				</p>
-			</details>
+			{#each faq as item}
+				<details>
+					<summary>{item.q} <span class="material-symbols-rounded">add</span></summary>
+					<p>{item.a}</p>
+				</details>
+			{/each}
 		</div>
 	</div>
 </section>
@@ -395,29 +347,49 @@
 </section>
 
 <style>
-	/* ═══ Hero (cold-chain / navy theme, adapted from the print flyer) ═══ */
+	/* ══════════════════════════════════════════════════════════
+	   Cold-chain page — cool "walk-in freezer" identity.
+	   Shares the site chrome, tokens & body type (same site) with
+	   its own photographic hero + navy/ice palette (different
+	   product). Sibling of the livestock page's warm treatment.
+	   ══════════════════════════════════════════════════════════ */
+
+	/* ═══ Hero (photographic backdrop) ═══ */
 	.cc-hero {
-		background: linear-gradient(150deg, #0b1730 0%, #11213c 52%, #173d6e 100%);
 		position: relative;
 		overflow: hidden;
-		padding: 40px 0 34px;
+		padding: 56px 0 30px;
 	}
-	.cc-hero::before {
-		content: '';
+	.cc-hero__bg {
+		position: absolute;
+		inset: 0;
+		background-size: cover;
+		background-position: center 45%;
+	}
+	.cc-hero__scrim {
 		position: absolute;
 		inset: 0;
 		background:
-			radial-gradient(circle at 88% 12%, rgba(14, 153, 96, 0.22), transparent 46%),
-			radial-gradient(circle at 6% 96%, rgba(44, 108, 183, 0.3), transparent 50%);
-		pointer-events: none;
+			linear-gradient(
+				96deg,
+				rgba(6, 12, 26, 0.94) 0%,
+				rgba(11, 23, 48, 0.9) 32%,
+				rgba(23, 61, 110, 0.6) 60%,
+				rgba(23, 61, 110, 0.32) 100%
+			),
+			linear-gradient(180deg, transparent 52%, rgba(4, 9, 20, 0.62) 100%);
 	}
-	.cc-hero__grid {
+	.cc-hero__inner {
 		position: relative;
+		z-index: 1;
 		display: grid;
-		grid-template-columns: 1.35fr 1fr;
-		gap: 28px;
-		/* bottom-align so the CTA button and the multi-device caption share a baseline */
-		align-items: end;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: 32px;
+		align-items: center;
+	}
+	.cc-hero__statwrap {
+		position: relative;
+		z-index: 1;
 	}
 	.cc-eyebrow {
 		display: inline-flex;
@@ -425,12 +397,12 @@
 		gap: 8px;
 		padding: 6px 13px;
 		border-radius: 999px;
-		background: rgba(231, 236, 255, 0.1);
-		border: 1px solid rgba(231, 236, 255, 0.18);
-		color: var(--cw-ice-400);
-		font-size: 15px;
+		background: rgba(220, 232, 255, 0.12);
+		border: 1px solid rgba(220, 232, 255, 0.28);
+		color: #dbe8ff;
+		font-size: 11px;
 		font-weight: 700;
-		letter-spacing: 0.12em;
+		letter-spacing: 0.1em;
 	}
 	.cc-dot {
 		width: 7px;
@@ -442,208 +414,186 @@
 	}
 	.cc-hero__copy h1 {
 		margin: 16px 0 0;
-		font-size: clamp(1.7rem, 3.4vw, 2.4rem);
-		line-height: 1.2;
+		font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+		line-height: 1.18;
 		font-weight: 800;
 		letter-spacing: -0.02em;
 		color: #fff;
+		text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
 	}
 	.cc-hl {
 		color: #34d399;
 	}
 	.cc-lead {
-		margin: 14px 0 0;
+		margin: 16px 0 0;
 		font-size: clamp(0.95rem, 1.1vw, 1rem);
 		line-height: 1.85;
-		color: rgba(231, 236, 255, 0.82);
-		max-width: 44ch;
+		color: rgba(226, 234, 250, 0.94);
+		max-width: 46ch;
 	}
 	.cc-hero__ctas {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 14px;
-		margin-top: 22px;
-	}
-	/* device + floating reading card */
-	.cc-hero__media {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		gap: 24px;
-		min-height: 240px;
-	}
-	/* area 2 — device (rotated, left-aligned) + floating reading cards (top-right) */
-	.cc-media-top {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-		min-height: 150px;
-		padding-top: 18px;
-	}
-	.cc-device {
-		width: 100%;
-		max-width: 100px;
-		margin-left: 35px;
-		transform: rotate(-12deg);
-		filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.45));
-	}
-	.cc-reads {
-		position: absolute;
-		top: 0;
-		right: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		z-index: 2;
+		margin-top: 24px;
 	}
 
-	/* area 1 — "どのデバイスからでも" cross-device graphic */
-	.cc-anydevice {
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 16px;
-		text-align: center;
-	}
-	.cc-anydevice__img {
+	/* live-reading glass panel */
+	.cc-panel {
+		justify-self: end;
 		width: 100%;
-		max-width: 230px;
-		height: auto;
-		filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.4));
+		max-width: 340px;
+		background: rgba(255, 255, 255, 0.94);
+		backdrop-filter: blur(8px);
+		border: 1px solid rgba(255, 255, 255, 0.6);
+		border-radius: 20px;
+		padding: 18px 20px;
+		box-shadow: 0 30px 55px -24px rgba(0, 0, 0, 0.75);
 	}
-	.cc-anydevice__cap {
-		font-size: 13px;
-		line-height: 1.85;
-		color: rgba(231, 236, 255, 0.82);
-	}
-	.cc-anydevice__cap b {
-		color: #34d399;
-		font-weight: 800;
-	}
-	.cc-read {
+	.cc-panel__head {
 		display: flex;
 		align-items: center;
-		gap: 9px;
-		padding: 8px 12px;
-		border-radius: 12px;
-		background: rgba(255, 255, 255, 0.96);
-		box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
+		gap: 8px;
+		font-size: 11.5px;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #245a9c;
 	}
-	.cc-read__ic {
-		font-size: 21px;
+	.cc-panel__pulse {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #34d399;
+		box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.22);
 	}
-	.cc-read__tx {
+	.cc-panel__reads {
+		list-style: none;
+		margin: 12px 0 0;
+		padding: 0;
+	}
+	.cc-panel__reads li {
+		display: grid;
+		grid-template-columns: 26px 1fr auto;
+		align-items: center;
+		gap: 10px;
+		padding: 13px 2px;
+		border-top: 1px solid var(--web-border);
+	}
+	.cc-panel__reads li:first-child {
+		border-top: 0;
+	}
+	.cc-panel__reads .material-symbols-rounded {
+		font-size: 22px;
+	}
+	.cc-panel__tx {
 		display: flex;
 		flex-direction: column;
 		line-height: 1.25;
 	}
-	.cc-read__lab {
-		font-size: 9px;
+	.cc-panel__lab {
+		font-size: 13px;
 		font-weight: 700;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--web-muted);
+		color: var(--web-heading);
 	}
-	.cc-read__val {
-		font-family: var(--cw-font-mono);
-		font-size: 16px;
-		font-weight: 700;
-		color: var(--cw-ink);
-		margin-top: 2px;
-	}
-	.cc-read__val i {
-		font-style: normal;
-		font-size: 11px;
-		color: var(--web-muted);
-	}
-	.cc-read__sub {
-		font-size: 9.5px;
+	.cc-panel__note {
+		font-size: 10.5px;
 		font-weight: 600;
 		color: var(--web-accent);
 		margin-top: 2px;
 	}
+	.cc-panel__val {
+		font-family: var(--cw-font-mono);
+		font-size: 14.5px;
+		font-weight: 700;
+		color: var(--cw-ink);
+		white-space: nowrap;
+	}
+	.cc-panel__val i {
+		font-style: normal;
+		font-size: 10.5px;
+		color: var(--web-muted);
+	}
+	.cc-panel__foot {
+		display: flex;
+		align-items: center;
+		gap: 7px;
+		margin-top: 6px;
+		padding-top: 12px;
+		border-top: 1px solid var(--web-border);
+		font-size: 11.5px;
+		font-weight: 600;
+		color: var(--web-muted);
+	}
+	.cc-panel__foot .material-symbols-rounded {
+		font-size: 16px;
+		color: #245a9c;
+	}
 
-	/* stats strip */
+	/* stats strip (cool dark glass, over the photo) */
 	.cc-stats {
-		position: relative;
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		margin-top: 26px;
-		border: 1px solid var(--cw-emerald-300);
+		margin-top: 34px;
+		border: 1px solid rgba(190, 215, 255, 0.22);
 		border-radius: 16px;
 		overflow: hidden;
-		background: var(--cw-emerald-50);
-		box-shadow: 0 18px 40px -28px rgba(4, 57, 42, 0.8);
+		background: rgba(8, 16, 34, 0.5);
+		backdrop-filter: blur(3px);
 	}
 	.cc-stats > * {
 		padding: 14px 16px;
 		text-align: center;
-		border-right: 1px solid var(--cw-emerald-200);
+		border-right: 1px solid rgba(190, 215, 255, 0.16);
 	}
 	.cc-stats > :last-child {
 		border-right: none;
 	}
 	.cc-stats > a {
-		transition:
-			background-color 180ms var(--jp-ease),
-			box-shadow 180ms var(--jp-ease);
+		transition: background-color 180ms var(--jp-ease);
 	}
 	.cc-stats > a:hover {
-		background: var(--cw-emerald-100);
+		background: rgba(52, 211, 153, 0.16);
 	}
 	.cc-stats > a:focus-visible {
-		outline: 3px solid var(--cw-emerald-600);
+		outline: 3px solid #34d399;
 		outline-offset: -4px;
-		box-shadow: inset 0 0 0 1px var(--cw-emerald-50);
 	}
 	.cc-stats b {
 		display: block;
 		font-family: var(--cw-font-mono);
-		font-size: clamp(20px, 3vw, 26px);
+		font-size: clamp(19px, 2.8vw, 25px);
 		font-weight: 700;
-		color: var(--cw-emerald-900);
+		color: #fff;
 	}
 	.cc-stats span {
 		font-size: 11px;
-		font-weight: 600;
-		color: var(--cw-emerald-800);
+		color: rgba(220, 232, 255, 0.75);
 		margin-top: 3px;
 		display: block;
 	}
 
 	/* ═══ Responsive ═══ */
 	@media (max-width: 900px) {
-		.cc-hero__grid {
+		.cc-hero {
+			padding: 40px 0 26px;
+		}
+		.cc-hero__inner {
 			grid-template-columns: 1fr;
-			gap: 10px;
+			gap: 24px;
 		}
-		.cc-hero__media {
-			order: -1;
-			min-height: 0;
-			gap: 18px;
+		.cc-panel {
+			justify-self: stretch;
+			max-width: 420px;
 		}
-		.cc-media-top {
-			min-height: 0;
-			padding-top: 0;
-			justify-content: flex-start;
-			gap: 14px;
-			flex-wrap: wrap;
-		}
-		.cc-device {
-			max-width: 140px;
-			transform: rotate(-8deg);
-		}
-		.cc-reads {
-			position: static;
-			flex-direction: row;
-			flex-wrap: wrap;
-		}
-		.cc-anydevice {
-			align-items: flex-start;
-			text-align: left;
+		.cc-hero__scrim {
+			background: linear-gradient(
+				180deg,
+				rgba(6, 12, 26, 0.84) 0%,
+				rgba(11, 23, 48, 0.74) 50%,
+				rgba(6, 12, 26, 0.88) 100%
+			);
 		}
 	}
 	@media (max-width: 600px) {
@@ -655,7 +605,7 @@
 		}
 		.cc-stats > :nth-child(1),
 		.cc-stats > :nth-child(2) {
-			border-bottom: 1px solid var(--cw-emerald-200);
+			border-bottom: 1px solid rgba(190, 215, 255, 0.16);
 		}
 	}
 </style>
