@@ -244,6 +244,7 @@
 	</div>
 </section>
 
+
 <!-- ═══ 主な仕様 ═══ -->
 <section class="section ls-warm">
 	<div class="wrap">
