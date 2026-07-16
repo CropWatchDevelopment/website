@@ -72,10 +72,10 @@
 	<div class="wrap ag-hero__inner">
 		<div class="ag-hero__copy" data-reveal>
 			<span class="ag-eyebrow"><span class="ag-dot"></span> スマート農業・ハウスの環境モニタリング</span>
-			<h1>スマート農業を、置くだけで。<br /><span class="ag-hl">畑とハウスの環境を、まとめて見守る。</span></h1>
-			<p class="ag-kicker">霧の夜も、猛暑の日も。<b>作物が危ないサインを、先に教えます。</b></p>
+			<h1><span class="ag-hl">空気から土壌まで、作物の環境を自動で監視</span></h1>
+			<p class="ag-kicker">霧の夜も、猛暑の日も。<b>危険な環境変化を、早めに知らせます。</b></p>
 			<p class="ag-lead">
-				ハウス・施設園芸・露地・果樹園の<b>温度・湿度・CO₂・土壌</b>の状態を、農業IoTのワイヤレスセンサーで自動監視。霜・高温・乾燥のサインを早めに通知し、大切な作物を守ります。
+				ハウス・施設園芸・露地・果樹園の空気・光・土壌の状態を、配線不要・バッテリー稼働の無線センサーで自動監視。霜・高温・乾燥などのサインを早めに通知し、大切な作物を守ります。
 			</p>
 			<div class="ag-tags">
 				<span class="ag-tag"><span class="material-symbols-rounded">yard</span>ハウス栽培</span>
@@ -126,10 +126,10 @@
 	<!-- 実績ストリップ -->
 	<div class="wrap ag-hero__statwrap">
 		<div class="ag-stats" data-reveal>
-			<div><b>最大15km</b><span>受信機1台でカバー</span></div>
+			<div><b>いつでも確認</b><span>現場の状態を、手元で確認</span></div>
 			<div><b>配線不要</b><span>電源のない畑でも</span></div>
-			<div><b>IP66</b><span>防塵・防水ケース</span></div>
-			<div><b>最長10年</b><span>電池のみで稼働</span></div>
+			<div><b>堅牢設計</b><span>防塵・防水対応</span></div>
+			<div><b>最長10年</b><span>バッテリーのみで稼働</span></div>
 		</div>
 	</div>
 </section>
@@ -139,8 +139,8 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow eyebrow--accent"><span class="material-symbols-rounded">layers</span> 土・空気・光</p>
-			<h2>作物の生育に関わる要素を、ひとつに。</h2>
-			<p>1つの数値だけでなく、根の周りから空気の状態まで。育成環境を幅広く見守ります。</p>
+			<h2>作物の生育環境を、一台で見守る</h2>
+			<p>土中環境から空気・光の状態まで。作物の生育環境を幅広く見守ります。</p>
 		</div>
 		<div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">grass</span></span><h3>土壌</h3><p>土の水分・温度を把握。かん水のタイミングや根の環境づくりに役立ちます。</p></div>
@@ -154,13 +154,13 @@
 <section class="section section--soft">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent"><span class="material-symbols-rounded">notifications_active</span> 早めの一手</p>
-			<h2>こんなサインを、見逃しません。</h2>
+			<p class="eyebrow eyebrow--accent"><span class="material-symbols-rounded">notifications_active</span> 正しいデータで正確な判断を</p>
+			<h2>農業に必要なデータを提供</h2>
 		</div>
 		<div class="boxgrid boxgrid--3">
-			<div class="box" data-reveal="0"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">ac_unit</span></span><h3>霜・冷え込み</h3><p>夜間に気温が下がりすぎると通知。対策の時間を確保できます。</p></div>
-			<div class="box" data-reveal="1"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">local_fire_department</span></span><h3>高温</h3><p>ハウス内の温度上がりすぎを早めに察知し、換気の判断を助けます。</p></div>
-			<div class="box" data-reveal="2"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">water_drop</span></span><h3>乾燥</h3><p>湿度や土壌の乾きを把握し、かん水のタイミングを逃しません。</p></div>
+			<div class="box" data-reveal="0"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">water_drop</span></span><h3>結露に強い温湿度センサー</h3><p>高湿度や結露により、センサーが濡れても、乾けば測定状態が戻りやすい<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン</a>製センサーを採用。湿度100%付近で停滞するリスクを抑え、農業現場の温湿度変化を安定して記録します。</p></div>
+			<div class="box" data-reveal="1"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">ac_unit</span></span><h3>交換可能なセンサー</h3><p>万が一の故障時も、本体ごと交換は不要。必要なセンサー部だけを交換でき、コストを抑えながら長く使い続けられます。また、測定したい項目が変わった場合も、用途に合わせてセンサーを追加できます。</p></div>
+			<div class="box" data-reveal="2"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">local_fire_department</span></span><h3>作物に必要な光を見える化</h3><p>PPFDで「今どれくらい光合成に使える光が届いているか」を確認し、DLIで「1日に受け取った光合成に使える光の合計量」を確認できます。光不足や強すぎる日差しに気づきやすくなり、栽培管理の見直しに役立ちます。</p></div>
 		</div>
 	</div>
 </section>
@@ -171,7 +171,7 @@
 		<div data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">cell_tower</span> 配線いらず</p>
 			<h2>1台の受信機で、農場全体を。</h2>
-			<p class="split__lead">電波（LoRaWAN）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。通信費も工事も抑えられます。</p>
+			<p class="split__lead">電波（<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。通信費も工事も抑えられます。</p>
 			<ul class="checklist">
 				<li><span class="material-symbols-rounded">check</span> 複数のハウス・畑をまとめて監視</li>
 				<li><span class="material-symbols-rounded">check</span> 携帯回線の通信費がかからない</li>
@@ -212,14 +212,14 @@
 <!-- 推奨センサー -->
 <section class="section scroll-pad" id="sensor">
 	<div class="wrap">
-		<div class="section__head" data-reveal><p class="eyebrow"><span class="material-symbols-rounded">sensors</span> 推奨センサー</p><h2>土壌＋空気＋光を、ひとつの仕組みで</h2></div>
+		<div class="section__head" data-reveal><p class="eyebrow"><span class="material-symbols-rounded">sensors</span> 提供センサー</p><h2>土壌＋空気＋光を、ひとつのデバイスで</h2></div>
 		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
 			<div class="spec-row"><dt>空気センサー</dt><dd>CW-AIR-THC（温度・湿度・CO₂）</dd></div>
 			<div class="spec-row"><dt>土壌センサー</dt><dd>土の水分・温度</dd></div>
 			<div class="spec-row"><dt>光センサー</dt><dd>作物が受ける光の量</dd></div>
 			<div class="spec-row"><dt>耐環境性</dt><dd>防塵・防水ケース（IP66）／屋外設置対応</dd></div>
 			<div class="spec-row"><dt>電池寿命</dt><dd>最長10年（交換可能）</dd></div>
-			<div class="spec-row"><dt>通信</dt><dd>LoRaWAN（電波）／受信機1台で最大15km</dd></div>
+			<div class="spec-row"><dt>通信</dt><dd><a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>（電波）／受信機1台で最大15km</dd></div>
 		</dl>
 	</div>
 </section>

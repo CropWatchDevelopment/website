@@ -36,7 +36,7 @@ const ld = breadcrumbSchema([
 		<p class="eyebrow"><span class="material-symbols-rounded">developer_board</span> 設計と技術</p>
 		<h1>現場に強い理由は、<br><span class="hl">基板の中</span>にあります。</h1>
 		<p class="hero__kicker">見えないところにこそ、こだわりを。<span class="u">中身まで、現場のために設計しました。</span></p>
-		<p>CropWatch のセンサーは、<b>ご自分で交換できる電池とセンサー</b>、<b>樹脂で丸ごと封止した頑丈な基板</b>、<b>厚い壁も通すLoRaWAN</b>、<b>記録を守るFRAMメモリ</b>、そして機器を見張る<b>「番犬機能」</b>まで——止まらず・届いて・失わない監視のために、細部まで作りこんでいます。</p>
+		<p>CropWatch のセンサーは、<b>ご自分で交換できる電池とセンサー</b>、<b>樹脂で丸ごと封止した頑丈な基板</b>、<b>厚い壁も通す<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a></b>、<b>記録を守るFRAMメモリ</b>、そして機器を見張る<b>「番犬機能」</b>まで——止まらず・届いて・失わない監視のために、細部まで作りこんでいます。</p>
 		<div class="hero__ctas">
 			<a href="#hardware" class="btn btn--primary btn--lg"><span class="material-symbols-rounded">tune</span> 設計の強みを見る</a>
 			<a href="/contact" class="btn btn--ghost btn--lg">相談する</a>
@@ -163,7 +163,7 @@ const ld = breadcrumbSchema([
 			<div class="box" data-reveal="1">
 				<span class="box__ic box__ic--accent"><span class="material-symbols-rounded">cell_tower</span></span>
 				<h3>厚い壁も通す、電波（LoRaWAN）。</h3>
-				<p>LoRaWANの電波は、Wi-Fiより遠く、壁や床をこえて届きます。冷凍庫の奥や地下、倉庫の奥まった場所など、ほかの通信では届かない現場もカバー。1台の受信機で、広い敷地をまとめて見守れます。</p>
+				<p><a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>の電波は、Wi-Fiより遠く、壁や床をこえて届きます。冷凍庫の奥や地下、倉庫の奥まった場所など、ほかの通信では届かない現場もカバー。1台の受信機で、広い敷地をまとめて見守れます。</p>
 			</div>
 			<div class="box" data-reveal="2">
 				<span class="box__ic box__ic--gold"><span class="material-symbols-rounded">memory</span></span>

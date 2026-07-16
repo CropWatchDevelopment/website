@@ -28,6 +28,30 @@ body.jp {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 
+/* ── Inline external reference link ───────────────────────────
+   Opts back in to link affordances that the reset above removes,
+   for citations sitting inside body copy (e.g. component makers'
+   product pages). Underline is offset so it clears the descenders
+   on Japanese glyphs. */
+.extlink {
+  color: var(--web-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--web-primary) 40%, transparent);
+  font-weight: 700;
+  transition: color 0.15s var(--jp-ease), text-decoration-color 0.15s var(--jp-ease);
+}
+.extlink:hover {
+  color: var(--web-primary-hover);
+  text-decoration-color: currentColor;
+}
+.extlink:focus-visible {
+  outline: 2px solid var(--web-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* ── Icon-font guard ──────────────────────────────────────────
    Material Symbols render via ligatures: before the font loads the
    browser would otherwise paint the raw ligature name ("call",

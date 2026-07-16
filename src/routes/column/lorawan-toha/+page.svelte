@@ -7,12 +7,12 @@
 
 <ColumnArticle {column}>
 	<p class="col-lead">
-		LoRaWAN（ローラワン）は、IoT向けの無線通信規格のひとつです。「長距離」「省電力」という特長から、農業や畜産の現場での環境監視に適しています。仕組みと使い方を分かりやすく解説します。
+		<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>（ローラワン）は、IoT向けの無線通信規格のひとつです。「長距離」「省電力」という特長から、農業や畜産の現場での環境監視に適しています。仕組みと使い方を分かりやすく解説します。
 	</p>
 
 	<h2>LoRaWANとは</h2>
 	<p>
-		LoRaWANは、少ないデータを遠くまで、少ない電力で送ることに特化した無線通信規格です。日本では免許のいらない920MHz帯（サブギガ帯）を使い、見通しのよい環境では数kmから10km程度の通信が可能です。Wi-Fiや携帯回線とは違い、<strong>電波が遠くまで届き、電池が長持ちする</strong>点が大きな特長です。
+		<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>は、少ないデータを遠くまで、少ない電力で送ることに特化した無線通信規格です。日本では免許のいらない920MHz帯（サブギガ帯）を使い、見通しのよい環境では数kmから10km程度の通信が可能です。Wi-Fiや携帯回線とは違い、<strong>電波が遠くまで届き、電池が長持ちする</strong>点が大きな特長です。
 	</p>
 
 	<h2>LoRaWANの特長</h2>
@@ -30,7 +30,7 @@
 
 	<h2>CropWatchのLoRaWAN活用</h2>
 	<p>
-		CropWatchのセンサーはLoRaWANに対応し、電波が届きにくい過酷な環境でも安定してデータを送信します。電池は最長10年稼働し、通信が途切れても本体メモリに記録を残すため、データの欠損を防ぎます。
+		CropWatchのセンサーは<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>に対応し、電波が届きにくい過酷な環境でも安定してデータを送信します。電池は最長10年稼働し、通信が途切れても本体メモリに記録を残すため、データの欠損を防ぎます。
 	</p>
 	<div class="col-note">
 		<p>

@@ -14,7 +14,8 @@ const testimonialsLd = breadcrumbSchema([
 
 type Who = { icon?: string; initial?: string; name: string; role: string };
 type Testimonial = {
-	href: string;
+	href: string; // related CropWatch sector page (internal)
+	link?: string; // the customer's own website (external); omit to hide the button
 	tag: { icon: string; label: string };
 	img: string;
 	biz: string;
@@ -23,29 +24,28 @@ type Testimonial = {
 	chips: string[];
 	who: Who;
 	caseStudy?: boolean; // shows the "導入事例" badge (a real, named customer)
-	view?: 'tall' | 'wide' | 'dwide'; // 'tall' = 2-column hero (tall side photo); 'wide' (default) = standard card (wide banner photo on top); 'dwide' = double-wide (spans 2 columns, banner photo on top)
 };
 
 const TESTIMONIALS: Testimonial[] = [
 	{
 		href: '/cold-chain',
+		link: 'https://seagaia.co.jp/',
 		tag: { icon: 'restaurant', label: '飲食・ホテル' },
 		img: '/assets/photos/seagaia.webp',
-		biz: 'ガーデンビュッフェ「パインテラス」',
-		loc: '宮崎市・シーガイア',
+		biz: 'フェニックス・シーガイア・リゾート',
+		loc: '宮崎県宮崎市',
 		quote:
-			'宮崎の旬を主役にしたガーデンビュッフェ。サラダバーや作りたての料理を支える冷蔵・冷凍庫の温度を、CropWatch のワイヤレスセンサーが24時間自動で記録します。基準を外れればすぐに通知し、HACCP対応の記録も置くだけで残ります。',
+			'ホテル厨房内のドロワー冷蔵庫、ストッカー、業務用冷蔵庫、プレハブ冷凍庫などから、温度・湿度データを自動で収集。Wi-Fiが届かない地下や奥まった場所でも、安定した温度管理を実現しています。取得したデータは社内の共通ファイルへ自動反映され、確認・記録・入力作業を大幅に削減。異常時にはメールやパトランプで通知し、設備の不具合や温度異常への迅速な対応につなげています。',
 		chips: ['冷蔵・冷凍監視', 'HACCP対応記録', '異常通知'],
 		who: {
 			icon: 'apartment',
 			name: 'シェラトン・グランデ・オーシャンリゾート',
 			role: 'フェニックス・シーガイア・リゾート ／ 宮崎'
 		},
-		caseStudy: true,
-		view: 'dwide'
+		caseStudy: true
 	},
 	{
-		href: '/livestock',
+		href: 'https://ebisu-g.com/group/tk-ebisu/',
 		tag: { icon: 'pets', label: '畜産・養鶏' },
 		img: '/assets/photos/poultry.webp',
 		biz: 'ティケイ・エビス株式会社（TK-EBISU）',
@@ -76,8 +76,7 @@ const TESTIMONIALS: Testimonial[] = [
 		quote:
 			'複数の冷蔵倉庫をひとつの画面で見られるようになり、巡回の手間が大きく減りました。報告書もそのまま出せるので、月次のまとめが早いです。',
 		chips: ['複数拠点を一元監視', '帳票出力', '巡回削減'],
-		who: { initial: '高', name: '高橋 物流 様', role: '城北ロジスティクス ／ 倉庫管理' },
-		view: 'tall'
+		who: { initial: '高', name: '高橋 物流 様', role: '城北ロジスティクス ／ 倉庫管理' }
 	},
 	{
 		href: '/replacement-sensors',
@@ -103,15 +102,15 @@ const TESTIMONIALS: Testimonial[] = [
 	},
 	{
 		href: '/cold-chain',
-		tag: { icon: 'storefront', label: '飲食・小売' },
+		link: 'https://www.jafoods-miyazaki.jp/',
+		tag: { icon: 'storefront', label: '食品製造・加工' },
 		img: '/assets/photos/JA_Saito.webp',
-		biz: 'JA 宮崎中央（フレッシュマート）',
-		loc: 'スーパーマーケット（生鮮売場）',
+		biz: 'JAフーズみやざき',
+		loc: '宮崎県西都市',
 		quote:
-			'複数店舗の冷蔵ショーケースとバックヤードの冷凍庫を、店舗ごとに見て回るのが大変でした。CropWatch を入れてからは全店の温度をひとつの画面で確認でき、基準を外れた売場だけにすぐ気づけます。開店前の温度チェックも記録が自動で残るので、担当者による差もなくなりました。',
+			'保管庫のモニタリングに加え、ブランチャーや短時間で-40℃まで冷却するトンネルフリーザーなど、保管設備から製造工程までの温度データを自動で収集。設備ごとの温度変化を一つのシステムで継続的に管理し、異常時には即座に対応できる体制を整えています。また、毎週自動で配信されるレポートにより、データの整理・可視化や異常箇所の確認にかかる手間を大幅に削減。過去の記録もすぐに確認・提出でき、監査対応の負担も軽減しています。',
 		chips: ['売場ケースの温度監視', '複数店舗を一元管理', '帳票出力'],
-		who: { initial: '佐', name: '佐藤 健 様', role: 'フレッシュマート ／ 店舗運営部' },
-		view: 'dwide'
+		who: { initial: '佐', name: '佐藤 健 様', role: 'フレッシュマート ／ 店舗運営部' }
 	}
 ];
 </script>
@@ -134,7 +133,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 		<div class="tgrid">
 			{#each TESTIMONIALS as t, i (t.biz + t.href)}
-				<a class="tcard" class:tcard--tall={t.view === 'tall'} class:tcard--dwide={t.view === 'dwide'} href={t.href} data-reveal={i % 3}>
+				<article class="tcard" data-reveal={i % 2}>
 					<div class="tphoto" style="background-image:url('{t.img}')">
 						<span class="tcard__tag"><span class="material-symbols-rounded">{t.tag.icon}</span> {t.tag.label}</span>
 						{#if t.caseStudy}
@@ -162,8 +161,26 @@ const TESTIMONIALS: Testimonial[] = [
 							</span>
 							<span class="who__meta"><b>{t.who.name}</b><span>{t.who.role}</span></span>
 						</div>
+
+						<div class="tcard__actions">
+							{#if t.link}
+								<a
+									class="btn btn--ghost tcard__site"
+									href={t.link}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									公式サイトを見る
+									<span class="material-symbols-rounded">open_in_new</span>
+								</a>
+							{/if}
+							<a class="tcard__rel" href={t.href}>
+								関連製品を見る
+								<span class="material-symbols-rounded">arrow_forward</span>
+							</a>
+						</div>
 					</div>
-				</a>
+				</article>
 			{/each}
 		</div>
 	</div>
@@ -186,10 +203,12 @@ const TESTIMONIALS: Testimonial[] = [
 	/* ── Testimonial grid ───────────────────────────────────── */
 	.tgrid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 24px;
 		margin-top: 28px;
 	}
+	/* The card is not a link - only the buttons in its footer are. It therefore
+	   gets no hover lift, which would promise a click the card doesn't accept. */
 	.tcard {
 		display: flex;
 		flex-direction: column;
@@ -198,48 +217,12 @@ const TESTIMONIALS: Testimonial[] = [
 		border-radius: 20px;
 		overflow: hidden;
 		box-shadow: var(--web-shadow-card);
-		transition:
-			transform 0.25s var(--jp-ease),
-			box-shadow 0.25s var(--jp-ease);
-	}
-	.tcard:hover {
-		transform: translateY(-4px);
-		box-shadow: var(--web-shadow-raised);
-	}
-
-	/* Tall layout (view: 'tall'): 2-column hero card with a tall side photo, spans 2 columns on wide screens */
-	.tcard--tall {
-		grid-column: span 2;
-		flex-direction: row;
-	}
-	.tcard--tall .tphoto {
-		flex: 1 1 46%;
-		height: auto;
-		min-height: 300px;
-		border-radius: 0;
-	}
-	.tcard--tall .tcard__body {
-		flex: 1 1 54%;
-	}
-	.tcard--tall .tcard__quote {
-		font-size: 16px;
-	}
-
-	/* Double-wide layout (view: 'dwide'): standard banner-on-top card that spans 2 columns */
-	.tcard--dwide {
-		grid-column: span 2;
-	}
-	.tcard--dwide .tphoto {
-		height: 240px;
-	}
-	.tcard--dwide .tcard__quote {
-		font-size: 16px;
 	}
 
 	/* ── Photo + tags ── */
 	.tphoto {
 		position: relative;
-		height: 178px;
+		height: 200px;
 		background-size: cover;
 		background-position: center;
 		border-bottom: 1px solid var(--web-border);
@@ -285,6 +268,7 @@ const TESTIMONIALS: Testimonial[] = [
 	.tcard__body {
 		display: flex;
 		flex-direction: column;
+		flex: 1;
 		padding: 22px 24px 22px;
 	}
 	.tcard__id {
@@ -321,7 +305,7 @@ const TESTIMONIALS: Testimonial[] = [
 		display: flex;
 		flex-wrap: wrap;
 		gap: 7px;
-		margin: 16px 0 0;
+		margin: 16px 0 18px;
 	}
 	.tcard__chips span {
 		font-size: 12px;
@@ -334,11 +318,13 @@ const TESTIMONIALS: Testimonial[] = [
 	}
 
 	/* ── Source / person ── */
+	/* margin-top:auto keeps the attribution pinned to the card bottom, so the
+	   rule above it lines up across a row of uneven-length quotes. */
 	.who {
 		display: flex;
 		align-items: center;
 		gap: 12px;
-		margin-top: 18px;
+		margin-top: auto;
 		padding-top: 18px;
 		border-top: 1px solid var(--web-border);
 	}
@@ -369,34 +355,64 @@ const TESTIMONIALS: Testimonial[] = [
 		color: var(--web-muted);
 	}
 
-	@media (max-width: 1000px) {
-		.tgrid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-		.tcard--tall {
-			grid-column: span 2;
-		}
+	/* ── Footer actions ── */
+	/* min-height reserves the button's height even when a card has no link, so
+	   the attribution rows stay aligned across a row of mixed cards. */
+	.tcard__actions {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 10px 16px;
+		min-height: 38px;
+		margin-top: 18px;
 	}
-	@media (max-width: 760px) {
+	.tcard__site {
+		padding: 0.6rem 1.15rem;
+		font-size: 13.5px;
+	}
+	.tcard__site .material-symbols-rounded {
+		font-size: 17px;
+	}
+	/* Secondary to the website button: a plain link, not a second filled button,
+	   so the two actions don't compete. */
+	.tcard__rel {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--web-primary);
+		transition: color 0.15s var(--jp-ease);
+	}
+	.tcard__rel .material-symbols-rounded {
+		font-size: 16px;
+		transition: transform 0.15s var(--jp-ease);
+	}
+	.tcard__rel:hover {
+		color: var(--web-primary-hover);
+	}
+	.tcard__rel:hover .material-symbols-rounded {
+		transform: translateX(2px);
+	}
+	.tcard__site:focus-visible,
+	.tcard__rel:focus-visible {
+		outline: 2px solid var(--web-primary);
+		outline-offset: 2px;
+		border-radius: 999px;
+	}
+
+	/* Below the 1140px desktop tier the grid is a single column, so cards run
+	   wide and the photo reads as a banner rather than a letterbox strip. */
+	@media (max-width: 1140px) {
 		.tgrid {
 			grid-template-columns: 1fr;
 		}
-		.tcard--dwide {
-			grid-column: auto;
+		.tphoto {
+			height: 240px;
 		}
-		.tcard--dwide .tphoto {
-			height: 178px;
-		}
-		.tcard--tall {
-			grid-column: auto;
-			flex-direction: column;
-		}
-		.tcard--tall .tphoto,
-		.tcard--tall .tcard__body {
-			flex: none;
-		}
-		.tcard--tall .tphoto {
-			min-height: 0;
+	}
+	@media (max-width: 600px) {
+		.tphoto {
 			height: 178px;
 		}
 	}

@@ -76,7 +76,7 @@
 			<span class="cc-eyebrow"><span class="cc-dot"></span> コールドチェーンの温度・湿度を見守る産業用ワイヤレスデバイス</span>
 			<h1>10分ごとの記録で、<br />品質トラブルの<span class="cc-hl">リスク</span>を低減</h1>
 			<p class="cc-lead">
-				バッテリー駆動のLoRaWAN®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
+				バッテリー駆動の<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
 			</p>
 			<div class="cc-hero__ctas">
 				<a href="/contact" class="btn btn--accent btn--lg">通信テストを予約する<span class="material-symbols-rounded">arrow_forward</span></a>
@@ -187,14 +187,14 @@
 				<span class="box__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>スイス製高精度センサー採用</h3>
 				<p>
-					信頼性の高いセンシリオン社SHT43とSHT40をダブルで搭載。いずれも認定機関にて校正後、個別に試験が行われたデジタル温湿度センサーです。				</p>
+					信頼性の高い<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン社</a>&thinsp;<a class="extlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a>と<a class="extlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>をダブルで搭載。いずれも認定機関にて校正後、個別に試験が行われたデジタル温湿度センサーです。				</p>
 			</div>
 			<div class="box" data-reveal="2">
 				<span class="box__ic box__ic--gold"
 					><span class="material-symbols-rounded fill">cell_tower</span></span
 				>
 				<h3>冷凍庫の奥までつながる</h3>
-				<p>LoRaWAN通信で、Wi-Fiや携帯の電波が届かない厚い壁や冷凍庫内、離れた倉庫からもデータを安定して送信します。</p>
+				<p><a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>通信で、Wi-Fiや携帯の電波が届かない厚い壁や冷凍庫内、離れた倉庫からもデータを安定して送信します。</p>
 			</div>
 		</div>
 	</div>
@@ -227,7 +227,7 @@
 					alt="冷蔵・冷凍設備の出入口に設置されたCropWatchセンサー"
 				/>
 				<figcaption>
-					<b>冷蔵・冷凍設備の出入口</b><span>配線工事なしでセンサーを設置</span>
+					<b>業務用冷凍庫</b><span>配線工事なしでセンサーを設置</span>
 				</figcaption>
 			</figure>
 		</div>
@@ -243,7 +243,7 @@
 			</p>
 			<h2>測定の根拠を、記録と一緒に残せます。</h2>
 			<p>
-				SHT43には個体ごとのISO/IEC 17025に基づく3点温度校正証明書を発行。
+				<a class="extlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a>には個体ごとのISO/IEC 17025に基づく3点温度校正証明書を発行。
 			</p>
 		</div>
 		<div class="badgewall">
@@ -281,7 +281,13 @@
 			</div>
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
-				<dd>センシリオン SHT40 / SHT43 *校正証明書付き</dd>
+				<dd>
+					<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン</a>
+					<a class="extlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>
+					/
+					<a class="extlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a>
+					*校正証明書付き
+				</dd>
 			</div>
 			<div class="spec-row">
 				<dt>動作温度範囲</dt>
@@ -295,7 +301,7 @@
 			</div>
 			<div class="spec-row">
 				<dt>通信</dt>
-				<dd>LoRaWAN<sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信</dd>
+				<dd><a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信</dd>
 			</div>
 			<div class="spec-row">
 				<dt>電池寿命</dt>

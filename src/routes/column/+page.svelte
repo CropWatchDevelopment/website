@@ -47,7 +47,7 @@
 			コールドチェーン・スマート農業・スマート畜産。<span class="u">導入前に知っておきたいことを、分かりやすく。</span>
 		</p>
 		<p>
-			HACCP義務化への対応から、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業やLoRaWANの基礎まで。現場の課題解決に役立つ情報をまとめています。
+			HACCP義務化への対応から、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業や<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>の基礎まで。現場の課題解決に役立つ情報をまとめています。
 		</p>
 	</div>
 </section>
