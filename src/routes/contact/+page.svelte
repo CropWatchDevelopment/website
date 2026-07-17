@@ -229,7 +229,7 @@ onDestroy(() => {
 	<div class="wrap closing__in" data-reveal>
 		<p class="eyebrow eyebrow--gold" style="justify-content:center"><span class="material-symbols-rounded">lightbulb</span> まだ迷っている方へ</p>
 		<h2>導入から運用サポートまで</h2>
-		<p>CropWatchは、設置後の通信確認や運用サポートまで一貫して対応。現場で安心して使い続けられる環境づくりを支えます。</p>
+		<p>設置前の通信確認から運用サポートまで一貫して対応。現場で安心して使い続けられる環境づくりを支えます。</p>
 		<div class="closing__ctas">
 			<a href="/technology" class="btn btn--accent btn--lg">止まらない仕組みを見る</a>
 			<a href="/testimonials" class="btn btn--outline-light btn--lg">お客様の声を見る</a>
