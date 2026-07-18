@@ -60,27 +60,40 @@
 <Seo {title} {description} />
 <JsonLd data={ld} />
 
-<div class="crumb"><div class="wrap crumb__in">
-	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
-	<b>冷蔵・冷凍の監視</b>
-</div></div>
+<div class="crumb">
+	<div class="wrap crumb__in">
+		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+		<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
+		<b>冷蔵・冷凍の監視</b>
+	</div>
+</div>
 
 <!-- ═══ ヒーロー（現場写真バックドロップ） ═══ -->
 <section class="cc-hero">
-	<div class="cc-hero__bg" style="background-image:url('/assets/photos/coldchain-freezer.webp')"></div>
+	<div
+		class="cc-hero__bg"
+		style="background-image:url('/assets/photos/coldchain-freezer.webp')"
+	></div>
 	<div class="cc-hero__scrim"></div>
 
 	<div class="wrap cc-hero__inner">
 		<div class="cc-hero__copy" data-reveal>
-			<span class="cc-eyebrow"><span class="cc-dot"></span> コールドチェーンの温度・湿度を見守る産業用ワイヤレスデバイス</span>
-			<h1>10分ごとの記録で、<br />品質トラブルの<span class="cc-hl">リスク</span>を低減</h1>
+			<span class="cc-eyebrow"
+				><span class="cc-dot"></span> コールドチェーンの温度・湿度を見守る産業用ワイヤレスデバイス</span
+			>
+			<!-- <h1>10分ごとの記録で、品質トラブルの<span class="cc-hl">リスク</span>を低減</h1> -->
+			<h1>
+				測る、記録する、残す。<br /><span class="cc-hl">HACCP</span
+				>に沿った温度管理を、<br />すべて自動で。
+			</h1>
 			<p class="cc-lead">
-				バッテリー駆動の<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
+				バッテリー駆動の<a
+					class="extlink"
+					href="https://lora-alliance.org/"
+					target="_blank"
+					rel="noopener noreferrer">LoRaWAN</a
+				>®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
 			</p>
-			<div class="cc-hero__ctas">
-				<a href="/contact" class="btn btn--accent btn--lg">通信テストを予約する<span class="material-symbols-rounded">arrow_forward</span></a>
-			</div>
 		</div>
 
 		<!-- リアルタイム測定パネル -->
@@ -96,7 +109,9 @@
 					<span class="cc-panel__val">−40<i>°C</i> 〜 +85<i>°C</i></span>
 				</li>
 				<li>
-					<span class="material-symbols-rounded fill" style="color:#0e9960">humidity_percentage</span>
+					<span class="material-symbols-rounded fill" style="color:#0e9960"
+						>humidity_percentage</span
+					>
 					<span class="cc-panel__tx">
 						<span class="cc-panel__lab">湿度</span>
 						<span class="cc-panel__note">結露環境にも対応</span>
@@ -134,30 +149,55 @@
 			<p>手書きや転記に使っていた時間を減らし、異常の把握と記録の確認をスムーズにします。</p>
 		</div>
 		<div class="boxgrid boxgrid--3">
-			<div class="box" data-reveal="0">
-				<span class="box__ic"><span class="material-symbols-rounded">schedule</span></span>
-				<h3>10分ごとに自動記録</h3>
+			<div class="box cc-box" data-reveal="0">
+				<div class="cc-box__head">
+					<span class="box__ic"><span class="material-symbols-rounded">schedule</span></span>
+					<h3>10分ごとに自動記録</h3>
+				</div>
 				<p>
-					温度・湿度を24時間自動で収集し、保存。日々の見回りや手書きによる記録漏れのリスクを抑えます。
+					温度・湿度を24時間自動で収集し、保存。日々の見回りや手書きによる記録漏れのリスクを防ぎます。
 				</p>
-			</div>
-			<div class="box" data-reveal="1">
-				<span class="box__ic box__ic--gold"
-					><span class="material-symbols-rounded fill">notifications_active</span></span
+				<a
+					id="download-sample-csv-export"
+					class="btn btn--accent btn--lg cc-box__cta"
+					href="/assets/downloads/0011223344556677-20260718-0000_to_20260718-1321.csv"
+					download="0011223344556677-20260718-0000_to_20260718-1321.csv"
+					>CSVサンプル<span class="material-symbols-rounded">csv</span></a
 				>
-				<h3>異常をすばやく通知</h3>
+			</div>
+			<div class="box cc-box" data-reveal="1">
+				<div class="cc-box__head">
+					<span class="box__ic box__ic--gold"
+						><span class="material-symbols-rounded fill">notifications_active</span></span
+					>
+					<h3>異常をすばやく通知</h3>
+				</div>
 				<p>
 					設定したしきい値に達すると、メールや現場のパトランプで通知。早めの確認と対応につなげます。
 				</p>
+				<ul class="cc-alerts">
+					<li><span class="material-symbols-rounded">mail</span>メール</li>
+					<li><span class="material-symbols-rounded">chat</span>LINE</li>
+					<li><span class="material-symbols-rounded">app_badging</span>アプリ内</li>
+				</ul>
 			</div>
-			<div class="box" data-reveal="2">
-				<span class="box__ic box__ic--accent"
-					><span class="material-symbols-rounded">summarize</span></span
-				>
-				<h3>レポート作成を効率化</h3>
+			<div class="box cc-box" data-reveal="2">
+				<div class="cc-box__head">
+					<span class="box__ic box__ic--accent">
+						<span class="material-symbols-rounded">summarize</span>
+					</span>
+					<h3>レポート作成を効率化</h3>
+				</div>
 				<p>
 					日次・週次レポートを自動送信。保存したデータはCSVでも出力でき、監査や社内報告に活用できます。
 				</p>
+				<a
+					id="download-sample-report"
+					class="btn btn--accent btn--lg cc-box__cta"
+					href="/assets/downloads/sample_coldchain_report_ja.pdf"
+					download="sample_coldchain_report_ja.pdf"
+					>レポートサンプル<span class="material-symbols-rounded">download</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -171,7 +211,9 @@
 				<span class="material-symbols-rounded">verified_user</span> 継続運用を支える仕組み
 			</p>
 			<h2>止めない記録、信頼できる測定、届きにくい場所まで確実につなぐ</h2>
-			<p>冷凍設備の厳しい環境でもデータを継続して記録し、測定値の異常や通信断にも備えた設計です。</p>
+			<p>
+				冷凍設備の厳しい環境でもデータを継続して記録し、測定値の異常や通信断にも備えた設計です。
+			</p>
 		</div>
 		<div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0">
@@ -187,14 +229,37 @@
 				<span class="box__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>スイス製高精度センサー採用</h3>
 				<p>
-					信頼性の高い<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン社</a>&thinsp;<a class="extlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a>と<a class="extlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>をダブルで搭載。いずれも認定機関にて校正後、個別に試験が行われたデジタル温湿度センサーです。				</p>
+					信頼性の高い<a
+						class="extlink"
+						href="https://sensirion.com/"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン社</a
+					>&thinsp;<a
+						class="extlink"
+						href="https://sensirion.com/products/catalog/SHT43"
+						target="_blank"
+						rel="noopener noreferrer">SHT43</a
+					>と<a
+						class="extlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>をダブルで搭載。いずれも認定機関にて校正後、個別に試験が行われたデジタル温湿度センサーです。
+				</p>
 			</div>
 			<div class="box" data-reveal="2">
 				<span class="box__ic box__ic--gold"
 					><span class="material-symbols-rounded fill">cell_tower</span></span
 				>
 				<h3>冷凍庫の奥までつながる</h3>
-				<p><a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>通信で、Wi-Fiや携帯の電波が届かない厚い壁や冷凍庫内、離れた倉庫からもデータを安定して送信します。</p>
+				<p>
+					<a
+						class="extlink"
+						href="https://lora-alliance.org/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN</a
+					>通信で、Wi-Fiや携帯の電波が届かない厚い壁や冷凍庫内、離れた倉庫からもデータを安定して送信します。
+				</p>
 			</div>
 		</div>
 	</div>
@@ -209,13 +274,15 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">image</span> 導入の現場</p>
-			<h2>温度を守る場所に、工事なしで設置</h2>
-			<p>電池式・ワイヤレスなので、電源や配線を引きにくい冷蔵・冷凍設備にも設置できます。</p>
+			<h2>穴あけ不要。センサー本体を庫内に置くだけ。</h2>
+			<p>バッテリー式・ワイヤレスなので、電源や配線を引きにくい冷蔵・冷凍設備にも設置できます。</p>
 		</div>
 		<div class="gallery">
 			<figure data-reveal="0">
 				<img src="/assets/photos/coldchain-drawer.webp" alt="食品を保管する業務用の冷蔵ドロワー" />
-				<figcaption><b>業務用冷蔵ドロワー</b><span>引き出し式の冷蔵設備の温度も見える化</span></figcaption>
+				<figcaption>
+					<b>ドロワー冷蔵庫</b><span>引き出し式の冷蔵設備の温度も見える化</span>
+				</figcaption>
 			</figure>
 			<figure data-reveal="1">
 				<img src="/assets/photos/coldchain-fridge.webp" alt="食品を保管する業務用冷蔵庫" />
@@ -227,7 +294,7 @@
 					alt="冷蔵・冷凍設備の出入口に設置されたCropWatchセンサー"
 				/>
 				<figcaption>
-					<b>業務用冷凍庫</b><span>配線工事なしでセンサーを設置</span>
+					<b>プレハブ冷凍庫</b><span>配線工事なしでセンサーを設置</span>
 				</figcaption>
 			</figure>
 		</div>
@@ -243,7 +310,17 @@
 			</p>
 			<h2>測定の根拠を、記録と一緒に残せます。</h2>
 			<p>
-				<a class="extlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a>には個体ごとのISO/IEC 17025に基づく3点温度校正証明書を発行。
+				<a
+					class="extlink"
+					href="https://sensirion.com/products/catalog/SHT43"
+					target="_blank"
+					rel="noopener noreferrer">SHT43</a
+				>には個体ごとの<a
+					class="extlink"
+					href="https://www.jab.or.jp/service/laboratory"
+					target="_blank"
+					rel="noopener noreferrer">ISO/IEC 17025</a
+				>に基づく3点温度校正証明書を発行。
 			</p>
 		</div>
 		<div class="badgewall">
@@ -282,10 +359,22 @@
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
 				<dd>
-					<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン</a>
-					<a class="extlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>
+					<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer"
+						>センシリオン</a
+					>
+					<a
+						class="extlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>
 					/
-					<a class="extlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a>
+					<a
+						class="extlink"
+						href="https://sensirion.com/products/catalog/SHT43"
+						target="_blank"
+						rel="noopener noreferrer">SHT43</a
+					>
 					*校正証明書付き
 				</dd>
 			</div>
@@ -301,7 +390,14 @@
 			</div>
 			<div class="spec-row">
 				<dt>通信</dt>
-				<dd><a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信</dd>
+				<dd>
+					<a
+						class="extlink"
+						href="https://lora-alliance.org/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN</a
+					><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信
+				</dd>
 			</div>
 			<div class="spec-row">
 				<dt>電池寿命</dt>
@@ -343,7 +439,7 @@
 		</p>
 		<h2>冷蔵・冷凍設備の温度管理を自動化しませんか?</h2>
 		<p>
-			監視した冷蔵庫・冷凍庫・倉庫の様子をお聞かせください。最適なセンサーと通知の設定をご提案します。
+			監視したい冷蔵庫・冷凍庫・倉庫の様子をお聞かせください。最適なセンサーと通知の設定をご提案します。
 		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="btn btn--accent btn--lg">問い合わせ</a>
@@ -359,6 +455,54 @@
 	   its own photographic hero + navy/ice palette (different
 	   product). Sibling of the livestock page's warm treatment.
 	   ══════════════════════════════════════════════════════════ */
+
+	/* ═══ 記録・通知・レポート cards ═══ */
+	.cc-box {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.cc-box__head {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+	}
+	.cc-box__head .box__ic {
+		margin-bottom: 0;
+		flex: none;
+	}
+	/* Grow the copy so CTAs / chips sit level across the three cards. */
+	.cc-box p {
+		flex: 1;
+	}
+	.cc-box__cta {
+		margin-top: 22px;
+	}
+	.cc-alerts {
+		list-style: none;
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 8px;
+		margin: 22px 0 0;
+		padding: 0;
+	}
+	.cc-alerts li {
+		display: inline-flex;
+		align-items: center;
+		white-space: nowrap;
+		gap: 6px;
+		padding: 7px 11px;
+		border-radius: 999px;
+		border: 1px solid var(--web-border);
+		background: var(--web-primary-soft);
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--web-heading);
+	}
+	.cc-alerts .material-symbols-rounded {
+		font-size: 18px;
+		color: var(--web-primary);
+	}
 
 	/* ═══ Hero (photographic backdrop) ═══ */
 	.cc-hero {

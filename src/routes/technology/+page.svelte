@@ -237,7 +237,7 @@
 		</div>
 		<div class="framstats" data-reveal>
 			<div class="framstat">
-				<b>約200年</b>
+				<b>約151年</b>
 				<span>データを保持できる期間<i>メーカー公称値</i></span>
 			</div>
 			<div class="framstat">
@@ -245,14 +245,14 @@
 				<span>書き換えできる回数<i>フラッシュメモリの数万回に対して</i></span>
 			</div>
 			<div class="framstat">
-				<b>2年分</b>
+				<b>360分</b>
 				<span>本体に残る記録<i>送信済みのデータも保持</i></span>
 			</div>
 		</div>
 		<div class="callout callout--plain" data-reveal>
 			<span class="callout__ic"><span class="material-symbols-rounded">history</span></span>
 			<div>
-				<h3>なぜ、わざわざFRAMなのか。</h3>
+				<h3>なぜ、わざわざ<a class="extlink" href="https://www.infineon.com/ja/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FRAM</a>なのか。</h3>
 				<p>
 					保存用として広く使われるフラッシュメモリには、書き換え回数に限りがあります。通信障害が長時間続き、測定データを短い間隔で繰り返し保存する機器では、メモリの寿命も考慮しなければなりません。また、基板に実装されたメモリが故障すると、メモリだけを交換することが難しく、基板ごとの修理や交換が必要になる場合があります。CropWatchでは、こうした故障や交換のリスクを抑えるため、書き換え耐久性に優れたFRAMを採用しています。
 				</p>
@@ -300,15 +300,6 @@
 				</p>
 			</div>
 		</div>
-		<figure class="tech-figure tech-figure--wide" data-reveal>
-			<img
-				src="/assets/uploads/WatchDogTimerJPN.png"
-				alt="ウォッチドッグタイマー（WDT）の動作図。MCU正常時は番犬が信号を受け取りOKと判断し、MCU異常時は信号が来ないためリセット信号を出力する様子を示した図解"
-			/>
-			<figcaption>
-				図：ハードウェアの番犬の動き。MCU＝機器の中の小さなコンピューター、WDT＝番犬の役割。
-			</figcaption>
-		</figure>
 	</div>
 </section>
 

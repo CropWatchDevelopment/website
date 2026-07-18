@@ -1,6 +1,7 @@
 import { alternatesFor } from '$lib/seo/alternates';
 import { absUrl } from '$lib/seo/site';
 import { COLUMNS } from '$lib/content/columns';
+import { listNews } from '$lib/server/news';
 
 export const prerender = true;
 
@@ -27,6 +28,22 @@ const STATIC_ENTRIES: Entry[] = [
 	{ path: '/legal/EULA', lastmod: STATIC_LASTMOD, priority: '0.2', changefreq: 'yearly' }
 ];
 
+const NEWS = listNews();
+const NEWS_ENTRIES: Entry[] = [
+	{
+		path: '/news',
+		lastmod: NEWS[0]?.date ?? STATIC_LASTMOD,
+		priority: '0.6',
+		changefreq: 'weekly'
+	},
+	...NEWS.map((n) => ({
+		path: `/news/${n.id}`,
+		lastmod: n.date,
+		priority: '0.5',
+		changefreq: 'yearly'
+	}))
+];
+
 const COLUMN_ENTRIES: Entry[] = COLUMNS.map((c) => ({
 	path: `/column/${c.slug}`,
 	lastmod: c.dateModified ?? c.datePublished,
@@ -48,7 +65,7 @@ function urlBlock({ path, lastmod, priority, changefreq }: Entry): string {
 }
 
 export function GET() {
-	const entries = [...STATIC_ENTRIES, ...COLUMN_ENTRIES];
+	const entries = [...STATIC_ENTRIES, ...COLUMN_ENTRIES, ...NEWS_ENTRIES];
 	const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries.map(urlBlock).join('\n')}

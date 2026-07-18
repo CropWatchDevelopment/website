@@ -1,0 +1,37 @@
+{
+    "title": "EULA更新のお知らせ",
+    "description": "CropWatchのエンドユーザー使用許諾契約書（EULA）を更新しました。新しい契約書は2026年7月18日から適用されます。",
+    "date": "2026-07-18",
+    "icon": "gavel",
+    "headerImage": null,
+    "content": [
+        {
+            "type": "paragraph",
+            "text": "CropWatchのエンドユーザー使用許諾契約書（EULA）を更新しました。新しい契約書は2026年7月18日から適用されます。",
+            "image": null
+        },
+        {
+            "type": "paragraph",
+            "text": "主な変更点は以下の通りです：",
+            "image": null
+        },
+        {
+            "type": "list",
+            "items": [
+                "契約期間の明確化",
+                "データの取り扱いに関する条項の追加",
+                "保証の範囲の明確化"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "新しいEULAは、CropWatchのウェブサイトでご確認いただけます。",
+            "image": null
+        },
+        {
+            "type": "link",
+            "href": "/legal/EULA",
+            "text": "新しいEULAを確認する"
+        }
+    ]
+}

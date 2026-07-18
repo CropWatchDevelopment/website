@@ -27,6 +27,7 @@ const NAV: NavLink[] = [
 	{ key: 'products', href: '', label: '製品', children: PRODUCTS },
 	{ key: 'tech', href: '/technology', label: '技術' },
 	{ key: 'testimonials', href: '/testimonials', label: 'お客様の声' },
+	{ key: 'news', href: '/news', label: 'ニュース' },
 	{ key: 'help', href: '/help', label: 'ヘルプ' },
 	{ key: 'contact', href: '/contact', label: 'お問い合わせ' }
 ];
@@ -39,6 +40,7 @@ const activeKey = $derived.by(() => {
 	if (PRODUCT_PATHS.has(path)) return 'products';
 	if (path === '/technology') return 'tech';
 	if (path === '/testimonials') return 'testimonials';
+	if (path === '/news' || path.startsWith('/news/')) return 'news';
 	if (path === '/help') return 'help';
 	if (path === '/contact') return 'contact';
 	return '';

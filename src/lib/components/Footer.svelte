@@ -31,6 +31,7 @@
 			<a href="/technology">技術</a>
 			<a href="/testimonials">お客様の声</a>
 			<a href="/column">コラム</a>
+			<a href="/news">ニュース</a>
 			<a href="/help">ヘルプ</a>
 			<a href="/contact">お問い合わせ</a>
 		</nav>
