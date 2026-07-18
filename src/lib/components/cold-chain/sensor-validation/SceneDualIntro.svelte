@@ -25,7 +25,7 @@
 
 		<SensorCard
 			cx={395}
-			cy={560}
+			cy={480}
 			role="プライマリ"
 			name="センサー A"
 			temp="10.0 °C"
@@ -34,7 +34,7 @@
 		/>
 		<SensorCard
 			cx={685}
-			cy={560}
+			cy={480}
 			role="リファレンス"
 			name="センサー B"
 			temp="10.1 °C"
@@ -43,7 +43,7 @@
 		/>
 
 		<div
-			style="position:absolute; left:540px; top:700px; transform:translateX(-50%);
+			style="position:absolute; left:540px; top:620px; transform:translateX(-50%);
 				text-align:center; opacity:{specIn}; font-family:{MONO}; font-size:20px;
 				color:{C.muted}; letter-spacing:0.02em;"
 		>

@@ -11,17 +11,22 @@
 
 	const F0 = 10.6; // scene 3 base time
 
-	// geometry — everything hangs off a single vertical spine
+	// geometry — everything hangs off a single vertical spine. The connector
+	// lines, pulse ramp and gate thresholds all derive from these constants,
+	// so vertical rhythm is tuned here alone (canvas is 1080×800).
 	const SPINE = 540;
 	const xA = SPINE - 145;
 	const xB = SPINE + 145;
-	const yA = 200;
-	const yB = 200;
-	const yMerge = 262;
-	const g1 = 350;
-	const g2 = 512;
-	const g3 = 700;
-	const res = 900;
+	const yA = 168;
+	const yB = 168;
+	const yMerge = 230;
+	const g1 = 300;
+	const g2 = 400;
+	const g3 = 524;
+	const res = 656;
+	// the result card is ~91px tall centered on `res`; spine segments end at
+	// its top edge so the flow reads as one unbroken line into the card.
+	const resTop = 45;
 	const errX = 792;
 
 	// validation-run pulse
@@ -104,7 +109,7 @@
 
 {#if t >= F0 - 0.2 && t <= 29.2}
 	<div style="position:absolute; inset:0; opacity:{sceneFade};">
-		<Eyebrow text="CropWatch の検証プロセス" x={540} y={70} color={C.teal} />
+		<Eyebrow text="CropWatch の検証プロセス" x={540} y={56} color={C.teal} />
 
 		<!-- sensors -->
 		<SensorCard
@@ -271,9 +276,9 @@
 		<Line
 			x={SPINE - 2}
 			y={g3 + 55}
-			len={res - 62 - (g3 + 55)}
+			len={res - resTop - (g3 + 55)}
 			grow={y3grow}
-			color={passed(res - 62) ? C.teal : C.faint}
+			color={passed(res - resTop) ? C.teal : C.faint}
 		/>
 
 		<!-- Result — validated value -->
@@ -318,7 +323,7 @@
 
 		<!-- caption -->
 		<div
-			style="position:absolute; left:540px; top:1000px; transform:translateX(-50%);
+			style="position:absolute; left:540px; top:726px; transform:translateX(-50%);
 				opacity:{cap ? 0.85 : 0}; font-family:{SANS}; font-weight:600; font-size:22px;
 				color:{C.ink}; text-align:center;"
 		>

@@ -1,143 +1,113 @@
 <script lang="ts">
-import Seo from '$lib/components/Seo.svelte';
-import JsonLd from '$lib/components/JsonLd.svelte';
-import { breadcrumbSchema } from '$lib/seo/schema';
+	import Seo from '$lib/components/Seo.svelte';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { breadcrumbSchema } from '$lib/seo/schema';
 
-const title = 'お客様の声・導入事例｜温度監視・スマート農業・スマート畜産｜CropWatch 日本';
-const description =
-	'CropWatch（クロップウォッチ）を導入したお客様の声・導入事例。宮崎・シーガイアのガーデンビュッフェ「パインテラス」やTK-EBISUの養鶏をはじめ、飲食・ホテル・倉庫・農業・畜産の現場で、温度監視と記録の手間がどう変わったかをご紹介します。';
+	const title = 'お客様の声・導入事例｜温度監視・スマート農業・スマート畜産｜CropWatch 日本';
+	const description =
+		'CropWatch（クロップウォッチ）を導入したお客様の声・導入事例。宮崎・シーガイアのガーデンビュッフェ「パインテラス」やTK-EBISUの養鶏をはじめ、飲食・ホテル・倉庫・農業・畜産の現場で、温度監視と記録の手間がどう変わったかをご紹介します。';
 
-const testimonialsLd = breadcrumbSchema([
-	{ name: 'ホーム', path: '/' },
-	{ name: 'お客様の声', path: '/testimonials' }
-]);
+	const testimonialsLd = breadcrumbSchema([
+		{ name: 'ホーム', path: '/' },
+		{ name: 'お客様の声', path: '/testimonials' }
+	]);
 
-type Who = { icon?: string; initial?: string; name: string; role: string };
-type Testimonial = {
-	href: string; // related CropWatch sector page (internal)
-	link?: string; // the customer's own website (external); omit to hide the button
-	tag: { icon: string; label: string };
-	img: string;
-	biz: string;
-	loc: string;
-	quote: string;
-	chips: string[];
-	who: Who;
-	caseStudy?: boolean; // shows the "導入事例" badge (a real, named customer)
-};
+	type Who = { icon?: string; initial?: string; name: string; role: string };
+	type Testimonial = {
+		href: string; // related CropWatch sector page (internal)
+		link?: string; // the customer's own website (external); omit to hide the button
+		tag: { icon: string; label: string };
+		img: string;
+		biz: string;
+		loc: string;
+		quote: string;
+		chips: string[];
+		who: Who;
+		caseStudy?: boolean; // shows the "導入事例" badge (a real, named customer)
+	};
 
-const TESTIMONIALS: Testimonial[] = [
-	{
-		href: '/cold-chain',
-		link: 'https://seagaia.co.jp/',
-		tag: { icon: 'restaurant', label: '飲食・ホテル' },
-		img: '/assets/photos/seagaia.webp',
-		biz: 'フェニックスリゾート株式会社',
-		loc: '宮崎県宮崎市',
-		quote:
-			'ホテル厨房内のドロワー冷蔵庫、ストッカー、業務用冷蔵庫、プレハブ冷凍庫などから、温度・湿度データを自動で収集。Wi-Fiが届かない地下や奥まった場所でも、安定した温度管理を実現しています。取得したデータは社内の共通ファイルへ自動で反映され、確認・記録・入力作業を大幅に削減。異常時にはメールやパトランプで通知し、設備の不具合や温度異常の早期発見と、初動対応の迅速化を実現しています。',
-		chips: ['冷蔵・冷凍監視', 'HACCP対応記録', '異常通知'],
-		who: {
-			icon: 'apartment',
-			name: 'シェラトン・グランデ・オーシャンリゾート',
-			role: 'フェニックス・シーガイア・リゾート ／ 宮崎'
+	const TESTIMONIALS: Testimonial[] = [
+		{
+			href: '/cold-chain',
+			link: 'https://seagaia.co.jp/',
+			tag: { icon: 'restaurant', label: '飲食・ホテル' },
+			img: '/assets/photos/seagaia.webp',
+			biz: 'フェニックスリゾート株式会社',
+			loc: '宮崎県宮崎市',
+			quote:
+				'ホテル厨房内のドロワー冷蔵庫、ストッカー、業務用冷蔵庫、プレハブ冷凍庫などから、温度・湿度データを自動で収集。Wi-Fiが届かない地下や奥まった場所でも、安定した温度管理を実現しています。取得したデータは社内の共通ファイルへ自動で反映され、確認・記録・入力作業を大幅に削減。異常時にはメールやパトランプで通知し、設備の不具合や温度異常の早期発見と、初動対応の迅速化を実現しています。',
+			chips: ['冷蔵・冷凍監視', 'HACCP対応記録', '異常通知'],
+			who: {
+				icon: 'apartment',
+				name: 'シェラトン・グランデ・オーシャンリゾート',
+				role: 'フェニックス・シーガイア・リゾート ／ 宮崎'
+			},
+			caseStudy: true
 		},
-		caseStudy: true
-	},
-	{
-		href: 'https://ebisu-g.com/group/tk-ebisu/',
-		tag: { icon: 'pets', label: '畜産・養鶏' },
-		img: '/assets/photos/poultry.webp',
-		biz: 'ティケイ・エビス株式会社',
-		loc: '宮崎県北諸県郡三股町',
-		quote:
-			'種鶏を飼育する鶏舎において、温度・湿度・CO₂データを24時間自動で収集。鶏舎内の暑さや空気環境の変化を継続的に把握し、異常の早期発見と迅速な対応につなげています。収集したデータは、パソコンやスマートフォンからいつでも確認可能。電池式・配線不要のワイヤレスセンサーにより、広い鶏舎でも端から端まで安定して測定できます。日々の見回り負担を軽減しながら、親鶏の健康管理と良質な種卵の安定生産を支えています。',
-		chips: ['鶏舎の温度・湿度監視', '暑熱・換気アラート', '電池式・配線不要'],
-		who: { icon: 'egg', name: 'エビスグループ', role: '種鶏・ふ化 ／ ペットフード ／ 食品' },
-		caseStudy: true
-	},
-	{
-		href: '/agriculture',
-		tag: { icon: 'eco', label: '農業・ハウス' },
-		img: '/assets/photos/agriculture-peppers.webp',
-		biz: 'やまもと農園',
-		loc: '施設園芸（キュウリ）',
-		quote:
-			'キュウリのハウス栽培。土壌のEC（電気伝導度）・地温・水分と、空気中のCO₂・温度・湿度を CropWatch が同時に見える化します。かん水や追肥、換気・CO₂施用のタイミングを、勘ではなくデータで判断できるようになりました。',
-		chips: ['土壌EC', '地温・土壌水分', 'CO₂・温度・湿度'],
-		who: { initial: '山', name: '山本 直樹 様', role: 'やまもと農園 ／ キュウリ（施設園芸）' }
-	},
-	{
-		href: 'https://yano-kougyou.co.jp/bio-gijyutsukenkyusyo/',
-		tag: { icon: 'warehouse', label: '農業・貯蔵庫' },
-		img: '/assets/photos/Takachiho-Tunnel.png',
-		biz: '株式会社サクラファーム',
-		loc: '宮崎県宮崎市',
-		quote:
-			'焼酎用原料甘藷などを保管するトンネル貯蔵庫において、温度・湿度・CO₂データを24時間自動で収集。貯蔵庫内の環境変化を継続的に把握し、農産物の品質管理と安定した保管を支えています。収集したデータは、パソコンやスマートフォンからいつでも確認でき、現地に行かなくても貯蔵庫内の状態を把握できます。温度・湿度・CO₂濃度の変化を継続的に確認することで、保管環境の管理や異常の早期発見につなげています。',
-		chips: ['複数拠点を一元監視', '帳票出力', '巡回削減'],
-		who: { initial: '高', name: '高橋 物流 様', role: '城北ロジスティクス ／ 倉庫管理' }
-	},
-	{
-		href: '/cold-chain',
-		tag: { icon: 'warehouse', label: '畜産・養鶏' },
-		img: '/assets/photos/coldchain-door.webp',
-		biz: '有限会社サンアシスト',
-		loc: '宮崎県西都市',
-		quote:
-			'離れた場所にある複数の鶏舎から、温度・湿度データを自動で収集。これまで鶏舎ごとに現地で確認していた環境データを、パソコンやスマートフォンからどこにいても確認できるように。各鶏舎を巡回する手間を軽減しながら、場所ごとの暑さや湿度の変化を継続的に把握。飼育環境の異常を早期に発見し、それぞれの鶏舎に合わせた的確な管理につなげています。',
-		chips: ['複数拠点を一元監視', '帳票出力', '巡回削減'],
-		who: { initial: '高', name: '高橋 物流 様', role: '有限会社サンアシスト ／ 倉庫管理' }
-	},
-	{
-		href: '/replacement-sensors',
-		tag: { icon: 'verified', label: '検査・監査対応' },
-		img: '/assets/imagery/device-detail.webp',
-		biz: 'メディカルフーズ',
-		loc: '品質保証部',
-		quote:
-			'センサーごとに校正証明書（ISO/IEC 17025）が画面から出せるので、監査の準備時間が半分以下になりました。書類を探し回らなくていいんです。',
-		chips: ['ISO/IEC 17025 校正', '証明書ダウンロード', '監査準備を短縮'],
-		who: { initial: '伊', name: '伊藤 由美 様', role: 'メディカルフーズ ／ 品質保証部' }
-	},
-	{
-		href: '/technology',
-		tag: { icon: 'restaurant_menu', label: '飲食・店舗' },
-		img: '/assets/imagery/device-side-view.webp',
-		biz: 'ビストロ・ノルド',
-		loc: 'レストラン（厨房）',
-		quote:
-			'機器が一時的に止まっても自動で復旧してくれるので、忙しい時間帯でも気にしなくて済みます。記録作業がなくなり、接客に集中できています。',
-		chips: ['自動復旧（番犬機能）', '記録の自動化', '通知'],
-		who: { initial: '中', name: '中村 翔 様', role: 'ビストロ・ノルド ／ 店長' }
-	},
-	{
-		href: '/cold-chain',
-		link: 'https://www.jafoods-miyazaki.jp/',
-		tag: { icon: 'storefront', label: '食品製造・加工' },
-		img: '/assets/photos/JA_Saito.webp',
-		biz: 'JAフーズみやざき',
-		loc: '宮崎県西都市',
-		quote:
-			'保管庫のモニタリングに加え、ブランチャーや短時間で-40℃まで冷却するトンネルフリーザーなど、保管設備から製造工程までの温度データを自動で収集。設備ごとの温度変化を一つのシステムで継続的に管理し、異常時には即座に対応できる体制を整えています。また、毎週自動で配信されるレポートにより、データの整理・可視化や異常箇所の確認にかかる手間を大幅に削減。過去の記録もすぐに確認・提出でき、監査対応の負担も軽減しています。',
-		chips: ['売場ケースの温度監視', '複数店舗を一元管理', '帳票出力'],
-		who: { initial: '佐', name: '佐藤 健 様', role: 'フレッシュマート ／ 店舗運営部' }
-	}
-];
+		{
+			href: 'https://ebisu-g.com/group/tk-ebisu/',
+			tag: { icon: 'pets', label: '畜産・養鶏' },
+			img: '/assets/photos/poultry.webp',
+			biz: 'ティケイ・エビス株式会社',
+			loc: '宮崎県北諸県郡三股町',
+			quote:
+				'種鶏を飼育する鶏舎において、温度・湿度・CO₂データを24時間自動で収集。鶏舎内の暑さや空気環境の変化を継続的に把握し、異常の早期発見と迅速な対応につなげています。収集したデータは、パソコンやスマートフォンからいつでも確認可能。電池式・配線不要のワイヤレスセンサーにより、広い鶏舎でも端から端まで安定して測定できます。日々の見回り負担を軽減しながら、親鶏の健康管理と良質な種卵の安定生産を支えています。',
+			chips: ['鶏舎の温度・湿度監視', '暑熱・換気アラート', '電池式・配線不要'],
+			who: { icon: 'egg', name: 'エビスグループ', role: '種鶏・ふ化 ／ ペットフード ／ 食品' },
+			caseStudy: true
+		}
+		// {
+		// 	href: '/agriculture',
+		// 	tag: { icon: 'eco', label: '農業・ハウス' },
+		// 	img: '/assets/photos/agriculture-peppers.webp',
+		// 	biz: 'やまもと農園',
+		// 	loc: '施設園芸（キュウリ）',
+		// 	quote:
+		// 		'キュウリのハウス栽培。土壌のEC（電気伝導度）・地温・水分と、空気中のCO₂・温度・湿度を CropWatch が同時に見える化します。かん水や追肥、換気・CO₂施用のタイミングを、勘ではなくデータで判断できるようになりました。',
+		// 	chips: ['土壌EC', '地温・土壌水分', 'CO₂・温度・湿度'],
+		// 	who: { initial: '山', name: '山本 直樹 様', role: 'やまもと農園 ／ キュウリ（施設園芸）' }
+		// },
+		// {
+		// 	href: 'https://yano-kougyou.co.jp/bio-gijyutsukenkyusyo/',
+		// 	tag: { icon: 'warehouse', label: '農業・貯蔵庫' },
+		// 	img: '/assets/photos/Takachiho-Tunnel.png',
+		// 	biz: '株式会社サクラファーム',
+		// 	loc: '宮崎県宮崎市',
+		// 	quote:
+		// 		'焼酎用原料甘藷などを保管するトンネル貯蔵庫において、温度・湿度・CO₂データを24時間自動で収集。貯蔵庫内の環境変化を継続的に把握し、農産物の品質管理と安定した保管を支えています。収集したデータは、パソコンやスマートフォンからいつでも確認でき、現地に行かなくても貯蔵庫内の状態を把握できます。温度・湿度・CO₂濃度の変化を継続的に確認することで、保管環境の管理や異常の早期発見につなげています。',
+		// 	chips: ['複数拠点を一元監視', '帳票出力', '巡回削減'],
+		// 	who: { initial: '高', name: '高橋 物流 様', role: '城北ロジスティクス ／ 倉庫管理' }
+		// },
+		// {
+		// 	href: '/cold-chain',
+		// 	tag: { icon: 'warehouse', label: '畜産・養鶏' },
+		// 	img: '/assets/photos/coldchain-door.webp',
+		// 	biz: '有限会社サンアシスト',
+		// 	loc: '宮崎県西都市',
+		// 	quote:
+		// 		'離れた場所にある複数の鶏舎から、温度・湿度データを自動で収集。これまで鶏舎ごとに現地で確認していた環境データを、パソコンやスマートフォンからどこにいても確認できるように。各鶏舎を巡回する手間を軽減しながら、場所ごとの暑さや湿度の変化を継続的に把握。飼育環境の異常を早期に発見し、それぞれの鶏舎に合わせた的確な管理につなげています。',
+		// 	chips: ['複数拠点を一元監視', '帳票出力', '巡回削減'],
+		// 	who: { initial: '高', name: '高橋 物流 様', role: '有限会社サンアシスト ／ 倉庫管理' }
+		// },
+	];
 </script>
 
 <Seo {title} {description} />
 <JsonLd data={testimonialsLd} />
 
-<div class="crumb"><div class="wrap crumb__in">
-	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<b>お客様の声</b>
-</div></div>
+<div class="crumb">
+	<div class="wrap crumb__in">
+		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+		<b>お客様の声</b>
+	</div>
+</div>
 
 <section class="section section--soft">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><span class="material-symbols-rounded">reviews</span> 導入事例・お客様の声</p>
+			<p class="eyebrow">
+				<span class="material-symbols-rounded">reviews</span> 導入事例・お客様の声
+			</p>
 			<h2>どの現場でも、「見える」と「残る」を。</h2>
 			<p>業種は違っても、求めることは同じ。手間を減らし、確かな記録を残すこと。</p>
 		</div>
@@ -146,16 +116,22 @@ const TESTIMONIALS: Testimonial[] = [
 			{#each TESTIMONIALS as t, i (t.biz + t.href)}
 				<article class="tcard" data-reveal={i % 2}>
 					<div class="tphoto" style="background-image:url('{t.img}')">
-						<span class="tcard__tag"><span class="material-symbols-rounded">{t.tag.icon}</span> {t.tag.label}</span>
+						<span class="tcard__tag"
+							><span class="material-symbols-rounded">{t.tag.icon}</span> {t.tag.label}</span
+						>
 						{#if t.caseStudy}
-							<span class="tcard__feat"><span class="material-symbols-rounded">star</span> 導入事例</span>
+							<span class="tcard__feat"
+								><span class="material-symbols-rounded">star</span> 導入事例</span
+							>
 						{/if}
 					</div>
 
 					<div class="tcard__body">
 						<div class="tcard__id">
 							<b class="tcard__biz">{t.biz}</b>
-							<span class="tcard__loc"><span class="material-symbols-rounded">location_on</span> {t.loc}</span>
+							<span class="tcard__loc"
+								><span class="material-symbols-rounded">location_on</span> {t.loc}</span
+							>
 						</div>
 
 						<p class="tcard__quote">{t.quote}</p>
@@ -166,12 +142,13 @@ const TESTIMONIALS: Testimonial[] = [
 							{/each}
 						</div>
 
-						<div class="who">
+						<div class="who"></div>
+						<!-- <div class="who">
 							<span class="who__av">
 								{#if t.who.icon}<span class="material-symbols-rounded">{t.who.icon}</span>{:else}{t.who.initial}{/if}
 							</span>
 							<span class="who__meta"><b>{t.who.name}</b><span>{t.who.role}</span></span>
-						</div>
+						</div> -->
 
 						<div class="tcard__actions">
 							{#if t.link}

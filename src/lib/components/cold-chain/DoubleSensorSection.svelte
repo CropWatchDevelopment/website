@@ -47,10 +47,10 @@
 		margin-bottom: 48px;
 	}
 
-	/* Stacked, not side-by-side. The animation is a fixed 1080px square that
-	   scales to its container, so a half-width column forced it to ~0.49 scale
-	   and its 20px labels rendered at ~10px. Giving it the full content width
-	   is what makes it legible; the copy reads as a lead paragraph above it. */
+	/* Stacked, not side-by-side. The animation is a fixed 1080px-wide canvas
+	   that scales to its container, so a half-width column forced it to ~0.49
+	   scale and its 20px labels rendered at ~10px. Giving it the full content
+	   width is what makes it legible; the copy reads as a lead paragraph above it. */
 	.double-sensor__layout {
 		display: grid;
 		justify-items: center;
@@ -59,8 +59,8 @@
 
 	.double-sensor__diagram {
 		width: 100%;
-		/* Squares get tall fast: past ~900px this out-grows the viewport and you
-		   can no longer see the flow end-to-end while it plays. */
+		/* The panel is ~0.74:1 (1080×800): past ~900px wide it out-grows the
+		   viewport and you can no longer see the flow end-to-end while it plays. */
 		max-width: 900px;
 		margin: 0;
 	}

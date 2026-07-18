@@ -92,7 +92,9 @@ export const fmtTemp = (v: number) => `${v.toFixed(1)} °C`;
 export type SensorState = 'ok' | 'err' | 'off' | 'wrong';
 export type GateTone = 'neutral' | 'red' | 'teal';
 
-/** Canvas is authored at 1080×1080; everything is absolutely positioned on that grid. */
+/** Canvas is authored at 1080×800; everything is absolutely positioned on that
+    grid. Scale is width-driven, so only the width lives here — the 800px height
+    is set in SensorValidationAnimation's CSS (aspect-ratio + canvas height). */
 export const CANVAS = 1080;
 
 /** Global playback speed: <1 slows the 35s authored timeline down uniformly. */

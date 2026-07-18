@@ -86,7 +86,8 @@
 	.sv {
 		position: relative;
 		width: 100%;
-		aspect-ratio: 1 / 1;
+		/* Matches the authored canvas grid below (1080×800). */
+		aspect-ratio: 1080 / 800;
 		overflow: hidden;
 		border: 1px solid var(--web-border);
 		border-radius: 22px;
@@ -98,7 +99,7 @@
 		top: 0;
 		left: 0;
 		width: 1080px;
-		height: 1080px;
+		height: 800px;
 		transform-origin: top left;
 		/* The scenes are authored on a fixed pixel grid with hand-computed box
 		   heights, so they must not inherit the site's editorial line-height

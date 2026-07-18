@@ -28,8 +28,8 @@ const NAV: NavLink[] = [
 	{ key: 'tech', href: '/technology', label: '技術' },
 	{ key: 'testimonials', href: '/testimonials', label: 'お客様の声' },
 	{ key: 'news', href: '/news', label: 'ニュース' },
-	{ key: 'help', href: '/help', label: 'ヘルプ' },
-	{ key: 'contact', href: '/contact', label: 'お問い合わせ' }
+	// { key: 'help', href: '/help', label: 'ヘルプ' },
+	{ key: 'contact', href: '/contact', label: 'お問い合わせ' },
 ];
 
 const PRODUCT_PATHS = new Set(PRODUCTS.map((p) => p.href));

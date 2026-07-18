@@ -20,11 +20,11 @@
 
 {#if t <= 7.3 && appear > 0}
 	<div style="position:absolute; inset:0; opacity:{appear};">
-		<Eyebrow text="課題" x={540} y={130} color={glitch ? C.red : C.amber} />
+		<Eyebrow text="課題" x={540} y={110} color={glitch ? C.red : C.amber} />
 
 		<SensorCard
 			cx={540}
-			cy={430}
+			cy={350}
 			w={380}
 			h={124}
 			role="単一測定"
@@ -38,7 +38,7 @@
 
 		<!-- the trustworthy-looking OK badge -->
 		<div
-			style="position:absolute; left:540px; top:560px; transform:translateX(-50%); opacity:{okIn};
+			style="position:absolute; left:540px; top:480px; transform:translateX(-50%); opacity:{okIn};
 				display:flex; align-items:center; gap:8px;
 				background:{C.tealDim}; border:1.5px solid {C.teal}; border-radius:30px;
 				padding:8px 18px;"
@@ -51,7 +51,7 @@
 
 		<!-- reveal: it was wrong -->
 		<div
-			style="position:absolute; left:540px; top:560px;
+			style="position:absolute; left:540px; top:480px;
 				transform:translateX(-50%) scale({0.8 + 0.2 * Easing.easeOutBack(badIn)}); opacity:{badIn};
 				display:flex; align-items:center; gap:8px;
 				background:{C.redDim}; border:1.5px solid {C.red}; border-radius:30px;
@@ -67,7 +67,7 @@
 
 		<!-- headline -->
 		<div
-			style="position:absolute; left:540px; top:690px; transform:translateX(-50%);
+			style="position:absolute; left:540px; top:600px; transform:translateX(-50%);
 				width:820px; text-align:center; opacity:{trueIn};"
 		>
 			<div

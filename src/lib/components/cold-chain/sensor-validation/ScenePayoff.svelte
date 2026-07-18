@@ -15,11 +15,11 @@
 
 {#if t >= 28.7}
 	<div style="position:absolute; inset:0; opacity:{appear};">
-		<Eyebrow text="結果" x={540} y={215} color={C.teal} opacity={eyebrowIn} />
+		<Eyebrow text="結果" x={540} y={135} color={C.teal} opacity={eyebrowIn} />
 
 		<!-- big validated value -->
 		<div
-			style="position:absolute; left:540px; top:340px; transform:translate(-50%,-50%) scale({valIn});
+			style="position:absolute; left:540px; top:255px; transform:translate(-50%,-50%) scale({valIn});
 				display:flex; align-items:center; gap:18px;
 				background:linear-gradient(180deg, rgba(10,125,79,0.14), rgba(10,125,79,0.04));
 				border:1.5px solid {C.teal}; border-radius:20px; padding:22px 34px;
@@ -44,7 +44,7 @@
 
 		<!-- headline -->
 		<div
-			style="position:absolute; left:540px; top:560px; transform:translateX(-50%);
+			style="position:absolute; left:540px; top:425px; transform:translateX(-50%);
 				width:900px; text-align:center; opacity:{headIn};"
 		>
 			<div
@@ -64,7 +64,7 @@
 
 		<!-- brand -->
 		<div
-			style="position:absolute; left:540px; top:918px; transform:translateX(-50%);
+			style="position:absolute; left:540px; top:690px; transform:translateX(-50%);
 				text-align:center; opacity:{brandIn};"
 		>
 			<div style="display:flex; align-items:center; justify-content:center; gap:14px;">

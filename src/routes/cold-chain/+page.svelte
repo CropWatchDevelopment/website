@@ -126,14 +126,12 @@
 	</div>
 
 	<!-- 実績ストリップ -->
-	<div class="wrap cc-hero__statwrap">
+	<div id="header-sub-stat-row" class="wrap cc-hero__statwrap">
 		<div class="cc-stats" data-reveal>
-			<div><b>配線不要</b><span>無線タイプ</span></div>
-			<div><b>電源不要</b><span>最長10年バッテリー稼働</span></div>
-			<div><b>センサー<sup>x2</sup></b><span>データ整合性の自動検証</span></div>
-			<a href="#double-sensor" aria-label="交差検証の詳細を見る">
-				<b>工事不要</b><span>穴あけ不要</span>
-			</a>
+			<div><b>負担軽減</b><span>確認・記録を自動化</span></div>
+			<div><b>早期対応</b><span>異常をすぐに把握</span></div>
+			<div><b>監査支援</b><span>記録をすぐに提出</span></div>
+			<div><b>省メンテナンス</b><span>電池交換の手間を削減</span></div>
 		</div>
 	</div>
 </section>
@@ -177,7 +175,7 @@
 				</p>
 				<ul class="cc-alerts">
 					<li><span class="material-symbols-rounded">mail</span>メール</li>
-					<li><span class="material-symbols-rounded">chat</span>LINE</li>
+					<!-- <li><span class="material-symbols-rounded">chat</span>LINE</li> -->
 					<li><span class="material-symbols-rounded">app_badging</span>アプリ内</li>
 				</ul>
 			</div>
@@ -581,14 +579,6 @@
 		color: rgba(226, 234, 250, 0.94);
 		max-width: 46ch;
 	}
-	.cc-hero__ctas {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: 14px;
-		margin-top: 24px;
-	}
-
 	/* live-reading glass panel */
 	.cc-panel {
 		justify-self: end;
@@ -681,45 +671,36 @@
 		color: #245a9c;
 	}
 
-	/* stats strip (cool dark glass, over the photo) */
+	/* stats strip (light frosted glass, over the photo — matches .cc-panel) */
 	.cc-stats {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		margin-top: 34px;
-		border: 1px solid rgba(190, 215, 255, 0.22);
+		border: 1px solid rgba(255, 255, 255, 0.6);
 		border-radius: 16px;
 		overflow: hidden;
-		background: rgba(8, 16, 34, 0.5);
-		backdrop-filter: blur(3px);
+		background: rgba(255, 255, 255, 0.92);
+		backdrop-filter: blur(8px);
+		box-shadow: 0 24px 45px -24px rgba(0, 0, 0, 0.6);
 	}
 	.cc-stats > * {
 		padding: 14px 16px;
 		text-align: center;
-		border-right: 1px solid rgba(190, 215, 255, 0.16);
+		border-right: 1px solid var(--web-border);
 	}
 	.cc-stats > :last-child {
 		border-right: none;
-	}
-	.cc-stats > a {
-		transition: background-color 180ms var(--jp-ease);
-	}
-	.cc-stats > a:hover {
-		background: rgba(52, 211, 153, 0.16);
-	}
-	.cc-stats > a:focus-visible {
-		outline: 3px solid #34d399;
-		outline-offset: -4px;
 	}
 	.cc-stats b {
 		display: block;
 		font-family: var(--cw-font-mono);
 		font-size: clamp(19px, 2.8vw, 25px);
 		font-weight: 700;
-		color: #fff;
+		color: var(--web-heading);
 	}
 	.cc-stats span {
 		font-size: 11px;
-		color: rgba(220, 232, 255, 0.75);
+		color: var(--web-muted);
 		margin-top: 3px;
 		display: block;
 	}
@@ -755,7 +736,7 @@
 		}
 		.cc-stats > :nth-child(1),
 		.cc-stats > :nth-child(2) {
-			border-bottom: 1px solid rgba(190, 215, 255, 0.16);
+			border-bottom: 1px solid var(--web-border);
 		}
 	}
 </style>
