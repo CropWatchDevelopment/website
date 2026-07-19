@@ -1,0 +1,48 @@
+<script lang="ts">
+	import ColumnArticle from '$lib/components/ColumnArticle.svelte';
+	import { columnBySlug } from '$lib/content/columns';
+
+	const column = columnBySlug('smart-nogyo-toha')!;
+</script>
+
+<ColumnArticle {column}>
+	<p class="col-lead">
+		スマート農業という言葉をよく聞くようになりましたが、実際に何ができるのでしょうか。ここでは、農業IoTセンサーを使った環境の見える化を中心に、スマート農業の基礎と始め方を紹介します。
+	</p>
+
+	<h2>スマート農業とは</h2>
+	<p>
+		スマート農業とは、ロボットやAI、IoTなどの先端技術を活用して、省力化や高品質な生産を実現する農業のことです。農林水産省も推進しており、その中でも身近で始めやすいのが、<strong>センサーによる環境の見える化</strong>です。勘や経験に頼っていた判断を、データで裏づけできるようになります。
+	</p>
+
+	<h2>農業IoTセンサーでできること</h2>
+	<p>
+		農業IoTのセンサーは、作物の生育に関わる環境をまとめて計測します。代表的なものは次のとおりです。
+	</p>
+	<ul>
+		<li><strong>空気</strong>：気温・湿度・二酸化炭素（CO₂）</li>
+		<li><strong>土壌</strong>：地温・水分・EC（電気伝導度）</li>
+		<li><strong>光</strong>：作物が受ける光の量</li>
+	</ul>
+	<p>
+		これらを24時間自動で記録し、スマホやPCから確認できます。霜・高温・乾燥といった危険なサインを早めに通知することで、対策の時間を確保できます。
+	</p>
+
+	<h2>施設園芸・ハウスでの活用</h2>
+	<p>
+		施設園芸やビニールハウスでは、温度・湿度・CO₂の管理が品質を大きく左右します。ハウス内の環境を遠隔監視できれば、見回りの負担を減らしながら、換気や潅水、CO₂施用のタイミングを逃さずに判断できます。1台の受信機で複数のハウスや離れた畑までまとめてカバーできるのも、無線ならではの利点です。
+	</p>
+
+	<h2>まず小さく始める</h2>
+	<p>
+		スマート農業は、いきなり大がかりに導入する必要はありません。まずはハウス1棟から、環境の見える化を試してみるのがおすすめです。
+	</p>
+	<div class="col-note">
+		<p>
+			CropWatchは、電池式・配線工事なしのワイヤレスセンサーで、ハウス・施設園芸・露地の温度・湿度・CO₂・土壌をまとめて見える化。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>で農場全体をカバーします。
+		</p>
+	</div>
+	<p>
+		くわしくは<a href="/agriculture">スマート農業・ハウスの環境監視</a>のページをご覧ください。
+	</p>
+</ColumnArticle>

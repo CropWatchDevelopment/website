@@ -1,391 +1,174 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import MaterialIcon from './MaterialIcon.svelte';
-	import Search from './Search.svelte';
-	import Telephone from './Telephone.svelte';
-	import logo from '$lib/images/cropwatch_animated.svg';
-	import christmas_logo from '$lib/images/christmas_cropwatch.svg';
-	interface NavItem {
-		id: string;
-		label: string;
-		href?: string;
-		children?: { label: string; href: string; icon?: string; aria?: string }[];
-	}
+import { page } from '$app/state';
+import { afterNavigate } from '$app/navigation';
 
-	const navItems: NavItem[] = [
-		{ id: 'home', label: 'ホーム', href: '/' },
-		{
-			id: 'products',
-			label: '製品',
-			children: [
-				{
-					label: '温度・湿度センサー (CW-AIR-TH)',
-					href: '/products/cw-air-th',
-					icon: 'device_thermostat'
-				},
-				{
-					label: 'LoRaWAN Gateways',
-					href: '/products/gateways',
-					icon: 'router'
-				},
-				{
-					label: 'Replacement Sensors (Coming Soon)',
-					href: '/products/coming-soon',
-					icon: 'settings_input_hdmi'
-				}
-			]
-		},
-		{ id: 'case-studies', label: '導入事例', href: '/case-studies' },
-		{ id: 'about', label: '会社情報', href: '/about' },
-		{ id: 'contact', label: 'お問い合わせ', href: '/contact' }
-	] as const;
+// 仮の日本連絡先（後で差し替え）— placeholder Japan contact details.
+const JP = {
+	tel: '080-4284-3390',
+	telHref: 'tel:08042843390',
+	email: 'sayaka@cropwatch.io'
+};
 
-	const utilityLinks = [
-		{
-			label: 'UI アプリ',
-			href: 'https://app.cropwatch.io/',
-			icon: 'exit_to_app',
-			aria: 'UI アプリリンクのアイコン'
-		},
-		{
-			label: 'API',
-			href: 'https://api.cropwatch.io',
-			icon: 'api',
-			aria: 'API リンクのアイコン'
-		},
-		{
-			label: 'システムステータス',
-			icon: 'monitor_heart',
-			href: 'https://stats.uptimerobot.com/1Z6H85HuHq',
-			aria: 'システムステータスリンクのアイコン'
-		}
-	] as const;
+const LOGO = '/cropwatch_icons/cropwatch_static.svg';
 
-	const KEYBOARD_KEYS = {
-		ESCAPE: 'Escape',
-		SPACE: ' ',
-		ENTER: 'Enter'
-	} as const;
+type Product = { href: string; icon: string; t: string; d: string };
+type NavLink = { key: string; href: string; label: string; children?: Product[] };
 
-	let openMenu = $state<string | null>(null);
-	let headerLogo = $state(logo);
+const PRODUCTS: Product[] = [
+	{ href: '/cold-chain', icon: 'ac_unit', t: 'コールドチェーン温度監視', d: '飲食店・ホテル・工場・倉庫' },
+	{ href: '/livestock', icon: 'pets', t: 'スマート畜産・養鶏', d: '鶏舎・畜舎・酪農' },
+	{ href: '/agriculture', icon: 'eco', t: 'スマート農業・ハウス', d: 'ハウス・露地・土壌' },
+	{ href: '/replacement-sensors', icon: 'cable', t: '交換用センサー', d: '自分で交換・校正証明書つき' },
+	// { href: '/replacement-case', icon: 'deployed_code', t: '交換用ケース', d: '頑丈な防塵防水ケース（3D）' }
+];
 
-	function isChristmasSeason(date = new Date()) {
-		const currentYear = date.getFullYear();
-		const startDate = new Date(currentYear, 10, 25, 0, 0, 0, 0); // Nov 25
-		const endDate = new Date(currentYear, 11, 30, 23, 59, 59, 999); // Dec 30
-		return date >= startDate && date <= endDate;
-	}
+const NAV: NavLink[] = [
+	{ key: 'home', href: '/', label: 'ホーム' },
+	{ key: 'products', href: '', label: '製品', children: PRODUCTS },
+	{ key: 'tech', href: '/technology', label: '技術' },
+	{ key: 'testimonials', href: '/testimonials', label: 'お客様の声' },
+	{ key: 'news', href: '/news', label: 'ニュース' },
+	// { key: 'help', href: '/help', label: 'ヘルプ' },
+	{ key: 'contact', href: '/contact', label: 'お問い合わせ' },
+];
 
-	onMount(() => {
-		headerLogo = isChristmasSeason() ? christmas_logo : logo;
-	});
+const PRODUCT_PATHS = new Set(PRODUCTS.map((p) => p.href));
 
-	function toggleMenu(id: string) {
-		openMenu = openMenu === id ? null : id;
-	}
+const activeKey = $derived.by(() => {
+	const path = page.url.pathname.replace(/\/$/, '') || '/';
+	if (path === '/') return 'home';
+	if (PRODUCT_PATHS.has(path)) return 'products';
+	if (path === '/technology') return 'tech';
+	if (path === '/testimonials') return 'testimonials';
+	if (path === '/news' || path.startsWith('/news/')) return 'news';
+	if (path === '/help') return 'help';
+	if (path === '/contact') return 'contact';
+	return '';
+});
 
-	function closeMenu() {
-		openMenu = null;
-	}
+let mobileOpen = $state(false);
 
-	const topLinks = [
-		{ href: '/contact', label: 'お問い合わせ' }
-		// { href: '/support', label: 'サポート' }
-	] as const;
+function openMenu() {
+	mobileOpen = true;
+	if (typeof document !== 'undefined') document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+	mobileOpen = false;
+	if (typeof document !== 'undefined') document.body.style.overflow = '';
+}
 
-	let isMobileMenuOpen = $state(false);
-
-	function toggleMobileMenu() {
-		isMobileMenuOpen = !isMobileMenuOpen;
-		if (typeof document !== 'undefined') {
-			document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-		}
-	}
-
-	function closeMobileMenu() {
-		isMobileMenuOpen = false;
-		if (typeof document !== 'undefined') {
-			document.body.style.overflow = '';
-		}
-	}
+afterNavigate(() => closeMenu());
 </script>
 
-
-
-<header class="relative z-40 bg-[var(--cw-blue-900)] text-white">
-	<!-- Top Bar (Desktop) -->
-	<div
-		class="mx-auto hidden flex-row items-center justify-between bg-[#ffffffde] px-4 text-sm md:flex"
-	>
-		<div class="flex items-center gap-4 py-3 text-[#11213c]">
-			{#each topLinks as link (link.href)}
-				<a href={link.href} class="font-medium transition-colors hover:text-blue-600"
-					>{link.label}</a
+<header class="hdr">
+	<div class="hdr__top">
+		<div class="wrap hdr__top-in">
+			<div class="hdr__top-left">
+				<span class="flag">🇯🇵</span><strong>CropWatch 日本</strong><span class="sep">|</span><span
+					>産業用環境監視サービス</span
 				>
-			{/each}
+			</div>
+			<div class="hdr__top-links">
+				<a class="hdr__phone" href={JP.telHref}>
+					<span class="material-symbols-rounded">call</span>
+					{JP.tel}
+				</a>
+				<a href="mailto:{JP.email}">
+					<span class="material-symbols-rounded">mail</span>
+					{JP.email}
+				</a>
+				<!-- <a class="hdr__lang" href="https://cropwatch.io">
+					<span class="material-symbols-rounded">language</span> English
+				</a> -->
+			</div>
 		</div>
 	</div>
 
-	<!-- Middle Bar -->
-	<div
-		class="bg-gradient-to-b from-[var(--cw-blue-600)] via-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-4 text-white shadow-[0_6px_18px_rgba(2,6,23,0.55)] ring-1 ring-white/5"
-	>
-		<div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-6 px-4">
-			<a
-				class="flex min-w-[220px] items-center gap-4"
-				href="https://cropwatch.io/"
-				aria-label="CropWatch ホーム"
-			>
-				<picture
-					class={isChristmasSeason() ? 'h-20 w-20 overflow-hidden' : 'h-14 w-14 overflow-hidden'}
-				>
-					<source srcset={headerLogo} type="image/svg+xml" />
-					<img
-						id="header-logo"
-						src={headerLogo}
-						alt="CropWatch のロゴ"
-						class="h-full w-full object-contain"
-					/>
-				</picture>
-				<div class="flex flex-col">
-					<span class="text-lg font-semibold tracking-wide italic">
-						クロップウォッチ
-					</span>
-					<span class="hidden text-xs text-white/80 uppercase md:inline"
-						>品質と信頼で支えるIoTソリューション</span
-					>
-				</div>
+	<div class="hdr__bar">
+		<div class="wrap hdr__main">
+			<a class="brand" href="/" aria-label="CropWatch ホーム">
+				<img src={LOGO} alt="CropWatch" class="brand__mark" />
+				<span class="brand__txt">
+					<span class="brand__name">CropWatch<sup>®</sup></span>
+					<span class="brand__tag">クロップウォッチ 日本</span>
+				</span>
 			</a>
 
-			<!-- Desktop Actions -->
-			<div class="hidden flex-1 items-center justify-end gap-6 md:flex">
-				<Telephone />
-				<Search />
-			</div>
-
-			<!-- Mobile Hamburger -->
-			<button
-				class="p-2 text-white focus:outline-none md:hidden"
-				onclick={toggleMobileMenu}
-				aria-label="Toggle menu"
-			>
-				<MaterialIcon name={isMobileMenuOpen ? 'close' : 'menu'} size={32} />
-			</button>
-		</div>
-	</div>
-
-	<!-- Desktop Nav -->
-	<nav
-		class="hidden bg-gradient-to-b from-[var(--cw-blue-700)] to-[var(--cw-blue-900)] py-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)] md:block"
-	>
-		<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-10 px-4">
-			<ul class="flex items-center gap-6 text-sm text-nowrap text-white" id="mainMenu">
-				{#each navItems as item (item.id)}
-					<li
-						class="relative border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0"
-					>
-						{#if item.children}
+			<nav class="nav" aria-label="メインメニュー">
+				{#each NAV as item (item.key)}
+					{#if item.children}
+						<div class="navdrop">
 							<button
-								class="flex items-center gap-1 rounded px-2 py-1 font-medium transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-								aria-expanded={openMenu === item.id}
-								onclick={() => toggleMenu(item.id)}
-								onkeydown={(event) => {
-									if (event.key === KEYBOARD_KEYS.ESCAPE) {
-										closeMenu();
-									}
-
-									if (event.key === KEYBOARD_KEYS.SPACE || event.key === KEYBOARD_KEYS.ENTER) {
-										event.preventDefault();
-										toggleMenu(item.id);
-									}
-								}}
-							>
-								<span>{item.label}</span>
-								<svg
-									class={`h-4 w-4 transition-transform ${openMenu === item.id ? 'rotate-180' : ''}`}
-									viewBox="0 0 20 20"
-									fill="currentColor"
-									aria-hidden="true"
-								>
-									<path
-										fill-rule="evenodd"
-										d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08"
-										clip-rule="evenodd"
-									/>
-								</svg>
-							</button>
-							<ul
-								class={`absolute top-full left-0 z-10 mt-2 w-max max-w-[calc(100vw-2rem)] min-w-52 rounded-md bg-white py-2 text-gray-800 shadow-lg ring-1 ring-black/5 transition-[opacity,transform] duration-150 ${openMenu === item.id ? 'visible translate-y-0 opacity-100' : 'pointer-events-none invisible -translate-y-2 opacity-0'}`}
-								role="menu"
-								aria-hidden={openMenu !== item.id}
-							>
-								{#each item.children as child (child.href)}
-									<li class="z-10">
-										<a
-											class="flex items-center gap-2 px-4 py-2 text-sm font-medium transition hover:bg-gray-100 hover:text-gray-900"
-											href={child.href}
-											role="menuitem"
-											onclick={closeMenu}
-										>
-											{#if child.icon}
-												<MaterialIcon
-													name={child.icon || 'open_in_new'}
-													collection="symbols"
-													variant="rounded"
-													size={20}
-													class="text-gray-500"
-													ariaLabel={child.aria || '新しいタブで開く'}
-												/>
-											{/if}
-											<span class="text-nowrap">{child.label}</span>
-										</a>
-									</li>
-								{/each}
-							</ul>
-						{:else}
-							<a
-								class="rounded px-2 py-1 font-medium text-nowrap transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-								href={item.href}
+								type="button"
+								class="nav__item"
+								class:is-current={activeKey === item.key}
+								aria-haspopup="true"
 							>
 								{item.label}
-							</a>
-						{/if}
-					</li>
-				{/each}
-			</ul>
-			<ul id="utilityLinks" class="flex items-center gap-4 text-sm font-semibold text-white/80">
-				{#each utilityLinks as link (link.href)}
-					<li class="border-r border-white/20 py-1 pr-6 last-of-type:border-0 last-of-type:pr-0">
-						<a
-							class="rounded px-3 py-1 text-nowrap transition hover:bg-white/10 hover:text-white"
-							target="_blank"
-							href={link.href}
-						>
-							{#if link.icon}
-								<MaterialIcon
-									name={link.icon}
-									collection="symbols"
-									variant="rounded"
-									size={16}
-									class="mr-1 inline-block align-middle"
-									ariaLabel={link.aria}
-								/>
-							{/if}
-							{link.label}
+								<span class="material-symbols-rounded">expand_more</span>
+							</button>
+							<div class="pd">
+								{#each item.children as p (p.href)}
+									<a class="pd__item" href={p.href}>
+										<span class="pd__ic"><span class="material-symbols-rounded">{p.icon}</span></span>
+										<span class="pd__tx"><b>{p.t}</b><span>{p.d}</span></span>
+									</a>
+								{/each}
+							</div>
+						</div>
+					{:else}
+						<a class="nav__item" class:is-current={activeKey === item.key} href={item.href}>
+							{item.label}
 						</a>
-					</li>
+					{/if}
 				{/each}
-			</ul>
-		</div>
-	</nav>
+			</nav>
 
-	<!-- Mobile Menu Overlay -->
-	{#if isMobileMenuOpen}
-		<div
-			class="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-[var(--cw-blue-900)] text-white md:hidden"
-		>
-			<div class="flex items-center justify-between border-b border-white/10 p-4">
-				<span class="text-lg font-semibold tracking-wide">Menu</span>
-				<button class="p-2" onclick={closeMobileMenu} aria-label="Close menu">
-					<MaterialIcon name="close" size={32} />
+			<div class="hdr__actions">
+				<a href="https://app.cropwatch.io" class="util">
+					<span class="material-symbols-rounded">exit_to_app</span> アプリ
+				</a>
+				<a href="/contact" class="btn btn--accent">相談予約</a>
+				<button class="burger" type="button" aria-label="メニューを開く" onclick={openMenu}>
+					<span class="material-symbols-rounded">menu</span>
 				</button>
 			</div>
-
-			<div class="flex flex-col gap-6 p-6">
-				<!-- Mobile Search & Phone -->
-				<div class="flex flex-col gap-4">
-					<Search />
-					<Telephone />
-				</div>
-
-				<hr class="border-white/10" />
-
-				<!-- Mobile Nav Items -->
-				<ul class="flex flex-col gap-4 text-lg">
-					{#each navItems as item (item.id)}
-						<li>
-							{#if item.children}
-								<button
-									class="flex w-full items-center justify-between py-2 font-medium"
-									onclick={() => toggleMenu(item.id)}
-								>
-									<span>{item.label}</span>
-									<svg
-										class={`h-5 w-5 transition-transform ${openMenu === item.id ? 'rotate-180' : ''}`}
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path
-											fill-rule="evenodd"
-											d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.25a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08"
-											clip-rule="evenodd"
-										/>
-									</svg>
-								</button>
-								{#if openMenu === item.id}
-									<ul class="mt-2 ml-4 flex flex-col gap-3 border-l border-white/20 pl-4">
-										{#each item.children as child}
-											<li>
-												<a
-													href={child.href}
-													class="flex items-center gap-2 py-1 text-base text-white/80"
-													onclick={closeMobileMenu}
-												>
-													{#if child.icon}
-														<MaterialIcon
-															name={child.icon}
-															collection="symbols"
-															variant="rounded"
-															size={20}
-														/>
-													{/if}
-													<span class="text-nowrap">{child.label}</span>
-												</a>
-											</li>
-										{/each}
-									</ul>
-								{/if}
-							{:else}
-								<a
-									href={item.href}
-									class="block py-2 font-medium text-nowrap"
-									onclick={closeMobileMenu}
-								>
-									{item.label}
-								</a>
-							{/if}
-						</li>
-					{/each}
-				</ul>
-
-				<hr class="border-white/10" />
-
-				<!-- Mobile Utility Links -->
-				<ul class="flex flex-col gap-4">
-					{#each utilityLinks as link}
-						<li>
-							<a href={link.href} target="_blank" class="flex items-center gap-2 text-white/80">
-								{#if link.icon}
-									<MaterialIcon name={link.icon} collection="symbols" variant="rounded" size={20} />
-								{/if}
-								<span class="text-nowrap">{link.label}</span>
-							</a>
-						</li>
-					{/each}
-				</ul>
-
-				<hr class="border-white/10" />
-
-				<!-- Mobile Top Links & Language -->
-				<div class="flex flex-col gap-4 pb-10">
-					{#each topLinks as link}
-						<a href={link.href} class="text-nowrap text-white/80" onclick={closeMobileMenu}>
-							{link.label}
-						</a>
-					{/each}
-				</div>
-			</div>
 		</div>
-	{/if}
+	</div>
 </header>
+
+<div class="m-menu" hidden={!mobileOpen} onclick={(e) => { if (e.target === e.currentTarget) closeMenu(); }} role="presentation">
+	<div class="m-menu__panel">
+		<div class="m-menu__head">
+			<b>メニュー</b>
+			<button class="m-close" type="button" aria-label="閉じる" onclick={closeMenu}>
+				<span class="material-symbols-rounded">close</span>
+			</button>
+		</div>
+		<nav>
+			{#each NAV as item (item.key)}
+				{#if item.children}
+					<div class="m-group">
+						<div class="m-link">{item.label}</div>
+						{#each item.children as p (p.href)}
+							<a class="m-sub" href={p.href} onclick={closeMenu}>
+								<span class="material-symbols-rounded">{p.icon}</span>{p.t}
+							</a>
+						{/each}
+					</div>
+				{:else}
+					<a class="m-link" href={item.href} onclick={closeMenu}>{item.label}</a>
+				{/if}
+			{/each}
+			<a class="btn btn--accent btn--lg" style="width:100%;margin-top:18px" href="/contact" onclick={closeMenu}>
+				無料デモを予約
+			</a>
+			<div class="m-util">
+				<a href="https://app.cropwatch.io"><span class="material-symbols-rounded">exit_to_app</span> アプリを開く</a>
+				<a href={JP.telHref}><span class="material-symbols-rounded">call</span> {JP.tel}</a>
+				<a href="mailto:{JP.email}"><span class="material-symbols-rounded">mail</span> {JP.email}</a>
+				<a href="https://cropwatch.io"><span class="material-symbols-rounded">language</span> English site</a>
+			</div>
+		</nav>
+	</div>
+</div>

@@ -1,26 +1,18 @@
 // JSON-LD (schema.org) builders. Each returns a plain object that <JsonLd>
-// serialises into a <script type="application/ld+json"> tag. Pure functions →
-// trivial to reuse across routes and SSR/prerender-safe (no browser APIs).
-//
-// This file is LOCALE-NEUTRAL and intended to be byte-identical on both the .io
-// and .co.jp branches — every site-specific value comes from ./site.ts. Keep the
-// two copies in sync (see the note in site.ts).
+// serialises into a <script type="application/ld+json"> tag. Keeping these as
+// pure functions makes them trivial to unit-test and reuse across routes.
 
-import { ORG, SITE_ALT_NAME, SITE_LANG, SITE_NAME, SITE_ORIGIN, absUrl } from './site';
+import { ORG, SITE_ALT_NAME, SITE_NAME, SITE_ORIGIN, absUrl } from './site';
 
 type Json = Record<string, unknown>;
 
-const ORG_ID = `${SITE_ORIGIN}/#organization`;
-const WEBSITE_ID = `${SITE_ORIGIN}/#website`;
-
 /** Site-wide publisher identity. Rendered once in the root layout. */
 export function organizationSchema(): Json {
-	const out: Json = {
+	return {
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
-		'@id': ORG_ID,
+		'@id': `${SITE_ORIGIN}/#organization`,
 		name: ORG.name,
-		// undefined keys are dropped by JSON.stringify, so optional fields vanish.
 		alternateName: ORG.alternateName,
 		legalName: ORG.legalName,
 		description: ORG.description,
@@ -29,29 +21,24 @@ export function organizationSchema(): Json {
 		image: ORG.logo,
 		email: ORG.email,
 		telephone: ORG.telephone,
-		contactPoint: {
-			'@type': 'ContactPoint',
-			telephone: ORG.telephone,
-			email: ORG.email,
-			contactType: ORG.contact.type,
-			areaServed: ORG.contact.areaServed,
-			availableLanguage: ORG.contact.availableLanguage
-		},
-		sameAs: ORG.sameAs
-	};
-	// Only emit a PostalAddress when a confirmed address exists (the .io entity
-	// has none published yet; Organization is valid without it).
-	if (ORG.address) {
-		out.address = {
+		address: {
 			'@type': 'PostalAddress',
-			addressCountry: ORG.address.country,
+			addressCountry: 'JP',
 			postalCode: ORG.address.postalCode,
 			addressRegion: ORG.address.region,
 			addressLocality: ORG.address.locality,
 			streetAddress: ORG.address.street
-		};
-	}
-	return out;
+		},
+		contactPoint: {
+			'@type': 'ContactPoint',
+			telephone: ORG.telephone,
+			email: ORG.email,
+			contactType: 'sales',
+			areaServed: 'JP',
+			availableLanguage: ['ja']
+		},
+		sameAs: ORG.sameAs
+	};
 }
 
 /** WebSite entity (helps Google understand the site name in results). */
@@ -59,22 +46,18 @@ export function websiteSchema(): Json {
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
-		'@id': WEBSITE_ID,
+		'@id': `${SITE_ORIGIN}/#website`,
 		name: SITE_NAME,
 		alternateName: SITE_ALT_NAME,
 		url: SITE_ORIGIN,
-		inLanguage: SITE_LANG,
-		publisher: { '@id': ORG_ID }
+		inLanguage: 'ja',
+		publisher: { '@id': `${SITE_ORIGIN}/#organization` }
 	};
 }
 
-export type Crumb = { name: string; path?: string };
+export type Crumb = { name: string; path: string };
 
-/**
- * Breadcrumb trail. Pass paths as site-relative (e.g. '/cold-chain'). Omit
- * `path` on the current page (and on name-only parents like Japan's 製品) — those
- * crumbs render without an `item`, matching Google's breadcrumb guidance.
- */
+/** Breadcrumb trail. Pass paths as site-relative (e.g. '/cold-chain'). */
 export function breadcrumbSchema(items: Crumb[]): Json {
 	return {
 		'@context': 'https://schema.org',
@@ -83,7 +66,22 @@ export function breadcrumbSchema(items: Crumb[]): Json {
 			'@type': 'ListItem',
 			position: i + 1,
 			name: c.name,
-			...(c.path ? { item: absUrl(c.path) } : {})
+			item: absUrl(c.path)
+		}))
+	};
+}
+
+export type Faq = { q: string; a: string };
+
+/** FAQPage from on-page Q&A. `a` should be plain text (no markup). */
+export function faqSchema(items: Faq[]): Json {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: items.map((f) => ({
+			'@type': 'Question',
+			name: f.q,
+			acceptedAnswer: { '@type': 'Answer', text: f.a }
 		}))
 	};
 }
@@ -94,15 +92,9 @@ export type ProductInput = {
 	image?: string;
 	sku?: string;
 	category?: string;
-	url?: string;
 };
 
-/**
- * A CropWatch hardware product (sensor, gateway, case). Deliberately carries NO
- * offers/review/aggregateRating: without a real price or genuine third-party
- * ratings a Product is valid markup but not rich-result eligible, and fabricated
- * self-serving ratings are against Google's policy.
- */
+/** A CropWatch hardware product (sensor, case, etc.). */
 export function productSchema(p: ProductInput): Json {
 	const out: Json = {
 		'@context': 'https://schema.org',
@@ -110,39 +102,30 @@ export function productSchema(p: ProductInput): Json {
 		name: p.name,
 		description: p.description,
 		brand: { '@type': 'Brand', name: 'CropWatch' },
-		manufacturer: { '@id': ORG_ID }
+		manufacturer: { '@id': `${SITE_ORIGIN}/#organization` }
 	};
 	if (p.image) out.image = p.image;
 	if (p.sku) out.sku = p.sku;
 	if (p.category) out.category = p.category;
-	if (p.url) out.url = absUrl(p.url);
 	return out;
 }
 
-export type VideoInput = {
-	name: string;
-	description: string;
-	thumbnailUrl: string | string[];
-	uploadDate: string; // ISO 8601 — REQUIRED by Google. Only emit when set.
-	embedUrl?: string;
-	contentUrl?: string;
-	duration?: string; // ISO 8601 duration, e.g. PT2M30S
+export type ReviewInput = {
+	body: string;
+	author: string;
+	itemName: string;
 };
 
-/** A VideoObject for an on-page video (e.g. a YouTube embed). */
-export function videoObjectSchema(v: VideoInput): Json {
-	const out: Json = {
+/** A single customer testimonial as an Organization review. */
+export function reviewSchema(r: ReviewInput): Json {
+	return {
 		'@context': 'https://schema.org',
-		'@type': 'VideoObject',
-		name: v.name,
-		description: v.description,
-		thumbnailUrl: v.thumbnailUrl,
-		uploadDate: v.uploadDate
+		'@type': 'Review',
+		reviewBody: r.body,
+		author: { '@type': 'Organization', name: r.author },
+		itemReviewed: { '@type': 'Organization', name: r.itemName },
+		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }
 	};
-	if (v.embedUrl) out.embedUrl = v.embedUrl;
-	if (v.contentUrl) out.contentUrl = v.contentUrl;
-	if (v.duration) out.duration = v.duration;
-	return out;
 }
 
 export type ArticleInput = {
@@ -154,10 +137,7 @@ export type ArticleInput = {
 	image?: string;
 };
 
-/**
- * A blog/column article. Shipped ready but currently UNWIRED — neither site has
- * live article content yet (.io /news is a stub, .co.jp has no column route).
- */
+/** A コラム (blog) article. */
 export function articleSchema(a: ArticleInput): Json {
 	return {
 		'@context': 'https://schema.org',
@@ -166,11 +146,11 @@ export function articleSchema(a: ArticleInput): Json {
 		description: a.description,
 		mainEntityOfPage: absUrl(a.path),
 		url: absUrl(a.path),
-		inLanguage: SITE_LANG,
+		inLanguage: 'ja',
 		datePublished: a.datePublished,
 		dateModified: a.dateModified ?? a.datePublished,
-		...(a.image ? { image: a.image } : {}),
-		author: { '@id': ORG_ID },
-		publisher: { '@id': ORG_ID }
+		image: a.image ?? undefined,
+		author: { '@id': `${SITE_ORIGIN}/#organization` },
+		publisher: { '@id': `${SITE_ORIGIN}/#organization` }
 	};
 }

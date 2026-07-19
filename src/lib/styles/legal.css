@@ -1,0 +1,154 @@
+/*
+ * Utilitarian legal-document styling. Pure black on white — no backgrounds,
+ * colours, shadows, gradients or rounded cards. The only formatting is bold
+ * text (incl. headings), <hr> rules, paragraphs and ul/ol lists, per the
+ * requirement that legal pages stay plain and functional.
+ *
+ * Scoped under .legal-doc so it only affects pages that opt in (currently
+ * terms-of-service and privacy-policy); other /legal pages are untouched.
+ */
+
+/* Content spans the same width as the site header (.wrap): max-width
+   --jp-maxw with the --jp-pad gutter, so the edges line up. */
+.legal-doc {
+	max-width: var(--jp-maxw);
+	margin: 0 auto;
+	padding: 48px var(--jp-pad) 80px;
+	background: #fff;
+	color: #000;
+	font-size: 16px;
+	line-height: 1.9;
+}
+
+/* Headings are plain bold black — override the site's navy heading colour. */
+.legal-doc h1 {
+	color: #000;
+	font-size: 1.7rem;
+	font-weight: 700;
+	line-height: 1.5;
+	margin: 0 0 8px;
+}
+
+.legal-doc h2 {
+	color: #000;
+	font-size: 1.25rem;
+	font-weight: 700;
+	line-height: 1.6;
+	margin: 36px 0 12px;
+}
+
+.legal-doc h3 {
+	color: #000;
+	font-size: 1.05rem;
+	font-weight: 700;
+	line-height: 1.6;
+	margin: 26px 0 10px;
+}
+
+.legal-doc p {
+	margin: 0 0 16px;
+}
+
+.legal-doc strong,
+.legal-doc b {
+	font-weight: 700;
+}
+
+.legal-doc hr {
+	border: 0;
+	border-top: 1px solid #000;
+	margin: 32px 0;
+}
+
+.legal-doc a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+/* True bullet / numbered lists use their markers. */
+.legal-doc ul,
+.legal-doc ol {
+	margin: 0 0 16px;
+	padding-left: 1.6em;
+}
+.legal-doc ul {
+	list-style: disc;
+}
+.legal-doc ol {
+	list-style: decimal;
+}
+.legal-doc li {
+	margin: 0 0 8px;
+}
+
+/* Nested lists (EULA sub-items) — small top gap, no extra bottom margin. */
+.legal-doc li > ul,
+.legal-doc li > ol {
+	margin-top: 8px;
+	margin-bottom: 0;
+}
+
+/*
+ * Lists whose numbering ("(1)", "(2)", …) is part of the legal text: suppress
+ * the CSS marker so the literal numbering shows once, and hang-indent so
+ * wrapped lines align under the text rather than the number.
+ */
+.legal-doc .list-legal {
+	list-style: none;
+	padding-left: 0;
+}
+.legal-doc .list-legal > li {
+	padding-left: 2.2em;
+	text-indent: -2.2em;
+}
+
+/*
+ * Plain black-and-white table: black 1px borders, bold header text, no fills.
+ * Wrapped in .legal-table-wrap so wide tables scroll inside their own box on
+ * narrow screens instead of forcing page-level horizontal scroll.
+ */
+.legal-table-wrap {
+	overflow-x: auto;
+	margin: 0 0 16px;
+}
+.legal-doc table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0;
+	font-size: 15px;
+}
+.legal-doc th,
+.legal-doc td {
+	border: 1px solid #000;
+	padding: 8px 10px;
+	text-align: left;
+	vertical-align: top;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+.legal-doc th {
+	font-weight: 700;
+}
+.legal-doc td p {
+	margin: 0 0 6px;
+}
+.legal-doc td p:last-child {
+	margin-bottom: 0;
+}
+.legal-doc td ul {
+	margin: 0;
+	padding-left: 1.3em;
+}
+
+/* Meta lines (dates etc.) — plain, just a touch of separation. */
+.legal-doc .legal-meta {
+	margin-top: 40px;
+}
+
+/* Match .wrap's narrower phone gutter so edges stay aligned with the header. */
+@media (max-width: 600px) {
+	.legal-doc {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+}
