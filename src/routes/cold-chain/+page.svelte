@@ -399,7 +399,11 @@
 			</div>
 			<div class="spec-row">
 				<dt>電池寿命</dt>
-				<dd>最長10年（交換可能）</dd>
+				<dd>
+					最長10年（交換可能）
+					<br />
+					<small>※バッテリー寿命は、使用環境や測定・送信間隔、通信状況などによって異なります。</small>
+				</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ連携</dt>

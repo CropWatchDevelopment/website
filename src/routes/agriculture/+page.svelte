@@ -58,11 +58,13 @@
 <Seo {title} {description} />
 <JsonLd data={ld} />
 
-<div class="crumb"><div class="wrap crumb__in">
-	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
-	<b>農業・ハウスの監視</b>
-</div></div>
+<div class="crumb">
+	<div class="wrap crumb__in">
+		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+		<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
+		<b>農業・ハウスの監視</b>
+	</div>
+</div>
 
 <!-- ═══ ヒーロー（現場写真バックドロップ） ═══ -->
 <section class="ag-hero">
@@ -71,7 +73,9 @@
 
 	<div class="wrap ag-hero__inner">
 		<div class="ag-hero__copy" data-reveal>
-			<span class="ag-eyebrow"><span class="ag-dot"></span> スマート農業・ハウスの環境モニタリング</span>
+			<span class="ag-eyebrow"
+				><span class="ag-dot"></span> スマート農業・ハウスの環境モニタリング</span
+			>
 			<h1><span class="ag-hl">空気から土壌まで、作物の環境を自動で監視</span></h1>
 			<p class="ag-kicker">霧の夜も、猛暑の日も。<b>危険な環境変化を、早めに知らせます。</b></p>
 			<p class="ag-lead">
@@ -84,7 +88,9 @@
 				<span class="ag-tag"><span class="material-symbols-rounded">grass</span>土壌管理</span>
 			</div>
 			<div class="ag-hero__ctas">
-				<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する <span class="material-symbols-rounded">arrow_forward</span></a>
+				<a href="/contact" class="btn btn--accent btn--lg"
+					>無料デモを予約する <span class="material-symbols-rounded">arrow_forward</span></a
+				>
 				<a href="#sensor" class="btn btn--outline-light btn--lg">推奨センサーを見る</a>
 			</div>
 		</div>
@@ -102,7 +108,9 @@
 					<span class="ag-panel__val">22.4<i>°C</i></span>
 				</li>
 				<li>
-					<span class="material-symbols-rounded fill" style="color:#0ea5e9">humidity_percentage</span>
+					<span class="material-symbols-rounded fill" style="color:#0ea5e9"
+						>humidity_percentage</span
+					>
 					<span class="ag-panel__lab">湿度</span>
 					<span class="ag-panel__val">68<i>%RH</i></span>
 				</li>
@@ -138,14 +146,32 @@
 <section class="section">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent"><span class="material-symbols-rounded">layers</span> 土・空気・光</p>
+			<p class="eyebrow eyebrow--accent">
+				<span class="material-symbols-rounded">layers</span> 土・空気・光
+			</p>
 			<h2>作物の生育環境を、一台で見守る</h2>
 			<p>土中環境から空気・光の状態まで。作物の生育環境を幅広く見守ります。</p>
 		</div>
 		<div class="boxgrid boxgrid--3">
-			<div class="box" data-reveal="0"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">grass</span></span><h3>土壌</h3><p>土の水分・温度を把握。かん水のタイミングや根の環境づくりに役立ちます。</p></div>
-			<div class="box" data-reveal="1"><span class="box__ic"><span class="material-symbols-rounded">air</span></span><h3>空気</h3><p>気温・湿度・二酸化炭素を監視。むれ・乾燥・換気の状態が分かります。</p></div>
-			<div class="box" data-reveal="2"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">wb_sunny</span></span><h3>光</h3><p>作物が受ける光の量を計測。日々の生育管理の目安になります。</p></div>
+			<div class="box" data-reveal="0">
+				<span class="box__ic box__ic--gold"
+					><span class="material-symbols-rounded">grass</span></span
+				>
+				<h3>土壌</h3>
+				<p>土の水分・温度を把握。かん水のタイミングや根の環境づくりに役立ちます。</p>
+			</div>
+			<div class="box" data-reveal="1">
+				<span class="box__ic"><span class="material-symbols-rounded">air</span></span>
+				<h3>空気</h3>
+				<p>気温・湿度・二酸化炭素を監視。むれ・乾燥・換気の状態が分かります。</p>
+			</div>
+			<div class="box" data-reveal="2">
+				<span class="box__ic box__ic--accent"
+					><span class="material-symbols-rounded">wb_sunny</span></span
+				>
+				<h3>光</h3>
+				<p>作物が受ける光の量を計測。日々の生育管理の目安になります。</p>
+			</div>
 		</div>
 	</div>
 </section>
@@ -154,13 +180,44 @@
 <section class="section section--soft">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent"><span class="material-symbols-rounded">notifications_active</span> 正しいデータで正確な判断を</p>
+			<p class="eyebrow eyebrow--accent">
+				<span class="material-symbols-rounded">notifications_active</span> 正しいデータで正確な判断を
+			</p>
 			<h2>農業に必要なデータを提供</h2>
 		</div>
 		<div class="boxgrid boxgrid--3">
-			<div class="box" data-reveal="0"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">water_drop</span></span><h3>結露に強い温湿度センサー</h3><p>高湿度や結露により、センサーが濡れても、乾けば測定状態が戻りやすい<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン</a>製センサーを採用。湿度100%付近で停滞するリスクを抑え、農業現場の温湿度変化を安定して記録します。</p></div>
-			<div class="box" data-reveal="1"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">ac_unit</span></span><h3>交換可能なセンサー</h3><p>万が一の故障時も、本体ごと交換は不要。必要なセンサー部だけを交換でき、コストを抑えながら長く使い続けられます。また、測定したい項目が変わった場合も、用途に合わせてセンサーを追加できます。</p></div>
-			<div class="box" data-reveal="2"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">local_fire_department</span></span><h3>作物に必要な光を見える化</h3><p>PPFDで「今どれくらい光合成に使える光が届いているか」を確認し、DLIで「1日に受け取った光合成に使える光の合計量」を確認できます。光不足や強すぎる日差しに気づきやすくなり、栽培管理の見直しに役立ちます。</p></div>
+			<div class="box" data-reveal="0">
+				<span class="box__ic box__ic--gold"
+					><span class="material-symbols-rounded">water_drop</span></span
+				>
+				<h3>結露に強い温湿度センサー</h3>
+				<p>
+					高湿度や結露により、センサーが濡れても、乾けば測定状態が戻りやすい<a
+						class="extlink"
+						href="https://sensirion.com/"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
+					>製センサーを採用。湿度100%付近で停滞するリスクを抑え、農業現場の温湿度変化を安定して記録します。
+				</p>
+			</div>
+			<div class="box" data-reveal="1">
+				<span class="box__ic box__ic--gold"
+					><span class="material-symbols-rounded">ac_unit</span></span
+				>
+				<h3>交換可能なセンサー</h3>
+				<p>
+					万が一の故障時も、本体ごと交換は不要。必要なセンサー部だけを交換でき、コストを抑えながら長く使い続けられます。また、測定したい項目が変わった場合も、用途に合わせてセンサーを追加できます。
+				</p>
+			</div>
+			<div class="box" data-reveal="2">
+				<span class="box__ic box__ic--gold"
+					><span class="material-symbols-rounded">local_fire_department</span></span
+				>
+				<h3>作物に必要な光を見える化</h3>
+				<p>
+					PPFDで「今どれくらい光合成に使える光が届いているか」を確認し、DLIで「1日に受け取った光合成に使える光の合計量」を確認できます。光不足や強すぎる日差しに気づきやすくなり、栽培管理の見直しに役立ちます。
+				</p>
+			</div>
 		</div>
 	</div>
 </section>
@@ -171,7 +228,14 @@
 		<div data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">cell_tower</span> 配線いらず</p>
 			<h2>1台の受信機で、農場全体を。</h2>
-			<p class="split__lead">電波（<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。通信費も工事も抑えられます。</p>
+			<p class="split__lead">
+				電波（<a
+					class="extlink"
+					href="https://lora-alliance.org/"
+					target="_blank"
+					rel="noopener noreferrer">LoRaWAN</a
+				>）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。通信費も工事も抑えられます。
+			</p>
 			<ul class="checklist">
 				<li><span class="material-symbols-rounded">check</span> 複数のハウス・畑をまとめて監視</li>
 				<li><span class="material-symbols-rounded">check</span> 携帯回線の通信費がかからない</li>
@@ -179,7 +243,10 @@
 			</ul>
 		</div>
 		<div class="split__media" data-reveal>
-			<img src="/assets/photos/agri-openfield.webp" alt="露地の畑を見渡す位置に設置されたCropWatchの受信機とセンサー" />
+			<img
+				src="/assets/photos/agri-openfield.webp"
+				alt="露地の畑を見渡す位置に設置されたCropWatchの受信機とセンサー"
+			/>
 		</div>
 	</div>
 </section>
@@ -188,22 +255,39 @@
 <section class="section section--soft">
 	<div class="wrap">
 		<div class="ag-show__head" data-reveal>
-			<p class="ag-kicker2"><span class="material-symbols-rounded">photo_camera</span> 導入の現場</p>
+			<p class="ag-kicker2">
+				<span class="material-symbols-rounded">photo_camera</span> 導入の現場
+			</p>
 			<h2>作物の育つ場所で、使われています。</h2>
-			<p class="ag-show__sub">ハウスから露地、育苗まで。全国の生産者の現場で、CropWatchが環境を見守っています。</p>
+			<p class="ag-show__sub">
+				ハウスから露地、育苗まで。全国の生産者の現場で、CropWatchが環境を見守っています。
+			</p>
 		</div>
 		<div class="ag-showcase" data-reveal>
 			<figure class="ag-showcase__lead">
-				<img src="/assets/photos/agri-sunset.webp" alt="夕暮れの露地畑に設置されたCropWatchセンサー" />
-				<figcaption><b>露地の畑を見守る</b><span>朝夕の冷え込みや日中の高温を早期に把握</span></figcaption>
+				<img
+					src="/assets/photos/agri-sunset.webp"
+					alt="夕暮れの露地畑に設置されたCropWatchセンサー"
+				/>
+				<figcaption>
+					<b>露地の畑を見守る</b><span>朝夕の冷え込みや日中の高温を早期に把握</span>
+				</figcaption>
 			</figure>
 			<figure>
-				<img src="/assets/photos/agri-greenhouse.webp" alt="ピーマンを栽培するハウスに設置されたCropWatchセンサー" />
+				<img
+					src="/assets/photos/agri-greenhouse.webp"
+					alt="ピーマンを栽培するハウスに設置されたCropWatchセンサー"
+				/>
 				<figcaption><b>ハウス・施設園芸</b><span>むれ・乾燥・CO₂を見える化</span></figcaption>
 			</figure>
 			<figure>
-				<img src="/assets/photos/agri-planting.webp" alt="マルチを張った露地畑での定植・育苗の様子" />
-				<figcaption><b>定植・育苗期の管理</b><span>地温と土壌水分で活着をサポート</span></figcaption>
+				<img
+					src="/assets/photos/agri-planting.webp"
+					alt="マルチを張った露地畑での定植・育苗の様子"
+				/>
+				<figcaption>
+					<b>定植・育苗期の管理</b><span>地温と土壌水分で活着をサポート</span>
+				</figcaption>
 			</figure>
 		</div>
 	</div>
@@ -212,14 +296,48 @@
 <!-- 推奨センサー -->
 <section class="section scroll-pad" id="sensor">
 	<div class="wrap">
-		<div class="section__head" data-reveal><p class="eyebrow"><span class="material-symbols-rounded">sensors</span> 提供センサー</p><h2>土壌＋空気＋光を、ひとつのデバイスで</h2></div>
+		<div class="section__head" data-reveal>
+			<p class="eyebrow"><span class="material-symbols-rounded">sensors</span> 提供センサー</p>
+			<h2>土壌＋空気＋光を、ひとつのデバイスで</h2>
+		</div>
 		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
-			<div class="spec-row"><dt>空気センサー</dt><dd>CW-AIR-THC（温度・湿度・CO₂）</dd></div>
-			<div class="spec-row"><dt>土壌センサー</dt><dd>土の水分・温度</dd></div>
-			<div class="spec-row"><dt>光センサー</dt><dd>作物が受ける光の量</dd></div>
-			<div class="spec-row"><dt>耐環境性</dt><dd>防塵・防水ケース（IP66）／屋外設置対応</dd></div>
-			<div class="spec-row"><dt>電池寿命</dt><dd>最長10年（交換可能）</dd></div>
-			<div class="spec-row"><dt>通信</dt><dd><a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>（電波）／受信機1台で最大15km</dd></div>
+			<div class="spec-row">
+				<dt>空気センサー</dt>
+				<dd>CW-AIR-THC（温度・湿度・CO₂）</dd>
+			</div>
+			<div class="spec-row">
+				<dt>土壌センサー</dt>
+				<dd>土の水分・温度</dd>
+			</div>
+			<div class="spec-row">
+				<dt>光センサー</dt>
+				<dd>作物が受ける光の量</dd>
+			</div>
+			<div class="spec-row">
+				<dt>耐環境性</dt>
+				<dd>防塵・防水ケース（IP66）／屋外設置対応</dd>
+			</div>
+			<div class="spec-row">
+				<dt>電池寿命</dt>
+				<dd>
+					最長5年（交換可能）
+					<br />
+					<small
+						>※バッテリー寿命は、使用環境や測定・送信間隔、通信状況などによって異なります。</small
+					>
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>通信</dt>
+				<dd>
+					<a
+						class="extlink"
+						href="https://lora-alliance.org/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN</a
+					>（電波）／受信機1台で最大15km
+				</dd>
+			</div>
 		</dl>
 	</div>
 </section>
@@ -227,7 +345,10 @@
 <!-- FAQ -->
 <section class="section section--soft">
 	<div class="wrap">
-		<div class="section__head" data-reveal><p class="eyebrow"><span class="material-symbols-rounded">quiz</span> よくあるご質問</p><h2>農業・ハウスの監視 Q&amp;A</h2></div>
+		<div class="section__head" data-reveal>
+			<p class="eyebrow"><span class="material-symbols-rounded">quiz</span> よくあるご質問</p>
+			<h2>農業・ハウスの監視 Q&amp;A</h2>
+		</div>
 		<div class="faq" data-reveal>
 			{#each faq as item}
 				<details>
@@ -243,9 +364,13 @@
 
 <section class="closing">
 	<div class="wrap closing__in" data-reveal>
-		<p class="eyebrow eyebrow--gold" style="justify-content:center"><span class="material-symbols-rounded">waving_hand</span> まずはお気軽に</p>
+		<p class="eyebrow eyebrow--gold" style="justify-content:center">
+			<span class="material-symbols-rounded">waving_hand</span> まずはお気軽に
+		</p>
 		<h2>次の判断を、データで支えませんか。</h2>
-		<p>ハウスや畑の様子をお聞かせください。土壌・空気・光のセンサーと受信機、通知の設定をご提案します。</p>
+		<p>
+			ハウスや畑の様子をお聞かせください。土壌・空気・光のセンサーと受信機、通知の設定をご提案します。
+		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
 		</div>
