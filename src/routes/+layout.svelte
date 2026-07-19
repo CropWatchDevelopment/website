@@ -13,7 +13,7 @@ import '$lib/styles/cropwatch-tokens.css';
 import '$lib/styles/cropwatch-site.css';
 import '$lib/styles/cropwatch-chrome.css';
 
-let { children } = $props();
+let { children, data } = $props();
 
 // hreflang alternates linking this page to its cropwatch.io (en) counterpart.
 // This is the Japan-website branch (ja); the .io branch calls
@@ -198,6 +198,9 @@ afterNavigate(async () => {
 	{#each alternates ?? [] as alt (alt.hreflang)}
 		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 	{/each}
+	{#if data.christmas}
+		<script defer src="{assets}/christmas-header.js"></script>
+	{/if}
 </svelte:head>
 
 <JsonLd data={siteLd} />
