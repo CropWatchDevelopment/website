@@ -49,7 +49,7 @@
 			<p>{year} CropWatch<sup>®</sup> 日本. All rights reserved.</p>
 			<p>
 				<a href="/legal/privacy-policy">プライバシー</a> ·
-				<a href="/legal/terms-of-service">利用規約</a> ·
+				<a href="/legal/EULA">利用規約</a> ·
 				<a href="/legal/terms-of-service">クッキーポリシー</a>
 			</p>
 		</div>

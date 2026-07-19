@@ -35,7 +35,7 @@
 			biz: 'フェニックスリゾート株式会社',
 			loc: '宮崎県宮崎市',
 			quote:
-				'ホテル厨房内のドロワー冷蔵庫、ストッカー、業務用冷蔵庫、プレハブ冷凍庫などから、温度・湿度データを自動で収集。Wi-Fiが届かない地下や奥まった場所でも、安定した温度管理を実現しています。取得したデータは社内の共通ファイルへ自動で反映され、確認・記録・入力作業を大幅に削減。異常時にはメールやパトランプで通知し、設備の不具合や温度異常の早期発見と、初動対応の迅速化を実現しています。',
+				'ホテル厨房内の冷蔵・冷凍庫から、温度・湿度データを自動で収集。Wi-Fiが届かない地下や奥まった場所でも、安定した温度管理を実現しています。10分ごとに取得したデータは2年間保存され、異常発生時には過去の温度推移をさかのぼって確認できます。さらに、取得したデータをシーガイア様専用の社内共通ファイルへ自動反映する仕組みを構築し、現場での確認・記録・入力作業を大幅に削減。異常時にはメールやパトランプで通知し、設備の不具合や温度異常の早期発見と、迅速な初動対応につなげています。',
 			chips: ['冷蔵・冷凍監視', 'HACCP対応記録', '異常通知'],
 			who: {
 				icon: 'apartment',
@@ -45,7 +45,8 @@
 			caseStudy: true
 		},
 		{
-			href: 'https://ebisu-g.com/group/tk-ebisu/',
+			href: '/livestock',
+			link: 'https://ebisu-g.com/group/tk-ebisu/',
 			tag: { icon: 'pets', label: '畜産・養鶏' },
 			img: '/assets/photos/poultry.webp',
 			biz: 'ティケイ・エビス株式会社',
@@ -179,10 +180,10 @@
 		<p class="eyebrow eyebrow--gold" style="justify-content:center">
 			<span class="material-symbols-rounded">waving_hand</span> まずはお気軽に
 		</p>
-		<h2>あなたの現場でも、見てみませんか。</h2>
-		<p>20分ほどのデモで、画面・通知・残る記録のサンプルをご覧いただけます。</p>
+		<h2>毎日の温度管理を<br />もっと簡単にしませんか？</h2>
+		<p>約5分の動画で、設置から日々の運用までの流れをご確認いただけます。</p>
 		<div class="closing__ctas">
-			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
+			<a href="/contact" class="btn btn--accent btn--lg">動画を見る</a>
 		</div>
 	</div>
 </section>

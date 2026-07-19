@@ -131,8 +131,7 @@ onDestroy(() => {
 				</div>
 			{:else}
 				<form class="form-card" id="demoForm" method="post" action="?" onsubmit={handleSubmit}>
-					<h2 style="font-size:22px;margin-bottom:6px">問い合わせ</h2>
-					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">5営業日以内にご返信します。</p>
+					<h2 style="font-size:22px;margin-bottom:6px">お問い合わせ</h2>
 
 					{#if form?.message}
 						<p class="form-error" role="alert">{form.message}</p>
@@ -207,7 +206,7 @@ onDestroy(() => {
 		<aside class="cinfo" data-reveal>
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">call</span> お電話</h3>
-				<p><a class="mono" href="tel:080-4282-3390">080-4282-3390</a><br><a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a></p>
+				<p><a class="mono" href="tel:080-4284-3390">080-4284-3390</a><br><a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a></p>
 			</div>
 			<!-- <div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">support_agent</span> サポート</h3>
@@ -215,11 +214,13 @@ onDestroy(() => {
 			</div> -->
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">schedule</span> 受付時間</h3>
-				<p>平日 9:00〜18:00</p>
+				<p>土〜火: 10 AM - 4:00 PM</p>
+				<p>水〜金: 10 AM - 9:00 PM</p>
+				<p>祝日: N/A</p>
 			</div>
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">location_on</span> 所在地</h3>
-				<p>〒881-0001<br>宮崎県西都市南方806-5</p>
+				<p>〒881-0027<br>宮崎県西都市南方806-5</p>
 			</div>
 		</aside>
 	</div>

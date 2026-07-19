@@ -47,7 +47,9 @@
 				text-align:center; opacity:{specIn}; font-family:{MONO}; font-size:20px;
 				color:{C.muted}; letter-spacing:0.02em;"
 		>
-			デュアル SHT43 &nbsp;・&nbsp; ISO/IEC 17025 校正済み
+			SHT43&SHT40
+			<br />
+			ISO/IEC 17025認定校正機関による校正済み
 		</div>
 	</div>
 {/if}

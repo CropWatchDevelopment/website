@@ -145,7 +145,7 @@
 			</p>
 			<h2>2つのセンサーで、確かめ合う。</h2>
 			<p class="split__lead">
-				温度・湿度センサーには、種類の異なる2つの温湿度センサーを並べて搭載しています。同じ空気を同時に測り、測定のたびに2つの値を照らし合わせることで、データに異常がないかを確認します。大きな食い違いが見つかった場合、その測定値は使用せず、センサー異常としてお知らせします。
+				温度・湿度センサーには、種類の異なる2つの温湿度センサーを搭載しています。同じ空気を同時に測り、測定のたびに2つの値を照らし合わせることで、データに異常がないかを確認します。大きな食い違いが見つかった場合、その測定値は使用せず、センサー異常としてお知らせします。
 			</p>
 			<ul class="checklist">
 				<li>
@@ -245,14 +245,21 @@
 				<span>書き換えできる回数<i>フラッシュメモリの数万回に対して</i></span>
 			</div>
 			<div class="framstat">
-				<b>360分</b>
-				<span>本体に残る記録<i>送信済みのデータも保持</i></span>
+				<b>36回分</b>
+				<span>本体に残る記録<i>最大6時間の停電に対応</i></span>
 			</div>
 		</div>
 		<div class="callout callout--plain" data-reveal>
 			<span class="callout__ic"><span class="material-symbols-rounded">history</span></span>
 			<div>
-				<h3>なぜ、わざわざ<a class="extlink" href="https://www.infineon.com/ja/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FRAM</a>なのか。</h3>
+				<h3>
+					なぜ、わざわざ<a
+						class="extlink"
+						href="https://www.infineon.com/ja/products/memories/f-ram-ferroelectric-ram"
+						target="_blank"
+						rel="noopener noreferrer">FRAM</a
+					>なのか。
+				</h3>
 				<p>
 					保存用として広く使われるフラッシュメモリには、書き換え回数に限りがあります。通信障害が長時間続き、測定データを短い間隔で繰り返し保存する機器では、メモリの寿命も考慮しなければなりません。また、基板に実装されたメモリが故障すると、メモリだけを交換することが難しく、基板ごとの修理や交換が必要になる場合があります。CropWatchでは、こうした故障や交換のリスクを抑えるため、書き換え耐久性に優れたFRAMを採用しています。
 				</p>
