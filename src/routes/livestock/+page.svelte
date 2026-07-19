@@ -65,11 +65,13 @@
 <Seo {title} {description} />
 <JsonLd data={ld} />
 
-<div class="crumb"><div class="wrap crumb__in">
-	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
-	<b>畜産・養鶏の監視</b>
-</div></div>
+<div class="crumb">
+	<div class="wrap crumb__in">
+		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
+		<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
+		<b>畜産・養鶏の監視</b>
+	</div>
+</div>
 
 <!-- ═══ ヒーロー（現場写真バックドロップ） ═══ -->
 <section class="ls-hero">
@@ -78,13 +80,17 @@
 
 	<div class="wrap ls-hero__inner">
 		<div class="ls-hero__copy" data-reveal>
-			<span class="ls-eyebrow"><span class="ls-dot"></span> 鶏舎・畜舎の温度・湿度・CO₂を見守る産業用ワイヤレスデバイス</span>
+			<span class="ls-eyebrow"
+				><span class="ls-dot"></span> 鶏舎・畜舎の温度・湿度・CO₂を見守る産業用ワイヤレスデバイス</span
+			>
 			<h1>環境の変化を見逃さず、<br />飼育<span class="ls-hl">リスク</span>を低減。</h1>
 			<p class="ls-lead">
 				温度・湿度・CO2を15分ごとに測定・送信し、鶏舎・畜舎の環境を24時間見える化します。Wi-Fiや携帯の電波が届きにくい場所でも、安定した通信を実現。暑熱ストレスや換気不良の兆候を早期に把握し、鶏や家畜の健康維持と安定した環境づくりを支援します。
 			</p>
 			<div class="ls-hero__ctas">
-				<a href="/contact" class="btn btn--accent btn--lg">お問い合わせ<span class="material-symbols-rounded">arrow_forward</span></a>
+				<a href="/contact" class="btn btn--accent btn--lg"
+					>お問い合わせ<span class="material-symbols-rounded">arrow_forward</span></a
+				>
 				<span class="ls-note">温度・湿度のみのデータ収集も可能</span>
 			</div>
 		</div>
@@ -99,7 +105,9 @@
 					<span class="ls-panel__val">−40<i>°C</i> 〜 +85<i>°C</i></span>
 				</li>
 				<li>
-					<span class="material-symbols-rounded fill" style="color:#0e9960">humidity_percentage</span>
+					<span class="material-symbols-rounded fill" style="color:#0e9960"
+						>humidity_percentage</span
+					>
 					<span class="ls-panel__lab">湿度</span>
 					<span class="ls-panel__val">0 〜 100<i>%RH</i></span>
 				</li>
@@ -134,21 +142,29 @@
 			<figcaption>鶏舎全体の温度・湿度・CO₂を、まとめて見える化</figcaption>
 		</figure>
 		<div class="ls-split__body" data-reveal>
-			<p class="ls-kicker"><span class="material-symbols-rounded">autorenew</span> 環境管理を自動化</p>
+			<p class="ls-kicker">
+				<span class="material-symbols-rounded">autorenew</span> 環境管理を自動化
+			</p>
 			<h2>毎日の見回りを、もっと楽に</h2>
 			<ul class="ls-rows">
 				<li>
 					<span class="ls-chip"><span class="material-symbols-rounded">schedule</span></span>
 					<div>
 						<h3>15分ごとに自動記録</h3>
-						<p>携帯やパソコンから現状をすばやく確認。現場にいかなくても、環境の変化が把握できます。</p>
+						<p>
+							携帯やパソコンから現状をすばやく確認。現場にいかなくても、環境の変化が把握できます。
+						</p>
 					</div>
 				</li>
 				<li>
-					<span class="ls-chip"><span class="material-symbols-rounded fill">notifications_active</span></span>
+					<span class="ls-chip"
+						><span class="material-symbols-rounded fill">notifications_active</span></span
+					>
 					<div>
 						<h3>異常をすばやく通知</h3>
-						<p>設定したしきい値に達すると、メールや現場のパトランプで通知。暑熱や換気異常の早めの対応につなげます。</p>
+						<p>
+							設定したしきい値に達すると、メールや現場のパトランプで通知。暑熱や換気異常の早めの対応につなげます。
+						</p>
 					</div>
 				</li>
 				<li>
@@ -167,25 +183,52 @@
 <section class="section ls-warm">
 	<div class="wrap">
 		<div class="ls-why__head" data-reveal>
-			<p class="ls-kicker"><span class="material-symbols-rounded">verified_user</span> 継続運用を支える仕組み</p>
+			<p class="ls-kicker">
+				<span class="material-symbols-rounded">verified_user</span> 継続運用を支える仕組み
+			</p>
 			<h2>止めない記録、信頼できる測定、届きにくい鶏舎まで</h2>
-			<p class="ls-why__sub">高湿度・粉じんの多い鶏舎でもデータを継続して記録し、測定値の異常や通信断にも備えた設計です。</p>
+			<p class="ls-why__sub">
+				高湿度・粉じんの多い鶏舎でもデータを継続して記録し、測定値の異常や通信断にも備えた設計です。
+			</p>
 		</div>
 		<div class="ls-why__grid">
 			<article class="ls-card" data-reveal="0">
 				<span class="ls-card__ic"><span class="material-symbols-rounded">save</span></span>
 				<h3>過酷な環境でも長く使える</h3>
-				<p>基板を保護する処理を施し、高湿度・粉じん・温度変化による故障リスクを低減。過酷な環境でも長く安定して使える設計です。</p>
+				<p>
+					基板を保護する処理を施し、高湿度・粉じん・温度変化による故障リスクを低減。過酷な環境でも長く安定して使える設計です。
+				</p>
 			</article>
 			<article class="ls-card" data-reveal="1">
 				<span class="ls-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>スイス製高精度センサー採用</h3>
-				<p>温湿度は<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン社</a>&thinsp;<a class="extlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>、CO₂は<a class="extlink" href="https://sensirion.com/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>を搭載。いずれも認定機関で校正・試験されたデジタルセンサーです。</p>
+				<p>
+					温湿度は<a
+						class="extlink"
+						href="https://sensirion.com/"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン社</a
+					>&thinsp;<a
+						class="extlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>、CO₂は<a
+						class="extlink"
+						href="https://sensirion.com/products/catalog/SCD41"
+						target="_blank"
+						rel="noopener noreferrer">SCD41</a
+					>を搭載。いずれも認定機関で校正・試験されたデジタルセンサーです。
+				</p>
 			</article>
 			<article class="ls-card" data-reveal="2">
-				<span class="ls-card__ic"><span class="material-symbols-rounded fill">cell_tower</span></span>
+				<span class="ls-card__ic"
+					><span class="material-symbols-rounded fill">cell_tower</span></span
+				>
 				<h3>メンテナンス負担を軽減</h3>
-				<p>センサーとバッテリーを現場で交換できる構造を採用。ダウンタイムと保守コストを最小限に抑えます。</p>
+				<p>
+					センサーとバッテリーを現場で交換できる構造を採用。ダウンタイムと保守コストを最小限に抑えます。
+				</p>
 			</article>
 		</div>
 	</div>
@@ -207,11 +250,13 @@
 		<div class="ls-fac__grid">
 			<article class="ls-fac" style="--fac:#d9772f; --fac-soft:#fdf1e6;" data-reveal="0">
 				<div class="ls-fac__top">
-					<span class="ls-fac__ic"><span class="material-symbols-rounded fill">device_thermostat</span></span>
+					<span class="ls-fac__ic"
+						><span class="material-symbols-rounded fill">device_thermostat</span></span
+					>
 					<div class="ls-fac__title">
-					<h3>温度</h3>
-					<span class="ls-fac__range">目安 18〜24°C（成鶏）</span>
-				</div>
+						<h3>温度</h3>
+						<span class="ls-fac__range">目安 18〜24°C（成鶏）</span>
+					</div>
 				</div>
 				<p>
 					鶏は汗をかけません。体温を逃がす手段はパンティング（開口呼吸）が中心です。暑さが続くと飼料摂取量が落ち、増体の停滞や産卵率の低下、暑熱死につながります。逆に寒すぎれば、エネルギーが体温維持に回り育ちが鈍ります。
@@ -223,11 +268,13 @@
 
 			<article class="ls-fac" style="--fac:#0e9960; --fac-soft:#e9f9f1;" data-reveal="1">
 				<div class="ls-fac__top">
-					<span class="ls-fac__ic"><span class="material-symbols-rounded fill">humidity_percentage</span></span>
+					<span class="ls-fac__ic"
+						><span class="material-symbols-rounded fill">humidity_percentage</span></span
+					>
 					<div class="ls-fac__title">
-					<h3>湿度</h3>
-					<span class="ls-fac__range">目安 50〜70%</span>
-				</div>
+						<h3>湿度</h3>
+						<span class="ls-fac__range">目安 50〜70%</span>
+					</div>
 				</div>
 				<p>
 					湿度が高いとパンティングによる放熱が効かなくなり、同じ気温でも暑熱ストレスが強く出ます。敷料が湿ればアンモニアが発生しやすくなり、足裏皮膚炎やコクシジウムの温床にも。逆に乾きすぎると粉じんが舞い、気道を痛めます。
@@ -241,9 +288,9 @@
 				<div class="ls-fac__top">
 					<span class="ls-fac__ic"><span class="material-symbols-rounded fill">co2</span></span>
 					<div class="ls-fac__title">
-					<h3>CO₂（二酸化炭素）</h3>
-					<span class="ls-fac__range">目安 3,000 ppm 以下</span>
-				</div>
+						<h3>CO₂（二酸化炭素）</h3>
+						<span class="ls-fac__range">目安 3,000 ppm 以下</span>
+					</div>
 				</div>
 				<p>
 					CO₂は、換気が足りているかをそのまま映す指標です。数値が上がるのは新鮮な空気が入っていないサイン。高い状態が続くと発育の遅れや腹水症のリスクが高まります。保温を優先して換気を絞りがちな冬場ほど注意が必要です。
@@ -253,13 +300,19 @@
 				</span>
 			</article>
 
-			<article class="ls-fac ls-fac--rel" style="--fac:#8a5a36; --fac-soft:#f3e7d8;" data-reveal="3">
+			<article
+				class="ls-fac ls-fac--rel"
+				style="--fac:#8a5a36; --fac-soft:#f3e7d8;"
+				data-reveal="3"
+			>
 				<div class="ls-fac__top">
-					<span class="ls-fac__ic"><span class="material-symbols-rounded fill">aq_indoor</span></span>
+					<span class="ls-fac__ic"
+						><span class="material-symbols-rounded fill">aq_indoor</span></span
+					>
 					<div class="ls-fac__title">
-					<h3>アンモニア（NH₃）</h3>
-					<span class="ls-fac__range">目安 20〜25 ppm 以下</span>
-				</div>
+						<h3>アンモニア（NH₃）</h3>
+						<span class="ls-fac__range">目安 20〜25 ppm 以下</span>
+					</div>
 				</div>
 				<p>
 					敷料の中で糞尿が分解されるときに発生します。低い濃度でも気道の繊毛を傷つけ、病気にかかりやすい状態をつくります。濃度が上がれば増体の低下や結膜炎も。人が臭いで気づく頃には、すでにかなりの濃度になっています。
@@ -285,20 +338,34 @@
 		<div class="ls-show__head" data-reveal>
 			<p class="ls-kicker"><span class="material-symbols-rounded">photo_camera</span> 導入の現場</p>
 			<h2>鶏の生活域に、そのまま設置</h2>
-			<p class="ls-show__sub">無線・電池式なので、電源や配線を引きにくい鶏舎・畜舎にも工事なしで設置できます。</p>
+			<p class="ls-show__sub">
+				無線・電池式なので、電源や配線を引きにくい鶏舎・畜舎にも工事なしで設置できます。
+			</p>
 		</div>
 		<div class="ls-showcase" data-reveal>
 			<figure class="ls-showcase__lead">
-				<img src="/assets/photos/livestock-sensor-install.webp" alt="鶏舎の飼育ラインに設置されたCropWatchセンサー" />
-				<figcaption><b>飼育ラインに直接設置</b><span>鶏の生活域の温度・湿度・CO₂をそのまま測定</span></figcaption>
+				<img
+					src="/assets/photos/livestock-sensor-install.webp"
+					alt="鶏舎の飼育ラインに設置されたCropWatchセンサー"
+				/>
+				<figcaption>
+					<b>飼育ラインに直接設置</b><span>鶏の生活域の温度・湿度・CO₂をそのまま測定</span>
+				</figcaption>
 			</figure>
 			<figure>
-				<img src="/assets/photos/livestock-flock.webp" alt="給餌器のまわりに集まる鶏（ブロイラー）" />
-				<figcaption><b>群れの環境を見守る</b><span>暑熱ストレスの兆候を早期に把握</span></figcaption>
+				<img
+					src="/assets/photos/livestock-flock.webp"
+					alt="給餌器のまわりに集まる鶏（ブロイラー）"
+				/>
+				<figcaption>
+					<b>群れの環境を見守る</b><span>暑熱ストレスの兆候を早期に把握</span>
+				</figcaption>
 			</figure>
 			<figure>
 				<img src="/assets/photos/livestock-exterior.webp" alt="鶏舎の外観と制御盤・飼料タンク" />
-				<figcaption><b>屋外・多拠点にも対応</b><span>離れた鶏舎もまとめて遠隔監視</span></figcaption>
+				<figcaption>
+					<b>屋外・多拠点にも対応</b><span>離れた鶏舎もまとめて遠隔監視</span>
+				</figcaption>
 			</figure>
 		</div>
 	</div>
@@ -313,7 +380,24 @@
 			</p>
 			<h2>測定の根拠を、記録と一緒に。</h2>
 			<p>
-				搭載する<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン社</a>&thinsp;<a class="extlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a> / <a class="extlink" href="https://sensirion.com/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>には、ISO/IEC 17025に基づく校正証明書を発行。監査でもそのまま使えます。
+				搭載する<a
+					class="extlink"
+					href="https://sensirion.com/"
+					target="_blank"
+					rel="noopener noreferrer">センシリオン社</a
+				>&thinsp;<a
+					class="extlink"
+					href="https://sensirion.com/products/catalog/SHT40"
+					target="_blank"
+					rel="noopener noreferrer">SHT40</a
+				>
+				/
+				<a
+					class="extlink"
+					href="https://sensirion.com/products/catalog/SCD41"
+					target="_blank"
+					rel="noopener noreferrer">SCD41</a
+				>には、ISO/IEC 17025に基づく校正証明書を発行。監査でもそのまま使えます。
 			</p>
 		</div>
 		<div class="badgewall">
@@ -337,7 +421,6 @@
 	</div>
 </section>
 
-
 <!-- ═══ 主な仕様 ═══ -->
 <section class="section ls-warm">
 	<div class="wrap">
@@ -355,8 +438,20 @@
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
 				<dd>
-					<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン</a>
-					<a class="extlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>・<a class="extlink" href="https://sensirion.com/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>
+					<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer"
+						>センシリオン</a
+					>
+					<a
+						class="extlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>・<a
+						class="extlink"
+						href="https://sensirion.com/products/catalog/SCD41"
+						target="_blank"
+						rel="noopener noreferrer">SCD41</a
+					>
 					*校正証明書付き
 				</dd>
 			</div>
@@ -376,11 +471,24 @@
 			</div>
 			<div class="spec-row">
 				<dt>通信</dt>
-				<dd><a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信</dd>
+				<dd>
+					<a
+						class="extlink"
+						href="https://lora-alliance.org/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN</a
+					><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信
+				</dd>
 			</div>
 			<div class="spec-row">
 				<dt>電池寿命</dt>
-				<dd>最長10年（交換可能）</dd>
+				<dd>
+					最長5年（交換可能）
+					<br />
+					<small
+						>※バッテリー寿命は、使用環境や測定・送信間隔、通信状況などによって異なります。</small
+					>
+				</dd>
 			</div>
 			<div class="spec-row">
 				<dt>堅牢性</dt>
@@ -419,9 +527,13 @@
 <!-- ═══ クロージング ═══ -->
 <section class="closing">
 	<div class="wrap closing__in" data-reveal>
-		<p class="eyebrow eyebrow--gold" style="justify-content:center"><span class="material-symbols-rounded">waving_hand</span> まずはお気軽に</p>
+		<p class="eyebrow eyebrow--gold" style="justify-content:center">
+			<span class="material-symbols-rounded">waving_hand</span> まずはお気軽に
+		</p>
 		<h2>鶏舎の環境、見える化しませんか。</h2>
-		<p>見守りたい鶏舎・畜舎の様子をお聞かせください。最適なセンサーと通知の設定を、無料でご提案します。</p>
+		<p>
+			見守りたい鶏舎・畜舎の様子をお聞かせください。最適なセンサーと通知の設定を、無料でご提案します。
+		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
 			<a href="/replacement-sensors" class="btn btn--outline-light btn--lg">センサーを見る</a>
@@ -1090,13 +1202,12 @@
 			max-width: 420px;
 		}
 		.ls-hero__scrim {
-			background:
-				linear-gradient(
-					180deg,
-					rgba(22, 13, 6, 0.82) 0%,
-					rgba(38, 24, 13, 0.72) 50%,
-					rgba(30, 19, 10, 0.86) 100%
-				);
+			background: linear-gradient(
+				180deg,
+				rgba(22, 13, 6, 0.82) 0%,
+				rgba(38, 24, 13, 0.72) 50%,
+				rgba(30, 19, 10, 0.86) 100%
+			);
 		}
 	}
 	@media (max-width: 820px) {
