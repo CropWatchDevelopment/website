@@ -37,7 +37,7 @@
 			baseFee: 16500,
 			sensorFee: 880,
 			minutesPerCheck: 3,
-			defaultCount: 5,
+			defaultCount: 3,
 			defaultChecks: 2,
 			defaultLocations: 1
 		},
@@ -78,6 +78,7 @@
 	let count = $state(SECTORS['cold-chain'].defaultCount);
 	let checksPerDay = $state(SECTORS['cold-chain'].defaultChecks);
 	let locations = $state(SECTORS['cold-chain'].defaultLocations);
+	let minutesPerCheck = $state(SECTORS['cold-chain'].minutesPerCheck);
 	let wage = $state(DEFAULT_HOURLY_WAGE);
 
 	function selectSector(id: string) {
@@ -86,6 +87,7 @@
 		count = SECTORS[id].defaultCount;
 		checksPerDay = SECTORS[id].defaultChecks;
 		locations = SECTORS[id].defaultLocations;
+		minutesPerCheck = SECTORS[id].minutesPerCheck;
 	}
 
 	// ?sector=livestock のようなディープリンクに対応。
@@ -101,6 +103,9 @@
 	const safeLocations = $derived(
 		Number.isFinite(locations) && locations >= 1 ? Math.floor(locations) : 1
 	);
+	const safeMinutes = $derived(
+		Number.isFinite(minutesPerCheck) && minutesPerCheck >= 1 ? Math.floor(minutesPerCheck) : 1
+	);
 	const safeWage = $derived(Number.isFinite(wage) && wage > 0 ? wage : 0);
 
 	/** 全拠点の合計センサー台数 */
@@ -115,9 +120,7 @@
 	const dailyPerUnit = $derived(Math.round(yearly / DAYS_PER_YEAR / Math.max(totalCount, 1)));
 
 	// ── 手動記録の人件費（毎日、全台数を1回ずつ記録する場合） ──
-	const manualHoursPerMonth = $derived(
-		(totalCount * safeChecks * cfg.minutesPerCheck * 30) / 60
-	);
+	const manualHoursPerMonth = $derived((totalCount * safeChecks * safeMinutes * 30) / 60);
 	const manualMonthly = $derived(Math.round(manualHoursPerMonth * safeWage));
 	const manualYearly = $derived(manualMonthly * 12);
 
@@ -265,6 +268,42 @@
 				</div>
 
 				<div class="pr-field">
+					<label class="pr-count__label" for="minutes-count">記録1回あたりの時間</label>
+					<div class="pr-count__ctrl">
+						<button
+							type="button"
+							class="pr-count__btn"
+							aria-label="1分減らす"
+							onclick={() => (minutesPerCheck = Math.max(1, safeMinutes - 1))}
+							disabled={safeMinutes <= 1}
+						>
+							<span class="material-symbols-rounded">remove</span>
+						</button>
+						<input
+							id="minutes-count"
+							type="number"
+							min="1"
+							max="60"
+							step="1"
+							inputmode="numeric"
+							bind:value={minutesPerCheck}
+						/>
+						<span class="pr-count__unit">分/台</span>
+						<button
+							type="button"
+							class="pr-count__btn"
+							aria-label="1分増やす"
+							onclick={() => (minutesPerCheck = Math.min(60, safeMinutes + 1))}
+						>
+							<span class="material-symbols-rounded">add</span>
+						</button>
+					</div>
+					<p class="pr-field__hint">
+						移動・読み取り・システムへの記入までを含めた、1台あたりの時間です。
+					</p>
+				</div>
+
+				<div class="pr-field">
 					<label class="pr-count__label" for="locations-count">拠点数</label>
 					<div class="pr-count__ctrl">
 						<button
@@ -337,7 +376,7 @@
 						<span class="pr-compare__label">手書き記録の人件費</span>
 						<b class="pr-compare__value">{yen(manualMonthly)}<small>/月</small></b>
 						<span class="pr-compare__note">
-							{num(totalCount)}台 × {safeChecks}回/日 × {cfg.minutesPerCheck}分 ×
+							{num(totalCount)}台 × {safeChecks}回/日 × {safeMinutes}分 ×
 							時給{yen(safeWage)}（月{num(Math.round(manualHoursPerMonth))}時間分）
 						</span>
 					</div>
@@ -362,7 +401,7 @@
 					</div>
 				</div>
 				<p class="pr-note">
-					手書き記録は、1台あたり{cfg.minutesPerCheck}分（移動・読み取り・記入を含む）×
+					手書き記録は、1台あたり{safeMinutes}分（移動・読み取り・記入を含む）×
 					毎日{safeChecks}回、月30日として計算しています。
 				</p>
 			</div>
