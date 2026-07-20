@@ -15,6 +15,7 @@
 	 *     { label: '温度・湿度センサー (CW-AIR-TH)' }
 	 *   ]} />
 	 */
+	import { page } from '$app/state';
 	import JsonLd from './JsonLd.svelte';
 	import { breadcrumbSchema } from '$lib/seo/schema';
 
@@ -26,8 +27,12 @@
 
 	let { items }: { items: Crumb[] } = $props();
 
+	// Crumbs without an href (name-only parents / the current page) fall back
+	// to the current path so the schema's `item` URL is always present.
 	const breadcrumbLd = $derived(
-		breadcrumbSchema(items.map((crumb) => ({ name: crumb.label, path: crumb.href })))
+		breadcrumbSchema(
+			items.map((crumb) => ({ name: crumb.label, path: crumb.href ?? page.url.pathname }))
+		)
 	);
 </script>
 

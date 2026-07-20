@@ -2,6 +2,7 @@
 import Footer from '$lib/components/Footer.svelte';
 import Header from '$lib/components/Header.svelte';
 import { afterNavigate } from '$app/navigation';
+import { assets } from '$app/paths';
 import { page } from '$app/state';
 import { PUBLIC_GA_MEASUREMENT_ID } from '$env/static/public';
 import { onMount, tick } from 'svelte';

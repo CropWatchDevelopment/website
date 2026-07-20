@@ -17,6 +17,7 @@ const STATIC_ENTRIES: Entry[] = [
 	{ path: '/agriculture', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },
 	{ path: '/livestock', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },
 	{ path: '/technology', lastmod: STATIC_LASTMOD, priority: '0.7', changefreq: 'monthly' },
+	{ path: '/pricing', lastmod: '2026-07-21', priority: '0.8', changefreq: 'monthly' },
 	{ path: '/replacement-sensors', lastmod: STATIC_LASTMOD, priority: '0.7', changefreq: 'monthly' },
 	{ path: '/replacement-case', lastmod: STATIC_LASTMOD, priority: '0.7', changefreq: 'monthly' },
 	{ path: '/testimonials', lastmod: STATIC_LASTMOD, priority: '0.6', changefreq: 'monthly' },
