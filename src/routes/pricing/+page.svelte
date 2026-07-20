@@ -15,6 +15,10 @@
 		icon: string;
 		pricePerDevice: number;
 		baseFee: number;
+		/** Default slider position: how many units a typical operation monitors. */
+		defaultUnits: number;
+		/** Default slider position: manual temperature checks per day. */
+		defaultChecksPerDay: number;
 		minutesPerCheck: number;
 		unitsHint: string;
 		comingSoon?: boolean;
@@ -25,15 +29,19 @@
 			icon: 'ac_unit',
 			pricePerDevice: 8,
 			baseFee: 100,
+			defaultUnits: 10,
+			defaultChecksPerDay: 2,
 			minutesPerCheck: 3,
 			unitsHint: 'Coolers, freezers and display cases.'
 		},
 		livestock: {
 			label: 'Livestock',
 			icon: 'pets',
-			pricePerDevice: 12,
+			pricePerDevice: 8,
 			baseFee: 50,
-			minutesPerCheck: 20,
+			defaultUnits: 50,
+			defaultChecksPerDay: 3,
+			minutesPerCheck: 5,
 			unitsHint: 'Poultry houses, barn zones and dairy rooms.'
 		},
 		agriculture: {
@@ -41,6 +49,8 @@
 			icon: 'eco',
 			pricePerDevice: 0,
 			baseFee: 0,
+			defaultUnits: 0,
+			defaultChecksPerDay: 0,
 			minutesPerCheck: 0,
 			unitsHint: '',
 			comingSoon: true
@@ -54,14 +64,16 @@
 	let sector = $state('cold-chain');
 	const cfg = $derived(SECTORS[sector]);
 
-	let units = $state(10);
-	let checksPerDay = $state(2);
+	let units = $state(SECTORS['cold-chain'].defaultUnits);
+	let checksPerDay = $state(SECTORS['cold-chain'].defaultChecksPerDay);
 	let minutesPerCheck = $state(SECTORS['cold-chain'].minutesPerCheck);
 	let wage = $state(DEFAULT_HOURLY_WAGE);
 
 	function selectSector(id: string) {
 		sector = id;
-		// Each sector gets its own realistic default reading time.
+		// Each sector starts from its own realistic defaults.
+		units = SECTORS[id].defaultUnits;
+		checksPerDay = SECTORS[id].defaultChecksPerDay;
 		minutesPerCheck = SECTORS[id].minutesPerCheck;
 	}
 
