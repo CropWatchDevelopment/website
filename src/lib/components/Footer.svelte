@@ -46,7 +46,7 @@
 	<div class="ftr__legal">
 		<div class="wrap ftr__legal-in">
 			<p>© {year} CropWatch. All rights reserved. · United States &amp; Global</p>
-			<p>Privacy · Terms · ISO/IEC 17025 calibration · Sitemap</p>
+			<p>Privacy · Terms · <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> calibration · Sitemap</p>
 		</div>
 	</div>
 </footer>

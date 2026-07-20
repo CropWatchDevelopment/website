@@ -93,6 +93,14 @@ body { margin: 0; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 .eyebrow--accent { color: var(--web-accent); }
 .btn-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
+/* ── Authoritative term citations ────────────────────────── */
+/* Technical terms (LoRaWAN, HACCP, ISO/IEC 17025, sensor part numbers, ...)
+   link to the official source defining them. Styled as a quiet dotted
+   underline so citations don't compete with CTAs. */
+.termlink { color: inherit; text-decoration: underline dotted; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.termlink:hover, .termlink:focus-visible { color: var(--web-primary); text-decoration-style: solid; }
+.section--navy .termlink:hover, .hero--bg .termlink:hover { color: var(--cw-sapphire-300); }
+
 /* ── Hero variant with overlay chip + scrim (product pages) ─ */
 .hero__media--tall img { height: 480px; }
 .hero__badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }

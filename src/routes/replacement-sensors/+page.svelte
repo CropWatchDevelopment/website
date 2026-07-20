@@ -74,7 +74,10 @@
 				['Moisture', '0-100 % (±8 %)'],
 				['Soil EC', '0-3.0 mS/cm ±20 % · 3.0-8.0 ±40 %'],
 				['Probe', 'Stainless, IP68'],
-				['Connectivity', 'LoRaWAN (Class A)']
+				[
+					'Connectivity',
+					'<a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> (Class A)'
+				]
 			]
 		}
 	];
@@ -141,7 +144,7 @@
 			<h1>Calibrated. Certified. Swapped in 60 seconds.</h1>
 			<p class="lead">
 				When a module reaches end of life, you don't ship the unit back or wait for a technician.
-				Snap in a new pre-calibrated module - and download its own ISO/IEC 17025 certificate, tied to
+				Snap in a new pre-calibrated module - and download its own <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificate, tied to
 				that exact serial number.
 			</p>
 			<div class="hero__badges">
@@ -201,13 +204,14 @@
 					{#each active.measures as m (m)}<span class="picker-chip">{m}</span>{/each}
 				</div>
 				<dl class="picker-specs">
-					{#each active.specs as [k, v] (k)}<div class="picker-spec"><dt>{k}</dt><dd>{v}</dd></div>{/each}
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -- spec values are static strings defined above (may carry termlink anchors) -->
+				{#each active.specs as [k, v] (k)}<div class="picker-spec"><dt>{k}</dt><dd>{@html v}</dd></div>{/each}
 				</dl>
 			</div>
 		</div>
 		<p style="text-align:center;margin-top:26px;font-size:13px;color:var(--web-muted)" data-reveal>
-			All four modules are pre-calibrated, dual-sensor verified, and ship with an individual ISO/IEC
-			17025 certificate.
+			All four modules are pre-calibrated, dual-sensor verified, and ship with an individual
+			<a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificate.
 		</p>
 	</div>
 </section>
@@ -309,7 +313,7 @@
 			<div class="spec-row"><dt>Soil / substrate</dt><dd>CW-SS-TME module</dd></div>
 			<div class="spec-row"><dt>Accuracy</dt><dd>±0.9 °F (±0.48 °C) / ±1.8 %RH (TH module)</dd></div>
 			<div class="spec-row"><dt>Annual drift</dt><dd>typ. &lt;0.02 °F (0.01 °C)/yr</dd></div>
-			<div class="spec-row"><dt>Calibration</dt><dd>ISO/IEC 17025 · NIST</dd></div>
+			<div class="spec-row"><dt>Calibration</dt><dd><a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> · <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a></dd></div>
 			<div class="spec-row"><dt>Certificate</dt><dd>Per serial number</dd></div>
 			<div class="spec-row"><dt>Install time</dt><dd>&lt; 60 seconds</dd></div>
 			<div class="spec-row"><dt>Tools required</dt><dd>None</dd></div>
@@ -342,7 +346,7 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Every module's ISO/IEC 17025 certificate is downloadable as a PDF from the device page in
+					Every module's <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificate is downloadable as a PDF from the device page in
 					the app - matched to its individual serial number, ready to hand an auditor.
 				</p>
 			</details>

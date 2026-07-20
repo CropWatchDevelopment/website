@@ -264,19 +264,19 @@
 			<article class="why-card" data-reveal="1">
 				<span class="why-card__ic"><span class="material-symbols-rounded">verified</span></span>
 				<h3>Certified</h3>
-				<p>Per-serial ISO/IEC 17025 certificates back every reading.</p>
+				<p><a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a> Traceability as well as <a class="termlink" href="https://www.reset.build/standard/air" target="_blank" rel="noopener noreferrer">RESET<sup>®</sup></a> CO<sub>2</sub> certifications bring our food grade safety to the barn.</p>
 			</article>
 			<article class="why-card" data-reveal="2">
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>Swiss precision</h3>
-				<p>Sensirion SHT40 and SCD41 digital sensors - calibrated and tested at an accredited lab.</p>
+				<p>Sensirion <a class="termlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a> and <a class="termlink" href="https://sensirion.com/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a> digital sensors - calibrated and tested at an accredited lab.</p>
 			</article>
 			<article class="why-card" data-reveal="3">
 				<span class="why-card__ic"
 					><span class="material-symbols-rounded">health_and_safety</span></span
 				>
 				<h3>Built for the barn</h3>
-				<p>A protective board coating shrugs off humidity, dust and temperature swings for years of service.</p>
+				<p>A protective board coating shrugs off humidity, dust and temperature swings for years of maintenance-free service.</p>
 			</article>
 		</div>
 	</div>
@@ -291,13 +291,13 @@
 		</div>
 		<dl class="pspecs__grid" data-reveal>
 			<div class="spec-row"><dt>Measures</dt><dd>Temp · RH · CO₂ · NH₃</dd></div>
-			<div class="spec-row"><dt>Sensors</dt><dd>Sensirion SHT40 + SCD41 (temp · RH · CO₂)</dd></div>
+			<div class="spec-row"><dt>Sensors</dt><dd>Sensirion <a class="termlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a> + <a class="termlink" href="https://sensirion.com/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a> (temp · RH · CO₂)</dd></div>
 			<div class="spec-row"><dt>Temp range</dt><dd>−40 to +185 °F (−40 to +85 °C)</dd></div>
 			<div class="spec-row"><dt>CO₂ range</dt><dd>400-5,000 ppm (NDIR)</dd></div>
 			<div class="spec-row"><dt>Ammonia</dt><dd>0-100 ppm (NH₃)</dd></div>
 			<div class="spec-row"><dt>Accuracy</dt><dd>±0.4 °F (±0.2 °C) / ±1.8 %RH</dd></div>
 			<div class="spec-row"><dt>Ruggedness</dt><dd>Conformal coating + potted board</dd></div>
-			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
+			<div class="spec-row"><dt>Connectivity</dt><dd><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> (Class A)</dd></div>
 			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
 			<div class="spec-row"><dt>Logging</dt><dd>Every 15 min · 1 year retained · CSV</dd></div>
 			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready</dd></div>
