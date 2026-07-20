@@ -1,23 +1,93 @@
 <script lang="ts">
-// Where the CropWatch sensor board's parts come from, by country of origin.
-// Distinct parts are counted (29 total); hovering a donut segment or a
-// legend row highlights the matching pair.
-type Origin = { name: string; flag: string; parts: number; mfrs: number; color: string };
+// Where the CropWatch parts come from, by country of origin, across both
+// boards (main board + sensor board). Distinct part types are counted
+// (34 total); hovering / tapping a donut segment or a legend row highlights
+// the matching pair and shows that country's manufacturers with links to
+// their official sites in the panel above the donut.
+type Maker = { name: string; url: string };
+type Origin = { name: string; flag: string; parts: number; makers: Maker[]; color: string };
 
 const ORIGINS: Origin[] = [
-	{ name: 'アメリカ', flag: '🇺🇸', parts: 9, mfrs: 7, color: '#12c3a0' },
-	{ name: '日本', flag: '🇯🇵', parts: 7, mfrs: 2, color: '#2f9fe6' },
-	{ name: '台湾', flag: '🇹🇼', parts: 7, mfrs: 2, color: '#f4b63c' },
-	{ name: 'スイス', flag: '🇨🇭', parts: 2, mfrs: 2, color: '#33c56a' },
-	{ name: 'アイルランド', flag: '🇮🇪', parts: 2, mfrs: 1, color: '#a35be6' },
-	{ name: '韓国', flag: '🇰🇷', parts: 1, mfrs: 1, color: '#f56b6b' },
-	{ name: 'ドイツ', flag: '🇩🇪', parts: 1, mfrs: 1, color: '#9aa4b2' }
+	{
+		name: 'アメリカ',
+		flag: '🇺🇸',
+		parts: 10,
+		color: '#12c3a0',
+		makers: [
+			{ name: 'Texas Instruments', url: 'https://www.ti.com/' },
+			{ name: 'onsemi', url: 'https://www.onsemi.com/' },
+			{ name: 'Diodes Incorporated', url: 'https://www.diodes.com/' },
+			{ name: 'Alpha & Omega Semiconductor', url: 'https://www.aosmd.com/' },
+			{ name: 'C&K Switches', url: 'https://www.ckswitches.com/' },
+			{ name: 'QT Brightek', url: 'https://www.qt-brightek.com/' },
+			{ name: 'Amphenol', url: 'https://www.amphenol.com/' }
+		]
+	},
+	{
+		name: '日本',
+		flag: '🇯🇵',
+		parts: 7,
+		color: '#2f9fe6',
+		makers: [
+			{ name: '村田製作所', url: 'https://www.murata.com/' },
+			{ name: 'JST', url: 'https://www.jst-mfg.com/' }
+		]
+	},
+	{
+		name: '台湾',
+		flag: '🇹🇼',
+		parts: 7,
+		color: '#f4b63c',
+		makers: [
+			{ name: 'YAGEO', url: 'https://www.yageo.com/' },
+			{ name: 'Walsin Technology', url: 'https://www.passivecomponent.com/' }
+		]
+	},
+	{
+		name: 'スイス',
+		flag: '🇨🇭',
+		parts: 5,
+		color: '#33c56a',
+		makers: [
+			{ name: 'Sensirion', url: 'https://sensirion.com/' },
+			{ name: 'STMicroelectronics', url: 'https://www.st.com/' },
+			{ name: 'Micro Crystal', url: 'https://www.microcrystal.com/' }
+		]
+	},
+	{
+		name: 'アイルランド',
+		flag: '🇮🇪',
+		parts: 2,
+		color: '#a35be6',
+		makers: [{ name: 'TE Connectivity', url: 'https://www.te.com/' }]
+	},
+	{
+		name: 'オーストリア',
+		flag: '🇦🇹',
+		parts: 1,
+		color: '#f0883c',
+		makers: [{ name: 'ams OSRAM', url: 'https://ams-osram.com/' }]
+	},
+	{
+		name: '韓国',
+		flag: '🇰🇷',
+		parts: 1,
+		color: '#f56b6b',
+		makers: [{ name: 'Samsung Electro-Mechanics', url: 'https://www.samsungsem.com/' }]
+	},
+	{
+		name: 'ドイツ',
+		flag: '🇩🇪',
+		parts: 1,
+		color: '#9aa4b2',
+		makers: [{ name: 'Infineon', url: 'https://www.infineon.com/' }]
+	}
 ];
 
-const TOTAL_PARTS = ORIGINS.reduce((s, o) => s + o.parts, 0); // 29
-const COUNTRIES = ORIGINS.length; // 7
-const MANUFACTURERS = ORIGINS.reduce((s, o) => s + o.mfrs, 0); // 16
-const PLACEMENTS = 60; // total component placements on the board
+const TOTAL_PARTS = ORIGINS.reduce((s, o) => s + o.parts, 0); // 34
+const COUNTRIES = ORIGINS.length; // 8
+const MANUFACTURERS = ORIGINS.reduce((s, o) => s + o.makers.length, 0); // 18
+const PLACEMENTS = 71; // total component placements (main board 60 + sensor board 11)
 
 // donut segments (pathLength = 100 via r ≈ 15.915). GAP leaves a hair of
 // space between segments.
@@ -34,7 +104,16 @@ let active = $state<number | null>(null);
 const set = (i: number | null) => (active = i);
 </script>
 
-<div class="po" role="group" aria-label="部品の生産国" onpointerleave={() => set(null)}>
+<div
+	class="po"
+	role="group"
+	aria-label="部品の生産国"
+	onpointerleave={(e) => e.pointerType === 'mouse' && set(null)}
+	onfocusout={(e) => {
+		const t = e.relatedTarget;
+		if (!(t instanceof Node) || !e.currentTarget.contains(t)) set(null);
+	}}
+>
 	<div class="po__stats">
 		<div class="po__stat"><b>{TOTAL_PARTS}</b><span>部品の種類</span></div>
 		<div class="po__stat"><b>{COUNTRIES}</b><span>生産国</span></div>
@@ -43,6 +122,32 @@ const set = (i: number | null) => (active = i);
 	</div>
 
 	<div class="po__main">
+		<div
+			class="po__panel"
+			aria-live="polite"
+			style={active !== null ? `--c:${SEGMENTS[active].color}` : ''}
+		>
+			{#if active !== null}
+				{@const a = SEGMENTS[active]}
+				<p class="po__panel-title">
+					<span class="po__flag">{a.flag}</span>{a.name}のメーカー（{a.makers.length}社）
+				</p>
+				<ul class="po__makers">
+					{#each a.makers as m (m.name)}
+						<li>
+							<a href={m.url} target="_blank" rel="noopener noreferrer">
+								{m.name}<span class="po__ext" aria-hidden="true">↗</span>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<p class="po__panel-hint">
+					国名にカーソルを合わせる（タップする）と、その国のメーカーと公式サイトへのリンクを表示します。
+				</p>
+			{/if}
+		</div>
+
 		<div class="po__chart">
 			<svg viewBox="0 0 42 42" role="img" aria-label="生産国別の部品構成グラフ">
 				<circle class="po__track" cx="21" cy="21" r="15.915" />
@@ -63,7 +168,6 @@ const set = (i: number | null) => (active = i);
 							aria-label="{s.name}：{s.parts}点（{Math.round(s.pct)}％）"
 							onpointerenter={() => set(s.i)}
 							onfocus={() => set(s.i)}
-							onblur={() => set(null)}
 							onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && set(s.i)}
 						/>
 					{/each}
@@ -81,14 +185,14 @@ const set = (i: number | null) => (active = i);
 					class:is-dim={active !== null && active !== s.i}
 					style="--c:{s.color}"
 					onpointerenter={() => set(s.i)}
+					onclick={() => set(s.i)}
 					onfocus={() => set(s.i)}
-					onblur={() => set(null)}
 				>
 					<span class="po__head">
 						<span class="po__dot"></span>
 						<span class="po__flag">{s.flag}</span>
 						<span class="po__name">{s.name}</span>
-						<span class="po__meta"><b>{s.parts}</b> ・ {Math.round(s.pct)}% ・ {s.mfrs}社</span>
+						<span class="po__meta"><b>{s.parts}</b> ・ {Math.round(s.pct)}% ・ {s.makers.length}社</span>
 					</span>
 					<span class="po__bar"><i style="width:{s.pct}%"></i></span>
 				</button>
@@ -96,7 +200,7 @@ const set = (i: number | null) => (active = i);
 		</div>
 	</div>
 	<div>
-		<p><sup>*</sup><small>このグラフに表示されていない国は、当社のセンサーボードに部品が存在しないことを意味します。</small></p>
+		<p><sup>*</sup><small>このグラフに表示されていない国は、当社の基板（本体・センサー）に部品が存在しないことを意味します。</small></p>
 	</div>
 </div>
 
@@ -136,19 +240,85 @@ const set = (i: number | null) => (active = i);
 		color: var(--web-muted);
 	}
 
-	/* ── Chart + legend ── */
+	/* ── Panel + chart + legend ── */
 	.po__main {
 		display: grid;
-		grid-template-columns: minmax(200px, 260px) 1fr;
-		gap: clamp(20px, 4vw, 40px);
-		align-items: center;
+		grid-template-columns: minmax(220px, 300px) 1fr;
+		grid-template-rows: auto 1fr;
+		grid-template-areas:
+			'panel legend'
+			'chart legend';
+		gap: 18px clamp(20px, 4vw, 40px);
 	}
+
+	/* ── Manufacturer panel ── */
+	.po__panel {
+		grid-area: panel;
+		min-height: 196px;
+		background: var(--web-bg-soft);
+		border: 1px solid color-mix(in srgb, var(--c, transparent) 35%, var(--web-border));
+		border-radius: 14px;
+		padding: 14px 16px;
+		transition: border-color 0.18s ease;
+	}
+	.po__panel-title {
+		display: flex;
+		align-items: center;
+		gap: 7px;
+		margin: 0;
+		font-size: 13.5px;
+		font-weight: 800;
+		color: var(--web-heading);
+	}
+	.po__panel-hint {
+		margin: 0;
+		font-size: 12.5px;
+		line-height: 1.8;
+		color: var(--web-muted);
+	}
+	.po__makers {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin: 10px 0 0;
+		padding: 0;
+	}
+	.po__makers a {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 12.5px;
+		font-weight: 600;
+		color: var(--web-heading);
+		background: #fff;
+		border: 1px solid var(--web-border);
+		border-radius: 999px;
+		padding: 5px 11px;
+		text-decoration: none;
+		transition:
+			border-color 0.15s ease,
+			color 0.15s ease;
+	}
+	.po__makers a:hover,
+	.po__makers a:focus-visible {
+		border-color: var(--c, var(--web-heading));
+		color: var(--c, var(--web-heading));
+	}
+	.po__ext {
+		font-size: 11px;
+		color: var(--web-muted);
+	}
+
+	/* ── Chart ── */
 	.po__chart {
+		grid-area: chart;
 		position: relative;
 		width: 100%;
 		max-width: 260px;
 		margin-inline: auto;
 		aspect-ratio: 1;
+		align-self: start;
 	}
 	.po__chart svg {
 		width: 100%;
@@ -202,6 +372,8 @@ const set = (i: number | null) => (active = i);
 
 	/* ── Legend rows ── */
 	.po__legend {
+		grid-area: legend;
+		align-self: center;
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
@@ -284,7 +456,15 @@ const set = (i: number | null) => (active = i);
 		}
 		.po__main {
 			grid-template-columns: 1fr;
+			grid-template-rows: auto auto auto;
+			grid-template-areas:
+				'chart'
+				'panel'
+				'legend';
 			gap: 20px;
+		}
+		.po__panel {
+			min-height: 150px;
 		}
 		.po__chart {
 			max-width: 220px;
