@@ -63,7 +63,7 @@
 		}
 	};
 	/** Default hourly wage: the average US state minimum wage (federal floor is $7.25). */
-	const DEFAULT_HOURLY_WAGE = 11.5;
+	const DEFAULT_HOURLY_WAGE = 11.51;
 	/* ══════════════════════════════════════════════════════════════════ */
 
 	const SECTOR_IDS = Object.keys(SECTORS);
@@ -405,6 +405,15 @@
 	}
 	.calc-loc > .calc-field__head label {
 		font-size: 17px;
+	}
+	/* The card behind this slider is primary-soft - the default track color -
+	   so give it a white track (with a faint outline) to stay visible. */
+	.calc-loc > input[type='range'] {
+		background: #fff;
+		border: 1px solid color-mix(in srgb, var(--web-primary) 35%, transparent);
+	}
+	.calc-loc > input[type='range']::-moz-range-track {
+		background: #fff;
 	}
 	.calc-loc__fields {
 		display: grid;
