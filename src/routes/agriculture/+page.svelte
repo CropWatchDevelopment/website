@@ -383,10 +383,6 @@
 				<span class="rel-card__ic"><span class="material-symbols-rounded">cable</span></span>
 				<span><b>Replacement sensors</b><span>Season-to-season swaps</span></span>
 			</a>
-			<a class="rel-card" href="/replacement-case" data-reveal>
-				<span class="rel-card__ic"><span class="material-symbols-rounded">deployed_code</span></span>
-				<span><b>Replacement case</b><span>UV-stable IP66 enclosure</span></span>
-			</a>
 			<a class="rel-card" href="https://api.cropwatch.io" data-reveal>
 				<span class="rel-card__ic"><span class="material-symbols-rounded">api</span></span>
 				<span><b>Public API</b><span>Pull into your farm tools</span></span>

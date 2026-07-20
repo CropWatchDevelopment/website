@@ -373,7 +373,6 @@
 		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="cta-pill cta-pill--lg">Request a quote</a>
-			<a href="/replacement-case" class="cta-ghost cta-ghost--light cta-pill--lg">View the case in 3D</a>
 		</div>
 	</div>
 </section>

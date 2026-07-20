@@ -13,7 +13,6 @@ const ROUTES: { path: string; changefreq: string; priority: string }[] = [
 	{ path: '/livestock', changefreq: 'monthly', priority: '0.8' },
 	{ path: '/cold-chain', changefreq: 'monthly', priority: '0.8' },
 	{ path: '/replacement-sensors', changefreq: 'monthly', priority: '0.6' },
-	{ path: '/replacement-case', changefreq: 'monthly', priority: '0.6' },
 	{ path: '/contact', changefreq: 'monthly', priority: '0.7' },
 	{ path: '/news', changefreq: 'weekly', priority: '0.5' }
 ];

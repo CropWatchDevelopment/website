@@ -23,7 +23,6 @@
 			<a href="/livestock">Livestock Monitoring</a>
 			<a href="/agriculture">Agricultural Monitoring</a>
 			<a href="/replacement-sensors">Replacement Sensors</a>
-			<a href="/replacement-case">Replacement Sensor Case</a>
 		</nav>
 
 		<nav class="ftr__col">
