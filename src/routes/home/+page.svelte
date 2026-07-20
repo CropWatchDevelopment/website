@@ -1,36 +1,5 @@
 <script lang="ts">
-	// Component-sourcing breakdown for the "trusted parts" section. Counts come
-	// from the BOM: 34 part types placed 71 times, from 18 manufacturers
-	// across 8 countries. Colours are per-country chart hues (also used for the
-	// donut ring, the legend dot and each bar).
-	const sourcing = [
-		{ code: 'us', name: 'United States', parts: 10, pct: 29, mfrs: 7, color: '#14b8a6' },
-		{ code: 'jp', name: 'Japan', parts: 7, pct: 21, mfrs: 2, color: '#3b82f6' },
-		{ code: 'tw', name: 'Taiwan', parts: 7, pct: 21, mfrs: 2, color: '#f59e0b' },
-		{ code: 'ch', name: 'Switzerland', parts: 5, pct: 15, mfrs: 3, color: '#22c55e' },
-		{ code: 'ie', name: 'Ireland', parts: 2, pct: 6, mfrs: 1, color: '#a855f7' },
-		{ code: 'at', name: 'Austria', parts: 1, pct: 3, mfrs: 1, color: '#fb923c' },
-		{ code: 'kr', name: 'South Korea', parts: 1, pct: 3, mfrs: 1, color: '#f87171' },
-		{ code: 'de', name: 'Germany', parts: 1, pct: 3, mfrs: 1, color: '#94a3b8' }
-	];
-
-	const sourcingStats = [
-		{ value: '34', label: 'Part types' },
-		{ value: '8', label: 'Countries' },
-		{ value: '18', label: 'Manufacturers' },
-		{ value: '71', label: 'Total placements' }
-	];
-
-	// Build the donut ring from the part counts (which sum to exactly 34 -> 100%)
-	// rather than the rounded percentages, so there's no thin gap at the end.
-	const partsTotal = sourcing.reduce((sum, c) => sum + c.parts, 0);
-	let acc = 0;
-	const donutStops = sourcing.map((c) => {
-		const start = acc;
-		acc += (c.parts / partsTotal) * 100;
-		return `${c.color} ${start.toFixed(2)}% ${acc.toFixed(2)}%`;
-	});
-	const donutBg = `conic-gradient(${donutStops.join(', ')})`;
+	import PartsOrigin from '$lib/components/PartsOrigin.svelte';
 </script>
 
 <svelte:head>
@@ -141,7 +110,7 @@
 </section>
 
 <!-- ░░ Trusted parts / global sourcing ░░ -->
-<section class="section section--tint">
+<section class="section section--tint scroll-pad" id="trusted-parts">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">Where our parts come from</p>
@@ -152,73 +121,8 @@
 			</p>
 		</div>
 
-		<div class="src-stats" data-reveal>
-			{#each sourcingStats as s (s.label)}
-				<div class="src-stat">
-					<strong>{s.value}</strong>
-					<span>{s.label}</span>
-				</div>
-			{/each}
-		</div>
-
-		<div class="src-grid" data-reveal>
-			<div class="src-donut__wrap">
-				<div
-					class="src-donut"
-					style="background:{donutBg}"
-					role="img"
-					aria-label="Component count by country of origin"
-				>
-					<div class="src-donut__hole">
-						<strong>{partsTotal}</strong>
-						<span>Parts</span>
-					</div>
-				</div>
-			</div>
-
-			<ul class="src-list">
-				{#each sourcing as c (c.code)}
-					<li class="src-row">
-						<span class="src-row__dot" style="background:{c.color}"></span>
-						<img
-							class="src-row__flag"
-							src="/assets/flags/{c.code}.svg"
-							alt=""
-							width="22"
-							height="16"
-							loading="lazy"
-						/>
-						<span class="src-row__name">{c.name}</span>
-						<span class="src-row__bar"
-							><span style="width:{c.pct}%;background:{c.color}"></span></span
-						>
-						<span class="src-row__meta"
-							><b>{c.parts}</b> · {c.pct}% · {c.mfrs} mfr{c.mfrs > 1 ? 's' : ''}</span
-						>
-					</li>
-					{/each}
-					<li class="src-row">
-						<span class="src-row__dot" style="background:green"></span>
-						<img
-							class="src-row__flag"
-							src="/assets/flags/jp.svg"
-							alt=""
-							width="22"
-							height="16"
-							loading="lazy"
-						/>
-						<span class="src-row__name">
-							Manufactured & <br /> Assembled
-						</span>
-						<span class="src-row__bar">
-							<span style="width:100%;background:green"></span>
-						</span>
-						<span class="src-row__meta">
-							🛠️ · 100%
-						</span>
-					</li>
-			</ul>
-			<small><sup>*</sup>Our hardware <b><u><i>ONLY</i></u></b> contains parts from countries in the chart above.</small>
+		<div data-reveal>
+			<PartsOrigin />
 		</div>
 	</div>
 </section>
@@ -353,163 +257,6 @@
 </section>
 
 <style>
-	/* ── Trusted parts / global sourcing ─────────────────────────────────────
-	   Built on the design-system tokens (--web-* / --cw-*) so it matches the
-	   marketing theme. Data + donut ring are computed in the script above. */
-	.src-stats {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 16px;
-		margin-top: 8px;
-	}
-	.src-stats > * {
-		min-width: 0;
-	}
-	.src-stat {
-		background: var(--web-surface);
-		border: 1px solid var(--web-border);
-		border-radius: var(--cw-radius-2xl);
-		padding: 20px 22px;
-		box-shadow: var(--web-shadow-card);
-	}
-	.src-stat strong {
-		display: block;
-		font-size: var(--cw-text-4xl);
-		font-weight: 700;
-		line-height: 1;
-		letter-spacing: -0.02em;
-		color: var(--web-heading);
-	}
-	.src-stat span {
-		display: block;
-		margin-top: 8px;
-		font-size: 12px;
-		font-weight: 600;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--web-muted);
-	}
-
-	.src-grid {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		align-items: center;
-		gap: 48px;
-		margin-top: 24px;
-		padding: 32px;
-		background: var(--web-surface);
-		border: 1px solid var(--web-border);
-		border-radius: var(--web-radius-card);
-		box-shadow: var(--web-shadow-card);
-	}
-	.src-donut__wrap {
-		display: flex;
-		justify-content: center;
-	}
-	.src-donut {
-		position: relative;
-		width: 220px;
-		height: 220px;
-		border-radius: 50%;
-	}
-	.src-donut__hole {
-		position: absolute;
-		inset: 22%;
-		border-radius: 50%;
-		background: var(--web-surface);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-	.src-donut__hole strong {
-		font-size: var(--cw-text-3xl);
-		font-weight: 700;
-		line-height: 1;
-		color: var(--web-heading);
-	}
-	.src-donut__hole span {
-		margin-top: 4px;
-		font-size: 11px;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--web-muted);
-	}
-
-	.src-list {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 14px;
-	}
-	.src-row {
-		display: grid;
-		grid-template-columns: 10px 22px minmax(110px, 160px) 1fr auto;
-		align-items: center;
-		gap: 10px;
-	}
-	.src-row__dot {
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-	}
-	.src-row__flag {
-		width: 22px;
-		height: 16px;
-		border-radius: 3px;
-		object-fit: cover;
-		box-shadow: 0 0 0 1px rgba(8, 16, 34, 0.12);
-		display: block;
-	}
-	.src-row__name {
-		font-size: 15px;
-		font-weight: 700;
-		color: var(--web-heading);
-		white-space: nowrap;
-	}
-	.src-row__bar {
-		height: 8px;
-		border-radius: 9999px;
-		background: var(--web-bg-soft);
-		overflow: hidden;
-	}
-	.src-row__bar span {
-		display: block;
-		height: 100%;
-		border-radius: 9999px;
-	}
-	.src-row__meta {
-		font-size: 13px;
-		color: var(--web-muted);
-		white-space: nowrap;
-	}
-	.src-row__meta b {
-		font-weight: 700;
-		color: var(--web-heading);
-	}
-
-	@media (max-width: 980px) {
-		.src-stats {
-			grid-template-columns: 1fr 1fr;
-		}
-		.src-grid {
-			grid-template-columns: 1fr;
-			gap: 28px;
-			padding: 24px;
-		}
-	}
-	@media (max-width: 560px) {
-		.src-row {
-			grid-template-columns: 10px 22px 1fr auto;
-		}
-		.src-row__bar {
-			display: none;
-		}
-	}
-
 	/* ── App UI showcase (navy section) ──────────────────────────────────────
 	   Each device sits in its own column - no overlap - bottom-aligned on a shared
 	   shelf with a labelled caption. flex-wrap + per-device flex-basis means a
