@@ -1,23 +1,24 @@
 <script lang="ts">
-	// Where the CropWatch sensor board's parts come from, by country of origin.
-	// Distinct parts are counted (29 total); hovering a donut segment or a
-	// legend row highlights the matching pair.
+	// Where the parts on the CropWatch boards (main + sensor) come from, by
+	// country of origin. Distinct part types are counted (34 total); hovering a
+	// donut segment or a legend row highlights the matching pair.
 	type Origin = { name: string; flag: string; parts: number; mfrs: number; color: string };
 
 	const ORIGINS: Origin[] = [
-		{ name: 'United States', flag: '🇺🇸', parts: 9, mfrs: 7, color: '#12c3a0' },
+		{ name: 'United States', flag: '🇺🇸', parts: 10, mfrs: 7, color: '#12c3a0' },
 		{ name: 'Japan', flag: '🇯🇵', parts: 7, mfrs: 2, color: '#2f9fe6' },
 		{ name: 'Taiwan', flag: '🇹🇼', parts: 7, mfrs: 2, color: '#f4b63c' },
-		{ name: 'Switzerland', flag: '🇨🇭', parts: 2, mfrs: 2, color: '#33c56a' },
+		{ name: 'Switzerland', flag: '🇨🇭', parts: 5, mfrs: 3, color: '#33c56a' },
 		{ name: 'Ireland', flag: '🇮🇪', parts: 2, mfrs: 1, color: '#a35be6' },
+		{ name: 'Austria', flag: '🇦🇹', parts: 1, mfrs: 1, color: '#f0883c' },
 		{ name: 'South Korea', flag: '🇰🇷', parts: 1, mfrs: 1, color: '#f56b6b' },
 		{ name: 'Germany', flag: '🇩🇪', parts: 1, mfrs: 1, color: '#9aa4b2' }
 	];
 
-	const TOTAL_PARTS = ORIGINS.reduce((s, o) => s + o.parts, 0); // 29
-	const COUNTRIES = ORIGINS.length; // 7
-	const MANUFACTURERS = ORIGINS.reduce((s, o) => s + o.mfrs, 0); // 16
-	const PLACEMENTS = 60; // total component placements on the board
+	const TOTAL_PARTS = ORIGINS.reduce((s, o) => s + o.parts, 0); // 34
+	const COUNTRIES = ORIGINS.length; // 8
+	const MANUFACTURERS = ORIGINS.reduce((s, o) => s + o.mfrs, 0); // 18
+	const PLACEMENTS = 71; // total component placements across both boards
 
 	// donut segments (pathLength = 100 via r ≈ 15.915). GAP leaves a hair of
 	// space between segments.
@@ -98,7 +99,7 @@
 	<div>
 		<p>
 			<sup>*</sup><small
-				>Countries not shown here have no parts on our sensor board.</small
+				>Countries not shown here have no parts on our boards (main board or sensor board).</small
 			>
 		</p>
 	</div>

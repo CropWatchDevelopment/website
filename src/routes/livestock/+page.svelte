@@ -59,7 +59,7 @@
 			<div class="hero__badges">
 				<span><span class="material-symbols-rounded">device_thermostat</span> Temp &amp; humidity</span>
 				<span><span class="material-symbols-rounded">air</span> Heat-stress alerts</span>
-				<span><span class="material-symbols-rounded">battery_5_bar</span> 10-yr battery</span>
+				<span><span class="material-symbols-rounded">battery_5_bar</span> 5-yr battery</span>
 				<span><span class="material-symbols-rounded">cloud</span> CO₂ readings</span>
 				<span><span class="material-symbols-rounded">detector_alarm</span> Ammonia (NH₃)</span>
 			</div>
@@ -104,7 +104,7 @@
 				<span class="feat__icon"><span class="material-symbols-rounded">device_thermostat</span></span>
 				<h3>Temperature</h3>
 				<p class="param-target">
-					<span class="material-symbols-rounded">target</span> Hold a tight, age-specific comfort band
+					<span class="material-symbols-rounded">target</span> Target 64-75 °F (18-24 °C) for adult birds · age-specific for chicks
 				</p>
 				<p>
 					Birds only convert feed to weight efficiently inside a narrow comfort zone. Stray above it
@@ -291,14 +291,16 @@
 		</div>
 		<dl class="pspecs__grid" data-reveal>
 			<div class="spec-row"><dt>Measures</dt><dd>Temp · RH · CO₂ · NH₃</dd></div>
+			<div class="spec-row"><dt>Sensors</dt><dd>Sensirion SHT40 + SCD41 (temp · RH · CO₂)</dd></div>
 			<div class="spec-row"><dt>Temp range</dt><dd>-40 °C to +85 °C</dd></div>
-			<div class="spec-row"><dt>CO₂ range</dt><dd>0-10,000 ppm</dd></div>
+			<div class="spec-row"><dt>CO₂ range</dt><dd>400-5,000 ppm (NDIR)</dd></div>
 			<div class="spec-row"><dt>Ammonia</dt><dd>0-100 ppm (NH₃)</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.3 °C / ±2 %RH</dd></div>
+			<div class="spec-row"><dt>Accuracy</dt><dd>±0.2 °C / ±1.8 %RH</dd></div>
 			<div class="spec-row"><dt>Verification</dt><dd>Dual-sensor cross-check</dd></div>
 			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
-			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years</dd></div>
-			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready</dd></div>
+			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
+			<div class="spec-row"><dt>Logging</dt><dd>Every 15 min · 1 year retained · CSV</dd></div>
+			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready, potted electronics</dd></div>
 			<div class="spec-row"><dt>Coverage</dt><dd>Up to 15 km per gateway</dd></div>
 		</dl>
 	</div>
@@ -329,7 +331,8 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					The enclosure is IP66-rated and washdown-ready. If a sensing module ever degrades, the
+					The board is conformal-coated and the electronics are potted in resin for high-humidity,
+					high-dust houses. The enclosure is IP66-rated and washdown-ready. If a sensing module ever degrades, the
 					dual-sensor design catches it and you swap the module yourself - no return shipment.
 				</p>
 			</details>

@@ -46,8 +46,8 @@
 				hospitals, grocery and cold storage - with HACCP-ready records an inspector can trust.
 			</p>
 			<div class="hero__badges">
-				<span><span class="material-symbols-rounded">ac_unit</span> −80 °C to +25 °C</span>
-				<span><span class="material-symbols-rounded">target</span> ±0.3 °C</span>
+				<span><span class="material-symbols-rounded">ac_unit</span> −40 °C to +85 °C</span>
+				<span><span class="material-symbols-rounded">target</span> ±0.48 °C</span>
 				<span><span class="material-symbols-rounded">description</span> HACCP-ready</span>
 				<span><span class="material-symbols-rounded">verified</span> ISO/IEC 17025</span>
 			</div>
@@ -140,7 +140,7 @@
 				<div class="step__n">3</div>
 				<h3>Set your limits</h3>
 				<p>
-					Define safe ranges per unit. Pick who gets an SMS, email or call - with no caps on rules
+					Define safe ranges per unit. Pick who gets an SMS, email or call - or trigger a stack light on the floor - with no caps on rules
 					or recipients.
 				</p>
 			</div>
@@ -181,7 +181,7 @@
 					to back-fill
 				</li>
 				<li>
-					<span class="material-symbols-rounded">check</span> One-click PDF and CSV exports for any date
+					<span class="material-symbols-rounded">check</span> One-click CSV export plus automatic daily and weekly PDF reports for any date
 					range
 				</li>
 				<li>
@@ -231,7 +231,7 @@
 				>
 				<h3>Dual-sensor design - error, never a lie</h3>
 				<p>
-					Two independent elements cross-check every reading. If they disagree, the device refuses
+					Two independent Sensirion sensors (SHT43 + SHT40) cross-check every reading. If they disagree, the device refuses
 					to publish and raises an error code instead. You will never log an inaccurate number - <b><u>"No
 					Data" beats "Wrong Data" every single time.</u></b>
 				</p>
@@ -241,8 +241,9 @@
 				<h3>Field-replaceable - no calibration, no downtime</h3>
 				<p>
 					On-site calibration eats hours and, without lab-grade reference equipment, introduces
-					error. CropWatch skips it entirely: snap in a pre-calibrated module in under a minute. No
-					truck roll, no guesswork, no gap in your records.
+					error. CropWatch skips it entirely: the sensing elements drift less than 0.01 °C a year,
+					typical, and when a detector does reach end of life you snap in a pre-calibrated module in
+					under a minute. No truck roll, no guesswork, no gap in your records.
 				</p>
 			</article>
 			<article class="feat" data-reveal>
@@ -251,9 +252,10 @@
 				>
 				<h3>User-replaceable battery</h3>
 				<p>
-					When the cell finally runs down after years of service, you swap it yourself - no
-					returning the unit, no proprietary service call. The sensor stays exactly where it is and
-					keeps right on logging.
+					A single Saft lithium thionyl chloride cell runs up to 10 years at the sensor's 10-minute
+					reporting cadence. When it finally runs down, you swap it yourself - no returning the
+					unit, no proprietary service call. The sensor stays exactly where it is and keeps right on
+					logging.
 				</p>
 			</article>
 			<article class="feat" data-reveal="1">
@@ -271,7 +273,8 @@
 				>
 				<h3>Proven stability &amp; real support</h3>
 				<p>
-					An unmatched track record for long-term sensor stability, backed by people who actually
+					An unmatched track record for long-term sensor stability - annual temperature drift is
+					typically under 0.01 °C - backed by people who actually
 					pick up when you need them. The hardware self-audits and flags drift before it misleads
 					you - and we're there when it counts.
 				</p>
@@ -302,9 +305,10 @@
 				<p>
 					Ordinary sensors give up the moment something glitches. CropWatch is built around EN
 					50271-compatible safeguard circuitry - the functional-safety discipline used in
-					life-critical gas detection - so a power dip, transient or internal fault can't quietly
-					end the watch. The hardware catches the fault, holds a safe state and restarts itself back
-					into monitoring automatically - no manual reset, no service call, no gap in your record.
+					life-critical gas detection - backed by two independent watchdogs: a software monitor and a
+					separate hardware circuit on the board. If the processor ever hangs or an internal fault
+					hits, the device catches it, holds a safe state and restarts itself back into monitoring
+					automatically - no manual reset, no service call, no gap in your record.
 				</p>
 			</article>
 		</div>
@@ -321,10 +325,12 @@
 		<dl class="pspecs__grid" data-reveal>
 			<div class="spec-row"><dt>Measures</dt><dd>Temp · RH · dew point</dd></div>
 			<div class="spec-row"><dt>Range</dt><dd>−40 °C to +85 °C</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.3 °C / ±2 %RH</dd></div>
-			<div class="spec-row"><dt>Verification</dt><dd>Dual-sensor cross-check</dd></div>
+			<div class="spec-row"><dt>Accuracy</dt><dd>±0.48 °C / ±1.8 %RH</dd></div>
+			<div class="spec-row"><dt>Verification</dt><dd>Dual Sensirion sensors (SHT43 + SHT40)</dd></div>
 			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
-			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years</dd></div>
+			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years (user-replaceable)</dd></div>
+			<div class="spec-row"><dt>Logging</dt><dd>Every 10 min · 2 years retained · CSV + PDF</dd></div>
+			<div class="spec-row"><dt>Offline buffer</dt><dd>Onboard FRAM · auto re-send after outage</dd></div>
 			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, food-safe</dd></div>
 			<div class="spec-row"><dt>Calibration</dt><dd>NIST · ISO/IEC 17025</dd></div>
 		</dl>
@@ -382,8 +388,21 @@
 				</summary>
 				<p>
 					The dual-sensor design catches a drifting element and withholds the reading rather than
-					logging a wrong one. The hardware also self-audits and raises a fault. When a module
-					reaches end of life, you swap it yourself in under a minute.
+					logging a wrong one. The hardware also self-audits and raises a fault. Annual drift is
+					typically under 0.01 °C, so most modules never need replacing early - and when one does
+					reach end of life, you swap it yourself in under a minute.
+				</p>
+			</details>
+			<details>
+				<summary>
+					What happens if the power or internet goes out?
+					<span class="material-symbols-rounded">add</span>
+				</summary>
+				<p>
+					Readings keep landing in the sensor's onboard FRAM memory - a storage type rated for more
+					than a trillion write cycles that holds data for decades without power. The device buffers
+					up to 36 readings (about 6 hours at its 10-minute cadence) and re-sends them automatically
+					when the connection returns, so your log has no holes.
 				</p>
 			</details>
 			<details>

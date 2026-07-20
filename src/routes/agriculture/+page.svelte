@@ -343,6 +343,10 @@
 					hardware
 				</li>
 				<li><span class="material-symbols-rounded">check</span> Swap your own sensors at season's end</li>
+				<li>
+					<span class="material-symbols-rounded">check</span> Condensation-tolerant Sensirion sensors
+					recover even after 100 %RH nights
+				</li>
 			</ul>
 			<p style="margin-top:22px">
 				<a href="/contact" class="cta-pill"
@@ -364,11 +368,13 @@
 			<div class="spec-row"><dt>Air sensor</dt><dd>CW-AIR-THC (T·RH·CO₂)</dd></div>
 			<div class="spec-row"><dt>Soil sensor</dt><dd>CW-SS-TME (moisture·temp·EC)</dd></div>
 			<div class="spec-row"><dt>Calculated</dt><dd>VPD · PPFD · DLI</dd></div>
-			<div class="spec-row"><dt>Air accuracy</dt><dd>±0.3 °C / ±2 %RH</dd></div>
-			<div class="spec-row"><dt>CO₂ range</dt><dd>0-10,000 ppm</dd></div>
-			<div class="spec-row"><dt>Soil EC</dt><dd>0-20 mS/cm</dd></div>
+			<div class="spec-row"><dt>Air accuracy</dt><dd>±0.2 °C / ±1.8 %RH</dd></div>
+			<div class="spec-row"><dt>CO₂ range</dt><dd>400-5,000 ppm (NDIR)</dd></div>
+			<div class="spec-row"><dt>Soil moisture</dt><dd>0-100 % (±8 %)</dd></div>
+			<div class="spec-row"><dt>Soil temp</dt><dd>−4 to 158 °F (−20 to 70 °C)</dd></div>
+			<div class="spec-row"><dt>Soil EC</dt><dd>0-3.0 mS/cm ±20 % · 3.0-8.0 ±40 %</dd></div>
 			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
-			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years</dd></div>
+			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
 			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, UV-stable</dd></div>
 			<div class="spec-row"><dt>Range</dt><dd>Up to 15 km per gateway</dd></div>
 		</dl>
@@ -429,6 +435,17 @@
 				<p>
 					Yes. Air, soil and light sensors all report to one LoRaWAN gateway, which covers up to 15
 					km line-of-sight - enough for greenhouses, fields and outbuildings across a whole farm.
+				</p>
+			</details>
+			<details>
+				<summary>
+					Can I change what a device measures later?
+					<span class="material-symbols-rounded">add</span>
+				</summary>
+				<p>
+					Yes. The sensing module is user-replaceable, so the same unit can switch between air, soil
+					and light modules - swap the module and the device recognises it and carries on. No new
+					hardware purchase, no reconfiguration.
 				</p>
 			</details>
 		</div>

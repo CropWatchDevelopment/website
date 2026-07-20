@@ -74,7 +74,7 @@
 				<span><span class="material-symbols-rounded">cached</span> Tool-free swap</span>
 				<span><span class="material-symbols-rounded">workspace_premium</span> Per-serial certificate</span>
 				<span><span class="material-symbols-rounded">fact_check</span> Dual-sensor</span>
-				<span><span class="material-symbols-rounded">target</span> ±0.3 °C</span>
+				<span><span class="material-symbols-rounded">target</span> ±0.48 °C</span>
 			</div>
 		</div>
 		<div class="hero__media">
@@ -210,7 +210,7 @@
 			<p class="eyebrow">Built to a bill of materials</p>
 			<h2>Where the parts come from.</h2>
 			<p class="section__intro">
-				Every CropWatch sensor board is assembled from 29 distinct parts across 7 countries and 16
+				Every CropWatch sensor board is assembled from 34 part types across 8 countries and 18
 				manufacturers - chosen for reliability, not the lowest bid.
 			</p>
 		</div>
@@ -230,7 +230,8 @@
 		<dl class="pspecs__grid" data-reveal>
 			<div class="spec-row"><dt>Air temp / RH</dt><dd>CW-AIR-TH module</dd></div>
 			<div class="spec-row"><dt>Soil / substrate</dt><dd>CW-SS-TME module</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.3 °C / ±2 %RH</dd></div>
+			<div class="spec-row"><dt>Accuracy</dt><dd>±0.48 °C / ±1.8 %RH (TH module)</dd></div>
+			<div class="spec-row"><dt>Annual drift</dt><dd>typ. &lt;0.01 °C/yr</dd></div>
 			<div class="spec-row"><dt>Calibration</dt><dd>ISO/IEC 17025 · NIST</dd></div>
 			<div class="spec-row"><dt>Certificate</dt><dd>Per serial number</dd></div>
 			<div class="spec-row"><dt>Install time</dt><dd>&lt; 60 seconds</dd></div>
@@ -274,7 +275,8 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					It depends on your environment and compliance schedule. Many customers re-certify on an
+					It depends on your environment and compliance schedule. Annual temperature drift is
+					typically under 0.01 °C, so drift alone rarely forces a swap. Many customers re-certify on an
 					annual cycle; the self-auditing hardware will also flag a module that has drifted out of
 					spec.
 				</p>

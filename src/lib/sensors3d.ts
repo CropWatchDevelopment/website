@@ -40,8 +40,9 @@ export const SENSORS: Sensor[] = [
 			'The everyday workhorse for cold-chain and food service. A food-safe housing reads air temperature, relative humidity and dew point with dual-sensor verification.',
 		measures: ['Temperature', 'Humidity', 'Dew point'],
 		specs: [
-			['Accuracy', '±0.3 °C / ±2 %RH'],
+			['Accuracy', '±0.48 °C / ±1.8 %RH'],
 			['Range', '−40 to +85 °C'],
+			['Annual drift', 'typ. <0.01 °C/yr'],
 			['Housing', 'Food-safe, IP66'],
 			['Verification', 'Dual-sensor']
 		]
@@ -56,7 +57,7 @@ export const SENSORS: Sensor[] = [
 			'A horticultural quantum sensor measuring photosynthetic photon flux density at the canopy, with PPFD and a running DLI total derived on-device.',
 		measures: ['PPFD', 'DLI'],
 		specs: [
-			['Spectral range', '400-700 nm (PAR)'],
+			['Spectral range', '350-1000 nm (PAR)'],
 			['Output', 'PPFD µmol/m²/s'],
 			['Derived', 'DLI mol/m²/day'],
 			['Housing', 'UV-stable, IP66']
@@ -72,9 +73,9 @@ export const SENSORS: Sensor[] = [
 			'Air quality in one module: NDIR carbon dioxide plus temperature and humidity, with VPD derived for greenhouses and CO₂ ventilation alerts for barns.',
 		measures: ['CO₂', 'Temperature', 'Humidity', 'VPD'],
 		specs: [
-			['CO₂ range', '0-10,000 ppm'],
+			['CO₂ range', '400-5,000 ppm'],
 			['CO₂ method', 'NDIR'],
-			['Accuracy', '±0.3 °C / ±2 %RH'],
+			['Accuracy', '±0.2 °C / ±1.8 %RH'],
 			['Derived', 'VPD (kPa)']
 		]
 	},
@@ -88,8 +89,8 @@ export const SENSORS: Sensor[] = [
 			'Root-zone insight from a rugged in-ground probe: soil moisture, soil temperature and EC for irrigation and nutrient decisions.',
 		measures: ['Soil moisture', 'Soil temp', 'EC'],
 		specs: [
-			['Moisture', 'Volumetric %'],
-			['Soil EC', '0-20 mS/cm'],
+			['Moisture', '0-100 % (±8 %)'],
+			['Soil EC', '0-3.0 mS/cm ±20 % · 3.0-8.0 ±40 %'],
 			['Probe', 'Stainless, IP68'],
 			['Connectivity', 'LoRaWAN (Class A)']
 		]
