@@ -4,11 +4,89 @@
 	import PartsOrigin from '$lib/components/PartsOrigin.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import { productSchema } from '$lib/seo/schema';
-	import { initSensorViewer, SENSORS } from '$lib/sensors3d';
 
-	// Render the first sensor's panel server-side (real content for SEO / no-JS);
-	// the viewer overwrites it as tabs are clicked.
-	const first = SENSORS[0];
+	interface Sensor {
+		id: string;
+		icon: string;
+		name: string;
+		tag: string;
+		blurb: string;
+		measures: string[];
+		specs: [string, string][];
+	}
+
+	const SENSORS: Sensor[] = [
+		{
+			id: 'th',
+			icon: 'thermostat',
+			name: 'Food-Safe Temperature / Humidity',
+			tag: 'CW-AIR-TH',
+			blurb:
+				'The everyday workhorse for cold-chain and food service. A food-safe housing reads air temperature, relative humidity and dew point with dual-sensor verification.',
+			measures: ['Temperature', 'Humidity', 'Dew point'],
+			specs: [
+				['Accuracy', '±0.48 °C / ±1.8 %RH'],
+				['Range', '−40 to +85 °C'],
+				['Annual drift', 'typ. <0.01 °C/yr'],
+				['Housing', 'Food-safe, IP66'],
+				['Verification', 'Dual-sensor']
+			]
+		},
+		{
+			id: 'ppfd',
+			icon: 'wb_sunny',
+			name: 'PPFD - Photosynthetic Light',
+			tag: 'CW-PPFD',
+			blurb:
+				'A horticultural quantum sensor measuring photosynthetic photon flux density at the canopy, with PPFD and a running DLI total derived on-device.',
+			measures: ['PPFD', 'DLI'],
+			specs: [
+				['Spectral range', '350-1000 nm (PAR)'],
+				['Output', 'PPFD µmol/m²/s'],
+				['Derived', 'DLI mol/m²/day'],
+				['Housing', 'UV-stable, IP66']
+			]
+		},
+		{
+			id: 'co2',
+			icon: 'cloud',
+			name: 'CO₂ / Temperature / Humidity',
+			tag: 'CW-AIR-THC',
+			blurb:
+				'Air quality in one module: NDIR carbon dioxide plus temperature and humidity, with VPD derived for greenhouses and CO₂ ventilation alerts for barns.',
+			measures: ['CO₂', 'Temperature', 'Humidity', 'VPD'],
+			specs: [
+				['CO₂ range', '400-5,000 ppm'],
+				['CO₂ method', 'NDIR'],
+				['Accuracy', '±0.2 °C / ±1.8 %RH'],
+				['Derived', 'VPD (kPa)']
+			]
+		},
+		{
+			id: 'soil',
+			icon: 'grass',
+			name: 'Soil Sensor',
+			tag: 'CW-SS-TME',
+			blurb:
+				'Root-zone insight from a rugged in-ground probe: soil moisture, soil temperature and EC for irrigation and nutrient decisions.',
+			measures: ['Soil moisture', 'Soil temp', 'EC'],
+			specs: [
+				['Moisture', '0-100 % (±8 %)'],
+				['Soil EC', '0-3.0 mS/cm ±20 % · 3.0-8.0 ±40 %'],
+				['Probe', 'Stainless, IP68'],
+				['Connectivity', 'LoRaWAN (Class A)']
+			]
+		}
+	];
+
+	let active = $state(SENSORS[0]);
+
+	// Honor the old 3D viewer's ?sensor= deep links.
+	onMount(() => {
+		const requested = new URL(window.location.href).searchParams.get('sensor');
+		const match = SENSORS.find((s) => s.id === requested);
+		if (match) active = match;
+	});
 
 	// One Product per sensor module (name + SKU + description). Bare Products (no
 	// price/rating): valid + entity-strengthening, not rich-snippet eligible.
@@ -21,10 +99,6 @@
 			url: '/replacement-sensors'
 		})
 	);
-
-	// Tabs + spec panel render immediately; Babylon loads from CDN and the 3D
-	// scene spins up lazily when the #sensorTypes section nears the viewport.
-	onMount(() => initSensorViewer());
 </script>
 
 <svelte:head>
@@ -43,7 +117,7 @@
 	/>
 	<meta
 		property="og:description"
-		content="Pre-calibrated sensor modules you swap yourself in under a minute - each with its own per-serial ISO/IEC 17025 certificate. View all four in interactive 3D."
+		content="Pre-calibrated sensor modules you swap yourself in under a minute - each with its own per-serial ISO/IEC 17025 certificate. Compare all four modules side by side."
 	/>
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://cropwatch.io/replacement-sensors" />
@@ -93,7 +167,7 @@
 	</div>
 </section>
 
-<!-- sensor types 3D -->
+<!-- sensor module picker -->
 <section class="section section--tint" id="sensorTypes">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
@@ -104,27 +178,30 @@
 				module types across a site and swap any of them yourself.
 			</p>
 		</div>
-		<div class="v3d" data-reveal>
-			<div class="v3d-tabs" id="v3dTabs"></div>
-			<div class="v3d-stage">
-				<span class="v3d-stage__badge"
-					><span class="material-symbols-rounded">view_in_ar</span> Interactive 3D</span
-				>
-				<canvas id="v3dCanvas"></canvas>
-				<div class="v3d__status" id="v3dStatus"></div>
-				<span class="v3d-stage__hint"
-					><span class="material-symbols-rounded">drag_pan</span> Drag to rotate · scroll to zoom</span
-				>
+		<div class="picker" data-reveal>
+			<div class="picker-tabs">
+				{#each SENSORS as s (s.id)}
+					<button
+						type="button"
+						class="picker-tab"
+						class:is-active={active.id === s.id}
+						aria-pressed={active.id === s.id}
+						onclick={() => (active = s)}
+					>
+						<span class="picker-tab__ic"><span class="material-symbols-rounded">{s.icon}</span></span>
+						<span class="picker-tab__tx"><b>{s.name}</b><span>{s.tag}</span></span>
+					</button>
+				{/each}
 			</div>
-			<div class="v3d-panel" id="v3dPanel">
-				<span class="v3d-panel__tag" data-tag>{first.tag}</span>
-				<h3 data-name>{first.name}</h3>
-				<p class="v3d-panel__blurb" data-blurb>{first.blurb}</p>
-				<div class="v3d-measures" data-measures>
-					{#each first.measures as m (m)}<span class="v3d-chip">{m}</span>{/each}
+			<div class="picker-panel">
+				<span class="picker-panel__tag">{active.tag}</span>
+				<h3>{active.name}</h3>
+				<p class="picker-panel__blurb">{active.blurb}</p>
+				<div class="picker-measures">
+					{#each active.measures as m (m)}<span class="picker-chip">{m}</span>{/each}
 				</div>
-				<dl class="v3d-specs" data-specs>
-					{#each first.specs as [k, v] (k)}<div class="v3d-spec"><dt>{k}</dt><dd>{v}</dd></div>{/each}
+				<dl class="picker-specs">
+					{#each active.specs as [k, v] (k)}<div class="picker-spec"><dt>{k}</dt><dd>{v}</dd></div>{/each}
 				</dl>
 			</div>
 		</div>
@@ -300,3 +377,41 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	.picker { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+	.picker-tabs { display: flex; flex-direction: column; gap: 10px; }
+	.picker-tab { display: flex; align-items: center; gap: 13px; text-align: left; cursor: pointer; font-family: inherit;
+		background: var(--web-surface); border: 1px solid var(--web-border); border-radius: var(--cw-radius-xl); padding: 14px 15px;
+		box-shadow: var(--web-shadow-card); transition: border-color var(--cw-duration-fast), transform var(--cw-duration-fast), background var(--cw-duration-fast); }
+	.picker-tab:hover { transform: translateX(3px); border-color: var(--web-border-strong); }
+	.picker-tab.is-active { border-color: var(--web-primary); background: var(--web-primary-soft); }
+	.picker-tab__ic { display: grid; place-items: center; width: 42px; height: 42px; flex: none; border-radius: var(--cw-radius-lg);
+		background: var(--web-accent-soft); color: var(--web-accent); }
+	.picker-tab.is-active .picker-tab__ic { background: var(--web-primary); color: #fff; }
+	.picker-tab__ic .material-symbols-rounded { font-size: 24px; }
+	.picker-tab__tx b { display: block; font-size: 14px; color: var(--cw-ink); line-height: 1.2; }
+	.picker-tab__tx span { font-size: 12px; color: var(--web-muted); font-family: var(--cw-font-mono); }
+
+	.picker-panel { display: flex; flex-direction: column; gap: 14px; background: var(--web-surface);
+		border: 1px solid var(--web-border); border-radius: var(--web-radius-card); box-shadow: var(--web-shadow-card);
+		padding: 24px 26px; }
+	.picker-panel__tag { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; font-family: var(--cw-font-mono);
+		color: var(--web-primary); background: var(--web-primary-soft); padding: 5px 11px; border-radius: 9999px; }
+	.picker-panel h3 { font-size: var(--cw-text-xl); margin: 0; line-height: 1.25; }
+	.picker-panel__blurb { font-size: 14px; color: var(--web-muted); line-height: 1.7; margin: 0; }
+	.picker-measures { display: flex; flex-wrap: wrap; gap: 7px; }
+	.picker-chip { font-size: 12px; font-weight: 600; color: var(--web-accent); background: var(--web-accent-soft);
+		border: 1px solid color-mix(in srgb, var(--web-accent) 28%, transparent); border-radius: 9999px; padding: 5px 11px; }
+	.picker-specs { display: grid; gap: 0; margin: 4px 0 0; }
+	.picker-spec { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--web-border); }
+	.picker-spec dt { font-size: 12.5px; color: var(--web-muted); font-weight: 600; }
+	.picker-spec dd { font-size: 12.5px; color: var(--cw-ink); font-weight: 600; font-family: var(--cw-font-mono); margin: 0; text-align: right; }
+
+	@media (max-width: 720px) {
+		.picker { grid-template-columns: 1fr; }
+		.picker-tabs { flex-direction: row; overflow-x: auto; }
+		.picker-tab { min-width: 220px; }
+		.picker-panel { padding: 20px 18px; }
+	}
+</style>
