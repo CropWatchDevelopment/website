@@ -273,7 +273,11 @@
 			</div>
 			<div class="calc-total" class:is-negative={savingsPerYear < 0}>
 				<span>Your estimated savings</span>
-				<strong>{usd.format(savingsPerYear)}<small>/yr</small></strong>
+				<strong
+					>{usd.format(savingsPerYear)}<small>/yr</small>{#if savingsPerYear < 0}<span
+							class="calc-total__nope">Not worth it</span
+						>{/if}</strong
+				>
 				<span class="calc-total__sub">
 					{#if savingsPerYear >= 0}
 						{usd.format(savingsPerMonth)} back every month - and {num.format(checksPerYear)} checks
@@ -602,6 +606,22 @@
 	.calc-total.is-negative > span:first-child,
 	.calc-total.is-negative strong {
 		color: var(--cw-ink);
+	}
+	.calc-total__nope {
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 12px;
+		font-family: var(--cw-font-family);
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--cw-danger-500, #dc2626);
+		background: color-mix(in srgb, var(--cw-danger-500, #dc2626) 10%, transparent);
+		border: 1px solid color-mix(in srgb, var(--cw-danger-500, #dc2626) 35%, transparent);
+		border-radius: 999px;
+		padding: 4px 11px;
+		white-space: nowrap;
 	}
 	.calc-cta {
 		justify-content: center;
