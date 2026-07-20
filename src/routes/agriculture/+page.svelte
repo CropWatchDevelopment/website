@@ -332,7 +332,7 @@
 			<p class="eyebrow">Coverage without wires</p>
 			<h2>One gateway covers the whole operation.</h2>
 			<p class="lead">
-				<a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> reaches up to 8 miles line-of-sight, so a single gateway can link greenhouses, fields
+				<a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> reaches up to 8 miles line-of-sight, so a single gateway can link greenhouses, fields
 				and outbuildings on one farm - no cellular bills, no trenching cable.
 			</p>
 			<ul class="diff-list" style="margin-top:8px">
@@ -373,7 +373,7 @@
 			<div class="spec-row"><dt>Soil moisture</dt><dd>0-100 % (±8 %)</dd></div>
 			<div class="spec-row"><dt>Soil temp</dt><dd>−4 to 158 °F (−20 to 70 °C)</dd></div>
 			<div class="spec-row"><dt>Soil EC</dt><dd>0-3.0 mS/cm ±20 % · 3.0-8.0 ±40 %</dd></div>
-			<div class="spec-row"><dt>Connectivity</dt><dd><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> (Class A)</dd></div>
+			<div class="spec-row"><dt>Connectivity</dt><dd><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> (Class A)</dd></div>
 			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
 			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, UV-stable</dd></div>
 			<div class="spec-row"><dt>Range</dt><dd>Up to 8 miles per gateway (in absolute optimal conditions)</dd></div>
@@ -429,7 +429,7 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Yes. Air, soil and light sensors all report to one <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> gateway, which covers up to 8
+					Yes. Air, soil and light sensors all report to one <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> gateway, which covers up to 8
 					miles line-of-sight - enough for greenhouses, fields and outbuildings across a whole farm.
 				</p>
 			</details>

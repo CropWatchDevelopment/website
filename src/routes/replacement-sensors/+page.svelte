@@ -76,7 +76,7 @@
 				['Probe', 'Stainless, IP68'],
 				[
 					'Connectivity',
-					'<a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> (Class A)'
+					'<a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> (Class A)'
 				]
 			]
 		}

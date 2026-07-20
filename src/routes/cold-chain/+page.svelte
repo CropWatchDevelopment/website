@@ -132,7 +132,7 @@
 				<div class="step__n">2</div>
 				<h3>Pair to a gateway</h3>
 				<p>
-					One <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> gateway covers a whole building - even through thick freezer walls - and
+					One <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> gateway covers a whole building - even through thick freezer walls - and
 					connects to the cloud.
 				</p>
 			</div>
@@ -327,7 +327,7 @@
 			<div class="spec-row"><dt>Range</dt><dd>−40 to +185 °F (−40 to +85 °C)</dd></div>
 			<div class="spec-row"><dt>Accuracy</dt><dd>±0.9 °F (±0.48 °C) / ±1.8 %RH</dd></div>
 			<div class="spec-row"><dt>Verification</dt><dd>Dual Sensirion sensors (<a class="termlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a> + <a class="termlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>)</dd></div>
-			<div class="spec-row"><dt>Connectivity</dt><dd><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> (Class A)</dd></div>
+			<div class="spec-row"><dt>Connectivity</dt><dd><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> (Class A)</dd></div>
 			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years (user-replaceable)</dd></div>
 			<div class="spec-row"><dt>Logging</dt><dd>Every 10 min · 2 years retained · CSV + PDF</dd></div>
 			<div class="spec-row"><dt>Offline buffer</dt><dd>Onboard <a class="termlink" href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FRAM</a> · auto re-send after outage</dd></div>
@@ -361,7 +361,7 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Yes. <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN</a> punches through thick freezer walls far better than Wi-Fi or Bluetooth, and a
+					Yes. <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> punches through thick freezer walls far better than Wi-Fi or Bluetooth, and a
 					single gateway typically covers an entire building. For very large or below-grade sites we
 					add a second gateway.
 				</p>
