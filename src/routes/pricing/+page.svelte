@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { afterNavigate, replaceState } from '$app/navigation';
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import { breadcrumbSchema } from '$lib/seo/schema';
+	import { absUrl } from '$lib/seo/site';
 
 	/* ══════════════════════════════════════════════════════════════════
 	   料金の設定値（すべて税込・円）- ここを編集すれば表全体が変わります。
@@ -45,12 +47,12 @@
 			label: '畜産・養鶏',
 			icon: 'pets',
 			sensorLabel: '温湿度・CO₂センサー利用料',
-			baseFee: 16500,
+			baseFee: 5500,
 			sensorFee: 880,
-			minutesPerCheck: 20,
+			minutesPerCheck: 15,
 			defaultCount: 4,
-			defaultChecks: 2,
-			defaultLocations: 1
+			defaultChecks: 3,
+			defaultLocations: 3
 		},
 		agriculture: {
 			label: '農業・ハウス',
@@ -90,11 +92,32 @@
 		minutesPerCheck = SECTORS[id].minutesPerCheck;
 	}
 
-	// ?sector=livestock のようなディープリンクに対応。
+	// ── 共有用URL: すべての入力値をクエリパラメータと同期する ──
+	// 例: /pricing?sector=livestock&units=4&checks=2&loc=2&min=30&wage=1200
+	// URLをそのままメール等で送れば、受け取った人に同じ計算結果が表示される。
+	let urlSyncReady = $state(false);
+
 	onMount(() => {
-		const requested = new URL(window.location.href).searchParams.get('sector');
+		const sp = new URL(window.location.href).searchParams;
+		const requested = sp.get('sector');
 		if (requested && SECTORS[requested]) selectSector(requested);
+		const readNum = (key: string, apply: (v: number) => void, min: number, max: number) => {
+			const raw = sp.get(key);
+			if (raw === null) return;
+			const v = Number(raw);
+			if (Number.isFinite(v) && v >= min && v <= max) apply(v);
+		};
+		readNum('units', (v) => (count = Math.floor(v)), 1, 1000);
+		readNum('checks', (v) => (checksPerDay = Math.floor(v)), 1, 24);
+		readNum('loc', (v) => (locations = Math.floor(v)), 1, 100);
+		readNum('min', (v) => (minutesPerCheck = Math.floor(v)), 1, 60);
+		readNum('wage', (v) => (wage = v), 0, 1000000);
 	});
+
+	// replaceState はルーター初期化後でないと呼べないため、
+	// 初回ナビゲーション完了(afterNavigate)を待ってから同期を開始する。
+	afterNavigate(() => (urlSyncReady = true));
+
 
 	const safeCount = $derived(Number.isFinite(count) && count >= 1 ? Math.floor(count) : 1);
 	const safeChecks = $derived(
@@ -130,6 +153,48 @@
 
 	const yen = (v: number) => (v < 0 ? '-' : '') + '¥' + Math.abs(v).toLocaleString('ja-JP');
 	const num = (v: number) => v.toLocaleString('ja-JP');
+
+	const shareQuery = $derived(
+		new URLSearchParams({
+			sector,
+			units: String(safeCount),
+			checks: String(safeChecks),
+			loc: String(safeLocations),
+			min: String(safeMinutes),
+			wage: String(safeWage)
+		}).toString()
+	);
+	/** メール共有用は常に本番URL（localhostを配らないため）。 */
+	const shareUrl = $derived(`${absUrl('/pricing')}?${shareQuery}`);
+	const mailtoHref = $derived(
+		'mailto:?subject=' +
+			encodeURIComponent('CropWatch 料金シミュレーション') +
+			'&body=' +
+			encodeURIComponent(`CropWatchの料金シミュレーション結果です。\n${shareUrl}`)
+	);
+
+	// 入力が変わるたびにアドレスバーのURLも更新（履歴は汚さない）。
+	$effect(() => {
+		if (!urlSyncReady) return;
+		const url = `${window.location.pathname}?${shareQuery}`;
+		try {
+			replaceState(url, {});
+		} catch {
+			// ルーター未初期化のタイミングでは次回の入力変更で同期される
+		}
+	});
+
+	let copied = $state(false);
+	async function copyShareLink() {
+		try {
+			await navigator.clipboard.writeText(shareUrl);
+			copied = true;
+			setTimeout(() => (copied = false), 2000);
+		} catch {
+			// クリップボードが使えない環境ではアドレスバーからコピーしてもらう
+			prompt('このURLをコピーしてください', shareUrl);
+		}
+	}
 
 	const title = '料金｜温湿度センサーの月額・人件費比較シミュレーション｜CropWatch 日本';
 	const description =
@@ -406,48 +471,6 @@
 				</p>
 			</div>
 
-			<!-- 明細テーブル -->
-			<div class="pr-tables">
-				<div class="pr-card" data-reveal>
-					<h2 class="pr-card__title">
-						<span class="material-symbols-rounded">autorenew</span> 毎月のご利用料金
-					</h2>
-					<div class="pr-scroll">
-						<table class="pr-table">
-							<thead>
-								<tr><th>項目</th><th>単価（税込）</th><th>数量</th><th>金額</th></tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>基本料金</td>
-									<td>{yen(cfg.baseFee)}/拠点</td>
-									<td>{safeLocations}拠点</td>
-									<td>{yen(baseFeeTotal)}</td>
-								</tr>
-								<tr>
-									<td>{cfg.sensorLabel}</td>
-									<td>{yen(cfg.sensorFee)}/台</td>
-									<td>{num(totalCount)}台</td>
-									<td>{yen(sensorFeeTotal)}</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th colspan="3">ランニングコスト（月）</th>
-									<th>{yen(monthly)}</th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<p class="pr-note">
-						年間 {yen(yearly)}（1日あたり約 {yen(daily)}、1台1日あたり約 {yen(dailyPerUnit)}）。
-					</p>
-				</div>
-			</div>
-
-			<p class="pr-fine" data-reveal>
-				表示はすべて税込です。CO₂センサーや土壌センサーなど、他のセンサーの料金はお問い合わせください。
-			</p>
 		{/if}
 
 		<div class="pr-cta" data-reveal>
@@ -455,6 +478,20 @@
 				>見積もりを依頼する <span class="material-symbols-rounded">arrow_forward</span></a
 			>
 			<a href="/technology" class="btn btn--ghost btn--lg">CropWatch の強みを見る</a>
+		</div>
+
+		<div class="pr-share" data-reveal>
+			<span class="pr-share__label">
+				<span class="material-symbols-rounded">share</span>
+				この計算結果を共有:
+			</span>
+			<button type="button" class="btn btn--ghost" onclick={copyShareLink}>
+				<span class="material-symbols-rounded">{copied ? 'check' : 'content_copy'}</span>
+				{copied ? 'コピーしました' : 'リンクをコピー'}
+			</button>
+			<a class="btn btn--ghost" href={mailtoHref}>
+				<span class="material-symbols-rounded">mail</span> メールで送る
+			</a>
 		</div>
 	</div>
 </section>
@@ -733,24 +770,7 @@
 		color: var(--cw-ink);
 	}
 
-	/* ── 明細テーブル ── */
-	.pr-tables {
-		display: grid;
-		gap: 22px;
-		margin-top: 22px;
-	}
-	/* グリッドアイテムはmin-width:autoのままだと内側のテーブル幅より
-	   縮めなくなり、スマホで横スクロールを起こす。 */
-	.pr-tables > * {
-		min-width: 0;
-	}
-	.pr-card {
-		background: var(--web-surface);
-		border: 1px solid var(--web-border);
-		border-radius: 18px;
-		box-shadow: var(--web-shadow-card);
-		padding: 22px 24px;
-	}
+	/* ── 見出し・注記（比較カードで使用） ── */
 	.pr-card__title {
 		display: flex;
 		align-items: center;
@@ -763,60 +783,8 @@
 		font-size: 21px;
 		color: var(--web-accent);
 	}
-	.pr-scroll {
-		overflow-x: auto;
-	}
-	.pr-table {
-		width: 100%;
-		min-width: 460px;
-		border-collapse: collapse;
-		font-size: 14px;
-	}
-	.pr-table th,
-	.pr-table td {
-		padding: 11px 12px;
-		text-align: right;
-		white-space: nowrap;
-		border-bottom: 1px solid var(--web-border);
-	}
-	.pr-table th:first-child,
-	.pr-table td:first-child {
-		text-align: left;
-		white-space: normal;
-	}
-	.pr-table thead th {
-		font-size: 12px;
-		font-weight: 700;
-		letter-spacing: 0.04em;
-		color: var(--web-muted);
-		background: var(--web-bg-soft);
-	}
-	.pr-table td {
-		color: var(--cw-ink);
-	}
-	.pr-table td:last-child {
-		font-family: var(--cw-font-mono);
-		font-weight: 700;
-	}
-	.pr-table tfoot th {
-		font-size: 15px;
-		font-weight: 800;
-		color: var(--cw-ink);
-		background: var(--web-primary-soft);
-		border-bottom: none;
-	}
-	.pr-table tfoot th:last-child {
-		font-family: var(--cw-font-mono);
-		color: var(--web-primary);
-	}
 	.pr-note {
 		margin: 12px 0 0;
-		font-size: 12.5px;
-		line-height: 1.8;
-		color: var(--web-muted);
-	}
-	.pr-fine {
-		margin: 18px 0 0;
 		font-size: 12.5px;
 		line-height: 1.8;
 		color: var(--web-muted);
@@ -827,6 +795,26 @@
 		gap: 14px;
 		margin-top: 24px;
 	}
+	.pr-share {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 10px 14px;
+		margin-top: 18px;
+		padding-top: 18px;
+		border-top: 1px dashed var(--web-border);
+	}
+	.pr-share__label {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--web-muted);
+	}
+	.pr-share__label .material-symbols-rounded {
+		font-size: 18px;
+	}
 
 	@media (max-width: 720px) {
 		.pr-count {
@@ -835,7 +823,6 @@
 		.pr-compare__grid {
 			grid-template-columns: 1fr;
 		}
-		.pr-card,
 		.pr-compare {
 			padding: 18px 16px;
 		}
