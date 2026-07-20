@@ -332,7 +332,7 @@
 			<p class="eyebrow">Coverage without wires</p>
 			<h2>One gateway covers the whole operation.</h2>
 			<p class="lead">
-				LoRaWAN reaches up to 15 km line-of-sight, so a single gateway can link greenhouses, fields
+				LoRaWAN reaches up to 8 miles line-of-sight, so a single gateway can link greenhouses, fields
 				and outbuildings on one farm - no cellular bills, no trenching cable.
 			</p>
 			<ul class="diff-list" style="margin-top:8px">
@@ -368,7 +368,7 @@
 			<div class="spec-row"><dt>Air sensor</dt><dd>CW-AIR-THC (T·RH·CO₂)</dd></div>
 			<div class="spec-row"><dt>Soil sensor</dt><dd>CW-SS-TME (moisture·temp·EC)</dd></div>
 			<div class="spec-row"><dt>Calculated</dt><dd>VPD · PPFD · DLI</dd></div>
-			<div class="spec-row"><dt>Air accuracy</dt><dd>±0.2 °C / ±1.8 %RH</dd></div>
+			<div class="spec-row"><dt>Air accuracy</dt><dd>±0.4 °F (±0.2 °C) / ±1.8 %RH</dd></div>
 			<div class="spec-row"><dt>CO₂ range</dt><dd>400-5,000 ppm (NDIR)</dd></div>
 			<div class="spec-row"><dt>Soil moisture</dt><dd>0-100 % (±8 %)</dd></div>
 			<div class="spec-row"><dt>Soil temp</dt><dd>−4 to 158 °F (−20 to 70 °C)</dd></div>
@@ -376,7 +376,7 @@
 			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
 			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
 			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, UV-stable</dd></div>
-			<div class="spec-row"><dt>Range</dt><dd>Up to 15 km per gateway</dd></div>
+			<div class="spec-row"><dt>Range</dt><dd>Up to 8 miles per gateway (in absolute optimal conditions)</dd></div>
 		</dl>
 		<div class="prelated__grid" style="margin-top:36px">
 			<a class="rel-card" href="/replacement-sensors" data-reveal>
@@ -429,8 +429,8 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Yes. Air, soil and light sensors all report to one LoRaWAN gateway, which covers up to 15
-					km line-of-sight - enough for greenhouses, fields and outbuildings across a whole farm.
+					Yes. Air, soil and light sensors all report to one LoRaWAN gateway, which covers up to 8
+					miles line-of-sight - enough for greenhouses, fields and outbuildings across a whole farm.
 				</p>
 			</details>
 			<details>

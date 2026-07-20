@@ -46,8 +46,8 @@
 				hospitals, grocery and cold storage - with HACCP-ready records an inspector can trust.
 			</p>
 			<div class="hero__badges">
-				<span><span class="material-symbols-rounded">ac_unit</span> −40 °C to +85 °C</span>
-				<span><span class="material-symbols-rounded">target</span> ±0.48 °C</span>
+				<span><span class="material-symbols-rounded">ac_unit</span> −40 to +185 °F (−40 to +85 °C)</span>
+				<span><span class="material-symbols-rounded">target</span> ±0.9 °F (±0.48 °C)</span>
 				<span><span class="material-symbols-rounded">description</span> HACCP-ready</span>
 				<span><span class="material-symbols-rounded">verified</span> ISO/IEC 17025</span>
 			</div>
@@ -70,7 +70,7 @@
 			/>
 			<div class="hero__chip">
 				<span class="dot"></span>
-				<div><strong>Walk-in Freezer</strong><span>−18.2 °C · live</span></div>
+				<div><strong>Walk-in Freezer</strong><span>−0.8 °F (−18.2 °C) · live</span></div>
 			</div>
 		</div>
 	</div>
@@ -241,7 +241,7 @@
 				<h3>Field-replaceable - no calibration, no downtime</h3>
 				<p>
 					On-site calibration eats hours and, without lab-grade reference equipment, introduces
-					error. CropWatch skips it entirely: the sensing elements drift less than 0.01 °C a year,
+					error. CropWatch skips it entirely: the sensing elements drift less than 0.02 °F (0.01 °C) a year,
 					typical, and when a detector does reach end of life you snap in a pre-calibrated module in
 					under a minute. No truck roll, no guesswork, no gap in your records.
 				</p>
@@ -274,7 +274,7 @@
 				<h3>Proven stability &amp; real support</h3>
 				<p>
 					An unmatched track record for long-term sensor stability - annual temperature drift is
-					typically under 0.01 °C - backed by people who actually
+					typically under 0.02 °F (0.01 °C) - backed by people who actually
 					pick up when you need them. The hardware self-audits and flags drift before it misleads
 					you - and we're there when it counts.
 				</p>
@@ -324,8 +324,8 @@
 		</div>
 		<dl class="pspecs__grid" data-reveal>
 			<div class="spec-row"><dt>Measures</dt><dd>Temp · RH · dew point</dd></div>
-			<div class="spec-row"><dt>Range</dt><dd>−40 °C to +85 °C</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.48 °C / ±1.8 %RH</dd></div>
+			<div class="spec-row"><dt>Range</dt><dd>−40 to +185 °F (−40 to +85 °C)</dd></div>
+			<div class="spec-row"><dt>Accuracy</dt><dd>±0.9 °F (±0.48 °C) / ±1.8 %RH</dd></div>
 			<div class="spec-row"><dt>Verification</dt><dd>Dual Sensirion sensors (SHT43 + SHT40)</dd></div>
 			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
 			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years (user-replaceable)</dd></div>
@@ -385,7 +385,7 @@
 				<p>
 					The dual-sensor design catches a drifting element and withholds the reading rather than
 					logging a wrong one. The hardware also self-audits and raises a fault. Annual drift is
-					typically under 0.01 °C, so most modules never need replacing early - and when one does
+					typically under 0.02 °F (0.01 °C), so most modules never need replacing early - and when one does
 					reach end of life, you swap it yourself in under a minute.
 				</p>
 			</details>

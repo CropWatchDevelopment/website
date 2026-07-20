@@ -25,9 +25,9 @@
 				'The everyday workhorse for cold-chain and food service. A food-safe housing reads air temperature, relative humidity and dew point with dual-sensor verification.',
 			measures: ['Temperature', 'Humidity', 'Dew point'],
 			specs: [
-				['Accuracy', '±0.48 °C / ±1.8 %RH'],
-				['Range', '−40 to +85 °C'],
-				['Annual drift', 'typ. <0.01 °C/yr'],
+				['Accuracy', '±0.9 °F (±0.48 °C) / ±1.8 %RH'],
+				['Range', '−40 to +185 °F (−40 to +85 °C)'],
+				['Annual drift', 'typ. <0.02 °F (0.01 °C)/yr'],
 				['Housing', 'Food-safe, IP66'],
 				['Verification', 'Dual-sensor']
 			]
@@ -58,7 +58,7 @@
 			specs: [
 				['CO₂ range', '400-5,000 ppm'],
 				['CO₂ method', 'NDIR'],
-				['Accuracy', '±0.2 °C / ±1.8 %RH'],
+				['Accuracy', '±0.4 °F (±0.2 °C) / ±1.8 %RH'],
 				['Derived', 'VPD (kPa)']
 			]
 		},
@@ -148,7 +148,7 @@
 				<span><span class="material-symbols-rounded">cached</span> Tool-free swap</span>
 				<span><span class="material-symbols-rounded">workspace_premium</span> Per-serial certificate</span>
 				<span><span class="material-symbols-rounded">fact_check</span> Dual-sensor</span>
-				<span><span class="material-symbols-rounded">target</span> ±0.48 °C</span>
+				<span><span class="material-symbols-rounded">target</span> ±0.9 °F (±0.48 °C)</span>
 			</div>
 		</div>
 		<div class="hero__media">
@@ -307,8 +307,8 @@
 		<dl class="pspecs__grid" data-reveal>
 			<div class="spec-row"><dt>Air temp / RH</dt><dd>CW-AIR-TH module</dd></div>
 			<div class="spec-row"><dt>Soil / substrate</dt><dd>CW-SS-TME module</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.48 °C / ±1.8 %RH (TH module)</dd></div>
-			<div class="spec-row"><dt>Annual drift</dt><dd>typ. &lt;0.01 °C/yr</dd></div>
+			<div class="spec-row"><dt>Accuracy</dt><dd>±0.9 °F (±0.48 °C) / ±1.8 %RH (TH module)</dd></div>
+			<div class="spec-row"><dt>Annual drift</dt><dd>typ. &lt;0.02 °F (0.01 °C)/yr</dd></div>
 			<div class="spec-row"><dt>Calibration</dt><dd>ISO/IEC 17025 · NIST</dd></div>
 			<div class="spec-row"><dt>Certificate</dt><dd>Per serial number</dd></div>
 			<div class="spec-row"><dt>Install time</dt><dd>&lt; 60 seconds</dd></div>
@@ -353,7 +353,7 @@
 				</summary>
 				<p>
 					It depends on your environment and compliance schedule. Annual temperature drift is
-					typically under 0.01 °C, so drift alone rarely forces a swap. Many customers re-certify on an
+					typically under 0.02 °F (0.01 °C), so drift alone rarely forces a swap. Many customers re-certify on an
 					annual cycle; the self-auditing hardware will also flag a module that has drifted out of
 					spec.
 				</p>

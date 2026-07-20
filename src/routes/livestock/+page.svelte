@@ -81,7 +81,7 @@
 			/>
 			<div class="hero__chip">
 				<span class="dot"></span>
-				<div><strong>Broiler House 3</strong><span>24.6 °C · 68 %RH · live</span></div>
+				<div><strong>Broiler House 3</strong><span>76.3 °F (24.6 °C) · 68 %RH · live</span></div>
 			</div>
 		</div>
 	</div>
@@ -292,16 +292,16 @@
 		<dl class="pspecs__grid" data-reveal>
 			<div class="spec-row"><dt>Measures</dt><dd>Temp · RH · CO₂ · NH₃</dd></div>
 			<div class="spec-row"><dt>Sensors</dt><dd>Sensirion SHT40 + SCD41 (temp · RH · CO₂)</dd></div>
-			<div class="spec-row"><dt>Temp range</dt><dd>-40 °C to +85 °C</dd></div>
+			<div class="spec-row"><dt>Temp range</dt><dd>−40 to +185 °F (−40 to +85 °C)</dd></div>
 			<div class="spec-row"><dt>CO₂ range</dt><dd>400-5,000 ppm (NDIR)</dd></div>
 			<div class="spec-row"><dt>Ammonia</dt><dd>0-100 ppm (NH₃)</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.2 °C / ±1.8 %RH</dd></div>
+			<div class="spec-row"><dt>Accuracy</dt><dd>±0.4 °F (±0.2 °C) / ±1.8 %RH</dd></div>
 			<div class="spec-row"><dt>Verification</dt><dd>Dual-sensor cross-check</dd></div>
 			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
 			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
 			<div class="spec-row"><dt>Logging</dt><dd>Every 15 min · 1 year retained · CSV</dd></div>
 			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready, potted electronics</dd></div>
-			<div class="spec-row"><dt>Coverage</dt><dd>Up to 15 km per gateway</dd></div>
+			<div class="spec-row"><dt>Coverage</dt><dd>Up to 8 miles per gateway</dd></div>
 		</dl>
 	</div>
 </section>

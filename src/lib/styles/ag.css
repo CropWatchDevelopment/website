@@ -95,6 +95,7 @@
 
 /* ── Heatmap (CwHeatmap) ─────────────────────────────────── */
 .hm__wrap { overflow-x: auto; }
+.hm__wrap .hm__days { min-width: 520px; } /* keep day labels aligned with rows when scrolling */
 .hm { display: grid; gap: 3px; min-width: 520px; }
 .hm__row { display: grid; grid-template-columns: 52px repeat(7, 1fr); gap: 3px; align-items: center; }
 .hm__hour { font-size: 10.5px; color: var(--web-muted); font-family: var(--cw-font-mono); text-align: right; padding-right: 6px; }

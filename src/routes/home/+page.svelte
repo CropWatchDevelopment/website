@@ -85,7 +85,7 @@
 			/>
 			<div class="hero__chip">
 				<span class="dot"></span>
-				<div><strong>Kitchen Walk-in Cooler</strong><span>3.4 °C · 61 %RH · live</span></div>
+				<div><strong>Kitchen Walk-in Cooler</strong><span>38.1 °F (3.4 °C) · 61 %RH · live</span></div>
 			</div>
 		</div>
 	</div>
@@ -333,7 +333,7 @@
 <section class="proofband">
 	<div class="wrap proofband__grid">
 		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr</p><p class="stat__body">Up to 10 years on the cold-chain sensor at a 10-minute cadence; up to 5 on CO₂ models. User-replaceable cells.</p></div>
-		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.9 °F</p><p class="stat__body">NIST-traceable, ISO/IEC 17025 calibrated - defensible in an audit.</p></div>
+		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.9 °F</p><p class="stat__body">(±0.48 °C) NIST-traceable, ISO/IEC 17025 calibrated - defensible in an audit.</p></div>
 		<div class="stat" data-reveal="2"><p class="stat__eyebrow">Range</p><p class="stat__value stat__value--accent">5 miles</p><p class="stat__body">LoRaWAN coverage from a single gateway across a whole site.</p></div>
 		<div class="stat" data-reveal="3"><p class="stat__eyebrow">Bad readings logged</p><p class="stat__value">0</p><p class="stat__body">Dual-sensor verification means wrong data never reaches your records.</p></div>
 	</div>

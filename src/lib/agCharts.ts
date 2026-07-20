@@ -135,6 +135,9 @@ const VPD_RH = [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90]; // % cols
 const CUR_T = 26;
 const CUR_RH = 65;
 
+/** US display: Fahrenheit first, Celsius in parentheses. Math stays in °C. */
+const cToF = (c: number): number => (c * 9) / 5 + 32;
+
 function vpd(t: number, rh: number): number {
 	const svp = 0.6108 * Math.exp((17.27 * t) / (t + 237.3));
 	return svp * (1 - rh / 100);
@@ -157,8 +160,10 @@ function renderVPD(card: HTMLElement, prog: VpdProgram): void {
 		'<div class="vpd__readout"><b>' +
 		curV.toFixed(2) +
 		' kPa</b><span>room VPD · ' +
+		cToF(CUR_T).toFixed(1) +
+		' °F (' +
 		CUR_T +
-		' °C / ' +
+		' °C) / ' +
 		CUR_RH +
 		' %RH</span></div>' +
 		'<p style="margin:0;font-size:13px;color:var(--web-muted)">' +
@@ -175,7 +180,7 @@ function renderVPD(card: HTMLElement, prog: VpdProgram): void {
 		'</strong></p>';
 
 	const head =
-		'<tr><th class="corner">°C \\ %RH</th>' +
+		'<tr><th class="corner">°F \\ %RH</th>' +
 		VPD_RH.map((r) => '<th>' + r + '</th>').join('') +
 		'</tr>';
 	const rows = VPD_TEMPS.map((t) => {
@@ -190,8 +195,10 @@ function renderVPD(card: HTMLElement, prog: VpdProgram): void {
 				'" style="background:' +
 				vpdColor(v) +
 				'" title="' +
+				Math.round(cToF(t)) +
+				' °F (' +
 				t +
-				'°C / ' +
+				' °C) / ' +
 				rh +
 				'%RH = ' +
 				v.toFixed(2) +
@@ -200,7 +207,7 @@ function renderVPD(card: HTMLElement, prog: VpdProgram): void {
 				'</td>'
 			);
 		}).join('');
-		return '<tr><td class="vpd__rowlab">' + t + '°</td>' + cells + '</tr>';
+		return '<tr><td class="vpd__rowlab">' + Math.round(cToF(t)) + '°</td>' + cells + '</tr>';
 	}).join('');
 	view.innerHTML = '<div class="vpd__wrap"><table class="vpd__grid">' + head + rows + '</table></div>';
 }
@@ -284,8 +291,10 @@ function initHeatmap(): void {
 					'<div class="hm__cell" style="background:' +
 					hmColor(t01) +
 					'" data-t="' +
+					cToF(v).toFixed(1) +
+					' °F (' +
 					v.toFixed(1) +
-					' °C"></div>'
+					' °C)"></div>'
 				);
 			})
 			.join('');
@@ -296,15 +305,19 @@ function initHeatmap(): void {
 			cells +
 			'</div>';
 	}
-	view.innerHTML = head + '<div class="hm__wrap"><div class="hm">' + rows + '</div></div>';
+	view.innerHTML = '<div class="hm__wrap">' + head + '<div class="hm">' + rows + '</div></div>';
 	const lg = card.querySelector<HTMLElement>('[data-legend]');
 	if (lg)
 		lg.innerHTML =
 			'<span>' +
+			cToF(min).toFixed(1) +
+			' °F (' +
 			min.toFixed(1) +
-			' °C</span><span class="hm__ramp"></span><span>' +
+			' °C)</span><span class="hm__ramp"></span><span>' +
+			cToF(max).toFixed(1) +
+			' °F (' +
 			max.toFixed(1) +
-			' °C</span>';
+			' °C)</span>';
 }
 
 /** Build all three agriculture charts. Safe to call only in the browser. */
