@@ -296,7 +296,7 @@ function initHeatmap(): void {
 			cells +
 			'</div>';
 	}
-	view.innerHTML = head + '<div class="hm">' + rows + '</div>';
+	view.innerHTML = head + '<div class="hm__wrap"><div class="hm">' + rows + '</div></div>';
 	const lg = card.querySelector<HTMLElement>('[data-legend]');
 	if (lg)
 		lg.innerHTML =

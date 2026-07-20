@@ -34,6 +34,7 @@
 .stack__legend i.calc { background: var(--web-accent-soft); border: 1px solid var(--web-accent); }
 
 /* ── Generic chart card ──────────────────────────────────── */
+.ag-charts-2up > * { min-width: 0; } /* let chart cards shrink; the VPD table scrolls inside .vpd__wrap */
 .chart-card { background: var(--web-surface); border: 1px solid var(--web-border); border-radius: var(--web-radius-card);
   box-shadow: var(--web-shadow-raised); padding: 24px 26px 26px; }
 .chart-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }

@@ -3,9 +3,9 @@
    Everything here uses the design-system tokens. [data-theme="web"]
    ============================================================ */
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { margin: 0; -webkit-font-smoothing: antialiased; }
+body { margin: 0; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 *, *::before, *::after { box-sizing: border-box; }
 :focus-visible { outline: 2px solid var(--web-primary); outline-offset: 2px; border-radius: 4px; }
 .scroll-pad { scroll-margin-top: 130px; }
@@ -185,6 +185,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; }
 
 /* ── Included / comparison ───────────────────────────────── */
 .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 940px; margin: 0 auto; }
+.vs > * { min-width: 0; } /* grid items must shrink below content min-width on phones */
 .vs-card { border-radius: var(--web-radius-card); padding: 30px; }
 .vs-card h3 { font-size: var(--cw-text-xl); display: flex; align-items: center; gap: 10px; }
 .vs-card ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 13px; }
@@ -234,6 +235,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; }
 
 /* ── Spec / feature split with photo ─────────────────────── */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.split > * { min-width: 0; } /* grid items must shrink below content min-width on phones */
 .split__media img { width: 100%; border-radius: var(--web-radius-card); box-shadow: var(--web-shadow-raised); object-fit: cover; }
 .split__media--tall img { height: 560px; }
 .split h2 { font-size: var(--cw-text-4xl); }
@@ -340,6 +342,11 @@ select.finput { appearance: none; background-image: url("data:image/svg+xml,%3Cs
   background: var(--cw-ink); color: var(--web-on-ink-muted); border-radius: var(--cw-radius-2xl);
   padding: 18px 22px; font-size: 15px; line-height: 1.55; }
 .param-note .material-symbols-rounded { font-size: 22px; color: var(--cw-gold-400, #f2a516); flex: none; margin-top: 1px; }
+/* Pages set ind-grid column counts via inline style (repeat(2/3,1fr)), which
+   outranks the stylesheet's responsive collapse - override them back down. */
+@media (max-width: 980px) {
+  .ind-grid[style*="repeat(3"] { grid-template-columns: 1fr 1fr !important; }
+}
 @media (max-width: 760px) {
-  .ind-grid[style*="repeat(2"] { grid-template-columns: 1fr !important; }
+  .ind-grid[style*="repeat("] { grid-template-columns: 1fr !important; }
 }

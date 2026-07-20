@@ -362,6 +362,9 @@
 		gap: 16px;
 		margin-top: 8px;
 	}
+	.src-stats > * {
+		min-width: 0;
+	}
 	.src-stat {
 		background: var(--web-surface);
 		border: 1px solid var(--web-border);
