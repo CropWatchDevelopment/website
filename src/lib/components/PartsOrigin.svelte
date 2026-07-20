@@ -30,7 +30,7 @@
 			color: '#2f9fe6',
 			makers: [
 				{ name: 'Murata Manufacturing', url: 'https://www.murata.com/' },
-				{ name: 'JST', url: 'https://www.jst-mfg.com/' }
+				{ name: 'JST', url: 'https://www.jst.com/' }
 			]
 		},
 		{

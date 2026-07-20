@@ -43,6 +43,10 @@ ICON_RE = re.compile(
     r'class="[^"]*material-symbols-rounded[^"]*"[^>]*>\s*([a-z0-9_]+)\s*<', re.I
 )
 ICON_PROP_RE = re.compile(r"\b(?:icon|ic):\s*'([a-z0-9_]+)'")
+# `DEFAULT_NEWS_ICON = 'campaign'`-style constants in .ts modules.
+ICON_CONST_RE = re.compile(r"\bICON\w*\s*=\s*'([a-z0-9_]+)'")
+# `"icon": "gavel"` in news article JSON (static/news/*.json).
+ICON_JSON_RE = re.compile(r'"icon"\s*:\s*"([a-z0-9_]+)"')
 
 names = set()
 for pattern in ("*.svelte", "*.ts"):
@@ -50,6 +54,9 @@ for pattern in ("*.svelte", "*.ts"):
         text = f.read_text(encoding="utf-8")
         names.update(ICON_RE.findall(text))
         names.update(ICON_PROP_RE.findall(text))
+        names.update(ICON_CONST_RE.findall(text))
+for f in (ROOT / "static" / "news").glob("*.json"):
+    names.update(ICON_JSON_RE.findall(f.read_text(encoding="utf-8")))
 
 names = sorted(names)
 print(f"Found {len(names)} distinct icons: {', '.join(names)}")
@@ -158,6 +165,26 @@ if missing:
     print(f"\n!! VERIFICATION FAILED — these icons do not resolve: {missing}")
     raise SystemExit(1)
 print(f"Verified: all {len(names)} icons resolve to a ligature glyph in the subset. OK")
+
+# ---- 3b. Cache-bust the font URL --------------------------------------------
+# The subset's filename never changes, so browsers keep serving a stale cached
+# font after a regeneration — new icon names then render as raw ligature text
+# ("campaign") because the old font lacks the glyph. Stamp a content-hash
+# ?v= query onto every reference (the preload in app.html and the @font-face
+# src in fonts.css must stay byte-identical for the preload to match).
+import hashlib
+
+digest = hashlib.md5(out_path.read_bytes()).hexdigest()[:8]
+for target in (ROOT / "src" / "app.html", ROOT / "src" / "lib" / "styles" / "tokens" / "fonts.css"):
+    text = target.read_text(encoding="utf-8")
+    stamped = re.sub(
+        r"material-symbols-rounded-subset\.woff2(\?v=[0-9a-f]*)?",
+        f"material-symbols-rounded-subset.woff2?v={digest}",
+        text,
+    )
+    if stamped != text:
+        target.write_text(stamped, encoding="utf-8")
+        print(f"Stamped font version ?v={digest} into {target.relative_to(ROOT)}")
 
 # ---- 4. Inter fallback metric overrides ------------------------------------
 # Computing size-adjust needs the font-wide average glyph width, but Google

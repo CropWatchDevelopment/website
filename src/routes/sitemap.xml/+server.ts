@@ -1,3 +1,4 @@
+import { listNews } from '$lib/server/news';
 import type { RequestHandler } from './$types';
 
 // Prerendered so the Vercel adapter emits a static /sitemap.xml asset.
@@ -13,8 +14,15 @@ const ROUTES: { path: string; changefreq: string; priority: string }[] = [
 	{ path: '/livestock', changefreq: 'monthly', priority: '0.8' },
 	{ path: '/cold-chain', changefreq: 'monthly', priority: '0.8' },
 	{ path: '/replacement-sensors', changefreq: 'monthly', priority: '0.6' },
+	{ path: '/pricing', changefreq: 'monthly', priority: '0.7' },
 	{ path: '/contact', changefreq: 'monthly', priority: '0.7' },
-	{ path: '/news', changefreq: 'weekly', priority: '0.5' }
+	{ path: '/news', changefreq: 'weekly', priority: '0.5' },
+	// One entry per news article (static/news/*.json), newest first.
+	...listNews().map((n) => ({
+		path: `/news/${n.id}`,
+		changefreq: 'yearly',
+		priority: '0.4'
+	}))
 ];
 
 export const GET: RequestHandler = () => {
