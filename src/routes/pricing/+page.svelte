@@ -4,9 +4,11 @@
 
 	/* ══════════════════════════════════════════════════════════════════
 	   Pricing knobs - edit these to tune the calculator, per sector.
-	   pricePerDevice / baseFee are USD per month; minutesPerCheck is how
-	   long one manual check of one unit takes. comingSoon: true hides the
-	   calculator for that tab and shows a "coming soon" card instead.
+	   pricePerDevice / baseFee are USD per month; minutesPerCheck is the
+	   DEFAULT time one manual reading of one unit takes (walk there, read
+	   it, log it) - shown as an adjustable slider on the page. comingSoon:
+	   true hides the calculator for that tab and shows a "coming soon"
+	   card instead.
 	   ══════════════════════════════════════════════════════════════════ */
 	type Sector = {
 		label: string;
@@ -31,7 +33,7 @@
 			icon: 'pets',
 			pricePerDevice: 12,
 			baseFee: 50,
-			minutesPerCheck: 5,
+			minutesPerCheck: 20,
 			unitsHint: 'Poultry houses, barn zones and dairy rooms.'
 		},
 		agriculture: {
@@ -52,20 +54,27 @@
 	let sector = $state('cold-chain');
 	const cfg = $derived(SECTORS[sector]);
 
+	let units = $state(10);
+	let checksPerDay = $state(2);
+	let minutesPerCheck = $state(SECTORS['cold-chain'].minutesPerCheck);
+	let wage = $state(DEFAULT_HOURLY_WAGE);
+
+	function selectSector(id: string) {
+		sector = id;
+		// Each sector gets its own realistic default reading time.
+		minutesPerCheck = SECTORS[id].minutesPerCheck;
+	}
+
 	// Honor ?sector= deep links (e.g. /pricing?sector=livestock).
 	onMount(() => {
 		const requested = new URL(window.location.href).searchParams.get('sector');
-		if (requested && SECTORS[requested]) sector = requested;
+		if (requested && SECTORS[requested]) selectSector(requested);
 	});
-
-	let units = $state(10);
-	let checksPerDay = $state(2);
-	let wage = $state(DEFAULT_HOURLY_WAGE);
 
 	const safeWage = $derived(Number.isFinite(wage) && wage > 0 ? wage : 0);
 
 	// Manual clipboard logging: every unit, every check, every day of the year.
-	const manualHoursPerYear = $derived((units * checksPerDay * cfg.minutesPerCheck * 365) / 60);
+	const manualHoursPerYear = $derived((units * checksPerDay * minutesPerCheck * 365) / 60);
 	const manualCostPerYear = $derived(manualHoursPerYear * safeWage);
 
 	// CropWatch: base fee + per-device fee, billed monthly.
@@ -136,7 +145,7 @@
 					class:is-active={sector === id}
 					role="tab"
 					aria-selected={sector === id}
-					onclick={() => (sector = id)}
+					onclick={() => selectSector(id)}
 				>
 					<span class="material-symbols-rounded">{s.icon}</span>
 					<span>{s.label}</span>
@@ -186,6 +195,18 @@
 
 			<div class="calc-field">
 				<div class="calc-field__head">
+					<label for="minutes">Time per reading</label>
+					<b>{minutesPerCheck} min</b>
+				</div>
+				<input id="minutes" type="range" min="1" max="30" step="1" bind:value={minutesPerCheck} />
+				<p class="calc-field__hint">
+					Be honest here: include the walk or travel time to reach each unit, reading it, and the
+					time to log the number into your system - not just glancing at a display.
+				</p>
+			</div>
+
+			<div class="calc-field">
+				<div class="calc-field__head">
 					<label for="wage">Hourly wage</label>
 					<b>{usd2.format(safeWage)}/hr</b>
 				</div>
@@ -200,8 +221,8 @@
 			</div>
 
 			<p class="calc-assume">
-				Assumes {cfg.minutesPerCheck} minutes per unit per check, 365 days a year. CropWatch records
-				automatically every 10 minutes - the numbers below only count the manual walk it replaces.
+				Assumes checks happen 365 days a year. CropWatch records automatically every 10 minutes -
+				the numbers below only count the manual walk it replaces.
 			</p>
 		</div>
 
