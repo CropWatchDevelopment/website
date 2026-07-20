@@ -28,7 +28,7 @@ must be `<= window.innerWidth` (no page-level horizontal scroll).
 
 Reuse these when possible. A few components intentionally use their own and
 that's fine: home `820` (cards vs accordion), contact `880`, testimonials
-`1000/760`, sensors3d `1080/720`, help `600/900/1200`. The home accordion also
+`1000/760`, replacement-sensors picker `720`, help `600/900/1200`. The home accordion also
 uses `@media (hover: none)` for tap-to-expand on touch.
 
 Touch devices can't hover: hover-only UI must have a tap/`@media (hover: none)`
@@ -37,10 +37,10 @@ path (e.g. the home accordion uses tap-to-expand on touch).
 ## Load-bearing features — do NOT break when refactoring
 - Home slanted accordion — `src/routes/+page.svelte` (hover on desktop,
   tap-to-expand on touch, `≤820px` stacked-card fallback).
-- 3D sensor viewer — `src/lib/sensors3d.ts` + `src/lib/babylon.ts` +
-  `src/lib/styles/sensors3d.css`, assets in `static/assets/vendor/babylon/`
-  and `static/assets/models/` (used on `replacement-sensors`).
-- Babylon 3D viewer on `replacement-case`.
+- Sensor picker tabs + spec panel on `replacement-sensors`
+  (`src/routes/replacement-sensors/+page.svelte`, honors `?sensor=` deep links).
+- Babylon 3D viewer on `replacement-case` (its own CDN loader; the old local
+  Babylon viewer on `replacement-sensors` was removed 2026-07-20).
 - PartsOrigin donut chart — `src/lib/components/PartsOrigin.svelte`.
 - reCAPTCHA contact form — `src/routes/contact/`.
 
