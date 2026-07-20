@@ -9,7 +9,7 @@
 	>
 	<meta
 		name="description"
-		content="Wireless temperature, CO₂, humidity and ammonia (NH₃) monitoring for poultry houses, broiler and layer barns, dairy and livestock sheds. Catch heat stress, poor ventilation and rising gases before they cost you birds. User-replaceable, dual-sensor verified sensors with unlimited users and alerts."
+		content="Wireless temperature, CO₂, humidity and ammonia (NH₃) monitoring for poultry houses, broiler and layer barns, dairy and livestock sheds. Catch heat stress, poor ventilation and rising gases before they cost you birds. User-replaceable Swiss Sensirion sensors, calibrated at an accredited lab, with unlimited users and alerts."
 	/>
 	<meta
 		name="keywords"
@@ -52,7 +52,7 @@
 			<h1>Keep the house in range - and the flock comfortable.</h1>
 			<p class="lead">
 				Wireless monitoring of the four things that decide a flock's day -
-				<strong>temperature, CO₂, humidity and ammonia</strong> - across poultry houses, broiler and
+				<strong>Temperature, CO₂, Humidity and Ammonia</strong> - across poultry houses, broiler and
 				layer barns, dairy and livestock sheds. Catch heat stress, poor ventilation and rising gases
 				before they cost you birds.
 			</p>
@@ -65,10 +65,10 @@
 			</div>
 			<div class="hero__ctas" style="margin-top:26px">
 				<a href="/contact" class="cta-pill cta-pill--lg"
-					><span>Book a demo</span> <span class="material-symbols-rounded">arrow_forward</span></a
+					><span>Talk to us about a demo</span> <span class="material-symbols-rounded">arrow_forward</span></a
 				>
 				<a href="/agriculture" class="cta-ghost cta-ghost--light cta-pill--lg"
-					><span class="material-symbols-rounded">eco</span> <span>Agriculture</span></a
+					><span class="material-symbols-rounded">eco</span> <span>Also see Agriculture</span></a
 				>
 			</div>
 		</div>
@@ -226,8 +226,8 @@
 					recipients
 				</li>
 				<li>
-					<span class="material-symbols-rounded">check</span> Dual-sensor verification - no false alarms
-					from a bad probe
+					<span class="material-symbols-rounded">check</span> Protected electronics keep recording through
+					humidity, dust and washdown
 				</li>
 				<li>
 					<span class="material-symbols-rounded">check</span> Swap your own sensors between flocks in seconds
@@ -268,15 +268,15 @@
 			</article>
 			<article class="why-card" data-reveal="2">
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
-				<h3>Verified</h3>
-				<p>Dual sensors mean no false heat-stress alarms at 3 a.m.</p>
+				<h3>Swiss precision</h3>
+				<p>Sensirion SHT40 and SCD41 digital sensors - calibrated and tested at an accredited lab.</p>
 			</article>
 			<article class="why-card" data-reveal="3">
 				<span class="why-card__ic"
 					><span class="material-symbols-rounded">health_and_safety</span></span
 				>
-				<h3>Self-auditing</h3>
-				<p>The hardware checks itself and flags faults before you're misled.</p>
+				<h3>Built for the barn</h3>
+				<p>A protective board coating shrugs off humidity, dust and temperature swings for years of service.</p>
 			</article>
 		</div>
 	</div>
@@ -296,11 +296,11 @@
 			<div class="spec-row"><dt>CO₂ range</dt><dd>400-5,000 ppm (NDIR)</dd></div>
 			<div class="spec-row"><dt>Ammonia</dt><dd>0-100 ppm (NH₃)</dd></div>
 			<div class="spec-row"><dt>Accuracy</dt><dd>±0.4 °F (±0.2 °C) / ±1.8 %RH</dd></div>
-			<div class="spec-row"><dt>Verification</dt><dd>Dual-sensor cross-check</dd></div>
+			<div class="spec-row"><dt>Ruggedness</dt><dd>Conformal coating + potted board</dd></div>
 			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
 			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
 			<div class="spec-row"><dt>Logging</dt><dd>Every 15 min · 1 year retained · CSV</dd></div>
-			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready, potted electronics</dd></div>
+			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready</dd></div>
 			<div class="spec-row"><dt>Coverage</dt><dd>Up to 8 miles per gateway</dd></div>
 		</dl>
 	</div>
@@ -332,8 +332,8 @@
 				</summary>
 				<p>
 					The board is conformal-coated and the electronics are potted in resin for high-humidity,
-					high-dust houses. The enclosure is IP66-rated and washdown-ready. If a sensing module ever degrades, the
-					dual-sensor design catches it and you swap the module yourself - no return shipment.
+					high-dust houses. The enclosure is IP66-rated and washdown-ready. If a sensing module ever
+					degrades, you swap it yourself in the field - no return shipment, no downtime.
 				</p>
 			</details>
 			<details>
