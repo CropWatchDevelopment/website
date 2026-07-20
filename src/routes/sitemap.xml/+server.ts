@@ -14,6 +14,7 @@ const ROUTES: { path: string; changefreq: string; priority: string }[] = [
 	{ path: '/livestock', changefreq: 'monthly', priority: '0.8' },
 	{ path: '/cold-chain', changefreq: 'monthly', priority: '0.8' },
 	{ path: '/replacement-sensors', changefreq: 'monthly', priority: '0.6' },
+	{ path: '/pricing', changefreq: 'monthly', priority: '0.7' },
 	{ path: '/contact', changefreq: 'monthly', priority: '0.7' },
 	{ path: '/news', changefreq: 'weekly', priority: '0.5' },
 	// One entry per news article (static/news/*.json), newest first.

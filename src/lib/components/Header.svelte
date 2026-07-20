@@ -23,6 +23,7 @@
 	const path = $derived(page.url.pathname);
 	const isHome = $derived(path === '/home');
 	const isProducts = $derived(productPaths.includes(path));
+	const isPricing = $derived(path === '/pricing');
 	const isNews = $derived(path === '/news');
 	const isContact = $derived(path === '/contact');
 
@@ -83,6 +84,7 @@
 					</div>
 				</div>
 
+				<a class="nav__item" class:is-current={isPricing} href="/pricing">Pricing</a>
 				<a class="nav__item" class:is-current={isNews} href="/news">News</a>
 				<a class="nav__item" class:is-current={isContact} href="/contact">Contact</a>
 			</nav>
@@ -121,6 +123,7 @@
 		</div>
 
 		<a class="m-link" href="/home#why">Why CropWatch</a>
+		<a class="m-link" href="/pricing">Pricing</a>
 		<a class="m-link" href="/news">News</a>
 		<a class="m-link" href="/contact">Contact</a>
 
