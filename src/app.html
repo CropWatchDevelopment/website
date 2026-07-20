@@ -2,7 +2,14 @@
 <html lang="en" data-theme="web">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/assets/logos/favicon.svg" />
+		<!-- Same icon set as app.cropwatch.io: Google prefers the large transparent
+		     PNG for search results (the SVG has a white background, which renders as
+		     a white disc in the SERP circle if it's the only icon offered). -->
+		<link rel="icon" href="%sveltekit.assets%/assets/logos/favicon.svg" sizes="any" type="image/svg+xml" />
+		<link rel="icon" href="%sveltekit.assets%/cropwatch_icons/icon-32x32.png" sizes="32x32" type="image/png" />
+		<link rel="icon" href="%sveltekit.assets%/cropwatch_icons/icon-192x192.png" sizes="192x192" type="image/png" />
+		<link rel="shortcut icon" href="%sveltekit.assets%/favicon.ico" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/cropwatch_icons/apple-touch-icon.png" sizes="180x180" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<!-- Self-hosted icon font (subset, ~11 KB): preload so it's ready by first

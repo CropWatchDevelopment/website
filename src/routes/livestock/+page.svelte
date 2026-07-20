@@ -59,7 +59,7 @@
 			<div class="hero__badges">
 				<span><span class="material-symbols-rounded">device_thermostat</span> Temp &amp; humidity</span>
 				<span><span class="material-symbols-rounded">air</span> Heat-stress alerts</span>
-				<span><span class="material-symbols-rounded">battery_5_bar</span> 10-yr battery</span>
+				<span><span class="material-symbols-rounded">battery_5_bar</span> 5-yr battery</span>
 				<span><span class="material-symbols-rounded">cloud</span> CO₂ readings</span>
 				<span><span class="material-symbols-rounded">detector_alarm</span> Ammonia (NH₃)</span>
 			</div>
@@ -104,7 +104,7 @@
 				<span class="feat__icon"><span class="material-symbols-rounded">device_thermostat</span></span>
 				<h3>Temperature</h3>
 				<p class="param-target">
-					<span class="material-symbols-rounded">target</span> Hold a tight, age-specific comfort band
+					<span class="material-symbols-rounded">target</span> Target 64-75 °F (18-24 °C) for adult birds · age-specific for chicks
 				</p>
 				<p>
 					Birds only convert feed to weight efficiently inside a narrow comfort zone. Stray above it
@@ -291,14 +291,16 @@
 		</div>
 		<dl class="pspecs__grid" data-reveal>
 			<div class="spec-row"><dt>Measures</dt><dd>Temp · RH · CO₂ · NH₃</dd></div>
+			<div class="spec-row"><dt>Sensors</dt><dd>Sensirion SHT40 + SCD41 (temp · RH · CO₂)</dd></div>
 			<div class="spec-row"><dt>Temp range</dt><dd>-40 °C to +85 °C</dd></div>
-			<div class="spec-row"><dt>CO₂ range</dt><dd>0-10,000 ppm</dd></div>
+			<div class="spec-row"><dt>CO₂ range</dt><dd>400-5,000 ppm (NDIR)</dd></div>
 			<div class="spec-row"><dt>Ammonia</dt><dd>0-100 ppm (NH₃)</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.3 °C / ±2 %RH</dd></div>
+			<div class="spec-row"><dt>Accuracy</dt><dd>±0.2 °C / ±1.8 %RH</dd></div>
 			<div class="spec-row"><dt>Verification</dt><dd>Dual-sensor cross-check</dd></div>
 			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
-			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years</dd></div>
-			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready</dd></div>
+			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
+			<div class="spec-row"><dt>Logging</dt><dd>Every 15 min · 1 year retained · CSV</dd></div>
+			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready, potted electronics</dd></div>
 			<div class="spec-row"><dt>Coverage</dt><dd>Up to 15 km per gateway</dd></div>
 		</dl>
 	</div>
@@ -329,7 +331,8 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					The enclosure is IP66-rated and washdown-ready. If a sensing module ever degrades, the
+					The board is conformal-coated and the electronics are potted in resin for high-humidity,
+					high-dust houses. The enclosure is IP66-rated and washdown-ready. If a sensing module ever degrades, the
 					dual-sensor design catches it and you swap the module yourself - no return shipment.
 				</p>
 			</details>
@@ -374,12 +377,13 @@
 
 <style>
 	/* Full-bleed photographic hero (livestock): the farm photo sits behind the
-	   copy with a left-weighted dark scrim so the light text stays legible. */
+	   copy with a left-weighted dark scrim so the light text stays legible.
+	   Warm earth/gold palette ported from the Japan site's livestock hero. */
 	.hero--bg {
 		position: relative;
 		isolation: isolate;
 		overflow: hidden;
-		background: var(--cw-ink);
+		background: #160d06;
 		padding-block: 104px 92px;
 		min-height: 560px;
 	}
@@ -399,40 +403,48 @@
 		background:
 			linear-gradient(
 				96deg,
-				rgba(8, 16, 34, 0.92) 0%,
-				rgba(8, 16, 34, 0.7) 40%,
-				rgba(8, 16, 34, 0.24) 76%,
-				rgba(8, 16, 34, 0.05) 100%
+				rgba(22, 13, 6, 0.95) 0%,
+				rgba(38, 24, 13, 0.9) 32%,
+				rgba(58, 36, 20, 0.62) 60%,
+				rgba(58, 36, 20, 0.32) 100%
 			),
-			linear-gradient(0deg, rgba(8, 16, 34, 0.5) 0%, rgba(8, 16, 34, 0) 42%);
+			linear-gradient(180deg, transparent 52%, rgba(18, 11, 5, 0.62) 100%);
 	}
 	/* light type for legibility over the photo */
 	.hero--bg .eyebrow {
-		color: var(--cw-emerald-300);
+		color: var(--cw-gold-400);
 	}
 	.hero--bg h1 {
 		color: #fff;
 		text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
 	}
 	.hero--bg .lead {
-		color: rgba(255, 255, 255, 0.92);
+		color: rgba(255, 246, 238, 0.94);
 	}
 	.hero--bg .lead strong {
 		color: #fff;
 	}
 	.hero--bg .hero__badges span {
-		color: #fff;
-		background: rgba(255, 255, 255, 0.12);
-		border: 1px solid rgba(255, 255, 255, 0.28);
+		color: #ffe9d8;
+		background: rgba(255, 240, 224, 0.12);
+		border: 1px solid rgba(255, 240, 224, 0.28);
 		backdrop-filter: blur(4px);
 	}
 	.hero--bg .hero__badges .material-symbols-rounded {
-		color: var(--cw-emerald-300);
+		color: var(--cw-gold-400);
 	}
 	@media (max-width: 900px) {
 		.hero--bg {
 			padding-block: 72px 64px;
 			min-height: 0;
+		}
+		.hero__scrim {
+			background: linear-gradient(
+				180deg,
+				rgba(22, 13, 6, 0.82) 0%,
+				rgba(38, 24, 13, 0.72) 50%,
+				rgba(30, 19, 10, 0.86) 100%
+			);
 		}
 	}
 </style>

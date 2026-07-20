@@ -1,26 +1,27 @@
 <script lang="ts">
 	// Component-sourcing breakdown for the "trusted parts" section. Counts come
-	// from the BOM: 29 distinct parts placed 60 times, from 16 manufacturers
-	// across 7 countries. Colours are per-country chart hues (also used for the
+	// from the BOM: 34 part types placed 71 times, from 18 manufacturers
+	// across 8 countries. Colours are per-country chart hues (also used for the
 	// donut ring, the legend dot and each bar).
 	const sourcing = [
-		{ code: 'us', name: 'United States', parts: 9, pct: 31, mfrs: 7, color: '#14b8a6' },
-		{ code: 'jp', name: 'Japan', parts: 7, pct: 24, mfrs: 2, color: '#3b82f6' },
-		{ code: 'tw', name: 'Taiwan', parts: 7, pct: 24, mfrs: 2, color: '#f59e0b' },
-		{ code: 'ch', name: 'Switzerland', parts: 2, pct: 7, mfrs: 2, color: '#22c55e' },
-		{ code: 'ie', name: 'Ireland', parts: 2, pct: 7, mfrs: 1, color: '#a855f7' },
+		{ code: 'us', name: 'United States', parts: 10, pct: 29, mfrs: 7, color: '#14b8a6' },
+		{ code: 'jp', name: 'Japan', parts: 7, pct: 21, mfrs: 2, color: '#3b82f6' },
+		{ code: 'tw', name: 'Taiwan', parts: 7, pct: 21, mfrs: 2, color: '#f59e0b' },
+		{ code: 'ch', name: 'Switzerland', parts: 5, pct: 15, mfrs: 3, color: '#22c55e' },
+		{ code: 'ie', name: 'Ireland', parts: 2, pct: 6, mfrs: 1, color: '#a855f7' },
+		{ code: 'at', name: 'Austria', parts: 1, pct: 3, mfrs: 1, color: '#fb923c' },
 		{ code: 'kr', name: 'South Korea', parts: 1, pct: 3, mfrs: 1, color: '#f87171' },
 		{ code: 'de', name: 'Germany', parts: 1, pct: 3, mfrs: 1, color: '#94a3b8' }
 	];
 
 	const sourcingStats = [
-		{ value: '29', label: 'Distinct parts' },
-		{ value: '7', label: 'Countries' },
-		{ value: '16', label: 'Manufacturers' },
-		{ value: '60', label: 'Total placements' }
+		{ value: '34', label: 'Part types' },
+		{ value: '8', label: 'Countries' },
+		{ value: '18', label: 'Manufacturers' },
+		{ value: '71', label: 'Total placements' }
 	];
 
-	// Build the donut ring from the part counts (which sum to exactly 29 -> 100%)
+	// Build the donut ring from the part counts (which sum to exactly 34 -> 100%)
 	// rather than the rounded percentages, so there's no thin gap at the end.
 	const partsTotal = sourcing.reduce((sum, c) => sum + c.parts, 0);
 	let acc = 0;
@@ -65,7 +66,7 @@
 			</p>
 			<ul class="proof">
 				<li><span class="material-symbols-rounded">check</span> <span>Devices that ensure you get correct data, or none at all</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Networking that ensure data arrives even when your internet fails you</span></li>
+				<li><span class="material-symbols-rounded">check</span> <span>Onboard memory that keeps recording and re-sends automatically when your internet fails you</span></li>
 				<li><span class="material-symbols-rounded">check</span> <span>An infrastructure that assumes the worst will happen, and is ready to handle it.</span></li>
 				<li><span class="material-symbols-rounded">check</span> <span>Real humans that care about the outcomes as much as you do</span></li>
 			</ul>
@@ -128,12 +129,12 @@
 			<article class="why-card" data-reveal="2">
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>Dual-sensor verified</h3>
-				<p>Two independent sensors cross-check every reading. If they disagree, the device flags an error and refuses to publish - so bad data never reaches your records.</p>
+				<p>Two independent Sensirion sensors (SHT43 + SHT40) cross-check every reading. If they disagree, the device flags an error and refuses to publish - so bad data never reaches your records.</p>
 			</article>
 			<article class="why-card" data-reveal="3">
 				<span class="why-card__ic"><span class="material-symbols-rounded">health_and_safety</span></span>
 				<h3>Self-auditing hardware</h3>
-				<p>The device continuously checks and corrects itself. If anything drifts out of spec, it tells you - instead of silently logging numbers you can't trust.</p>
+				<p>Two independent watchdogs - one in software, one a separate hardware circuit - restart the device on their own if it ever hangs, and readings buffer to onboard FRAM memory until delivered. If anything drifts out of spec, it tells you - instead of silently logging numbers you can't trust.</p>
 			</article>
 		</div>
 	</div>
@@ -147,7 +148,7 @@
 			<h2>Our trusted device is built with trusted parts from trusted places.</h2>
 			<p class="section__intro">
 				Every CropWatch device is assembled from components we hand-pick for reliability - sourced
-				from established manufacturers across seven countries, so quality is never left to chance.
+				from established manufacturers across eight countries, so quality is never left to chance.
 			</p>
 		</div>
 
@@ -331,8 +332,8 @@
 <!-- ░░ Proof band ░░ -->
 <section class="proofband">
 	<div class="wrap proofband__grid">
-		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr+</p><p class="stat__body">User-replaceable cells. No wiring, no gateways to babysit.</p></div>
-		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.8 °F</p><p class="stat__body">NIST-traceable, ISO/IEC 17025 calibrated - defensible in an audit.</p></div>
+		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr</p><p class="stat__body">Up to 10 years on the cold-chain sensor at a 10-minute cadence; up to 5 on CO₂ models. User-replaceable cells.</p></div>
+		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.9 °F</p><p class="stat__body">NIST-traceable, ISO/IEC 17025 calibrated - defensible in an audit.</p></div>
 		<div class="stat" data-reveal="2"><p class="stat__eyebrow">Range</p><p class="stat__value stat__value--accent">5 miles</p><p class="stat__body">LoRaWAN coverage from a single gateway across a whole site.</p></div>
 		<div class="stat" data-reveal="3"><p class="stat__eyebrow">Bad readings logged</p><p class="stat__value">0</p><p class="stat__body">Dual-sensor verification means wrong data never reaches your records.</p></div>
 	</div>
