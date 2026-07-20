@@ -14,8 +14,11 @@
 		label: string;
 		icon: string;
 		pricePerDevice: number;
+		/** USD per month, charged once per location. */
 		baseFee: number;
-		/** Default slider position: how many units a typical operation monitors. */
+		/** Default slider position: number of locations (sites/stores/farms). */
+		defaultLocations: number;
+		/** Default slider position: how many units a typical location monitors. */
 		defaultUnits: number;
 		/** Default slider position: manual temperature checks per day. */
 		defaultChecksPerDay: number;
@@ -29,7 +32,8 @@
 			icon: 'ac_unit',
 			pricePerDevice: 8,
 			baseFee: 100,
-			defaultUnits: 10,
+			defaultLocations: 1,
+			defaultUnits: 20,
 			defaultChecksPerDay: 2,
 			minutesPerCheck: 3,
 			unitsHint: 'Coolers, freezers and display cases.'
@@ -39,6 +43,7 @@
 			icon: 'pets',
 			pricePerDevice: 8,
 			baseFee: 50,
+			defaultLocations: 1,
 			defaultUnits: 50,
 			defaultChecksPerDay: 3,
 			minutesPerCheck: 5,
@@ -49,6 +54,7 @@
 			icon: 'eco',
 			pricePerDevice: 0,
 			baseFee: 0,
+			defaultLocations: 0,
 			defaultUnits: 0,
 			defaultChecksPerDay: 0,
 			minutesPerCheck: 0,
@@ -64,6 +70,7 @@
 	let sector = $state('cold-chain');
 	const cfg = $derived(SECTORS[sector]);
 
+	let locations = $state(SECTORS['cold-chain'].defaultLocations);
 	let units = $state(SECTORS['cold-chain'].defaultUnits);
 	let checksPerDay = $state(SECTORS['cold-chain'].defaultChecksPerDay);
 	let minutesPerCheck = $state(SECTORS['cold-chain'].minutesPerCheck);
@@ -72,6 +79,7 @@
 	function selectSector(id: string) {
 		sector = id;
 		// Each sector starts from its own realistic defaults.
+		locations = SECTORS[id].defaultLocations;
 		units = SECTORS[id].defaultUnits;
 		checksPerDay = SECTORS[id].defaultChecksPerDay;
 		minutesPerCheck = SECTORS[id].minutesPerCheck;
@@ -85,17 +93,20 @@
 
 	const safeWage = $derived(Number.isFinite(wage) && wage > 0 ? wage : 0);
 
-	// Manual clipboard logging: every unit, every check, every day of the year.
-	const manualHoursPerYear = $derived((units * checksPerDay * minutesPerCheck * 365) / 60);
+	// Everything below the locations slider is per location.
+	const totalUnits = $derived(locations * units);
+
+	// Manual clipboard logging: every unit, every check, every day, every site.
+	const manualHoursPerYear = $derived((totalUnits * checksPerDay * minutesPerCheck * 365) / 60);
 	const manualCostPerYear = $derived(manualHoursPerYear * safeWage);
 
-	// CropWatch: base fee + per-device fee, billed monthly.
-	const cropwatchPerMonth = $derived(cfg.baseFee + units * cfg.pricePerDevice);
+	// CropWatch: base fee per location + per-device fee, billed monthly.
+	const cropwatchPerMonth = $derived(cfg.baseFee * locations + totalUnits * cfg.pricePerDevice);
 	const cropwatchPerYear = $derived(cropwatchPerMonth * 12);
 
 	const savingsPerYear = $derived(manualCostPerYear - cropwatchPerYear);
 	const savingsPerMonth = $derived(savingsPerYear / 12);
-	const checksPerYear = $derived(units * checksPerDay * 365);
+	const checksPerYear = $derived(totalUnits * checksPerDay * 365);
 
 	const usd = new Intl.NumberFormat('en-US', {
 		style: 'currency',
@@ -136,10 +147,10 @@
 				{cfg.label} pricing is on its way. Pick another sector to run the numbers - unlimited
 				users, alerts, reports and API are always included.
 			{:else}
-				Simple {cfg.label.toLowerCase()} pricing: {usd2.format(cfg.baseFee)}/month base + {usd2.format(
-					cfg.pricePerDevice
-				)}/month per monitored unit - unlimited users, alerts, reports and API included. Slide in
-				your own numbers and watch what the manual log walk really costs.
+				Simple {cfg.label.toLowerCase()} pricing: {usd2.format(cfg.baseFee)}/month base per location
+				+ {usd2.format(cfg.pricePerDevice)}/month per monitored unit - unlimited users, alerts,
+				reports and API included. Slide in your own numbers and watch what the manual log walk
+				really costs.
 			{/if}
 		</p>
 	</div>
@@ -184,37 +195,50 @@
 	{:else}
 	<div class="wrap calc" data-reveal>
 		<div class="calc__inputs">
-			<div class="calc-field">
+			<div class="calc-loc">
 				<div class="calc-field__head">
-					<label for="units">Monitored units</label>
-					<b>{units}</b>
+					<label for="locations">Locations</label>
+					<b>{locations}</b>
 				</div>
-				<input id="units" type="range" min="1" max="100" step="1" bind:value={units} />
-				<p class="calc-field__hint">{cfg.unitsHint}</p>
-			</div>
-
-			<div class="calc-field">
-				<div class="calc-field__head">
-					<label for="checks">Temperature checks per day</label>
-					<b>{checksPerDay}×</b>
-				</div>
-				<input id="checks" type="range" min="1" max="12" step="1" bind:value={checksPerDay} />
+				<input id="locations" type="range" min="1" max="50" step="1" bind:value={locations} />
 				<p class="calc-field__hint">
-					How often someone currently walks the log route. Health codes typically require at least
-					two.
+					Sites, stores, plants or farms. Everything inside applies to each location.
 				</p>
-			</div>
 
-			<div class="calc-field">
-				<div class="calc-field__head">
-					<label for="minutes">Time per reading</label>
-					<b>{minutesPerCheck} min</b>
+				<div class="calc-loc__fields">
+					<div class="calc-field">
+						<div class="calc-field__head">
+							<label for="units">Monitored units per location</label>
+							<b>{units}</b>
+						</div>
+						<input id="units" type="range" min="1" max="100" step="1" bind:value={units} />
+						<p class="calc-field__hint">{cfg.unitsHint}</p>
+					</div>
+
+					<div class="calc-field">
+						<div class="calc-field__head">
+							<label for="checks">Temperature checks per day</label>
+							<b>{checksPerDay}×</b>
+						</div>
+						<input id="checks" type="range" min="1" max="12" step="1" bind:value={checksPerDay} />
+						<p class="calc-field__hint">
+							How often someone currently walks the log route. Health codes typically require at
+							least two.
+						</p>
+					</div>
+
+					<div class="calc-field">
+						<div class="calc-field__head">
+							<label for="minutes">Time per reading</label>
+							<b>{minutesPerCheck} min</b>
+						</div>
+						<input id="minutes" type="range" min="1" max="30" step="1" bind:value={minutesPerCheck} />
+						<p class="calc-field__hint">
+							Be honest here: include the walk or travel time to reach each unit, reading it, and
+							the time to log the number into your system - not just glancing at a display.
+						</p>
+					</div>
 				</div>
-				<input id="minutes" type="range" min="1" max="30" step="1" bind:value={minutesPerCheck} />
-				<p class="calc-field__hint">
-					Be honest here: include the walk or travel time to reach each unit, reading it, and the
-					time to log the number into your system - not just glancing at a display.
-				</p>
 			</div>
 
 			<div class="calc-field">
@@ -244,7 +268,7 @@
 				<b>{usd.format(manualCostPerYear)}<small>/yr</small></b>
 			</div>
 			<div class="calc-row">
-				<span>CropWatch <small>({usd2.format(cropwatchPerMonth)}/mo)</small></span>
+				<span>CropWatch <small>({usd2.format(cropwatchPerMonth)}/mo · {num.format(totalUnits)} devices)</small></span>
 				<b>{usd.format(cropwatchPerYear)}<small>/yr</small></b>
 			</div>
 			<div class="calc-total" class:is-negative={savingsPerYear < 0}>
@@ -370,6 +394,24 @@
 	.calc__inputs {
 		display: grid;
 		gap: 26px;
+	}
+	/* Locations wrapper: the outer scale everything else multiplies by. */
+	.calc-loc {
+		background: var(--web-primary-soft);
+		border: 1px solid color-mix(in srgb, var(--web-primary) 30%, transparent);
+		border-radius: var(--web-radius-card);
+		box-shadow: var(--web-shadow-card);
+		padding: 22px 24px;
+	}
+	.calc-loc > .calc-field__head label {
+		font-size: 17px;
+	}
+	.calc-loc__fields {
+		display: grid;
+		gap: 16px;
+		margin-top: 20px;
+		padding-top: 20px;
+		border-top: 1px dashed color-mix(in srgb, var(--web-primary) 35%, transparent);
 	}
 	.calc-field {
 		background: var(--web-surface);
