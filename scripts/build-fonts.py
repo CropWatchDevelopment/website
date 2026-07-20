@@ -166,6 +166,26 @@ if missing:
     raise SystemExit(1)
 print(f"Verified: all {len(names)} icons resolve to a ligature glyph in the subset. OK")
 
+# ---- 3b. Cache-bust the font URL --------------------------------------------
+# The subset's filename never changes, so browsers keep serving a stale cached
+# font after a regeneration — new icon names then render as raw ligature text
+# ("campaign") because the old font lacks the glyph. Stamp a content-hash
+# ?v= query onto every reference (the preload in app.html and the @font-face
+# src in fonts.css must stay byte-identical for the preload to match).
+import hashlib
+
+digest = hashlib.md5(out_path.read_bytes()).hexdigest()[:8]
+for target in (ROOT / "src" / "app.html", ROOT / "src" / "lib" / "styles" / "tokens" / "fonts.css"):
+    text = target.read_text(encoding="utf-8")
+    stamped = re.sub(
+        r"material-symbols-rounded-subset\.woff2(\?v=[0-9a-f]*)?",
+        f"material-symbols-rounded-subset.woff2?v={digest}",
+        text,
+    )
+    if stamped != text:
+        target.write_text(stamped, encoding="utf-8")
+        print(f"Stamped font version ?v={digest} into {target.relative_to(ROOT)}")
+
 # ---- 4. Inter fallback metric overrides ------------------------------------
 # Computing size-adjust needs the font-wide average glyph width, but Google
 # serves a *latin subset* whose OS/2.xAvgCharWidth is skewed (it recalculates
