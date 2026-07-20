@@ -3,7 +3,7 @@
 	import { afterNavigate, replaceState } from '$app/navigation';
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema } from '$lib/seo/schema';
+	import { breadcrumbSchema, productSchema } from '$lib/seo/schema';
 	import { absUrl } from '$lib/seo/site';
 
 	/* ══════════════════════════════════════════════════════════════════
@@ -71,6 +71,36 @@
 	const DEFAULT_HOURLY_WAGE = 1121;
 	/** 「1日あたり」の計算に使う年間日数（月あたりは30日）。 */
 	const DAYS_PER_YEAR = 360;
+
+	/** 機器のご購入価格（初回のみ・税込）。Product構造化データにも使われます。 */
+	const DEVICES = [
+		{
+			icon: 'sensors',
+			name: '温湿度センサー',
+			model: 'CW-AIR-TH',
+			price: 33000,
+			desc: 'ISO/IEC 17025 の校正証明書つき。センサー部はご自身で交換できます。',
+			schemaDesc:
+				'冷蔵庫・冷凍庫向けの電池駆動LoRaWAN温湿度センサー。1台ごとにISO/IEC 17025の校正証明書が付属し、センサー部はユーザー自身で交換できます。'
+		},
+		{
+			icon: 'router',
+			name: 'ゲートウェイ',
+			model: null,
+			price: 110000,
+			desc: '1拠点に1台。厚い壁や離れた建物のセンサーもまとめて収容します。',
+			schemaDesc:
+				'CropWatchセンサーのデータをクラウドへ送るLoRaWANゲートウェイ。1拠点1台で建物全体のセンサーを収容します。'
+		},
+		{
+			icon: 'construction',
+			name: '初期導入費',
+			model: null,
+			price: 165000,
+			desc: '設置・設定・立ち上げサポート（初回のみ）。',
+			schemaDesc: null // サービスのためProduct構造化データは出さない
+		}
+	];
 	/* ══════════════════════════════════════════════════════════════════ */
 
 	const SECTOR_IDS = Object.keys(SECTORS);
@@ -200,10 +230,23 @@
 	const description =
 		'CropWatchの料金シミュレーション。センサー台数・記録回数・拠点数・時給を入力すると、月額のランニングコストと、手書き記録の人件費との比較をその場で計算します。基本料金16,500円+1台あたり880円（税込）。ユーザー数無制限・アラート・レポート・API込み。';
 
-	const ld = breadcrumbSchema([
-		{ name: 'ホーム', path: '/' },
-		{ name: '料金', path: '/pricing' }
-	]);
+	const ld = [
+		breadcrumbSchema([
+			{ name: 'ホーム', path: '/' },
+			{ name: '料金', path: '/pricing' }
+		]),
+		// 機器価格つきのProduct（offersがあることでリッチリザルト対象になる）
+		...DEVICES.filter((d) => d.schemaDesc).map((d) =>
+			productSchema({
+				name: `CropWatch ${d.name}${d.model ? ` (${d.model})` : ''}`,
+				description: d.schemaDesc!,
+				...(d.model ? { sku: d.model } : {}),
+				category: '環境監視機器',
+				price: d.price,
+				offerUrl: '/pricing'
+			})
+		)
+	];
 </script>
 
 <Seo {title} {description} />
@@ -473,6 +516,30 @@
 
 		{/if}
 
+		<!-- 仕切り + 機器価格 -->
+		<div class="pr-divider" role="separator" aria-label="機器価格">
+			<span class="pr-divider__chip">
+				<span class="material-symbols-rounded">sell</span> 機器のご購入価格
+			</span>
+		</div>
+
+		<div class="pr-devices" data-reveal>
+			{#each DEVICES as d (d.name)}
+				<div class="pr-device">
+					<span class="pr-device__ic"><span class="material-symbols-rounded">{d.icon}</span></span>
+					<div class="pr-device__tx">
+						<b>{d.name}</b>
+						{#if d.model}<span class="pr-device__model">{d.model}</span>{/if}
+						<p>{d.desc}</p>
+					</div>
+					<strong class="pr-device__price">{yen(d.price)}<small>税込</small></strong>
+				</div>
+			{/each}
+		</div>
+		<p class="pr-note" data-reveal>
+			機器価格はいずれも初回のみのお支払いです。CO₂センサー・土壌センサーなど他の機器の価格はお問い合わせください。
+		</p>
+
 		<div class="pr-cta" data-reveal>
 			<a href="/contact" class="btn btn--accent btn--lg"
 				>見積もりを依頼する <span class="material-symbols-rounded">arrow_forward</span></a
@@ -489,9 +556,6 @@
 				<span class="material-symbols-rounded">{copied ? 'check' : 'content_copy'}</span>
 				{copied ? 'コピーしました' : 'リンクをコピー'}
 			</button>
-			<a class="btn btn--ghost" href={mailtoHref}>
-				<span class="material-symbols-rounded">mail</span> メールで送る
-			</a>
 		</div>
 	</div>
 </section>
@@ -789,6 +853,110 @@
 		line-height: 1.8;
 		color: var(--web-muted);
 	}
+	/* ── 仕切り + 機器価格 ── */
+	.pr-divider {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		margin: 36px 0 22px;
+	}
+	.pr-divider::before,
+	.pr-divider::after {
+		content: '';
+		flex: 1;
+		height: 2px;
+		border-radius: 2px;
+	}
+	.pr-divider::before {
+		background: linear-gradient(90deg, transparent, var(--web-border-strong));
+	}
+	.pr-divider::after {
+		background: linear-gradient(90deg, var(--web-border-strong), transparent);
+	}
+	.pr-divider__chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		font-size: 13.5px;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		color: var(--web-primary);
+		background: var(--web-primary-soft);
+		border: 1px solid color-mix(in srgb, var(--web-primary) 30%, transparent);
+		border-radius: 999px;
+		padding: 8px 16px;
+		white-space: nowrap;
+	}
+	.pr-divider__chip .material-symbols-rounded {
+		font-size: 18px;
+	}
+	.pr-devices {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 14px;
+	}
+	.pr-devices > * {
+		min-width: 0;
+	}
+	.pr-device {
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: 16px;
+		box-shadow: var(--web-shadow-card);
+		padding: 18px 20px;
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+		justify-items: start;
+		gap: 12px;
+	}
+	.pr-device__ic {
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border-radius: 12px;
+		background: var(--web-primary-soft);
+		color: var(--web-primary);
+	}
+	.pr-device__ic .material-symbols-rounded {
+		font-size: 24px;
+	}
+	.pr-device__tx b {
+		font-size: 15px;
+		color: var(--cw-ink);
+	}
+	.pr-device__model {
+		display: inline-block;
+		margin-left: 8px;
+		font-family: var(--cw-font-mono);
+		font-size: 11.5px;
+		font-weight: 700;
+		color: var(--web-muted);
+		background: var(--web-bg-soft);
+		border: 1px solid var(--web-border);
+		border-radius: 999px;
+		padding: 2px 8px;
+		vertical-align: middle;
+	}
+	.pr-device__tx p {
+		margin: 6px 0 0;
+		font-size: 12.5px;
+		line-height: 1.7;
+		color: var(--web-muted);
+	}
+	.pr-device__price {
+		font-family: var(--cw-font-mono);
+		font-size: 22px;
+		font-weight: 800;
+		color: var(--cw-ink);
+	}
+	.pr-device__price small {
+		margin-left: 6px;
+		font-size: 11px;
+		font-weight: 700;
+		color: var(--web-muted);
+	}
+
 	.pr-cta {
 		display: flex;
 		flex-wrap: wrap;
@@ -821,6 +989,9 @@
 			grid-template-columns: 1fr;
 		}
 		.pr-compare__grid {
+			grid-template-columns: 1fr;
+		}
+		.pr-devices {
 			grid-template-columns: 1fr;
 		}
 		.pr-compare {

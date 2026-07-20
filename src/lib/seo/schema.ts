@@ -92,6 +92,17 @@ export type ProductInput = {
 	image?: string;
 	sku?: string;
 	category?: string;
+	/**
+	 * Public list price (tax included). When present an Offer is emitted, which
+	 * makes the Product eligible for Google's product rich results and clears
+	 * the Search Console "offers/review/aggregateRating" warning. Only set it
+	 * for prices that are actually published on the site.
+	 */
+	price?: number;
+	/** ISO 4217 currency for `price`. Defaults to JPY on this site. */
+	priceCurrency?: string;
+	/** Root-relative page where the product can be bought/quoted (Offer.url). */
+	offerUrl?: string;
 };
 
 /** A CropWatch hardware product (sensor, case, etc.). */
@@ -107,6 +118,15 @@ export function productSchema(p: ProductInput): Json {
 	if (p.image) out.image = p.image;
 	if (p.sku) out.sku = p.sku;
 	if (p.category) out.category = p.category;
+	if (p.price !== undefined) {
+		out.offers = {
+			'@type': 'Offer',
+			price: String(p.price),
+			priceCurrency: p.priceCurrency ?? 'JPY',
+			availability: 'https://schema.org/InStock',
+			...(p.offerUrl ? { url: absUrl(p.offerUrl) } : {})
+		};
+	}
 	return out;
 }
 

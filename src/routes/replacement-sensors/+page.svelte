@@ -104,7 +104,9 @@ const ld = [
 		name: 'CropWatch 交換用センサーモジュール',
 		description:
 			'ユーザー自身が60秒で交換できる校正済みセンサーモジュール。温度・湿度・CO₂・土壌に対応し、1台ごとにISO/IEC 17025の校正証明書が付属します。',
-		category: '交換用センサー'
+		category: '交換用センサー',
+		price: 33000,
+		offerUrl: '/pricing'
 	})
 ];
 </script>

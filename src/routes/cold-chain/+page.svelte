@@ -52,7 +52,9 @@
 			description:
 				'コールドチェーン向けの電池駆動LoRaWAN温度・湿度センサー。冷蔵庫・冷凍庫の温度を10分ごとに自動記録し、遠隔監視とHACCP対応の温度記録を実現するクラウド温度監視システムです。',
 			image: 'https://cropwatch.co.jp/assets/imagery/device-top-view.webp',
-			category: '温度監視システム'
+			category: '温度監視システム',
+			price: 33000,
+			offerUrl: '/pricing'
 		})
 	];
 </script>
