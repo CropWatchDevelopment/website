@@ -1,0 +1,37 @@
+{
+	"title": "Welcome to the refreshed cropwatch.io",
+	"description": "The US/Global CropWatch site has been updated with the latest hardware story, US units, an interactive parts-origin chart and authoritative citations for every technical claim.",
+	"date": "2026-07-21",
+	"icon": "campaign",
+	"headerImage": null,
+	"content": [
+		{
+			"type": "paragraph",
+			"text": "We have rolled out a major refresh of cropwatch.io. The site now reflects the newest hardware details and displays every measurement in US units - Fahrenheit first, with Celsius alongside.",
+			"image": null
+		},
+		{
+			"type": "heading",
+			"text": "What changed"
+		},
+		{
+			"type": "list",
+			"items": [
+				"Updated sensor specifications across all product pages",
+				"An interactive parts-origin chart - hover a country to see its manufacturers",
+				"Every technical term now links to its official source (Sensirion, NIST, LoRa Alliance, ISO, FDA and more)",
+				"A faster, lighter site with no horizontal scrolling on phones"
+			]
+		},
+		{
+			"type": "paragraph",
+			"text": "Questions, or want to see CropWatch on your own coolers, barns or greenhouses? We would love to show you.",
+			"image": null
+		},
+		{
+			"type": "link",
+			"href": "/contact",
+			"text": "Book a demo"
+		}
+	]
+}

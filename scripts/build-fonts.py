@@ -43,6 +43,10 @@ ICON_RE = re.compile(
     r'class="[^"]*material-symbols-rounded[^"]*"[^>]*>\s*([a-z0-9_]+)\s*<', re.I
 )
 ICON_PROP_RE = re.compile(r"\b(?:icon|ic):\s*'([a-z0-9_]+)'")
+# `DEFAULT_NEWS_ICON = 'campaign'`-style constants in .ts modules.
+ICON_CONST_RE = re.compile(r"\bICON\w*\s*=\s*'([a-z0-9_]+)'")
+# `"icon": "gavel"` in news article JSON (static/news/*.json).
+ICON_JSON_RE = re.compile(r'"icon"\s*:\s*"([a-z0-9_]+)"')
 
 names = set()
 for pattern in ("*.svelte", "*.ts"):
@@ -50,6 +54,9 @@ for pattern in ("*.svelte", "*.ts"):
         text = f.read_text(encoding="utf-8")
         names.update(ICON_RE.findall(text))
         names.update(ICON_PROP_RE.findall(text))
+        names.update(ICON_CONST_RE.findall(text))
+for f in (ROOT / "static" / "news").glob("*.json"):
+    names.update(ICON_JSON_RE.findall(f.read_text(encoding="utf-8")))
 
 names = sorted(names)
 print(f"Found {len(names)} distinct icons: {', '.join(names)}")

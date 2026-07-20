@@ -289,7 +289,13 @@
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>Swiss precision</h3>
 				<p>
-					Sensirion <a
+					<a
+						class="termlink"
+						href="https://sensirion.com/company/about-sensirion"
+						target="_blank"
+						rel="noopener noreferrer">Sensirion</a
+					>
+					<a
 						class="termlink"
 						href="https://sensirion.com/products/catalog/SHT40"
 						target="_blank"
@@ -367,7 +373,7 @@
 			<div class="spec-row">
 				<dt>Ruggedness</dt>
 				<dd>
-				<a
+					<a
 						class="termlink"
 						href="https://en.wikipedia.org/wiki/Conformal_coating"
 						target="_blank"
