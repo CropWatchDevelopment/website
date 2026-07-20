@@ -35,18 +35,21 @@ INTER_IN = Path("/tmp/cwfonts/inter400.woff2")
 
 # ---- 1. Collect every icon name actually rendered -------------------------
 # Matches <span class="...material-symbols-rounded...">name</span>, tolerating
-# extra classes/attrs, PLUS dynamic icon names declared as `icon: 'name'` in
-# data arrays (e.g. the Header products menu renders {p.icon}).
+# extra classes/attrs, PLUS dynamic icon names declared as `icon: 'name'` or
+# `ic: 'name'` in data arrays (e.g. the Header products menu renders {p.icon},
+# agCharts.ts builds icon spans via innerHTML from `ic:` props). .ts files are
+# scanned too - chart/viewer modules inject icons outside any .svelte template.
 ICON_RE = re.compile(
     r'class="[^"]*material-symbols-rounded[^"]*"[^>]*>\s*([a-z0-9_]+)\s*<', re.I
 )
-ICON_PROP_RE = re.compile(r"\bicon:\s*'([a-z0-9_]+)'")
+ICON_PROP_RE = re.compile(r"\b(?:icon|ic):\s*'([a-z0-9_]+)'")
 
 names = set()
-for f in SRC.rglob("*.svelte"):
-    text = f.read_text(encoding="utf-8")
-    names.update(ICON_RE.findall(text))
-    names.update(ICON_PROP_RE.findall(text))
+for pattern in ("*.svelte", "*.ts"):
+    for f in SRC.rglob(pattern):
+        text = f.read_text(encoding="utf-8")
+        names.update(ICON_RE.findall(text))
+        names.update(ICON_PROP_RE.findall(text))
 
 names = sorted(names)
 print(f"Found {len(names)} distinct icons: {', '.join(names)}")
