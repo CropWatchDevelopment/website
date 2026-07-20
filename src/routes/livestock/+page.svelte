@@ -9,16 +9,13 @@
 	>
 	<meta
 		name="description"
-		content="Wireless temperature, CO₂, humidity and ammonia (NH₃) monitoring for poultry houses, broiler and layer barns, dairy and livestock sheds. Catch heat stress, poor ventilation and rising gases before they cost you birds. User-replaceable, dual-sensor verified sensors with unlimited users and alerts."
+		content="Wireless temperature, CO₂, humidity and ammonia (NH₃) monitoring for poultry houses, broiler and layer barns, dairy and livestock sheds. Catch heat stress, poor ventilation and rising gases before they cost you birds. User-replaceable Swiss Sensirion sensors, calibrated at an accredited lab, with unlimited users and alerts."
 	/>
 	<meta
 		name="keywords"
 		content="poultry house air quality, broiler house CO2 monitoring, ammonia monitoring poultry, NH3 sensor barn, layer house climate, livestock barn temperature humidity, heat stress alert, poultry ventilation monitoring, animal welfare air quality, wet litter humidity, farm CO2 sensor"
 	/>
-	<meta
-		property="og:title"
-		content="Poultry &amp; Livestock Air Quality Monitoring | CropWatch"
-	/>
+	<meta property="og:title" content="Poultry &amp; Livestock Air Quality Monitoring | CropWatch" />
 	<meta
 		property="og:description"
 		content="Monitor temperature, CO₂, humidity and ammonia across poultry houses and barns - catch heat stress and ventilation faults before they cost you birds."
@@ -52,23 +49,26 @@
 			<h1>Keep the house in range - and the flock comfortable.</h1>
 			<p class="lead">
 				Wireless monitoring of the four things that decide a flock's day -
-				<strong>temperature, CO₂, humidity and ammonia</strong> - across poultry houses, broiler and
-				layer barns, dairy and livestock sheds. Catch heat stress, poor ventilation and rising gases
-				before they cost you birds.
+				<strong>Temperature, CO₂, Humidity and Ammonia</strong> - across poultry houses, broiler and layer
+				barns, dairy and livestock sheds. Catch heat stress, poor ventilation and rising gases before
+				they cost you birds.
 			</p>
 			<div class="hero__badges">
-				<span><span class="material-symbols-rounded">device_thermostat</span> Temp &amp; humidity</span>
+				<span
+					><span class="material-symbols-rounded">device_thermostat</span> Temp &amp; humidity</span
+				>
 				<span><span class="material-symbols-rounded">air</span> Heat-stress alerts</span>
-				<span><span class="material-symbols-rounded">battery_5_bar</span> 10-yr battery</span>
+				<span><span class="material-symbols-rounded">battery_5_bar</span> 5-yr battery</span>
 				<span><span class="material-symbols-rounded">cloud</span> CO₂ readings</span>
 				<span><span class="material-symbols-rounded">detector_alarm</span> Ammonia (NH₃)</span>
 			</div>
 			<div class="hero__ctas" style="margin-top:26px">
 				<a href="/contact" class="cta-pill cta-pill--lg"
-					><span>Book a demo</span> <span class="material-symbols-rounded">arrow_forward</span></a
+					><span>Talk to us about a demo</span>
+					<span class="material-symbols-rounded">arrow_forward</span></a
 				>
 				<a href="/agriculture" class="cta-ghost cta-ghost--light cta-pill--lg"
-					><span class="material-symbols-rounded">eco</span> <span>Agriculture</span></a
+					><span class="material-symbols-rounded">eco</span> <span>Also see Agriculture</span></a
 				>
 			</div>
 		</div>
@@ -81,7 +81,7 @@
 			/>
 			<div class="hero__chip">
 				<span class="dot"></span>
-				<div><strong>Broiler House 3</strong><span>24.6 °C · 68 %RH · live</span></div>
+				<div><strong>Broiler House 3</strong><span>76.3 °F (24.6 °C) · 68 %RH · live</span></div>
 			</div>
 		</div>
 	</div>
@@ -101,10 +101,13 @@
 		</div>
 		<div class="ind-grid" style="grid-template-columns:repeat(2,1fr)">
 			<article class="feat" data-reveal>
-				<span class="feat__icon"><span class="material-symbols-rounded">device_thermostat</span></span>
+				<span class="feat__icon"
+					><span class="material-symbols-rounded">device_thermostat</span></span
+				>
 				<h3>Temperature</h3>
 				<p class="param-target">
-					<span class="material-symbols-rounded">target</span> Hold a tight, age-specific comfort band
+					<span class="material-symbols-rounded">target</span> Target 64-75 °F (18-24 °C) for adult birds
+					· age-specific for chicks
 				</p>
 				<p>
 					Birds only convert feed to weight efficiently inside a narrow comfort zone. Stray above it
@@ -163,8 +166,8 @@
 		</div>
 		<p class="param-note" data-reveal>
 			<span class="material-symbols-rounded">lightbulb</span> These four move together: when humidity
-			rises past 70 %, CO₂ and ammonia climb with it. CropWatch surfaces all of them on one screen so a
-			single trend warns you before any one crosses the line.
+			rises past 70 %, CO₂ and ammonia climb with it. CropWatch surfaces all of them on one screen so
+			a single trend warns you before any one crosses the line.
 		</p>
 	</div>
 </section>
@@ -226,11 +229,12 @@
 					recipients
 				</li>
 				<li>
-					<span class="material-symbols-rounded">check</span> Dual-sensor verification - no false alarms
-					from a bad probe
+					<span class="material-symbols-rounded">check</span> Protected electronics keep recording through
+					humidity, dust and washdown
 				</li>
 				<li>
-					<span class="material-symbols-rounded">check</span> Swap your own sensors between flocks in seconds
+					<span class="material-symbols-rounded">check</span> Swap your own sensors between flocks in
+					seconds
 				</li>
 			</ul>
 			<p style="margin-top:22px">
@@ -264,19 +268,57 @@
 			<article class="why-card" data-reveal="1">
 				<span class="why-card__ic"><span class="material-symbols-rounded">verified</span></span>
 				<h3>Certified</h3>
-				<p>Per-serial ISO/IEC 17025 certificates back every reading.</p>
+				<p>
+					<a
+						class="termlink"
+						href="https://www.nist.gov/calibrations/traceability"
+						target="_blank"
+						rel="noopener noreferrer">NIST</a
+					>
+					Traceability as well as
+					<a
+						class="termlink"
+						href="https://www.reset.build/standard/air"
+						target="_blank"
+						rel="noopener noreferrer">RESET<sup>®</sup></a
+					>
+					CO<sub>2</sub> certifications bring our food grade safety to the barn.
+				</p>
 			</article>
 			<article class="why-card" data-reveal="2">
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
-				<h3>Verified</h3>
-				<p>Dual sensors mean no false heat-stress alarms at 3 a.m.</p>
+				<h3>Swiss precision</h3>
+				<p>
+					<a
+						class="termlink"
+						href="https://sensirion.com/company/about-sensirion"
+						target="_blank"
+						rel="noopener noreferrer">Sensirion</a
+					>
+					<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>
+					and
+					<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SCD41"
+						target="_blank"
+						rel="noopener noreferrer">SCD41</a
+					> digital sensors - calibrated and tested at an accredited lab.
+				</p>
 			</article>
 			<article class="why-card" data-reveal="3">
 				<span class="why-card__ic"
 					><span class="material-symbols-rounded">health_and_safety</span></span
 				>
-				<h3>Self-auditing</h3>
-				<p>The hardware checks itself and flags faults before you're misled.</p>
+				<h3>Built for the barn</h3>
+				<p>
+					A protective board coating shrugs off humidity, dust and temperature swings for years of
+					maintenance-free service.
+				</p>
 			</article>
 		</div>
 	</div>
@@ -290,16 +332,89 @@
 			<h2>CW-AIR-THC(A)</h2>
 		</div>
 		<dl class="pspecs__grid" data-reveal>
-			<div class="spec-row"><dt>Measures</dt><dd>Temp · RH · CO₂ · NH₃</dd></div>
-			<div class="spec-row"><dt>Temp range</dt><dd>-40 °C to +85 °C</dd></div>
-			<div class="spec-row"><dt>CO₂ range</dt><dd>0-10,000 ppm</dd></div>
-			<div class="spec-row"><dt>Ammonia</dt><dd>0-100 ppm (NH₃)</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.3 °C / ±2 %RH</dd></div>
-			<div class="spec-row"><dt>Verification</dt><dd>Dual-sensor cross-check</dd></div>
-			<div class="spec-row"><dt>Connectivity</dt><dd>LoRaWAN (Class A)</dd></div>
-			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years</dd></div>
-			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, washdown-ready</dd></div>
-			<div class="spec-row"><dt>Coverage</dt><dd>Up to 15 km per gateway</dd></div>
+			<div class="spec-row">
+				<dt>Measures</dt>
+				<dd>Temp · RH · CO₂ · NH₃</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Sensors</dt>
+				<dd>
+					Sensirion <a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>
+					+
+					<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SCD41"
+						target="_blank"
+						rel="noopener noreferrer">SCD41</a
+					> (temp · RH · CO₂)
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Temp range</dt>
+				<dd>−40 to +185 °F (−40 to +85 °C)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>CO₂ range</dt>
+				<dd>400-5,000 ppm (NDIR)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Ammonia</dt>
+				<dd>0-100 ppm (NH₃)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Accuracy</dt>
+				<dd>±0.4 °F (±0.2 °C) / ±1.8 %RH</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Ruggedness</dt>
+				<dd>
+					<a
+						class="termlink"
+						href="https://en.wikipedia.org/wiki/Conformal_coating"
+						target="_blank"
+						rel="noopener noreferrer">Conformal coating</a
+					>
+					+
+					<a
+						class="termlink"
+						href="https://en.wikipedia.org/wiki/Potting_(electronics)"
+						target="_blank"
+						rel="noopener noreferrer">potted board</a
+					>
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Connectivity</dt>
+				<dd>
+					<a
+						class="termlink"
+						href="https://lora-alliance.org/about-lorawan/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+					> (Class A)
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Battery</dt>
+				<dd>Up to 5 years (replaceable)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Logging</dt>
+				<dd>Every 15 min · 1 year retained · CSV</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Enclosure</dt>
+				<dd>IP66, washdown-ready</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Coverage</dt>
+				<dd>Up to 8 miles per gateway</dd>
+			</div>
 		</dl>
 	</div>
 </section>
@@ -329,8 +444,9 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					The enclosure is IP66-rated and washdown-ready. If a sensing module ever degrades, the
-					dual-sensor design catches it and you swap the module yourself - no return shipment.
+					The board is conformal-coated and the electronics are potted in resin for high-humidity,
+					high-dust houses. The enclosure is IP66-rated and washdown-ready. If a sensing module ever
+					degrades, you swap it yourself in the field - no return shipment, no downtime.
 				</p>
 			</details>
 			<details>
@@ -339,10 +455,10 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Temperature tells you comfort; CO₂ and ammonia tell you whether the air is actually safe to
-					breathe. CO₂ is the earliest sign a house is under-ventilated, and ammonia harms birds long
-					before workers can smell it. Watching all four - with humidity as the early indicator -
-					catches problems a thermostat never sees.
+					Temperature tells you comfort; CO₂ and ammonia tell you whether the air is actually safe
+					to breathe. CO₂ is the earliest sign a house is under-ventilated, and ammonia harms birds
+					long before workers can smell it. Watching all four - with humidity as the early indicator
+					- catches problems a thermostat never sees.
 				</p>
 			</details>
 			<details>
@@ -367,19 +483,22 @@
 		<p>Tell us how your houses are laid out and we'll map the sensors and alerts to match.</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="cta-pill cta-pill--lg">Book a demo</a>
-			<a href="/replacement-sensors" class="cta-ghost cta-ghost--light cta-pill--lg">See the sensors</a>
+			<a href="/replacement-sensors" class="cta-ghost cta-ghost--light cta-pill--lg"
+				>See the sensors</a
+			>
 		</div>
 	</div>
 </section>
 
 <style>
 	/* Full-bleed photographic hero (livestock): the farm photo sits behind the
-	   copy with a left-weighted dark scrim so the light text stays legible. */
+	   copy with a left-weighted dark scrim so the light text stays legible.
+	   Warm earth/gold palette ported from the Japan site's livestock hero. */
 	.hero--bg {
 		position: relative;
 		isolation: isolate;
 		overflow: hidden;
-		background: var(--cw-ink);
+		background: #160d06;
 		padding-block: 104px 92px;
 		min-height: 560px;
 	}
@@ -399,40 +518,48 @@
 		background:
 			linear-gradient(
 				96deg,
-				rgba(8, 16, 34, 0.92) 0%,
-				rgba(8, 16, 34, 0.7) 40%,
-				rgba(8, 16, 34, 0.24) 76%,
-				rgba(8, 16, 34, 0.05) 100%
+				rgba(22, 13, 6, 0.95) 0%,
+				rgba(38, 24, 13, 0.9) 32%,
+				rgba(58, 36, 20, 0.62) 60%,
+				rgba(58, 36, 20, 0.32) 100%
 			),
-			linear-gradient(0deg, rgba(8, 16, 34, 0.5) 0%, rgba(8, 16, 34, 0) 42%);
+			linear-gradient(180deg, transparent 52%, rgba(18, 11, 5, 0.62) 100%);
 	}
 	/* light type for legibility over the photo */
 	.hero--bg .eyebrow {
-		color: var(--cw-emerald-300);
+		color: var(--cw-gold-400);
 	}
 	.hero--bg h1 {
 		color: #fff;
 		text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
 	}
 	.hero--bg .lead {
-		color: rgba(255, 255, 255, 0.92);
+		color: rgba(255, 246, 238, 0.94);
 	}
 	.hero--bg .lead strong {
 		color: #fff;
 	}
 	.hero--bg .hero__badges span {
-		color: #fff;
-		background: rgba(255, 255, 255, 0.12);
-		border: 1px solid rgba(255, 255, 255, 0.28);
+		color: #ffe9d8;
+		background: rgba(255, 240, 224, 0.12);
+		border: 1px solid rgba(255, 240, 224, 0.28);
 		backdrop-filter: blur(4px);
 	}
 	.hero--bg .hero__badges .material-symbols-rounded {
-		color: var(--cw-emerald-300);
+		color: var(--cw-gold-400);
 	}
 	@media (max-width: 900px) {
 		.hero--bg {
 			padding-block: 72px 64px;
 			min-height: 0;
+		}
+		.hero__scrim {
+			background: linear-gradient(
+				180deg,
+				rgba(22, 13, 6, 0.82) 0%,
+				rgba(38, 24, 13, 0.72) 50%,
+				rgba(30, 19, 10, 0.86) 100%
+			);
 		}
 	}
 </style>

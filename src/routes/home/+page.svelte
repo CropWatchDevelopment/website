@@ -1,35 +1,5 @@
 <script lang="ts">
-	// Component-sourcing breakdown for the "trusted parts" section. Counts come
-	// from the BOM: 29 distinct parts placed 60 times, from 16 manufacturers
-	// across 7 countries. Colours are per-country chart hues (also used for the
-	// donut ring, the legend dot and each bar).
-	const sourcing = [
-		{ code: 'us', name: 'United States', parts: 9, pct: 31, mfrs: 7, color: '#14b8a6' },
-		{ code: 'jp', name: 'Japan', parts: 7, pct: 24, mfrs: 2, color: '#3b82f6' },
-		{ code: 'tw', name: 'Taiwan', parts: 7, pct: 24, mfrs: 2, color: '#f59e0b' },
-		{ code: 'ch', name: 'Switzerland', parts: 2, pct: 7, mfrs: 2, color: '#22c55e' },
-		{ code: 'ie', name: 'Ireland', parts: 2, pct: 7, mfrs: 1, color: '#a855f7' },
-		{ code: 'kr', name: 'South Korea', parts: 1, pct: 3, mfrs: 1, color: '#f87171' },
-		{ code: 'de', name: 'Germany', parts: 1, pct: 3, mfrs: 1, color: '#94a3b8' }
-	];
-
-	const sourcingStats = [
-		{ value: '29', label: 'Distinct parts' },
-		{ value: '7', label: 'Countries' },
-		{ value: '16', label: 'Manufacturers' },
-		{ value: '60', label: 'Total placements' }
-	];
-
-	// Build the donut ring from the part counts (which sum to exactly 29 -> 100%)
-	// rather than the rounded percentages, so there's no thin gap at the end.
-	const partsTotal = sourcing.reduce((sum, c) => sum + c.parts, 0);
-	let acc = 0;
-	const donutStops = sourcing.map((c) => {
-		const start = acc;
-		acc += (c.parts / partsTotal) * 100;
-		return `${c.color} ${start.toFixed(2)}% ${acc.toFixed(2)}%`;
-	});
-	const donutBg = `conic-gradient(${donutStops.join(', ')})`;
+	import PartsOrigin from '$lib/components/PartsOrigin.svelte';
 </script>
 
 <svelte:head>
@@ -65,7 +35,7 @@
 			</p>
 			<ul class="proof">
 				<li><span class="material-symbols-rounded">check</span> <span>Devices that ensure you get correct data, or none at all</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Networking that ensure data arrives even when your internet fails you</span></li>
+				<li><span class="material-symbols-rounded">check</span> <span>Onboard memory that keeps recording and re-sends automatically when your internet fails you</span></li>
 				<li><span class="material-symbols-rounded">check</span> <span>An infrastructure that assumes the worst will happen, and is ready to handle it.</span></li>
 				<li><span class="material-symbols-rounded">check</span> <span>Real humans that care about the outcomes as much as you do</span></li>
 			</ul>
@@ -84,7 +54,7 @@
 			/>
 			<div class="hero__chip">
 				<span class="dot"></span>
-				<div><strong>Kitchen Walk-in Cooler</strong><span>3.4 °C · 61 %RH · live</span></div>
+				<div><strong>Kitchen Walk-in Cooler</strong><span>38.1 °F (3.4 °C) · 61 %RH · live</span></div>
 			</div>
 		</div>
 	</div>
@@ -122,102 +92,37 @@
 			</article>
 			<article class="why-card" data-reveal="1">
 				<span class="why-card__ic"><span class="material-symbols-rounded">verified</span></span>
-				<h3>ISO/IEC 17025 certified</h3>
-				<p>Every sensor ships with a downloadable calibration certificate tied to its individual serial number - NIST-traceable proof, ready for any inspector.</p>
+				<h3><a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certified</h3>
+				<p>Every sensor ships with a downloadable calibration certificate tied to its individual serial number - <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable proof, ready for any inspector.</p>
 			</article>
 			<article class="why-card" data-reveal="2">
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>Dual-sensor verified</h3>
-				<p>Two independent sensors cross-check every reading. If they disagree, the device flags an error and refuses to publish - so bad data never reaches your records.</p>
+				<p>Two independent Sensirion sensors (<a class="termlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a> + <a class="termlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>) cross-check every reading. If they disagree, the device flags an error and refuses to publish - so bad data never reaches your records.</p>
 			</article>
 			<article class="why-card" data-reveal="3">
 				<span class="why-card__ic"><span class="material-symbols-rounded">health_and_safety</span></span>
 				<h3>Self-auditing hardware</h3>
-				<p>The device continuously checks and corrects itself. If anything drifts out of spec, it tells you - instead of silently logging numbers you can't trust.</p>
+				<p>Two independent watchdogs - one in software, one a separate hardware circuit - restart the device on their own if it ever hangs, and readings buffer to onboard <a class="termlink" href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FRAM</a> memory until delivered. If anything drifts out of spec, it tells you - instead of silently logging numbers you can't trust.</p>
 			</article>
 		</div>
 	</div>
 </section>
 
 <!-- ░░ Trusted parts / global sourcing ░░ -->
-<section class="section section--tint">
+<section class="section section--tint scroll-pad" id="trusted-parts">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">Where our parts come from</p>
 			<h2>Our trusted device is built with trusted parts from trusted places.</h2>
 			<p class="section__intro">
 				Every CropWatch device is assembled from components we hand-pick for reliability - sourced
-				from established manufacturers across seven countries, so quality is never left to chance.
+				from established manufacturers across eight countries, so quality is never left to chance.
 			</p>
 		</div>
 
-		<div class="src-stats" data-reveal>
-			{#each sourcingStats as s (s.label)}
-				<div class="src-stat">
-					<strong>{s.value}</strong>
-					<span>{s.label}</span>
-				</div>
-			{/each}
-		</div>
-
-		<div class="src-grid" data-reveal>
-			<div class="src-donut__wrap">
-				<div
-					class="src-donut"
-					style="background:{donutBg}"
-					role="img"
-					aria-label="Component count by country of origin"
-				>
-					<div class="src-donut__hole">
-						<strong>{partsTotal}</strong>
-						<span>Parts</span>
-					</div>
-				</div>
-			</div>
-
-			<ul class="src-list">
-				{#each sourcing as c (c.code)}
-					<li class="src-row">
-						<span class="src-row__dot" style="background:{c.color}"></span>
-						<img
-							class="src-row__flag"
-							src="/assets/flags/{c.code}.svg"
-							alt=""
-							width="22"
-							height="16"
-							loading="lazy"
-						/>
-						<span class="src-row__name">{c.name}</span>
-						<span class="src-row__bar"
-							><span style="width:{c.pct}%;background:{c.color}"></span></span
-						>
-						<span class="src-row__meta"
-							><b>{c.parts}</b> · {c.pct}% · {c.mfrs} mfr{c.mfrs > 1 ? 's' : ''}</span
-						>
-					</li>
-					{/each}
-					<li class="src-row">
-						<span class="src-row__dot" style="background:green"></span>
-						<img
-							class="src-row__flag"
-							src="/assets/flags/jp.svg"
-							alt=""
-							width="22"
-							height="16"
-							loading="lazy"
-						/>
-						<span class="src-row__name">
-							Manufactured & <br /> Assembled
-						</span>
-						<span class="src-row__bar">
-							<span style="width:100%;background:green"></span>
-						</span>
-						<span class="src-row__meta">
-							🛠️ · 100%
-						</span>
-					</li>
-			</ul>
-			<small><sup>*</sup>Our hardware <b><u><i>ONLY</i></u></b> contains parts from countries in the chart above.</small>
+		<div data-reveal>
+			<PartsOrigin />
 		</div>
 	</div>
 </section>
@@ -331,9 +236,9 @@
 <!-- ░░ Proof band ░░ -->
 <section class="proofband">
 	<div class="wrap proofband__grid">
-		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr+</p><p class="stat__body">User-replaceable cells. No wiring, no gateways to babysit.</p></div>
-		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.8 °F</p><p class="stat__body">NIST-traceable, ISO/IEC 17025 calibrated - defensible in an audit.</p></div>
-		<div class="stat" data-reveal="2"><p class="stat__eyebrow">Range</p><p class="stat__value stat__value--accent">5 miles</p><p class="stat__body">LoRaWAN coverage from a single gateway across a whole site.</p></div>
+		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr</p><p class="stat__body">Up to 10 years on the cold-chain sensor at a 10-minute cadence; up to 5 on CO₂ models. User-replaceable cells.</p></div>
+		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.9 °F</p><p class="stat__body">(±0.48 °C) <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable, <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> calibrated - defensible in an audit.</p></div>
+		<div class="stat" data-reveal="2"><p class="stat__eyebrow">Range</p><p class="stat__value stat__value--accent">5 miles</p><p class="stat__body"><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> coverage from a single gateway across a whole site.</p></div>
 		<div class="stat" data-reveal="3"><p class="stat__eyebrow">Bad readings logged</p><p class="stat__value">0</p><p class="stat__body">Dual-sensor verification means wrong data never reaches your records.</p></div>
 	</div>
 </section>
@@ -352,160 +257,6 @@
 </section>
 
 <style>
-	/* ── Trusted parts / global sourcing ─────────────────────────────────────
-	   Built on the design-system tokens (--web-* / --cw-*) so it matches the
-	   marketing theme. Data + donut ring are computed in the script above. */
-	.src-stats {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 16px;
-		margin-top: 8px;
-	}
-	.src-stat {
-		background: var(--web-surface);
-		border: 1px solid var(--web-border);
-		border-radius: var(--cw-radius-2xl);
-		padding: 20px 22px;
-		box-shadow: var(--web-shadow-card);
-	}
-	.src-stat strong {
-		display: block;
-		font-size: var(--cw-text-4xl);
-		font-weight: 700;
-		line-height: 1;
-		letter-spacing: -0.02em;
-		color: var(--web-heading);
-	}
-	.src-stat span {
-		display: block;
-		margin-top: 8px;
-		font-size: 12px;
-		font-weight: 600;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--web-muted);
-	}
-
-	.src-grid {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		align-items: center;
-		gap: 48px;
-		margin-top: 24px;
-		padding: 32px;
-		background: var(--web-surface);
-		border: 1px solid var(--web-border);
-		border-radius: var(--web-radius-card);
-		box-shadow: var(--web-shadow-card);
-	}
-	.src-donut__wrap {
-		display: flex;
-		justify-content: center;
-	}
-	.src-donut {
-		position: relative;
-		width: 220px;
-		height: 220px;
-		border-radius: 50%;
-	}
-	.src-donut__hole {
-		position: absolute;
-		inset: 22%;
-		border-radius: 50%;
-		background: var(--web-surface);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-	.src-donut__hole strong {
-		font-size: var(--cw-text-3xl);
-		font-weight: 700;
-		line-height: 1;
-		color: var(--web-heading);
-	}
-	.src-donut__hole span {
-		margin-top: 4px;
-		font-size: 11px;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--web-muted);
-	}
-
-	.src-list {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 14px;
-	}
-	.src-row {
-		display: grid;
-		grid-template-columns: 10px 22px minmax(110px, 160px) 1fr auto;
-		align-items: center;
-		gap: 10px;
-	}
-	.src-row__dot {
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-	}
-	.src-row__flag {
-		width: 22px;
-		height: 16px;
-		border-radius: 3px;
-		object-fit: cover;
-		box-shadow: 0 0 0 1px rgba(8, 16, 34, 0.12);
-		display: block;
-	}
-	.src-row__name {
-		font-size: 15px;
-		font-weight: 700;
-		color: var(--web-heading);
-		white-space: nowrap;
-	}
-	.src-row__bar {
-		height: 8px;
-		border-radius: 9999px;
-		background: var(--web-bg-soft);
-		overflow: hidden;
-	}
-	.src-row__bar span {
-		display: block;
-		height: 100%;
-		border-radius: 9999px;
-	}
-	.src-row__meta {
-		font-size: 13px;
-		color: var(--web-muted);
-		white-space: nowrap;
-	}
-	.src-row__meta b {
-		font-weight: 700;
-		color: var(--web-heading);
-	}
-
-	@media (max-width: 980px) {
-		.src-stats {
-			grid-template-columns: 1fr 1fr;
-		}
-		.src-grid {
-			grid-template-columns: 1fr;
-			gap: 28px;
-			padding: 24px;
-		}
-	}
-	@media (max-width: 560px) {
-		.src-row {
-			grid-template-columns: 10px 22px 1fr auto;
-		}
-		.src-row__bar {
-			display: none;
-		}
-	}
-
 	/* ── App UI showcase (navy section) ──────────────────────────────────────
 	   Each device sits in its own column - no overlap - bottom-aligned on a shared
 	   shelf with a labelled caption. flex-wrap + per-device flex-basis means a

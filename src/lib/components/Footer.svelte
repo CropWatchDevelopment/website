@@ -23,7 +23,6 @@
 			<a href="/livestock">Livestock Monitoring</a>
 			<a href="/agriculture">Agricultural Monitoring</a>
 			<a href="/replacement-sensors">Replacement Sensors</a>
-			<a href="/replacement-case">Replacement Sensor Case</a>
 		</nav>
 
 		<nav class="ftr__col">
@@ -37,6 +36,7 @@
 
 		<nav class="ftr__col">
 			<h4>Company</h4>
+			<a href="/pricing">Pricing</a>
 			<a href="/news">News</a>
 			<a href="/contact">Contact</a>
 			<a href="https://app.cropwatch.io">Open the app</a>
@@ -47,7 +47,7 @@
 	<div class="ftr__legal">
 		<div class="wrap ftr__legal-in">
 			<p>© {year} CropWatch. All rights reserved. · United States &amp; Global</p>
-			<p>Privacy · Terms · ISO/IEC 17025 calibration · Sitemap</p>
+			<p>Privacy · Terms · <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> calibration · Sitemap</p>
 		</div>
 	</div>
 </footer>
