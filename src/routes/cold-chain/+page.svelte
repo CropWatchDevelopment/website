@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	// Page-specific stylesheet (kept out of the global bundle).
+	import '$lib/styles/product.css';
 </script>
 
 <svelte:head>

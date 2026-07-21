@@ -54,7 +54,7 @@
 
 	<div class="hdr__bar">
 		<div class="wrap hdr__main">
-			<a class="brand" href="/home" aria-label="CropWatch home">
+			<a class="brand" href="/home">
 				<img src={LOGO} alt="CropWatch" class="brand__mark" width="46" height="46" />
 				<span class="brand__txt">
 					<span class="brand__name">CropWatch<sup><small>®</small></sup></span>

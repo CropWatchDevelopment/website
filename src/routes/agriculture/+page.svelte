@@ -2,6 +2,11 @@
 	import { onMount } from 'svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { initAgCharts } from '$lib/agCharts';
+	// Page-specific stylesheets (kept out of the global bundle). Plain imports,
+	// not a scoped style block, because the chart markup injected by
+	// agCharts.ts relies on these class names staying global.
+	import '$lib/styles/ag.css';
+	import '$lib/styles/product.css';
 
 	// The PPFD gauge, VPD matrix and heatmap are built client-side into the
 	// (server-rendered, empty) chart-card containers once the page mounts.

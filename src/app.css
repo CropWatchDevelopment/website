@@ -9,6 +9,8 @@
 
 @import './lib/styles/design-system.css'; /* tokens, fonts, themes, base reset */
 @import './lib/styles/site.css'; /* sapphire/emerald public-site base */
-@import './lib/styles/product.css'; /* product-page layers (specs, related, 3D stage) */
 @import './lib/styles/cw.css'; /* .io page-specific extensions */
-@import './lib/styles/ag.css'; /* agriculture page (soil/air/light stack + charts) */
+
+/* product.css (specs, related, 3D stage) and ag.css (soil/air/light stack +
+   charts) are page-specific: imported by the routes that use them so the
+   other pages don't ship their rules. */
