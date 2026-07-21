@@ -29,6 +29,12 @@
 		defaultChecks: number;
 		/** 既定値: 拠点数 */
 		defaultLocations: number;
+		/** 月額に含まれる機能（ヒーローの説明文と「含まれるもの」欄に出ます） */
+		included: string[];
+		/** 含まれない機能（「含まれるもの」欄に打ち消しで出ます） */
+		excluded: string[];
+		/** 機器1台あたりの購入価格（税込・初回のみ）。未定なら null（「お見積もり」表示） */
+		deviceUnitPrice: number | null;
 		comingSoon?: boolean;
 	};
 	const SECTORS: Record<string, Sector> = {
@@ -39,9 +45,19 @@
 			baseFee: 16500,
 			sensorFee: 880,
 			minutesPerCheck: 3,
-			defaultCount: 3,
-			defaultChecks: 2,
-			defaultLocations: 1
+			defaultCount: 10,
+			defaultChecks: 3,
+			defaultLocations: 1,
+			included: [
+				'ユーザー数無制限',
+				'アラート通知',
+				'自動レポート',
+				'CSVダウンロード',
+				'API利用',
+				'データ保存2年間'
+			],
+			excluded: [],
+			deviceUnitPrice: 33000
 		},
 		livestock: {
 			label: '畜産・養鶏',
@@ -52,7 +68,11 @@
 			minutesPerCheck: 15,
 			defaultCount: 4,
 			defaultChecks: 3,
-			defaultLocations: 3
+			defaultLocations: 3,
+			included: ['ユーザー数無制限', 'アラート通知（ルールは3件まで）'],
+			excluded: ['自動レポート', 'API利用'],
+			// 畜産・養鶏向けの機器はコールドチェーンの1台価格 +10,000円
+			deviceUnitPrice: 43000
 		},
 		agriculture: {
 			label: '農業・ハウス',
@@ -64,6 +84,12 @@
 			defaultCount: 0,
 			defaultChecks: 0,
 			defaultLocations: 0,
+			// 準備中のため現状は非表示。公開時は畜産・養鶏と同じ制限（ルール3件まで・
+			// レポート/APIなし）で案内する。
+			included: ['ユーザー数無制限', 'アラート通知（ルールは3件まで）'],
+			excluded: ['自動レポート', 'API利用'],
+			// 農業向けの機器価格は未定（決まったら数値を入れる）
+			deviceUnitPrice: null,
 			comingSoon: true
 		}
 	};
@@ -72,35 +98,14 @@
 	/** 「1日あたり」の計算に使う年間日数（月あたりは30日）。 */
 	const DAYS_PER_YEAR = 360;
 
-	/** 機器のご購入価格（初回のみ・税込）。Product構造化データにも使われます。 */
-	const DEVICES = [
-		{
-			icon: 'sensors',
-			name: '温湿度センサー',
-			model: 'CW-AIR-TH',
-			price: 33000,
-			desc: 'ISO/IEC 17025 の校正証明書つき。センサー部はご自身で交換できます。',
-			schemaDesc:
-				'冷蔵庫・冷凍庫向けの電池駆動LoRaWAN温湿度センサー。1台ごとにISO/IEC 17025の校正証明書が付属し、センサー部はユーザー自身で交換できます。'
-		},
-		{
-			icon: 'router',
-			name: 'ゲートウェイ',
-			model: null,
-			price: 110000,
-			desc: '1拠点に1台。厚い壁や離れた建物のセンサーもまとめて収容します。',
-			schemaDesc:
-				'CropWatchセンサーのデータをクラウドへ送るLoRaWANゲートウェイ。1拠点1台で建物全体のセンサーを収容します。'
-		},
-		{
-			icon: 'construction',
-			name: '初期導入費',
-			model: null,
-			price: 165000,
-			desc: '設置・設定・立ち上げサポート（初回のみ）。',
-			schemaDesc: null // サービスのためProduct構造化データは出さない
-		}
-	];
+	/** 導入費用の概算（初回のみ・税込）。センサー・ゲートウェイ・初期導入
+	    サポートをまとめた1拠点あたりの価格で、機器単体の価格は表示しません。
+	    1台あたりの価格は業種ごとに SECTORS の deviceUnitPrice で設定。
+	    最安の最低構成（コールドチェーン・センサー1台）の価格はProduct
+	    構造化データ（AggregateOfferのlowPrice）にも使われます。 */
+	/** ゲートウェイ + 初期導入サポートのセット分 */
+	const DEVICE_BASE_PRICE = 275000;
+	const DEVICE_MIN_PRICE = SECTORS['cold-chain'].deviceUnitPrice! + DEVICE_BASE_PRICE;
 	/* ══════════════════════════════════════════════════════════════════ */
 
 	const SECTOR_IDS = Object.keys(SECTORS);
@@ -128,6 +133,11 @@
 	let urlSyncReady = $state(false);
 
 	onMount(() => {
+		printDate = new Date().toLocaleDateString('ja-JP', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		});
 		const sp = new URL(window.location.href).searchParams;
 		const requested = sp.get('sector');
 		if (requested && SECTORS[requested]) selectSector(requested);
@@ -137,7 +147,7 @@
 			const v = Number(raw);
 			if (Number.isFinite(v) && v >= min && v <= max) apply(v);
 		};
-		readNum('units', (v) => (count = Math.floor(v)), 1, 1000);
+		readNum('units', (v) => (count = Math.floor(v)), 1, 1001);
 		readNum('checks', (v) => (checksPerDay = Math.floor(v)), 1, 24);
 		readNum('loc', (v) => (locations = Math.floor(v)), 1, 100);
 		readNum('min', (v) => (minutesPerCheck = Math.floor(v)), 1, 60);
@@ -164,6 +174,15 @@
 	/** 全拠点の合計センサー台数 */
 	const totalCount = $derived(safeCount * safeLocations);
 
+	/** 1拠点あたり1,001台以上はボリューム価格の個別見積もり（計算結果の金額は表示しない） */
+	const volumePrice = $derived(safeCount >= 1001);
+
+	// ── 導入費用の概算（1拠点あたり・初回のみ）── 「1拠点あたりのセンサー台数」に連動。
+	// 機器価格が未定の業種（deviceUnitPrice: null）は null → 「お見積もり」表示。
+	const deviceSetPrice = $derived(
+		cfg.deviceUnitPrice === null ? null : safeCount * cfg.deviceUnitPrice + DEVICE_BASE_PRICE
+	);
+
 	// ── CropWatch のランニングコスト ──
 	const baseFeeTotal = $derived(cfg.baseFee * safeLocations);
 	const sensorFeeTotal = $derived(cfg.sensorFee * totalCount);
@@ -183,11 +202,76 @@
 
 	const yen = (v: number) => (v < 0 ? '-' : '') + '¥' + Math.abs(v).toLocaleString('ja-JP');
 	const num = (v: number) => v.toLocaleString('ja-JP');
+	/** 軸ラベル用の短い金額表記（¥550万 / ¥1.2億） */
+	const yenCompact = (v: number) =>
+		v >= 1e8
+			? `¥${(v / 1e8).toLocaleString('ja-JP', { maximumFractionDigits: 1 })}億`
+			: v >= 1e4
+				? `¥${Math.round(v / 1e4).toLocaleString('ja-JP')}万`
+				: `¥${Math.round(v).toLocaleString('ja-JP')}`;
+
+	// ── ROI（投資回収）ラインチャート ──
+	// 導入費用（概算）+ 月額の累計と、手書き記録の人件費の累計を比較する。
+	/** 全拠点分の導入費用の概算（1拠点あたりの概算 × 拠点数）。
+	    機器価格未定の業種は0だが、その業種は準備中でROI自体を表示しない。 */
+	const roiInitial = $derived((deviceSetPrice ?? 0) * safeLocations);
+	/** 投資回収までの月数（手書きのほうが安い条件では null） */
+	const breakEvenMonths = $derived(savingsMonthly > 0 ? roiInitial / savingsMonthly : null);
+	/** 横軸の月数: 基本3年。回収がその先なら回収点が入るところまで延長（最長10年） */
+	const roiMonths = $derived(
+		breakEvenMonths === null
+			? 36
+			: Math.min(120, Math.max(36, Math.ceil((breakEvenMonths * 1.25) / 6) * 6))
+	);
+	const cwAt = (m: number) => roiInitial + monthly * m;
+	const manualAt = (m: number) => manualMonthly * m;
+	/** 上端を 1/2/2.5/5×10^k のきりのよい値に切り上げる */
+	function niceCeil(v: number) {
+		if (v <= 0) return 1;
+		const exp = Math.pow(10, Math.floor(Math.log10(v)));
+		const f = v / exp;
+		return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * exp;
+	}
+	const roiMaxY = $derived(niceCeil(Math.max(cwAt(roiMonths), manualAt(roiMonths))));
+
+	// 描画ジオメトリ（コンテナ幅に追従）
+	let chartW = $state(0);
+	const CHART_H = 260;
+	const PAD = { top: 18, right: 18, bottom: 30, left: 60 };
+	const plotW = $derived(Math.max(chartW - PAD.left - PAD.right, 0));
+	const plotH = CHART_H - PAD.top - PAD.bottom;
+	const xAt = (m: number) => PAD.left + (m / roiMonths) * plotW;
+	const yAt = (v: number) => PAD.top + plotH - (v / roiMaxY) * plotH;
+	// 狭い画面では目盛りを間引く（ラベルの重なり防止）
+	const xTickStep = $derived(
+		roiMonths <= 42 ? (chartW < 480 ? 12 : 6) : chartW < 480 ? 24 : 12
+	);
+	const xTicks = $derived(
+		Array.from({ length: Math.floor(roiMonths / xTickStep) + 1 }, (_, i) => i * xTickStep)
+	);
+	const yTicks = $derived([0, 1, 2, 3, 4].map((i) => (roiMaxY / 4) * i));
+	const monthLabel = (m: number) =>
+		m === 0 ? '導入時' : m % 12 === 0 ? `${m / 12}年` : `${m}ヶ月`;
+
+	// ホバー/フォーカス: 最寄りの月にスナップして両系列の値を出す
+	let hoverMonth = $state<number | null>(null);
+
+	// ── 印刷（お客様レビュー用の仮見積もり）──
+	/** 印刷時はROIの数値表を開いた状態にする（閉じたdetailsは印刷されないため） */
+	let roiTableOpen = $state(false);
+	/** 印刷ヘッダーに出す出力日（クライアントでのみ確定） */
+	let printDate = $state('');
+	function roiMove(e: PointerEvent) {
+		const rect = (e.currentTarget as SVGRectElement).getBoundingClientRect();
+		const m = Math.round(((e.clientX - rect.left - PAD.left) / Math.max(plotW, 1)) * roiMonths);
+		hoverMonth = Math.max(0, Math.min(roiMonths, m));
+	}
 
 	const shareQuery = $derived(
 		new URLSearchParams({
 			sector,
-			units: String(safeCount),
+			// 手入力で1,001を超えても、共有URLは受け取り側の上限(1001)に収める
+			units: String(Math.min(safeCount, 1001)),
 			checks: String(safeChecks),
 			loc: String(safeLocations),
 			min: String(safeMinutes),
@@ -235,22 +319,23 @@
 			{ name: 'ホーム', path: '/' },
 			{ name: '料金', path: '/pricing' }
 		]),
-		// 機器価格つきのProduct（offersがあることでリッチリザルト対象になる）
-		...DEVICES.filter((d) => d.schemaDesc).map((d) =>
-			productSchema({
-				name: `CropWatch ${d.name}${d.model ? ` (${d.model})` : ''}`,
-				description: d.schemaDesc!,
-				...(d.model ? { sku: d.model } : {}),
-				category: '環境監視機器',
-				price: d.price,
-				offerUrl: '/pricing'
-			})
-		)
+		// 最低構成価格つきのProduct（AggregateOfferがあることでリッチリザルト対象になる）
+		productSchema({
+			name: 'CropWatch センサー導入セット',
+			description:
+				'温湿度センサー・LoRaWANゲートウェイ・初期導入サポートをまとめた導入セット。センサー1台から、台数に応じた概算価格を表示します。',
+			category: '環境監視機器',
+			lowPrice: DEVICE_MIN_PRICE,
+			offerUrl: '/pricing'
+		})
 	];
 </script>
 
 <Seo {title} {description} />
 <JsonLd data={ld} />
+
+<!-- 印刷時（Ctrl+P含む）はROIの数値表を開いた状態で出力する -->
+<svelte:window onbeforeprint={() => (roiTableOpen = true)} />
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
@@ -266,7 +351,7 @@
 				{cfg.label}向けの料金は現在準備中です。他の業種を選ぶと、その場で計算できます。
 			{:else}
 				月額は<b>基本料金 {yen(cfg.baseFee)} + 1台あたり {yen(cfg.sensorFee)}</b>（すべて税込）。
-				ユーザー数無制限・アラート通知・自動レポート・API利用まで、追加料金なしで含まれます。
+				{cfg.included.join('・')}が追加料金なしで含まれます。{#if cfg.excluded.length}{cfg.excluded.join('・')}は含まれません。{/if}
 			{/if}
 		</p>
 	</div>
@@ -274,6 +359,19 @@
 
 <section class="section">
 	<div class="wrap pr-wrap">
+		<!-- 印刷専用ヘッダー（画面では非表示） -->
+		<div class="print-head">
+			<img src="/cropwatch_icons/cropwatch_static.svg" alt="" class="print-head__logo" />
+			<div class="print-head__tx">
+				<b>CropWatch 日本</b>
+				<span>料金シミュレーション（概算お見積もり）</span>
+			</div>
+			<div class="print-head__meta">
+				{#if printDate}<span>出力日: {printDate}</span>{/if}
+				<span>{cfg.label} / センサー{num(safeCount)}台 × {num(safeLocations)}拠点</span>
+			</div>
+		</div>
+
 		<!-- 業種タブ -->
 		<div class="pr-tabs" role="tablist" aria-label="業種で選ぶ" data-reveal>
 			{#each SECTOR_IDS as id (id)}
@@ -325,7 +423,7 @@
 							id="sensor-count"
 							type="number"
 							min="1"
-							max="1000"
+							max="1001"
 							step="1"
 							inputmode="numeric"
 							bind:value={count}
@@ -335,7 +433,7 @@
 							type="button"
 							class="pr-count__btn"
 							aria-label="1台増やす"
-							onclick={() => (count = Math.min(1000, safeCount + 1))}
+							onclick={() => (count = Math.min(1001, safeCount + 1))}
 						>
 							<span class="material-symbols-rounded">add</span>
 						</button>
@@ -463,6 +561,20 @@
 				</div>
 			</div>
 
+			{#if volumePrice}
+				<!-- 1,001台以上: 金額は出さず、ボリューム価格の個別見積もりへ誘導 -->
+				<div class="pr-soon" id="pr-volume" data-reveal>
+					<span class="material-symbols-rounded">support_agent</span>
+					<h2>この規模には、ボリューム価格をご用意しています。</h2>
+					<p>
+						1,001台以上の大規模導入は、構成に合わせた特別価格を個別にお見積もりします。
+						台数とご利用環境をお聞かせください。
+					</p>
+					<a href="/contact" class="btn btn--accent btn--lg"
+						>ボリューム価格を問い合わせる <span class="material-symbols-rounded">arrow_forward</span></a
+					>
+				</div>
+			{:else}
 			<!-- 月額（メインの答え） -->
 			<div class="pr-hero" data-reveal>
 				<span class="pr-hero__label">CropWatch のランニングコスト（月額・税込）</span>
@@ -514,30 +626,211 @@
 				</p>
 			</div>
 
+			<!-- ROI: 投資回収ラインチャート -->
+			<div class="pr-roi" data-reveal>
+				<h2 class="pr-card__title">
+					<span class="material-symbols-rounded">show_chart</span> 投資回収（ROI）の見通し
+				</h2>
+				<p class="pr-roi__sub">
+					導入費用の概算（{yen(roiInitial)}）と月額を合わせた累計費用を、手書き記録の人件費の累計と比べたものです。
+				</p>
+				<div class="pr-roi__legend">
+					<span><i class="roi-key roi-key--manual"></i>手書き記録の人件費（累計）</span>
+					<span><i class="roi-key roi-key--cw"></i>CropWatch（導入費用+月額の累計）</span>
+				</div>
+				<div
+					class="pr-roi__chart"
+					role="img"
+					aria-label="累計費用の推移。CropWatchは導入費用{yen(roiInitial)}から始まり月{yen(monthly)}ずつ、手書き記録は月{yen(manualMonthly)}ずつ増えます。数値は下の表でも確認できます。"
+					bind:clientWidth={chartW}
+				>
+					{#if chartW > 0}
+						<svg
+						width={chartW}
+						height={CHART_H}
+						viewBox="0 0 {chartW} {CHART_H}"
+						aria-hidden="true"
+					>
+							{#each yTicks as t (t)}
+								<line x1={PAD.left} x2={chartW - PAD.right} y1={yAt(t)} y2={yAt(t)} class="roi-grid" />
+								<text x={PAD.left - 8} y={yAt(t) + 3.5} text-anchor="end" class="roi-tick"
+									>{yenCompact(t)}</text
+								>
+							{/each}
+							{#each xTicks as m (m)}
+								<text x={xAt(m)} y={CHART_H - 8} text-anchor="middle" class="roi-tick"
+									>{monthLabel(m)}</text
+								>
+							{/each}
+							{#if hoverMonth !== null}
+								<line
+									x1={xAt(hoverMonth)}
+									x2={xAt(hoverMonth)}
+									y1={PAD.top}
+									y2={PAD.top + plotH}
+									class="roi-cross"
+								/>
+							{/if}
+							<line
+								x1={xAt(0)}
+								y1={yAt(manualAt(0))}
+								x2={xAt(roiMonths)}
+								y2={yAt(manualAt(roiMonths))}
+								class="roi-line roi-line--manual"
+							/>
+							<line
+								x1={xAt(0)}
+								y1={yAt(cwAt(0))}
+								x2={xAt(roiMonths)}
+								y2={yAt(cwAt(roiMonths))}
+								class="roi-line roi-line--cw"
+							/>
+							{#if breakEvenMonths !== null && breakEvenMonths <= roiMonths}
+								<circle
+									cx={xAt(breakEvenMonths)}
+									cy={yAt(cwAt(breakEvenMonths))}
+									r="4.5"
+									class="roi-be"
+								/>
+								<text
+									x={xAt(breakEvenMonths) + (breakEvenMonths > roiMonths * 0.6 ? -10 : 10)}
+									y={Math.max(yAt(cwAt(breakEvenMonths)) - 12, PAD.top + 12)}
+									text-anchor={breakEvenMonths > roiMonths * 0.6 ? 'end' : 'start'}
+									class="roi-be-label">約{Math.ceil(breakEvenMonths)}ヶ月で投資回収</text
+								>
+							{/if}
+							{#if hoverMonth !== null}
+								<circle
+									cx={xAt(hoverMonth)}
+									cy={yAt(manualAt(hoverMonth))}
+									r="4"
+									class="roi-dot roi-dot--manual"
+								/>
+								<circle
+									cx={xAt(hoverMonth)}
+									cy={yAt(cwAt(hoverMonth))}
+									r="4"
+									class="roi-dot roi-dot--cw"
+								/>
+							{/if}
+							<!-- ホバーは補助情報（同じ数値は下の表にある）。svelteのa11y警告のみ抑止 -->
+							<!-- svelte-ignore a11y_no_static_element_interactions -->
+							<rect
+								x="0"
+								y="0"
+								width={chartW}
+								height={CHART_H}
+								fill="transparent"
+								onpointermove={roiMove}
+								onpointerleave={() => (hoverMonth = null)}
+							/>
+						</svg>
+						{#if hoverMonth !== null}
+							<div
+								class="roi-tip"
+								class:roi-tip--flip={hoverMonth > roiMonths * 0.55}
+								style="left:{xAt(hoverMonth)}px; top:{PAD.top}px;"
+							>
+								<b class="roi-tip__t">{hoverMonth === 0 ? '導入時' : `${hoverMonth}ヶ月後`}</b>
+								<div class="roi-tip__row">
+									<i class="roi-key roi-key--manual"></i>
+									<b>{yen(manualAt(hoverMonth))}</b>
+									<span>手書き記録</span>
+								</div>
+								<div class="roi-tip__row">
+									<i class="roi-key roi-key--cw"></i>
+									<b>{yen(cwAt(hoverMonth))}</b>
+									<span>CropWatch</span>
+								</div>
+								{#if manualAt(hoverMonth) - cwAt(hoverMonth) > 0}
+									<div class="roi-tip__diff">差額 {yen(manualAt(hoverMonth) - cwAt(hoverMonth))}</div>
+								{/if}
+							</div>
+						{/if}
+					{/if}
+				</div>
+				<p class="pr-note">
+					{#if breakEvenMonths !== null}
+						手書き記録との差額（月{yen(savingsMonthly)}）により、導入費用は約{Math.ceil(
+							breakEvenMonths
+						)}ヶ月で回収できる計算です。
+					{:else}
+						この条件では手書き記録のほうが安いため、費用面での回収ラインはありません。
+					{/if}
+				</p>
+				<details class="pr-roi__table" bind:open={roiTableOpen}>
+					<summary>数値を表で見る</summary>
+					<div class="pr-roi__tablewrap">
+						<table>
+							<thead>
+								<tr><th>経過</th><th>手書き記録</th><th>CropWatch</th><th>差額</th></tr>
+							</thead>
+							<tbody>
+								{#each xTicks as m (m)}
+									<tr>
+										<th>{monthLabel(m)}</th>
+										<td>{yen(manualAt(m))}</td>
+										<td>{yen(cwAt(m))}</td>
+										<td>{yen(manualAt(m) - cwAt(m))}</td>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
+					</div>
+				</details>
+			</div>
+			{/if}
+
+			<!-- 月額に含まれるもの / 含まれないもの（業種プランごと） -->
+			<div class="pr-includes" data-reveal>
+				<span class="pr-includes__label">
+					<span class="material-symbols-rounded">fact_check</span>
+					{cfg.label}プランの月額に含まれるもの:
+				</span>
+				<ul class="pr-includes__list">
+					{#each cfg.included as f (f)}
+						<li class="pr-includes__item">
+							<span class="material-symbols-rounded">check_circle</span>{f}
+						</li>
+					{/each}
+					{#each cfg.excluded as f (f)}
+						<li class="pr-includes__item pr-includes__item--out">
+							<span class="material-symbols-rounded">cancel</span>{f}
+						</li>
+					{/each}
+				</ul>
+			</div>
+
 		{/if}
 
-		<!-- 仕切り + 機器価格 -->
-		<div class="pr-divider" role="separator" aria-label="機器価格">
+		<!-- 仕切り + 導入費用の概算 -->
+		<div class="pr-divider" role="separator" aria-label="導入費用の概算（初回のみ）">
 			<span class="pr-divider__chip">
-				<span class="material-symbols-rounded">sell</span> 機器のご購入価格
+				<span class="material-symbols-rounded">sell</span> 導入費用の概算（初回のみ）
 			</span>
 		</div>
 
-		<div class="pr-devices" data-reveal>
-			{#each DEVICES as d (d.name)}
-				<div class="pr-device">
-					<span class="pr-device__ic"><span class="material-symbols-rounded">{d.icon}</span></span>
-					<div class="pr-device__tx">
-						<b>{d.name}</b>
-						{#if d.model}<span class="pr-device__model">{d.model}</span>{/if}
-						<p>{d.desc}</p>
-					</div>
-					<strong class="pr-device__price">{yen(d.price)}<small>税込</small></strong>
+		<div id="pr-devices" class="pr-devices" data-reveal>
+			<div class="pr-device">
+				<span class="pr-device__ic"><span class="material-symbols-rounded">inventory_2</span></span>
+				<div class="pr-device__tx">
+					<b>導入セット（センサー{num(safeCount)}台）</b>
+					<p>
+						温湿度センサー{num(safeCount)}台・ゲートウェイ・初期導入サポート込みの、
+						1拠点あたりの概算です。センサー1台からご利用いただけます。
+					</p>
 				</div>
-			{/each}
+				{#if volumePrice || deviceSetPrice === null}
+					<strong class="pr-device__price pr-device__price--contact">お見積もり</strong>
+				{:else}
+					<strong class="pr-device__price">{yen(deviceSetPrice)}<small>税込・初回のみ・概算</small></strong>
+				{/if}
+			</div>
 		</div>
+
 		<p class="pr-note" data-reveal>
-			機器価格はいずれも初回のみのお支払いです。CO₂センサー・土壌センサーなど他の機器の価格はお問い合わせください。
+			導入費用は、「1拠点あたりのセンサー台数」に合わせて計算した概算（税込・初回のみ）です。機器の構成と価格は業種により異なります。正式な金額は個別にお見積もりします。
+			CO₂センサー・土壌センサーなど他の機器はお問い合わせください。
 		</p>
 
 		<div class="pr-cta" data-reveal>
@@ -556,11 +849,49 @@
 				<span class="material-symbols-rounded">{copied ? 'check' : 'content_copy'}</span>
 				{copied ? 'コピーしました' : 'リンクをコピー'}
 			</button>
+			<button
+				type="button"
+				class="btn btn--ghost"
+				onclick={() => {
+					roiTableOpen = true;
+					window.print();
+				}}
+			>
+				<span class="material-symbols-rounded">print</span>
+				印刷する
+			</button>
 		</div>
+
+		<!-- 印刷専用フッター（画面では非表示） -->
+		<p class="print-foot">
+			<span class="print-foot__star">★</span>
+			本書の金額はすべて概算の仮お見積もりです。正式なお見積もりではありません。
+			正式な金額は、構成とご利用環境の確認後に別途ご案内します。
+		</p>
 	</div>
 </section>
 
 <style>
+	/* ── ヒーロー背景: ごく薄いアイソメトリックのブロック柄 ── */
+	.pagehero {
+		position: relative;
+		overflow: hidden;
+	}
+	.pagehero::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cg fill='none' stroke='%232c6cb7' stroke-width='1.5'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34'/%3E%3C/g%3E%3C/svg%3E");
+		background-size: 63px 112.5px;
+		opacity: 0.05;
+		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.35));
+		-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.35));
+	}
+	.pagehero__in {
+		position: relative;
+	}
+
 	.pr-wrap {
 		max-width: 880px;
 	}
@@ -890,14 +1221,6 @@
 	.pr-divider__chip .material-symbols-rounded {
 		font-size: 18px;
 	}
-	.pr-devices {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 14px;
-	}
-	.pr-devices > * {
-		min-width: 0;
-	}
 	.pr-device {
 		background: var(--web-surface);
 		border: 1px solid var(--web-border);
@@ -905,9 +1228,12 @@
 		box-shadow: var(--web-shadow-card);
 		padding: 18px 20px;
 		display: grid;
-		grid-template-rows: auto 1fr auto;
-		justify-items: start;
-		gap: 12px;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 12px 16px;
+	}
+	.pr-device > * {
+		min-width: 0;
 	}
 	.pr-device__ic {
 		display: grid;
@@ -925,19 +1251,6 @@
 		font-size: 15px;
 		color: var(--cw-ink);
 	}
-	.pr-device__model {
-		display: inline-block;
-		margin-left: 8px;
-		font-family: var(--cw-font-mono);
-		font-size: 11.5px;
-		font-weight: 700;
-		color: var(--web-muted);
-		background: var(--web-bg-soft);
-		border: 1px solid var(--web-border);
-		border-radius: 999px;
-		padding: 2px 8px;
-		vertical-align: middle;
-	}
 	.pr-device__tx p {
 		margin: 6px 0 0;
 		font-size: 12.5px;
@@ -951,9 +1264,243 @@
 		color: var(--cw-ink);
 	}
 	.pr-device__price small {
-		margin-left: 6px;
+		display: block;
+		margin-top: 2px;
 		font-size: 11px;
 		font-weight: 700;
+		color: var(--web-muted);
+		white-space: nowrap;
+	}
+	.pr-device__price--contact {
+		font-family: inherit;
+		font-size: 18px;
+		color: var(--web-primary);
+	}
+
+	/* ── ROI（投資回収）ラインチャート ── */
+	.pr-roi {
+		margin-top: 22px;
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: 18px;
+		box-shadow: var(--web-shadow-card);
+		padding: 22px 24px;
+	}
+	.pr-roi__sub {
+		margin: -6px 0 12px;
+		font-size: 13px;
+		line-height: 1.8;
+		color: var(--web-muted);
+	}
+	.pr-roi__legend {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 18px;
+		margin-bottom: 6px;
+		font-size: 12.5px;
+		font-weight: 700;
+		color: var(--web-muted);
+	}
+	.pr-roi__legend span {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+	}
+	.roi-key {
+		display: inline-block;
+		width: 16px;
+		height: 0;
+		border-top: 2px solid;
+		border-radius: 2px;
+	}
+	.roi-key--cw {
+		border-color: var(--cw-emerald-500);
+	}
+	.roi-key--manual {
+		border-color: var(--cw-sapphire-500);
+	}
+	.pr-roi__chart {
+		position: relative;
+	}
+	.pr-roi__chart svg {
+		display: block;
+	}
+	.roi-grid {
+		stroke: var(--cw-gray-200);
+		stroke-width: 1;
+	}
+	.roi-tick {
+		font-size: 11px;
+		fill: var(--web-muted);
+	}
+	.roi-line {
+		fill: none;
+		stroke-width: 2;
+		stroke-linecap: round;
+	}
+	.roi-line--cw {
+		stroke: var(--cw-emerald-500);
+	}
+	.roi-line--manual {
+		stroke: var(--cw-sapphire-500);
+	}
+	.roi-cross {
+		stroke: var(--cw-gray-300);
+		stroke-width: 1;
+	}
+	.roi-be {
+		fill: var(--cw-emerald-500);
+		stroke: var(--web-surface);
+		stroke-width: 2;
+	}
+	.roi-be-label {
+		font-size: 12px;
+		font-weight: 700;
+		fill: var(--cw-ink);
+	}
+	.roi-dot {
+		stroke: var(--web-surface);
+		stroke-width: 2;
+	}
+	.roi-dot--cw {
+		fill: var(--cw-emerald-500);
+	}
+	.roi-dot--manual {
+		fill: var(--cw-sapphire-500);
+	}
+	.roi-tip {
+		position: absolute;
+		transform: translateX(12px);
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: 10px;
+		box-shadow: var(--web-shadow-card);
+		padding: 10px 12px;
+		pointer-events: none;
+		white-space: nowrap;
+		z-index: 2;
+	}
+	.roi-tip--flip {
+		transform: translateX(calc(-100% - 12px));
+	}
+	.roi-tip__t {
+		display: block;
+		font-size: 11.5px;
+		color: var(--web-muted);
+		margin-bottom: 6px;
+	}
+	.roi-tip__row {
+		display: flex;
+		align-items: center;
+		gap: 7px;
+		font-size: 12.5px;
+	}
+	.roi-tip__row + .roi-tip__row {
+		margin-top: 4px;
+	}
+	.roi-tip__row b {
+		font-family: var(--cw-font-mono);
+		font-size: 13px;
+		color: var(--cw-ink);
+	}
+	.roi-tip__row span {
+		color: var(--web-muted);
+		font-size: 11.5px;
+	}
+	.roi-tip__diff {
+		margin-top: 6px;
+		padding-top: 6px;
+		border-top: 1px dashed var(--web-border);
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--cw-emerald-600);
+	}
+	.pr-roi__table {
+		margin-top: 10px;
+	}
+	.pr-roi__table summary {
+		font-size: 12.5px;
+		font-weight: 700;
+		color: var(--web-muted);
+		cursor: pointer;
+	}
+	.pr-roi__tablewrap {
+		overflow-x: auto;
+	}
+	.pr-roi__table table {
+		width: 100%;
+		min-width: 420px;
+		margin-top: 10px;
+		border-collapse: collapse;
+		font-size: 12.5px;
+	}
+	.pr-roi__table th,
+	.pr-roi__table td {
+		padding: 6px 10px;
+		border-bottom: 1px solid var(--web-border);
+		text-align: right;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+	}
+	.pr-roi__table thead th {
+		color: var(--web-muted);
+		font-size: 11.5px;
+	}
+	.pr-roi__table tbody th {
+		text-align: left;
+		color: var(--web-muted);
+		font-weight: 700;
+	}
+
+	/* ── 月額に含まれるもの ── */
+	.pr-includes {
+		margin-top: 14px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 12px;
+	}
+	.pr-includes__label {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--web-muted);
+	}
+	.pr-includes__label .material-symbols-rounded {
+		font-size: 17px;
+		color: var(--web-accent);
+	}
+	.pr-includes__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	.pr-includes__item {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 12.5px;
+		font-weight: 700;
+		color: var(--cw-ink);
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: 999px;
+		padding: 6px 12px;
+	}
+	.pr-includes__item .material-symbols-rounded {
+		font-size: 16px;
+		color: var(--web-accent);
+	}
+	.pr-includes__item--out {
+		color: var(--web-muted);
+		background: var(--web-bg-soft);
+	}
+	.pr-includes__item--out .material-symbols-rounded {
 		color: var(--web-muted);
 	}
 
@@ -984,6 +1531,110 @@
 		font-size: 18px;
 	}
 
+	/* ── 印刷（お客様レビュー用の仮見積もり） ── */
+	.print-head,
+	.print-foot {
+		display: none;
+	}
+	@media print {
+		/* サイトのヘッダー/フッター/パンくず/操作UIは印刷しない */
+		:global(header.hdr),
+		:global(footer.ftr) {
+			display: none !important;
+		}
+		.crumb,
+		.pagehero,
+		.pr-tabs,
+		.pr-cta,
+		.pr-share,
+		.pr-count__btn {
+			display: none !important;
+		}
+		/* スクロール連動の出現アニメーションを無効化（未表示のまま印刷されるのを防ぐ） */
+		[data-reveal] {
+			opacity: 1 !important;
+			transform: none !important;
+			transition: none !important;
+		}
+		/* CropWatchの印刷用ヘッダー */
+		.print-head {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+			padding-bottom: 14px;
+			margin-bottom: 18px;
+			border-bottom: 2px solid var(--cw-ink);
+		}
+		.print-head__logo {
+			width: 46px;
+			height: auto;
+		}
+		.print-head__tx b {
+			display: block;
+			font-size: 18px;
+			color: var(--cw-ink);
+		}
+		.print-head__tx span {
+			font-size: 12px;
+			color: var(--web-muted);
+		}
+		.print-head__meta {
+			margin-left: auto;
+			display: grid;
+			gap: 2px;
+			justify-items: end;
+			font-size: 11.5px;
+			color: var(--web-muted);
+		}
+		/* ★つきの注記フッター */
+		.print-foot {
+			display: flex;
+			align-items: flex-start;
+			gap: 8px;
+			margin-top: 20px;
+			padding-top: 12px;
+			border-top: 1px solid var(--web-border);
+			font-size: 11.5px;
+			line-height: 1.8;
+			color: var(--web-muted);
+		}
+		.print-foot__star {
+			font-size: 13px;
+			line-height: 1.6;
+			color: var(--cw-ink);
+		}
+		/* カードの途中で改ページしない */
+		.pr-hero,
+		.pr-compare,
+		.pr-roi,
+		.pr-device,
+		.pr-includes,
+		.pr-count {
+			break-inside: avoid;
+		}
+		/* 数値表はトグルUIを隠してそのまま表として出す */
+		.pr-roi__table summary {
+			display: none;
+		}
+		/* 画面幅で測ったSVGを印刷幅に収める（viewBoxがあるので比率ごと縮小される） */
+		.pr-roi__chart svg {
+			max-width: 100%;
+			height: auto;
+		}
+		/* 余白と縮尺を詰めて、なるべく少ないページ数に収める */
+		:global(.section) {
+			padding-block: 8px;
+		}
+		.pr-wrap {
+			zoom: 0.88;
+		}
+		.pr-compare,
+		.pr-roi,
+		.pr-includes {
+			margin-top: 14px;
+		}
+	}
+
 	@media (max-width: 720px) {
 		.pr-count {
 			grid-template-columns: 1fr;
@@ -991,8 +1642,11 @@
 		.pr-compare__grid {
 			grid-template-columns: 1fr;
 		}
-		.pr-devices {
-			grid-template-columns: 1fr;
+		.pr-device {
+			grid-template-columns: auto 1fr;
+		}
+		.pr-device__price {
+			grid-column: 1 / -1;
 		}
 		.pr-compare {
 			padding: 18px 16px;

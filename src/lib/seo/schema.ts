@@ -99,6 +99,16 @@ export type ProductInput = {
 	 * for prices that are actually published on the site.
 	 */
 	price?: number;
+	/**
+	 * Published price range (tax included). When lowPrice is present an
+	 * AggregateOffer is emitted instead of a single Offer - use for set/tiered
+	 * pricing where the page shows a starting or ranged price for a product
+	 * line. highPrice is optional (omit for open-ended "from" pricing).
+	 */
+	lowPrice?: number;
+	highPrice?: number;
+	/** Number of offers covered by the low/high range. */
+	offerCount?: number;
 	/** ISO 4217 currency for `price`. Defaults to JPY on this site. */
 	priceCurrency?: string;
 	/** Root-relative page where the product can be bought/quoted (Offer.url). */
@@ -118,7 +128,17 @@ export function productSchema(p: ProductInput): Json {
 	if (p.image) out.image = p.image;
 	if (p.sku) out.sku = p.sku;
 	if (p.category) out.category = p.category;
-	if (p.price !== undefined) {
+	if (p.lowPrice !== undefined) {
+		out.offers = {
+			'@type': 'AggregateOffer',
+			lowPrice: String(p.lowPrice),
+			...(p.highPrice !== undefined ? { highPrice: String(p.highPrice) } : {}),
+			priceCurrency: p.priceCurrency ?? 'JPY',
+			availability: 'https://schema.org/InStock',
+			...(p.offerCount ? { offerCount: p.offerCount } : {}),
+			...(p.offerUrl ? { url: absUrl(p.offerUrl) } : {})
+		};
+	} else if (p.price !== undefined) {
 		out.offers = {
 			'@type': 'Offer',
 			price: String(p.price),

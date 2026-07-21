@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema, faqSchema, productSchema } from '$lib/seo/schema';
+	import { breadcrumbSchema, faqSchema } from '$lib/seo/schema';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
 
 	const related = [
@@ -44,14 +44,10 @@
 			{ name: 'ホーム', path: '/' },
 			{ name: '農業・ハウスの監視', path: '/agriculture' }
 		]),
-		faqSchema(faq),
-		productSchema({
-			name: 'CropWatch 農業向け 環境モニタリングセンサー CW-AIR-THC',
-			description:
-				'スマート農業向けの農業IoT環境センサー。ハウス・施設園芸・露地の温度・湿度・CO₂・土壌の状態をLoRaWANで遠隔監視し、霜・高温・乾燥を早期に通知します。',
-			image: 'https://cropwatch.co.jp/assets/photos/agri-hero.webp',
-			category: 'スマート農業 / 農業IoT'
-		})
+		faqSchema(faq)
+		// CW-AIR-THC のProduct構造化データは出さない: 価格未公表のためoffersを
+		// 付けられず、Search Consoleの「offers/review/aggregateRating」警告に
+		// なるだけ。価格を公開したら productSchema({ price, offerUrl }) で復活。
 	];
 </script>
 

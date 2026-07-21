@@ -57,7 +57,9 @@
 			description:
 				'スマート畜産・養鶏IoT向けの電池駆動LoRaWAN環境センサー。鶏舎・畜舎の温度・湿度・CO₂を遠隔で見える化し、暑熱ストレスや換気不良の早期発見を支援します。',
 			image: 'https://cropwatch.co.jp/assets/photos/livestock-sensor-install.webp',
-			category: 'スマート畜産 / 畜産IoT'
+			category: 'スマート畜産 / 畜産IoT',
+			price: 33000,
+			offerUrl: '/pricing'
 		})
 	];
 </script>

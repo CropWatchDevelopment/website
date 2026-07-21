@@ -2,7 +2,7 @@
 import { onMount } from 'svelte';
 import Seo from '$lib/components/Seo.svelte';
 import JsonLd from '$lib/components/JsonLd.svelte';
-import { breadcrumbSchema, productSchema } from '$lib/seo/schema';
+import { breadcrumbSchema } from '$lib/seo/schema';
 
 const title = '交換用ケース｜頑丈な防塵防水（IP66）ケース・3Dで見る｜CropWatch 日本';
 const description =
@@ -12,13 +12,10 @@ const ld = [
 	breadcrumbSchema([
 		{ name: 'ホーム', path: '/' },
 		{ name: '交換用ケース', path: '/replacement-case' }
-	]),
-	productSchema({
-		name: 'CropWatch 交換用ケース CW-CASE',
-		description:
-			'頑丈な防塵・防水（IP66）ケース。冷凍庫の霜、鶏舎の洗浄、畑の直射日光やホコリから中身を守ります。校正済みセンサーモジュールをそのまま装着できます。',
-		category: '交換用ケース'
-	})
+	])
+	// CW-CASE のProduct構造化データは出さない: 価格未公表のためoffersを付けられず、
+	// Search Consoleの「offers/review/aggregateRating」警告になるだけ。
+	// 価格を公開したら productSchema({ price, offerUrl }) で復活。
 ];
 
 // Load Babylon.js + the CW-AIR-TH 3D viewer (static/assets/device.js) on the
