@@ -8,13 +8,49 @@
   },
   "redirects": [
     {
-      "source": "/:path(pricing|contact|cold-chain|livestock|agriculture|news|replacement-sensors)",
+      "source": "/pricing",
       "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
-      "destination": "https://cropwatch.co.jp/:path",
+      "destination": "https://cropwatch.co.jp/pricing",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+      "destination": "https://cropwatch.co.jp/contact",
+      "permanent": false
+    },
+    {
+      "source": "/cold-chain",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+      "destination": "https://cropwatch.co.jp/cold-chain",
+      "permanent": false
+    },
+    {
+      "source": "/livestock",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+      "destination": "https://cropwatch.co.jp/livestock",
+      "permanent": false
+    },
+    {
+      "source": "/agriculture",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+      "destination": "https://cropwatch.co.jp/agriculture",
+      "permanent": false
+    },
+    {
+      "source": "/replacement-sensors",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+      "destination": "https://cropwatch.co.jp/replacement-sensors",
       "permanent": false
     },
     {
       "source": "/news/:rest*",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+      "destination": "https://cropwatch.co.jp/news",
+      "permanent": false
+    },
+    {
+      "source": "/news",
       "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
       "destination": "https://cropwatch.co.jp/news",
       "permanent": false
