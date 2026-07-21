@@ -7,8 +7,16 @@
    Imported once from src/routes/+layout.svelte.
    ============================================================ */
 
+/* Tailwind v4, WITHOUT preflight: the site has its own reset in
+   design-system.css, and preflight would restyle existing pages. Theme vars
+   are layered (inert on their own); utilities are imported unlayered and
+   last so a utility class always beats the site stylesheets. */
+@import 'tailwindcss/theme.css' layer(theme);
+
 @import './lib/styles/design-system.css'; /* tokens, fonts, themes, base reset */
 @import './lib/styles/site.css'; /* sapphire/emerald public-site base */
 @import './lib/styles/product.css'; /* product-page layers (specs, related, 3D stage) */
 @import './lib/styles/cw.css'; /* .io page-specific extensions */
 @import './lib/styles/ag.css'; /* agriculture page (soil/air/light stack + charts) */
+
+@import 'tailwindcss/utilities.css';
