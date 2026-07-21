@@ -67,17 +67,18 @@ jobs:
           VERCEL_PROJECT_ID: ${{ steps.target.outputs.project_id }}
         run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
 
-      - name: Build
-        env:
-          VERCEL_PROJECT_ID: ${{ steps.target.outputs.project_id }}
-        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
-
-      - name: Deploy to production
+      # Build ON Vercel's infrastructure (no --prebuilt). Building here on the
+      # GitHub runner is impossible to combine with Vercel "Sensitive" env vars:
+      # `vercel pull` cannot decrypt them outside Vercel and substitutes the
+      # literal string "[SENSITIVE]", which then gets compiled into the site
+      # (this silently broke reCAPTCHA + contact email for weeks). Uploading
+      # the source and letting Vercel build means secrets decrypt normally.
+      - name: Deploy to production (build on Vercel)
         env:
           VERCEL_PROJECT_ID: ${{ steps.target.outputs.project_id }}
         run: |
           echo "Deploying '${{ github.ref_name }}' -> ${{ steps.target.outputs.label }}"
-          url="$(vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}")"
+          url="$(vercel deploy --prod --token="${{ secrets.VERCEL_TOKEN }}")"
           echo "Deployed: $url"
           echo "### Deployed \`${{ github.ref_name }}\` to ${{ steps.target.outputs.label }}" >> "$GITHUB_STEP_SUMMARY"
           echo "$url" >> "$GITHUB_STEP_SUMMARY"

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { browser } from '$app/environment';
+import { applyAction, deserialize } from '$app/forms';
 import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 import { onDestroy } from 'svelte';
 import Seo from '$lib/components/Seo.svelte';
@@ -60,32 +61,34 @@ const handleSubmit = async (event: SubmitEvent) => {
 		return;
 	}
 
-	if (!browser || !recaptchaRequired) {
-		return; // no reCAPTCHA configured → submit natively
-	}
-
+	// 送信は必ずfetchで行う。Vercel BotIDはfetch/XHRにしか分類シグナルを
+	// 付与できないため、ネイティブのフォーム送信（form.submit()）だと
+	// サーバー側の checkBotId が全員をボット扱いして403になる。
 	event.preventDefault();
-	recaptchaError = null;
-	const recaptcha = getRecaptchaClient();
-	if (!recaptcha) {
-		recaptchaError = 'security_unavailable';
-		return;
-	}
+	if (!browser) return;
 
+	recaptchaError = null;
 	recaptchaBusy = true;
 	try {
-		const token = await recaptcha.execute(recaptchaSiteKey, { action: recaptchaAction });
-		let tokenInput = target.querySelector<HTMLInputElement>('input[name="g-recaptcha-response"]');
-		if (!tokenInput) {
-			tokenInput = document.createElement('input');
-			tokenInput.type = 'hidden';
-			tokenInput.name = 'g-recaptcha-response';
-			target.appendChild(tokenInput);
+		const formData = new FormData(target);
+		if (recaptchaRequired) {
+			const recaptcha = getRecaptchaClient();
+			if (!recaptcha) {
+				recaptchaError = 'security_unavailable';
+				return;
+			}
+			const token = await recaptcha.execute(recaptchaSiteKey, { action: recaptchaAction });
+			formData.set('g-recaptcha-response', token);
 		}
-		tokenInput.value = token;
-		target.submit();
+		const response = await fetch(target.action, {
+			method: 'POST',
+			body: formData,
+			headers: { 'x-sveltekit-action': 'true' }
+		});
+		const result = deserialize(await response.text());
+		await applyAction(result);
 	} catch (error) {
-		console.error('reCAPTCHA execution error', error);
+		console.error('contact form submission error', error);
 		recaptchaError = 'verification_failed';
 	} finally {
 		recaptchaBusy = false;
