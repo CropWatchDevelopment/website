@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
-	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { formatNewsDate, DEFAULT_NEWS_ICON } from '$lib/content/news';
 	import type { PageProps } from './$types';
 
@@ -11,29 +10,19 @@
 	const title = 'ニュース｜お知らせ・最新情報｜CropWatch 日本';
 	const description =
 		'CropWatch 日本からのお知らせ・最新情報の一覧です。サービスの更新情報、規約の改定、イベント情報などをお届けします。';
-
-	const ld = [
-		breadcrumbSchema([
-			{ name: 'ホーム', path: '/' },
-			{ name: 'ニュース', path: '/news' }
-		])
-	];
 </script>
 
 <Seo {title} {description} />
-<JsonLd data={ld} />
 
-<div class="crumb"><div class="wrap crumb__in">
-	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<b>ニュース</b>
-</div></div>
+<Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: 'ニュース' }]} />
 
 <section class="pagehero">
 	<div class="wrap pagehero__in" data-reveal>
 		<p class="eyebrow"><span class="material-symbols-rounded">campaign</span> ニュース</p>
 		<h1>お知らせ・最新情報</h1>
 		<p class="hero__kicker">
-			サービスの更新情報や規約の改定など、<span class="u">CropWatch 日本からのお知らせ</span>をまとめています。
+			サービスの更新情報や規約の改定など、<span class="u">CropWatch 日本からのお知らせ</span
+			>をまとめています。
 		</p>
 	</div>
 </section>
@@ -55,7 +44,9 @@
 								<b class="news-item__title">{n.title}</b>
 								<span class="news-item__desc">{n.description}</span>
 							</span>
-							<span class="news-item__go material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+							<span class="news-item__go material-symbols-rounded" aria-hidden="true"
+								>arrow_forward</span
+							>
 						</a>
 					</li>
 				{/each}

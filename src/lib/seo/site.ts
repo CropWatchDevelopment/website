@@ -18,10 +18,10 @@ export const ORG = {
 	// Google's logo guidelines want a crawlable raster (SVG unsupported), min 112px.
 	logo: `${SITE_ORIGIN}/cropwatch_icons/icon-512x512.png`,
 	// Customer-facing number shown on the contact page.
-	telephone: '+81-80-4282-3390',
+	telephone: '+81-80-4284-3390',
 	email: 'sayaka@cropwatch.io',
 	address: {
-		postalCode: '881-0001',
+		postalCode: '881-0027',
 		region: '宮崎県',
 		locality: '西都市',
 		street: '南方806-5'
@@ -31,7 +31,7 @@ export const ORG = {
 	// a wrong sameAs hurts. Paste the official Japan profile URLs below:
 	sameAs: [
 		'https://cropwatch.io',
-		'https://lin.ee/@122akgbd', // LINE公式アカウント
+		'https://line.me/R/ti/p/@122akgbd', // LINE公式アカウント（lin.ee/@122akgbd は404だった）
 		'https://www.youtube.com/@cropwatch4407', // YouTube
 		'https://www.linkedin.com/company/71224776' // LinkedIn
 		// TODO: add when ready —

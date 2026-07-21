@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema, faqSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import { faqSchema } from '$lib/seo/schema';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
 
 	const related = [
@@ -39,28 +40,18 @@
 		}
 	];
 
-	const ld = [
-		breadcrumbSchema([
-			{ name: 'ホーム', path: '/' },
-			{ name: '農業・ハウスの監視', path: '/agriculture' }
-		]),
-		faqSchema(faq)
-		// CW-AIR-THC のProduct構造化データは出さない: 価格未公表のためoffersを
-		// 付けられず、Search Consoleの「offers/review/aggregateRating」警告に
-		// なるだけ。価格を公開したら productSchema({ price, offerUrl }) で復活。
-	];
+	// CW-AIR-THC のProduct構造化データは出さない: 価格未公表のためoffersを
+	// 付けられず、Search Consoleの「offers/review/aggregateRating」警告に
+	// なるだけ。価格を公開したら productSchema({ path, price, offerUrl }) で復活。
+	const ld = faqSchema(faq);
 </script>
 
 <Seo {title} {description} />
 <JsonLd data={ld} />
 
-<div class="crumb">
-	<div class="wrap crumb__in">
-		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-		<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
-		<b>農業・ハウスの監視</b>
-	</div>
-</div>
+<Breadcrumbs
+	items={[{ label: 'ホーム', href: '/' }, { label: '製品' }, { label: '農業・ハウスの監視' }]}
+/>
 
 <!-- ═══ ヒーロー（現場写真バックドロップ） ═══ -->
 <section class="ag-hero">
@@ -468,10 +459,6 @@
 		line-height: 1.85;
 		color: rgba(226, 245, 234, 0.9);
 		max-width: 48ch;
-	}
-	.ag-lead b {
-		color: #fff;
-		font-weight: 700;
 	}
 	.ag-tags {
 		display: flex;

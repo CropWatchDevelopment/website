@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import '$lib/styles/legal.css';
 
 	const title = '利用規約・クッキーポリシー｜CropWatch 日本';
@@ -8,6 +9,8 @@
 </script>
 
 <Seo {title} {description} />
+
+<Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: 'クッキーポリシー' }]} />
 
 <article class="legal-doc">
 	<h1>クッキーポリシー</h1>
@@ -78,7 +81,9 @@
 
 	<p>
 		※Google Analyticsにおけるデータ取り扱いの詳細は
-		<a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener noreferrer">こちら</a>
+		<a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener noreferrer"
+			>こちら</a
+		>
 		をご確認ください。
 	</p>
 

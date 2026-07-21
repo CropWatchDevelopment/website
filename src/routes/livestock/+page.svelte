@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema, faqSchema, productSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import { faqSchema } from '$lib/seo/schema';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
 
 	const related = [
@@ -46,34 +47,18 @@
 		a: f.a.replace(/<[^>]+>/g, '').replace(/&thinsp;/g, '')
 	}));
 
-	const ld = [
-		breadcrumbSchema([
-			{ name: 'ホーム', path: '/' },
-			{ name: '畜産・養鶏の監視', path: '/livestock' }
-		]),
-		faqSchema(faqPlain),
-		productSchema({
-			name: 'CropWatch 畜産・養鶏向け 温度・湿度監視センサー',
-			description:
-				'スマート畜産・養鶏IoT向けの電池駆動LoRaWAN™環境センサー。鶏舎・畜舎の温度・湿度・CO₂を遠隔で見える化し、暑熱ストレスや換気不良の早期発見を支援します。',
-			image: 'https://cropwatch.co.jp/assets/photos/livestock-sensor-install.webp',
-			category: 'スマート畜産 / 畜産IoT',
-			price: 33000,
-			offerUrl: '/pricing'
-		})
-	];
+	// 業種向けランディングページなのでProduct構造化データは出さない（このページ
+	// には価格表示もない）。製品ページ（/replacement-sensors など）と /pricing が
+	// Productを持つ。
+	const ld = faqSchema(faqPlain);
 </script>
 
 <Seo {title} {description} />
 <JsonLd data={ld} />
 
-<div class="crumb">
-	<div class="wrap crumb__in">
-		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-		<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
-		<b>畜産・養鶏の監視</b>
-	</div>
-</div>
+<Breadcrumbs
+	items={[{ label: 'ホーム', href: '/' }, { label: '製品' }, { label: '畜産・養鶏の監視' }]}
+/>
 
 <!-- ═══ ヒーロー（現場写真バックドロップ） ═══ -->
 <section class="ls-hero">
@@ -464,8 +449,11 @@
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
 				<dd>
-					<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer"
-						>センシリオン</a
+					<a
+						class="extlink"
+						href="https://sensirion.com/jp"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
 					>
 					<a
 						class="extlink"
@@ -668,10 +656,6 @@
 		font-weight: 600;
 		color: rgba(255, 246, 238, 0.9);
 	}
-	.ls-note .material-symbols-rounded {
-		font-size: 18px;
-	}
-
 	/* live-reading glass panel */
 	.ls-panel {
 		justify-self: end;
@@ -725,6 +709,7 @@
 		font-weight: 700;
 		color: var(--web-heading);
 	}
+	/* (「予測」バッジ用。パネルの em マークアップ復活時に有効化)
 	.ls-panel__lab em {
 		font-style: normal;
 		font-size: 9.5px;
@@ -735,7 +720,7 @@
 		border-radius: 6px;
 		background: color-mix(in srgb, var(--web-gold) 16%, #fff);
 		vertical-align: middle;
-	}
+	} */
 	.ls-panel__val {
 		font-family: var(--cw-font-mono);
 		font-size: 14.5px;

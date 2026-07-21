@@ -1,8 +1,7 @@
 <script lang="ts">
 	import PartsOrigin from '$lib/components/PartsOrigin.svelte';
 	import Seo from '$lib/components/Seo.svelte';
-	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
 
 	const related = [
@@ -15,22 +14,11 @@
 	const title = '技術・設計｜現場に強い、センサー基板のつくり｜CropWatch 日本';
 	const description =
 		'CropWatch のセンサー基板の設計と技術。用途ごとに世界から選んだ8か国・18メーカーの部品、2つのセンサーによる測定値の検証、その場で交換できる電池・センサー・ケース、記録を守るFRAMメモリ、ハードウェアとソフトウェアの二重の番犬機能まで。長く使い続けるための設計をご紹介します。';
-
-	const ld = breadcrumbSchema([
-		{ name: 'ホーム', path: '/' },
-		{ name: '技術・設計', path: '/technology' }
-	]);
 </script>
 
 <Seo {title} {description} />
-<JsonLd data={ld} />
 
-<div class="crumb">
-	<div class="wrap crumb__in">
-		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-		<b>技術・設計</b>
-	</div>
-</div>
+<Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '技術・設計' }]} />
 
 <!-- ヒーロー -->
 <section class="pagehero">
@@ -181,7 +169,15 @@
 					>
 				</defs>
 
-				<rect x="1" y="1" width="898" height="518" rx="26" fill="#ffffff" stroke="#d7e0f5" stroke-width="2"
+				<rect
+					x="1"
+					y="1"
+					width="898"
+					height="518"
+					rx="26"
+					fill="#ffffff"
+					stroke="#d7e0f5"
+					stroke-width="2"
 				></rect>
 				<text x="44" y="52" fill="#245a9c" font-size="13" font-weight="700" letter-spacing="1.8"
 					>DOUBLE-SENSOR CHECK ／ 測定値の信頼性</text
@@ -191,11 +187,29 @@
 				>
 
 				<!-- 同じ空気を測る2つのセンサー -->
-				<rect x="40" y="140" width="250" height="320" rx="20" fill="#f1f6fd" stroke="#d7e0f5" stroke-width="2"
+				<rect
+					x="40"
+					y="140"
+					width="250"
+					height="320"
+					rx="20"
+					fill="#f1f6fd"
+					stroke="#d7e0f5"
+					stroke-width="2"
 				></rect>
-				<text x="60" y="178" fill="#0b1730" font-size="15" font-weight="800">同じ空気を同時に測定</text>
+				<text x="60" y="178" fill="#0b1730" font-size="15" font-weight="800"
+					>同じ空気を同時に測定</text
+				>
 
-				<rect x="62" y="198" width="206" height="104" rx="14" fill="#ffffff" stroke="#b4ccf0" stroke-width="2"
+				<rect
+					x="62"
+					y="198"
+					width="206"
+					height="104"
+					rx="14"
+					fill="#ffffff"
+					stroke="#b4ccf0"
+					stroke-width="2"
 				></rect>
 				<circle cx="104" cy="250" r="23" fill="#eef4fc"></circle>
 				<path
@@ -206,7 +220,15 @@
 				<text x="146" y="242" fill="#4a5d7e" font-size="12" font-weight="700">センサー A</text>
 				<text x="146" y="268" fill="#0b1730" font-size="20" font-weight="800">SHT43</text>
 
-				<rect x="62" y="320" width="206" height="104" rx="14" fill="#ffffff" stroke="#93e0bd" stroke-width="2"
+				<rect
+					x="62"
+					y="320"
+					width="206"
+					height="104"
+					rx="14"
+					fill="#ffffff"
+					stroke="#93e0bd"
+					stroke-width="2"
 				></rect>
 				<circle cx="104" cy="372" r="23" fill="#e9f9f1"></circle>
 				<path
@@ -247,8 +269,12 @@
 				>
 					<path d="M-22 -6h44M-22 -6l8 -8M-22 -6l8 8M22 10h-44M22 10l-8 -8M22 10l-8 8"></path>
 				</g>
-				<text x="460" y="300" fill="#e7ecff" font-size="22" font-weight="800" text-anchor="middle">照合</text>
-				<text x="460" y="326" fill="#9ab0d6" font-size="12.5" text-anchor="middle">2つの値の整合性を確認</text>
+				<text x="460" y="300" fill="#e7ecff" font-size="22" font-weight="800" text-anchor="middle"
+					>照合</text
+				>
+				<text x="460" y="326" fill="#9ab0d6" font-size="12.5" text-anchor="middle"
+					>2つの値の整合性を確認</text
+				>
 				<line x1="392" y1="344" x2="528" y2="344" stroke="#2f5387" stroke-width="1"></line>
 				<text x="460" y="368" fill="#7fe0be" font-size="12" font-weight="600" text-anchor="middle"
 					>過去の傾向と比較</text
@@ -274,7 +300,15 @@
 				></path>
 
 				<!-- 判定結果 -->
-				<rect x="616" y="190" width="244" height="100" rx="16" fill="#e9f9f1" stroke="#57cd99" stroke-width="2"
+				<rect
+					x="616"
+					y="190"
+					width="244"
+					height="100"
+					rx="16"
+					fill="#e9f9f1"
+					stroke="#57cd99"
+					stroke-width="2"
 				></rect>
 				<circle cx="656" cy="240" r="19" fill="#0e9960"></circle>
 				<path
@@ -286,15 +320,31 @@
 					stroke-width="3.5"
 				></path>
 				<text x="690" y="232" fill="#086241" font-size="13" font-weight="700">一致</text>
-				<text x="690" y="258" fill="#04392a" font-size="17" font-weight="800">通常データとして記録</text>
+				<text x="690" y="258" fill="#04392a" font-size="17" font-weight="800"
+					>通常データとして記録</text
+				>
 
-				<rect x="616" y="320" width="244" height="100" rx="16" fill="#fff1f1" stroke="#eb2f2f" stroke-width="2"
+				<rect
+					x="616"
+					y="320"
+					width="244"
+					height="100"
+					rx="16"
+					fill="#fff1f1"
+					stroke="#eb2f2f"
+					stroke-width="2"
 				></rect>
 				<circle cx="656" cy="370" r="19" fill="#dd0f0f"></circle>
-				<path d="M649 363l14 14m0-14-14 14" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.5"
+				<path
+					d="M649 363l14 14m0-14-14 14"
+					fill="none"
+					stroke="#fff"
+					stroke-linecap="round"
+					stroke-width="3.5"
 				></path>
 				<text x="690" y="362" fill="#a20c0c" font-size="13" font-weight="700">乖離</text>
-				<text x="690" y="388" fill="#741010" font-size="17" font-weight="800">エラーとして通知</text>
+				<text x="690" y="388" fill="#741010" font-size="17" font-weight="800">エラーとして通知</text
+				>
 			</svg>
 		</figure>
 	</div>

@@ -1,16 +1,10 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
-	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 
 	const title = 'お客様の声・導入事例｜温度監視・スマート農業・スマート畜産｜CropWatch 日本';
 	const description =
 		'CropWatch（クロップウォッチ）を導入したお客様の声・導入事例。宮崎・シーガイアのガーデンビュッフェ「パインテラス」やTK-EBISUの養鶏をはじめ、飲食・ホテル・倉庫・農業・畜産の現場で、温度監視と記録の手間がどう変わったかをご紹介します。';
-
-	const testimonialsLd = breadcrumbSchema([
-		{ name: 'ホーム', path: '/' },
-		{ name: 'お客様の声', path: '/testimonials' }
-	]);
 
 	type Who = { icon?: string; initial?: string; name: string; role: string };
 	type Testimonial = {
@@ -118,14 +112,8 @@
 </script>
 
 <Seo {title} {description} />
-<JsonLd data={testimonialsLd} />
 
-<div class="crumb">
-	<div class="wrap crumb__in">
-		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-		<b>お客様の声</b>
-	</div>
-</div>
+<Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: 'お客様の声' }]} />
 
 <section class="section section--soft">
 	<div class="wrap">
@@ -341,6 +329,7 @@
 		padding-top: 18px;
 		border-top: 1px solid var(--web-border);
 	}
+	/* (氏名・肩書きの .who ブロックはマークアップ側でコメントアウト中。復活時に有効化)
 	.who__av {
 		width: 44px;
 		height: 44px;
@@ -366,7 +355,7 @@
 	.who__meta span {
 		font-size: 12.5px;
 		color: var(--web-muted);
-	}
+	} */
 
 	/* ── Footer actions ── */
 	/* min-height reserves the button's height even when a card has no link, so

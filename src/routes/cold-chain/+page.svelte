@@ -3,7 +3,8 @@
 	import FieldReplacementSection from '$lib/components/cold-chain/FieldReplacementSection.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema, faqSchema, productSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import { faqSchema } from '$lib/seo/schema';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
 
 	const related = [
@@ -49,34 +50,18 @@
 		a: f.a.replace(/<[^>]+>/g, '')
 	}));
 
-	const ld = [
-		breadcrumbSchema([
-			{ name: 'ホーム', path: '/' },
-			{ name: '冷蔵・冷凍の監視', path: '/cold-chain' }
-		]),
-		faqSchema(faqPlain),
-		productSchema({
-			name: 'CropWatch 冷蔵・冷凍向け 温度・湿度監視センサー',
-			description:
-				'コールドチェーン向けの電池駆動LoRaWAN™温度・湿度センサー。冷蔵庫・冷凍庫の温度を10分ごとに自動記録し、遠隔監視とHACCP対応の温度記録を実現するクラウド温度監視システムです。',
-			image: 'https://cropwatch.co.jp/assets/imagery/device-top-view.webp',
-			category: '温度監視システム',
-			price: 33000,
-			offerUrl: '/pricing'
-		})
-	];
+	// 業種向けランディングページなのでProduct構造化データは出さない（このページ
+	// には価格表示もない）。製品ページ（/replacement-sensors など）と /pricing が
+	// Productを持つ。
+	const ld = faqSchema(faqPlain);
 </script>
 
 <Seo {title} {description} />
 <JsonLd data={ld} />
 
-<div class="crumb">
-	<div class="wrap crumb__in">
-		<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-		<span>製品</span><span class="material-symbols-rounded">chevron_right</span>
-		<b>冷蔵・冷凍の監視</b>
-	</div>
-</div>
+<Breadcrumbs
+	items={[{ label: 'ホーム', href: '/' }, { label: '製品' }, { label: '冷蔵・冷凍の監視' }]}
+/>
 
 <!-- ═══ ヒーロー（現場写真バックドロップ） ═══ -->
 <section class="cc-hero">
@@ -93,8 +78,8 @@
 			>
 			<!-- <h1>10分ごとの記録で、品質トラブルの<span class="cc-hl">リスク</span>を低減</h1> -->
 			<h1>
-				測る、記録する、残す。<br /><span class="cc-hl">HACCP</span
-				>に沿った温度管理を、<br />すべて自動で。
+				測る、記録する、残す。<br /><span class="cc-hl">HACCP</span>に沿った温度管理を、<br
+				/>すべて自動で。
 			</h1>
 			<p class="cc-lead">
 				バッテリー駆動の<a
@@ -391,8 +376,11 @@
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
 				<dd>
-					<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer"
-						>センシリオン</a
+					<a
+						class="extlink"
+						href="https://sensirion.com/jp"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
 					>
 					<a
 						class="extlink"
@@ -436,7 +424,9 @@
 				<dd>
 					最長10年（交換可能）
 					<br />
-					<small>※バッテリー寿命は、使用環境や測定・送信間隔、通信状況などによって異なります。</small>
+					<small
+						>※バッテリー寿命は、使用環境や測定・送信間隔、通信状況などによって異なります。</small
+					>
 				</dd>
 			</div>
 			<div class="spec-row">

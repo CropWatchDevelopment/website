@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import '$lib/styles/legal.css';
 
 	const title = 'プライバシーポリシー｜CropWatch 日本';
@@ -8,6 +9,8 @@
 </script>
 
 <Seo {title} {description} />
+
+<Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: 'プライバシーポリシー' }]} />
 
 <article class="legal-doc">
 	<h1>プライバシーポリシー</h1>

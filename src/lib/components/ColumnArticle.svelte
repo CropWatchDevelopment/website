@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { articleSchema, breadcrumbSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import { articleSchema } from '$lib/seo/schema';
 	import { DEFAULT_OG_IMAGE } from '$lib/seo/site';
 	import type { Column } from '$lib/content/columns';
 	import type { Snippet } from 'svelte';
@@ -11,7 +12,7 @@
 	const path = $derived(`/column/${column.slug}`);
 	const seoTitle = $derived(`${column.title}｜CropWatch 日本`);
 
-	const ld = $derived([
+	const ld = $derived(
 		articleSchema({
 			title: column.title,
 			description: column.description,
@@ -19,23 +20,20 @@
 			datePublished: column.datePublished,
 			dateModified: column.dateModified,
 			image: DEFAULT_OG_IMAGE
-		}),
-		breadcrumbSchema([
-			{ name: 'ホーム', path: '/' },
-			{ name: 'コラム', path: '/column' },
-			{ name: column.title, path }
-		])
-	]);
+		})
+	);
 </script>
 
 <Seo title={seoTitle} description={column.description} type="article" />
 <JsonLd data={ld} />
 
-<div class="crumb"><div class="wrap crumb__in">
-	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<a href="/column">コラム</a><span class="material-symbols-rounded">chevron_right</span>
-	<b>{column.title}</b>
-</div></div>
+<Breadcrumbs
+	items={[
+		{ label: 'ホーム', href: '/' },
+		{ label: 'コラム', href: '/column' },
+		{ label: column.title }
+	]}
+/>
 
 <article class="col-article">
 	<div class="wrap col-article__in">

@@ -1,18 +1,21 @@
 <script lang="ts">
 	/**
-	 * Breadcrumb structured data (JSON-LD only) for cropwatch.co.jp.
+	 * Breadcrumbs for cropwatch.co.jp: renders the visible `.crumb` trail AND
+	 * the matching schema.org BreadcrumbList JSON-LD from one `items` array,
+	 * so the two can never drift apart.
 	 *
-	 * Unlike the .io Breadcrumbs, this emits ONLY the schema.org BreadcrumbList
-	 * (no visible <nav>): the .io visual trail relies on .io design tokens and an
-	 * icon font this site doesn't load, so a visible port would render broken.
-	 * Pass crumbs from the site root to the current page; omit `href` on the
-	 * current page and on name-only parents (e.g. 製品).
+	 * Pass crumbs from the site root to the current page. The last item is the
+	 * current page (rendered bold, unlinked; its schema URL falls back to the
+	 * current path). Omit `href` on name-only parents (e.g. 製品, which has no
+	 * landing page): they stay in the visible trail but are skipped in the
+	 * JSON-LD, because Google requires a real `item` URL on every ListItem
+	 * except the last.
 	 *
 	 * Usage:
 	 *   <Breadcrumbs items={[
 	 *     { label: 'ホーム', href: '/' },
 	 *     { label: '製品' },
-	 *     { label: '温度・湿度センサー (CW-AIR-TH)' }
+	 *     { label: '交換用センサー' }
 	 *   ]} />
 	 */
 	import { page } from '$app/state';
@@ -27,13 +30,28 @@
 
 	let { items }: { items: Crumb[] } = $props();
 
-	// Crumbs without an href (name-only parents / the current page) fall back
-	// to the current path so the schema's `item` URL is always present.
 	const breadcrumbLd = $derived(
 		breadcrumbSchema(
-			items.map((crumb) => ({ name: crumb.label, path: crumb.href ?? page.url.pathname }))
+			items
+				.filter((crumb, i) => crumb.href || i === items.length - 1)
+				.map((crumb) => ({ name: crumb.label, path: crumb.href ?? page.url.pathname }))
 		)
 	);
 </script>
 
 <JsonLd data={breadcrumbLd} />
+
+<div class="crumb">
+	<div class="wrap crumb__in">
+		{#each items as crumb, i (i)}
+			{#if i > 0}<span class="material-symbols-rounded">chevron_right</span>{/if}
+			{#if i === items.length - 1}
+				<b>{crumb.label}</b>
+			{:else if crumb.href}
+				<a href={crumb.href}>{crumb.label}</a>
+			{:else}
+				<span>{crumb.label}</span>
+			{/if}
+		{/each}
+	</div>
+</div>

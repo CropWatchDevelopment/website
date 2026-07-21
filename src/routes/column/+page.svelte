@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { breadcrumbSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { SITE_ORIGIN } from '$lib/seo/site';
 	import { COLUMNS } from '$lib/content/columns';
 
@@ -10,10 +10,6 @@
 		'HACCP義務化、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業やLoRaWAN™の基礎まで。コールドチェーン・スマート農業・スマート畜産の温度監視に役立つ情報をお届けします。';
 
 	const ld = [
-		breadcrumbSchema([
-			{ name: 'ホーム', path: '/' },
-			{ name: 'コラム', path: '/column' }
-		]),
 		{
 			'@context': 'https://schema.org',
 			'@type': 'Blog',
@@ -34,20 +30,24 @@
 <Seo {title} {description} />
 <JsonLd data={ld} />
 
-<div class="crumb"><div class="wrap crumb__in">
-	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<b>コラム</b>
-</div></div>
+<Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: 'コラム' }]} />
 
 <section class="pagehero">
 	<div class="wrap pagehero__in" data-reveal>
 		<p class="eyebrow"><span class="material-symbols-rounded">menu_book</span> コラム</p>
 		<h1>温度監視と現場の見える化、基礎から。</h1>
 		<p class="hero__kicker">
-			コールドチェーン・スマート農業・スマート畜産。<span class="u">導入前に知っておきたいことを、分かりやすく。</span>
+			コールドチェーン・スマート農業・スマート畜産。<span class="u"
+				>導入前に知っておきたいことを、分かりやすく。</span
+			>
 		</p>
 		<p>
-			HACCP義務化への対応から、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業や<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>の基礎まで。現場の課題解決に役立つ情報をまとめています。
+			HACCP義務化への対応から、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業や<a
+				class="extlink"
+				href="https://lora-alliance.org/"
+				target="_blank"
+				rel="noopener noreferrer">LoRaWAN™</a
+			>の基礎まで。現場の課題解決に役立つ情報をまとめています。
 		</p>
 	</div>
 </section>

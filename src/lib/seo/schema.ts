@@ -6,6 +6,16 @@ import { ORG, SITE_ALT_NAME, SITE_NAME, SITE_ORIGIN, absUrl } from './site';
 
 type Json = Record<string, unknown>;
 
+/**
+ * Serialise a schema object (or array) for a <script type="application/ld+json">
+ * element. `<` is escaped so a value containing "</script>" can never close the
+ * script element early. JSON.stringify drops `undefined` properties, so
+ * builders may leave optional fields undefined.
+ */
+export function serializeJsonLd(data: unknown): string {
+	return JSON.stringify(data).replace(/</g, '\\u003c');
+}
+
 /** Site-wide publisher identity. Rendered once in the root layout. */
 export function organizationSchema(): Json {
 	return {
@@ -57,11 +67,17 @@ export function websiteSchema(): Json {
 
 export type Crumb = { name: string; path: string };
 
-/** Breadcrumb trail. Pass paths as site-relative (e.g. '/cold-chain'). */
+/**
+ * Breadcrumb trail. Pass paths as site-relative (e.g. '/cold-chain'), ordered
+ * from the site root to the current page (the last item is the current page
+ * and provides the list's stable `@id`).
+ */
 export function breadcrumbSchema(items: Crumb[]): Json {
+	const current = items[items.length - 1];
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'BreadcrumbList',
+		...(current ? { '@id': `${absUrl(current.path)}#breadcrumb` } : {}),
 		itemListElement: items.map((c, i) => ({
 			'@type': 'ListItem',
 			position: i + 1,
@@ -89,6 +105,8 @@ export function faqSchema(items: Faq[]): Json {
 export type ProductInput = {
 	name: string;
 	description: string;
+	/** Root-relative canonical page for this product (gives it url + stable @id). */
+	path?: string;
 	image?: string;
 	sku?: string;
 	category?: string;
@@ -125,6 +143,10 @@ export function productSchema(p: ProductInput): Json {
 		brand: { '@type': 'Brand', name: 'CropWatch' },
 		manufacturer: { '@id': `${SITE_ORIGIN}/#organization` }
 	};
+	if (p.path) {
+		out['@id'] = `${absUrl(p.path)}#product`;
+		out.url = absUrl(p.path);
+	}
 	if (p.image) out.image = p.image;
 	if (p.sku) out.sku = p.sku;
 	if (p.category) out.category = p.category;
@@ -150,24 +172,6 @@ export function productSchema(p: ProductInput): Json {
 	return out;
 }
 
-export type ReviewInput = {
-	body: string;
-	author: string;
-	itemName: string;
-};
-
-/** A single customer testimonial as an Organization review. */
-export function reviewSchema(r: ReviewInput): Json {
-	return {
-		'@context': 'https://schema.org',
-		'@type': 'Review',
-		reviewBody: r.body,
-		author: { '@type': 'Organization', name: r.author },
-		itemReviewed: { '@type': 'Organization', name: r.itemName },
-		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' }
-	};
-}
-
 export type ArticleInput = {
 	title: string;
 	description: string;
@@ -182,6 +186,7 @@ export function articleSchema(a: ArticleInput): Json {
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
+		'@id': `${absUrl(a.path)}#article`,
 		headline: a.title,
 		description: a.description,
 		mainEntityOfPage: absUrl(a.path),
@@ -191,6 +196,47 @@ export function articleSchema(a: ArticleInput): Json {
 		dateModified: a.dateModified ?? a.datePublished,
 		image: a.image ?? undefined,
 		author: { '@id': `${SITE_ORIGIN}/#organization` },
+		publisher: { '@id': `${SITE_ORIGIN}/#organization` }
+	};
+}
+
+export type VideoInput = {
+	name: string;
+	description: string;
+	/** Root-relative page the video is embedded on (its preferred landing page). */
+	path: string;
+	/** Thumbnail image URL (absolute, or root-relative on this site). */
+	thumbnailUrl: string;
+	/** Real original publication date, ISO 8601 with timezone (e.g. '2026-07-01T09:00:00+09:00'). */
+	uploadDate: string;
+	/** ISO 8601 duration, e.g. 'PT2M14S'. */
+	duration?: string;
+	/** Embeddable player URL (e.g. https://www.youtube-nocookie.com/embed/ID). */
+	embedUrl?: string;
+	/** Direct URL to the video file bytes - never the HTML page URL. */
+	contentUrl?: string;
+};
+
+/**
+ * A video that is the primary content of its page (demo, install guide, etc.).
+ * Do NOT emit this for decorative loops or placeholder players: `name`,
+ * `thumbnailUrl` and `uploadDate` are required by Google and must describe a
+ * video visitors can actually play on the page.
+ */
+export function videoSchema(v: VideoInput): Json {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'VideoObject',
+		'@id': `${absUrl(v.path)}#video`,
+		name: v.name,
+		description: v.description,
+		thumbnailUrl: [v.thumbnailUrl.startsWith('http') ? v.thumbnailUrl : absUrl(v.thumbnailUrl)],
+		uploadDate: v.uploadDate,
+		duration: v.duration,
+		embedUrl: v.embedUrl,
+		contentUrl: v.contentUrl,
+		url: absUrl(v.path),
+		inLanguage: 'ja',
 		publisher: { '@id': `${SITE_ORIGIN}/#organization` }
 	};
 }

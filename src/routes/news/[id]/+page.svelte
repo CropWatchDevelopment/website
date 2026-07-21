@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
-	import { articleSchema, breadcrumbSchema } from '$lib/seo/schema';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import { articleSchema } from '$lib/seo/schema';
 	import { DEFAULT_OG_IMAGE } from '$lib/seo/site';
 	import { formatNewsDate } from '$lib/content/news';
 	import type { PageProps } from './$types';
@@ -12,30 +13,32 @@
 	const path = $derived(`/news/${article.id}`);
 	const seoTitle = $derived(`${article.title}｜ニュース｜CropWatch 日本`);
 
-	const ld = $derived([
+	const ld = $derived(
 		articleSchema({
 			title: article.title,
 			description: article.description,
 			path,
 			datePublished: article.date,
 			image: article.headerImage ?? DEFAULT_OG_IMAGE
-		}),
-		breadcrumbSchema([
-			{ name: 'ホーム', path: '/' },
-			{ name: 'ニュース', path: '/news' },
-			{ name: article.title, path }
-		])
-	]);
+		})
+	);
 </script>
 
-<Seo title={seoTitle} description={article.description} type="article" image={article.headerImage ?? DEFAULT_OG_IMAGE} />
+<Seo
+	title={seoTitle}
+	description={article.description}
+	type="article"
+	image={article.headerImage ?? DEFAULT_OG_IMAGE}
+/>
 <JsonLd data={ld} />
 
-<div class="crumb"><div class="wrap crumb__in">
-	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
-	<a href="/news">ニュース</a><span class="material-symbols-rounded">chevron_right</span>
-	<b>{article.title}</b>
-</div></div>
+<Breadcrumbs
+	items={[
+		{ label: 'ホーム', href: '/' },
+		{ label: 'ニュース', href: '/news' },
+		{ label: article.title }
+	]}
+/>
 
 <article class="news-article">
 	<div class="wrap news-article__in">
@@ -72,7 +75,11 @@
 						{#if block.caption}<figcaption>{block.caption}</figcaption>{/if}
 					</figure>
 				{:else if block.type === 'link'}
-					<p><a class="news-link" href={block.href}>{block.text} <span class="material-symbols-rounded">arrow_forward</span></a></p>
+					<p>
+						<a class="news-link" href={block.href}
+							>{block.text} <span class="material-symbols-rounded">arrow_forward</span></a
+						>
+					</p>
 				{/if}
 			{/each}
 		</div>
