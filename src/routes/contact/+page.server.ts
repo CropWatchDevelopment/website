@@ -38,6 +38,16 @@ export const actions: Actions = {
 		const industry = getString(formData, 'industry');
 		const sites = getString(formData, 'sites');
 
+		// 一時的な調査ログ: 一部の実ブラウザだけ invalid-input-response になる
+		// 原因を特定するため、受信トークンの形状を記録する（トークンは一度きり
+		// で再利用不可のため、先頭/末尾の断片のログは安全）。原因判明後に削除。
+		console.info('contact token diag', {
+			tokenLen: recaptchaToken?.length ?? 0,
+			tokenHead: recaptchaToken?.slice(0, 12),
+			tokenTail: recaptchaToken?.slice(-6),
+			ua: request.headers.get('user-agent')?.slice(0, 80)
+		});
+
 		if (!PRIVATE_GOOGLE_RECAPTCHA_SECRET_KEY) {
 			return fail(500, { message: 'reCAPTCHA configuration missing.' });
 		}
@@ -147,6 +157,16 @@ async function verifyRecaptcha(
 			challenge_ts?: string;
 			['error-codes']?: string[];
 		} = await recaptchaResponse.json();
+
+		// 一時的な調査ログ: Googleのsiteverify応答をそのまま記録（原因判明後に削除）
+		console.info('recaptcha siteverify result', {
+			success: recaptchaResult.success,
+			score: recaptchaResult.score,
+			action: recaptchaResult.action,
+			hostname: recaptchaResult.hostname,
+			challenge_ts: recaptchaResult.challenge_ts,
+			errors: recaptchaResult['error-codes']
+		});
 
 		if (!recaptchaResult.success) {
 			return {
