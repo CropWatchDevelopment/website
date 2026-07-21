@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { flushSync, onMount } from 'svelte';
 	import { afterNavigate, replaceState } from '$app/navigation';
 	import Seo from '$lib/components/Seo.svelte';
 	import JsonLd from '$lib/components/JsonLd.svelte';
@@ -259,6 +259,11 @@
 	// ── 印刷（お客様レビュー用の仮見積もり）──
 	/** 印刷時はROIの数値表を開いた状態にする（閉じたdetailsは印刷されないため） */
 	let roiTableOpen = $state(false);
+	/** beforeprint直後にブラウザが印刷用スナップショットを取るため、Svelteの
+	    非同期更新を待たずに open 属性を同期反映させる */
+	function openRoiTableForPrint() {
+		flushSync(() => (roiTableOpen = true));
+	}
 	/** 印刷ヘッダーに出す出力日（クライアントでのみ確定） */
 	let printDate = $state('');
 	function roiMove(e: PointerEvent) {
@@ -335,7 +340,7 @@
 <JsonLd data={ld} />
 
 <!-- 印刷時（Ctrl+P含む）はROIの数値表を開いた状態で出力する -->
-<svelte:window onbeforeprint={() => (roiTableOpen = true)} />
+<svelte:window onbeforeprint={openRoiTableForPrint} />
 
 <div class="crumb"><div class="wrap crumb__in">
 	<a href="/">ホーム</a><span class="material-symbols-rounded">chevron_right</span>
@@ -887,7 +892,7 @@
 				type="button"
 				class="btn btn--ghost"
 				onclick={() => {
-					roiTableOpen = true;
+					openRoiTableForPrint();
 					window.print();
 				}}
 			>
@@ -1684,6 +1689,12 @@
 		/* 数値表はトグルUIを隠してそのまま表として出す */
 		.pr-roi__table summary {
 			display: none;
+		}
+		/* 保険: JSのopen反映が間に合わない場合でも、対応ブラウザでは
+		   閉じたdetailsの中身（数値表）を印刷時に強制表示する */
+		.pr-roi__table::details-content {
+			content-visibility: visible !important;
+			height: auto !important;
 		}
 		/* 画面幅で測ったSVGを印刷幅に収める（viewBoxがあるので比率ごと縮小される） */
 		.pr-roi__chart svg {
