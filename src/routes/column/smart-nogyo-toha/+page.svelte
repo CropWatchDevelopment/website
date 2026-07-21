@@ -39,7 +39,7 @@
 	</p>
 	<div class="col-note">
 		<p>
-			CropWatchは、電池式・配線工事なしのワイヤレスセンサーで、ハウス・施設園芸・露地の温度・湿度・CO₂・土壌をまとめて見える化。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>で農場全体をカバーします。
+			CropWatchは、電池式・配線工事なしのワイヤレスセンサーで、ハウス・施設園芸・露地の温度・湿度・CO₂・土壌をまとめて見える化。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>で農場全体をカバーします。
 		</p>
 	</div>
 	<p>

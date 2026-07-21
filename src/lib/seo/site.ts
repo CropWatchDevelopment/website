@@ -13,7 +13,7 @@ export const ORG = {
 	name: SITE_NAME,
 	alternateName: SITE_ALT_NAME,
 	description:
-		'コールドチェーン・スマート農業・スマート畜産向けの産業用ワイヤレス環境監視。LoRaWANセンサーで温度・湿度・CO₂を見える化し、記録の自動化とHACCP対応を支援します。',
+		'コールドチェーン・スマート農業・スマート畜産向けの産業用ワイヤレス環境監視。LoRaWAN™センサーで温度・湿度・CO₂を見える化し、記録の自動化とHACCP対応を支援します。',
 	url: SITE_ORIGIN,
 	// Google's logo guidelines want a crawlable raster (SVG unsupported), min 112px.
 	logo: `${SITE_ORIGIN}/cropwatch_icons/icon-512x512.png`,

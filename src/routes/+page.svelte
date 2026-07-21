@@ -143,7 +143,7 @@ function tapPanel(i: number, event: MouseEvent) {
 					CropWatchは、そんな現場の課題を前提に設計された産業用環境データ監視システムです。
 				</p>
 				<p class="intro__desc">
-					<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>通信と堅牢なハードウェア設計により、厳しい環境でも安定したデータ収集を実現。配線工事は不要で、バッテリーのみで最長10年間の稼働に対応します。
+					<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>通信と堅牢なハードウェア設計により、厳しい環境でも安定したデータ収集を実現。配線工事は不要で、バッテリーのみで最長10年間の稼働に対応します。
 				</p>
 				<p>&nbsp;</p>
 				<p class="intro__hint">

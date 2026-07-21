@@ -187,6 +187,9 @@ h1, h2, h3, h4 { color: var(--web-heading); margin: 0; line-height: 1.45; letter
 .badgewall__card img { height: 64px; width: auto; margin: 0 auto 14px; }
 .badgewall__card b { display: block; font-size: 15px; color: var(--web-heading); }
 .badgewall__card span { display: block; font-size: 13px; color: var(--web-muted); margin-top: 4px; }
+/* カードが認定機関へのリンク（<a>）の場合も見た目は据え置き、ホバーで反応だけ返す */
+a.badgewall__card { display: block; text-decoration: none; color: inherit; transition: border-color .18s ease, transform .18s ease; }
+a.badgewall__card:hover { border-color: var(--web-border-strong); transform: translateY(-2px); }
 
 /* ============================================================
    Boxed feature grid (icon + title + short text)

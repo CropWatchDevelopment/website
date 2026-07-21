@@ -7,7 +7,7 @@
 
 	const title = 'コラム｜温度監視・スマート農業・スマート畜産の基礎知識｜CropWatch 日本';
 	const description =
-		'HACCP義務化、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業やLoRaWANの基礎まで。コールドチェーン・スマート農業・スマート畜産の温度監視に役立つ情報をお届けします。';
+		'HACCP義務化、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業やLoRaWAN™の基礎まで。コールドチェーン・スマート農業・スマート畜産の温度監視に役立つ情報をお届けします。';
 
 	const ld = [
 		breadcrumbSchema([
@@ -47,7 +47,7 @@
 			コールドチェーン・スマート農業・スマート畜産。<span class="u">導入前に知っておきたいことを、分かりやすく。</span>
 		</p>
 		<p>
-			HACCP義務化への対応から、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業や<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>の基礎まで。現場の課題解決に役立つ情報をまとめています。
+			HACCP義務化への対応から、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業や<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>の基礎まで。現場の課題解決に役立つ情報をまとめています。
 		</p>
 	</div>
 </section>

@@ -16,41 +16,49 @@
 	const title =
 		'コールドチェーン温度監視システム｜冷蔵庫・冷凍庫の遠隔温度監視とHACCP自動記録｜CropWatch 日本';
 	const description =
-		'コールドチェーンの温度監視システム。電池駆動のLoRaWANセンサーが冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録し、スマホやPCから遠隔監視できます。HACCP義務化に対応した温度記録の自動化から監査時の記録提出までを効率化。ISO/IEC 17025校正証明書つき。';
+		'コールドチェーンの温度監視システム。電池駆動のLoRaWAN™センサーが冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録し、スマホやPCから遠隔監視できます。HACCP義務化に対応した温度記録の自動化から監査時の記録提出までを効率化。ISO/IEC 17025校正証明書つき。';
 
+	// 回答内のリンクは信頼できる一次情報（省庁・認定機関・部品メーカー）に限定する。
 	const faq = [
 		{
 			q: '通信が途切れた場合、記録は失われますか？',
-			a: 'センサーの内部メモリに測定データを保存します。通信が復旧すると、保存していたデータを自動送信します。'
+			a: 'センサーの内部メモリ（<a class="extlink" href="https://www.infineon.com/ja/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FeRAM</a>）に測定データを保存します。通信が復旧すると、保存していたデータを自動送信します。'
 		},
 		{
 			q: 'HACCPの義務化に対応できますか？',
-			a: 'はい。冷蔵庫・冷凍庫の温度を自動で記録し、HACCPで求められる温度管理の記録と保存を効率化します。紙の記録や手書き転記をなくし、監査時にもそのまま提出できます。'
+			a: 'はい。冷蔵庫・冷凍庫の温度を自動で記録し、<a class="extlink" href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/haccp/index.html" target="_blank" rel="noopener noreferrer">HACCP</a>で求められる温度管理の記録と保存を効率化します。紙の記録や手書き転記をなくし、監査時にもそのまま提出できます。'
 		},
 		{
 			q: '離れた場所から冷蔵庫・冷凍庫の温度を確認できますか？',
-			a: 'はい。測定データはクラウドに送信され、スマートフォンやPCから遠隔で温度を監視できます。複数拠点の冷蔵庫・冷凍庫もまとめて確認できます。'
+			a: 'はい。測定データは<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>通信でクラウドに送信され、スマートフォンやPCから遠隔で温度を監視できます。複数拠点の冷蔵庫・冷凍庫もまとめて確認できます。'
 		},
 		{
 			q: '現場で校正や補正を行う必要はありますか？',
-			a: '原則として現場での校正や補正は行いません。工場出荷時に校正・検査された検知部を使用し、必要に応じて検知部のみを交換する運用を推奨しています。'
+			a: '原則として現場での校正や補正は行いません。工場出荷時に校正・検査された<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer">センシリオン社</a>製の検知部を使用し、必要に応じて検知部のみを交換する運用を推奨しています。'
 		},
 		{
 			q: '監査用の記録を出力できますか？',
-			a: 'はい。日次・週次レポートの自動送信に加え、直近2年間分のデータをCSVで出力できます。校正証明書も標準で添付します。'
+			a: 'はい。日次・週次レポートの自動送信に加え、直近2年間分のデータをCSVで出力できます。<a class="extlink" href="https://www.jab.or.jp/service/laboratory" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a>の校正証明書も標準で添付します。'
 		}
 	];
+
+	// 回答はアコーディオン表示用にHTMLを含むため、JSON-LD（schema.org）には
+	// タグを除いたプレーンテキストを渡す。
+	const faqPlain = faq.map((f) => ({
+		...f,
+		a: f.a.replace(/<[^>]+>/g, '')
+	}));
 
 	const ld = [
 		breadcrumbSchema([
 			{ name: 'ホーム', path: '/' },
 			{ name: '冷蔵・冷凍の監視', path: '/cold-chain' }
 		]),
-		faqSchema(faq),
+		faqSchema(faqPlain),
 		productSchema({
 			name: 'CropWatch 冷蔵・冷凍向け 温度・湿度監視センサー',
 			description:
-				'コールドチェーン向けの電池駆動LoRaWAN温度・湿度センサー。冷蔵庫・冷凍庫の温度を10分ごとに自動記録し、遠隔監視とHACCP対応の温度記録を実現するクラウド温度監視システムです。',
+				'コールドチェーン向けの電池駆動LoRaWAN™温度・湿度センサー。冷蔵庫・冷凍庫の温度を10分ごとに自動記録し、遠隔監視とHACCP対応の温度記録を実現するクラウド温度監視システムです。',
 			image: 'https://cropwatch.co.jp/assets/imagery/device-top-view.webp',
 			category: '温度監視システム',
 			price: 33000,
@@ -93,7 +101,7 @@
 					class="extlink"
 					href="https://lora-alliance.org/"
 					target="_blank"
-					rel="noopener noreferrer">LoRaWAN</a
+					rel="noopener noreferrer">LoRaWAN™</a
 				>®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
 			</p>
 		</div>
@@ -231,17 +239,17 @@
 				<p>
 					信頼性の高い<a
 						class="extlink"
-						href="https://sensirion.com/"
+						href="https://sensirion.com/jp"
 						target="_blank"
 						rel="noopener noreferrer">センシリオン社</a
 					>&thinsp;<a
 						class="extlink"
-						href="https://sensirion.com/products/catalog/SHT43"
+						href="https://sensirion.com/jp/products/catalog/SHT43"
 						target="_blank"
 						rel="noopener noreferrer">SHT43</a
 					>と<a
 						class="extlink"
-						href="https://sensirion.com/products/catalog/SHT40"
+						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
 					>をダブルで搭載。いずれも認定機関にて校正後、個別に試験が行われたデジタル温湿度センサーです。
@@ -257,7 +265,7 @@
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN</a
+						rel="noopener noreferrer">LoRaWAN™</a
 					>通信で、Wi-Fiや携帯の電波が届かない厚い壁や冷凍庫内、離れた倉庫からもデータを安定して送信します。
 				</p>
 			</div>
@@ -312,7 +320,7 @@
 			<p>
 				<a
 					class="extlink"
-					href="https://sensirion.com/products/catalog/SHT43"
+					href="https://sensirion.com/jp/products/catalog/SHT43"
 					target="_blank"
 					rel="noopener noreferrer">SHT43</a
 				>には個体ごとの<a
@@ -324,22 +332,46 @@
 			</p>
 		</div>
 		<div class="badgewall">
-			<div class="badgewall__card" data-reveal="0">
+			<a
+				class="badgewall__card"
+				data-reveal="0"
+				href="https://www.jab.or.jp/service/laboratory"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src="/assets/badges/iso-iec-17025.png" alt="ISO/IEC 17025 校正" />
 				<b>ISO/IEC 17025</b><span>認定校正に基づく証明書</span>
-			</div>
-			<div class="badgewall__card" data-reveal="1">
+			</a>
+			<a
+				class="badgewall__card"
+				data-reveal="1"
+				href="https://www.nist.gov/calibrations"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src="/assets/badges/nist-traceable.webp" alt="NIST トレーサブル" />
 				<b>NISTトレーサブル</b><span>測定のトレーサビリティ</span>
-			</div>
-			<div class="badgewall__card" data-reveal="2">
+			</a>
+			<a
+				class="badgewall__card"
+				data-reveal="2"
+				href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/haccp/index.html"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src="/assets/badges/HACCP.webp" alt="HACCP対応" />
 				<b>HACCP対応</b><span>温度管理記録を効率化</span>
-			</div>
-			<div class="badgewall__card" data-reveal="3">
+			</a>
+			<a
+				class="badgewall__card"
+				data-reveal="3"
+				href="https://ilac.org/ilac-mra-and-signatories/"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src="/assets/badges/ilac-mra.webp" alt="ILAC-MRA認定" />
 				<b>ILAC-MRA</b><span>国際相互承認の枠組み</span>
-			</div>
+			</a>
 		</div>
 	</div>
 </section>
@@ -359,19 +391,19 @@
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
 				<dd>
-					<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer"
+					<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer"
 						>センシリオン</a
 					>
 					<a
 						class="extlink"
-						href="https://sensirion.com/products/catalog/SHT40"
+						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
 					>
 					/
 					<a
 						class="extlink"
-						href="https://sensirion.com/products/catalog/SHT43"
+						href="https://sensirion.com/jp/products/catalog/SHT43"
 						target="_blank"
 						rel="noopener noreferrer">SHT43</a
 					>
@@ -395,7 +427,7 @@
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN</a
+						rel="noopener noreferrer">LoRaWAN™</a
 					><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信
 				</dd>
 			</div>
@@ -426,7 +458,7 @@
 			{#each faq as item}
 				<details>
 					<summary>{item.q} <span class="material-symbols-rounded">add</span></summary>
-					<p>{item.a}</p>
+					<p>{@html item.a}</p>
 				</details>
 			{/each}
 		</div>

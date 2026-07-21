@@ -9,7 +9,7 @@
 		{ href: '/cold-chain', label: 'コールドチェーン温度監視', sub: '冷蔵庫・冷凍庫の遠隔監視' },
 		{ href: '/livestock', label: 'スマート畜産・養鶏', sub: '鶏舎・畜舎の温度監視' },
 		{ href: '/agriculture', label: 'スマート農業・ハウス', sub: 'ハウス・露地・土壌の環境監視' },
-		{ href: '/column/lorawan-toha', label: 'LoRaWANとは？', sub: 'コラム' }
+		{ href: '/column/lorawan-toha', label: 'LoRaWAN™とは？', sub: 'コラム' }
 	];
 
 	const title = '技術・設計｜現場に強い、センサー基板のつくり｜CropWatch 日本';
@@ -74,13 +74,13 @@
 				<span class="box__ic box__ic--accent"
 					><span class="material-symbols-rounded">cell_tower</span></span
 				>
-				<h3>壁や階を越えて、遠くまで届くLoRaWAN</h3>
+				<h3>壁や階を越えて、遠くまで届くLoRaWAN™</h3>
 				<p>
 					<a
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN</a
+						rel="noopener noreferrer">LoRaWAN™</a
 					>の電波は、広い範囲に電波が届きやすく、厚い壁や遮蔽物に囲まれた場所でも通信しやすいのが特長です。冷凍庫の奥や地下、倉庫の奥まった場所など、一般的な無線では電波が届きにくい現場にも対応。1台の受信機で、広い敷地をまとめて見守れます。
 				</p>
 			</div>
@@ -116,7 +116,7 @@
 				<span class="box__ic"><span class="material-symbols-rounded">device_thermostat</span></span>
 				<h3>その分野の、一流を。</h3>
 				<p>
-					温度・湿度は、スイスの<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン社</a>。CO₂も同社の<a class="extlink" href="https://sensirion.com/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>を使います。測るものごとに、その分野で実績のあるメーカーを選んでいます。
+					温度・湿度は、スイスの<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer">センシリオン社</a>。CO₂も同社の<a class="extlink" href="https://sensirion.com/jp/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>を使います。測るものごとに、その分野で実績のあるメーカーを選んでいます。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">

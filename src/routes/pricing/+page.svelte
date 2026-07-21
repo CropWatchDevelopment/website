@@ -323,7 +323,7 @@
 		productSchema({
 			name: 'CropWatch センサー導入セット',
 			description:
-				'温湿度センサー・LoRaWANゲートウェイ・初期導入サポートをまとめた導入セット。センサー1台から、台数に応じた概算価格を表示します。',
+				'温湿度センサー・LoRaWAN™ゲートウェイ・初期導入サポートをまとめた導入セット。センサー1台から、台数に応じた概算価格を表示します。',
 			category: '環境監視機器',
 			lowPrice: DEVICE_MIN_PRICE,
 			offerUrl: '/pricing'

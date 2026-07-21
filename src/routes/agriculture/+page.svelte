@@ -8,7 +8,7 @@
 		{ href: '/livestock', label: 'スマート畜産・養鶏', sub: '鶏舎・畜舎の温度監視' },
 		{ href: '/cold-chain', label: 'コールドチェーン温度監視', sub: '冷蔵庫・冷凍庫の遠隔監視' },
 		{ href: '/column/smart-nogyo-toha', label: 'スマート農業とは？', sub: 'コラム' },
-		{ href: '/column/lorawan-toha', label: 'LoRaWANとは？', sub: 'コラム' }
+		{ href: '/column/lorawan-toha', label: 'LoRaWAN™とは？', sub: 'コラム' }
 	];
 
 	const title =
@@ -190,7 +190,7 @@
 				<p>
 					高湿度や結露により、センサーが濡れても、乾けば測定状態が戻りやすい<a
 						class="extlink"
-						href="https://sensirion.com/"
+						href="https://sensirion.com/jp"
 						target="_blank"
 						rel="noopener noreferrer">センシリオン</a
 					>製センサーを採用。湿度100%付近で停滞するリスクを抑え、農業現場の温湿度変化を安定して記録します。
@@ -229,7 +229,7 @@
 					class="extlink"
 					href="https://lora-alliance.org/"
 					target="_blank"
-					rel="noopener noreferrer">LoRaWAN</a
+					rel="noopener noreferrer">LoRaWAN™</a
 				>）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。通信費も工事も抑えられます。
 			</p>
 			<ul class="checklist">
@@ -330,7 +330,7 @@
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN</a
+						rel="noopener noreferrer">LoRaWAN™</a
 					>（電波）／受信機1台で最大15km
 				</dd>
 			</div>

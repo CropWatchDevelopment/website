@@ -78,7 +78,7 @@
 
 	<p>
 		※Google Analyticsにおけるデータ取り扱いの詳細は
-		<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">こちら</a>
+		<a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener noreferrer">こちら</a>
 		をご確認ください。
 	</p>
 

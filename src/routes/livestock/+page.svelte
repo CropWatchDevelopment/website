@@ -13,7 +13,7 @@
 	const title =
 		'スマート畜産・養鶏IoT｜鶏舎・畜舎の温度・湿度を遠隔監視するワイヤレスセンサー｜CropWatch 日本';
 	const description =
-		'スマート畜産・養鶏IoTのための鶏舎・畜舎の環境モニタリング。温度・湿度を15分ごとに自動送信し、暑熱対策や換気の判断に役立つ環境データを24時間見える化。家禽・畜産の暑熱ストレスや換気不良を早期に発見します。LoRaWANで配線工事なし、ISO/IEC 17025校正証明書つき。';
+		'スマート畜産・養鶏IoTのための鶏舎・畜舎の環境モニタリング。温度・湿度を15分ごとに自動送信し、暑熱対策や換気の判断に役立つ環境データを24時間見える化。家禽・畜産の暑熱ストレスや換気不良を早期に発見します。LoRaWAN™で配線工事なし、ISO/IEC 17025校正証明書つき。';
 
 	const faq = [
 		{
@@ -22,11 +22,11 @@
 		},
 		{
 			q: 'CO₂濃度も測定できますか？',
-			a: 'はい。オプションの<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer">センシリオン社</a>&thinsp;<a class="extlink" href="https://sensirion.com/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>センサーにより、400〜5000ppmのCO₂濃度を測定できます。換気不良の早期発見に役立ちます。'
+			a: 'はい。オプションの<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer">センシリオン社</a>&thinsp;<a class="extlink" href="https://sensirion.com/jp/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>センサーにより、400〜5000ppmのCO₂濃度を測定できます。換気不良の早期発見に役立ちます。'
 		},
 		{
 			q: '電波が届きにくい鶏舎・畜舎でも使えますか？',
-			a: 'はい。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN</a>通信により、Wi-Fiや携帯の電波が届きにくい場所でもデータを送信できます。無線・電池式のため、配線工事や電源工事は不要です。'
+			a: 'はい。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>通信により、Wi-Fiや携帯の電波が届きにくい場所でもデータを送信できます。無線・電池式のため、配線工事や電源工事は不要です。'
 		},
 		{
 			q: '高湿度や粉じんの多い環境でも故障しにくいですか？',
@@ -55,7 +55,7 @@
 		productSchema({
 			name: 'CropWatch 畜産・養鶏向け 温度・湿度監視センサー',
 			description:
-				'スマート畜産・養鶏IoT向けの電池駆動LoRaWAN環境センサー。鶏舎・畜舎の温度・湿度・CO₂を遠隔で見える化し、暑熱ストレスや換気不良の早期発見を支援します。',
+				'スマート畜産・養鶏IoT向けの電池駆動LoRaWAN™環境センサー。鶏舎・畜舎の温度・湿度・CO₂を遠隔で見える化し、暑熱ストレスや換気不良の早期発見を支援します。',
 			image: 'https://cropwatch.co.jp/assets/photos/livestock-sensor-install.webp',
 			category: 'スマート畜産 / 畜産IoT',
 			price: 33000,
@@ -207,17 +207,17 @@
 				<p>
 					温湿度は<a
 						class="extlink"
-						href="https://sensirion.com/"
+						href="https://sensirion.com/jp"
 						target="_blank"
 						rel="noopener noreferrer">センシリオン社</a
 					>&thinsp;<a
 						class="extlink"
-						href="https://sensirion.com/products/catalog/SHT40"
+						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
 					>、CO₂は<a
 						class="extlink"
-						href="https://sensirion.com/products/catalog/SCD41"
+						href="https://sensirion.com/jp/products/catalog/SCD41"
 						target="_blank"
 						rel="noopener noreferrer">SCD41</a
 					>を搭載。いずれも認定機関で校正・試験されたデジタルセンサーです。
@@ -384,41 +384,65 @@
 			<p>
 				搭載する<a
 					class="extlink"
-					href="https://sensirion.com/"
+					href="https://sensirion.com/jp"
 					target="_blank"
 					rel="noopener noreferrer">センシリオン社</a
 				>&thinsp;<a
 					class="extlink"
-					href="https://sensirion.com/products/catalog/SHT40"
+					href="https://sensirion.com/jp/products/catalog/SHT40"
 					target="_blank"
 					rel="noopener noreferrer">SHT40</a
 				>
 				/
 				<a
 					class="extlink"
-					href="https://sensirion.com/products/catalog/SCD41"
+					href="https://sensirion.com/jp/products/catalog/SCD41"
 					target="_blank"
 					rel="noopener noreferrer">SCD41</a
 				>には、ISO/IEC 17025に基づく校正証明書を発行。監査でもそのまま使えます。
 			</p>
 		</div>
 		<div class="badgewall">
-			<div class="badgewall__card" data-reveal="0">
+			<a
+				class="badgewall__card"
+				data-reveal="0"
+				href="https://www.jab.or.jp/service/laboratory"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src="/assets/badges/iso-iec-17025.png" alt="ISO/IEC 17025 校正" />
 				<b>ISO/IEC 17025</b><span>認定校正に基づく証明書</span>
-			</div>
-			<div class="badgewall__card" data-reveal="1">
+			</a>
+			<a
+				class="badgewall__card"
+				data-reveal="1"
+				href="https://www.nist.gov/calibrations"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src="/assets/badges/nist-traceable.webp" alt="NIST トレーサブル" />
 				<b>NISTトレーサブル</b><span>測定のトレーサビリティ</span>
-			</div>
-			<div class="badgewall__card" data-reveal="2">
+			</a>
+			<a
+				class="badgewall__card"
+				data-reveal="2"
+				href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/haccp/index.html"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src="/assets/badges/HACCP.webp" alt="HACCP対応" />
 				<b>HACCP対応</b><span>環境管理記録を効率化</span>
-			</div>
-			<div class="badgewall__card" data-reveal="3">
+			</a>
+			<a
+				class="badgewall__card"
+				data-reveal="3"
+				href="https://ilac.org/ilac-mra-and-signatories/"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src="/assets/badges/ilac-mra.webp" alt="ILAC-MRA認定" />
 				<b>ILAC-MRA</b><span>国際相互承認の枠組み</span>
-			</div>
+			</a>
 		</div>
 	</div>
 </section>
@@ -440,17 +464,17 @@
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
 				<dd>
-					<a class="extlink" href="https://sensirion.com/" target="_blank" rel="noopener noreferrer"
+					<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer"
 						>センシリオン</a
 					>
 					<a
 						class="extlink"
-						href="https://sensirion.com/products/catalog/SHT40"
+						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
 					>・<a
 						class="extlink"
-						href="https://sensirion.com/products/catalog/SCD41"
+						href="https://sensirion.com/jp/products/catalog/SCD41"
 						target="_blank"
 						rel="noopener noreferrer">SCD41</a
 					>
@@ -478,7 +502,7 @@
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN</a
+						rel="noopener noreferrer">LoRaWAN™</a
 					><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信
 				</dd>
 			</div>
