@@ -3,8 +3,10 @@ import {
 	PRIVATE_EMAIL_PASSWORD,
 	PRIVATE_EMAIL_PORT,
 	PRIVATE_EMAIL_USERNAME,
-	PRIVATE_GOOGLE_RECAPTCHA_SECRET_KEY
+	PRIVATE_RECAPTCHA_API_KEY,
+	PRIVATE_RECAPTCHA_PROJECT_ID
 } from '$env/static/private';
+import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 import { fail } from '@sveltejs/kit';
 import { checkBotId } from 'botid/server';
 import nodemailer from 'nodemailer';
@@ -38,17 +40,7 @@ export const actions: Actions = {
 		const industry = getString(formData, 'industry');
 		const sites = getString(formData, 'sites');
 
-		// 一時的な調査ログ: 一部の実ブラウザだけ invalid-input-response になる
-		// 原因を特定するため、受信トークンの形状を記録する（トークンは一度きり
-		// で再利用不可のため、先頭/末尾の断片のログは安全）。原因判明後に削除。
-		console.info('contact token diag', {
-			tokenLen: recaptchaToken?.length ?? 0,
-			tokenHead: recaptchaToken?.slice(0, 12),
-			tokenTail: recaptchaToken?.slice(-6),
-			ua: request.headers.get('user-agent')?.slice(0, 80)
-		});
-
-		if (!PRIVATE_GOOGLE_RECAPTCHA_SECRET_KEY) {
+		if (!PRIVATE_RECAPTCHA_PROJECT_ID || !PRIVATE_RECAPTCHA_API_KEY) {
 			return fail(500, { message: 'reCAPTCHA configuration missing.' });
 		}
 		if (!recaptchaToken || !firstName || !lastName || !email || !company || !message) {
@@ -127,55 +119,65 @@ async function verifyRecaptcha(
 	minScore: number,
 	expectedHostname: string
 ): Promise<RecaptchaVerificationResult> {
-	const verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
-	const params = new URLSearchParams();
-	params.append('secret', PRIVATE_GOOGLE_RECAPTCHA_SECRET_KEY);
-	params.append('response', token);
-	if (clientIp) {
-		params.append('remoteip', clientIp);
-	}
+	// このサイトキーは reCAPTCHA Enterprise キーのため、旧来の
+	// secret + siteverify では常に invalid-input-response になる。
+	// CropWatchアプリと同じアセスメントAPIで検証する。
+	const verificationUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/${PRIVATE_RECAPTCHA_PROJECT_ID}/assessments?key=${PRIVATE_RECAPTCHA_API_KEY}`;
 
 	try {
-		const recaptchaResponse = await fetch(verificationUrl, {
+		const response = await fetch(verificationUrl, {
 			method: 'POST',
-			body: params,
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				event: {
+					token,
+					siteKey: PUBLIC_RECAPTCHA_SITE_KEY,
+					expectedAction: action,
+					...(clientIp ? { userIpAddress: clientIp } : {})
+				}
+			}),
 			signal: AbortSignal.timeout(7000)
 		});
 
-		if (!recaptchaResponse.ok) {
+		if (!response.ok) {
+			const errorText = await response.text();
+			console.error('reCAPTCHA assessment request rejected', {
+				status: response.status,
+				errorText: errorText?.slice(0, 500)
+			});
 			return {
 				ok: false,
-				reason: `verification_request_rejected:${recaptchaResponse.status}`
+				reason: `assessment_request_rejected:${response.status}`
 			};
 		}
 
-		const recaptchaResult: {
-			success: boolean;
-			score?: number;
-			action?: string;
-			hostname?: string;
-			challenge_ts?: string;
-			['error-codes']?: string[];
-		} = await recaptchaResponse.json();
+		const assessment: {
+			tokenProperties?: {
+				valid?: boolean;
+				invalidReason?: string;
+				action?: string;
+				hostname?: string;
+				createTime?: string;
+			};
+			riskAnalysis?: { score?: number; reasons?: string[] };
+			error?: { message?: string };
+		} = await response.json();
 
-		// 一時的な調査ログ: Googleのsiteverify応答をそのまま記録（原因判明後に削除）
-		console.info('recaptcha siteverify result', {
-			success: recaptchaResult.success,
-			score: recaptchaResult.score,
-			action: recaptchaResult.action,
-			hostname: recaptchaResult.hostname,
-			challenge_ts: recaptchaResult.challenge_ts,
-			errors: recaptchaResult['error-codes']
-		});
-
-		if (!recaptchaResult.success) {
+		if (!assessment.tokenProperties?.valid) {
 			return {
 				ok: false,
-				reason: `google_unsuccessful:${(recaptchaResult['error-codes'] ?? []).join(',') || 'unknown'}`
+				reason: `token_invalid:${assessment.tokenProperties?.invalidReason ?? 'unknown'}`
 			};
 		}
 
-		const score = recaptchaResult.score ?? 0;
+		if (assessment.tokenProperties.action !== action) {
+			return {
+				ok: false,
+				reason: `action_mismatch:${assessment.tokenProperties.action ?? 'missing'}`
+			};
+		}
+
+		const score = assessment.riskAnalysis?.score ?? 0;
 		if (score < minScore) {
 			return {
 				ok: false,
@@ -183,32 +185,25 @@ async function verifyRecaptcha(
 			};
 		}
 
-		if (recaptchaResult.action !== action) {
-			return {
-				ok: false,
-				reason: `action_mismatch:${recaptchaResult.action ?? 'missing'}`
-			};
-		}
-
 		const normalizedExpectedHostname = normalizeHostname(expectedHostname);
-		const normalizedResultHostname = normalizeHostname(recaptchaResult.hostname ?? '');
+		const normalizedResultHostname = normalizeHostname(assessment.tokenProperties.hostname ?? '');
 		if (!normalizedResultHostname || normalizedResultHostname !== normalizedExpectedHostname) {
 			return {
 				ok: false,
-				reason: `hostname_mismatch:${recaptchaResult.hostname ?? 'missing'}`
+				reason: `hostname_mismatch:${assessment.tokenProperties.hostname ?? 'missing'}`
 			};
 		}
 
-		if (!isRecaptchaTokenFresh(recaptchaResult.challenge_ts)) {
+		if (!isRecaptchaTokenFresh(assessment.tokenProperties.createTime)) {
 			return {
 				ok: false,
-				reason: `token_expired_or_invalid:${recaptchaResult.challenge_ts ?? 'missing'}`
+				reason: `token_expired_or_invalid:${assessment.tokenProperties.createTime ?? 'missing'}`
 			};
 		}
 
 		return { ok: true };
 	} catch (error) {
-		console.error('reCAPTCHA verification request failed', error);
+		console.error('reCAPTCHA assessment request failed', error);
 		return {
 			ok: false,
 			reason: 'verification_request_failed'

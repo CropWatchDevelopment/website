@@ -66,6 +66,8 @@ const handleSubmit = async (event: SubmitEvent) => {
 	// サーバー側の checkBotId が全員をボット扱いして403になる。
 	event.preventDefault();
 	if (!browser) return;
+	// 二重送信ガード（disabled反映前のEnter連打などに備える）
+	if (recaptchaBusy) return;
 
 	recaptchaError = null;
 	recaptchaBusy = true;
@@ -195,10 +197,15 @@ onDestroy(() => {
 						type="submit"
 						class="btn btn--accent btn--lg"
 						style="width:100%;margin-top:22px"
-						disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
-						aria-disabled={recaptchaRequired && (!recaptchaReady || recaptchaBusy)}
+						disabled={recaptchaBusy || (recaptchaRequired && !recaptchaReady)}
+						aria-disabled={recaptchaBusy || (recaptchaRequired && !recaptchaReady)}
+						aria-busy={recaptchaBusy}
 					>
-						送信する <span class="material-symbols-rounded">arrow_forward</span>
+						{#if recaptchaBusy}
+							<span class="btn-spinner" aria-hidden="true"></span> 送信しています…
+						{:else}
+							送信する <span class="material-symbols-rounded">arrow_forward</span>
+						{/if}
 					</button>
 					<!-- <p class="form-note">メールでのご連絡は <a href="mailto:info@cropwatch.co.jp" style="color:var(--web-primary);font-weight:600">info@cropwatch.co.jp</a> まで</p> -->
 				</form>
@@ -263,4 +270,22 @@ onDestroy(() => {
 	.cinfo__card a { color: var(--web-primary); font-weight: 600; }
 	.cinfo__card .mono { font-family: var(--cw-font-mono); font-size: 16px; }
 	@media (max-width:880px){ .contact-grid{grid-template-columns:1fr;} .frow{grid-template-columns:1fr;} .form-card{padding:28px;} }
+
+	/* 送信中ボタンのスピナー */
+	.btn-spinner {
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		border: 2px solid rgba(255, 255, 255, 0.35);
+		border-top-color: #fff;
+		border-radius: 50%;
+		animation: btn-spin 0.7s linear infinite;
+		vertical-align: -3px;
+	}
+	@keyframes btn-spin {
+		to { transform: rotate(360deg); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.btn-spinner { animation-duration: 1.6s; }
+	}
 </style>
