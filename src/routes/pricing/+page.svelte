@@ -18,7 +18,7 @@
 		icon: string;
 		/** センサーの表示名（明細テーブルに出ます） */
 		sensorLabel: string;
-		/** 月額基本料金（1拠点あたり） */
+		/** 月額基本料金（拠点数によらず1契約あたり1回のみ） */
 		baseFee: number;
 		/** センサー1台あたりの月額利用料 */
 		sensorFee: number;
@@ -36,6 +36,10 @@
 		excluded: string[];
 		/** 機器1台あたりの購入価格（税込・初回のみ）。未定なら null（「お見積もり」表示） */
 		deviceUnitPrice: number | null;
+		/** 導入セットに含まれるセンサーの表示名（導入費用カードに出ます） */
+		deviceLabel: string;
+		/** 導入費用の注記の末尾に出す、機器構成に関する案内文 */
+		deviceNote: string;
 		comingSoon?: boolean;
 	};
 	const SECTORS: Record<string, Sector> = {
@@ -58,22 +62,35 @@
 				'データ保存2年間'
 			],
 			excluded: [],
-			deviceUnitPrice: 33000
+			deviceUnitPrice: 33000,
+			deviceLabel: '温湿度センサー',
+			deviceNote: 'CO₂センサー・土壌センサーなど他の機器はお問い合わせください。'
 		},
 		livestock: {
 			label: '畜産・養鶏',
 			icon: 'pets',
 			sensorLabel: '温湿度・CO₂センサー利用料',
-			baseFee: 5500,
+			baseFee: 16500,
 			sensorFee: 880,
-			minutesPerCheck: 15,
-			defaultCount: 4,
+			minutesPerCheck: 10,
+			defaultCount: 2,
 			defaultChecks: 3,
 			defaultLocations: 3,
-			included: ['ユーザー数無制限', 'アラート通知（ルールは3件まで）'],
-			excluded: ['自動レポート', 'API利用'],
-			// 畜産・養鶏向けの機器はコールドチェーンの1台価格 +10,000円
-			deviceUnitPrice: 43000
+			// 料金・機能ともコールドチェーンと同一プラン（機器のみCO₂つきで異なる）。
+			included: [
+				'ユーザー数無制限',
+				'アラート通知',
+				'自動レポート',
+				'CSVダウンロード',
+				'API利用',
+				'データ保存2年間'
+			],
+			excluded: [],
+			// 畜産・養鶏向けの機器はコールドチェーンの1台価格 +6,000円（CO₂センサー分）
+			deviceUnitPrice: 39000,
+			deviceLabel: '温湿度・CO₂センサー',
+			deviceNote:
+				'温湿度センサーのみ（CO₂なし）のご利用をご希望の場合は、個別にお見積もりしますのでお問い合わせください。'
 		},
 		agriculture: {
 			label: '農業・ハウス',
@@ -91,6 +108,8 @@
 			excluded: ['自動レポート', 'API利用'],
 			// 農業向けの機器価格は未定（決まったら数値を入れる）
 			deviceUnitPrice: null,
+			deviceLabel: '温湿度センサー',
+			deviceNote: 'CO₂センサー・土壌センサーなど他の機器はお問い合わせください。',
 			comingSoon: true
 		}
 	};
@@ -184,7 +203,8 @@
 	);
 
 	// ── CropWatch のランニングコスト ──
-	const baseFeeTotal = $derived(cfg.baseFee * safeLocations);
+	// 基本料金は拠点数によらず1契約あたり1回のみ（拠点ごとには掛けない）。
+	const baseFeeTotal = $derived(cfg.baseFee);
 	const sensorFeeTotal = $derived(cfg.sensorFee * totalCount);
 	const monthly = $derived(baseFeeTotal + sensorFeeTotal);
 	const yearly = $derived(monthly * 12);
@@ -865,25 +885,25 @@
 			<div class="pr-device">
 				<span class="pr-device__ic"><span class="material-symbols-rounded">inventory_2</span></span>
 				<div class="pr-device__tx">
-					<b>導入セット（センサー{num(safeCount)}台）</b>
+					<b>導入セット（センサー{num(totalCount)}台）</b>
 					<p>
-						温湿度センサー{num(safeCount)}台・ゲートウェイ・初期導入サポート込みの、
-						1拠点あたりの概算です。センサー1台からご利用いただけます。
+						{cfg.deviceLabel}{num(totalCount)}台と、拠点ごとのゲートウェイ・初期導入サポートを含めた
+						{safeLocations === 1 ? '1拠点分' : `全${num(safeLocations)}拠点分`}の概算です。センサー1台からご利用いただけます。
 					</p>
 				</div>
 				{#if volumePrice || deviceSetPrice === null}
 					<strong class="pr-device__price pr-device__price--contact">お見積もり</strong>
 				{:else}
 					<strong class="pr-device__price"
-						>{yen(deviceSetPrice)}<small>税込・初回のみ・概算</small></strong
+						>{yen(deviceSetPrice * safeLocations)}<small>税込・初回のみ・概算</small></strong
 					>
 				{/if}
 			</div>
 		</div>
 
 		<p class="pr-note" data-reveal>
-			導入費用は、「1拠点あたりのセンサー台数」に合わせて計算した概算（税込・初回のみ）です。機器の構成と価格は業種により異なります。正式な金額は個別にお見積もりします。
-			CO₂センサー・土壌センサーなど他の機器はお問い合わせください。
+			導入費用は、「1拠点あたりのセンサー台数」と拠点数に合わせて計算した、全拠点分の概算（税込・初回のみ）です。機器の構成と価格は業種により異なります。正式な金額は個別にお見積もりします。
+			{cfg.deviceNote}
 		</p>
 
 		<div class="pr-cta" data-reveal>
