@@ -561,6 +561,40 @@
 				</div>
 			</div>
 
+			<!-- 印刷専用: 入力フォームの代わりに出す「ご入力条件」の表。
+			     画面の入力欄（.pr-count）は印刷時に非表示になる -->
+			<div class="print-inputs">
+				<h2>ご入力条件</h2>
+				<table>
+					<tbody>
+						<tr>
+							<th>業種</th>
+							<td>{cfg.label}</td>
+							<th>1拠点あたりのセンサー台数</th>
+							<td>{num(safeCount)}台</td>
+						</tr>
+						<tr>
+							<th>拠点数</th>
+							<td>{num(safeLocations)}拠点</td>
+							<th>合計センサー台数</th>
+							<td>{num(totalCount)}台</td>
+						</tr>
+						<tr>
+							<th>1日の記録回数</th>
+							<td>{safeChecks}回/日</td>
+							<th>記録1回あたりの時間</th>
+							<td>{safeMinutes}分/台</td>
+						</tr>
+						<tr>
+							<th>時給（人件費の計算用）</th>
+							<td>{yen(safeWage)}/時</td>
+							<th>出力日</th>
+							<td>{printDate}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
 			{#if volumePrice}
 				<!-- 1,001台以上: 金額は出さず、ボリューム価格の個別見積もりへ誘導 -->
 				<div class="pr-soon" id="pr-volume" data-reveal>
@@ -1533,7 +1567,8 @@
 
 	/* ── 印刷（お客様レビュー用の仮見積もり） ── */
 	.print-head,
-	.print-foot {
+	.print-foot,
+	.print-inputs {
 		display: none;
 	}
 	@media print {
@@ -1547,7 +1582,7 @@
 		.pr-tabs,
 		.pr-cta,
 		.pr-share,
-		.pr-count__btn {
+		.pr-count {
 			display: none !important;
 		}
 		/* スクロール連動の出現アニメーションを無効化（未表示のまま印刷されるのを防ぐ） */
@@ -1586,6 +1621,41 @@
 			font-size: 11.5px;
 			color: var(--web-muted);
 		}
+		/* 入力フォームの代わりの「ご入力条件」レポート表 */
+		.print-inputs {
+			display: block;
+			break-inside: avoid;
+			margin-bottom: 16px;
+		}
+		.print-inputs h2 {
+			margin: 0 0 8px;
+			font-size: 14px;
+			color: var(--cw-ink);
+		}
+		.print-inputs table {
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 12px;
+		}
+		.print-inputs th,
+		.print-inputs td {
+			border: 1px solid var(--web-border);
+			padding: 6px 10px;
+			text-align: left;
+		}
+		.print-inputs th {
+			width: 24%;
+			background: var(--web-bg-soft);
+			color: var(--web-muted);
+			font-weight: 700;
+		}
+		.print-inputs td {
+			width: 26%;
+			color: var(--cw-ink);
+			font-weight: 700;
+			font-variant-numeric: tabular-nums;
+		}
+
 		/* ★つきの注記フッター */
 		.print-foot {
 			display: flex;
@@ -1603,13 +1673,12 @@
 			line-height: 1.6;
 			color: var(--cw-ink);
 		}
-		/* カードの途中で改ページしない */
+		/* 小さいカードだけ途中改ページを避ける。背の高いカード（入力・比較・ROI）に
+		   指定すると、1ページに収まらないとき丸ごと次ページへ飛んだり末尾が切れたり
+		   するため、あえて分割を許す */
 		.pr-hero,
-		.pr-compare,
-		.pr-roi,
 		.pr-device,
-		.pr-includes,
-		.pr-count {
+		.pr-includes {
 			break-inside: avoid;
 		}
 		/* 数値表はトグルUIを隠してそのまま表として出す */
@@ -1635,7 +1704,9 @@
 		}
 	}
 
-	@media (max-width: 720px) {
+	/* screen限定: 印刷時はA4の紙幅(約700px)でこのモバイル用1カラムが発動して
+	   縦に伸びてしまうため、画面表示のときだけ適用する */
+	@media screen and (max-width: 720px) {
 		.pr-count {
 			grid-template-columns: 1fr;
 		}
