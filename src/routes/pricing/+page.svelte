@@ -14,7 +14,7 @@
 		label: string;
 		icon: string;
 		pricePerDevice: number;
-		/** USD per month, charged once per location. */
+		/** USD per month, charged once per account regardless of location count. */
 		baseFee: number;
 		/** Default slider position: number of locations (sites/stores/farms). */
 		defaultLocations: number;
@@ -114,8 +114,8 @@
 	const manualHoursPerYear = $derived((totalUnits * checksPerDay * minutesPerCheck * 365) / 60);
 	const manualCostPerYear = $derived(manualHoursPerYear * safeWage);
 
-	// CropWatch: base fee per location + per-device fee, billed monthly.
-	const baseFeeTotal = $derived(cfg.baseFee * locations);
+	// CropWatch: one base fee per account (NOT per location) + per-device fee, billed monthly.
+	const baseFeeTotal = $derived(cfg.baseFee);
 	const deviceFeeTotal = $derived(totalUnits * cfg.pricePerDevice);
 	const cropwatchPerMonth = $derived(baseFeeTotal + deviceFeeTotal);
 	const cropwatchPerYear = $derived(cropwatchPerMonth * 12);
@@ -236,7 +236,7 @@
 				{cfg.label} pricing is on its way. Pick another sector to run the numbers - unlimited
 				users, alerts, reports and API are always included.
 			{:else}
-				Simple {cfg.label.toLowerCase()} pricing: {usd2.format(cfg.baseFee)}/month base per location
+				Simple {cfg.label.toLowerCase()} pricing: {usd2.format(cfg.baseFee)}/month base
 				+ {usd2.format(cfg.pricePerDevice)}/month per monitored unit - unlimited users, alerts,
 				reports and API included. Slide in your own numbers and watch what the manual log walk
 				really costs.
@@ -407,8 +407,7 @@
 				<strong class="calc-monthly__value">{usd2.format(cropwatchPerMonth)}<small>/mo</small></strong>
 				<div class="calc-monthly__rows">
 					<span>
-						Base fee · {usd.format(cfg.baseFee)} × {locations}
-						{locations === 1 ? 'location' : 'locations'}
+						Base fee · once per account
 						<b>{usd.format(baseFeeTotal)}</b>
 					</span>
 					<span>
