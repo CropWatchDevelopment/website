@@ -47,7 +47,7 @@
 			label: 'コールドチェーン',
 			icon: 'ac_unit',
 			sensorLabel: '温湿度センサー利用料',
-			baseFee: 16500,
+			baseFee: 19800,
 			sensorFee: 880,
 			minutesPerCheck: 3,
 			defaultCount: 10,
@@ -70,7 +70,7 @@
 			label: '畜産・養鶏',
 			icon: 'pets',
 			sensorLabel: '温湿度・CO₂センサー利用料',
-			baseFee: 16500,
+			baseFee: 19800,
 			sensorFee: 880,
 			minutesPerCheck: 10,
 			defaultCount: 2,
@@ -673,7 +673,7 @@
 							<b class="pr-compare__value">{yen(savingsMonthly)}<small>/月</small></b>
 							<span class="pr-compare__note">
 								{#if savingsMonthly >= 0}
-									年間で約 {yen(savingsYearly)} の削減。記録作業ゼロで、監査対応の記録が自動で残ります。
+									年間で約 <b>{yen(savingsYearly)}</b> の削減。記録作業ゼロで、監査対応の記録が自動で残ります。
 								{:else}
 									この規模では手書きのほうが安く見えますが、記録漏れゼロ・24時間の異常通知・
 									監査対応の自動記録という価値が加わります。
