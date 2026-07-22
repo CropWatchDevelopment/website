@@ -15,7 +15,10 @@
 		name="keywords"
 		content="temperature monitoring, cold chain monitoring, restaurant refrigeration monitoring, walk-in cooler sensor, HACCP logging, hotel kitchen temperature, school cafeteria monitoring, hospital pharmacy fridge monitoring, agriculture sensors, greenhouse monitoring, poultry house monitoring, livestock barn climate, LoRaWAN sensor, ISO 17025 calibration, NIST traceable"
 	/>
-	<meta property="og:title" content="CropWatch - Environmental monitoring you can defend in any audit" />
+	<meta
+		property="og:title"
+		content="CropWatch - Environmental monitoring you can defend in any audit"
+	/>
 	<meta
 		property="og:description"
 		content="Wireless temperature & humidity monitoring for cold storage, food service, agriculture and livestock. User-replaceable, ISO/IEC 17025 certified, dual-sensor verified."
@@ -29,19 +32,49 @@
 	<div class="wrap hero__grid">
 		<div class="hero__copy">
 			<p class="eyebrow">Environmental monitoring, proven</p>
-			<h1>Why choose CropWatch? There are many options, but only one you can trust.</h1>
+			<h1>What sets us apart?</h1>
 			<p class="lead">
-				We built our hardware from the ground up for one simple reason, we tried every other device using the same technology and they all failed in one way or another.
+				We built our hardware from the ground up for one simple reason, we tried every other device
+				on the market and they all failed in their own unique ways.
+				<br />
+				<u>The IoT market is flooded with consumer-grade devices, some better, others worse.</u>
+				<br />
+				In such a market, we found our niche by building a system that keeps sending data, when all other
+				devices go dark.
 			</p>
+
+			<h3>What makes a good IoT Service</h3>
 			<ul class="proof">
-				<li><span class="material-symbols-rounded">check</span> <span>Devices that ensure you get correct data, or none at all</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Onboard memory that keeps recording and re-sends automatically when your internet fails you</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>An infrastructure that assumes the worst will happen, and is ready to handle it.</span></li>
-				<li><span class="material-symbols-rounded">check</span> <span>Real humans that care about the outcomes as much as you do</span></li>
+				<li>
+					<span class="material-symbols-rounded">check</span>
+					<span>Devices simply run. Seeing a failed device just shouldn't happen.</span>
+				</li>
+				<li>
+					<span class="material-symbols-rounded">check</span>
+					<span>
+						<u>A company that <b>actually</b> cares.</u>
+						<br />
+						If something fails, "Buy a new one" is <b>never</b> our response.</span>
+				</li>
+				<li>
+					<span class="material-symbols-rounded">check</span>
+					<span>
+						Data and 
+					</span>
+				</li>
+				<li>
+					<span class="material-symbols-rounded">check</span>
+					<span>Real humans that care about the outcomes as much as you do</span>
+				</li>
 			</ul>
 			<div class="hero__ctas">
-				<a href="/contact" class="cta-pill cta-pill--lg"><span>Book a demo</span> <span class="material-symbols-rounded">arrow_forward</span></a>
-				<a href="#why" class="cta-ghost cta-pill--lg"><span class="material-symbols-rounded">verified</span> <span>Why we're different</span></a>
+				<a href="/contact" class="cta-pill cta-pill--lg"
+					><span>Book a demo</span> <span class="material-symbols-rounded">arrow_forward</span></a
+				>
+				<a href="#why" class="cta-ghost cta-pill--lg"
+					><span class="material-symbols-rounded">verified</span>
+					<span>Why we're different</span></a
+				>
 			</div>
 		</div>
 		<div class="hero__media">
@@ -54,7 +87,9 @@
 			/>
 			<div class="hero__chip">
 				<span class="dot"></span>
-				<div><strong>Kitchen Walk-in Cooler</strong><span>38.1 °F (3.4 °C) · 61 %RH · live</span></div>
+				<div>
+					<strong>Kitchen Walk-in Cooler</strong><span>38.1 °F (3.4 °C) · 61 %RH · live</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -88,22 +123,66 @@
 			<article class="why-card" data-reveal>
 				<span class="why-card__ic"><span class="material-symbols-rounded">cached</span></span>
 				<h3>User-replaceable sensors & batteries</h3>
-				<p>Pop the cap, swap the calibrated module, re-pair. No truck roll, no service contract, no downtime - anyone on your team can do it in under a minute.</p>
+				<p>
+					Pop the cap, swap the calibrated module, re-pair. No truck roll, no service contract, no
+					downtime - anyone on your team can do it in under a minute.
+				</p>
 			</article>
 			<article class="why-card" data-reveal="1">
 				<span class="why-card__ic"><span class="material-symbols-rounded">verified</span></span>
-				<h3><a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certified</h3>
-				<p>Every sensor ships with a downloadable calibration certificate tied to its individual serial number - <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable proof, ready for any inspector.</p>
+				<h3>
+					<a
+						class="termlink"
+						href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+						target="_blank"
+						rel="noopener noreferrer">ISO/IEC 17025</a
+					> certified
+				</h3>
+				<p>
+					Every sensor ships with a downloadable calibration certificate tied to its individual
+					serial number - <a
+						class="termlink"
+						href="https://www.nist.gov/calibrations/traceability"
+						target="_blank"
+						rel="noopener noreferrer">NIST</a
+					>-traceable proof, ready for any inspector.
+				</p>
 			</article>
 			<article class="why-card" data-reveal="2">
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>Dual-sensor verified</h3>
-				<p>Two independent Sensirion sensors (<a class="termlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a> + <a class="termlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>) cross-check every reading. If they disagree, the device flags an error and refuses to publish - so bad data never reaches your records.</p>
+				<p>
+					Two independent Sensirion sensors (<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT43"
+						target="_blank"
+						rel="noopener noreferrer">SHT43</a
+					>
+					+
+					<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>) cross-check every reading. If they disagree, the device flags an error and refuses to
+					publish - so bad data never reaches your records.
+				</p>
 			</article>
 			<article class="why-card" data-reveal="3">
-				<span class="why-card__ic"><span class="material-symbols-rounded">health_and_safety</span></span>
+				<span class="why-card__ic"
+					><span class="material-symbols-rounded">health_and_safety</span></span
+				>
 				<h3>Self-auditing hardware</h3>
-				<p>Two independent watchdogs - one in software, one a separate hardware circuit - restart the device on their own if it ever hangs, and readings buffer to onboard <a class="termlink" href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FRAM</a> memory until delivered. If anything drifts out of spec, it tells you - instead of silently logging numbers you can't trust.</p>
+				<p>
+					Two independent watchdogs - one in software, one a separate hardware circuit - restart the
+					device on their own if it ever hangs, and readings buffer to onboard <a
+						class="termlink"
+						href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram"
+						target="_blank"
+						rel="noopener noreferrer">FRAM</a
+					> memory until delivered. If anything drifts out of spec, it tells you - instead of silently
+					logging numbers you can't trust.
+				</p>
 			</article>
 		</div>
 	</div>
@@ -134,10 +213,10 @@
 			<p class="eyebrow">Simple by design</p>
 			<h2>All your locations, grouped and glanceable.</h2>
 			<p class="section__intro">
-				Sensors organize themselves by site and zone, color-coded so anything that needs
-				attention jumps out and everything else fades into the background - the same clean
-				view on the desktop on your wall and the phone in your pocket. Your team spends its
-				day on the work that matters, not on chasing temperatures.
+				Sensors organize themselves by site and zone, color-coded so anything that needs attention
+				jumps out and everything else fades into the background - the same clean view on the desktop
+				on your wall and the phone in your pocket. Your team spends its day on the work that
+				matters, not on chasing temperatures.
 			</p>
 		</div>
 
@@ -175,20 +254,36 @@
 		<ul class="ui-points" data-reveal>
 			<li>
 				<span class="material-symbols-rounded">location_on</span>
-				<div><b>Grouped by location</b><span>Sensors roll up by site and zone - you read "Storage Room B", never a wall of device IDs.</span></div>
+				<div>
+					<b>Grouped by location</b><span
+						>Sensors roll up by site and zone - you read "Storage Room B", never a wall of device
+						IDs.</span
+					>
+				</div>
 			</li>
 			<li>
 				<span class="material-symbols-rounded">visibility</span>
-				<div><b>Glanceable status</b><span>Online, offline and alerts sit up top; green-to-red cards show what needs you in a single glance.</span></div>
+				<div>
+					<b>Glanceable status</b><span
+						>Online, offline and alerts sit up top; green-to-red cards show what needs you in a
+						single glance.</span
+					>
+				</div>
 			</li>
 			<li>
 				<span class="material-symbols-rounded">devices</span>
-				<div><b>Same view everywhere</b><span>Desktop, phone widget or a quick search - one simple interface, nothing to learn.</span></div>
+				<div>
+					<b>Same view everywhere</b><span
+						>Desktop, phone widget or a quick search - one simple interface, nothing to learn.</span
+					>
+				</div>
 			</li>
 		</ul>
 
 		<p style="text-align:center;margin-top:36px" data-reveal>
-			<a href="/contact" class="cta-pill cta-pill--lg">See it on your own coolers <span class="material-symbols-rounded">arrow_forward</span></a>
+			<a href="/contact" class="cta-pill cta-pill--lg"
+				>See it on your own coolers <span class="material-symbols-rounded">arrow_forward</span></a
+			>
 		</p>
 	</div>
 </section>
@@ -199,36 +294,79 @@
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">No surprise invoices</p>
 			<h2>The software is included, We don't hide fees</h2>
-			<p class="section__intro">Most platforms charge per seat, per rule, or per export. We don't. Buy the sensors once and the entire platform comes with them.</p>
+			<p class="section__intro">
+				Most platforms charge per seat, per rule, or per export. We don't. Buy the sensors once and
+				the entire platform comes with them.
+			</p>
 		</div>
 		<div class="vs" data-reveal>
 			<div class="vs-card vs-them">
-				<h3><span class="material-symbols-rounded">sentiment_dissatisfied</span> Typical monitoring vendor</h3>
+				<h3>
+					<span class="material-symbols-rounded">sentiment_dissatisfied</span> Typical monitoring vendor
+				</h3>
 				<ul>
-					<li><span class="material-symbols-rounded">close</span> Per-user license fees as your team grows</li>
-					<li><span class="material-symbols-rounded">close</span> Caps on alert rules and notification recipients</li>
-					<li><span class="material-symbols-rounded">close</span> API and integrations behind a higher tier</li>
-					<li><span class="material-symbols-rounded">close</span> Report exports metered or paywalled</li>
-					<li><span class="material-symbols-rounded">close</span> Technician required for every sensor swap</li>
+					<li>
+						<span class="material-symbols-rounded">close</span> Per-user license fees as your team grows
+					</li>
+					<li>
+						<span class="material-symbols-rounded">close</span> Caps on alert rules and notification recipients
+					</li>
+					<li>
+						<span class="material-symbols-rounded">close</span> API and integrations behind a higher tier
+					</li>
+					<li>
+						<span class="material-symbols-rounded">close</span> Report exports metered or paywalled
+					</li>
+					<li>
+						<span class="material-symbols-rounded">close</span> Technician required for every sensor swap
+					</li>
 				</ul>
 			</div>
 			<div class="vs-card vs-us">
 				<span class="ribbon">Included</span>
 				<h3><span class="material-symbols-rounded">verified</span> CropWatch</h3>
 				<ul>
-					<li><span class="material-symbols-rounded">check</span> Unlimited users - invite your whole team and auditors</li>
-					<li><span class="material-symbols-rounded">check</span> Unlimited alert rules &amp; recipients (SMS, email, webhook)</li>
-					<li><span class="material-symbols-rounded">check</span> Full public API access for Excel, Sheets &amp; BI</li>
-					<li><span class="material-symbols-rounded">check</span> Unlimited scheduled &amp; on-demand reports</li>
-					<li><span class="material-symbols-rounded">check</span> Swap your own sensors - no service contract</li>
+					<li>
+						<span class="material-symbols-rounded">check</span> Unlimited users - invite your whole team
+						and auditors
+					</li>
+					<li>
+						<span class="material-symbols-rounded">check</span> Unlimited alert rules &amp; recipients
+						(SMS, email, webhook)
+					</li>
+					<li>
+						<span class="material-symbols-rounded">check</span> Full public API access for Excel, Sheets
+						&amp; BI
+					</li>
+					<li>
+						<span class="material-symbols-rounded">check</span> Unlimited scheduled &amp; on-demand reports
+					</li>
+					<li>
+						<span class="material-symbols-rounded">check</span> Swap your own sensors - no service contract
+					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="incl">
-			<div class="incl-card" data-reveal><span class="material-symbols-rounded">group</span><b>Unlimited users</b><span>Whole team + auditors</span><span class="free">No per-seat fees</span></div>
-			<div class="incl-card" data-reveal="1"><span class="material-symbols-rounded">notifications_active</span><b>Unlimited rules</b><span>SMS · email · webhook</span><span class="free">Included</span></div>
-			<div class="incl-card" data-reveal="2"><span class="material-symbols-rounded">api</span><b>Full API & MCP Access</b><span><a href="https://api.cropwatch.io">api.cropwatch.io</a></span><span class="free">Included</span></div>
-			<div class="incl-card" data-reveal="3"><span class="material-symbols-rounded">summarize</span><b>Unlimited reports</b><span>Scheduled &amp; PDF</span><span class="free">Included</span></div>
+			<div class="incl-card" data-reveal>
+				<span class="material-symbols-rounded">group</span><b>Unlimited users</b><span
+					>Whole team + auditors</span
+				><span class="free">No per-seat fees</span>
+			</div>
+			<div class="incl-card" data-reveal="1">
+				<span class="material-symbols-rounded">notifications_active</span><b>Unlimited rules</b
+				><span>SMS · email · webhook</span><span class="free">Included</span>
+			</div>
+			<div class="incl-card" data-reveal="2">
+				<span class="material-symbols-rounded">api</span><b>Full API & MCP Access</b><span
+					><a href="https://api.cropwatch.io">api.cropwatch.io</a></span
+				><span class="free">Included</span>
+			</div>
+			<div class="incl-card" data-reveal="3">
+				<span class="material-symbols-rounded">summarize</span><b>Unlimited reports</b><span
+					>Scheduled &amp; PDF</span
+				><span class="free">Included</span>
+			</div>
 		</div>
 	</div>
 </section>
@@ -236,10 +374,51 @@
 <!-- ░░ Proof band ░░ -->
 <section class="proofband">
 	<div class="wrap proofband__grid">
-		<div class="stat" data-reveal><p class="stat__eyebrow">Battery life</p><p class="stat__value stat__value--accent">10 yr</p><p class="stat__body">Up to 10 years on the cold-chain sensor at a 10-minute cadence; up to 5 on CO₂ models. User-replaceable cells.</p></div>
-		<div class="stat" data-reveal="1"><p class="stat__eyebrow">Accuracy</p><p class="stat__value">±0.9 °F</p><p class="stat__body">(±0.48 °C) <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable, <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> calibrated - defensible in an audit.</p></div>
-		<div class="stat" data-reveal="2"><p class="stat__eyebrow">Range</p><p class="stat__value stat__value--accent">5 miles</p><p class="stat__body"><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> coverage from a single gateway across a whole site.</p></div>
-		<div class="stat" data-reveal="3"><p class="stat__eyebrow">Bad readings logged</p><p class="stat__value">0</p><p class="stat__body">Dual-sensor verification means wrong data never reaches your records.</p></div>
+		<div class="stat" data-reveal>
+			<p class="stat__eyebrow">Battery life</p>
+			<p class="stat__value stat__value--accent">10 yr</p>
+			<p class="stat__body">
+				Up to 10 years on the cold-chain sensor at a 10-minute cadence; up to 5 on CO₂ models.
+				User-replaceable cells.
+			</p>
+		</div>
+		<div class="stat" data-reveal="1">
+			<p class="stat__eyebrow">Accuracy</p>
+			<p class="stat__value">±0.9 °F</p>
+			<p class="stat__body">
+				(±0.48 °C) <a
+					class="termlink"
+					href="https://www.nist.gov/calibrations/traceability"
+					target="_blank"
+					rel="noopener noreferrer">NIST</a
+				>-traceable,
+				<a
+					class="termlink"
+					href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+					target="_blank"
+					rel="noopener noreferrer">ISO/IEC 17025</a
+				> calibrated - defensible in an audit.
+			</p>
+		</div>
+		<div class="stat" data-reveal="2">
+			<p class="stat__eyebrow">Range</p>
+			<p class="stat__value stat__value--accent">5 miles</p>
+			<p class="stat__body">
+				<a
+					class="termlink"
+					href="https://lora-alliance.org/about-lorawan/"
+					target="_blank"
+					rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+				> coverage from a single gateway across a whole site.
+			</p>
+		</div>
+		<div class="stat" data-reveal="3">
+			<p class="stat__eyebrow">Bad readings logged</p>
+			<p class="stat__value">0</p>
+			<p class="stat__body">
+				Dual-sensor verification means wrong data never reaches your records.
+			</p>
+		</div>
 	</div>
 </section>
 
@@ -248,7 +427,10 @@
 	<div class="wrap closing__in" data-reveal>
 		<p class="eyebrow eyebrow--gold">Ready when you are</p>
 		<h2>See your own coolers on the dashboard this week.</h2>
-		<p>Tell us what you need to keep in range. We'll map the sensors, gateways, and alerts - and show you the audit trail it produces.</p>
+		<p>
+			Tell us what you need to keep in range. We'll map the sensors, gateways, and alerts - and show
+			you the audit trail it produces.
+		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="cta-pill cta-pill--lg">Book a demo</a>
 			<a href="/cold-chain" class="cta-ghost cta-ghost--light cta-pill--lg">Explore products</a>

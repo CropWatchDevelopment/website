@@ -70,7 +70,7 @@ h1, h2, h3, h4 { color: var(--web-heading); letter-spacing: -0.02em; line-height
 .hero { background: var(--web-hero-wash), var(--web-bg); padding-block: 64px 56px; }
 .hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
 .hero__copy h1 { font-size: var(--cw-text-6xl); }
-.lead { font-size: var(--cw-text-xl); color: var(--web-muted); line-height: 1.5; margin: 20px 0 24px; max-width: 36ch; }
+.lead { font-size: var(--cw-text-xl); color: var(--web-muted); line-height: 1.5; margin: 20px 0 24px; max-width: 46ch; }
 .proof { list-style: none; padding: 0; margin: 0 0 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
 .proof li { display: flex; align-items: center; gap: 9px; font-size: 15px; color: var(--web-text); }
 .proof .material-symbols-rounded { font-size: 18px; color: #fff; background: var(--web-accent); border-radius: 9999px; padding: 3px; font-variation-settings: 'wght' 700; }
