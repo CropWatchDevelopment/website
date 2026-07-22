@@ -18,7 +18,7 @@
 				{ name: 'onsemi', url: 'https://www.onsemi.com/' },
 				{ name: 'Diodes Incorporated', url: 'https://www.diodes.com/' },
 				{ name: 'Alpha & Omega Semiconductor', url: 'https://www.aosmd.com/' },
-				{ name: 'C&K Switches', url: 'https://www.ckswitches.com/' },
+				{ name: 'C&K Switches', url: 'https://www.littelfuse.com/' },
 				{ name: 'QT Brightek', url: 'https://www.qt-brightek.com/' },
 				{ name: 'Amphenol', url: 'https://www.amphenol.com/' }
 			]
