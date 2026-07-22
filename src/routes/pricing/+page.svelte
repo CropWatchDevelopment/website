@@ -71,10 +71,6 @@
 	};
 	/** Default hourly wage: the average US state minimum wage (federal floor is $7.25). */
 	const DEFAULT_HOURLY_WAGE = 11.51;
-	/** One-time gateway + onboarding cost per location, USD. Converted from
-	    the Japan price list (¥275,000; sensors ¥33,000/¥39,000 ->
-	    deviceUnitPrice above) at ~163 JPY/USD (Jul 2026), rounded up. */
-	const HARDWARE_BASE_PRICE = 1700;
 	/* ══════════════════════════════════════════════════════════════════ */
 
 	const SECTOR_IDS = Object.keys(SECTORS);
@@ -146,10 +142,9 @@
 	// ── ROI (payback) line chart ──
 	// Cumulative CropWatch cost (one-time hardware + monthly subscription)
 	// versus the cumulative labor cost of manual logging.
-	/** Estimated one-time hardware & setup across all locations. */
-	const roiInitial = $derived(
-		(cfg.deviceUnitPrice ?? 0) * totalUnits + HARDWARE_BASE_PRICE * locations
-	);
+	/** Estimated one-time hardware cost across all locations (sensors only -
+	    the US offer has no per-location setup fee). */
+	const roiInitial = $derived((cfg.deviceUnitPrice ?? 0) * totalUnits);
 	const manualPerMonth = $derived(manualCostPerYear / 12);
 	/** Months until the hardware investment pays for itself (null = never at these settings). */
 	const breakEvenMonths = $derived(savingsPerMonth > 0 ? roiInitial / savingsPerMonth : null);
@@ -433,10 +428,8 @@
 				{#if cfg.deviceUnitPrice !== null}
 					<div class="calc-row">
 						<span
-							>Hardware &amp; setup <small
-								>({num.format(totalUnits)} sensors × {usd.format(cfg.deviceUnitPrice)} + {usd.format(
-									HARDWARE_BASE_PRICE
-								)}/location)</small
+							>Hardware <small
+								>({num.format(totalUnits)} sensors × {usd.format(cfg.deviceUnitPrice)})</small
 							></span
 						>
 						<b>{usd.format(roiInitial)} <small>one-time</small></b>
@@ -496,7 +489,7 @@
 						<span class="material-symbols-rounded">show_chart</span> When does it pay for itself?
 					</h2>
 					<p class="roi__sub">
-						Cumulative CropWatch cost - estimated one-time hardware &amp; setup of {usd.format(
+						Cumulative CropWatch cost - estimated one-time hardware of {usd.format(
 							roiInitial
 						)} plus the monthly subscription - versus the cumulative labor cost of manual logging.
 					</p>
@@ -639,9 +632,8 @@
 							At these settings manual logging stays cheaper, so there is no break-even point on
 							cost alone.
 						{/if}
-						Hardware &amp; setup estimated at {usd.format(HARDWARE_BASE_PRICE)}/location plus {usd.format(
-							cfg.deviceUnitPrice ?? 0
-						)}/sensor - your exact quote may differ.
+						Hardware estimated at {usd.format(cfg.deviceUnitPrice ?? 0)}/sensor - your exact quote
+						may differ.
 					</p>
 					<details class="roi__table" bind:open={roiTableOpen}>
 						<summary>See the numbers as a table</summary>
