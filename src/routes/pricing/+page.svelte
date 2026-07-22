@@ -34,7 +34,8 @@
 			icon: 'ac_unit',
 			pricePerDevice: 8,
 			baseFee: 100,
-			deviceUnitPrice: 220,
+			// Temp/humidity sensor: ¥33,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
+			deviceUnitPrice: 205,
 			defaultLocations: 1,
 			defaultUnits: 20,
 			defaultChecksPerDay: 2,
@@ -46,7 +47,8 @@
 			icon: 'pets',
 			pricePerDevice: 8,
 			baseFee: 50,
-			deviceUnitPrice: 260,
+			// Temp/humidity + CO2 combo sensor: ¥39,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
+			deviceUnitPrice: 240,
 			defaultLocations: 1,
 			defaultUnits: 50,
 			defaultChecksPerDay: 3,
@@ -69,11 +71,10 @@
 	};
 	/** Default hourly wage: the average US state minimum wage (federal floor is $7.25). */
 	const DEFAULT_HOURLY_WAGE = 11.51;
-	/** One-time gateway + onboarding cost per location, USD.
-	    PLACEHOLDER converted from the Japan price list (¥275,000; sensors
-	    ¥33,000/¥39,000 -> deviceUnitPrice above) at ~150 JPY/USD - adjust to
-	    the real US hardware pricing before this ships. */
-	const HARDWARE_BASE_PRICE = 1800;
+	/** One-time gateway + onboarding cost per location, USD. Converted from
+	    the Japan price list (¥275,000; sensors ¥33,000/¥39,000 ->
+	    deviceUnitPrice above) at ~163 JPY/USD (Jul 2026), rounded up. */
+	const HARDWARE_BASE_PRICE = 1700;
 	/* ══════════════════════════════════════════════════════════════════ */
 
 	const SECTOR_IDS = Object.keys(SECTORS);
@@ -196,8 +197,9 @@
 	}
 
 	// ── Print (preliminary estimate for customer review) ──
-	/** Keep the ROI numbers table open while printing (closed <details> don't print). */
-	let roiTableOpen = $state(false);
+	/** Open by default so the numbers are visible without a click; kept open
+	    while printing too (closed <details> don't print). */
+	let roiTableOpen = $state(true);
 	/** The browser snapshots the page right after beforeprint, so flush the
 	    open attribute synchronously instead of waiting for Svelte's async tick. */
 	function openRoiTableForPrint() {
@@ -428,6 +430,18 @@
 					>
 					<b>{usd.format(cropwatchPerYear)}<small>/yr</small></b>
 				</div>
+				{#if cfg.deviceUnitPrice !== null}
+					<div class="calc-row">
+						<span
+							>Hardware &amp; setup <small
+								>({num.format(totalUnits)} sensors × {usd.format(cfg.deviceUnitPrice)} + {usd.format(
+									HARDWARE_BASE_PRICE
+								)}/location)</small
+							></span
+						>
+						<b>{usd.format(roiInitial)} <small>one-time</small></b>
+					</div>
+				{/if}
 				<div class="calc-total" class:is-negative={savingsPerYear < 0 || slowRoi}>
 					<span>Your estimated savings</span>
 					<strong
