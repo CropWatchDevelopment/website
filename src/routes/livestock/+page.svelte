@@ -481,7 +481,7 @@
 <section class="closing section--tint">
 	<div class="wrap closing__in" data-reveal>
 		<p class="eyebrow eyebrow--gold">Ready when you are</p>
-		<h2>Protect the next flock.</h2>
+		<h2>Protect what is important.</h2>
 		<p>Tell us how your houses are laid out and we'll map the sensors and alerts to match.</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="cta-pill cta-pill--lg">Book a demo</a>

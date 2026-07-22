@@ -152,6 +152,8 @@
 	const manualPerMonth = $derived(manualCostPerYear / 12);
 	/** Months until the hardware investment pays for itself (null = never at these settings). */
 	const breakEvenMonths = $derived(savingsPerMonth > 0 ? roiInitial / savingsPerMonth : null);
+	/** Payback slower than 3 years reads as a bad deal on labor savings alone - flag it. */
+	const slowRoi = $derived(breakEvenMonths !== null && breakEvenMonths > 36);
 	/** X-axis span: 3 years by default; extend so the break-even point fits (max 10 years). */
 	const roiMonths = $derived(
 		breakEvenMonths === null
@@ -228,7 +230,7 @@
 <section class="pagehero">
 	<div class="wrap" data-reveal>
 		<p class="eyebrow"><span class="material-symbols-rounded">payments</span> Pricing</p>
-		<h1>Monitoring that costs less than the clipboard.</h1>
+		<h1>ROI Estimation</h1>
 		<p class="lead">
 			{#if cfg.comingSoon}
 				{cfg.label} pricing is on its way. Pick another sector to run the numbers - unlimited users, alerts,
@@ -237,7 +239,7 @@
 				Simple {cfg.label.toLowerCase()} pricing: {usd2.format(cfg.baseFee)}/month base + {usd2.format(
 					cfg.pricePerDevice
 				)}/month per monitored unit - unlimited users, alerts, reports and API included. Slide in
-				your own numbers and watch what the manual log walk really costs.
+				your own numbers and see the ROI for yourself.
 			{/if}
 		</p>
 	</div>
@@ -426,20 +428,27 @@
 					>
 					<b>{usd.format(cropwatchPerYear)}<small>/yr</small></b>
 				</div>
-				<div class="calc-total" class:is-negative={savingsPerYear < 0}>
+				<div class="calc-total" class:is-negative={savingsPerYear < 0 || slowRoi}>
 					<span>Your estimated savings</span>
 					<strong
 						>{usd.format(savingsPerYear)}<small>/yr</small>{#if savingsPerYear < 0}<span
 								class="calc-total__nope">Not worth it</span
+							>{:else if slowRoi}<span class="calc-total__nope calc-total__nope--roi"
+								>&gt; 3 year ROI, likely not worth it</span
 							>{/if}</strong
 					>
 					<span class="calc-total__sub">
-						{#if savingsPerYear >= 0}
-							{usd.format(savingsPerMonth)} back every month - and {num.format(checksPerYear)} checks
-							a year logged without anyone lifting a pen.
-						{:else}
+						{#if savingsPerYear < 0}
 							At this size the clipboard is cheaper on paper - but {num.format(checksPerYear)}
 							automated checks a year, audit-proof records and 24/7 alerts usually still win.
+						{:else if slowRoi && breakEvenMonths !== null}
+							The savings are real, but at these settings the hardware takes about {(
+								breakEvenMonths / 12
+							).toFixed(1)} years to pay for itself. Spoilage prevented and audit protection usually
+							shorten that - worth checking on a demo before ruling it out.
+						{:else}
+							{usd.format(savingsPerMonth)} back every month - and {num.format(checksPerYear)} checks
+							a year logged without anyone lifting a pen.
 						{/if}
 					</span>
 				</div>
@@ -447,6 +456,17 @@
 					><span>Get an exact quote</span>
 					<span class="material-symbols-rounded">arrow_forward</span></a
 				>
+				<button
+					type="button"
+					class="calc-print"
+					onclick={() => {
+						openRoiTableForPrint();
+						window.print();
+					}}
+				>
+					<span class="material-symbols-rounded">print</span>
+					Print this estimate
+				</button>
 				<p class="calc-fine">
 					Estimate only - excludes spoilage prevented, energy saved and failed-audit risk, which are
 					usually the bigger numbers. We'll walk through those on a demo.
@@ -629,20 +649,6 @@
 							</table>
 						</div>
 					</details>
-				</div>
-
-				<div class="roi-actions">
-					<button
-						type="button"
-						class="pill-ghost"
-						onclick={() => {
-							openRoiTableForPrint();
-							window.print();
-						}}
-					>
-						<span class="material-symbols-rounded">print</span>
-						Print this estimate
-					</button>
 				</div>
 			</div>
 		{/if}
@@ -980,8 +986,42 @@
 		padding: 4px 11px;
 		white-space: nowrap;
 	}
+	/* The slow-payback badge is wordier - let it wrap instead of overflowing the card. */
+	.calc-total__nope--roi {
+		white-space: normal;
+		line-height: 1.5;
+	}
 	.calc-cta {
 		justify-content: center;
+	}
+	.calc-print {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		margin-top: -4px;
+		padding: 0.9rem 1.7rem;
+		font-family: inherit;
+		font-weight: 600;
+		font-size: var(--cw-text-base);
+		color: var(--web-primary);
+		background: transparent;
+		border: 1px solid var(--web-border-strong);
+		border-radius: var(--cw-radius-pill);
+		cursor: pointer;
+		transition:
+			border-color var(--cw-duration-normal) var(--cw-ease-default),
+			background var(--cw-duration-normal) var(--cw-ease-default);
+	}
+	.calc-print:hover {
+		border-color: var(--web-primary);
+		background: var(--web-primary-soft);
+	}
+	.calc-print:active {
+		transform: translateY(1px);
+	}
+	.calc-print .material-symbols-rounded {
+		font-size: 20px;
 	}
 	.calc-fine {
 		margin: 0;
@@ -1183,38 +1223,6 @@
 		font-weight: 700;
 	}
 
-	/* Screen-only actions row under the ROI card. */
-	.roi-actions {
-		display: flex;
-		justify-content: flex-end;
-		margin-top: 14px;
-	}
-	.pill-ghost {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font: inherit;
-		font-size: 14px;
-		font-weight: 700;
-		color: var(--cw-ink);
-		background: var(--web-surface);
-		border: 1px solid var(--web-border-strong);
-		border-radius: 999px;
-		padding: 10px 18px;
-		cursor: pointer;
-		box-shadow: var(--web-shadow-card);
-		transition:
-			border-color 0.18s ease,
-			color 0.18s ease;
-	}
-	.pill-ghost:hover {
-		border-color: var(--web-primary);
-		color: var(--web-primary);
-	}
-	.pill-ghost .material-symbols-rounded {
-		font-size: 19px;
-	}
-
 	/* ── Print (preliminary estimate for customer review) ── */
 	.print-head,
 	.print-foot,
@@ -1232,7 +1240,7 @@
 		.calc-tabs,
 		.calc__inputs,
 		.calc-cta,
-		.roi-actions {
+		.calc-print {
 			display: none !important;
 		}
 		/* Disable the reveal-on-scroll animation so nothing prints invisible. */

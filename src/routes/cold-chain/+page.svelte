@@ -195,11 +195,6 @@
 					excursion
 				</li>
 			</ul>
-			<p style="margin-top:22px">
-				<a href="/contact" class="cta-pill"
-					>Talk to us about your audit <span class="material-symbols-rounded">arrow_forward</span></a
-				>
-			</p>
 		</div>
 	</div>
 </section>
@@ -281,29 +276,11 @@
 					you - and we're there when it counts.
 				</p>
 			</article>
-			<article class="feat" data-reveal>
-				<span class="feat__icon"><span class="material-symbols-rounded">summarize</span></span>
-				<h3>Audit reports that write themselves</h3>
-				<p>
-					Your logged data becomes a clean, inspector-ready PDF automatically - temperature history,
-					every excursion, the alarms that fired and who acknowledged them, timestamped and
-					formatted without anyone touching a spreadsheet. Pull one on demand the moment an auditor
-					asks, or schedule it to land in your inbox.
-				</p>
-				<a
-					href="/assets/reports/cropwatch-sample-report.pdf"
-					download
-					style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:14px;font-weight:700;color:var(--web-accent);text-decoration:none"
-				>
-					<span class="material-symbols-rounded" style="font-size:18px">download</span> Download a sample
-					report (PDF)
-				</a>
-			</article>
 			<article class="feat" data-reveal="1">
 				<span class="feat__icon feat__icon--accent"
 					><span class="material-symbols-rounded">shield_with_heart</span></span
 				>
-				<h3>Fail-safe hardware that recovers itself</h3>
+				<h3>Fail-Safe hardware that recovers itself</h3>
 				<p>
 					Ordinary sensors give up the moment something glitches. CropWatch is built around
 					<a class="termlink" href="https://knowledge.bsigroup.com/products/electrical-apparatus-for-the-detection-and-measurement-of-combustible-gases-toxic-gases-or-oxygen-requirements-and-tests-for-apparatus-using-software-and-or-digital-technologies" target="_blank" rel="noopener noreferrer">EN 50271</a>-compatible safeguard circuitry - the functional-safety discipline used in
@@ -312,6 +289,16 @@
 					hits, the device catches it, holds a safe state and restarts itself back into monitoring
 					automatically - no manual reset, no service call, no gap in your record.
 				</p>
+			</article>
+			<article class="feat" data-reveal="1">
+				<span class="feat__icon feat__icon--accent"
+					><span class="material-symbols-rounded">assignment</span></span
+				>
+				<h3>Downloadable Reports and CSV data.</h3>
+				<p>
+					Organized data and reports are available via the web dashboard, and can be downloaded in CSV or PDF format for further analysis or record-keeping. This ensures that you have access to your data whenever you need it, without any restrictions.
+				</p>
+				<p>While not strictly part of the services we provide, we have previously created custom reports to match existing workflows for customers. Reach out to us on the contact page if this is something you would like to discuss.</p>
 			</article>
 		</div>
 	</div>
@@ -420,6 +407,15 @@
 				</summary>
 				<p>
 					Our sensors prioritize long-term stability and <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable accuracy over short-term bragging rights. ±0.9 °F (±0.48 °C) reflects real-world performance, including typical drift, rather than idealized lab conditions. The #1 thing we do NOT want is an auditor to check our numbers against another device and find a discrepancy. Our ±0.9 °F spec is defensible in an audit.
+				</p>
+			</details>
+			<details>
+				<summary>
+					Where is the roughest place you have installed a temperature sensor?
+					<span class="material-symbols-rounded">add</span>
+				</summary>
+				<p>
+					The toughest environment we have installed a sensor in is a walk-in flash freezer. Daily it drops from +21 °C (+70 °F) to around −37 °C (−35 °F) in a matter of minutes and stays at that temp for a few hours. Our sensor was selected for this after others broke within a few weeks.
 				</p>
 			</details>
 		</div>

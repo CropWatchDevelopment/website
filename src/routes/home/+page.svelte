@@ -34,8 +34,8 @@
 			<p class="eyebrow">Environmental monitoring, proven</p>
 			<h1>What sets us apart?</h1>
 			<p class="lead">
-				We built our hardware from the ground up for one simple reason, we tried every other device
-				on the market and they all failed in their own unique ways.
+				We built our hardware from the ground up - for one simple reason, we tried every other
+				device on the market and they all failed in their own unique way.
 				<br />
 				<u>The IoT market is flooded with consumer-grade devices, some better, others worse.</u>
 				<br />
@@ -43,7 +43,7 @@
 				devices go dark.
 			</p>
 
-			<h3>What makes a good IoT Service</h3>
+			<h3>What makes a <u>truly</u> great IoT Service</h3>
 			<ul class="proof">
 				<li>
 					<span class="material-symbols-rounded">check</span>
@@ -51,20 +51,20 @@
 				</li>
 				<li>
 					<span class="material-symbols-rounded">check</span>
-					<span>
-						<u>A company that <b>actually</b> cares.</u>
-						<br />
-						If something fails, "Buy a new one" is <b>never</b> our response.</span>
-				</li>
-				<li>
-					<span class="material-symbols-rounded">check</span>
-					<span>
-						Data and 
+					<span
+						>If a device ever does fail, <u>we replace it.</u> We don't just transfer you to sales again.
 					</span>
 				</li>
 				<li>
 					<span class="material-symbols-rounded">check</span>
-					<span>Real humans that care about the outcomes as much as you do</span>
+					<span> Data must be correct.</span>
+				</li>
+				<li>
+					<span class="material-symbols-rounded">check</span>
+					<span
+						>Products that make a difference. <br /> Make people's jobs easier, AND improve outcomes for
+						all.</span
+					>
 				</li>
 			</ul>
 			<div class="hero__ctas">
@@ -88,7 +88,7 @@
 			<div class="hero__chip">
 				<span class="dot"></span>
 				<div>
-					<strong>Kitchen Walk-in Cooler</strong><span>38.1 °F (3.4 °C) · 61 %RH · live</span>
+					<strong>Cook Station Cooler #5</strong><span>38.1 °F (3.4 °C) · 61 %RH · live</span>
 				</div>
 			</div>
 		</div>
@@ -113,19 +113,21 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">Why CropWatch</p>
-			<h2>Four reasons companies large and small switch to CropWatch</h2>
+			<h2>It's simple, we are a <u>customer-centric</u> company.</h2>
 			<p class="section__intro">
-				Most monitoring systems make you trust a single sensor, lock you into a technician for every
-				swap, and quietly log numbers that may be wrong. We built ours the opposite way.
+				Today way too many companies across all industries ignore the customer. Automate call
+				centers, hide support, and move on after the sale. That is where our strategy is different.
 			</p>
 		</div>
 		<div class="why4">
 			<article class="why-card" data-reveal>
-				<span class="why-card__ic"><span class="material-symbols-rounded">cached</span></span>
-				<h3>User-replaceable sensors & batteries</h3>
+				<span class="why-card__ic"><span class="material-symbols-rounded">fort</span></span>
+				<h3>Solid Hardware</h3>
 				<p>
-					Pop the cap, swap the calibrated module, re-pair. No truck roll, no service contract, no
-					downtime - anyone on your team can do it in under a minute.
+					Solid hardware that doesn't break down is where everyone wants. This means more uptime,
+					less support, and more trust in the data. Our devices are built to last. We don't tolerate
+					devices that fail, and we continuously improve our hardware if we ever find a weakness in
+					the real-world deployment.
 				</p>
 			</article>
 			<article class="why-card" data-reveal="1">
@@ -139,49 +141,34 @@
 					> certified
 				</h3>
 				<p>
-					Every sensor ships with a downloadable calibration certificate tied to its individual
-					serial number - <a
+					We have had issues in the past finding the "TRUE" value from sensors. It can be difficult
+					when you have doubt in your sensor, and you also doubt your calibration hardware as well.
+					That is why we have left the calibration up to the experts. Our sensors are calibrated by
+					an ISO/IEC 17025 accredited laboratory, and the calibration is traceable to <a
 						class="termlink"
 						href="https://www.nist.gov/calibrations/traceability"
 						target="_blank"
 						rel="noopener noreferrer">NIST</a
-					>-traceable proof, ready for any inspector.
+					> standards.
 				</p>
 			</article>
 			<article class="why-card" data-reveal="2">
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>Dual-sensor verified</h3>
 				<p>
-					Two independent Sensirion sensors (<a
-						class="termlink"
-						href="https://sensirion.com/products/catalog/SHT43"
-						target="_blank"
-						rel="noopener noreferrer">SHT43</a
-					>
-					+
-					<a
-						class="termlink"
-						href="https://sensirion.com/products/catalog/SHT40"
-						target="_blank"
-						rel="noopener noreferrer">SHT40</a
-					>) cross-check every reading. If they disagree, the device flags an error and refuses to
-					publish - so bad data never reaches your records.
+					On the same note as calibration, we have also tried other sensors that have given us false readings that looked plausible.
+				</p>
+				<p>
+					Our innovative sensors feature dual-sensor verification, which means if one sensor is fails, the other sensor will catch it and alert you that the sensor is bad and we don't send any data, because we believe no data is always better than wrong data.
 				</p>
 			</article>
 			<article class="why-card" data-reveal="3">
 				<span class="why-card__ic"
-					><span class="material-symbols-rounded">health_and_safety</span></span
+					><span class="material-symbols-rounded">support_agent</span></span
 				>
-				<h3>Self-auditing hardware</h3>
+				<h3>Real Support</h3>
 				<p>
-					Two independent watchdogs - one in software, one a separate hardware circuit - restart the
-					device on their own if it ever hangs, and readings buffer to onboard <a
-						class="termlink"
-						href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram"
-						target="_blank"
-						rel="noopener noreferrer">FRAM</a
-					> memory until delivered. If anything drifts out of spec, it tells you - instead of silently
-					logging numbers you can't trust.
+					Finally, if you ever do run into a problem, we have a real (human) support team that is ready to help you. We don't hide behind a call center, and we don't outsource our support. We are here to help you, and we will do whatever it takes to make sure you are satisfied with our products and services.
 				</p>
 			</article>
 		</div>
@@ -193,7 +180,7 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">Where our parts come from</p>
-			<h2>Our trusted device is built with trusted parts from trusted places.</h2>
+			<h2>Our <i>trusted</i> device is built with <i>trusted</i> parts from <i>trusted places</i>.</h2>
 			<p class="section__intro">
 				Every CropWatch device is assembled from components we hand-pick for reliability - sourced
 				from established manufacturers across eight countries, so quality is never left to chance.
@@ -213,10 +200,10 @@
 			<p class="eyebrow">Simple by design</p>
 			<h2>All your locations, grouped and glanceable.</h2>
 			<p class="section__intro">
-				Sensors organize themselves by site and zone, color-coded so anything that needs attention
+				Sensors can easily be organized, filtered and sorted. Anything that needs attention
 				jumps out and everything else fades into the background - the same clean view on the desktop
 				on your wall and the phone in your pocket. Your team spends its day on the work that
-				matters, not on chasing temperatures.
+				matters, not on chasing data points.
 			</p>
 		</div>
 
@@ -232,7 +219,7 @@
 					/>
 				</div>
 				<figcaption>
-					<span class="material-symbols-rounded">desktop_windows</span> PC &amp; web dashboard
+					<span class="material-symbols-rounded">desktop_windows</span> PC &amp; Mac, tablet &amp; iPhone or Android
 				</figcaption>
 			</figure>
 			<figure class="ui-device ui-device--phone">
@@ -246,7 +233,7 @@
 					/>
 				</div>
 				<figcaption>
-					<span class="material-symbols-rounded">phone_android</span> Android widget
+					<span class="material-symbols-rounded">phone_android</span> Android Homescreen widget
 				</figcaption>
 			</figure>
 		</div>
@@ -255,36 +242,36 @@
 			<li>
 				<span class="material-symbols-rounded">location_on</span>
 				<div>
-					<b>Grouped by location</b><span
-						>Sensors roll up by site and zone - you read "Storage Room B", never a wall of device
-						IDs.</span
-					>
+					<b>Grouped by location</b>
+					<span>
+						Group sensors by site, zone, location, and then organize them within those groups. The
+						dashboard shows you the big picture, and lets you drill down to the details.
+					</span>
 				</div>
 			</li>
 			<li>
 				<span class="material-symbols-rounded">visibility</span>
 				<div>
-					<b>Glanceable status</b><span
-						>Online, offline and alerts sit up top; green-to-red cards show what needs you in a
-						single glance.</span
-					>
+					<b>Quick status</b><span>
+						No wasting time, Here are the numbers, and you can get back to what you were doing.
+						<br />
+						The purpose of our application isn't to make you use it more, we want you to use it faster,
+						and get back to what really matters to you.
+					</span>
 				</div>
 			</li>
 			<li>
 				<span class="material-symbols-rounded">devices</span>
 				<div>
-					<b>Same view everywhere</b><span
-						>Desktop, phone widget or a quick search - one simple interface, nothing to learn.</span
-					>
+					<b>Same view everywhere</b>
+					<span>
+						Desktop, tablet, phone - the same clean view on the wall and in your pocket. No learning
+						a new interface for each device. Set a filter once for the view you want, and it sticks
+						across all devices.
+					</span>
 				</div>
 			</li>
 		</ul>
-
-		<p style="text-align:center;margin-top:36px" data-reveal>
-			<a href="/contact" class="cta-pill cta-pill--lg"
-				>See it on your own coolers <span class="material-symbols-rounded">arrow_forward</span></a
-			>
-		</p>
 	</div>
 </section>
 
@@ -293,10 +280,10 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">No surprise invoices</p>
-			<h2>The software is included, We don't hide fees</h2>
+			<h2>The software is included, We don't hide <a class="termlink" href="/pricing">fees</a></h2>
 			<p class="section__intro">
-				Most platforms charge per seat, per rule, or per export. We don't. Buy the sensors once and
-				the entire platform comes with them.
+				Most platforms charge per seat, per location, per rule, or per export. We don't. Our fees
+				are simple.
 			</p>
 		</div>
 		<div class="vs" data-reveal>
@@ -327,8 +314,7 @@
 				<h3><span class="material-symbols-rounded">verified</span> CropWatch</h3>
 				<ul>
 					<li>
-						<span class="material-symbols-rounded">check</span> Unlimited users - invite your whole team
-						and auditors
+						<span class="material-symbols-rounded">check</span> Unlimited users - invite your whole team!
 					</li>
 					<li>
 						<span class="material-symbols-rounded">check</span> Unlimited alert rules &amp; recipients
@@ -426,14 +412,14 @@
 <section class="closing">
 	<div class="wrap closing__in" data-reveal>
 		<p class="eyebrow eyebrow--gold">Ready when you are</p>
-		<h2>See your own coolers on the dashboard this week.</h2>
+		<h2>Interested? Get in touch, It can't hurt to chat!</h2>
 		<p>
 			Tell us what you need to keep in range. We'll map the sensors, gateways, and alerts - and show
 			you the audit trail it produces.
 		</p>
 		<div class="closing__ctas">
-			<a href="/contact" class="cta-pill cta-pill--lg">Book a demo</a>
-			<a href="/cold-chain" class="cta-ghost cta-ghost--light cta-pill--lg">Explore products</a>
+			<a href="/contact" class="cta-pill cta-pill--lg">Contact Us!</a>
+			<a href="/pricing" class="cta-ghost cta-ghost--light cta-pill--lg">Checkout our pricing</a>
 		</div>
 	</div>
 </section>

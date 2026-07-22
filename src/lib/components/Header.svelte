@@ -47,7 +47,7 @@
 			</div>
 			<div class="hdr__top-links">
 				<a href="tel:+(978)381-3105"><span class="material-symbols-rounded">call</span> +1 (978) 381-3105</a>
-				<a href="mailto:sales@cropwatch.io">sales@cropwatch.io</a>
+				<a href="mailto:kevin@cropwatch.io">kevin@cropwatch.io</a>
 			</div>
 		</div>
 	</div>
