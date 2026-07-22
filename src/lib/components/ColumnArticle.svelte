@@ -5,6 +5,7 @@
 	import { articleSchema } from '$lib/seo/schema';
 	import { DEFAULT_OG_IMAGE } from '$lib/seo/site';
 	import type { Column } from '$lib/content/columns';
+	import { regMark } from '$lib/regmark';
 	import type { Snippet } from 'svelte';
 
 	let { column, children }: { column: Column; children: Snippet } = $props();
@@ -39,7 +40,7 @@
 	<div class="wrap col-article__in">
 		<header class="col-head" data-reveal>
 			<p class="col-cat">{column.category}</p>
-			<h1>{column.title}</h1>
+			<h1>{@html regMark(column.title)}</h1>
 			<p class="col-meta">
 				<time datetime={column.datePublished}>{column.datePublished}</time>
 				<span aria-hidden="true">・</span>

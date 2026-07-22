@@ -2,6 +2,8 @@
 	// Small "関連情報" internal-linking block. Cross-links the important money
 	// pages and relevant コラム articles with concise, keyword anchor text — the
 	// site-structure signal Google uses when choosing sitelinks.
+	import { regMark } from '$lib/regmark';
+
 	type Link = { href: string; label: string; sub?: string };
 	let { links, title = '関連情報' }: { links: Link[]; title?: string } = $props();
 </script>
@@ -16,7 +18,7 @@
 			{#each links as l, i (l.href)}
 				<a class="rel__card" href={l.href} data-reveal={i % 3}>
 					<span class="rel__txt">
-						<span class="rel__label">{l.label}</span>
+						<span class="rel__label">{@html regMark(l.label)}</span>
 						{#if l.sub}<span class="rel__sub">{l.sub}</span>{/if}
 					</span>
 					<span class="rel__go material-symbols-rounded">arrow_forward</span>

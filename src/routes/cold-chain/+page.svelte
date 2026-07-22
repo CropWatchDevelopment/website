@@ -17,7 +17,7 @@
 	const title =
 		'コールドチェーン温度監視システム｜冷蔵庫・冷凍庫の遠隔温度監視とHACCP自動記録｜CropWatch 日本';
 	const description =
-		'コールドチェーンの温度監視システム。電池駆動のLoRaWAN™センサーが冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録し、スマホやPCから遠隔監視できます。HACCP義務化に対応した温度記録の自動化から監査時の記録提出までを効率化。ISO/IEC 17025校正証明書つき。';
+		'コールドチェーンの温度監視システム。電池駆動のLoRaWAN®センサーが冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録し、スマホやPCから遠隔監視できます。HACCP義務化に対応した温度記録の自動化から監査時の記録提出までを効率化。ISO/IEC 17025校正証明書つき。';
 
 	// 回答内のリンクは信頼できる一次情報（省庁・認定機関・部品メーカー）に限定する。
 	const faq = [
@@ -31,7 +31,7 @@
 		},
 		{
 			q: '離れた場所から冷蔵庫・冷凍庫の温度を確認できますか？',
-			a: 'はい。測定データは<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>通信でクラウドに送信され、スマートフォンやPCから遠隔で温度を監視できます。複数拠点の冷蔵庫・冷凍庫もまとめて確認できます。'
+			a: 'はい。測定データは<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>通信でクラウドに送信され、スマートフォンやPCから遠隔で温度を監視できます。複数拠点の冷蔵庫・冷凍庫もまとめて確認できます。'
 		},
 		{
 			q: '現場で校正や補正を行う必要はありますか？',
@@ -86,7 +86,7 @@
 					class="extlink"
 					href="https://lora-alliance.org/"
 					target="_blank"
-					rel="noopener noreferrer">LoRaWAN™</a
+					rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
 				>®デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
 			</p>
 		</div>
@@ -250,7 +250,7 @@
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN™</a
+						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
 					>通信で、Wi-Fiや携帯の電波が届かない厚い壁や冷凍庫内、離れた倉庫からもデータを安定して送信します。
 				</p>
 			</div>
@@ -260,10 +260,8 @@
 
 <DoubleSensorSection />
 
-<FieldReplacementSection />
-
 <!-- 導入の現場 -->
-<section class="section section--soft">
+<section class="section">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">image</span> 導入の現場</p>
@@ -292,7 +290,15 @@
 			</figure>
 		</div>
 	</div>
+
+	<div class="wrap gallery-cta" data-reveal>
+		<a href="/testimonials" class="btn btn--accent btn--lg"
+			>導入事例を見る <span class="material-symbols-rounded">arrow_forward</span></a
+		>
+	</div>
 </section>
+
+<FieldReplacementSection />
 
 <!-- 校正・認証 -->
 <section class="section">
@@ -415,7 +421,7 @@
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN™</a
+						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
 					><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信
 				</dd>
 			</div>
@@ -481,6 +487,11 @@
 	   its own photographic hero + navy/ice palette (different
 	   product). Sibling of the livestock page's warm treatment.
 	   ══════════════════════════════════════════════════════════ */
+
+	.gallery-cta {
+		margin-top: 28px;
+		text-align: center;
+	}
 
 	/* ═══ 記録・通知・レポート cards ═══ */
 	.cc-box {

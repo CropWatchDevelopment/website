@@ -14,7 +14,7 @@
 	const title =
 		'スマート畜産・養鶏IoT｜鶏舎・畜舎の温度・湿度を遠隔監視するワイヤレスセンサー｜CropWatch 日本';
 	const description =
-		'スマート畜産・養鶏IoTのための鶏舎・畜舎の環境モニタリング。温度・湿度を15分ごとに自動送信し、暑熱対策や換気の判断に役立つ環境データを24時間見える化。家禽・畜産の暑熱ストレスや換気不良を早期に発見します。LoRaWAN™で配線工事なし、ISO/IEC 17025校正証明書つき。';
+		'スマート畜産・養鶏IoTのための鶏舎・畜舎の環境モニタリング。温度・湿度を15分ごとに自動送信し、暑熱対策や換気の判断に役立つ環境データを24時間見える化。家禽・畜産の暑熱ストレスや換気不良を早期に発見します。LoRaWAN®で配線工事なし、ISO/IEC 17025校正証明書つき。';
 
 	const faq = [
 		{
@@ -27,7 +27,7 @@
 		},
 		{
 			q: '電波が届きにくい鶏舎・畜舎でも使えますか？',
-			a: 'はい。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>通信により、Wi-Fiや携帯の電波が届きにくい場所でもデータを送信できます。無線・電池式のため、配線工事や電源工事は不要です。'
+			a: 'はい。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>通信により、Wi-Fiや携帯の電波が届きにくい場所でもデータを送信できます。無線・電池式のため、配線工事や電源工事は不要です。'
 		},
 		{
 			q: '高湿度や粉じんの多い環境でも故障しにくいですか？',
@@ -490,7 +490,7 @@
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN™</a
+						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
 					><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信
 				</dd>
 			</div>

@@ -4,10 +4,11 @@
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { SITE_ORIGIN } from '$lib/seo/site';
 	import { COLUMNS } from '$lib/content/columns';
+	import { regMark } from '$lib/regmark';
 
 	const title = 'コラム｜温度監視・スマート農業・スマート畜産の基礎知識｜CropWatch 日本';
 	const description =
-		'HACCP義務化、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業やLoRaWAN™の基礎まで。コールドチェーン・スマート農業・スマート畜産の温度監視に役立つ情報をお届けします。';
+		'HACCP義務化、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業やLoRaWAN®の基礎まで。コールドチェーン・スマート農業・スマート畜産の温度監視に役立つ情報をお届けします。';
 
 	const ld = [
 		{
@@ -46,7 +47,7 @@
 				class="extlink"
 				href="https://lora-alliance.org/"
 				target="_blank"
-				rel="noopener noreferrer">LoRaWAN™</a
+				rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
 			>の基礎まで。現場の課題解決に役立つ情報をまとめています。
 		</p>
 	</div>
@@ -58,7 +59,7 @@
 			{#each COLUMNS as c (c.slug)}
 				<a class="col-card" href="/column/{c.slug}" data-reveal>
 					<span class="col-card__cat">{c.category}</span>
-					<h2>{c.title}</h2>
+					<h2>{@html regMark(c.title)}</h2>
 					<p>{c.description}</p>
 					<span class="col-card__meta">
 						<time datetime={c.datePublished}>{c.datePublished}</time>

@@ -30,7 +30,7 @@
 	<ul>
 		<li><strong>測定精度</strong>：記録の信頼性を左右します。校正証明書の有無も確認します。</li>
 		<li><strong>遠隔監視とアラート</strong>：離れた場所から確認でき、異常時にすぐ通知が届くか。</li>
-		<li><strong>通信方式</strong>：冷凍庫の奥や厚い壁でも電波が届くか（<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>は長距離に強い）。</li>
+		<li><strong>通信方式</strong>：冷凍庫の奥や厚い壁でも電波が届くか（<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>は長距離に強い）。</li>
 		<li><strong>電池寿命とメンテナンス</strong>：配線工事が不要か、電池がどれくらい持つか。</li>
 	</ul>
 
@@ -40,7 +40,7 @@
 	</p>
 	<div class="col-note">
 		<p>
-			CropWatchは、電池駆動のワイヤレスセンサーが冷蔵庫・冷凍庫の温度を10分ごとに自動記録。冷凍庫の奥まで<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN™</a>で安定送信し、遠隔監視とアラートで記録漏れをなくします。
+			CropWatchは、電池駆動のワイヤレスセンサーが冷蔵庫・冷凍庫の温度を10分ごとに自動記録。冷凍庫の奥まで<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>で安定送信し、遠隔監視とアラートで記録漏れをなくします。
 		</p>
 	</div>
 	<p>

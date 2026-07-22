@@ -8,7 +8,7 @@
 		{ href: '/cold-chain', label: 'コールドチェーン温度監視', sub: '冷蔵庫・冷凍庫の遠隔監視' },
 		{ href: '/livestock', label: 'スマート畜産・養鶏', sub: '鶏舎・畜舎の温度監視' },
 		{ href: '/agriculture', label: 'スマート農業・ハウス', sub: 'ハウス・露地・土壌の環境監視' },
-		{ href: '/column/lorawan-toha', label: 'LoRaWAN™とは？', sub: 'コラム' }
+		{ href: '/column/lorawan-toha', label: 'LoRaWAN®とは？', sub: 'コラム' }
 	];
 
 	const title = '技術・設計｜現場に強い、センサー基板のつくり｜CropWatch 日本';
@@ -41,7 +41,7 @@
 </section>
 
 <!-- 現場に強い設計 -->
-<section class="section section--soft">
+<section class="section scroll-pad" id="design">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">
@@ -62,13 +62,13 @@
 				<span class="box__ic box__ic--accent"
 					><span class="material-symbols-rounded">cell_tower</span></span
 				>
-				<h3>壁や階を越えて、遠くまで届くLoRaWAN™</h3>
+				<h3>壁や階を越えて、遠くまで届くLoRaWAN<sup class="reg">®</sup></h3>
 				<p>
 					<a
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN™</a
+						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
 					>の電波は、広い範囲に電波が届きやすく、厚い壁や遮蔽物に囲まれた場所でも通信しやすいのが特長です。冷凍庫の奥や地下、倉庫の奥まった場所など、一般的な無線では電波が届きにくい現場にも対応。1台の受信機で、広い敷地をまとめて見守れます。
 				</p>
 			</div>
@@ -489,6 +489,24 @@
 	</div>
 </section>
 
+<!-- 見ていない時間も、現場を任せられる -->
+<section class="section scroll-pad" id="reliability">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow">
+				<span class="material-symbols-rounded">hub</span> 見ていない時間も、現場を任せられる。
+			</p>
+			<h2>次に見守るのは、あなたの現場です。</h2>
+			<p>
+				厳しい環境でも測り続ける。測定値に異常がないか自ら確かめる。通信が途切れても、記録を残す。動作が止まっても、自動で立て直す。そして、必要な部分を交換しながら長く使い続ける。
+			</p>
+			<p>
+				CropWatchは、現場で実際に起こり得る問題を一つひとつ想定し、設置したあとも安心して任せられるハードウェアをつくっています。毎日の見回りや記録作業を、機械に任せられる現場へ。
+			</p>
+		</div>
+	</div>
+</section>
+
 <RelatedLinks links={related} />
 
 <!-- クロージング -->
@@ -509,6 +527,12 @@
 <style>
 	.pagehero h1 .hl {
 		color: var(--web-primary);
+	}
+
+	/* Head-only section: cancel section__head's trailing gap (meant to
+	   separate it from following content) so the padding stays symmetric. */
+	#reliability .section__head {
+		margin-bottom: 0;
 	}
 
 	/* The flow diagram draws its own white card (rounded rect + border), so the

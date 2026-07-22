@@ -79,13 +79,13 @@ export const COLUMNS: Column[] = [
 	},
 	{
 		slug: 'lorawan-toha',
-		title: 'LoRaWAN™とは？農業・畜産での使い方',
+		title: 'LoRaWAN®とは？農業・畜産での使い方',
 		description:
-			'LoRaWAN™の仕組みと特長（長距離・省電力・免許不要の920MHz）を解説。農業のハウスや畜産の鶏舎など、電波が届きにくい現場でのワイヤレス温度監視での使い方を紹介します。',
+			'LoRaWAN®の仕組みと特長（長距離・省電力・免許不要の920MHz）を解説。農業のハウスや畜産の鶏舎など、電波が届きにくい現場でのワイヤレス温度監視での使い方を紹介します。',
 		category: 'スマート農業',
 		datePublished: '2026-07-03',
 		readMinutes: 5,
-		keywords: ['LoRaWAN™とは', 'LoRaWAN™ 農業', '920MHz', 'ワイヤレス 温度監視'],
+		keywords: ['LoRaWAN®とは', 'LoRaWAN® 農業', '920MHz', 'ワイヤレス 温度監視'],
 		targetHref: '/technology',
 		targetLabel: 'CropWatchの技術を見る'
 	}

@@ -9,7 +9,7 @@
 		{ href: '/livestock', label: 'スマート畜産・養鶏', sub: '鶏舎・畜舎の温度監視' },
 		{ href: '/cold-chain', label: 'コールドチェーン温度監視', sub: '冷蔵庫・冷凍庫の遠隔監視' },
 		{ href: '/column/smart-nogyo-toha', label: 'スマート農業とは？', sub: 'コラム' },
-		{ href: '/column/lorawan-toha', label: 'LoRaWAN™とは？', sub: 'コラム' }
+		{ href: '/column/lorawan-toha', label: 'LoRaWAN®とは？', sub: 'コラム' }
 	];
 
 	const title =
@@ -220,7 +220,7 @@
 					class="extlink"
 					href="https://lora-alliance.org/"
 					target="_blank"
-					rel="noopener noreferrer">LoRaWAN™</a
+					rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
 				>）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。通信費も工事も抑えられます。
 			</p>
 			<ul class="checklist">
@@ -321,7 +321,7 @@
 						class="extlink"
 						href="https://lora-alliance.org/"
 						target="_blank"
-						rel="noopener noreferrer">LoRaWAN™</a
+						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
 					>（電波）／受信機1台で最大15km
 				</dd>
 			</div>

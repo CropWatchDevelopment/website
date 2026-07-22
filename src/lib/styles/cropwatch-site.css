@@ -334,6 +334,11 @@ a.badgewall__card:hover { border-color: var(--web-border-strong); transform: tra
 .closing__ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
 
 /* ============================================================
+   Registered-trademark superscript (LoRaWAN® など)
+   ============================================================ */
+sup.reg { font-size: 0.6em; line-height: 0; vertical-align: super; }
+
+/* ============================================================
    Breadcrumb
    ============================================================ */
 .crumb { background: var(--web-bg-soft); border-bottom: 1px solid var(--web-border); }
