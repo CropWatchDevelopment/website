@@ -28,12 +28,12 @@
 		<p class="hero__kicker">
 			壊れにくい設計、信頼できる測定、万が一停止した場合でも自動で立て直す復旧機能。CropWatchのセンサーは、現場に設置したあとも何年にもわたって動き続けることを前提に、細部まで作り込んでいます。
 		</p>
-		<div class="hero__ctas">
+		<!-- <div class="hero__ctas">
 			<a href="#design" class="btn btn--primary btn--lg"
 				><span class="material-symbols-rounded">tune</span> 設計の強みを見る</a
 			>
 			<a href="/contact" class="btn btn--ghost btn--lg">相談する</a>
-		</div>
+		</div> -->
 		<p class="pagehero__note">
 			<span class="material-symbols-rounded">check_circle</span> 専門用語は使わずに、やさしくご説明します。
 		</p>
