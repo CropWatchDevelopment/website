@@ -31,7 +31,7 @@
 			<p class="eyebrow">Environmental monitoring, proven</p>
 			<h1>Why choose CropWatch? There are many options, but only one you can trust.</h1>
 			<p class="lead">
-				CropWatch is built from the ground up to give you confidence at every step - from the sensor that has been engineered to be provably accurate, to our backend infrastructure that data moves through, to the software you use to access it. We designed the whole stack to be something you can trust - so you can spend less time worrying about your monitoring and more time running your business.
+				We built our hardware from the ground up for one simple reason, we tried every other device using the same technology and they all failed in one way or another.
 			</p>
 			<ul class="proof">
 				<li><span class="material-symbols-rounded">check</span> <span>Devices that ensure you get correct data, or none at all</span></li>
