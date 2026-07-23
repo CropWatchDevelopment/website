@@ -89,7 +89,12 @@ afterNavigate(() => closeMenu());
 	<div class="hdr__bar">
 		<div class="wrap hdr__main">
 			<a class="brand" href="/" aria-label="CropWatch ホーム">
-				<img src={LOGO} alt="CropWatch" class="brand__mark" />
+				<!-- <picture> + id are load-bearing: christmas-header.js targets
+				     #header-logo's enclosing <picture> for the seasonal logo swap. -->
+				<picture>
+					<source srcset={LOGO} type="image/svg+xml" />
+					<img id="header-logo" src={LOGO} alt="CropWatch" class="brand__mark" />
+				</picture>
 				<span class="brand__txt">
 					<span class="brand__name">CropWatch<sup>®</sup></span>
 					<span class="brand__tag">クロップウォッチ 日本</span>
