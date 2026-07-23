@@ -422,7 +422,7 @@
 						href="https://lora-alliance.org/"
 						target="_blank"
 						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-					><sup><small>®</small></sup>／通信断時は内部メモリへ保存し、復旧後に自動送信
+					>／通信断時は内部メモリへ保存し、復旧後に自動送信
 				</dd>
 			</div>
 			<div class="spec-row">

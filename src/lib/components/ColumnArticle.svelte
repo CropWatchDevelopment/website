@@ -55,11 +55,10 @@
 		<aside class="col-cta" data-reveal>
 			<div>
 				<p class="col-cta__lead">CropWatch なら、置くだけで見える化できます。</p>
-				<p class="col-cta__sub">現場に合わせたセンサーと通知の設定を、無料でご提案します。</p>
+				<p class="col-cta__sub">現場に合わせたセンサーと通知の設定を、ご提案します。</p>
 			</div>
 			<div class="col-cta__btns">
 				<a href={column.targetHref} class="btn btn--primary">{column.targetLabel}</a>
-				<a href="/contact" class="btn btn--accent">無料デモを予約する</a>
 			</div>
 		</aside>
 

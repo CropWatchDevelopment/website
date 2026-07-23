@@ -346,6 +346,7 @@
 				<text x="690" y="388" fill="#741010" font-size="17" font-weight="800">エラーとして通知</text
 				>
 			</svg>
+			<figcaption class="center">*特許出願中</figcaption>
 		</figure>
 	</div>
 </section>
@@ -546,6 +547,12 @@
 		height: auto;
 		border-radius: 20px;
 		box-shadow: 0 18px 48px rgba(11, 23, 48, 0.14);
+	}
+	.tech-figure figcaption.center {
+		text-align: center;
+		margin-top: 12px;
+		font-size: 12.5px;
+		color: var(--web-muted);
 	}
 
 	.parts-origin {
