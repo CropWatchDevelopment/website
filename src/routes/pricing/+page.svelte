@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { flushSync, onMount } from 'svelte';
+	import { replaceState } from '$app/navigation';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 
 	/* ══════════════════════════════════════════════════════════════════
@@ -71,11 +72,57 @@
 	};
 	/** Default hourly wage: the average US state minimum wage (federal floor is $7.25). */
 	const DEFAULT_HOURLY_WAGE = 11.51;
+	/** Gateway options - one gateway is required per location. price is
+	    one-time USD; the selected model feeds the hardware total and ROI. */
+	type Gateway = {
+		label: string;
+		/** Country-of-manufacture flag emoji; hover shows a "Made in {madeIn}" tooltip. */
+		flag?: string;
+		madeIn?: string;
+		price: number;
+		description: string;
+	};
+	const GATEWAYS: Record<string, Gateway> = {
+		'kona-enterprise': {
+			label: 'Kona Enterprise IoT Gateway',
+			flag: '🇨🇦',
+			madeIn: 'Canada',
+			price: 1500,
+			description:
+				'(Outdoor Recommended) Carrier-grade gateway with cellular modem - the pick for large sites, dense sensor fleets and the widest coverage.'
+		},
+		'kona-micro': {
+			label: 'Kona Micro IoT Gateway',
+			flag: '🇨🇦',
+			madeIn: 'Canada',
+			price: 499,
+			description:
+				'(Indoor Recommended) Compact indoor gateway with cellular backhaul and built-in battery backup - keeps recording through power outages.'
+		},
+		ug65: {
+			label: 'UG65-L04EU-915M-EA',
+			flag: '🇨🇳',
+			madeIn: 'China',
+			price: 400,
+			description:
+				'(Outdoor & Indoor) Milesight indoor gateway (915 MHz) with Ethernet, Wi-Fi or LTE backhaul - the budget pick for sites with reliable power.'
+		},
+		alreadyHave: {
+			label: 'Use Your Own Gateway',
+			price: 0,
+			description:
+				'Use your existing gateway - no additional cost.'
+		}
+	};
 	/* ══════════════════════════════════════════════════════════════════ */
 
 	const SECTOR_IDS = Object.keys(SECTORS);
 	let sector = $state('cold-chain');
 	const cfg = $derived(SECTORS[sector]);
+
+	const GATEWAY_IDS = Object.keys(GATEWAYS);
+	let gatewayId = $state('kona-micro');
+	const gw = $derived(GATEWAYS[gatewayId]);
 
 	let locations = $state(SECTORS['cold-chain'].defaultLocations);
 	let units = $state(SECTORS['cold-chain'].defaultUnits);
@@ -92,15 +139,56 @@
 		minutesPerCheck = SECTORS[id].minutesPerCheck;
 	}
 
-	// Honor ?sector= deep links (e.g. /pricing?sector=livestock).
+	// ── Shareable links: every calculator knob lives in the query string ──
+	/** Read an integer param, clamped to the matching slider's range. */
+	function readIntParam(p: URLSearchParams, key: string, min: number, max: number): number | null {
+		const raw = p.get(key);
+		if (raw === null) return null;
+		const n = Math.round(Number(raw));
+		return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : null;
+	}
+	/** Gate for the URL-writing effect below: don't touch the URL until the
+	    initial values have been read from it. */
+	let urlSyncReady = $state(false);
+
+	// Honor deep links (e.g. /pricing?sector=livestock&units=40&wage=15).
 	onMount(() => {
 		printDate = new Date().toLocaleDateString('en-US', {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric'
 		});
-		const requested = new URL(window.location.href).searchParams.get('sector');
+		const params = new URL(window.location.href).searchParams;
+		// Sector first - it resets every slider to that sector's defaults.
+		const requested = params.get('sector');
 		if (requested && SECTORS[requested]) selectSector(requested);
+		const requestedGw = params.get('gateway');
+		if (requestedGw && GATEWAYS[requestedGw]) gatewayId = requestedGw;
+		locations = readIntParam(params, 'locations', 1, 50) ?? locations;
+		units = readIntParam(params, 'units', 1, 100) ?? units;
+		checksPerDay = readIntParam(params, 'checks', 1, 12) ?? checksPerDay;
+		minutesPerCheck = readIntParam(params, 'minutes', 1, 30) ?? minutesPerCheck;
+		const requestedWage = Number(params.get('wage'));
+		if (params.has('wage') && Number.isFinite(requestedWage) && requestedWage >= 0)
+			wage = Math.min(10000, Math.round(requestedWage * 100) / 100);
+		urlSyncReady = true;
+	});
+
+	/** Mirror every knob back into the URL (debounced, replaceState - no
+	    history spam, no scroll) so a copied link reproduces the estimate. */
+	$effect(() => {
+		if (!urlSyncReady) return;
+		const qs = new URLSearchParams({
+			sector,
+			gateway: gatewayId,
+			locations: String(locations),
+			units: String(units),
+			checks: String(checksPerDay),
+			minutes: String(minutesPerCheck)
+		});
+		if (Number.isFinite(wage) && wage >= 0) qs.set('wage', String(wage));
+		const t = setTimeout(() => replaceState(`?${qs}${location.hash}`, {}), 150);
+		return () => clearTimeout(t);
 	});
 
 	const safeWage = $derived(Number.isFinite(wage) && wage > 0 ? wage : 0);
@@ -142,9 +230,9 @@
 	// ── ROI (payback) line chart ──
 	// Cumulative CropWatch cost (one-time hardware + monthly subscription)
 	// versus the cumulative labor cost of manual logging.
-	/** Estimated one-time hardware cost across all locations (sensors only -
-	    the US offer has no per-location setup fee). */
-	const roiInitial = $derived((cfg.deviceUnitPrice ?? 0) * totalUnits);
+	/** Estimated one-time hardware cost across all locations: sensors plus
+	    the selected gateway per location (no separate setup fee in the US). */
+	const roiInitial = $derived((cfg.deviceUnitPrice ?? 0) * totalUnits + gw.price * locations);
 	const manualPerMonth = $derived(manualCostPerYear / 12);
 	/** Months until the hardware investment pays for itself (null = never at these settings). */
 	const breakEvenMonths = $derived(savingsPerMonth > 0 ? roiInitial / savingsPerMonth : null);
@@ -182,6 +270,20 @@
 	);
 	const yTicks = $derived([0, 1, 2, 3, 4].map((i) => (roiMaxY / 4) * i));
 	const monthLabel = (m: number) => (m === 0 ? 'Start' : m % 12 === 0 ? `${m / 12} yr` : `${m} mo`);
+
+	/** Direct labels at the right end of each line: the upper line's label sits
+	    above it, the lower one's below, both clamped inside the plot area. */
+	const roiLabelY = $derived.by(() => {
+		const mEnd = yAt(manualAt(roiMonths));
+		const cEnd = yAt(cwAt(roiMonths));
+		const manualUpper = mEnd <= cEnd;
+		const above = (y: number) => Math.max(y - 10, PAD.top + 12);
+		const below = (y: number) => Math.min(y + 20, PAD.top + plotH - 6);
+		return {
+			manual: manualUpper ? above(mEnd) : below(mEnd),
+			cw: manualUpper ? below(cEnd) : above(cEnd)
+		};
+	});
 
 	// Hover/focus: snap to the nearest month and show both series.
 	let hoverMonth = $state<number | null>(null);
@@ -327,6 +429,12 @@
 							<th>Printed</th>
 							<td>{printDate}</td>
 						</tr>
+						<tr>
+							<th>Gateway</th>
+							<td>{gw.label}</td>
+							<th>Gateway cost</th>
+							<td>{usd.format(gw.price)} × {num.format(locations)}</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -385,6 +493,41 @@
 							</p>
 						</div>
 					</div>
+					<div id="gateway-options" class="calc-gw">
+						<div class="calc-field__head">
+							<span class="calc-gw__label" id="gateway-options-label">Gateway</span>
+							<b>{usd.format(gw.price)}</b>
+						</div>
+						<div class="calc-gw__opts" role="radiogroup" aria-labelledby="gateway-options-label">
+							{#each GATEWAY_IDS as id (id)}
+								{@const g = GATEWAYS[id]}
+								<label class="calc-gw__opt" class:is-active={gatewayId === id}>
+									<input type="radio" name="gateway" value={id} bind:group={gatewayId} />
+									<span class="calc-gw__tx">
+										<b>
+											{#if g.flag}
+												<span
+													class="gw-flag"
+													role="img"
+													aria-label="Made in {g.madeIn}"
+													data-madein="Made in {g.madeIn}"
+												>
+													<span class="gw-flag__emoji" aria-hidden="true">{g.flag}</span>
+												</span>
+											{/if}
+											{g.label}
+										</b>
+										<small>{g.description}</small>
+									</span>
+									<span class="calc-gw__price">{usd.format(g.price)}</span>
+								</label>
+							{/each}
+						</div>
+						<p class="calc-field__hint">
+							Each location needs one gateway - it receives the sensor radio signals and uploads
+							them to the cloud. We <b>do</b> support your gateways from any vendor if you already have one. If so, mention this when you contact us.
+						</p>
+					</div>
 				</div>
 
 				<div class="calc-field">
@@ -429,10 +572,13 @@
 					<div class="calc-row">
 						<span
 							>Hardware <small
-								>({num.format(totalUnits)} sensors × {usd.format(cfg.deviceUnitPrice)})</small
+								>({num.format(totalUnits)} sensors × {usd.format(cfg.deviceUnitPrice)} + {num.format(
+									locations
+								)}
+								{locations === 1 ? 'gateway' : 'gateways'} × {usd.format(gw.price)})</small
 							></span
 						>
-						<b>{usd.format(roiInitial)} <small>one-time</small></b>
+						<b>{usd.format(roiInitial)} <small><u>one-time</u></small></b>
 					</div>
 				{/if}
 				<div class="calc-total" class:is-negative={savingsPerYear < 0 || slowRoi}>
@@ -555,6 +701,18 @@
 									y2={yAt(cwAt(roiMonths))}
 									class="roi-line roi-line--cw"
 								/>
+								<text
+									x={xAt(roiMonths) - 4}
+									y={roiLabelY.manual}
+									text-anchor="end"
+									class="roi-line-label roi-line-label--manual">Manual logging Cost</text
+								>
+								<text
+									x={xAt(roiMonths) - 4}
+									y={roiLabelY.cw}
+									text-anchor="end"
+									class="roi-line-label roi-line-label--cw">CropWatch Cost</text
+								>
 								{#if breakEvenMonths !== null && breakEvenMonths <= roiMonths}
 									<circle
 										cx={xAt(breakEvenMonths)}
@@ -564,7 +722,7 @@
 									/>
 									<text
 										x={xAt(breakEvenMonths) + (breakEvenMonths > roiMonths * 0.6 ? -10 : 10)}
-										y={Math.max(yAt(cwAt(breakEvenMonths)) - 12, PAD.top + 12)}
+										y={Math.max(yAt(cwAt(breakEvenMonths)) - 22, PAD.top + 14)}
 										text-anchor={breakEvenMonths > roiMonths * 0.6 ? 'end' : 'start'}
 										class="roi-be-label">Pays for itself in ~{Math.ceil(breakEvenMonths)} mo</text
 									>
@@ -632,8 +790,9 @@
 							At these settings manual logging stays cheaper, so there is no break-even point on
 							cost alone.
 						{/if}
-						Hardware estimated at {usd.format(cfg.deviceUnitPrice ?? 0)}/sensor - your exact quote
-						may differ.
+						Hardware estimated at {usd.format(cfg.deviceUnitPrice ?? 0)}/sensor plus {usd.format(
+							gw.price
+						)}/location for the {gw.label} - your exact quote may differ.
 					</p>
 					<details class="roi__table" bind:open={roiTableOpen}>
 						<summary>See the numbers as a table</summary>
@@ -646,8 +805,8 @@
 									{#each xTicks as m (m)}
 										<tr>
 											<th>{monthLabel(m)}</th>
-											<td>{usd.format(manualAt(m))}</td>
-											<td>{usd.format(cwAt(m))}</td>
+											<td class={manualAt(m) - cwAt(m) < 0 ? 'text-green-500' : 'text-red-700'}>{usd.format(manualAt(m))}</td>
+											<td class={manualAt(m) - cwAt(m) > 0 ? 'text-green-500' : 'text-red-700'}>{usd.format(cwAt(m))}</td>
 											<td>{usd.format(manualAt(m) - cwAt(m))}</td>
 										</tr>
 									{/each}
@@ -795,6 +954,144 @@
 		padding-top: 20px;
 		border-top: 1px dashed color-mix(in srgb, var(--web-primary) 35%, transparent);
 	}
+	/* ── Gateway radio cards ── */
+	.calc-gw {
+		margin-top: 20px;
+		padding-top: 20px;
+		border-top: 1px dashed color-mix(in srgb, var(--web-primary) 35%, transparent);
+	}
+	.calc-gw__label {
+		font-size: 15px;
+		font-weight: 700;
+		color: var(--cw-ink);
+	}
+	.calc-gw > .calc-field__head b {
+		font-size: 22px;
+		font-weight: 800;
+		color: var(--web-primary);
+		font-family: var(--cw-font-mono);
+		white-space: nowrap;
+	}
+	.calc-gw__opts {
+		display: grid;
+		gap: 10px;
+	}
+	.calc-gw__opt {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: var(--cw-radius-lg);
+		padding: 12px 16px;
+		cursor: pointer;
+		transition:
+			border-color 0.18s ease,
+			box-shadow 0.18s ease;
+	}
+	.calc-gw__opt:hover {
+		border-color: var(--web-border-strong);
+	}
+	.calc-gw__opt.is-active {
+		border-color: var(--web-primary);
+		box-shadow: 0 0 0 1px var(--web-primary) inset;
+	}
+	.calc-gw__opt input[type='radio'] {
+		flex: none;
+		width: 18px;
+		height: 18px;
+		margin: 0;
+		accent-color: var(--web-primary);
+		cursor: pointer;
+	}
+	.calc-gw__tx b {
+		display: block;
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--cw-ink);
+	}
+	.calc-gw__tx small {
+		display: block;
+		margin-top: 2px;
+		font-size: 12px;
+		line-height: 1.55;
+		color: var(--web-muted);
+	}
+	/* Country-of-manufacture flag: grows slightly on hover and shows a
+	   "Made in ..." tooltip. The emoji lives in a nested span so scaling it
+	   doesn't also scale the tooltip (pseudo-elements inherit transforms). */
+	.gw-flag {
+		position: relative;
+		display: inline-block;
+		margin-right: 2px;
+		cursor: help;
+	}
+	.gw-flag__emoji {
+		display: inline-block;
+		font-size: 16px;
+		transition: transform 0.15s ease;
+	}
+	.gw-flag:hover .gw-flag__emoji {
+		transform: scale(1.35);
+	}
+	.gw-flag::after {
+		content: attr(data-madein);
+		position: absolute;
+		left: 50%;
+		bottom: calc(100% + 8px);
+		transform: translateX(-50%) translateY(3px);
+		background: var(--cw-ink);
+		color: #fff;
+		font-size: 11.5px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 6px 9px;
+		border-radius: 7px;
+		white-space: nowrap;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			opacity 0.15s ease,
+			transform 0.15s ease,
+			visibility 0.15s;
+		z-index: 3;
+	}
+	/* Little arrow under the tooltip bubble. */
+	.gw-flag::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: calc(100% + 3px);
+		transform: translateX(-50%) translateY(3px);
+		border: 5px solid transparent;
+		border-top-color: var(--cw-ink);
+		border-bottom: none;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			opacity 0.15s ease,
+			transform 0.15s ease,
+			visibility 0.15s;
+		z-index: 3;
+	}
+	.gw-flag:hover::after,
+	.gw-flag:hover::before {
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(-50%) translateY(0);
+	}
+	.calc-gw__price {
+		margin-left: auto;
+		flex: none;
+		font-family: var(--cw-font-mono);
+		font-size: 15px;
+		font-weight: 800;
+		color: var(--web-primary);
+		white-space: nowrap;
+	}
+
 	.calc-field {
 		background: var(--web-surface);
 		border: 1px solid var(--web-border);
@@ -1079,16 +1376,15 @@
 	}
 	.roi-key {
 		display: inline-block;
-		width: 16px;
-		height: 0;
-		border-top: 2px solid;
-		border-radius: 2px;
+		width: 12px;
+		height: 12px;
+		border-radius: 4px;
 	}
 	.roi-key--cw {
-		border-color: var(--cw-emerald-500);
+		background: var(--cw-sapphire-300);
 	}
 	.roi-key--manual {
-		border-color: var(--cw-sapphire-500);
+		background: #000;
 	}
 	.roi__chart {
 		position: relative;
@@ -1106,38 +1402,58 @@
 	}
 	.roi-line {
 		fill: none;
-		stroke-width: 2;
+		stroke-width: 3.5;
 		stroke-linecap: round;
 	}
 	.roi-line--cw {
-		stroke: var(--cw-emerald-500);
+		stroke: var(--cw-sapphire-300);
 	}
 	.roi-line--manual {
-		stroke: var(--cw-sapphire-500);
+		stroke: #000;
+	}
+	/* Direct series labels at the right end of each line. The white stroke
+	   (painted under the fill) keeps them readable over gridlines. */
+	.roi-line-label {
+		font-size: 12px;
+		font-weight: 700;
+		paint-order: stroke;
+		stroke: var(--web-surface);
+		stroke-width: 3.5;
+	}
+	.roi-line-label--cw {
+		fill: var(--cw-sapphire-500);
+	}
+	.roi-line-label--manual {
+		fill: #000;
 	}
 	.roi-cross {
 		stroke: var(--cw-gray-300);
 		stroke-width: 1;
 	}
 	.roi-be {
-		fill: var(--cw-emerald-500);
+		fill: var(--cw-sapphire-500);
 		stroke: var(--web-surface);
 		stroke-width: 2;
 	}
 	.roi-be-label {
-		font-size: 12px;
-		font-weight: 700;
-		fill: var(--cw-ink);
+		font-size: 14.5px;
+		font-weight: 800;
+		/* Green, but dark enough to read on white; the white under-stroke
+		   keeps it legible where it crosses gridlines or the chart lines. */
+		fill: var(--cw-emerald-700, #0a7a4d);
+		paint-order: stroke;
+		stroke: var(--web-surface);
+		stroke-width: 3.5;
 	}
 	.roi-dot {
 		stroke: var(--web-surface);
 		stroke-width: 2;
 	}
 	.roi-dot--cw {
-		fill: var(--cw-emerald-500);
+		fill: var(--cw-sapphire-300);
 	}
 	.roi-dot--manual {
-		fill: var(--cw-sapphire-500);
+		fill: #000;
 	}
 	.roi-tip {
 		position: absolute;
