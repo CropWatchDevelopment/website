@@ -55,7 +55,12 @@
 	<div class="hdr__bar">
 		<div class="wrap hdr__main">
 			<a class="brand" href="/home">
-				<img src={LOGO} alt="CropWatch" class="brand__mark" width="46" height="46" />
+				<!-- <picture> + id are load-bearing: christmas-header.js targets
+			     #header-logo's enclosing <picture> for the seasonal logo swap. -->
+			<picture>
+				<source srcset={LOGO} type="image/svg+xml" />
+				<img id="header-logo" src={LOGO} alt="CropWatch" class="brand__mark" width="46" height="46" />
+			</picture>
 				<span class="brand__txt">
 					<span class="brand__name">CropWatch<sup><small>®</small></sup></span>
 					<span class="brand__tag">Quality monitoring devices</span>

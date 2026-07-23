@@ -2,6 +2,7 @@
 	import { onMount, tick } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
+	import { assets } from '$app/paths';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Analytics from '$lib/components/Analytics.svelte';
@@ -14,7 +15,7 @@
 	import '@fontsource-variable/jetbrains-mono';
 	import '../app.css';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	// hreflang alternates linking this page to its cropwatch.co.jp (ja)
 	// counterpart. This is the .io (en) branch; the Japan-website branch calls
@@ -70,6 +71,9 @@
 	{#each alternates ?? [] as alt (alt.hreflang)}
 		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 	{/each}
+	{#if data.christmas}
+		<script defer src="{assets}/christmas-header.js"></script>
+	{/if}
 </svelte:head>
 
 <!-- Site-wide publisher identity: exactly one Organization + WebSite per page. -->
