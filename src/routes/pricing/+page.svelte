@@ -110,8 +110,7 @@
 		alreadyHave: {
 			label: 'Use Your Own Gateway',
 			price: 0,
-			description:
-				'Use your existing gateway - no additional cost.'
+			description: 'Use your existing gateway - no additional cost.'
 		}
 	};
 	/* ══════════════════════════════════════════════════════════════════ */
@@ -246,6 +245,9 @@
 	);
 	const cwAt = (m: number) => roiInitial + cropwatchPerMonth * m;
 	const manualAt = (m: number) => manualPerMonth * m;
+	/** Net savings at the end of the charted period - the table's last Difference row,
+	    which already includes the one-time hardware cost at the start. */
+	const roiTotalSavings = $derived(manualAt(roiMonths) - cwAt(roiMonths));
 	/** Round the axis ceiling up to a tidy 1/2/2.5/5 x 10^k value. */
 	function niceCeil(v: number) {
 		if (v <= 0) return 1;
@@ -525,7 +527,8 @@
 						</div>
 						<p class="calc-field__hint">
 							Each location needs one gateway - it receives the sensor radio signals and uploads
-							them to the cloud. We <b>do</b> support your gateways from any vendor if you already have one. If so, mention this when you contact us.
+							them to the cloud. We <b>do</b> support your gateways from any vendor if you already have
+							one. If so, mention this when you contact us.
 						</p>
 					</div>
 				</div>
@@ -597,8 +600,8 @@
 						{:else if slowRoi && breakEvenMonths !== null}
 							The savings are real, but at these settings the hardware takes about {(
 								breakEvenMonths / 12
-							).toFixed(1)} years to pay for itself. Spoilage prevented and audit protection usually
-							shorten that - worth checking on a demo before ruling it out.
+							).toFixed(1)} years to pay for itself. Spoilage prevented and audit protection usually shorten
+							that - worth checking on a demo before ruling it out.
 						{:else}
 							{usd.format(savingsPerMonth)} back every month - and {num.format(checksPerYear)} checks
 							a year logged without anyone lifting a pen.
@@ -635,9 +638,8 @@
 						<span class="material-symbols-rounded">show_chart</span> When does it pay for itself?
 					</h2>
 					<p class="roi__sub">
-						Cumulative CropWatch cost - estimated one-time hardware of {usd.format(
-							roiInitial
-						)} plus the monthly subscription - versus the cumulative labor cost of manual logging.
+						Cumulative CropWatch cost - estimated one-time hardware of {usd.format(roiInitial)} plus the
+						monthly subscription - versus the cumulative labor cost of manual logging.
 					</p>
 					<div class="roi__legend">
 						<span><i class="roi-key roi-key--manual"></i>Manual logging labor (cumulative)</span>
@@ -705,13 +707,13 @@
 									x={xAt(roiMonths) - 4}
 									y={roiLabelY.manual}
 									text-anchor="end"
-									class="roi-line-label roi-line-label--manual">Manual logging Cost</text
+									class="roi-line-label roi-line-label--manual">Manual logging Expense</text
 								>
 								<text
 									x={xAt(roiMonths) - 4}
 									y={roiLabelY.cw}
 									text-anchor="end"
-									class="roi-line-label roi-line-label--cw">CropWatch Cost</text
+									class="roi-line-label roi-line-label--cw">CropWatch Expense</text
 								>
 								{#if breakEvenMonths !== null && breakEvenMonths <= roiMonths}
 									<circle
@@ -799,19 +801,43 @@
 						<div class="roi__tablewrap">
 							<table>
 								<thead>
-									<tr><th>Time</th><th>Manual logging</th><th>CropWatch</th><th>Difference</th></tr>
+									<tr>
+										<th>Time</th>
+										<th>Manual logging</th>
+										<th>CropWatch</th>
+										<th>Difference</th>
+									</tr>
 								</thead>
 								<tbody>
 									{#each xTicks as m (m)}
-										<tr>
+										<tr
+											class={manualAt(m) - cwAt(m) > 0
+												? 'roi-table__positive'
+												: 'roi-table__negative'}
+										>
 											<th>{monthLabel(m)}</th>
-											<td class={manualAt(m) - cwAt(m) < 0 ? 'text-green-500' : 'text-red-700'}>{usd.format(manualAt(m))}</td>
-											<td class={manualAt(m) - cwAt(m) > 0 ? 'text-green-500' : 'text-red-700'}>{usd.format(cwAt(m))}</td>
+											<td class={manualAt(m) - cwAt(m) < 0 ? 'text-green-500' : 'text-red-700'}
+												>{usd.format(manualAt(m))}</td
+											>
+											<td class={manualAt(m) - cwAt(m) > 0 ? 'text-green-500' : 'text-red-700'}
+												>{usd.format(cwAt(m))}</td
+											>
 											<td>{usd.format(manualAt(m) - cwAt(m))}</td>
 										</tr>
 									{/each}
 								</tbody>
 							</table>
+							<div class="calc-total roi__total" class:is-negative={roiTotalSavings < 0}>
+								<span
+									>Total savings after {roiMonths % 12 === 0
+										? `${roiMonths / 12} years`
+										: `${roiMonths} months`}</span
+								>
+								<strong>{usd.format(roiTotalSavings)}</strong>
+								<span class="calc-total__sub">
+									<sup>*</sup>Includes the {usd.format(roiInitial)} one-time hardware cost at the start.
+								</span>
+							</div>
 						</div>
 					</details>
 				</div>
@@ -1543,6 +1569,17 @@
 		text-align: left;
 		color: var(--web-muted);
 		font-weight: 700;
+	}
+
+	.roi__total {
+		margin-top: 14px;
+	}
+	.roi-table__positive {
+		border-top: 3px solid var(--cw-emerald-600, #0b7f50);
+	}
+
+	.roi-table__positive ~ .roi-table__positive {
+		border-top: none;
 	}
 
 	/* ── Print (preliminary estimate for customer review) ── */

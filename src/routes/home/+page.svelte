@@ -330,6 +330,9 @@
 					<li>
 						<span class="material-symbols-rounded">check</span> Swap your own sensors - no service contract
 					</li>
+					<li>
+						<span class="material-symbols-rounded">check</span> Your data is YOURS, we allow you to integrate it with any other system that supports API access.
+					</li>
 				</ul>
 			</div>
 		</div>

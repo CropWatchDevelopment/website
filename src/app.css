@@ -7,6 +7,13 @@
    Imported once from src/routes/+layout.svelte.
    ============================================================ */
 
+/* Tailwind v4: theme tokens + utility classes only. Preflight is intentionally
+   omitted - tokens/base.css already provides the reset, and preflight would
+   restyle the whole design system. Utilities live in a cascade layer, so any
+   unlayered design-system rule on the same element still wins ties. */
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
 @import './lib/styles/design-system.css'; /* tokens, fonts, themes, base reset */
 @import './lib/styles/site.css'; /* sapphire/emerald public-site base */
 @import './lib/styles/cw.css'; /* .io page-specific extensions */
