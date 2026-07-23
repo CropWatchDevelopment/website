@@ -36,7 +36,7 @@
 						alt="2つの温湿度センサーを回帰分析で照合し、通常データまたはエラーとして処理する流れ"
 					/>
 				</picture>
-				<figcaption>ダブルセンサーによる健全性チェックの流れ</figcaption>
+				<figcaption>ダブルセンサーによる健全性チェックの流れ - 特許出願中</figcaption>
 			</figure>
 		</div>
 	</div>
