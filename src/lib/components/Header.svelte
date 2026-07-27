@@ -33,7 +33,7 @@ const NAV: NavLink[] = [
 	{ key: 'testimonials', href: '/testimonials', label: 'お客様の声' },
 	{ key: 'news', href: '/news', label: 'ニュース' },
 	// { key: 'help', href: '/help', label: 'ヘルプ' },
-	{ key: 'contact', href: '/contact', label: 'お問い合わせ' },
+	{ key: 'demo', href: '/demo/login', label: 'UIデモ' },
 ];
 
 const PRODUCT_PATHS = new Set(PRODUCTS.map((p) => p.href));
@@ -47,7 +47,7 @@ const activeKey = $derived.by(() => {
 	if (path === '/testimonials') return 'testimonials';
 	if (path === '/news' || path.startsWith('/news/')) return 'news';
 	if (path === '/help') return 'help';
-	if (path === '/contact') return 'contact';
+	if (path === '/demo/login') return 'demo';
 	return '';
 });
 
