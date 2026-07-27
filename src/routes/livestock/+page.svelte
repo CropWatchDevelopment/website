@@ -546,11 +546,11 @@
 		</p>
 		<h2>鶏舎の環境、見える化しませんか。</h2>
 		<p>
-			見守りたい鶏舎・畜舎の様子をお聞かせください。最適なセンサーと通知の設定を、無料でご提案します。
+			見守りたい鶏舎・畜舎の様子をお聞かせください。最適なセンサーと通知の設定をご提案します。
 		</p>
 		<div class="closing__ctas">
-			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
-			<a href="/replacement-sensors" class="btn btn--outline-light btn--lg">センサーを見る</a>
+			<a href="/contact" class="btn btn--accent btn--lg">問い合わせ</a>
+			<a href="/technology" class="btn btn--outline-light btn--lg">特徴を見る</a>
 		</div>
 	</div>
 </section>
