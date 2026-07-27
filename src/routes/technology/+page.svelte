@@ -508,6 +508,79 @@
 	</div>
 </section>
 
+<!-- 管理画面（UIデモ） -->
+<section class="section section--soft scroll-pad" id="dashboard">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow"><span class="material-symbols-rounded">dashboard</span> 見る、気づく</p>
+			<h2>測ったデータは、この画面に届きます。</h2>
+			<p>
+				センサーが送ったデータは、パソコンでもスマートフォンでも同じ管理画面で確認できます。専用アプリのインストールは不要です。ロケーションごとにセンサーがまとまって並び、いまの値と最終受信からの経過時間がひと目で分かります。
+			</p>
+		</div>
+
+		<figure class="dashfig" data-reveal>
+			<a href="/demo/login" aria-label="UIデモを開く">
+				<img
+					src="/assets/imagery/dashboard-demo.webp"
+					alt="CropWatch の管理画面。ロケーションごとにセンサーカードが並び、温度・湿度・CO₂・土壌の値と最終受信時刻が表示されている"
+					width="1568"
+					height="540"
+					loading="lazy"
+					decoding="async"
+				/>
+			</a>
+			<figcaption>
+				実際の管理画面です（表示しているのはサンプルデータで、実在の現場の測定値ではありません）。
+			</figcaption>
+		</figure>
+
+		<div class="boxgrid boxgrid--3">
+			<div class="box" data-reveal="0">
+				<span class="box__ic"><span class="material-symbols-rounded">location_on</span></span>
+				<h3>現場ごとに、まとめて見る。</h3>
+				<p>
+					ハウスや冷蔵庫、鶏舎といったロケーション単位でセンサーがまとまります。カードの色と印で、そのロケーション全体が正常かどうかがひと目で分かります。台数が増えても、見る場所は変わりません。
+				</p>
+			</div>
+			<div class="box" data-reveal="1">
+				<span class="box__ic box__ic--accent"
+					><span class="material-symbols-rounded">expand_circle_down</span></span
+				>
+				<h3>気になったものだけ、開く。</h3>
+				<p>
+					ふだんは各センサーの主要な値だけを表示し、カードを開くと温度・湿度・CO₂・気圧・バッテリー残量など、その機器が送ってきたすべての測定値と、最後にデータが届いてからの経過時間を確認できます。
+				</p>
+			</div>
+			<div class="box" data-reveal="2">
+				<span class="box__ic box__ic--gold"
+					><span class="material-symbols-rounded">notifications_active</span></span
+				>
+				<h3>届かなくなったら、分かる。</h3>
+				<p>
+					各機器には想定の送信間隔が設定されており、その時間を過ぎてもデータが届かない場合は、画面上で状態が切り替わります。値が異常なときだけでなく、「そもそも届いていない」ことにも気づける仕組みです。
+				</p>
+			</div>
+		</div>
+
+		<div class="callout callout--plain" data-reveal>
+			<span class="callout__ic"><span class="material-symbols-rounded">touch_app</span></span>
+			<div>
+				<h3>ご契約前に、実際の画面を触ってみてください。</h3>
+				<p>
+					サンプルデータを入れたデモをご用意しています。温湿度センサー、CO₂センサー、土壌センサーの3台が並んだ状態で、ログインから実際の操作までお試しいただけます。ユーザー名・パスワードはどちらも
+					<code>demo</code> です（入力済みですので、そのままサインインいただけます）。
+				</p>
+				<p class="dashfig__cta">
+					<a href="/demo/login" class="btn btn--primary btn--lg">
+						<span class="material-symbols-rounded">dashboard</span> UIデモを開く
+					</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
 <RelatedLinks links={related} />
 
 <!-- クロージング -->
@@ -519,7 +592,7 @@
 		<h2>「止まらない監視」を、現場で。</h2>
 		<p>どんな場所を見守りたいか、お聞かせください。最適なセンサーと通知の設定をご提案します。</p>
 		<div class="closing__ctas">
-			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
+			<a href="/contact" class="btn btn--accent btn--lg">お問い合わせ</a>
 			<a href="/" class="btn btn--outline-light btn--lg">ホームへ戻る</a>
 		</div>
 	</div>
@@ -557,6 +630,63 @@
 
 	.parts-origin {
 		margin-top: 36px;
+	}
+
+	/* ── 管理画面（UIデモ） ── */
+	/* The screenshot is a dark UI on a light page, so it gets a soft frame and
+	   lift rather than sitting flush against the section background. */
+	.dashfig {
+		margin: 0 0 36px;
+	}
+	.dashfig a {
+		display: block;
+		border-radius: 18px;
+		overflow: hidden;
+		border: 1px solid var(--web-border);
+		box-shadow: 0 18px 48px rgba(11, 23, 48, 0.18);
+		transition:
+			transform 180ms var(--jp-ease),
+			box-shadow 180ms var(--jp-ease);
+	}
+	.dashfig a:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 24px 60px rgba(11, 23, 48, 0.24);
+	}
+	.dashfig img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.dashfig figcaption {
+		margin-top: 12px;
+		text-align: center;
+		font-size: 12.5px;
+		color: var(--web-muted);
+	}
+	/* .callout p zeroes its margin (single-paragraph callouts elsewhere), so the
+	   CTA paragraph re-adds its own separation. */
+	.dashfig__cta {
+		margin-top: 16px;
+	}
+	.dashfig__cta .btn {
+		text-decoration: none;
+	}
+
+	#dashboard code {
+		font-family: var(--cw-font-mono);
+		font-size: 0.92em;
+		background: var(--web-primary-soft);
+		color: var(--web-primary);
+		border-radius: 6px;
+		padding: 0.1em 0.42em;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.dashfig a,
+		.dashfig a:hover {
+			transition: none;
+			transform: none;
+		}
 	}
 
 	/* ── FRAM figures ── */

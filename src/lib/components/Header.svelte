@@ -19,6 +19,9 @@ const PRODUCTS: Product[] = [
 	{ href: '/livestock', icon: 'pets', t: 'スマート畜産・養鶏', d: '鶏舎・畜舎・酪農' },
 	{ href: '/agriculture', icon: 'eco', t: 'スマート農業・ハウス', d: 'ハウス・露地・土壌' },
 	{ href: '/replacement-sensors', icon: 'cable', t: '交換用センサー', d: '自分で交換・校正証明書つき' },
+	// Entry point is the demo's login screen (ID/PW are both "demo"); /demo
+	// itself bounces there for anyone who hasn't been through it.
+	{ href: '/demo/login', icon: 'dashboard', t: 'UIデモ', d: 'サンプルデータで管理画面を操作' }
 	// { href: '/replacement-case', icon: 'deployed_code', t: '交換用ケース', d: '頑丈な防塵防水ケース（3D）' }
 ];
 
@@ -135,7 +138,7 @@ afterNavigate(() => closeMenu());
 				<a href="https://app.cropwatch.io" class="util">
 					<span class="material-symbols-rounded">exit_to_app</span> アプリ
 				</a>
-				<a href="/contact" class="btn btn--accent">相談予約</a>
+				<a href="/contact" class="btn btn--accent">お問い合わせ</a>
 				<button class="burger" type="button" aria-label="メニューを開く" onclick={openMenu}>
 					<span class="material-symbols-rounded">menu</span>
 				</button>

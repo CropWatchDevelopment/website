@@ -22,10 +22,12 @@ let { children, data } = $props();
 // cross-site equivalent return null and emit nothing.
 const alternates = $derived(alternatesFor('ja', page.url.pathname));
 
-// The /403 region-gate is a standalone full-screen English page; it renders
-// without the Japanese header/footer chrome. (SvelteKit can't escape the root
-// layout via naming, so we opt this one route out here.)
-const bare = $derived(page.url.pathname === '/403');
+// Two subtrees render without the Japanese header/footer chrome: the /403
+// region-gate (a standalone full-screen English page) and /demo (a viewport-
+// filling clone of the app.cropwatch.io dashboard, which brings its own header
+// and sidebar). SvelteKit can't escape the root layout via naming, so they opt
+// out here.
+const bare = $derived(page.url.pathname === '/403' || page.url.pathname.startsWith('/demo'));
 
 // Site-wide publisher identity + WebSite entity, emitted on every page.
 const siteLd = [organizationSchema(), websiteSchema()];
