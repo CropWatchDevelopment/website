@@ -31,7 +31,7 @@ export const ORG = {
 	// a wrong sameAs hurts. Paste the official Japan profile URLs below:
 	sameAs: [
 		'https://cropwatch.io',
-		'https://line.me/R/ti/p/@122akgbd', // LINE公式アカウント（lin.ee/@122akgbd は404だった）
+		'https://line.me/R/ti/p/%40cropwatch', // LINE公式アカウント（lin.ee/@122akgbd は404だった）
 		'https://www.youtube.com/@cropwatch4407', // YouTube
 		'https://www.linkedin.com/company/71224776' // LinkedIn
 		// TODO: add when ready —
