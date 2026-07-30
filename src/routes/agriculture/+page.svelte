@@ -113,7 +113,7 @@
 				</li>
 			</ul>
 			<div class="ag-panel__foot">
-				<span class="material-symbols-rounded">schedule</span> 15分ごとに自動更新・どこからでも確認
+				<span class="material-symbols-rounded">schedule</span> 10分ごとに自動更新・どこからでも確認
 			</div>
 		</aside>
 	</div>

@@ -1,120 +1,120 @@
 <script lang="ts">
-import Seo from '$lib/components/Seo.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 
-const title =
-	'温度監視・環境モニタリングのCropWatch 日本｜コールドチェーン・スマート農業・スマート畜産';
-const description =
-	'コールドチェーンの温度監視、スマート農業、スマート畜産・養鶏IoT。冷蔵庫・冷凍庫から鶏舎・ハウスまで、同じセンサーと同じ画面で見える化する、置くだけのワイヤレス温度・環境監視システム。';
+	const title =
+		'温度監視・環境モニタリングのCropWatch 日本｜コールドチェーン・スマート農業・スマート畜産';
+	const description =
+		'コールドチェーンの温度監視、スマート農業、スマート畜産・養鶏IoT。冷蔵庫・冷凍庫から鶏舎・ハウスまで、同じセンサーと同じ画面で見える化する、置くだけのワイヤレス温度・環境監視システム。';
 
-type Panel = {
-	href: string;
-	img: string;
-	icon: string;
-	eyebrow: string;
-	title: string;
-	desc: string;
-};
+	type Panel = {
+		href: string;
+		img: string;
+		icon: string;
+		eyebrow: string;
+		title: string;
+		desc: string;
+	};
 
-// Left-to-right: 冷蔵冷凍 → 畜産 → 農業。
-const PANELS: Panel[] = [
-	{
-		href: '/cold-chain',
-		img: '/assets/photos/coldchain-freezer.webp',
-		icon: 'ac_unit',
-		eyebrow: '冷蔵・冷凍',
-		title: 'コールドチェーン',
-		desc: '飲食・ホテル・工場・倉庫の冷蔵庫・冷凍庫の温度を24時間自動で見守る、HACCP対応のコールドチェーン温度監視。'
-	},
-	{
-		href: '/livestock',
-		img: '/assets/photos/sector-livestock.webp',
-		icon: 'pets',
-		eyebrow: '畜産・養鶏',
-		title: 'スマート畜産・養鶏',
-		desc: '鶏舎・畜舎の温度・湿度・CO₂を24時間監視。 異常を早く知らせ、家畜の健康と安定した飼育を支えます。'
-	},
-	{
-		href: '/agriculture',
-		img: '/assets/photos/agriculture-peppers.webp',
-		icon: 'eco',
-		eyebrow: '農業・ハウス',
-		title: 'スマート農業・ハウス',
-		desc: '空気中から土壌まで。ハウス・露地の環境を見守り、霜・高温・乾燥の兆候を早めに知らせます。'
-	}
-];
-
-// ── Accordion widths ────────────────────────────────────────────
-// Each cell's width is proportional to its flex-grow "weight" (all
-// share flex-basis:0). On hover the panel sweeps OPEN TO THE LEFT:
-//  • its RIGHT edge stays put (never grows rightward),
-//  • EVERYTHING to its left — the intro AND the sections it passes
-//    over — collapses to thin slanted slivers, so the open panel
-//    expands far enough to sweep over the intro cell too,
-//  • sections to its right keep their place.
-// A bigger intro + more compressed panels makes the three sections open
-// far more uniformly: the intro's collapse adds the SAME boost to every
-// opened panel, while the small panel base keeps the per-position step
-// (BASE - SLIVER) tiny — so the rightmost no longer dwarfs the leftmost.
-const SLIVER = 6; // collapsed panel sliver weight
-const BASE = 14; // resting panel weight (compressed)
-const INTRO = 42; // resting intro weight (enlarged)
-// The intro is the first cell, so its left edge sits off-screen by
-// --slant; it needs a larger collapsed weight than the panels to keep
-// a visible sliver on screen.
-const INTRO_SLIVER = 10;
-
-type Layout = { intro: number; panels: number[]; sliver: boolean[]; tucked: boolean };
-
-function computeLayout(h: number | null): Layout {
-	const panels = [BASE, BASE, BASE];
-	const sliver = [false, false, false];
-	let intro = INTRO;
-	let tucked = false;
-	if (h !== null) {
-		tucked = true;
-		// the intro always collapses so the open panel can sweep over it
-		let freed = INTRO - INTRO_SLIVER;
-		intro = INTRO_SLIVER;
-		for (let i = 0; i < h; i++) {
-			panels[i] = SLIVER;
-			sliver[i] = true;
-			freed += BASE - SLIVER;
+	// Left-to-right: 冷蔵冷凍 → 畜産 → 農業。
+	const PANELS: Panel[] = [
+		{
+			href: '/cold-chain',
+			img: '/assets/photos/coldchain-freezer.webp',
+			icon: 'ac_unit',
+			eyebrow: '冷蔵・冷凍',
+			title: 'コールドチェーン',
+			desc: '飲食・ホテル・工場・倉庫の冷蔵庫・冷凍庫の温度を24時間自動で見守る、HACCP対応のコールドチェーン温度監視。'
+		},
+		{
+			href: '/livestock',
+			img: '/assets/photos/sector-livestock.webp',
+			icon: 'pets',
+			eyebrow: '畜産・養鶏',
+			title: 'スマート畜産・養鶏',
+			desc: '鶏舎・畜舎の温度・湿度・CO₂を24時間監視。アンモニア測定にも対応予定。異常を早く知らせ、家畜の健康と安定した飼育を支えます。'
+		},
+		{
+			href: '/agriculture',
+			img: '/assets/photos/agriculture-peppers.webp',
+			icon: 'eco',
+			eyebrow: '農業・ハウス',
+			title: 'スマート農業・ハウス',
+			desc: '空気中から土壌まで。ハウス・露地の環境を見守り、霜・高温・乾燥の兆候を早めに知らせます。'
 		}
-		// the open panel absorbs everything freed → its right edge holds
-		panels[h] = BASE + freed;
+	];
+
+	// ── Accordion widths ────────────────────────────────────────────
+	// Each cell's width is proportional to its flex-grow "weight" (all
+	// share flex-basis:0). On hover the panel sweeps OPEN TO THE LEFT:
+	//  • its RIGHT edge stays put (never grows rightward),
+	//  • EVERYTHING to its left — the intro AND the sections it passes
+	//    over — collapses to thin slanted slivers, so the open panel
+	//    expands far enough to sweep over the intro cell too,
+	//  • sections to its right keep their place.
+	// A bigger intro + more compressed panels makes the three sections open
+	// far more uniformly: the intro's collapse adds the SAME boost to every
+	// opened panel, while the small panel base keeps the per-position step
+	// (BASE - SLIVER) tiny — so the rightmost no longer dwarfs the leftmost.
+	const SLIVER = 6; // collapsed panel sliver weight
+	const BASE = 14; // resting panel weight (compressed)
+	const INTRO = 42; // resting intro weight (enlarged)
+	// The intro is the first cell, so its left edge sits off-screen by
+	// --slant; it needs a larger collapsed weight than the panels to keep
+	// a visible sliver on screen.
+	const INTRO_SLIVER = 10;
+
+	type Layout = { intro: number; panels: number[]; sliver: boolean[]; tucked: boolean };
+
+	function computeLayout(h: number | null): Layout {
+		const panels = [BASE, BASE, BASE];
+		const sliver = [false, false, false];
+		let intro = INTRO;
+		let tucked = false;
+		if (h !== null) {
+			tucked = true;
+			// the intro always collapses so the open panel can sweep over it
+			let freed = INTRO - INTRO_SLIVER;
+			intro = INTRO_SLIVER;
+			for (let i = 0; i < h; i++) {
+				panels[i] = SLIVER;
+				sliver[i] = true;
+				freed += BASE - SLIVER;
+			}
+			// the open panel absorbs everything freed → its right edge holds
+			panels[h] = BASE + freed;
+		}
+		return { intro, panels, sliver, tucked };
 	}
-	return { intro, panels, sliver, tucked };
-}
 
-let hovered = $state<number | null>(null);
-const layout = $derived(computeLayout(hovered));
+	let hovered = $state<number | null>(null);
+	const layout = $derived(computeLayout(hovered));
 
-function clearHover(event: FocusEvent) {
-	const next = event.relatedTarget as Node | null;
-	if (!next || !event.currentTarget || !(event.currentTarget as HTMLElement).contains(next)) {
-		hovered = null;
+	function clearHover(event: FocusEvent) {
+		const next = event.relatedTarget as Node | null;
+		if (!next || !event.currentTarget || !(event.currentTarget as HTMLElement).contains(next)) {
+			hovered = null;
+		}
 	}
-}
 
-// Touch devices have no hover. When the slanted accordion is showing (i.e. not
-// the ≤820px stacked-card layout), the first tap on a panel opens it and a
-// second tap on the already-open panel navigates. Mouse/pen behaviour is
-// unchanged: hover opens, a click navigates.
-const canHover = () =>
-	typeof window === 'undefined' || window.matchMedia('(hover: hover)').matches;
-const isTouchAccordion = () =>
-	typeof window !== 'undefined' &&
-	window.matchMedia('(hover: none) and (min-width: 821px)').matches;
+	// Touch devices have no hover. When the slanted accordion is showing (i.e. not
+	// the ≤820px stacked-card layout), the first tap on a panel opens it and a
+	// second tap on the already-open panel navigates. Mouse/pen behaviour is
+	// unchanged: hover opens, a click navigates.
+	const canHover = () =>
+		typeof window === 'undefined' || window.matchMedia('(hover: hover)').matches;
+	const isTouchAccordion = () =>
+		typeof window !== 'undefined' &&
+		window.matchMedia('(hover: none) and (min-width: 821px)').matches;
 
-function openPanel(i: number) {
-	if (canHover()) hovered = i; // touch is handled on tap instead
-}
-function tapPanel(i: number, event: MouseEvent) {
-	if (isTouchAccordion() && hovered !== i) {
-		event.preventDefault(); // first tap opens; a second tap navigates
-		hovered = i;
+	function openPanel(i: number) {
+		if (canHover()) hovered = i; // touch is handled on tap instead
 	}
-}
+	function tapPanel(i: number, event: MouseEvent) {
+		if (isTouchAccordion() && hovered !== i) {
+			event.preventDefault(); // first tap opens; a second tap navigates
+			hovered = i;
+		}
+	}
 </script>
 
 <Seo {title} {description} />
@@ -132,18 +132,25 @@ function tapPanel(i: number, event: MouseEvent) {
 			onpointerenter={() => (hovered = null)}
 		>
 			<!-- slanted label shown when the intro is tucked into a sliver -->
-			<span class="intro__spine" aria-hidden="true"><span class="intro__spine-txt">クロップウォッチへようこそ!</span></span>
+			<span class="intro__spine" aria-hidden="true"
+				><span class="intro__spine-txt">クロップウォッチへようこそ!</span></span
+			>
 			<div class="cell__fix intro__in">
-				<p class="intro__eyebrow"><span class="material-symbols-rounded">explore</span> クロップウォッチへようこそ!</p>
-				<h1 class="intro__title">あなたの現場は、どこですか？</h1>
-				<p class="intro__desc">
-					つながらない。止まる。記録が残らない。
+				<p class="intro__eyebrow">
+					<span class="material-symbols-rounded">explore</span> クロップウォッチへようこそ!
 				</p>
+				<h1 class="intro__title">あなたの現場は、どこですか？</h1>
+				<p class="intro__desc">つながらない。止まる。記録が残らない。</p>
 				<p class="intro__desc text-nowrap">
 					CropWatchは、そんな現場の課題を前提に設計された産業用環境データ監視システムです。
 				</p>
 				<p class="intro__desc">
-					<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>通信と堅牢なハードウェア設計により、厳しい環境でも安定したデータ収集を実現。配線工事は不要で、バッテリーのみで最長10年間の稼働に対応します。
+					<a
+						class="extlink"
+						href="https://lora-alliance.org/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
+					>通信と堅牢なハードウェア設計により、厳しい環境でも安定したデータ収集を実現。配線工事は不要で、バッテリーのみで最長10年間の稼働に対応します。
 				</p>
 				<p>&nbsp;</p>
 				<p class="intro__hint">
@@ -177,11 +184,15 @@ function tapPanel(i: number, event: MouseEvent) {
 				<!-- full content shown when resting / open -->
 				<span class="cell__fix panel__content">
 					<span class="panel__inner">
-						<span class="panel__eyebrow"><span class="material-symbols-rounded">{p.icon}</span> {p.eyebrow}</span>
+						<span class="panel__eyebrow"
+							><span class="material-symbols-rounded">{p.icon}</span> {p.eyebrow}</span
+						>
 						<span class="panel__title">{p.title}</span>
 						<span class="panel__reveal">
 							<span class="panel__desc">{p.desc}</span>
-							<span class="panel__cta">くわしく見る <span class="material-symbols-rounded">arrow_forward</span></span>
+							<span class="panel__cta"
+								>くわしく見る <span class="material-symbols-rounded">arrow_forward</span></span
+							>
 						</span>
 					</span>
 				</span>

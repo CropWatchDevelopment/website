@@ -14,24 +14,28 @@
 	const title =
 		'スマート畜産・養鶏IoT｜鶏舎・畜舎の温度・湿度を遠隔監視するワイヤレスセンサー｜CropWatch 日本';
 	const description =
-		'スマート畜産・養鶏IoTのための鶏舎・畜舎の環境モニタリング。温度・湿度を15分ごとに自動送信し、暑熱対策や換気の判断に役立つ環境データを24時間見える化。家禽・畜産の暑熱ストレスや換気不良を早期に発見します。LoRaWAN®で配線工事なし、ISO/IEC 17025校正証明書つき。';
+		'スマート畜産・養鶏IoTのための鶏舎・畜舎の環境モニタリング。温度・湿度を10分ごとに自動送信し、暑熱対策や換気の判断に役立つ環境データを24時間見える化。家禽・畜産の暑熱ストレスや換気不良を早期に発見します。アンモニア（NH₃）測定にも対応予定。LoRaWAN®で配線工事なし、ISO/IEC 17025校正証明書つき。';
 
 	const faq = [
 		{
-			q: '鶏舎の暑熱対策に役立ちますか？',
-			a: 'はい。温度・湿度を15分ごとに自動で記録し、鶏や家畜に負担がかかる環境変化を見える化します。夏場の暑熱対策や、送風・換気を行うタイミングの判断に役立ちます。'
+			q: '畜舎の暑熱対策に役立ちますか？',
+			a: 'はい。温度・湿度を10分ごとに自動で記録し、家畜に負担がかかる環境変化を見える化します。夏場の暑熱対策や、送風・換気を行うタイミングの判断に役立ちます。'
 		},
 		{
 			q: 'CO₂濃度も測定できますか？',
 			a: 'はい。オプションの<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer">センシリオン社</a>&thinsp;<a class="extlink" href="https://sensirion.com/jp/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>センサーにより、400〜5000ppmのCO₂濃度を測定できます。換気不良の早期発見に役立ちます。'
 		},
 		{
-			q: '電波が届きにくい鶏舎・畜舎でも使えますか？',
+			q: 'アンモニア（NH₃）濃度も測定できますか？',
+			a: '現在準備中です。<a class="extlink" href="https://www.sgxsensortech.com/" target="_blank" rel="noopener noreferrer">SGXセンサーテック社</a>のPS1-NH3-50-MODセンサーにより、0〜50ppmのアンモニア濃度測定に対応予定です。敷料の交換時期や換気の判断に役立ちます。'
+		},
+		{
+			q: '電波が届きにくい畜舎でも使えますか？',
 			a: 'はい。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>通信により、Wi-Fiや携帯の電波が届きにくい場所でもデータを送信できます。無線・電池式のため、配線工事や電源工事は不要です。'
 		},
 		{
 			q: '高湿度や粉じんの多い環境でも故障しにくいですか？',
-			a: '基板にコンフォーマルコーティングとポッティング処理を施し、高湿度・粉じん・温度変化による故障リスクを低減しています。鶏舎の過酷な環境での長期運用を想定した設計です。'
+			a: '基板にコンフォーマルコーティングとポッティング処理を施し、高湿度・粉じん・温度変化による故障リスクを低減しています。畜舎の過酷な環境での長期運用を想定した設計です。'
 		},
 		{
 			q: '通信が途切れた場合、記録は失われますか？',
@@ -68,17 +72,19 @@
 	<div class="wrap ls-hero__inner">
 		<div class="ls-hero__copy" data-reveal>
 			<span class="ls-eyebrow"
-				><span class="ls-dot"></span> 鶏舎・畜舎の温度・湿度・CO₂を見守る産業用ワイヤレスデバイス</span
+				><span class="ls-dot"></span> 鶏舎・畜舎の温度・湿度・CO₂・アンモニアを見守る産業用ワイヤレスデバイス</span
 			>
 			<h1>環境の変化を見逃さず、<br />飼育<span class="ls-hl">リスク</span>を低減。</h1>
 			<p class="ls-lead">
-				温度・湿度・CO2を15分ごとに測定・送信し、鶏舎・畜舎の環境を24時間見える化します。Wi-Fiや携帯の電波が届きにくい場所でも、安定した通信を実現。暑熱ストレスや換気不良の兆候を早期に把握し、鶏や家畜の健康維持と安定した環境づくりを支援します。
+				温度・湿度・CO2を10分ごとに測定・送信し、鶏舎・畜舎の環境を24時間見える化します。アンモニア（NH₃）の測定にも対応予定です。Wi-Fiや携帯の電波が届きにくい場所でも、安定した通信を実現。暑熱ストレスや換気不良の兆候を早期に把握し、鶏や家畜の健康維持と安定した環境づくりを支援します。
 			</p>
 			<div class="ls-hero__ctas">
-				<a href="/contact" class="btn btn--accent btn--lg"
-					>お問い合わせ<span class="material-symbols-rounded">arrow_forward</span></a
+				<a href="/cold-chain" class="btn btn--accent btn--lg"
+					>温度・湿度のみのデータ収集も可能<span class="material-symbols-rounded"
+						>arrow_forward</span
+					></a
 				>
-				<span class="ls-note">温度・湿度のみのデータ収集も可能</span>
+				<!-- <span class="ls-note"></span> -->
 			</div>
 		</div>
 
@@ -103,9 +109,14 @@
 					<span class="ls-panel__lab">CO₂</span>
 					<span class="ls-panel__val">400 〜 5000<i>ppm</i></span>
 				</li>
+				<li>
+					<span class="material-symbols-rounded fill" style="color:#8a5a36">aq_indoor</span>
+					<span class="ls-panel__lab">アンモニア<em>準備中</em></span>
+					<span class="ls-panel__val">0 〜 50<i>ppm</i></span>
+				</li>
 			</ul>
 			<div class="ls-panel__foot">
-				<span class="material-symbols-rounded">schedule</span> 15分ごとに自動送信・24時間365日どこからでも
+				<span class="material-symbols-rounded">schedule</span> 10分ごとに自動送信・24時間365日どこからでも
 			</div>
 		</aside>
 	</div>
@@ -114,7 +125,7 @@
 	<div class="wrap ls-hero__statwrap">
 		<div class="ls-stats" data-reveal>
 			<div><b>配線不要</b><span>無線タイプ</span></div>
-			<div><b>電源不要</b><span>バッテリーで最長10年稼働</span></div>
+			<div><b>電源不要</b><span>バッテリーで最長5年稼働</span></div>
 			<div><b>堅牢設計</b><span>メンテナンスフリー</span></div>
 			<div><b>簡単設置</b><span>置くだけ・すぐ稼働</span></div>
 		</div>
@@ -126,7 +137,7 @@
 	<div class="wrap ls-split">
 		<figure class="ls-split__media" data-reveal>
 			<img src="/assets/photos/livestock-barn.webp" alt="換気ファンを備えた大規模な鶏舎の内部" />
-			<figcaption>鶏舎全体の温度・湿度・CO₂を、まとめて見える化</figcaption>
+			<figcaption>鶏舎全体の温度・湿度・CO₂・アンモニアを、まとめて見える化</figcaption>
 		</figure>
 		<div class="ls-split__body" data-reveal>
 			<p class="ls-kicker">
@@ -137,10 +148,8 @@
 				<li>
 					<span class="ls-chip"><span class="material-symbols-rounded">schedule</span></span>
 					<div>
-						<h3>15分ごとに自動記録</h3>
-						<p>
-							携帯やパソコンから現状をすばやく確認。現場にいかなくても、環境の変化が把握できます。
-						</p>
+						<h3>10分ごとに自動記録</h3>
+						<p>携帯やパソコンから現状をすばやく確認。複数の現場の状況をまとめて把握できます。</p>
 					</div>
 				</li>
 				<li>
@@ -173,9 +182,9 @@
 			<p class="ls-kicker">
 				<span class="material-symbols-rounded">verified_user</span> 継続運用を支える仕組み
 			</p>
-			<h2>止めない記録、信頼できる測定、届きにくい鶏舎まで</h2>
+			<h2>信頼できる測定を、電波が届きにくい場所でも</h2>
 			<p class="ls-why__sub">
-				高湿度・粉じんの多い鶏舎でもデータを継続して記録し、測定値の異常や通信断にも備えた設計です。
+				高湿度・粉じんの多い場所でもデータを継続して記録し、安定した運用を支えます。
 			</p>
 		</div>
 		<div class="ls-why__grid">
@@ -190,22 +199,17 @@
 				<span class="ls-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>スイス製高精度センサー採用</h3>
 				<p>
-					温湿度は<a
-						class="extlink"
-						href="https://sensirion.com/jp"
-						target="_blank"
-						rel="noopener noreferrer">センシリオン社</a
-					>&thinsp;<a
+					湿度100%付近で停滞するリスクを抑え、現場の温湿度変化を正確に記録します。採用センサーは<a
 						class="extlink"
 						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
-					>、CO₂は<a
+					>と<a
 						class="extlink"
 						href="https://sensirion.com/jp/products/catalog/SCD41"
 						target="_blank"
 						rel="noopener noreferrer">SCD41</a
-					>を搭載。いずれも認定機関で校正・試験されたデジタルセンサーです。
+					>です。
 				</p>
 			</article>
 			<article class="ls-card" data-reveal="2">
@@ -214,7 +218,7 @@
 				>
 				<h3>メンテナンス負担を軽減</h3>
 				<p>
-					センサーとバッテリーを現場で交換できる構造を採用。ダウンタイムと保守コストを最小限に抑えます。
+					センサーとバッテリーを現場で交換できる構造を採用。保守コストを抑えながら、故障時の早期復旧にもつなげます。
 				</p>
 			</article>
 		</div>
@@ -228,9 +232,9 @@
 			<p class="ls-kicker" style="justify-content:center">
 				<span class="material-symbols-rounded">pets</span> なぜ測るのか
 			</p>
-			<h2>鶏舎の空気が、鶏の健康を決める。</h2>
+			<h2>畜舎の空気が、家畜の健康を決める。</h2>
 			<p class="ls-fac__sub">
-				温度・湿度・CO₂・アンモニア。どれも目には見えませんが、増体や産卵率、病気のリスクに直結します。それぞれが鶏に何をもたらすのかをまとめました。
+				温度・湿度・CO₂・アンモニア。どれも目には見えませんが、増体や生産性、病気のリスクに直結します。それぞれが家畜に何をもたらすのかをまとめました。
 			</p>
 		</div>
 
@@ -242,11 +246,11 @@
 					>
 					<div class="ls-fac__title">
 						<h3>温度</h3>
-						<span class="ls-fac__range">目安 18〜24°C（成鶏）</span>
+						<span class="ls-fac__range">目安 18〜24°C</span>
 					</div>
 				</div>
 				<p>
-					鶏は汗をかけません。体温を逃がす手段はパンティング（開口呼吸）が中心です。暑さが続くと飼料摂取量が落ち、増体の停滞や産卵率の低下、暑熱死につながります。逆に寒すぎれば、エネルギーが体温維持に回り育ちが鈍ります。
+					家畜は汗をかきにくく、体温を逃がす手段が限られます。暑さが続くと飼料摂取量が落ち、増体の停滞や生産性の低下、暑熱死につながります。逆に寒すぎれば、エネルギーが体温維持に回り育ちが鈍ります。
 				</p>
 				<span class="ls-fac__tag ls-fac__tag--live">
 					<span class="material-symbols-rounded">check_circle</span> CropWatchで測定
@@ -264,7 +268,7 @@
 					</div>
 				</div>
 				<p>
-					湿度が高いとパンティングによる放熱が効かなくなり、同じ気温でも暑熱ストレスが強く出ます。敷料が湿ればアンモニアが発生しやすくなり、足裏皮膚炎やコクシジウムの温床にも。逆に乾きすぎると粉じんが舞い、気道を痛めます。
+					湿度が高いと気化による放熱が効かなくなり、同じ気温でも暑熱ストレスが強く出ます。敷料が湿ればアンモニアが発生しやすくなり、皮膚炎や寄生虫の温床にも。逆に乾きすぎると粉じんが舞い、気道を痛めます。
 				</p>
 				<span class="ls-fac__tag ls-fac__tag--live">
 					<span class="material-symbols-rounded">check_circle</span> CropWatchで測定
@@ -280,7 +284,7 @@
 					</div>
 				</div>
 				<p>
-					CO₂は、換気が足りているかをそのまま映す指標です。数値が上がるのは新鮮な空気が入っていないサイン。高い状態が続くと発育の遅れや腹水症のリスクが高まります。保温を優先して換気を絞りがちな冬場ほど注意が必要です。
+					CO₂は、換気が足りているかをそのまま映す指標です。数値が上がるのは新鮮な空気が入っていないサイン。高い状態が続くと発育の遅れや健康リスクが高まります。保温を優先して換気を絞りがちな冬場ほど注意が必要です。
 				</p>
 				<span class="ls-fac__tag ls-fac__tag--live">
 					<span class="material-symbols-rounded">check_circle</span> CropWatchで測定
@@ -288,7 +292,7 @@
 			</article>
 
 			<article
-				class="ls-fac ls-fac--rel"
+				class="ls-fac ls-fac--dev"
 				style="--fac:#8a5a36; --fac-soft:#f3e7d8;"
 				data-reveal="3"
 			>
@@ -304,8 +308,8 @@
 				<p>
 					敷料の中で糞尿が分解されるときに発生します。低い濃度でも気道の繊毛を傷つけ、病気にかかりやすい状態をつくります。濃度が上がれば増体の低下や結膜炎も。人が臭いで気づく頃には、すでにかなりの濃度になっています。
 				</p>
-				<span class="ls-fac__tag ls-fac__tag--rel">
-					<span class="material-symbols-rounded">conversion_path</span> 湿度とCO₂から予兆を捉える
+				<span class="ls-fac__tag ls-fac__tag--dev">
+					<span class="material-symbols-rounded">pending</span> CropWatchで測定（準備中）
 				</span>
 			</article>
 		</div>
@@ -313,7 +317,7 @@
 		<p class="ls-fac__note" data-reveal>
 			<span class="material-symbols-rounded">info</span>
 			<span>
-				CropWatchが測定するのは温度・湿度・CO₂です。アンモニアは直接測定しませんが、発生の主な原因は「湿った敷料」と「換気不足」の2つ。その両方を映す湿度とCO₂を見ることで、アンモニアが溜まる前に手を打てます。数値は一般的な飼養管理の目安です。
+				アンモニアの直接測定は現在準備中です。対応までの間も、発生の主な原因である「湿った敷料」と「換気不足」は湿度とCO₂に表れます。この2つを見ることで、アンモニアが溜まる前に手を打てます。数値は一般的な飼養管理の目安です。
 			</span>
 		</p>
 	</div>
@@ -324,34 +328,31 @@
 	<div class="wrap">
 		<div class="ls-show__head" data-reveal>
 			<p class="ls-kicker"><span class="material-symbols-rounded">photo_camera</span> 導入の現場</p>
-			<h2>鶏の生活域に、そのまま設置</h2>
+			<h2>家畜の生活域に、そのまま設置</h2>
 			<p class="ls-show__sub">
-				無線・電池式なので、電源や配線を引きにくい鶏舎・畜舎にも工事なしで設置できます。
+				無線・電池式なので、電源や配線を引きにくい畜舎にも工事なしで設置できます。
 			</p>
 		</div>
 		<div class="ls-showcase" data-reveal>
 			<figure class="ls-showcase__lead">
 				<img
 					src="/assets/photos/livestock-sensor-install.webp"
-					alt="鶏舎の飼育ラインに設置されたCropWatchセンサー"
+					alt="畜舎の飼育ラインに設置されたCropWatchセンサー"
 				/>
 				<figcaption>
-					<b>飼育ラインに直接設置</b><span>鶏の生活域の温度・湿度・CO₂をそのまま測定</span>
+					<b>飼育ラインに直接設置</b><span>家畜の生活域の温度・湿度・CO₂をそのまま測定</span>
 				</figcaption>
 			</figure>
 			<figure>
-				<img
-					src="/assets/photos/livestock-flock.webp"
-					alt="給餌器のまわりに集まる鶏（ブロイラー）"
-				/>
+				<img src="/assets/photos/livestock-flock.webp" alt="給餌器のまわりに集まる家畜" />
 				<figcaption>
 					<b>群れの環境を見守る</b><span>暑熱ストレスの兆候を早期に把握</span>
 				</figcaption>
 			</figure>
 			<figure>
-				<img src="/assets/photos/livestock-exterior.webp" alt="鶏舎の外観と制御盤・飼料タンク" />
+				<img src="/assets/photos/livestock-exterior.webp" alt="畜舎の外観と制御盤・飼料タンク" />
 				<figcaption>
-					<b>屋外・多拠点にも対応</b><span>離れた鶏舎もまとめて遠隔監視</span>
+					<b>屋外・多拠点にも対応</b><span>離れた畜舎もまとめて遠隔監視</span>
 				</figcaption>
 			</figure>
 		</div>
@@ -444,7 +445,7 @@
 		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
 			<div class="spec-row">
 				<dt>測定項目</dt>
-				<dd>温度・湿度・CO₂</dd>
+				<dd>温度・湿度・CO₂・アンモニア（準備中）</dd>
 			</div>
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
@@ -467,6 +468,15 @@
 						rel="noopener noreferrer">SCD41</a
 					>
 					*校正証明書付き
+					<br />
+					<small
+						>アンモニアは<a
+							class="extlink"
+							href="https://www.sgxsensortech.com/"
+							target="_blank"
+							rel="noopener noreferrer">SGXセンサーテック</a
+						> PS1-NH3-50-MOD を採用予定（準備中）</small
+					>
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -478,10 +488,12 @@
 			<div class="spec-row">
 				<dt>CO₂測定範囲</dt>
 				<dd>400 - 5000 ppm</dd>
+				<dt>アンモニア測定範囲</dt>
+				<dd>0 - 50 ppm（準備中）</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ収集</dt>
-				<dd>15分ごと／直近1年間分を保存／CSV出力</dd>
+				<dd>10分ごと／直近1年間分を保存／CSV出力</dd>
 			</div>
 			<div class="spec-row">
 				<dt>通信</dt>
@@ -523,7 +535,7 @@
 			<p class="ls-kicker" style="justify-content:center">
 				<span class="material-symbols-rounded">quiz</span> よくあるご質問
 			</p>
-			<h2>畜産・養鶏の環境監視 Q&amp;A</h2>
+			<h2>畜産の環境監視 Q&amp;A</h2>
 		</div>
 		<div class="faq" data-reveal>
 			{#each faq as item}
@@ -544,10 +556,8 @@
 		<p class="eyebrow eyebrow--gold" style="justify-content:center">
 			<span class="material-symbols-rounded">waving_hand</span> まずはお気軽に
 		</p>
-		<h2>鶏舎の環境、見える化しませんか。</h2>
-		<p>
-			見守りたい鶏舎・畜舎の様子をお聞かせください。最適なセンサーと通知の設定をご提案します。
-		</p>
+		<h2>畜舎の環境、見える化しませんか。</h2>
+		<p>見守りたい畜舎の様子をお聞かせください。最適なセンサーと通知の設定をご提案します。</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="btn btn--accent btn--lg">問い合わせ</a>
 			<a href="/technology" class="btn btn--outline-light btn--lg">特徴を見る</a>
@@ -709,7 +719,7 @@
 		font-weight: 700;
 		color: var(--web-heading);
 	}
-	/* (「予測」バッジ用。パネルの em マークアップ復活時に有効化)
+	/* 「準備中」バッジ（アンモニアの行で使用） */
 	.ls-panel__lab em {
 		font-style: normal;
 		font-size: 9.5px;
@@ -720,7 +730,8 @@
 		border-radius: 6px;
 		background: color-mix(in srgb, var(--web-gold) 16%, #fff);
 		vertical-align: middle;
-	} */
+		white-space: nowrap;
+	}
 	.ls-panel__val {
 		font-family: var(--cw-font-mono);
 		font-size: 14.5px;
@@ -776,7 +787,7 @@
 		color: #fff;
 	}
 	.ls-stats span {
-		font-size: 11px;
+		font-size: 14px;
 		color: rgba(255, 255, 255, 0.74);
 		margin-top: 3px;
 		display: block;
@@ -972,10 +983,10 @@
 	}
 
 	/* ═══ 環境要因（なぜ測るのか） ═══
-	   Each card carries its factor's accent via --fac / --fac-soft. The three
-	   measured factors reuse the exact hues the hero's live panel already uses
-	   (温度 #d9772f · 湿度 #0e9960 · CO₂ #2c6cb7) so the two blocks agree;
-	   ammonia takes the page's brown, which reads as "context, not a reading". */
+	   Each card carries its factor's accent via --fac / --fac-soft, reusing the
+	   exact hues the hero's live panel uses (温度 #d9772f · 湿度 #0e9960 ·
+	   CO₂ #2c6cb7 · アンモニア #8a5a36) so the two blocks agree. Ammonia is
+	   still in development, hence .ls-fac--dev's dashed border. */
 	.ls-fac__head {
 		max-width: 760px;
 		margin: 0 auto 34px;
@@ -1027,7 +1038,8 @@
 	}
 	/* The context card is not a live reading: dashed edge sets it apart before
 	   anyone reads the tag. */
-	.ls-fac--rel {
+	/* 準備中の測定項目。破線＋淡い背景で「まだ出荷していない」ことを示す。 */
+	.ls-fac--dev {
 		border-style: dashed;
 		background: #fdfbf8;
 	}
@@ -1100,7 +1112,7 @@
 	.ls-fac__tag--live {
 		color: var(--web-accent);
 	}
-	.ls-fac__tag--rel {
+	.ls-fac__tag--dev {
 		color: #8a5a36;
 	}
 
