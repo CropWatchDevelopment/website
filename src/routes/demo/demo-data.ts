@@ -71,7 +71,6 @@ export const DEMO_DRIFT: Record<string, DemoDrift> = {
 	pressure: { step: 0.25, min: 1004, max: 1022, precision: 1 },
 	moisture: { step: 0.3, min: 22, max: 48, precision: 1 },
 	ec: { step: 0.02, min: 0.8, max: 2.1, precision: 2 },
-	ph: { step: 0.02, min: 5.8, max: 7.2, precision: 1 },
 	battery_level: { step: 0.004, min: 3.4, max: 3.65, precision: 2 }
 };
 
@@ -183,7 +182,13 @@ export function createDemoGroups(): DemoLocationGroup[] {
 						temperature_c: 18.9,
 						moisture: 34.2,
 						ec: 1.24,
-						ph: 6.4
+						// Combined-sensor air/light columns. In the app these arrive from the
+						// probe's forthcoming sibling and every visualization renders empty;
+						// the demo fills them so the page shows a fully reporting device.
+						air_temperature: 23.5,
+						air_humidity: 63,
+						air_co2: 640,
+						ppfd: 512
 					}
 				}
 			]

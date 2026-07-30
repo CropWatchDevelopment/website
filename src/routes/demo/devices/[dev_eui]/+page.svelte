@@ -15,7 +15,9 @@
 		CwCard,
 		CwResponsiveLineChart,
 		CwSpinner,
+		CwStatCard,
 		metricColor,
+		type CwResponsiveLineLayout,
 		type CwResponsiveLineSeries
 	} from '@cropwatchdevelopment/cwui';
 	import AppPage from '../../AppPage.svelte';
@@ -24,20 +26,52 @@
 	import DemoDeviceHeader from './DemoDeviceHeader.svelte';
 	import { createDemoGroups, type DemoRow } from '../../demo-data';
 	import {
+		buildDliHistory,
 		buildHistory,
 		DEFAULT_RANGE_SELECTION,
 		getRangeOptions,
+		solarNoonPpfd,
 		type RangeSelection
 	} from '../../demo-history';
 	import { isDemoSignedIn } from '../../demo-session';
 	import { labelFor } from '../../sensor-labels';
-	import { cwResponsiveLineChartLabels } from '../../cwui-labels';
+	import { cwResponsiveLineChartLabels, cwStatCardLabels } from '../../cwui-labels';
+	import { computeStatsNewestFirst } from '../../compute-stats';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
 	/** Columns that belong on the chart. Battery and pressure stay in the table. */
-	const CHART_COLUMNS = ['temperature_c', 'humidity', 'co2', 'moisture', 'ec'];
+	const CHART_COLUMNS = [
+		'temperature_c',
+		'humidity',
+		'co2',
+		'moisture',
+		'ec',
+		'air_temperature',
+		'air_humidity',
+		'air_co2'
+	];
+
+	/** Combined-sensor air columns, shown as stat cards above the chart. */
+	const AIR_STAT_COLUMNS = ['air_temperature', 'air_humidity', 'air_co2'];
+
+	/**
+	 * Column -> the metric key CWUI colors by.
+	 *
+	 * CWUI deliberately splits soil from air (soil temperature is brown, air
+	 * temperature red; soil moisture and humidity are different blues) so the two
+	 * families stay legible on one chart — which matters now that a soil device
+	 * plots both. Two fixes are needed for that to work here: `temperature_c` on
+	 * a soil device is ground temperature, not air, and `air_co2` is not a key
+	 * CWUI knows, so without the mapping it would take a hashed fallback hue
+	 * instead of the CO₂ purple.
+	 */
+	function colorKeyFor(column: string, dataTable: string): string {
+		if (column === 'air_co2') return 'co2';
+		if (column === 'temperature_c' && dataTable === 'cw_soil_data') return 'soil_temperature';
+		return column;
+	}
 
 	const groups = createDemoGroups();
 
@@ -53,7 +87,34 @@
 	const device = $derived<DemoRow | null>(found?.device ?? null);
 	const locationName = $derived(found?.locationName ?? 'ロケーションなし');
 
+	/**
+	 * The chart's own `layout="auto"` resolves from the width it measures on
+	 * itself with a ResizeObserver. With six series the legend's min-content
+	 * width is wide enough to push its container, which the observer re-reads,
+	 * which re-runs the layout — a feedback loop that pegs the renderer at phone
+	 * widths (reproducible below ~360px; two series never trigger it because the
+	 * legend stays narrow). Resolving the layout from the viewport instead breaks
+	 * the cycle, because the window's width cannot depend on what the chart draws.
+	 * Thresholds mirror the component's own (520 / 820 / 1100).
+	 */
+	let viewportWidth = $state(1440);
+	const chartLayout = $derived<CwResponsiveLineLayout>(
+		viewportWidth < 520
+			? 'phone'
+			: viewportWidth < 820
+				? 'tablet'
+				: viewportWidth < 1100
+					? 'tablet-land'
+					: 'desktop'
+	);
+
 	let activeRange = $state<RangeSelection>(DEFAULT_RANGE_SELECTION);
+	// DLI is a per-day total, so it is independent of the selected range and is
+	// built once on mount rather than rebuilt on every range change.
+	let dliHistory = $state<{ date: string; value: number }[]>([]);
+	const dliToday = $derived(dliHistory.at(-1)?.value ?? 0);
+	// Gauge reading only; the DLI figures above integrate the real day curve.
+	let ppfdReading = $state<{ value: number; at: string }>({ value: 0, at: '' });
 	// Generated on the client only: the series is anchored to "now", so building
 	// it during SSR would bake in a timestamp the client then disagrees with.
 	let historicalData = $state<Record<string, number | string>[]>([]);
@@ -64,11 +125,31 @@
 		typeof latestData?.created_at === 'string' ? latestData.created_at : null
 	);
 
+	// Stat cards for the combined sensor's air readings. Only devices that
+	// actually report the columns get them, so the air devices — which already
+	// carry their own temperature/humidity/CO₂ cards in DemoAirDisplay — are
+	// left alone.
+	const airStats = $derived.by(() => {
+		if (!device || historicalData.length === 0) return [];
+		return AIR_STAT_COLUMNS.filter((column) => column in device.details).map((column) => {
+			const def = labelFor(column, device.device_type.data_table_v2);
+			return {
+				column,
+				label: def.label,
+				unit: def.unit,
+				color: metricColor(colorKeyFor(column, device.device_type.data_table_v2)).color,
+				stats: computeStatsNewestFirst(historicalData.map((row) => Number(row[column]) || 0))
+			};
+		});
+	});
+
 	const chartSeries = $derived.by<CwResponsiveLineSeries[]>(() => {
 		if (!device || historicalData.length === 0) return [];
 		return CHART_COLUMNS.filter((column) => column in device.details).map((column) => {
-			const def = labelFor(column);
-			const { color, gradient } = metricColor(column);
+			const def = labelFor(column, device.device_type.data_table_v2);
+			const { color, gradient } = metricColor(
+				colorKeyFor(column, device.device_type.data_table_v2)
+			);
 			return {
 				id: column,
 				label: def.label,
@@ -95,12 +176,21 @@
 		loading = false;
 	}
 
+	$effect(() => {
+		const syncViewport = () => (viewportWidth = window.innerWidth);
+		syncViewport();
+		window.addEventListener('resize', syncViewport);
+		return () => window.removeEventListener('resize', syncViewport);
+	});
+
 	onMount(() => {
 		if (!isDemoSignedIn()) {
 			goto('/demo/login', { replaceState: true });
 			return;
 		}
 		if (!device) return;
+		dliHistory = buildDliHistory(device, Date.now());
+		ppfdReading = solarNoonPpfd(device, Date.now());
 		selectRange(DEFAULT_RANGE_SELECTION);
 	});
 </script>
@@ -134,6 +224,20 @@
 					<CwSpinner size="xl" />
 				</div>
 			{:else}
+				{#if airStats.length > 0}
+					<div class="device-page__airstats">
+						{#each airStats as stat (stat.column)}
+							<CwStatCard
+								title={stat.label}
+								stats={stat.stats}
+								unit={stat.unit}
+								accentColor={stat.color}
+								labels={cwStatCardLabels()}
+							/>
+						{/each}
+					</div>
+				{/if}
+
 				{#if chartSeries.length > 0}
 					<div class="device-page__chart">
 						<CwResponsiveLineChart
@@ -141,6 +245,7 @@
 							title={device.name}
 							subtitle="時系列データ"
 							ranges={[]}
+							layout={chartLayout}
 							theme="dark"
 							showThemeToggle={false}
 							showDataGaps={false}
@@ -152,7 +257,14 @@
 
 				<div class="device-page__display">
 					{#if device.device_type.data_table_v2 === 'cw_soil_data'}
-						<DemoSoilDisplay {latestData} {historicalData} {loading} />
+						<DemoSoilDisplay
+							{latestData}
+							{historicalData}
+							{loading}
+							{dliToday}
+							{dliHistory}
+							{ppfdReading}
+						/>
 					{:else}
 						<DemoAirDisplay {latestData} {historicalData} {loading} />
 					{/if}
@@ -180,6 +292,20 @@
 		min-width: 0;
 	}
 
+	/* Same grid as the display components' .kpi-grid, so the air cards above the
+	   chart line up with the soil cards below it. */
+	.device-page__airstats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 1rem;
+		min-width: 0;
+	}
+
+	/* Match the soil cards below the chart: titles stay on one line. */
+	.device-page__airstats :global(.cw-stat-card__title) {
+		white-space: nowrap;
+	}
+
 	.device-page__loading {
 		display: flex;
 		justify-content: center;
@@ -202,6 +328,22 @@
 		.device-page {
 			padding-right: 0;
 			padding-bottom: 0.75rem;
+		}
+	}
+
+	/* CWUI's .cw-rlc--xs breakpoint fires below 380px of *content* width, and the
+	   class it applies drops the chart's padding from 16px to 4px. Because
+	   .cw-rlc is border-box, that changes the width the breakpoint measures: a
+	   390px chart reads 358 (xs on) -> repads to 4px -> reads 382 (xs off) ->
+	   repads to 16px, forever. It is visible as a chart that vibrates, and it
+	   traps any chart between 388px and 412px wide — an iPhone 12 Pro is 390.
+	   Pinning the padding to the same value on both sides of the breakpoint
+	   makes the measurement independent of the class, so it settles in one pass.
+	   Fix belongs upstream in CwResponsiveLineChart (the breakpoint needs
+	   hysteresis, or should not alter padding); this keeps phones usable now. */
+	@media (max-width: 460px) {
+		.device-page__chart :global(.cw-rlc) {
+			padding: 4px;
 		}
 	}
 </style>

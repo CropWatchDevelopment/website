@@ -10,8 +10,11 @@
 import type {
 	CwDataTableLabels,
 	CwHeatmapLabels,
+	CwPPFDChartLabels,
 	CwResponsiveLineChartLabels,
-	CwStatCardLabels
+	CwStatCardLabels,
+	CwVPDChartLabels,
+	DliCardLabels
 } from '@cropwatchdevelopment/cwui';
 
 export function cwStatCardLabels(): CwStatCardLabels {
@@ -92,5 +95,67 @@ export function cwHeatmapLabels(): CwHeatmapLabels {
 	return {
 		title: '温度ヒートマップ',
 		noData: 'データなし'
+	};
+}
+
+export function cwVpdChartLabels(): CwVPDChartLabels {
+	return {
+		caption: '気温と相対湿度による飽差ヒートマップ',
+		zones: {
+			wet: '過湿',
+			humid: '湿潤',
+			balanced: 'バランス',
+			optimal: '最適',
+			firm: 'やや乾燥',
+			dry: '乾燥',
+			stress: 'ストレス'
+		},
+		cellAriaLabel: ({ temperatureC, humidity, vpd, unit, zoneLabel, inTarget, isCurrent }) =>
+			`${temperatureC}°C、相対湿度 ${humidity}%、${vpd} ${unit}、${zoneLabel} ゾーン` +
+			(inTarget ? '、目標範囲内' : '') +
+			(isCurrent ? '、現在の室内環境セル' : '')
+	};
+}
+
+export function cwPpfdChartLabels(): CwPPFDChartLabels {
+	return {
+		eyebrow: '光合成光量子束密度',
+		heading: 'PPFD レンジゲージ',
+		headingWithPlant: (plant) => `${plant} PPFD`,
+		currentPpfd: '現在の PPFD',
+		current: '現在',
+		dliReading: '本日の DLI',
+		dliStat: '本日の DLI',
+		targetRange: '目標範囲',
+		status: 'ステータス',
+		tooLow: '低すぎ',
+		tooHigh: '高すぎ',
+		optimal: '最適',
+		insideBand: '目標範囲内',
+		deltaBelow: (amount, unit) => `目標まで ${amount} ${unit} 不足`,
+		deltaAbove: (amount, unit) => `目標を ${amount} ${unit} 超過`,
+		updated: (when) => `更新 ${when}`
+	};
+}
+
+export function cwDliCardLabels(): DliCardLabels {
+	return {
+		title: '本日の DLI',
+		statusVeryLow: '非常に低い',
+		statusSlightlyLow: 'やや低い',
+		statusLow: '低い',
+		statusGood: '良好',
+		statusHigh: '高い',
+		statusVeryHigh: '非常に高い',
+		statusPrefix: 'ステータス:',
+		historyTitle: '日別履歴',
+		historyListLabel: '日別 DLI 履歴',
+		historyCount: (days) => `${days} 日`,
+		targetForCrop: (cropName, range) => `${cropName} の目標: ${range}`,
+		target: (range) => `目標: ${range}`,
+		valueAriaLabel: (value, unit, targetText, status) =>
+			`${value} ${unit}、${targetText}、${status}`,
+		barAriaLabel: (scaleMax, value, unit, range, status) =>
+			`0〜${scaleMax} のスケール、現在 ${value} ${unit}、目標 ${range}、${status}`
 	};
 }

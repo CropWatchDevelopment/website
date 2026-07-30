@@ -44,57 +44,89 @@
 	</CwButton>
 </div>
 
-<CwCard title={`${titleName} のダッシュボード`} subtitle={`ロケーション: ${locationName}`} elevated>
-	{#snippet actions()}
-		<div>
-			<p class="text-md text-right" style="color: var(--cw-text-muted)">
-				最終更新:
-				{#if lastUpdatedAt}
-					<CwDuration from={lastUpdatedAt} />
-				{:else}
-					<span>-</span>
-				{/if}
-			</p>
-			<p class="text-md text-right" style="color: var(--cw-text-muted)">
-				Dev-Eui: {devEui}
-				<CwCopy value={devEui} />
-			</p>
-		</div>
-	{/snippet}
+<div class="device-header__card">
+	<CwCard
+		title={`${titleName} のダッシュボード`}
+		subtitle={`ロケーション: ${locationName}`}
+		elevated
+	>
+		<div class="device-header">
+			<div class="device-header__ranges">
+				{#each rangeOptions as range (range.value)}
+					<CwButton
+						id={`device-header-range-${range.value}-button`}
+						variant={activeRange === range.value ? 'primary' : 'secondary'}
+						size="sm"
+						onclick={() => onSelectRange(range.value)}
+					>
+						{range.label}
+					</CwButton>
+				{/each}
+			</div>
 
-	<div class="device-header">
-		<div class="device-header__ranges">
-			{#each rangeOptions as range (range.value)}
-				<CwButton
-					id={`device-header-range-${range.value}-button`}
-					variant={activeRange === range.value ? 'primary' : 'secondary'}
-					size="sm"
-					onclick={() => onSelectRange(range.value)}
-				>
-					{range.label}
-				</CwButton>
-			{/each}
+			<!-- Device meta sits under the range pickers rather than in the card's
+			     actions slot. 最終更新 is deliberately last: it is the line that
+			     changes, so it reads as the footer of the card. -->
+			<div class="device-header__meta">
+				<p>
+					Dev-Eui: {devEui}
+					<CwCopy value={devEui} />
+				</p>
+				<p>
+					最終更新:
+					{#if lastUpdatedAt}
+						<CwDuration from={lastUpdatedAt} />
+					{:else}
+						<span>-</span>
+					{/if}
+				</p>
+			</div>
 		</div>
-	</div>
-</CwCard>
+	</CwCard>
+</div>
 
 <style>
 	.device-header__back {
 		display: flex;
 	}
 
+	/* Ranges first, device meta beneath them. */
 	.device-header {
 		display: flex;
+		flex-direction: column;
 		width: 100%;
 		gap: var(--cw-space-3);
 		align-items: flex-start;
-		justify-content: space-between;
-		flex-wrap: wrap;
 	}
 
 	.device-header__ranges {
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--cw-space-2);
+	}
+
+	.device-header__meta {
+		display: flex;
+		flex-direction: column;
+		gap: var(--cw-space-1);
+		width: 100%;
+	}
+
+	.device-header__meta p {
+		display: flex;
+		align-items: center;
+		gap: var(--cw-space-1);
+		margin: 0;
+		font-size: var(--cw-text-sm);
+		color: var(--cw-text-muted);
+	}
+
+	/* With the meta moved into the body there is no actions slot competing for
+	   the header row, so the title gets its full width back. Keep it to one line
+	   regardless — a longer device name would otherwise wrap on a phone. */
+	.device-header__card :global(.cw-card__title) {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 </style>
