@@ -24,6 +24,7 @@ const STATIC_ENTRIES: Entry[] = [
 	{ path: '/help', lastmod: STATIC_LASTMOD, priority: '0.6', changefreq: 'monthly' },
 	{ path: '/contact', lastmod: STATIC_LASTMOD, priority: '0.8', changefreq: 'yearly' },
 	{ path: '/column', lastmod: STATIC_LASTMOD, priority: '0.7', changefreq: 'weekly' },
+	{ path: '/legal', lastmod: '2026-07-30', priority: '0.2', changefreq: 'yearly' },
 	{ path: '/legal/privacy-policy', lastmod: STATIC_LASTMOD, priority: '0.2', changefreq: 'yearly' },
 	{ path: '/legal/terms-of-service', lastmod: STATIC_LASTMOD, priority: '0.2', changefreq: 'yearly' },
 	{ path: '/legal/EULA', lastmod: STATIC_LASTMOD, priority: '0.2', changefreq: 'yearly' }
