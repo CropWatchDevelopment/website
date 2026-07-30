@@ -17,7 +17,6 @@
 		CwSpinner,
 		CwStatCard,
 		metricColor,
-		type CwResponsiveLineLayout,
 		type CwResponsiveLineSeries
 	} from '@cropwatchdevelopment/cwui';
 	import AppPage from '../../AppPage.svelte';
@@ -87,27 +86,6 @@
 	const device = $derived<DemoRow | null>(found?.device ?? null);
 	const locationName = $derived(found?.locationName ?? 'ロケーションなし');
 
-	/**
-	 * The chart's own `layout="auto"` resolves from the width it measures on
-	 * itself with a ResizeObserver. With six series the legend's min-content
-	 * width is wide enough to push its container, which the observer re-reads,
-	 * which re-runs the layout — a feedback loop that pegs the renderer at phone
-	 * widths (reproducible below ~360px; two series never trigger it because the
-	 * legend stays narrow). Resolving the layout from the viewport instead breaks
-	 * the cycle, because the window's width cannot depend on what the chart draws.
-	 * Thresholds mirror the component's own (520 / 820 / 1100).
-	 */
-	let viewportWidth = $state(1440);
-	const chartLayout = $derived<CwResponsiveLineLayout>(
-		viewportWidth < 520
-			? 'phone'
-			: viewportWidth < 820
-				? 'tablet'
-				: viewportWidth < 1100
-					? 'tablet-land'
-					: 'desktop'
-	);
-
 	let activeRange = $state<RangeSelection>(DEFAULT_RANGE_SELECTION);
 	// DLI is a per-day total, so it is independent of the selected range and is
 	// built once on mount rather than rebuilt on every range change.
@@ -176,13 +154,6 @@
 		loading = false;
 	}
 
-	$effect(() => {
-		const syncViewport = () => (viewportWidth = window.innerWidth);
-		syncViewport();
-		window.addEventListener('resize', syncViewport);
-		return () => window.removeEventListener('resize', syncViewport);
-	});
-
 	onMount(() => {
 		if (!isDemoSignedIn()) {
 			goto('/demo/login', { replaceState: true });
@@ -245,7 +216,6 @@
 							title={device.name}
 							subtitle="時系列データ"
 							ranges={[]}
-							layout={chartLayout}
 							theme="dark"
 							showThemeToggle={false}
 							showDataGaps={false}
@@ -328,22 +298,6 @@
 		.device-page {
 			padding-right: 0;
 			padding-bottom: 0.75rem;
-		}
-	}
-
-	/* CWUI's .cw-rlc--xs breakpoint fires below 380px of *content* width, and the
-	   class it applies drops the chart's padding from 16px to 4px. Because
-	   .cw-rlc is border-box, that changes the width the breakpoint measures: a
-	   390px chart reads 358 (xs on) -> repads to 4px -> reads 382 (xs off) ->
-	   repads to 16px, forever. It is visible as a chart that vibrates, and it
-	   traps any chart between 388px and 412px wide — an iPhone 12 Pro is 390.
-	   Pinning the padding to the same value on both sides of the breakpoint
-	   makes the measurement independent of the class, so it settles in one pass.
-	   Fix belongs upstream in CwResponsiveLineChart (the breakpoint needs
-	   hysteresis, or should not alter padding); this keeps phones usable now. */
-	@media (max-width: 460px) {
-		.device-page__chart :global(.cw-rlc) {
-			padding: 4px;
 		}
 	}
 </style>
