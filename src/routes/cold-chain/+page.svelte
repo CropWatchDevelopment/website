@@ -1,7 +1,18 @@
 <script lang="ts">
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import SensorValidationAnimation from '$lib/components/cold-chain/sensor-validation/SensorValidationAnimation.svelte';
 	// Page-specific stylesheet (kept out of the global bundle).
 	import '$lib/styles/product.css';
+
+	let animDialog = $state<HTMLDialogElement | null>(null);
+	// Mount the animation only while the dialog is open so it starts from the
+	// beginning on every open instead of resuming mid-loop.
+	let animOpen = $state(false);
+
+	function openAnim() {
+		animOpen = true;
+		animDialog?.showModal();
+	}
 </script>
 
 <svelte:head>
@@ -232,6 +243,9 @@
 					to publish and raises an error code instead. You will never log an inaccurate number - <b><u>"No
 					Data" beats "Wrong Data" every single time.</u></b>
 				</p>
+				<button id="dual-sensor-animation" class="cta-ghost" style="margin-top:14px" onclick={openAnim}>
+					<span class="material-symbols-rounded">summarize</span> Open Example Animation!
+				</button>
 			</article>
 			<article class="feat" data-reveal="2">
 				<span class="feat__icon"><span class="material-symbols-rounded">cached</span></span>
@@ -357,12 +371,14 @@
 			</details>
 			<details>
 				<summary>
-					Will the records satisfy a health inspector or <a class="termlink" href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp" target="_blank" rel="noopener noreferrer">HACCP</a> audit?
+					Will the records satisfy a health inspector or HACCP audit?
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
 					That's what they're built for. Readings are logged automatically with <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable
-					accuracy, dual-sensor verification, and per-serial <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificates. You can
+					accuracy, dual-sensor verification, and per-serial <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificates. The
+					primary <a class="termlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a> sensor's calibration is covered by the <a class="termlink" href="https://ilac.org/about-ilac/mra/" target="_blank" rel="noopener noreferrer">ILAC-MRA</a>, so its certificate is
+					recognized by accreditation bodies worldwide - not just in the country it was issued. You can
 					export a clean, time-stamped report for any range in one click.
 				</p>
 			</details>
@@ -373,7 +389,7 @@
 				</summary>
 				<p>
 					The dual-sensor design catches a drifting element and withholds the reading rather than
-					logging a wrong one. The hardware also self-audits and raises a fault. Annual drift is
+					logging a wrong one. You will see an error indication on the web dashboard and receive an alert email or SMS. Annual drift is
 					typically under 0.02 °F (0.01 °C), so most modules never need replacing early - and when one does
 					reach end of life, you swap it yourself in under a minute.
 				</p>
@@ -406,7 +422,9 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Our sensors prioritize long-term stability and <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable accuracy over short-term bragging rights. ±0.9 °F (±0.48 °C) reflects real-world performance, including typical drift, rather than idealized lab conditions. The #1 thing we do NOT want is an auditor to check our numbers against another device and find a discrepancy. Our ±0.9 °F spec is defensible in an audit.
+					Our sensors prioritize long-term stability and <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable accuracy over short-term bragging rights. ±0.9 °F (±0.48 °C) reflects <b>real-world performance</b>, including typical drift, <b>rather than idealized lab conditions</b>.
+					The #1 thing we do NOT want is for an auditor to check our numbers against another device and find a discrepancy.
+					Our ±0.9 °F spec is defensible in an audit.
 				</p>
 			</details>
 			<details>
@@ -426,7 +444,7 @@
 <section class="closing section--tint">
 	<div class="wrap closing__in" data-reveal>
 		<p class="eyebrow eyebrow--gold">Ready when you are</p>
-		<h2>Put a sensor in your coldest box this week.</h2>
+		<h2>Put a sensor in your operation this week.</h2>
 		<p>
 			Tell us how many coolers and freezers you run. We'll size the sensors and gateway and show you
 			the audit trail it produces.
@@ -437,3 +455,90 @@
 		</div>
 	</div>
 </section>
+
+<!-- dual-sensor validation animation (opened from the "Dual-sensor design" card) -->
+<dialog
+	class="anim-dialog"
+	bind:this={animDialog}
+	aria-label="Dual-sensor validation animation"
+	onclose={() => (animOpen = false)}
+	onclick={(e) => {
+		if (e.target === animDialog) animDialog?.close();
+	}}
+>
+	<div class="anim-dialog__body">
+		<button
+			class="anim-dialog__close"
+			type="button"
+			onclick={() => animDialog?.close()}
+			aria-label="Close"
+		>
+			<span class="material-symbols-rounded" aria-hidden="true">close</span>
+		</button>
+		{#if animOpen}
+			<SensorValidationAnimation />
+		{/if}
+		<p class="anim-dialog__caption">*How the dual-sensor health check works - patent pending</p>
+	</div>
+</dialog>
+
+<style>
+	.anim-dialog {
+		/* Sized so the 1080×800 panel always fits the viewport without scrolling:
+		   capped by width and by (viewport height - chrome) * aspect ratio. */
+		width: min(960px, calc(100vw - 32px), calc((100dvh - 110px) * 1080 / 800));
+		max-width: none;
+		margin: auto;
+		border: 1px solid var(--web-border);
+		border-radius: 26px;
+		padding: 0;
+		background: #ffffff;
+		box-shadow: 0 40px 90px -30px rgba(11, 23, 48, 0.5);
+	}
+
+	.anim-dialog::backdrop {
+		background: rgba(11, 23, 48, 0.55);
+		backdrop-filter: blur(3px);
+	}
+
+	.anim-dialog__body {
+		position: relative;
+		padding: 14px 14px 8px;
+	}
+
+	.anim-dialog__close {
+		position: absolute;
+		top: 26px;
+		right: 26px;
+		z-index: 2;
+		display: grid;
+		place-items: center;
+		width: 46px;
+		height: 46px;
+		padding: 0;
+		border: none;
+		border-radius: 9999px;
+		background: var(--web-heading);
+		color: #ffffff;
+		cursor: pointer;
+		box-shadow: 0 6px 18px -6px rgba(11, 23, 48, 0.45);
+		transition: background 140ms ease;
+	}
+
+	.anim-dialog__close:hover,
+	.anim-dialog__close:focus-visible {
+		background: #22365e;
+	}
+
+	.anim-dialog__close .material-symbols-rounded {
+		font-size: 26px;
+	}
+
+	.anim-dialog__caption {
+		margin: 0;
+		padding: 10px 4px 8px;
+		color: var(--web-muted);
+		font-size: 12px;
+		text-align: left;
+	}
+</style>

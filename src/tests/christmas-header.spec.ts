@@ -44,6 +44,7 @@ function renderHeaderLogo() {
 
 async function runChristmasHeaderScript() {
 	vi.resetModules();
+	// @ts-expect-error - plain IIFE browser script, imported for its side effects
 	await import('../../static/christmas-header.js');
 }
 
