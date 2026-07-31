@@ -117,7 +117,9 @@ body { margin: 0; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 .why-card__ic { display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: var(--cw-radius-2xl);
   background: var(--web-accent-soft); color: var(--web-accent); margin: 0 auto 16px; }
 .why-card__ic .material-symbols-rounded { font-size: 30px; }
-.why-card h3 { font-size: var(--cw-text-xl); line-height: 1.15; }
+/* Explicit ink: .section--navy h3 paints headings white, but why-cards are
+   white surfaces even inside the navy band. */
+.why-card h3 { font-size: var(--cw-text-xl); line-height: 1.15; color: var(--web-heading); }
 .why-card p { font-size: 14.5px; color: var(--web-muted); line-height: 1.6; margin-top: 10px; }
 
 /* ── Differentiator expanded alternating rows ────────────── */

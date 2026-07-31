@@ -174,6 +174,57 @@
 	</div>
 </section>
 
+<!-- security: door open/close detection -->
+<section class="section section--navy">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow">Security &amp; biosecurity</p>
+			<h2>We watch the doors, too.</h2>
+			<p class="section__intro">
+				The same CropWatch network that tracks your air also tracks your doors. A wireless contact
+				sensor on any barn, feed store or medicine room logs every opening and closing with the
+				exact time and duration - and can raise an alert the moment a door opens when it shouldn't.
+			</p>
+		</div>
+		<div class="why4">
+			<article class="why-card" data-reveal>
+				<span class="why-card__ic"><span class="material-symbols-rounded">shield</span></span>
+				<h3>Open, closed &amp; for how long</h3>
+				<p>
+					Every door event is recorded with open and close timestamps and the minutes in between,
+					kept right alongside your climate history.
+				</p>
+			</article>
+			<article class="why-card" data-reveal="1">
+				<span class="why-card__ic"
+					><span class="material-symbols-rounded">notifications_active</span></span
+				>
+				<h3>After-hours alerts</h3>
+				<p>
+					A door that opens at 2 a.m. triggers an SMS, email or call the moment it happens - to as
+					many people as you like, with no per-recipient fees.
+				</p>
+			</article>
+			<article class="why-card" data-reveal="2">
+				<span class="why-card__ic"><span class="material-symbols-rounded">schedule</span></span>
+				<h3>Left-open warnings</h3>
+				<p>
+					A propped-open door bleeds heat in winter, lets vermin in and breaks biosecurity. Set a
+					time limit per door and get warned before it costs you.
+				</p>
+			</article>
+			<article class="why-card" data-reveal="3">
+				<span class="why-card__ic"><span class="material-symbols-rounded">history</span></span>
+				<h3>A ready-made entry log</h3>
+				<p>
+					Timestamped door history doubles as a visit record for biosecurity audits: which rooms
+					were entered, when, and for how long.
+				</p>
+			</article>
+		</div>
+	</div>
+</section>
+
 <!-- why timing matters -->
 <section class="section section--tight">
 	<div class="wrap">
