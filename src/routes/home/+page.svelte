@@ -124,7 +124,7 @@
 				<span class="why-card__ic"><span class="material-symbols-rounded">fort</span></span>
 				<h3>Solid Hardware</h3>
 				<p>
-					Solid hardware that doesn't break down is where everyone wants. This means more uptime,
+					Solid hardware that doesn't break down is what everyone wants. This means more uptime,
 					less support, and more trust in the data. Our devices are built to last. We don't tolerate
 					devices that fail, and we continuously improve our hardware if we ever find a weakness in
 					the real-world deployment.
@@ -159,7 +159,7 @@
 					On the same note as calibration, we have also tried other sensors that have given us false readings that looked plausible.
 				</p>
 				<p>
-					Our innovative sensors feature dual-sensor verification, which means if one sensor is fails, the other sensor will catch it and alert you that the sensor is bad and we don't send any data, because we believe no data is always better than wrong data.
+					Our innovative sensors feature dual-sensor verification, which means if one sensor fails, the other sensor will catch it and alert you that the sensor is bad and we don't send any data, because we believe no data is always better than wrong data.
 				</p>
 			</article>
 			<article class="why-card" data-reveal="3">
@@ -253,7 +253,7 @@
 				<span class="material-symbols-rounded">visibility</span>
 				<div>
 					<b>Quick status</b><span>
-						No wasting time, Here are the numbers, and you can get back to what you were doing.
+						No wasting time. Here are the numbers, and you can get back to what you were doing.
 						<br />
 						The purpose of our application isn't to make you use it more, we want you to use it faster,
 						and get back to what really matters to you.
@@ -280,7 +280,7 @@
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow">No surprise invoices</p>
-			<h2>The software is included, We don't hide <a class="termlink" href="/pricing">fees</a></h2>
+			<h2>The software is included. We don't hide <a class="termlink" href="/pricing">fees</a></h2>
 			<p class="section__intro">
 				Most platforms charge per seat, per location, per rule, or per export. We don't. Our fees
 				are simple.
@@ -415,14 +415,14 @@
 <section class="closing">
 	<div class="wrap closing__in" data-reveal>
 		<p class="eyebrow eyebrow--gold">Ready when you are</p>
-		<h2>Interested? Get in touch, It can't hurt to chat!</h2>
+		<h2>Interested? Get in touch. It can't hurt to chat!</h2>
 		<p>
 			Tell us what you need to keep in range. We'll map the sensors, gateways, and alerts - and show
 			you the audit trail it produces.
 		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="cta-pill cta-pill--lg">Contact Us!</a>
-			<a href="/pricing" class="cta-ghost cta-ghost--light cta-pill--lg">Checkout our pricing</a>
+			<a href="/pricing" class="cta-ghost cta-ghost--light cta-pill--lg">Check out our pricing</a>
 		</div>
 	</div>
 </section>

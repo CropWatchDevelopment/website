@@ -1,6 +1,6 @@
 {
 	"title": "Welcome to the refreshed cropwatch.io",
-	"description": "The CropWatch website has been updated from its previous Japanese only version to a fully English site to serve the global market.",
+	"description": "The CropWatch website has been updated from its previous Japanese-only version to a fully English site to serve the global market.",
 	"date": "2026-07-21",
 	"icon": "campaign",
 	"headerImage": null,
@@ -18,14 +18,14 @@
 			"type": "list",
 			"items": [
 				"A fully English site with all content translated from Japanese",
-				"We have added a few services as they are easier to provide in the US than in Japan (eg. SMS alerts)",
+				"We have added a few services as they are easier to provide in the US than in Japan (e.g. SMS alerts)",
 				"Every technical term now links to its official source (Sensirion, NIST, LoRa Alliance, ISO, FDA and more)",
 				"A faster, lighter site with no horizontal scrolling on phones"
 			]
 		},
 		{
 			"type": "paragraph",
-			"text": "Starting now, we are looking for US pilot customers to help us test, and acclimatize our services to the US market. If you are interested in being a pilot customer, please reach out to us via the contact page. We expect to wrap our pilots up in November of this year (2026).",
+			"text": "Starting now, we are looking for US pilot customers to help us test and acclimatize our services to the US market. If you are interested in being a pilot customer, please reach out to us via the contact page. We expect to wrap our pilots up in November of this year (2026).",
 			"image": null
 		},
 		{

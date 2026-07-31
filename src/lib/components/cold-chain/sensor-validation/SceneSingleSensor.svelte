@@ -75,7 +75,7 @@
 				style="font-family:{SANS}; font-weight:800; font-size:44px; color:{C.ink};
 					letter-spacing:-0.02em; line-height:1.15;"
 			>
-				A single sensor reports<br />may report incorrectly with confidence.
+				A single sensor<br />may report incorrectly with confidence.
 			</div>
 			<div
 				style="font-family:{SANS}; font-weight:500; font-size:21px; color:{C.muted}; margin-top:18px;"
