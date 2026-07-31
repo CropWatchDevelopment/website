@@ -1,37 +1,42 @@
 {
 	"title": "Welcome to the refreshed cropwatch.io",
-	"description": "The US/Global CropWatch site has been updated with the latest hardware story, US units, an interactive parts-origin chart and authoritative citations for every technical claim.",
+	"description": "The CropWatch website has been updated from its previous Japanese only version to a fully English site to serve the global market.",
 	"date": "2026-07-21",
 	"icon": "campaign",
 	"headerImage": null,
 	"content": [
 		{
 			"type": "paragraph",
-			"text": "We have rolled out a major refresh of cropwatch.io. The site now reflects the newest hardware details and displays every measurement in US units - Fahrenheit first, with Celsius alongside.",
+			"text": "We have rolled out a major refresh of cropwatch.io. The site now reflects the newest hardware details and displays every measurement in US units. Our new goal is to expand our offerings to the US market and to provide the same unmatched service across the USA as we have always done in Japan.",
 			"image": null
 		},
 		{
 			"type": "heading",
-			"text": "What changed"
+			"text": "What changed?"
 		},
 		{
 			"type": "list",
 			"items": [
-				"Updated sensor specifications across all product pages",
-				"An interactive parts-origin chart - hover a country to see its manufacturers",
+				"A fully English site with all content translated from Japanese",
+				"We have added a few services as they are easier to provide in the US than in Japan (eg. SMS alerts)",
 				"Every technical term now links to its official source (Sensirion, NIST, LoRa Alliance, ISO, FDA and more)",
 				"A faster, lighter site with no horizontal scrolling on phones"
 			]
 		},
 		{
 			"type": "paragraph",
-			"text": "Questions, or want to see CropWatch on your own coolers, barns or greenhouses? We would love to show you.",
+			"text": "Starting now, we are looking for US pilot customers to help us test, and acclimatize our services to the US market. If you are interested in being a pilot customer, please reach out to us via the contact page. We expect to wrap our pilots up in November of this year (2026).",
+			"image": null
+		},
+		{
+			"type": "paragraph",
+			"text": "In case you are looking for the original Japanese site, we have changed the URL to https://CropWatch.co.jp/",
 			"image": null
 		},
 		{
 			"type": "link",
-			"href": "/contact",
-			"text": "Book a demo"
+			"href": "https://CropWatch.co.jp/",
+			"text": "Click here to be redirected there."
 		}
 	]
 }

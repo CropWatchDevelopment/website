@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { flushSync, onMount } from 'svelte';
+	import { replaceState } from '$app/navigation';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 
 	/* ══════════════════════════════════════════════════════════════════
@@ -16,6 +17,8 @@
 		pricePerDevice: number;
 		/** USD per month, charged once per account regardless of location count. */
 		baseFee: number;
+		/** One-time hardware price per sensor, USD. null = quote only (no ROI chart). */
+		deviceUnitPrice: number | null;
 		/** Default slider position: number of locations (sites/stores/farms). */
 		defaultLocations: number;
 		/** Default slider position: how many units a typical location monitors. */
@@ -24,8 +27,6 @@
 		defaultChecksPerDay: number;
 		minutesPerCheck: number;
 		unitsHint: string;
-		/** One-time hardware price per monitored unit (USD). null = quote only. */
-		deviceUnitPrice: number | null;
 		comingSoon?: boolean;
 	};
 	const SECTORS: Record<string, Sector> = {
@@ -34,50 +35,93 @@
 			icon: 'ac_unit',
 			pricePerDevice: 8,
 			baseFee: 100,
+			// Temp/humidity sensor: ¥33,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
+			deviceUnitPrice: 205,
 			defaultLocations: 1,
 			defaultUnits: 20,
 			defaultChecksPerDay: 2,
 			minutesPerCheck: 3,
-			unitsHint: 'Coolers, freezers and display cases.',
-			deviceUnitPrice: 220
+			unitsHint: 'Coolers, freezers and display cases.'
 		},
 		livestock: {
 			label: 'Livestock',
 			icon: 'pets',
 			pricePerDevice: 8,
 			baseFee: 50,
+			// Temp/humidity + CO2 combo sensor: ¥39,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
+			deviceUnitPrice: 240,
 			defaultLocations: 1,
 			defaultUnits: 50,
 			defaultChecksPerDay: 3,
-			minutesPerCheck: 6,
-			unitsHint: 'Poultry houses, barn zones and dairy rooms.',
-			deviceUnitPrice: 290
+			minutesPerCheck: 5,
+			unitsHint: 'Poultry houses, barn zones and dairy rooms.'
 		},
 		agriculture: {
 			label: 'Agriculture',
 			icon: 'eco',
 			pricePerDevice: 0,
 			baseFee: 0,
+			deviceUnitPrice: null,
 			defaultLocations: 0,
 			defaultUnits: 0,
 			defaultChecksPerDay: 0,
 			minutesPerCheck: 0,
 			unitsHint: '',
-			deviceUnitPrice: null,
 			comingSoon: true
 		}
 	};
 	/** Default hourly wage: the average US state minimum wage (federal floor is $7.25). */
 	const DEFAULT_HOURLY_WAGE = 11.51;
-	/** One-time gateway + onboarding estimate per location (USD). Combined with
-	    each sector's deviceUnitPrice it feeds the ROI chart's hardware estimate -
-	    a planning number only, not a published price. */
-	const DEVICE_BASE_PRICE = 1850;
+	/** Gateway options - one gateway is required per location. price is
+	    one-time USD; the selected model feeds the hardware total and ROI. */
+	type Gateway = {
+		label: string;
+		/** Country-of-manufacture flag emoji; hover shows a "Made in {madeIn}" tooltip. */
+		flag?: string;
+		madeIn?: string;
+		price: number;
+		description: string;
+	};
+	const GATEWAYS: Record<string, Gateway> = {
+		'kona-enterprise': {
+			label: 'Kona Enterprise IoT Gateway',
+			flag: '🇨🇦',
+			madeIn: 'Canada',
+			price: 1500,
+			description:
+				'(Outdoor Recommended) Carrier-grade gateway with cellular modem - the pick for large sites, dense sensor fleets and the widest coverage.'
+		},
+		'kona-micro': {
+			label: 'Kona Micro IoT Gateway',
+			flag: '🇨🇦',
+			madeIn: 'Canada',
+			price: 499,
+			description:
+				'(Indoor Recommended) Compact indoor gateway with cellular backhaul and built-in battery backup - keeps recording through power outages.'
+		},
+		ug65: {
+			label: 'UG65-L04EU-915M-EA',
+			flag: '🇨🇳',
+			madeIn: 'China',
+			price: 400,
+			description:
+				'(Outdoor & Indoor) Milesight indoor gateway (915 MHz) with Ethernet, Wi-Fi or LTE backhaul - the budget pick for sites with reliable power.'
+		},
+		alreadyHave: {
+			label: 'Use Your Own Gateway',
+			price: 0,
+			description: 'Use your existing gateway - no additional cost.'
+		}
+	};
 	/* ══════════════════════════════════════════════════════════════════ */
 
 	const SECTOR_IDS = Object.keys(SECTORS);
 	let sector = $state('cold-chain');
 	const cfg = $derived(SECTORS[sector]);
+
+	const GATEWAY_IDS = Object.keys(GATEWAYS);
+	let gatewayId = $state('kona-micro');
+	const gw = $derived(GATEWAYS[gatewayId]);
 
 	let locations = $state(SECTORS['cold-chain'].defaultLocations);
 	let units = $state(SECTORS['cold-chain'].defaultUnits);
@@ -94,15 +138,56 @@
 		minutesPerCheck = SECTORS[id].minutesPerCheck;
 	}
 
-	// Honor ?sector= deep links (e.g. /pricing?sector=livestock).
+	// ── Shareable links: every calculator knob lives in the query string ──
+	/** Read an integer param, clamped to the matching slider's range. */
+	function readIntParam(p: URLSearchParams, key: string, min: number, max: number): number | null {
+		const raw = p.get(key);
+		if (raw === null) return null;
+		const n = Math.round(Number(raw));
+		return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : null;
+	}
+	/** Gate for the URL-writing effect below: don't touch the URL until the
+	    initial values have been read from it. */
+	let urlSyncReady = $state(false);
+
+	// Honor deep links (e.g. /pricing?sector=livestock&units=40&wage=15).
 	onMount(() => {
 		printDate = new Date().toLocaleDateString('en-US', {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric'
 		});
-		const requested = new URL(window.location.href).searchParams.get('sector');
+		const params = new URL(window.location.href).searchParams;
+		// Sector first - it resets every slider to that sector's defaults.
+		const requested = params.get('sector');
 		if (requested && SECTORS[requested]) selectSector(requested);
+		const requestedGw = params.get('gateway');
+		if (requestedGw && GATEWAYS[requestedGw]) gatewayId = requestedGw;
+		locations = readIntParam(params, 'locations', 1, 50) ?? locations;
+		units = readIntParam(params, 'units', 1, 100) ?? units;
+		checksPerDay = readIntParam(params, 'checks', 1, 12) ?? checksPerDay;
+		minutesPerCheck = readIntParam(params, 'minutes', 1, 30) ?? minutesPerCheck;
+		const requestedWage = Number(params.get('wage'));
+		if (params.has('wage') && Number.isFinite(requestedWage) && requestedWage >= 0)
+			wage = Math.min(10000, Math.round(requestedWage * 100) / 100);
+		urlSyncReady = true;
+	});
+
+	/** Mirror every knob back into the URL (debounced, replaceState - no
+	    history spam, no scroll) so a copied link reproduces the estimate. */
+	$effect(() => {
+		if (!urlSyncReady) return;
+		const qs = new URLSearchParams({
+			sector,
+			gateway: gatewayId,
+			locations: String(locations),
+			units: String(units),
+			checks: String(checksPerDay),
+			minutes: String(minutesPerCheck)
+		});
+		if (Number.isFinite(wage) && wage >= 0) qs.set('wage', String(wage));
+		const t = setTimeout(() => replaceState(`?${qs}${location.hash}`, {}), 150);
+		return () => clearTimeout(t);
 	});
 
 	const safeWage = $derived(Number.isFinite(wage) && wage > 0 ? wage : 0);
@@ -115,77 +200,12 @@
 	const manualCostPerYear = $derived(manualHoursPerYear * safeWage);
 
 	// CropWatch: one base fee per account (NOT per location) + per-device fee, billed monthly.
-	const baseFeeTotal = $derived(cfg.baseFee);
-	const deviceFeeTotal = $derived(totalUnits * cfg.pricePerDevice);
-	const cropwatchPerMonth = $derived(baseFeeTotal + deviceFeeTotal);
+	const cropwatchPerMonth = $derived(cfg.baseFee + totalUnits * cfg.pricePerDevice);
 	const cropwatchPerYear = $derived(cropwatchPerMonth * 12);
-	const cropwatchPerDay = $derived(cropwatchPerYear / 365);
-	const manualCostPerMonth = $derived(manualCostPerYear / 12);
 
 	const savingsPerYear = $derived(manualCostPerYear - cropwatchPerYear);
 	const savingsPerMonth = $derived(savingsPerYear / 12);
 	const checksPerYear = $derived(totalUnits * checksPerDay * 365);
-
-	// ── ROI (payback) line chart ──
-	// Cumulative cost of the estimated one-time hardware + monthly fees, compared
-	// with what manual logging labor adds up to over the same months.
-	/** Estimated one-time hardware across all locations (sensors + gateway + onboarding). */
-	const roiInitial = $derived(
-		cfg.deviceUnitPrice === null ? 0 : (units * cfg.deviceUnitPrice + DEVICE_BASE_PRICE) * locations
-	);
-	/** Months until savings cover the hardware estimate (null when manual is cheaper). */
-	const breakEvenMonths = $derived(savingsPerMonth > 0 ? roiInitial / savingsPerMonth : null);
-	/** X-axis span: 3 years by default, extended (up to 10) so the payback point fits. */
-	const roiMonths = $derived(
-		breakEvenMonths === null
-			? 36
-			: Math.min(120, Math.max(36, Math.ceil((breakEvenMonths * 1.25) / 6) * 6))
-	);
-	const cwAt = (m: number) => roiInitial + cropwatchPerMonth * m;
-	const manualAt = (m: number) => manualCostPerMonth * m;
-	/** Round up to a tidy 1/2/2.5/5 × 10^k axis maximum. */
-	function niceCeil(v: number) {
-		if (v <= 0) return 1;
-		const exp = Math.pow(10, Math.floor(Math.log10(v)));
-		const f = v / exp;
-		return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * exp;
-	}
-	const roiMaxY = $derived(niceCeil(Math.max(cwAt(roiMonths), manualAt(roiMonths))));
-
-	// Chart geometry (tracks container width).
-	let chartW = $state(0);
-	const CHART_H = 260;
-	const PAD = { top: 18, right: 18, bottom: 30, left: 56 };
-	const plotW = $derived(Math.max(chartW - PAD.left - PAD.right, 0));
-	const plotH = CHART_H - PAD.top - PAD.bottom;
-	const xAt = (m: number) => PAD.left + (m / roiMonths) * plotW;
-	const yAt = (v: number) => PAD.top + plotH - (v / roiMaxY) * plotH;
-	// Thin out tick labels on narrow screens so they don't overlap.
-	const xTickStep = $derived(roiMonths <= 42 ? (chartW < 480 ? 12 : 6) : chartW < 480 ? 24 : 12);
-	const xTicks = $derived(
-		Array.from({ length: Math.floor(roiMonths / xTickStep) + 1 }, (_, i) => i * xTickStep)
-	);
-	const yTicks = $derived([0, 1, 2, 3, 4].map((i) => (roiMaxY / 4) * i));
-	const monthLabel = (m: number) => (m === 0 ? 'Start' : m % 12 === 0 ? `${m / 12} yr` : `${m} mo`);
-
-	// Hover/focus: snap to the nearest month and show both series.
-	let hoverMonth = $state<number | null>(null);
-	function roiMove(e: PointerEvent) {
-		const rect = (e.currentTarget as SVGRectElement).getBoundingClientRect();
-		const m = Math.round(((e.clientX - rect.left - PAD.left) / Math.max(plotW, 1)) * roiMonths);
-		hoverMonth = Math.max(0, Math.min(roiMonths, m));
-	}
-
-	// ── Print (customer-facing rough estimate) ──
-	/** Printed pages need the ROI table open (closed <details> don't print). */
-	let roiTableOpen = $state(false);
-	/** The browser snapshots right after beforeprint, so flush the open attribute
-	    synchronously instead of waiting for Svelte's async update. */
-	function openRoiTableForPrint() {
-		flushSync(() => (roiTableOpen = true));
-	}
-	/** Print-header date (client-only). */
-	let printDate = $state('');
 
 	const usd = new Intl.NumberFormat('en-US', {
 		style: 'currency',
@@ -198,13 +218,94 @@
 		maximumFractionDigits: 2
 	});
 	const num = new Intl.NumberFormat('en-US');
-	/** Short axis-label money ($12k / $1.2M). */
+	/** Short money for chart axis labels ($550k / $1.2M). */
 	const usdCompact = (v: number) =>
 		v >= 1e6
 			? `$${(v / 1e6).toLocaleString('en-US', { maximumFractionDigits: 1 })}M`
 			: v >= 1e3
 				? `$${Math.round(v / 1e3).toLocaleString('en-US')}k`
 				: `$${Math.round(v).toLocaleString('en-US')}`;
+
+	// ── ROI (payback) line chart ──
+	// Cumulative CropWatch cost (one-time hardware + monthly subscription)
+	// versus the cumulative labor cost of manual logging.
+	/** Estimated one-time hardware cost across all locations: sensors plus
+	    the selected gateway per location (no separate setup fee in the US). */
+	const roiInitial = $derived((cfg.deviceUnitPrice ?? 0) * totalUnits + gw.price * locations);
+	const manualPerMonth = $derived(manualCostPerYear / 12);
+	/** Months until the hardware investment pays for itself (null = never at these settings). */
+	const breakEvenMonths = $derived(savingsPerMonth > 0 ? roiInitial / savingsPerMonth : null);
+	/** Payback slower than 3 years reads as a bad deal on labor savings alone - flag it. */
+	const slowRoi = $derived(breakEvenMonths !== null && breakEvenMonths > 36);
+	/** X-axis span: 3 years by default; extend so the break-even point fits (max 10 years). */
+	const roiMonths = $derived(
+		breakEvenMonths === null
+			? 36
+			: Math.min(120, Math.max(36, Math.ceil((breakEvenMonths * 1.25) / 6) * 6))
+	);
+	const cwAt = (m: number) => roiInitial + cropwatchPerMonth * m;
+	const manualAt = (m: number) => manualPerMonth * m;
+	/** Net savings at the end of the charted period - the table's last Difference row,
+	    which already includes the one-time hardware cost at the start. */
+	const roiTotalSavings = $derived(manualAt(roiMonths) - cwAt(roiMonths));
+	/** Round the axis ceiling up to a tidy 1/2/2.5/5 x 10^k value. */
+	function niceCeil(v: number) {
+		if (v <= 0) return 1;
+		const exp = Math.pow(10, Math.floor(Math.log10(v)));
+		const f = v / exp;
+		return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * exp;
+	}
+	const roiMaxY = $derived(niceCeil(Math.max(cwAt(roiMonths), manualAt(roiMonths))));
+
+	// Drawing geometry (tracks the container width).
+	let chartW = $state(0);
+	const CHART_H = 260;
+	const PAD = { top: 18, right: 18, bottom: 30, left: 56 };
+	const plotW = $derived(Math.max(chartW - PAD.left - PAD.right, 0));
+	const plotH = CHART_H - PAD.top - PAD.bottom;
+	const xAt = (m: number) => PAD.left + (m / roiMonths) * plotW;
+	const yAt = (v: number) => PAD.top + plotH - (v / roiMaxY) * plotH;
+	// Thin out the ticks on narrow screens so labels don't overlap.
+	const xTickStep = $derived(roiMonths <= 42 ? (chartW < 480 ? 12 : 6) : chartW < 480 ? 24 : 12);
+	const xTicks = $derived(
+		Array.from({ length: Math.floor(roiMonths / xTickStep) + 1 }, (_, i) => i * xTickStep)
+	);
+	const yTicks = $derived([0, 1, 2, 3, 4].map((i) => (roiMaxY / 4) * i));
+	const monthLabel = (m: number) => (m === 0 ? 'Start' : m % 12 === 0 ? `${m / 12} yr` : `${m} mo`);
+
+	/** Direct labels at the right end of each line: the upper line's label sits
+	    above it, the lower one's below, both clamped inside the plot area. */
+	const roiLabelY = $derived.by(() => {
+		const mEnd = yAt(manualAt(roiMonths));
+		const cEnd = yAt(cwAt(roiMonths));
+		const manualUpper = mEnd <= cEnd;
+		const above = (y: number) => Math.max(y - 10, PAD.top + 12);
+		const below = (y: number) => Math.min(y + 20, PAD.top + plotH - 6);
+		return {
+			manual: manualUpper ? above(mEnd) : below(mEnd),
+			cw: manualUpper ? below(cEnd) : above(cEnd)
+		};
+	});
+
+	// Hover/focus: snap to the nearest month and show both series.
+	let hoverMonth = $state<number | null>(null);
+	function roiMove(e: PointerEvent) {
+		const rect = (e.currentTarget as SVGRectElement).getBoundingClientRect();
+		const m = Math.round(((e.clientX - rect.left - PAD.left) / Math.max(plotW, 1)) * roiMonths);
+		hoverMonth = Math.max(0, Math.min(roiMonths, m));
+	}
+
+	// ── Print (preliminary estimate for customer review) ──
+	/** Open by default so the numbers are visible without a click; kept open
+	    while printing too (closed <details> don't print). */
+	let roiTableOpen = $state(true);
+	/** The browser snapshots the page right after beforeprint, so flush the
+	    open attribute synchronously instead of waiting for Svelte's async tick. */
+	function openRoiTableForPrint() {
+		flushSync(() => (roiTableOpen = true));
+	}
+	/** Date shown in the print header (resolved client-side only). */
+	let printDate = $state('');
 </script>
 
 <svelte:head>
@@ -222,7 +323,7 @@
 	<link rel="canonical" href="https://cropwatch.io/pricing" />
 </svelte:head>
 
-<!-- Printing (incl. Ctrl+P) should output the ROI table expanded -->
+<!-- Any print (including Ctrl+P) should output with the ROI table expanded. -->
 <svelte:window onbeforeprint={openRoiTableForPrint} />
 
 <Breadcrumbs items={[{ label: 'Home', href: '/home' }, { label: 'Pricing' }]} />
@@ -230,16 +331,16 @@
 <section class="pagehero">
 	<div class="wrap" data-reveal>
 		<p class="eyebrow"><span class="material-symbols-rounded">payments</span> Pricing</p>
-		<h1>Monitoring that costs less than the clipboard.</h1>
+		<h1>ROI Estimation</h1>
 		<p class="lead">
 			{#if cfg.comingSoon}
-				{cfg.label} pricing is on its way. Pick another sector to run the numbers - unlimited
-				users, alerts, reports and API are always included.
+				{cfg.label} pricing is on its way. Pick another sector to run the numbers - unlimited users, alerts,
+				reports and API are always included.
 			{:else}
-				Simple {cfg.label.toLowerCase()} pricing: {usd2.format(cfg.baseFee)}/month base
-				+ {usd2.format(cfg.pricePerDevice)}/month per monitored unit - unlimited users, alerts,
-				reports and API included. Slide in your own numbers and watch what the manual log walk
-				really costs.
+				Simple {cfg.label.toLowerCase()} pricing: {usd2.format(cfg.baseFee)}/month base + {usd2.format(
+					cfg.pricePerDevice
+				)}/month per monitored unit - unlimited users, alerts, reports and API included. Slide in
+				your own numbers and see the ROI for yourself.
 			{/if}
 		</p>
 	</div>
@@ -249,17 +350,18 @@
 	<div class="wrap">
 		<!-- Print-only header (hidden on screen) -->
 		<div class="print-head">
-			<img src="/cropwatch_icons/cropwatch_static.svg" alt="" class="print-head__logo" />
+			<img src="/assets/logos/cropwatch_static.svg" alt="" class="print-head__logo" />
 			<div class="print-head__tx">
 				<b>CropWatch</b>
-				<span>Pricing and savings simulation (rough estimate)</span>
+				<span>Pricing &amp; savings estimate (preliminary)</span>
 			</div>
 			<div class="print-head__meta">
 				{#if printDate}<span>Printed: {printDate}</span>{/if}
-				<span>
-					{cfg.label} / {num.format(units)} units × {locations}
-					{locations === 1 ? 'location' : 'locations'}
-				</span>
+				<span
+					>{cfg.label} / {num.format(units)}
+					{units === 1 ? 'unit' : 'units'} × {num.format(locations)}
+					{locations === 1 ? 'location' : 'locations'}</span
+				>
 			</div>
 		</div>
 
@@ -298,358 +400,458 @@
 			</div>
 		</div>
 	{:else}
-	<div class="wrap calc" data-reveal>
-		<!-- Print-only: an "inputs" table stands in for the interactive controls,
-		     which are hidden when printing -->
-		<div class="print-inputs">
-			<h2>Your inputs</h2>
-			<table>
-				<tbody>
-					<tr>
-						<th>Sector</th>
-						<td>{cfg.label}</td>
-						<th>Monitored units per location</th>
-						<td>{num.format(units)}</td>
-					</tr>
-					<tr>
-						<th>Locations</th>
-						<td>{num.format(locations)}</td>
-						<th>Total monitored units</th>
-						<td>{num.format(totalUnits)}</td>
-					</tr>
-					<tr>
-						<th>Temperature checks per day</th>
-						<td>{checksPerDay}×</td>
-						<th>Time per reading</th>
-						<td>{minutesPerCheck} min</td>
-					</tr>
-					<tr>
-						<th>Hourly wage</th>
-						<td>{usd2.format(safeWage)}/hr</td>
-						<th>Printed</th>
-						<td>{printDate}</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="wrap">
+			<!-- Print-only: a compact "your inputs" table replaces the sliders,
+		     which are hidden when printing. -->
+			<div class="print-inputs">
+				<h2>Your inputs</h2>
+				<table>
+					<tbody>
+						<tr>
+							<th>Sector</th>
+							<td>{cfg.label}</td>
+							<th>Monitored units per location</th>
+							<td>{num.format(units)}</td>
+						</tr>
+						<tr>
+							<th>Locations</th>
+							<td>{num.format(locations)}</td>
+							<th>Total monitored units</th>
+							<td>{num.format(totalUnits)}</td>
+						</tr>
+						<tr>
+							<th>Temperature checks per day</th>
+							<td>{checksPerDay}×</td>
+							<th>Time per reading</th>
+							<td>{minutesPerCheck} min</td>
+						</tr>
+						<tr>
+							<th>Hourly wage</th>
+							<td>{usd2.format(safeWage)}/hr</td>
+							<th>Printed</th>
+							<td>{printDate}</td>
+						</tr>
+						<tr>
+							<th>Gateway</th>
+							<td>{gw.label}</td>
+							<th>Gateway cost</th>
+							<td>{usd.format(gw.price)} × {num.format(locations)}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
-		<div class="calc__inputs">
-			<div class="calc-loc">
-				<div class="calc-field__head">
-					<label for="locations">Locations</label>
-					<b>{locations}</b>
-				</div>
-				<input id="locations" type="range" min="1" max="50" step="1" bind:value={locations} />
-				<p class="calc-field__hint">
-					Sites, stores, plants or farms. Everything inside applies to each location.
-				</p>
-
-				<div class="calc-loc__fields">
-					<div class="calc-field">
-						<div class="calc-field__head">
-							<label for="units">Monitored units per location</label>
-							<b>{units}</b>
-						</div>
-						<input id="units" type="range" min="1" max="100" step="1" bind:value={units} />
-						<p class="calc-field__hint">{cfg.unitsHint}</p>
+		<div class="wrap calc" data-reveal>
+			<div class="calc__inputs">
+				<div class="calc-loc">
+					<div class="calc-field__head">
+						<label for="locations">Locations</label>
+						<b>{locations}</b>
 					</div>
+					<input id="locations" type="range" min="1" max="50" step="1" bind:value={locations} />
+					<p class="calc-field__hint">
+						Sites, stores, plants or farms. Everything inside applies to each location.
+					</p>
 
-					<div class="calc-field">
-						<div class="calc-field__head">
-							<label for="checks">Temperature checks per day</label>
-							<b>{checksPerDay}×</b>
+					<div class="calc-loc__fields">
+						<div class="calc-field">
+							<div class="calc-field__head">
+								<label for="units">Monitored units per location</label>
+								<b>{units}</b>
+							</div>
+							<input id="units" type="range" min="1" max="100" step="1" bind:value={units} />
+							<p class="calc-field__hint">{cfg.unitsHint}</p>
 						</div>
-						<input id="checks" type="range" min="1" max="12" step="1" bind:value={checksPerDay} />
+
+						<div class="calc-field">
+							<div class="calc-field__head">
+								<label for="checks">Temperature checks per day</label>
+								<b>{checksPerDay}×</b>
+							</div>
+							<input id="checks" type="range" min="1" max="12" step="1" bind:value={checksPerDay} />
+							<p class="calc-field__hint">
+								How often someone currently walks the log route. Health codes typically require at
+								least two.
+							</p>
+						</div>
+
+						<div class="calc-field">
+							<div class="calc-field__head">
+								<label for="minutes">Time per reading</label>
+								<b>{minutesPerCheck} min</b>
+							</div>
+							<input
+								id="minutes"
+								type="range"
+								min="1"
+								max="30"
+								step="1"
+								bind:value={minutesPerCheck}
+							/>
+							<p class="calc-field__hint">
+								Be honest here: include the walk or travel time to reach each unit, reading it, and
+								the time to log the number into your system - not just glancing at a display.
+							</p>
+						</div>
+					</div>
+					<div id="gateway-options" class="calc-gw">
+						<div class="calc-field__head">
+							<span class="calc-gw__label" id="gateway-options-label">Gateway</span>
+							<b>{usd.format(gw.price)}</b>
+						</div>
+						<div class="calc-gw__opts" role="radiogroup" aria-labelledby="gateway-options-label">
+							{#each GATEWAY_IDS as id (id)}
+								{@const g = GATEWAYS[id]}
+								<label class="calc-gw__opt" class:is-active={gatewayId === id}>
+									<input type="radio" name="gateway" value={id} bind:group={gatewayId} />
+									<span class="calc-gw__tx">
+										<b>
+											{#if g.flag}
+												<span
+													class="gw-flag"
+													role="img"
+													aria-label="Made in {g.madeIn}"
+													data-madein="Made in {g.madeIn}"
+												>
+													<span class="gw-flag__emoji" aria-hidden="true">{g.flag}</span>
+												</span>
+											{/if}
+											{g.label}
+										</b>
+										<small>{g.description}</small>
+									</span>
+									<span class="calc-gw__price">{usd.format(g.price)}</span>
+								</label>
+							{/each}
+						</div>
 						<p class="calc-field__hint">
-							How often someone currently walks the log route. Health codes typically require at
-							least two.
+							Each location needs one gateway - it receives the sensor radio signals and uploads
+							them to the cloud. We <b>do</b> support your gateways from any vendor if you already have
+							one. If so, mention this when you contact us.
 						</p>
 					</div>
+				</div>
 
-					<div class="calc-field">
-						<div class="calc-field__head">
-							<label for="minutes">Time per reading</label>
-							<b>{minutesPerCheck} min</b>
-						</div>
-						<input id="minutes" type="range" min="1" max="30" step="1" bind:value={minutesPerCheck} />
-						<p class="calc-field__hint">
-							Be honest here: include the walk or travel time to reach each unit, reading it, and
-							the time to log the number into your system - not just glancing at a display.
-						</p>
+				<div class="calc-field">
+					<div class="calc-field__head">
+						<label for="wage">Hourly wage</label>
+						<b>{usd2.format(safeWage)}/hr</b>
 					</div>
+					<div class="calc-wage">
+						<span class="calc-wage__cur">$</span>
+						<input id="wage" type="number" min="0" step="0.25" bind:value={wage} />
+					</div>
+					<p class="calc-field__hint">
+						Defaults to the average US state minimum wage ({usd2.format(DEFAULT_HOURLY_WAGE)}/hr).
+						Use your real loaded labor rate for a truer number.
+					</p>
 				</div>
-			</div>
 
-			<div class="calc-field">
-				<div class="calc-field__head">
-					<label for="wage">Hourly wage</label>
-					<b>{usd2.format(safeWage)}/hr</b>
-				</div>
-				<div class="calc-wage">
-					<span class="calc-wage__cur">$</span>
-					<input id="wage" type="number" min="0" step="0.25" bind:value={wage} />
-				</div>
-				<p class="calc-field__hint">
-					Defaults to the average US state minimum wage ({usd2.format(DEFAULT_HOURLY_WAGE)}/hr).
-					Use your real loaded labor rate for a truer number.
+				<p class="calc-assume">
+					Assumes checks happen 365 days a year. CropWatch records automatically every 10 minutes -
+					the numbers below only count the manual walk it replaces.
 				</p>
 			</div>
 
-			<p class="calc-assume">
-				Assumes checks happen 365 days a year. CropWatch records automatically every 10 minutes -
-				the numbers below only count the manual walk it replaces.
-			</p>
-		</div>
-
-		<div class="calc__results">
-			<div class="calc-monthly">
-				<span class="calc-monthly__label">Your CropWatch monthly cost</span>
-				<strong class="calc-monthly__value">{usd2.format(cropwatchPerMonth)}<small>/mo</small></strong>
-				<div class="calc-monthly__rows">
-					<span>
-						Base fee · once per account
-						<b>{usd.format(baseFeeTotal)}</b>
-					</span>
-					<span>
-						Devices · {usd.format(cfg.pricePerDevice)} × {num.format(totalUnits)} monitored units
-						<b>{usd.format(deviceFeeTotal)}</b>
-					</span>
+			<div class="calc__results">
+				<div class="calc-row">
+					<span
+						>Manual logging labor <small
+							>({num.format(Math.round(manualHoursPerYear))} hours/yr)</small
+						></span
+					>
+					<b>{usd.format(manualCostPerYear)}<small>/yr</small></b>
 				</div>
-				<span class="calc-monthly__sub">
-					About {usd2.format(cropwatchPerDay)}/day · {usd.format(cropwatchPerYear)}/yr
-				</span>
-			</div>
-			<div class="calc-row">
-				<span>Manual logging labor <small>({num.format(Math.round(manualHoursPerYear))} hours/yr)</small></span>
-				<b>{usd.format(manualCostPerYear)}<small>/yr</small></b>
-			</div>
-			<div class="calc-row">
-				<span>CropWatch <small>({usd2.format(cropwatchPerMonth)}/mo · {num.format(totalUnits)} devices)</small></span>
-				<b>{usd.format(cropwatchPerYear)}<small>/yr</small></b>
-			</div>
-			<div class="calc-total" class:is-negative={savingsPerYear < 0}>
-				<span>Your estimated savings</span>
-				<strong
-					>{usd.format(savingsPerYear)}<small>/yr</small>{#if savingsPerYear < 0}<span
-							class="calc-total__nope">Not worth it</span
-						>{/if}</strong
-				>
-				<span class="calc-total__sub">
-					{#if savingsPerYear >= 0}
-						{usd.format(savingsPerMonth)} back every month - and {num.format(checksPerYear)} checks
-						a year logged without anyone lifting a pen.
-					{:else}
-						At this size the clipboard is cheaper on paper - but {num.format(checksPerYear)}
-						automated checks a year, audit-proof records and 24/7 alerts usually still win.
-					{/if}
-				</span>
-			</div>
-			<a href="/contact" class="cta-pill cta-pill--lg calc-cta"
-				><span>Get an exact quote</span>
-				<span class="material-symbols-rounded">arrow_forward</span></a
-			>
-			<button
-				type="button"
-				class="cta-ghost calc-print"
-				onclick={() => {
-					openRoiTableForPrint();
-					window.print();
-				}}
-			>
-				<span class="material-symbols-rounded">print</span>
-				<span>Print this estimate</span>
-			</button>
-			<p class="calc-fine">
-				Estimate only - excludes spoilage prevented, energy saved and failed-audit risk, which are
-				usually the bigger numbers. We'll walk through those on a demo.
-			</p>
-		</div>
-	</div>
-
-	<!-- ROI: cumulative-cost line chart -->
-	<div class="wrap" data-reveal>
-		<div class="calc-roi">
-			<h2 class="calc-roi__title">
-				<span class="material-symbols-rounded">show_chart</span> Time to ROI
-			</h2>
-			<p class="calc-roi__sub">
-				Cumulative cost of CropWatch - an estimated one-time hardware cost of {usd.format(
-					roiInitial
-				)} (sensors, gateway and onboarding) plus the monthly fee - compared with what manual logging
-				labor adds up to over the same months.
-			</p>
-			<div class="calc-roi__legend">
-				<span><i class="roi-key roi-key--manual"></i>Manual logging labor (cumulative)</span>
-				<span><i class="roi-key roi-key--cw"></i>CropWatch (hardware + monthly, cumulative)</span>
-			</div>
-			<div
-				class="calc-roi__chart"
-				role="img"
-				aria-label="Cumulative cost over time. CropWatch starts at the {usd.format(
-					roiInitial
-				)} hardware estimate and adds {usd.format(
-					cropwatchPerMonth
-				)} per month; manual logging adds {usd.format(
-					manualCostPerMonth
-				)} per month. The same numbers are in the table below."
-				bind:clientWidth={chartW}
-			>
-				{#if chartW > 0}
-					<svg width={chartW} height={CHART_H} viewBox="0 0 {chartW} {CHART_H}" aria-hidden="true">
-						{#each yTicks as t (t)}
-							<line
-								x1={PAD.left}
-								x2={chartW - PAD.right}
-								y1={yAt(t)}
-								y2={yAt(t)}
-								class="roi-grid"
-							/>
-							<text x={PAD.left - 8} y={yAt(t) + 3.5} text-anchor="end" class="roi-tick"
-								>{usdCompact(t)}</text
-							>
-						{/each}
-						{#each xTicks as m (m)}
-							<text x={xAt(m)} y={CHART_H - 8} text-anchor="middle" class="roi-tick"
-								>{monthLabel(m)}</text
-							>
-						{/each}
-						{#if hoverMonth !== null}
-							<line
-								x1={xAt(hoverMonth)}
-								x2={xAt(hoverMonth)}
-								y1={PAD.top}
-								y2={PAD.top + plotH}
-								class="roi-cross"
-							/>
-						{/if}
-						<line
-							x1={xAt(0)}
-							y1={yAt(manualAt(0))}
-							x2={xAt(roiMonths)}
-							y2={yAt(manualAt(roiMonths))}
-							class="roi-line roi-line--manual"
-						/>
-						<line
-							x1={xAt(0)}
-							y1={yAt(cwAt(0))}
-							x2={xAt(roiMonths)}
-							y2={yAt(cwAt(roiMonths))}
-							class="roi-line roi-line--cw"
-						/>
-						{#if breakEvenMonths !== null && breakEvenMonths <= roiMonths}
-							<circle
-								cx={xAt(breakEvenMonths)}
-								cy={yAt(cwAt(breakEvenMonths))}
-								r="4.5"
-								class="roi-be"
-							/>
-							<text
-								x={xAt(breakEvenMonths) + (breakEvenMonths > roiMonths * 0.6 ? -10 : 10)}
-								y={Math.max(yAt(cwAt(breakEvenMonths)) - 12, PAD.top + 12)}
-								text-anchor={breakEvenMonths > roiMonths * 0.6 ? 'end' : 'start'}
-								class="roi-be-label"
-								>{chartW < 480
-									? `~${Math.ceil(breakEvenMonths)} mo`
-									: `Breaks even in ~${Math.ceil(breakEvenMonths)} months`}</text
-							>
-						{/if}
-						{#if hoverMonth !== null}
-							<circle
-								cx={xAt(hoverMonth)}
-								cy={yAt(manualAt(hoverMonth))}
-								r="4"
-								class="roi-dot roi-dot--manual"
-							/>
-							<circle
-								cx={xAt(hoverMonth)}
-								cy={yAt(cwAt(hoverMonth))}
-								r="4"
-								class="roi-dot roi-dot--cw"
-							/>
-						{/if}
-						<!-- Hover is supplemental (the same numbers live in the table below);
-						     only silence the svelte a11y warning -->
-						<!-- svelte-ignore a11y_no_static_element_interactions -->
-						<rect
-							x="0"
-							y="0"
-							width={chartW}
-							height={CHART_H}
-							fill="transparent"
-							onpointermove={roiMove}
-							onpointerleave={() => (hoverMonth = null)}
-						/>
-					</svg>
-					{#if hoverMonth !== null}
-						<div
-							class="roi-tip"
-							class:roi-tip--flip={hoverMonth > roiMonths * 0.55}
-							style="left:{xAt(hoverMonth)}px; top:{PAD.top}px;"
+				<div class="calc-row">
+					<span
+						>CropWatch <small
+							>({usd2.format(cropwatchPerMonth)}/mo · {num.format(totalUnits)} devices)</small
+						></span
+					>
+					<b>{usd.format(cropwatchPerYear)}<small>/yr</small></b>
+				</div>
+				{#if cfg.deviceUnitPrice !== null}
+					<div class="calc-row">
+						<span
+							>Hardware <small
+								>({num.format(totalUnits)} sensors × {usd.format(cfg.deviceUnitPrice)} + {num.format(
+									locations
+								)}
+								{locations === 1 ? 'gateway' : 'gateways'} × {usd.format(gw.price)})</small
+							></span
 						>
-							<b class="roi-tip__t">{hoverMonth === 0 ? 'At install' : `Month ${hoverMonth}`}</b>
-							<div class="roi-tip__row">
-								<i class="roi-key roi-key--manual"></i>
-								<b>{usd.format(manualAt(hoverMonth))}</b>
-								<span>Manual logging</span>
-							</div>
-							<div class="roi-tip__row">
-								<i class="roi-key roi-key--cw"></i>
-								<b>{usd.format(cwAt(hoverMonth))}</b>
-								<span>CropWatch</span>
-							</div>
-							{#if manualAt(hoverMonth) - cwAt(hoverMonth) > 0}
-								<div class="roi-tip__diff">
-									Saved {usd.format(manualAt(hoverMonth) - cwAt(hoverMonth))}
+						<b>{usd.format(roiInitial)} <small><u>one-time</u></small></b>
+					</div>
+				{/if}
+				<div class="calc-total" class:is-negative={savingsPerYear < 0 || slowRoi}>
+					<span>Your estimated savings</span>
+					<strong
+						>{usd.format(savingsPerYear)}<small>/yr</small>{#if savingsPerYear < 0}<span
+								class="calc-total__nope">Not worth it</span
+							>{:else if slowRoi}<span class="calc-total__nope calc-total__nope--roi"
+								>&gt; 3 year ROI, likely not worth it</span
+							>{/if}</strong
+					>
+					<span class="calc-total__sub">
+						{#if savingsPerYear < 0}
+							At this size the clipboard is cheaper on paper - but {num.format(checksPerYear)}
+							automated checks a year, audit-proof records and 24/7 alerts usually still win.
+						{:else if slowRoi && breakEvenMonths !== null}
+							The savings are real, but at these settings the hardware takes about {(
+								breakEvenMonths / 12
+							).toFixed(1)} years to pay for itself. Spoilage prevented and audit protection usually shorten
+							that - worth checking on a demo before ruling it out.
+						{:else}
+							{usd.format(savingsPerMonth)} back every month - and {num.format(checksPerYear)} checks
+							a year logged without anyone lifting a pen.
+						{/if}
+					</span>
+				</div>
+				<a href="/contact" class="cta-pill cta-pill--lg calc-cta"
+					><span>Get an exact quote</span>
+					<span class="material-symbols-rounded">arrow_forward</span></a
+				>
+				<button
+					type="button"
+					class="calc-print"
+					onclick={() => {
+						openRoiTableForPrint();
+						window.print();
+					}}
+				>
+					<span class="material-symbols-rounded">print</span>
+					Print this estimate
+				</button>
+				<p class="calc-fine">
+					Estimate only - excludes spoilage prevented, energy saved and failed-audit risk, which are
+					usually the bigger numbers. We'll walk through those on a demo.
+				</p>
+			</div>
+		</div>
+
+		{#if cfg.deviceUnitPrice !== null}
+			<!-- ROI: payback line chart -->
+			<div class="wrap" data-reveal>
+				<div class="roi">
+					<h2 class="roi__title">
+						<span class="material-symbols-rounded">show_chart</span> When does it pay for itself?
+					</h2>
+					<p class="roi__sub">
+						Cumulative CropWatch cost - estimated one-time hardware of {usd.format(roiInitial)} plus the
+						monthly subscription - versus the cumulative labor cost of manual logging.
+					</p>
+					<div class="roi__legend">
+						<span><i class="roi-key roi-key--manual"></i>Manual logging labor (cumulative)</span>
+						<span><i class="roi-key roi-key--cw"></i>CropWatch (hardware + monthly)</span>
+					</div>
+					<div
+						class="roi__chart"
+						role="img"
+						aria-label="Cumulative cost over time. CropWatch starts at {usd.format(
+							roiInitial
+						)} of hardware and grows by {usd.format(
+							cropwatchPerMonth
+						)} per month; manual logging grows
+					by {usd.format(manualPerMonth)} per month. The same numbers are in the table below."
+						bind:clientWidth={chartW}
+					>
+						{#if chartW > 0}
+							<svg
+								width={chartW}
+								height={CHART_H}
+								viewBox="0 0 {chartW} {CHART_H}"
+								aria-hidden="true"
+							>
+								{#each yTicks as t (t)}
+									<line
+										x1={PAD.left}
+										x2={chartW - PAD.right}
+										y1={yAt(t)}
+										y2={yAt(t)}
+										class="roi-grid"
+									/>
+									<text x={PAD.left - 8} y={yAt(t) + 3.5} text-anchor="end" class="roi-tick"
+										>{usdCompact(t)}</text
+									>
+								{/each}
+								{#each xTicks as m (m)}
+									<text x={xAt(m)} y={CHART_H - 8} text-anchor="middle" class="roi-tick"
+										>{monthLabel(m)}</text
+									>
+								{/each}
+								{#if hoverMonth !== null}
+									<line
+										x1={xAt(hoverMonth)}
+										x2={xAt(hoverMonth)}
+										y1={PAD.top}
+										y2={PAD.top + plotH}
+										class="roi-cross"
+									/>
+								{/if}
+								<line
+									x1={xAt(0)}
+									y1={yAt(manualAt(0))}
+									x2={xAt(roiMonths)}
+									y2={yAt(manualAt(roiMonths))}
+									class="roi-line roi-line--manual"
+								/>
+								<line
+									x1={xAt(0)}
+									y1={yAt(cwAt(0))}
+									x2={xAt(roiMonths)}
+									y2={yAt(cwAt(roiMonths))}
+									class="roi-line roi-line--cw"
+								/>
+								<text
+									x={xAt(roiMonths) - 4}
+									y={roiLabelY.manual}
+									text-anchor="end"
+									class="roi-line-label roi-line-label--manual">Manual logging Expense</text
+								>
+								<text
+									x={xAt(roiMonths) - 4}
+									y={roiLabelY.cw}
+									text-anchor="end"
+									class="roi-line-label roi-line-label--cw">CropWatch Expense</text
+								>
+								{#if breakEvenMonths !== null && breakEvenMonths <= roiMonths}
+									<circle
+										cx={xAt(breakEvenMonths)}
+										cy={yAt(cwAt(breakEvenMonths))}
+										r="4.5"
+										class="roi-be"
+									/>
+									<text
+										x={xAt(breakEvenMonths) + (breakEvenMonths > roiMonths * 0.6 ? -10 : 10)}
+										y={Math.max(yAt(cwAt(breakEvenMonths)) - 22, PAD.top + 14)}
+										text-anchor={breakEvenMonths > roiMonths * 0.6 ? 'end' : 'start'}
+										class="roi-be-label">Pays for itself in ~{Math.ceil(breakEvenMonths)} mo</text
+									>
+								{/if}
+								{#if hoverMonth !== null}
+									<circle
+										cx={xAt(hoverMonth)}
+										cy={yAt(manualAt(hoverMonth))}
+										r="4"
+										class="roi-dot roi-dot--manual"
+									/>
+									<circle
+										cx={xAt(hoverMonth)}
+										cy={yAt(cwAt(hoverMonth))}
+										r="4"
+										class="roi-dot roi-dot--cw"
+									/>
+								{/if}
+								<!-- Hover is supplementary (the same numbers are in the table below).
+							     Only the Svelte a11y warning is suppressed here. -->
+								<!-- svelte-ignore a11y_no_static_element_interactions -->
+								<rect
+									x="0"
+									y="0"
+									width={chartW}
+									height={CHART_H}
+									fill="transparent"
+									onpointermove={roiMove}
+									onpointerleave={() => (hoverMonth = null)}
+								/>
+							</svg>
+							{#if hoverMonth !== null}
+								<div
+									class="roi-tip"
+									class:roi-tip--flip={hoverMonth > roiMonths * 0.55}
+									style="left:{xAt(hoverMonth)}px; top:{PAD.top}px;"
+								>
+									<b class="roi-tip__t"
+										>{hoverMonth === 0 ? 'At installation' : `After ${hoverMonth} mo`}</b
+									>
+									<div class="roi-tip__row">
+										<i class="roi-key roi-key--manual"></i>
+										<b>{usd.format(manualAt(hoverMonth))}</b>
+										<span>Manual logging</span>
+									</div>
+									<div class="roi-tip__row">
+										<i class="roi-key roi-key--cw"></i>
+										<b>{usd.format(cwAt(hoverMonth))}</b>
+										<span>CropWatch</span>
+									</div>
+									{#if manualAt(hoverMonth) - cwAt(hoverMonth) > 0}
+										<div class="roi-tip__diff">
+											{usd.format(manualAt(hoverMonth) - cwAt(hoverMonth))} ahead
+										</div>
+									{/if}
 								</div>
 							{/if}
+						{/if}
+					</div>
+					<p class="roi__note">
+						{#if breakEvenMonths !== null}
+							At {usd.format(savingsPerMonth)}/mo in labor savings, the upfront hardware pays for
+							itself in about {Math.ceil(breakEvenMonths)} months.
+						{:else}
+							At these settings manual logging stays cheaper, so there is no break-even point on
+							cost alone.
+						{/if}
+						Hardware estimated at {usd.format(cfg.deviceUnitPrice ?? 0)}/sensor plus {usd.format(
+							gw.price
+						)}/location for the {gw.label} - your exact quote may differ.
+					</p>
+					<details class="roi__table" bind:open={roiTableOpen}>
+						<summary>See the numbers as a table</summary>
+						<div class="roi__tablewrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Time</th>
+										<th>Manual logging</th>
+										<th>CropWatch</th>
+										<th>Difference</th>
+									</tr>
+								</thead>
+								<tbody>
+									{#each xTicks as m (m)}
+										<tr
+											class={manualAt(m) - cwAt(m) > 0
+												? 'roi-table__positive'
+												: 'roi-table__negative'}
+										>
+											<th>{monthLabel(m)}</th>
+											<td class={manualAt(m) - cwAt(m) < 0 ? 'text-green-500' : 'text-red-700'}
+												>{usd.format(manualAt(m))}</td
+											>
+											<td class={manualAt(m) - cwAt(m) > 0 ? 'text-green-500' : 'text-red-700'}
+												>{usd.format(cwAt(m))}</td
+											>
+											<td>{usd.format(manualAt(m) - cwAt(m))}</td>
+										</tr>
+									{/each}
+								</tbody>
+							</table>
+							<div class="calc-total roi__total" class:is-negative={roiTotalSavings < 0}>
+								<span
+									>Total savings after {roiMonths % 12 === 0
+										? `${roiMonths / 12} years`
+										: `${roiMonths} months`}</span
+								>
+								<strong>{usd.format(roiTotalSavings)}</strong>
+								<span class="calc-total__sub">
+									<sup>*</sup>Includes the {usd.format(roiInitial)} one-time hardware cost at the start.
+								</span>
+							</div>
 						</div>
-					{/if}
-				{/if}
-			</div>
-			<p class="calc-roi__note">
-				{#if breakEvenMonths !== null}
-					At {usd.format(savingsPerMonth)} saved per month, the hardware pays for itself in about
-					{Math.ceil(breakEvenMonths)} months.
-				{:else}
-					At this size manual logging is cheaper on paper, so there is no cost-based payback point -
-					but audit-proof records and 24/7 alerts usually still win.
-				{/if}
-			</p>
-			<details class="calc-roi__table" bind:open={roiTableOpen}>
-				<summary>See the numbers</summary>
-				<div class="calc-roi__tablewrap">
-					<table>
-						<thead>
-							<tr><th>Elapsed</th><th>Manual logging</th><th>CropWatch</th><th>Difference</th></tr>
-						</thead>
-						<tbody>
-							{#each xTicks as m (m)}
-								<tr>
-									<th>{monthLabel(m)}</th>
-									<td class={manualAt(m) - cwAt(m) > 0 ? 'text-green-500' : 'text-red-700'}>{usd.format(manualAt(m))}</td>
-									<td>{usd.format(cwAt(m))}</td>
-									<td class={manualAt(m) - cwAt(m) < 0 ? 'text-red-700' : 'text-green-500'}>{usd.format(manualAt(m) - cwAt(m))}</td>
-								</tr>
-							{/each}
-						</tbody>
-					</table>
+					</details>
 				</div>
-			</details>
-			<p class="calc-roi__fine">
-				Hardware cost shown is a planning estimate; the exact figure depends on your configuration
-				and comes with your quote.
+			</div>
+		{/if}
+
+		<div class="wrap">
+			<!-- Print-only footer (hidden on screen) -->
+			<p class="print-foot">
+				<span class="print-foot__star">★</span>
+				All figures in this document are rough, preliminary estimates - not a formal quote. Final pricing
+				follows a review of your configuration and site conditions.
 			</p>
 		</div>
-	</div>
-
-	<!-- Print-only footer (hidden on screen) -->
-	<div class="wrap">
-		<p class="print-foot">
-			<span class="print-foot__star">★</span>
-			All figures in this document are rough estimates, not a formal quote. Final pricing follows a review
-			of your configuration and site conditions.
-		</p>
-	</div>
 	{/if}
 </section>
 
@@ -668,7 +870,7 @@
 		font: inherit;
 		font-size: 14.5px;
 		font-weight: 700;
-		color: var(--web-heading);
+		color: var(--cw-ink);
 		background: var(--web-surface);
 		border: 1px solid var(--web-border);
 		border-radius: 999px;
@@ -700,9 +902,9 @@
 		font-weight: 700;
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
-		color: var(--web-gold);
-		background: color-mix(in srgb, var(--cw-gold-400) 18%, transparent);
-		border: 1px solid color-mix(in srgb, var(--web-gold) 40%, transparent);
+		color: var(--cw-gold-500, #f2a516);
+		background: color-mix(in srgb, var(--cw-gold-400, #ffbb34) 18%, transparent);
+		border: 1px solid color-mix(in srgb, var(--cw-gold-500, #f2a516) 40%, transparent);
 		border-radius: 999px;
 		padding: 2px 8px;
 	}
@@ -765,11 +967,11 @@
 	/* The card behind this slider is primary-soft - the default track color -
 	   so give it a white track (with a faint outline) to stay visible. */
 	.calc-loc > input[type='range'] {
-		background: var(--web-surface);
+		background: #fff;
 		border: 1px solid color-mix(in srgb, var(--web-primary) 35%, transparent);
 	}
 	.calc-loc > input[type='range']::-moz-range-track {
-		background: var(--web-surface);
+		background: #fff;
 	}
 	.calc-loc__fields {
 		display: grid;
@@ -778,6 +980,144 @@
 		padding-top: 20px;
 		border-top: 1px dashed color-mix(in srgb, var(--web-primary) 35%, transparent);
 	}
+	/* ── Gateway radio cards ── */
+	.calc-gw {
+		margin-top: 20px;
+		padding-top: 20px;
+		border-top: 1px dashed color-mix(in srgb, var(--web-primary) 35%, transparent);
+	}
+	.calc-gw__label {
+		font-size: 15px;
+		font-weight: 700;
+		color: var(--cw-ink);
+	}
+	.calc-gw > .calc-field__head b {
+		font-size: 22px;
+		font-weight: 800;
+		color: var(--web-primary);
+		font-family: var(--cw-font-mono);
+		white-space: nowrap;
+	}
+	.calc-gw__opts {
+		display: grid;
+		gap: 10px;
+	}
+	.calc-gw__opt {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: var(--cw-radius-lg);
+		padding: 12px 16px;
+		cursor: pointer;
+		transition:
+			border-color 0.18s ease,
+			box-shadow 0.18s ease;
+	}
+	.calc-gw__opt:hover {
+		border-color: var(--web-border-strong);
+	}
+	.calc-gw__opt.is-active {
+		border-color: var(--web-primary);
+		box-shadow: 0 0 0 1px var(--web-primary) inset;
+	}
+	.calc-gw__opt input[type='radio'] {
+		flex: none;
+		width: 18px;
+		height: 18px;
+		margin: 0;
+		accent-color: var(--web-primary);
+		cursor: pointer;
+	}
+	.calc-gw__tx b {
+		display: block;
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--cw-ink);
+	}
+	.calc-gw__tx small {
+		display: block;
+		margin-top: 2px;
+		font-size: 12px;
+		line-height: 1.55;
+		color: var(--web-muted);
+	}
+	/* Country-of-manufacture flag: grows slightly on hover and shows a
+	   "Made in ..." tooltip. The emoji lives in a nested span so scaling it
+	   doesn't also scale the tooltip (pseudo-elements inherit transforms). */
+	.gw-flag {
+		position: relative;
+		display: inline-block;
+		margin-right: 2px;
+		cursor: help;
+	}
+	.gw-flag__emoji {
+		display: inline-block;
+		font-size: 16px;
+		transition: transform 0.15s ease;
+	}
+	.gw-flag:hover .gw-flag__emoji {
+		transform: scale(1.35);
+	}
+	.gw-flag::after {
+		content: attr(data-madein);
+		position: absolute;
+		left: 50%;
+		bottom: calc(100% + 8px);
+		transform: translateX(-50%) translateY(3px);
+		background: var(--cw-ink);
+		color: #fff;
+		font-size: 11.5px;
+		font-weight: 600;
+		line-height: 1;
+		padding: 6px 9px;
+		border-radius: 7px;
+		white-space: nowrap;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			opacity 0.15s ease,
+			transform 0.15s ease,
+			visibility 0.15s;
+		z-index: 3;
+	}
+	/* Little arrow under the tooltip bubble. */
+	.gw-flag::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: calc(100% + 3px);
+		transform: translateX(-50%) translateY(3px);
+		border: 5px solid transparent;
+		border-top-color: var(--cw-ink);
+		border-bottom: none;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			opacity 0.15s ease,
+			transform 0.15s ease,
+			visibility 0.15s;
+		z-index: 3;
+	}
+	.gw-flag:hover::after,
+	.gw-flag:hover::before {
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(-50%) translateY(0);
+	}
+	.calc-gw__price {
+		margin-left: auto;
+		flex: none;
+		font-family: var(--cw-font-mono);
+		font-size: 15px;
+		font-weight: 800;
+		color: var(--web-primary);
+		white-space: nowrap;
+	}
+
 	.calc-field {
 		background: var(--web-surface);
 		border: 1px solid var(--web-border);
@@ -795,7 +1135,7 @@
 	.calc-field__head label {
 		font-size: 15px;
 		font-weight: 700;
-		color: var(--web-heading);
+		color: var(--cw-ink);
 	}
 	.calc-field__head b {
 		font-size: 22px;
@@ -826,7 +1166,7 @@
 		height: 24px;
 		border-radius: 50%;
 		background: var(--web-primary);
-		border: 3px solid var(--web-surface);
+		border: 3px solid #fff;
 		box-shadow: 0 1px 6px rgba(8, 16, 34, 0.35);
 	}
 	input[type='range']::-moz-range-thumb {
@@ -834,7 +1174,7 @@
 		height: 20px;
 		border-radius: 50%;
 		background: var(--web-primary);
-		border: 3px solid var(--web-surface);
+		border: 3px solid #fff;
 		box-shadow: 0 1px 6px rgba(8, 16, 34, 0.35);
 	}
 	input[type='range']::-moz-range-track {
@@ -860,7 +1200,7 @@
 		font-family: var(--cw-font-mono);
 		font-weight: 700;
 		font-size: 17px;
-		color: var(--web-heading);
+		color: var(--cw-ink);
 		padding: 11px 14px 11px 30px;
 		border: 1px solid var(--web-border-strong);
 		border-radius: var(--cw-radius-lg);
@@ -910,7 +1250,7 @@
 	.calc-row b {
 		font-size: 22px;
 		font-weight: 800;
-		color: var(--web-heading);
+		color: var(--cw-ink);
 		font-family: var(--cw-font-mono);
 		white-space: nowrap;
 	}
@@ -932,13 +1272,13 @@
 		font-weight: 700;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
-		color: var(--web-accent-active);
+		color: var(--cw-emerald-700, #0a7a4d);
 	}
 	.calc-total strong {
 		font-size: clamp(30px, 4vw, 40px);
 		font-weight: 800;
 		line-height: 1.05;
-		color: var(--web-accent-active);
+		color: var(--cw-emerald-700, #0a7a4d);
 		font-family: var(--cw-font-mono);
 	}
 	.calc-total strong small {
@@ -957,7 +1297,7 @@
 	}
 	.calc-total.is-negative > span:first-child,
 	.calc-total.is-negative strong {
-		color: var(--web-heading);
+		color: var(--cw-ink);
 	}
 	.calc-total__nope {
 		display: inline-block;
@@ -968,21 +1308,49 @@
 		font-weight: 700;
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
-		color: var(--cw-danger-500);
-		background: color-mix(in srgb, var(--cw-danger-500) 10%, transparent);
-		border: 1px solid color-mix(in srgb, var(--cw-danger-500) 35%, transparent);
+		color: var(--cw-danger-500, #dc2626);
+		background: color-mix(in srgb, var(--cw-danger-500, #dc2626) 10%, transparent);
+		border: 1px solid color-mix(in srgb, var(--cw-danger-500, #dc2626) 35%, transparent);
 		border-radius: 999px;
 		padding: 4px 11px;
 		white-space: nowrap;
+	}
+	/* The slow-payback badge is wordier - let it wrap instead of overflowing the card. */
+	.calc-total__nope--roi {
+		white-space: normal;
+		line-height: 1.5;
 	}
 	.calc-cta {
 		justify-content: center;
 	}
 	.calc-print {
+		display: inline-flex;
+		align-items: center;
 		justify-content: center;
-		background: transparent;
+		gap: 8px;
+		margin-top: -4px;
+		padding: 0.9rem 1.7rem;
 		font-family: inherit;
+		font-weight: 600;
+		font-size: var(--cw-text-base);
+		color: var(--web-primary);
+		background: transparent;
+		border: 1px solid var(--web-border-strong);
+		border-radius: var(--cw-radius-pill);
 		cursor: pointer;
+		transition:
+			border-color var(--cw-duration-normal) var(--cw-ease-default),
+			background var(--cw-duration-normal) var(--cw-ease-default);
+	}
+	.calc-print:hover {
+		border-color: var(--web-primary);
+		background: var(--web-primary-soft);
+	}
+	.calc-print:active {
+		transform: translateY(1px);
+	}
+	.calc-print .material-symbols-rounded {
+		font-size: 20px;
 	}
 	.calc-fine {
 		margin: 0;
@@ -991,83 +1359,34 @@
 		color: var(--web-muted);
 	}
 
-	/* ── Monthly breakdown (top of results) ── */
-	.calc-monthly {
-		display: grid;
-		gap: 6px;
-		padding-bottom: 14px;
-		border-bottom: 1px solid var(--web-border);
-	}
-	.calc-monthly__label {
-		font-size: 12px;
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: var(--web-muted);
-	}
-	.calc-monthly__value {
-		font-family: var(--cw-font-mono);
-		font-size: clamp(26px, 3.4vw, 34px);
-		font-weight: 800;
-		line-height: 1.05;
-		color: var(--web-heading);
-	}
-	.calc-monthly__value small {
-		font-size: 14px;
-		font-weight: 700;
-		color: var(--web-muted);
-	}
-	.calc-monthly__rows {
-		display: grid;
-		gap: 4px;
-		margin-top: 2px;
-	}
-	.calc-monthly__rows > span {
-		display: flex;
-		justify-content: space-between;
-		gap: 12px;
-		font-size: 12.5px;
-		color: var(--web-muted);
-	}
-	.calc-monthly__rows b {
-		font-family: var(--cw-font-mono);
-		font-weight: 700;
-		color: var(--web-heading);
-		white-space: nowrap;
-	}
-	.calc-monthly__sub {
-		font-size: 12px;
-		color: var(--web-muted);
-	}
-
 	/* ── ROI (payback) line chart ── */
-	.calc-roi {
+	.roi {
 		margin-top: clamp(24px, 4vw, 48px);
-		background: var(--web-primary-soft);
-		border: 1px solid color-mix(in srgb, var(--web-primary) 30%, transparent);
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
 		border-radius: var(--web-radius-card);
 		box-shadow: var(--web-shadow-card);
-		padding: 26px 28px;
+		padding: 22px 24px;
 	}
-	.calc-roi__title {
+	.roi__title {
 		display: flex;
 		align-items: center;
 		gap: 8px;
 		font-size: 19px;
 		margin: 0 0 10px;
-		color: var(--web-heading);
+		color: var(--cw-ink);
 	}
-	.calc-roi__title .material-symbols-rounded {
+	.roi__title .material-symbols-rounded {
 		font-size: 22px;
 		color: var(--web-accent);
 	}
-	.calc-roi__sub {
+	.roi__sub {
 		margin: 0 0 12px;
-		font-size: 13.5px;
+		font-size: 13px;
 		line-height: 1.7;
 		color: var(--web-muted);
 	}
-	.calc-roi__legend {
+	.roi__legend {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 6px 18px;
@@ -1076,32 +1395,31 @@
 		font-weight: 700;
 		color: var(--web-muted);
 	}
-	.calc-roi__legend span {
+	.roi__legend span {
 		display: inline-flex;
 		align-items: center;
 		gap: 7px;
 	}
 	.roi-key {
 		display: inline-block;
-		width: 16px;
-		height: 0;
-		border-top: 2px solid;
-		border-radius: 2px;
+		width: 12px;
+		height: 12px;
+		border-radius: 4px;
 	}
 	.roi-key--cw {
-		border-color: var(--web-accent);
+		background: var(--cw-sapphire-300);
 	}
 	.roi-key--manual {
-		border-color: var(--web-primary);
+		background: #000;
 	}
-	.calc-roi__chart {
+	.roi__chart {
 		position: relative;
 	}
-	.calc-roi__chart svg {
+	.roi__chart svg {
 		display: block;
 	}
 	.roi-grid {
-		stroke: var(--web-border);
+		stroke: var(--cw-gray-200);
 		stroke-width: 1;
 	}
 	.roi-tick {
@@ -1110,38 +1428,58 @@
 	}
 	.roi-line {
 		fill: none;
-		stroke-width: 2;
+		stroke-width: 3.5;
 		stroke-linecap: round;
 	}
 	.roi-line--cw {
-		stroke: var(--web-accent);
+		stroke: var(--cw-sapphire-300);
 	}
 	.roi-line--manual {
-		stroke: var(--web-primary);
+		stroke: #000;
+	}
+	/* Direct series labels at the right end of each line. The white stroke
+	   (painted under the fill) keeps them readable over gridlines. */
+	.roi-line-label {
+		font-size: 12px;
+		font-weight: 700;
+		paint-order: stroke;
+		stroke: var(--web-surface);
+		stroke-width: 3.5;
+	}
+	.roi-line-label--cw {
+		fill: var(--cw-sapphire-500);
+	}
+	.roi-line-label--manual {
+		fill: #000;
 	}
 	.roi-cross {
-		stroke: var(--web-border-strong);
+		stroke: var(--cw-gray-300);
 		stroke-width: 1;
 	}
 	.roi-be {
-		fill: var(--web-accent);
+		fill: var(--cw-sapphire-500);
 		stroke: var(--web-surface);
 		stroke-width: 2;
 	}
 	.roi-be-label {
-		font-size: 12px;
-		font-weight: 700;
-		fill: var(--web-heading);
+		font-size: 14.5px;
+		font-weight: 800;
+		/* Green, but dark enough to read on white; the white under-stroke
+		   keeps it legible where it crosses gridlines or the chart lines. */
+		fill: var(--cw-emerald-700, #0a7a4d);
+		paint-order: stroke;
+		stroke: var(--web-surface);
+		stroke-width: 3.5;
 	}
 	.roi-dot {
 		stroke: var(--web-surface);
 		stroke-width: 2;
 	}
 	.roi-dot--cw {
-		fill: var(--web-accent);
+		fill: var(--cw-sapphire-300);
 	}
 	.roi-dot--manual {
-		fill: var(--web-primary);
+		fill: #000;
 	}
 	.roi-tip {
 		position: absolute;
@@ -1176,7 +1514,7 @@
 	.roi-tip__row b {
 		font-family: var(--cw-font-mono);
 		font-size: 13px;
-		color: var(--web-heading);
+		color: var(--cw-ink);
 	}
 	.roi-tip__row span {
 		color: var(--web-muted);
@@ -1188,74 +1526,70 @@
 		border-top: 1px dashed var(--web-border);
 		font-size: 12px;
 		font-weight: 700;
-		color: var(--web-accent-hover);
+		color: var(--cw-emerald-600, #0b7f50);
 	}
-	.calc-roi__note {
+	.roi__note {
 		margin: 12px 0 0;
-		font-size: 13px;
-		line-height: 1.7;
-		color: var(--web-text);
-	}
-	.calc-roi__fine {
-		margin: 10px 0 0;
-		font-size: 12px;
-		line-height: 1.65;
+		font-size: 12.5px;
+		line-height: 1.8;
 		color: var(--web-muted);
 	}
-	.calc-roi__table {
+	.roi__table {
 		margin-top: 10px;
 	}
-	.calc-roi__table summary {
+	.roi__table summary {
 		font-size: 12.5px;
 		font-weight: 700;
 		color: var(--web-muted);
 		cursor: pointer;
 	}
-	.calc-roi__tablewrap {
+	.roi__tablewrap {
 		overflow-x: auto;
 	}
-	.calc-roi__table table {
+	.roi__table table {
 		width: 100%;
 		min-width: 420px;
 		margin-top: 10px;
 		border-collapse: collapse;
 		font-size: 12.5px;
 	}
-	.calc-roi__table th,
-	.calc-roi__table td {
+	.roi__table th,
+	.roi__table td {
 		padding: 6px 10px;
 		border-bottom: 1px solid var(--web-border);
 		text-align: right;
 		font-variant-numeric: tabular-nums;
 		white-space: nowrap;
 	}
-	.calc-roi__table thead th {
+	.roi__table thead th {
 		color: var(--web-muted);
 		font-size: 11.5px;
 	}
-	.calc-roi__table tbody th {
+	.roi__table tbody th {
 		text-align: left;
 		color: var(--web-muted);
 		font-weight: 700;
 	}
 
-	@media (max-width: 900px) {
-		.calc {
-			grid-template-columns: 1fr;
-		}
-		.calc__results {
-			position: static;
-		}
+	.roi__total {
+		margin-top: 14px;
+	}
+	.roi-table__positive {
+		border-top: 3px solid var(--cw-emerald-600, #0b7f50);
 	}
 
-	/* ── Print (customer-facing rough estimate) ── */
+	.roi-table__positive ~ .roi-table__positive {
+		border-top: none;
+	}
+
+	/* ── Print (preliminary estimate for customer review) ── */
 	.print-head,
 	.print-foot,
 	.print-inputs {
 		display: none;
 	}
 	@media print {
-		/* Don't print the site header/footer/breadcrumbs or interactive UI */
+		/* No site chrome on paper: header, footer, breadcrumb, interactive UI. */
 		:global(header.hdr),
 		:global(footer.ftr),
 		:global(nav.pcrumb) {
@@ -1268,17 +1602,19 @@
 		.calc-print {
 			display: none !important;
 		}
-		/* Disable scroll-reveal animation so nothing prints invisible */
-		[data-reveal] {
+		/* Disable the reveal-on-scroll animation so nothing prints invisible. */
+		:global([data-reveal]) {
 			opacity: 1 !important;
 			transform: none !important;
 			transition: none !important;
 		}
+		/* Results card becomes plain flow content next to the inputs table. */
 		.calc {
 			display: block;
 		}
 		.calc__results {
 			position: static;
+			box-shadow: none;
 		}
 		/* CropWatch print header */
 		.print-head {
@@ -1287,7 +1623,7 @@
 			gap: 14px;
 			padding-bottom: 14px;
 			margin-bottom: 18px;
-			border-bottom: 2px solid var(--web-heading);
+			border-bottom: 2px solid var(--cw-ink);
 		}
 		.print-head__logo {
 			width: 46px;
@@ -1296,7 +1632,7 @@
 		.print-head__tx b {
 			display: block;
 			font-size: 18px;
-			color: var(--web-heading);
+			color: var(--cw-ink);
 		}
 		.print-head__tx span {
 			font-size: 12px;
@@ -1310,7 +1646,7 @@
 			font-size: 11.5px;
 			color: var(--web-muted);
 		}
-		/* "Your inputs" report table stands in for the interactive controls */
+		/* "Your inputs" report table standing in for the sliders. */
 		.print-inputs {
 			display: block;
 			break-inside: avoid;
@@ -1319,7 +1655,7 @@
 		.print-inputs h2 {
 			margin: 0 0 8px;
 			font-size: 14px;
-			color: var(--web-heading);
+			color: var(--cw-ink);
 		}
 		.print-inputs table {
 			width: 100%;
@@ -1340,7 +1676,7 @@
 		}
 		.print-inputs td {
 			width: 26%;
-			color: var(--web-heading);
+			color: var(--cw-ink);
 			font-weight: 700;
 			font-variant-numeric: tabular-nums;
 		}
@@ -1359,34 +1695,53 @@
 		.print-foot__star {
 			font-size: 13px;
 			line-height: 1.6;
-			color: var(--web-heading);
+			color: var(--cw-ink);
 		}
-		/* Keep the small blocks on one page; tall cards may split freely */
-		.calc-monthly,
-		.calc-total {
+		/* Keep the small cards on one page; tall cards may split naturally. */
+		.calc-total,
+		.print-inputs {
 			break-inside: avoid;
 		}
-		/* Print the numeric table as a plain table, toggle hidden */
-		.calc-roi__table summary {
+		/* Print the numbers table as-is, without the toggle UI. */
+		.roi__table summary {
 			display: none;
 		}
-		/* Safety net: browsers that support it force closed-details content visible */
-		.calc-roi__table::details-content {
+		/* Never print transient hover artifacts (tooltip, crosshair, dots) -
+		   they freeze into the page if the cursor was on the chart at Ctrl+P. */
+		.roi-tip,
+		.roi-cross,
+		.roi-dot {
+			display: none !important;
+		}
+		/* Safety net: browsers that support it force closed <details> content
+		   visible at print time even if the JS open flush didn't land. */
+		.roi__table::details-content {
 			content-visibility: visible !important;
 			height: auto !important;
 		}
-		/* The SVG was measured at screen width; scale it into the page width */
-		.calc-roi__chart svg {
+		/* The SVG was measured at screen width; scale it into the page width
+		   (the viewBox keeps the aspect ratio). */
+		.roi__chart svg {
 			max-width: 100%;
 			height: auto;
 		}
-		/* Tighten spacing so it fits in as few pages as possible */
+		/* Tighten spacing so the estimate fits in as few pages as possible. */
 		:global(.section) {
 			padding-block: 8px;
 		}
-		.calc-roi {
+		.roi {
 			margin-top: 14px;
-			break-inside: avoid;
+		}
+	}
+
+	/* screen-only: at print time the ~A4 paper width (~700px) would trigger
+	   this one-column mobile layout and stretch everything vertically. */
+	@media screen and (max-width: 900px) {
+		.calc {
+			grid-template-columns: 1fr;
+		}
+		.calc__results {
+			position: static;
 		}
 	}
 </style>

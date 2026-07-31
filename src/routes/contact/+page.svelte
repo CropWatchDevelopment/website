@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { tick } from 'svelte';
-	import { enhance } from '$app/forms';
-	import type { SubmitFunction } from '@sveltejs/kit';
+	import { deserialize } from '$app/forms';
+	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 
-	// Demo-request form. Native validation gates the submit, then it POSTs to the
-	// `default` action in +page.server.ts (nodemailer -> kevin@cropwatch.io). On
+	// Demo-request form. Native validation gates the submit, then we fetch a
+	// reCAPTCHA Enterprise token and POST to the `default` action in
+	// +page.server.ts (nodemailer -> kevin@cropwatch.io). The POST is always a
+	// fetch (never a native form submission): Vercel BotID can only attach its
+	// human/bot signals to fetch/XHR, so a native POST gets 403'd as a bot. On
 	// success we swap in the confirmation card; on failure we surface the reason
 	// and keep what the visitor typed so nothing is lost.
 	let submitted = $state(false);
@@ -12,28 +15,71 @@
 	let errorMsg = $state('');
 	let successEl: HTMLDivElement | undefined = $state();
 
-	const submit: SubmitFunction = () => {
+	const FALLBACK_ERROR =
+		'Something went wrong. Please try again, or email kevin@cropwatch.io directly.';
+
+	type RecaptchaClient = {
+		ready: (cb: () => void) => void;
+		execute: (siteKey: string, config: { action: string }) => Promise<string>;
+	};
+	const getRecaptcha = () => (window as Window & { grecaptcha?: RecaptchaClient }).grecaptcha;
+
+	const handleSubmit = async (event: SubmitEvent) => {
+		const form = event.currentTarget as HTMLFormElement | null;
+		if (!form) return;
+
+		if (!form.checkValidity()) {
+			event.preventDefault();
+			form.reportValidity();
+			return;
+		}
+
+		event.preventDefault();
+		if (sending) return; // guard against double submits
 		sending = true;
 		errorMsg = '';
-		return async ({ result }) => {
-			sending = false;
+		try {
+			const formData = new FormData(form);
+			if (PUBLIC_RECAPTCHA_SITE_KEY) {
+				const recaptcha = getRecaptcha();
+				if (!recaptcha) throw new Error('reCAPTCHA client not loaded');
+				const token = await recaptcha.execute(PUBLIC_RECAPTCHA_SITE_KEY, {
+					action: 'contact_form'
+				});
+				formData.set('g-recaptcha-response', token);
+			}
+			const response = await fetch(form.action, {
+				method: 'POST',
+				body: formData,
+				headers: { 'x-sveltekit-action': 'true' }
+			});
+			const result = deserialize(await response.text());
 			if (result.type === 'success') {
 				submitted = true;
 				await tick();
 				successEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 			} else if (result.type === 'failure') {
-				errorMsg =
-					(result.data?.error as string) ??
-					'Something went wrong. Please try again, or email kevin@cropwatch.io directly.';
-			} else if (result.type === 'error') {
-				errorMsg =
-					'Something went wrong. Please try again, or email kevin@cropwatch.io directly.';
+				errorMsg = (result.data?.error as string) ?? FALLBACK_ERROR;
+			} else {
+				errorMsg = FALLBACK_ERROR;
 			}
-		};
+		} catch (err) {
+			console.error('[contact] submission failed', err);
+			errorMsg = FALLBACK_ERROR;
+		} finally {
+			sending = false;
+		}
 	};
 </script>
 
 <svelte:head>
+	{#if PUBLIC_RECAPTCHA_SITE_KEY}
+		<script
+			src={`https://www.google.com/recaptcha/api.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`}
+			async
+			defer
+		></script>
+	{/if}
 	<title>Contact &amp; Book a Demo | CropWatch</title>
 	<meta
 		name="description"
@@ -58,7 +104,7 @@
 		<!-- form -->
 		<div data-reveal>
 			{#if !submitted}
-				<form class="form-card" method="POST" use:enhance={submit}>
+				<form class="form-card" method="POST" onsubmit={handleSubmit}>
 					<h2 style="font-size:var(--cw-text-2xl);margin-bottom:6px">Let's chat!</h2>
 					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">Send us a message, and we will get back to you ASAP.</p>
 					<div class="frow">
@@ -104,7 +150,13 @@
 					{#if errorMsg}
 						<p role="alert" style="margin:18px 0 0;padding:12px 14px;border-radius:10px;background:#fdecec;border:1px solid #f5b5b5;color:#9b1c1c;font-size:14px">{errorMsg}</p>
 					{/if}
-					<button type="submit" disabled={sending} class="cta-pill cta-pill--lg" style="width:100%;justify-content:center;margin-top:22px;border:none;cursor:pointer;font-family:inherit">{sending ? 'Sending...' : 'Send request'} <span class="material-symbols-rounded">arrow_forward</span></button>
+					<button type="submit" disabled={sending} aria-busy={sending} class="cta-pill cta-pill--lg" style="width:100%;justify-content:center;margin-top:22px;border:none;cursor:pointer;font-family:inherit">
+						{#if sending}
+							<span class="btn-spinner" aria-hidden="true"></span> Sending...
+						{:else}
+							Send request <span class="material-symbols-rounded">arrow_forward</span>
+						{/if}
+					</button>
 				</form>
 			{:else}
 				<div class="form-card" bind:this={successEl} style="text-align:center">

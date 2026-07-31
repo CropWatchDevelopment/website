@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import PartsOrigin from '$lib/components/PartsOrigin.svelte';
+	// Page-specific stylesheet (kept out of the global bundle).
+	import '$lib/styles/product.css';
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import { productSchema } from '$lib/seo/schema';
 

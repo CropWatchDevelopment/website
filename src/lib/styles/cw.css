@@ -358,3 +358,21 @@ select.finput { appearance: none; background-image: url("data:image/svg+xml,%3Cs
 @media (max-width: 760px) {
   .ind-grid[style*="repeat("] { grid-template-columns: 1fr !important; }
 }
+
+/* Spinner shown inside the contact submit button while sending */
+.btn-spinner {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 2px solid rgba(255, 255, 255, 0.35);
+	border-top-color: #fff;
+	border-radius: 50%;
+	animation: btn-spin 0.7s linear infinite;
+	vertical-align: -3px;
+}
+@keyframes btn-spin {
+	to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+	.btn-spinner { animation-duration: 1.6s; }
+}

@@ -8,8 +8,10 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [vitePreprocess(), mdsvex()],
 	kit: {
-		// Inline CSS smaller than 20kb to avoid network chains and improve FCP/LCP
-		inlineStyleThreshold: 20480,
+		// Inline all page CSS into the prerendered HTML (the global bundle is
+		// ~70KB raw, well under this cap) so first paint never waits on a
+		// render-blocking stylesheet request.
+		inlineStyleThreshold: 131072,
 		adapter: adapter({
 
 			images: {
