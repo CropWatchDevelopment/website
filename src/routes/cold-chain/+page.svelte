@@ -113,6 +113,14 @@
 					</span>
 					<span class="cc-panel__val">0 〜 100<i>%RH</i></span>
 				</li>
+				<li>
+					<span class="material-symbols-rounded fill" style="color:#2c6cb7">sensor_door</span>
+					<span class="cc-panel__tx">
+						<span class="cc-panel__lab">ドア開閉検知<em>オプション</em></span>
+						<span class="cc-panel__note">閉め忘れをすぐ検知</span>
+					</span>
+					<span class="cc-panel__val">開 / 閉</span>
+				</li>
 			</ul>
 			<div class="cc-panel__foot">
 				<span class="material-symbols-rounded">schedule</span> 10分ごとに自動記録・24時間365日どこからでも
@@ -682,6 +690,19 @@
 		color: var(--web-accent);
 		margin-top: 2px;
 	}
+	/* 「オプション」バッジ（ドア開閉検知の行で使用） */
+	.cc-panel__lab em {
+		font-style: normal;
+		font-size: 9.5px;
+		font-weight: 700;
+		color: #2c6cb7;
+		margin-left: 6px;
+		padding: 1px 6px;
+		border-radius: 6px;
+		background: color-mix(in srgb, #2c6cb7 12%, #fff);
+		vertical-align: middle;
+		white-space: nowrap;
+	}
 	.cc-panel__val {
 		font-family: var(--cw-font-mono);
 		font-size: 14.5px;
@@ -738,7 +759,7 @@
 		color: var(--web-heading);
 	}
 	.cc-stats span {
-		font-size: 11px;
+		font-size: 14px;
 		color: var(--web-muted);
 		margin-top: 3px;
 		display: block;

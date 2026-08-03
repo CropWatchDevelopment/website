@@ -608,7 +608,7 @@
 		color: #fff;
 	}
 	.ag-stats span {
-		font-size: 11px;
+		font-size: 14px;
 		color: rgba(215, 240, 225, 0.75);
 		margin-top: 3px;
 		display: block;

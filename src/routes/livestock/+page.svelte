@@ -114,6 +114,11 @@
 					<span class="ls-panel__lab">アンモニア<em>準備中</em></span>
 					<span class="ls-panel__val">0 〜 50<i>ppm</i></span>
 				</li>
+				<li>
+					<span class="material-symbols-rounded fill" style="color:#2c6cb7">sensor_door</span>
+					<span class="ls-panel__lab">ドア開閉検知<em class="ls-opt">オプション</em></span>
+					<span class="ls-panel__val">開 / 閉</span>
+				</li>
 			</ul>
 			<div class="ls-panel__foot">
 				<span class="material-symbols-rounded">schedule</span> 10分ごとに自動送信・24時間365日どこからでも
@@ -731,6 +736,11 @@
 		background: color-mix(in srgb, var(--web-gold) 16%, #fff);
 		vertical-align: middle;
 		white-space: nowrap;
+	}
+	/* 「オプション」バッジ（ドア開閉検知の行で使用） */
+	.ls-panel__lab em.ls-opt {
+		color: #2c6cb7;
+		background: color-mix(in srgb, #2c6cb7 12%, #fff);
 	}
 	.ls-panel__val {
 		font-family: var(--cw-font-mono);
