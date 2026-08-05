@@ -101,6 +101,3 @@ export const CANVAS = 1080;
 export const SPEED = 0.78;
 export const BASE_DUR = 35;
 export const DURATION = Math.round(BASE_DUR / SPEED);
-
-/** Frame shown when prefers-reduced-motion is set: the flow fully validated. */
-export const STILL_TIME = 33.5;

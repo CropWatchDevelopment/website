@@ -111,6 +111,11 @@
 					<span class="ag-panel__lab">土壌水分</span>
 					<span class="ag-panel__val">42<i>%</i></span>
 				</li>
+				<li>
+					<span class="material-symbols-rounded fill" style="color:#2c6cb7">sensor_door</span>
+					<span class="ag-panel__lab">ハウス扉の開閉検知<em>オプション</em></span>
+					<span class="ag-panel__val">開 / 閉</span>
+				</li>
 			</ul>
 			<div class="ag-panel__foot">
 				<span class="material-symbols-rounded">schedule</span> 10分ごとに自動更新・どこからでも確認
@@ -551,6 +556,19 @@
 		font-size: 13px;
 		font-weight: 700;
 		color: var(--web-heading);
+	}
+	/* 「オプション」バッジ（ハウス扉の開閉検知の行で使用） */
+	.ag-panel__lab em {
+		font-style: normal;
+		font-size: 9.5px;
+		font-weight: 700;
+		color: #2c6cb7;
+		margin-left: 6px;
+		padding: 1px 6px;
+		border-radius: 6px;
+		background: color-mix(in srgb, #2c6cb7 12%, #fff);
+		vertical-align: middle;
+		white-space: nowrap;
 	}
 	.ag-panel__val {
 		font-family: var(--cw-font-mono);

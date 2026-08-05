@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { CANVAS, SPEED, DURATION, STILL_TIME } from './anim';
+	import { CANVAS, SPEED, DURATION } from './anim';
 	import SceneSingleSensor from './SceneSingleSensor.svelte';
 	import SceneDualIntro from './SceneDualIntro.svelte';
 	import SceneFlow from './SceneFlow.svelte';
@@ -11,6 +11,7 @@
 	let time = $state(0);
 	let paused = $state(false);
 	let onScreen = $state(false);
+	let started = $state(false);
 
 	/* The canvas is authored on a fixed 1080px grid, so it scales as a unit
 	   rather than reflowing. */
@@ -18,15 +19,21 @@
 	let t = $derived(time * SPEED);
 	let running = $derived(onScreen && !paused && hostW > 0);
 
+	/* Poster: shown until the first play. Pausing later leaves it hidden, so the
+	   overlay never covers a frame someone deliberately stopped on. */
+	let showPoster = $derived(paused && !started);
+
+	function play() {
+		started = true;
+		paused = false;
+	}
+
 	onMount(() => {
-		// prefers-reduced-motion: hold a still frame of the fully-validated flow
-		// rather than looping. The play control still lets them opt in.
+		// prefers-reduced-motion: don't autoplay. `time` stays at 0, so the poster
+		// sits on frame one and playing starts from the beginning, not partway in.
 		const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const applyMotionPref = (matches: boolean) => {
-			if (matches) {
-				paused = true;
-				time = STILL_TIME;
-			}
+			if (matches) paused = true;
 		};
 		applyMotionPref(mq.matches);
 		const onMq = (e: MediaQueryListEvent) => applyMotionPref(e.matches);
@@ -70,16 +77,25 @@
 		<ScenePayoff {t} />
 	</div>
 
-	<button
-		class="sv__toggle"
-		type="button"
-		onclick={() => (paused = !paused)}
-		aria-label={paused ? 'アニメーションを再生' : 'アニメーションを一時停止'}
-	>
-		<span class="material-symbols-rounded" aria-hidden="true"
-			>{paused ? 'play_arrow' : 'pause'}</span
+	{#if showPoster}
+		<button class="sv__poster" type="button" onclick={play} aria-label="アニメーションを再生">
+			<span class="sv__poster__btn">
+				<span class="material-symbols-rounded" aria-hidden="true">play_arrow</span>
+			</span>
+			<span class="sv__poster__tx">アニメーションを再生</span>
+		</button>
+	{:else}
+		<button
+			class="sv__toggle"
+			type="button"
+			onclick={() => (paused = !paused)}
+			aria-label={paused ? 'アニメーションを再生' : 'アニメーションを一時停止'}
 		>
-	</button>
+			<span class="material-symbols-rounded" aria-hidden="true"
+				>{paused ? 'play_arrow' : 'pause'}</span
+			>
+		</button>
+	{/if}
 </div>
 
 <style>
@@ -125,6 +141,56 @@
 		background-size: 54px 54px;
 		mask-image: radial-gradient(100% 100% at 50% 40%, #000 30%, transparent 78%);
 		-webkit-mask-image: radial-gradient(100% 100% at 50% 40%, #000 30%, transparent 78%);
+	}
+
+	/* Poster over frame one. Scene 1 fades in from 0.2s, so the canvas underneath
+	   is still empty here - the overlay is what the panel reads as until play.
+	   Full-panel hit area so the whole thing is the button, not a 40px corner. */
+	.sv__poster {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		place-content: center;
+		justify-items: center;
+		gap: 16px;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		z-index: 3;
+	}
+
+	.sv__poster__btn {
+		display: grid;
+		place-items: center;
+		width: 96px;
+		height: 96px;
+		border-radius: 9999px;
+		background: var(--web-accent);
+		color: #ffffff;
+		box-shadow: 0 12px 30px -8px rgba(11, 23, 48, 0.45);
+		transition:
+			transform 140ms ease,
+			box-shadow 140ms ease;
+	}
+
+	.sv__poster:hover .sv__poster__btn,
+	.sv__poster:focus-visible .sv__poster__btn {
+		transform: scale(1.06);
+		box-shadow: 0 16px 38px -8px rgba(11, 23, 48, 0.5);
+	}
+
+	.sv__poster__btn .material-symbols-rounded {
+		font-size: 54px;
+		/* optical centring: the glyph's bearing sits left of the circle's centre */
+		margin-left: 5px;
+	}
+
+	.sv__poster__tx {
+		font-weight: 700;
+		font-size: 14px;
+		letter-spacing: 0.02em;
+		color: var(--web-heading);
 	}
 
 	/* WCAG 2.2.2: a 45s autoplaying loop needs a pause control. */

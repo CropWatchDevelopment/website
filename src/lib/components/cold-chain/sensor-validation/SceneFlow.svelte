@@ -250,10 +250,13 @@
 			opacity={o2 > 0 ? Math.min(1, o2 + 0.4) : 0}
 		/>
 		<ErrorPill cx={errX} cy={g2} opacity={o2} reason="測定エラー" />
+		<!-- Gate 2 carries a `sub` line, so it renders taller than its 62px
+		     min-height and its real bottom edge sits below g2 + 31. Explicit bounds
+		     here (436 → 470) keep this segment clear of both cards. -->
 		<Line
 			x={SPINE - 2}
-			y={g2 + 31}
-			len={g3 - 55 - (g2 + 31)}
+			y={436}
+			len={34}
 			grow={y2grow}
 			color={passed(g3 - 55) ? C.teal : C.faint}
 		/>
@@ -335,12 +338,14 @@
 
 		<!-- travelling pulse: one dot per sensor converges on the spine, then a
 		     single dot runs down it. z-index 1 lifts them clear of the connector
-		     lines while the cards sit at 2, so the pulse passes under each gate. -->
+		     lines while the cards sit at 2, so the pulse stays under every card the
+		     whole way down and slides beneath the result card rather than stopping
+		     short of it. -->
 		{#if convergeActive}
 			{@render pulseDot(convergeX, yMerge - 2)}
 			{@render pulseDot(2 * SPINE - convergeX, yMerge - 2)}
 		{/if}
-		{#if pulseActive && pulseY < res - 40}
+		{#if pulseActive}
 			{@render pulseDot(SPINE, pulseY)}
 		{/if}
 

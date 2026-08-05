@@ -49,17 +49,20 @@
 			>
 		</div>
 
-		<!-- reveal: it was wrong -->
+		<!-- reveal: it was wrong. Double the OK badge's size: this is the moment the
+		     scene exists to land, and it has to read at a glance. nowrap because at
+		     this size the pill is wider than the 540px an absolutely positioned box
+		     shrink-wraps into from left:540, so it would otherwise break onto two lines. -->
 		<div
 			style="position:absolute; left:540px; top:480px;
 				transform:translateX(-50%) scale({0.8 + 0.2 * Easing.easeOutBack(badIn)}); opacity:{badIn};
-				display:flex; align-items:center; gap:8px;
-				background:{C.redDim}; border:1.5px solid {C.red}; border-radius:30px;
-				padding:8px 18px;"
+				display:flex; align-items:center; gap:16px; white-space:nowrap;
+				background:{C.redDim}; border:3px solid {C.red}; border-radius:60px;
+				padding:16px 36px;"
 		>
-			<Icon name="cancel" size={20} color={C.red} />
+			<Icon name="cancel" size={40} color={C.red} />
 			<span
-				style="font-family:{SANS}; font-weight:800; font-size:16px; color:{C.red}; letter-spacing:0.02em;"
+				style="font-family:{SANS}; font-weight:800; font-size:32px; color:{C.red}; letter-spacing:0.02em;"
 			>
 				実際の値：10.0 °C / 55 %RH
 			</span>
