@@ -44,7 +44,7 @@
 
 <div
 	style="position:absolute; left:{cx - w / 2}px; top:{cy - h / 2}px; width:{w}px; min-height:{h}px;
-		opacity:{opacity}; transform:scale({scale}); transform-origin:center;
+		opacity:{opacity}; transform:scale({scale}); transform-origin:center; z-index:2;
 		background:{bg}; border:1.5px solid {border}; border-radius:14px;
 		box-shadow:{glow}; box-sizing:border-box;
 		display:flex; flex-direction:column; align-items:center; justify-content:center;

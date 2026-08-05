@@ -29,15 +29,25 @@
 	const resTop = 45;
 	const errX = 792;
 
-	// validation-run pulse
+	// validation-run pulse — starts just above the point where the two sensors'
+	// merge lines meet the spine, not up at the sensor cards themselves.
 	const RUN_START = 10.4;
 	const RUN_END = 15.2;
-	const pulseRamp = interpolate([RUN_START, RUN_END], [yA, res], Easing.easeInOutCubic);
+	const pulseRamp = interpolate([RUN_START, RUN_END], [yMerge - 2, res], Easing.easeInOutCubic);
+
+	// Lead-in: one dot per sensor runs inward along its merge line, and the two
+	// meet on the spine exactly where the descending pulse starts — so the pair
+	// reads as merging into that single dot rather than being swapped for it.
+	const CONVERGE_START = 9.7;
+	const convergeRamp = interpolate([CONVERGE_START, RUN_START], [xA, SPINE], Easing.easeInOutCubic);
 
 	let r = $derived(t - F0);
 	let sceneFade = $derived(io(t, F0 - 0.1, F0 + 0.5, 28.7, 29.2));
 	let pulseActive = $derived(r >= RUN_START && r <= RUN_END + 0.6);
 	let pulseY = $derived(pulseRamp(r));
+	let convergeActive = $derived(r >= CONVERGE_START && r < RUN_START);
+	// A's x; B is mirrored about the spine so both track inward together.
+	let convergeX = $derived(convergeRamp(r));
 
 	const passed = (y: number) => r >= RUN_START && pulseY >= y - 6;
 
@@ -107,6 +117,14 @@
 	});
 </script>
 
+{#snippet pulseDot(x: number, y: number)}
+	<div
+		style="position:absolute; left:{x}px; top:{y}px; transform:translate(-50%,-50%);
+			width:20px; height:20px; border-radius:20px; background:{C.teal};
+			box-shadow:0 0 20px 6px {C.teal}; z-index:1;"
+	></div>
+{/snippet}
+
 {#if t >= F0 - 0.2 && t <= 29.2}
 	<div style="position:absolute; inset:0; opacity:{sceneFade};">
 		<Eyebrow text="CropWatch の検証プロセス" x={540} y={56} color={C.teal} />
@@ -140,19 +158,22 @@
 		<!-- merge lines from cards to spine -->
 		<Line
 			x={xA}
-			y={yMerge - 6}
+			y={yMerge - 3}
 			len={SPINE - xA + 2}
 			grow={mergeGrow}
 			vertical={false}
 			color={passed(yMerge) ? C.teal : C.faint}
 			opacity={0.9}
 		/>
+		<!-- B's segment grows right-to-left so both sides draw from their sensor
+		     inward to the meeting point on the spine. -->
 		<Line
 			x={SPINE}
-			y={yMerge - 6}
+			y={yMerge - 3}
 			len={xB - SPINE + 2}
 			grow={mergeGrow}
 			vertical={false}
+			reverse
 			color={passed(yMerge) ? C.teal : C.faint}
 			opacity={0.9}
 		/>
@@ -176,8 +197,8 @@
 		/>
 		<Line
 			x={SPINE - 2}
-			y={yMerge - 6}
-			len={g1 - 31 - (yMerge - 6)}
+			y={yMerge - 3}
+			len={g1 - 31 - (yMerge - 3)}
 			grow={seg(r, 1.0, 1.5)}
 			color={passed(g1 - 31) ? C.teal : C.faint}
 		/>
@@ -292,7 +313,7 @@
 					: `linear-gradient(180deg, ${C.surface2}, ${C.surface})`};
 					border:1.5px solid {lit ? C.teal : C.border}; border-radius:16px; padding:16px 22px;
 					box-shadow:{lit ? `0 0 40px ${C.tealDim}` : '0 12px 30px -14px rgba(11,23,48,0.30)'};
-					box-sizing:border-box; display:flex; align-items:center; gap:16px;"
+					box-sizing:border-box; display:flex; align-items:center; gap:16px; z-index:2;"
 			>
 				<Icon name={lit ? 'verified' : 'lock'} size={40} color={lit ? C.teal : C.faint} />
 				<div>
@@ -312,13 +333,15 @@
 			</div>
 		{/if}
 
-		<!-- travelling pulse dot -->
+		<!-- travelling pulse: one dot per sensor converges on the spine, then a
+		     single dot runs down it. z-index 1 lifts them clear of the connector
+		     lines while the cards sit at 2, so the pulse passes under each gate. -->
+		{#if convergeActive}
+			{@render pulseDot(convergeX, yMerge - 2)}
+			{@render pulseDot(2 * SPINE - convergeX, yMerge - 2)}
+		{/if}
 		{#if pulseActive && pulseY < res - 40}
-			<div
-				style="position:absolute; left:{SPINE}px; top:{pulseY}px; transform:translate(-50%,-50%);
-					width:20px; height:20px; border-radius:20px; background:{C.teal};
-					box-shadow:0 0 20px 6px {C.teal};"
-			></div>
+			{@render pulseDot(SPINE, pulseY)}
 		{/if}
 
 		<!-- caption -->
