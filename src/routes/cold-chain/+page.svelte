@@ -218,17 +218,21 @@
 		</div>
 		<div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0">
-				<span class="box__ic box__ic--accent"
-					><span class="material-symbols-rounded">save</span></span
-				>
-				<h3>停電や通信断にも対応</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent"
+						><span class="material-symbols-rounded">save</span></span
+					>
+					<h3>停電や通信断にも対応</h3>
+				</div>
 				<p>
 					通信できない間は内部メモリに測定データを保存。復旧後に自動送信し、記録の欠損を防ぎます。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
-				<span class="box__ic"><span class="material-symbols-rounded">fact_check</span></span>
-				<h3>スイス製高精度センサー採用</h3>
+				<div class="box__head">
+					<span class="box__ic"><span class="material-symbols-rounded">fact_check</span></span>
+					<h3>スイス製高精度センサー採用</h3>
+				</div>
 				<p>
 					信頼性の高い<a
 						class="extlink"
@@ -249,10 +253,12 @@
 				</p>
 			</div>
 			<div class="box" data-reveal="2">
-				<span class="box__ic box__ic--gold"
-					><span class="material-symbols-rounded fill">cell_tower</span></span
-				>
-				<h3>冷凍庫の奥までつながる</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--gold"
+						><span class="material-symbols-rounded fill">cell_tower</span></span
+					>
+					<h3>冷凍庫の奥までつながる</h3>
+				</div>
 				<p>
 					<a
 						class="extlink"
@@ -384,7 +390,7 @@
 		</div>
 		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
 			<div class="spec-row">
-				<dt>測定</dt>
+				<dt>測定項目</dt>
 				<dd>温度・湿度</dd>
 			</div>
 			<div class="spec-row">
@@ -413,9 +419,9 @@
 				</dd>
 			</div>
 			<div class="spec-row">
-				<dt>動作温度範囲</dt>
+				<dt>温度測定範囲</dt>
 				<dd>-40°C - +85°C</dd>
-				<dt>動作湿度範囲</dt>
+				<dt>湿度測定範囲</dt>
 				<dd>0% - 100% RH (結露)</dd>
 			</div>
 			<div class="spec-row">
@@ -442,6 +448,10 @@
 						>※バッテリー寿命は、使用環境や測定・送信間隔、通信状況などによって異なります。</small
 					>
 				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>堅牢性</dt>
+				<dd>コンフォーマルコーティング＋ポッティング処理（結露・低温対策）</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ連携</dt>

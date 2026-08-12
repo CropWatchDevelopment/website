@@ -52,17 +52,21 @@
 		</div>
 		<div class="boxgrid boxgrid--2">
 			<div class="box" data-reveal="0">
-				<span class="box__ic"><span class="material-symbols-rounded">deployed_code</span></span>
-				<h3>基板は、樹脂で丸ごと保護</h3>
+				<div class="box__head">
+					<span class="box__ic"><span class="material-symbols-rounded">deployed_code</span></span>
+					<h3>基板は、樹脂で丸ごと保護</h3>
+				</div>
 				<p>
 					電子基板全体を樹脂で覆うポッティング処理を施しています。ほこりや水分、結露、振動に強く、冷凍庫やハウス、鶏舎などの厳しい環境でも、長期間にわたって安定して稼働できるように設計しています。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
-				<span class="box__ic box__ic--accent"
-					><span class="material-symbols-rounded">cell_tower</span></span
-				>
-				<h3>壁や階を越えて、遠くまで届くLoRaWAN<sup class="reg">®</sup></h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent"
+						><span class="material-symbols-rounded">cell_tower</span></span
+					>
+					<h3>壁や階を越えて、遠くまで届くLoRaWAN<sup class="reg">®</sup></h3>
+				</div>
 				<p>
 					<a
 						class="extlink"
@@ -101,20 +105,20 @@
 		</div>
 		<!-- <div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0">
-				<span class="box__ic"><span class="material-symbols-rounded">device_thermostat</span></span>
-				<h3>その分野の、一流を。</h3>
+				<div class="box__head"><span class="box__ic"><span class="material-symbols-rounded">device_thermostat</span></span>
+				<h3>その分野の、一流を。</h3></div>
 				<p>
 					温度・湿度は、スイスの<a class="extlink" href="https://sensirion.com/jp" target="_blank" rel="noopener noreferrer">センシリオン社</a>。CO₂も同社の<a class="extlink" href="https://sensirion.com/jp/products/catalog/SCD41" target="_blank" rel="noopener noreferrer">SCD41</a>を使います。測るものごとに、その分野で実績のあるメーカーを選んでいます。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
-				<span class="box__ic box__ic--accent"><span class="material-symbols-rounded">workspace_premium</span></span>
-				<h3>校正済みの個体だけを、載せる。</h3>
+				<div class="box__head"><span class="box__ic box__ic--accent"><span class="material-symbols-rounded">workspace_premium</span></span>
+				<h3>校正済みの個体だけを、載せる。</h3></div>
 				<p>良い部品を選ぶだけでは足りません。認定機関で校正・試験を通ったセンサーだけを採用し、1台ごとにISO/IEC 17025にもとづく校正証明書をお付けします。</p>
 			</div>
 			<div class="box" data-reveal="2">
-				<span class="box__ic box__ic--gold"><span class="material-symbols-rounded">public</span></span>
-				<h3>国ではなく、中身で選ぶ。</h3>
+				<div class="box__head"><span class="box__ic box__ic--gold"><span class="material-symbols-rounded">public</span></span>
+				<h3>国ではなく、中身で選ぶ。</h3></div>
 				<p>結果として、8か国・18メーカーの部品が基板に集まりました。産地をそろえることより、それぞれの役割に最も適したものを選ぶことを優先しています。</p>
 			</div>
 		</div> -->
@@ -365,10 +369,12 @@
 		</div>
 		<div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0">
-				<span class="box__ic box__ic--gold"
-					><span class="material-symbols-rounded">battery_full</span></span
-				>
-				<h3>バッテリー</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--gold"
+						><span class="material-symbols-rounded">battery_full</span></span
+					>
+					<h3>バッテリー</h3>
+				</div>
 				<p>
 					10分ごとの送信で、最大10年間稼働。長寿命のバッテリーを採用しているため、交換の手間や回数を大幅に減らせます。
 				</p>
@@ -382,10 +388,12 @@
 				>
 			</div>
 			<div class="box" data-reveal="1">
-				<span class="box__ic box__ic--accent"
-					><span class="material-symbols-rounded">cable</span></span
-				>
-				<h3>センサー</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent"
+						><span class="material-symbols-rounded">cable</span></span
+					>
+					<h3>センサー</h3>
+				</div>
 				<p>
 					差し替えると自動で認識するため、面倒な設定作業は必要ありません。交換用センサーにも校正証明書が付属しており、検査や監査時の確認資料として活用できます。
 				</p>
@@ -394,8 +402,10 @@
 				>
 			</div>
 			<div class="box" data-reveal="2">
-				<span class="box__ic"><span class="material-symbols-rounded">package_2</span></span>
-				<h3>センサーケース</h3>
+				<div class="box__head">
+					<span class="box__ic"><span class="material-symbols-rounded">package_2</span></span>
+					<h3>センサーケース</h3>
+				</div>
 				<p>
 					センサーを保護するケースが破損・劣化しても、ケースだけを交換できます。新しいケースに取り替えることで、内部のセンサーをしっかり保護できます。
 				</p>
@@ -461,27 +471,31 @@
 		<div class="boxgrid boxgrid--2">
 			<div class="box" data-reveal="0">
 				<!-- <span class="box__ic box__ic--accent"><span class="material-symbols-rounded">code</span></span> -->
-				<span class="box__ic box__ic--accent overflow-hidden">
-					<img
-						class="h-full w-full object-cover"
-						src="/assets/imagery/Shiro1.png"
-						alt="ソフトウェアの番犬"
-					/>
-				</span>
-				<h3>ソフトウェアの番犬</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent overflow-hidden">
+						<img
+							class="h-full w-full object-cover"
+							src="/assets/imagery/Shiro1.png"
+							alt="ソフトウェアの番犬"
+						/>
+					</span>
+					<h3>ソフトウェアの番犬</h3>
+				</div>
 				<p>
 					内蔵された監視機能が、プログラムが正常に動いているかを見張ります。処理が止まり、一定時間応答がなくなると、機器を自動で再起動して正常な動作に戻します。多くの一時的な不調は、この段階で解消します。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
-				<span class="box__ic box__ic--accent overflow-hidden">
-					<img
-						class="h-full w-full object-cover"
-						src="/assets/imagery/Shiro2.png"
-						alt="ソフトウェアの番犬"
-					/>
-				</span>
-				<h3>ハードウェアの番犬</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent overflow-hidden">
+						<img
+							class="h-full w-full object-cover"
+							src="/assets/imagery/Shiro2.png"
+							alt="ソフトウェアの番犬"
+						/>
+					</span>
+					<h3>ハードウェアの番犬</h3>
+				</div>
 				<p>
 					プログラム全体が止まり、1つ目の番犬が機能しなくなった場合でも、基板上の独立した監視回路が機器の動作を見張ります。ソフトウェアとは独立して動作するため、より深刻な停止にも対応できます。
 				</p>

@@ -62,7 +62,7 @@
 				'データ保存2年間'
 			],
 			excluded: [],
-			deviceUnitPrice: 33000,
+			deviceUnitPrice: 26400,
 			deviceLabel: '温湿度センサー',
 			deviceNote: 'CO₂センサー・土壌センサーなど他の機器はお問い合わせください。'
 		},
@@ -124,7 +124,7 @@
 	    最安の最低構成（コールドチェーン・センサー1台）の価格はProduct
 	    構造化データ（AggregateOfferのlowPrice）にも使われます。 */
 	/** ゲートウェイ + 初期導入サポートのセット分 */
-	const DEVICE_BASE_PRICE = 275000;
+	const DEVICE_BASE_PRICE = 100000;
 	const DEVICE_MIN_PRICE = SECTORS['cold-chain'].deviceUnitPrice! + DEVICE_BASE_PRICE;
 	/* ══════════════════════════════════════════════════════════════════ */
 
@@ -374,7 +374,10 @@
 					)}は含まれません。{/if}
 			{/if}
 			<br />
-			<small><u>*データ収集のみの特別プランもご用意しております。詳しくはお問い合わせください。</u></small>
+			<small
+				><u>*データ収集のみの特別プランもご用意しております。詳しくはお問い合わせください。</u
+				></small
+			>
 		</p>
 	</div>
 </section>
@@ -890,7 +893,16 @@
 					<b>導入セット（センサー{num(totalCount)}台）</b>
 					<p>
 						{cfg.deviceLabel}{num(totalCount)}台と、拠点ごとのゲートウェイ・初期導入サポートを含めた
-						{safeLocations === 1 ? '1拠点分' : `全${num(safeLocations)}拠点分`}の概算です。センサー1台からご利用いただけます。
+						{safeLocations === 1
+							? '1拠点分'
+							: `全${num(safeLocations)}拠点分`}の概算です。センサー1台からご利用いただけます。
+						<br />
+						<br />
+						<small>
+							※交通費、設置費および設置に必要な備品は、現地状況により異なるため表示価格には含まれておりません。別途、現地確認のうえお見積りいたします。
+							
+							※ゲートウェイは標準タイプを使用した場合の価格です。</small
+						>
 					</p>
 				</div>
 				{#if volumePrice || deviceSetPrice === null}
@@ -904,8 +916,7 @@
 		</div>
 
 		<p class="pr-note" data-reveal>
-			導入費用は、「1拠点あたりのセンサー台数」と拠点数に合わせて計算した、全拠点分の概算（税込・初回のみ）です。機器の構成と価格は業種により異なります。正式な金額は個別にお見積もりします。
-			{cfg.deviceNote}
+			導入費用は、「1拠点あたりのセンサー台数」と拠点数に合わせて計算した、全拠点分の概算（税込・初回のみ）です。
 		</p>
 
 		<div class="pr-cta" data-reveal>

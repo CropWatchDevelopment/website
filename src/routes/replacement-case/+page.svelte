@@ -121,20 +121,26 @@
 		</div>
 		<div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0">
-				<span class="box__ic"><span class="material-symbols-rounded">ac_unit</span></span>
-				<h3>冷凍庫に強い</h3>
+				<div class="box__head">
+					<span class="box__ic"><span class="material-symbols-rounded">ac_unit</span></span>
+					<h3>冷凍庫に強い</h3>
+				</div>
 				<p>霜や結露をしっかり防ぎ、低温でも安定して動きます。</p>
 			</div>
 			<div class="box" data-reveal="1">
-				<span class="box__ic"><span class="material-symbols-rounded">water_drop</span></span>
-				<h3>水洗いできる</h3>
+				<div class="box__head">
+					<span class="box__ic"><span class="material-symbols-rounded">water_drop</span></span>
+					<h3>水洗いできる</h3>
+				</div>
 				<p>鶏舎や厨房の洗浄にも対応。清潔を保ちやすい設計です。</p>
 			</div>
 			<div class="box" data-reveal="2">
-				<span class="box__ic box__ic--gold"
-					><span class="material-symbols-rounded">wb_sunny</span></span
-				>
-				<h3>屋外でも安心</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--gold"
+						><span class="material-symbols-rounded">wb_sunny</span></span
+					>
+					<h3>屋外でも安心</h3>
+				</div>
 				<p>紫外線・ホコリに強く、畑や屋外でも長く使えます。</p>
 			</div>
 		</div>
@@ -206,15 +212,19 @@
 		<div class="section__head" data-reveal><h2>あわせてどうぞ</h2></div>
 		<div class="boxgrid boxgrid--2" style="max-width:820px;margin-inline:auto">
 			<a class="box" href="/replacement-sensors" data-reveal="0"
-				><span class="box__ic"><span class="material-symbols-rounded">cable</span></span>
-				<h3>交換用センサー</h3>
+				><div class="box__head">
+					<span class="box__ic"><span class="material-symbols-rounded">cable</span></span>
+					<h3>交換用センサー</h3>
+				</div>
 				<p>温度・湿度・CO₂・土壌など。校正証明書つきで、自分で交換できます。</p></a
 			>
 			<a class="box" href="/technology" data-reveal="1"
-				><span class="box__ic box__ic--accent"
-					><span class="material-symbols-rounded">pets</span></span
-				>
-				<h3>番犬機能</h3>
+				><div class="box__head">
+					<span class="box__ic box__ic--accent"
+						><span class="material-symbols-rounded">pets</span></span
+					>
+					<h3>番犬機能</h3>
+				</div>
 				<p>万一機器が止まっても自動で復旧。監視が途切れない仕組みです。</p></a
 			>
 		</div>

@@ -136,10 +136,13 @@
 				data-reveal="0"
 				style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"
 			>
-				<span class="box__ic box__ic--accent"
-					><span class="material-symbols-outlined" style="font-size:48px">change_circle</span></span
-				>
-				<h3 style="color:#fff">自分で交換できる設計</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent"
+						><span class="material-symbols-outlined" style="font-size:48px">change_circle</span
+						></span
+					>
+					<h3 style="color:#fff">自分で交換できる設計</h3>
+				</div>
 				<p style="color:var(--web-on-ink-muted)">
 					センサー部はお客様自身で交換できるため、必要なタイミングでスムーズに交換できます。
 				</p>
@@ -149,10 +152,13 @@
 				data-reveal="1"
 				style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"
 			>
-				<span class="box__ic box__ic--accent"
-					><span class="material-symbols-outlined" style="font-size:48px">construction</span></span
-				>
-				<h3 style="color:#fff">交換時の負担を軽減</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent"
+						><span class="material-symbols-outlined" style="font-size:48px">construction</span
+						></span
+					>
+					<h3 style="color:#fff">交換時の負担を軽減</h3>
+				</div>
 				<p style="color:var(--web-on-ink-muted)">
 					本体をそのまま活用し、必要なセンサー部だけを交換。停止時間や交換コストを大幅に抑えます。
 				</p>
@@ -162,28 +168,30 @@
 				data-reveal="2"
 				style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)"
 			>
-				<span class="box__ic box__ic--accent"
-					><svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"
-						><path
-							d="M12 39c-2.7-3.8-5-7.2-5-10a5 5 0 0 1 10 0c0 2.8-2.3 6.2-5 10Z"
-							stroke="currentColor"
-							stroke-width="2.8"
-							stroke-linejoin="round"
-						/><circle cx="12" cy="29" r="1.5" fill="currentColor" /><path
-							d="M37 18c-2.7-3.8-5-7.2-5-10a5 5 0 0 1 10 0c0 2.8-2.3 6.2-5 10Z"
-							stroke="currentColor"
-							stroke-width="2.8"
-							stroke-linejoin="round"
-						/><circle cx="37" cy="8" r="1.5" fill="currentColor" /><path
-							d="M16.5 34.5c8 1 19.5-.5 19.5-6 0-6.5-18.5-4-18.5-10 0-3.8 6.5-5.4 13.5-6.5"
-							stroke="currentColor"
-							stroke-width="2.8"
-							stroke-linecap="round"
-							stroke-dasharray="3.5 4.5"
-						/></svg
-					></span
-				>
-				<h3 style="color:#fff">長期運用を支える</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent"
+						><svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"
+							><path
+								d="M12 39c-2.7-3.8-5-7.2-5-10a5 5 0 0 1 10 0c0 2.8-2.3 6.2-5 10Z"
+								stroke="currentColor"
+								stroke-width="2.8"
+								stroke-linejoin="round"
+							/><circle cx="12" cy="29" r="1.5" fill="currentColor" /><path
+								d="M37 18c-2.7-3.8-5-7.2-5-10a5 5 0 0 1 10 0c0 2.8-2.3 6.2-5 10Z"
+								stroke="currentColor"
+								stroke-width="2.8"
+								stroke-linejoin="round"
+							/><circle cx="37" cy="8" r="1.5" fill="currentColor" /><path
+								d="M16.5 34.5c8 1 19.5-.5 19.5-6 0-6.5-18.5-4-18.5-10 0-3.8 6.5-5.4 13.5-6.5"
+								stroke="currentColor"
+								stroke-width="2.8"
+								stroke-linecap="round"
+								stroke-dasharray="3.5 4.5"
+							/></svg
+						></span
+					>
+					<h3 style="color:#fff">長期運用を支える</h3>
+				</div>
 				<p style="color:var(--web-on-ink-muted)">
 					センサーの劣化や測定項目の変更にも対応し、継続したデータ収集を支えます。
 				</p>

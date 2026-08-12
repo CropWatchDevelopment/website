@@ -63,7 +63,7 @@
 			<span class="ag-eyebrow"
 				><span class="ag-dot"></span> スマート農業・ハウスの環境モニタリング</span
 			>
-			<h1><span class="ag-hl">空気から土壌まで、作物の環境を自動で監視</span></h1>
+			<h1><span class="ag-hl">空気中から土壌まで、<br />栽培に必要なデータをお届け。</span></h1>
 			<p class="ag-kicker">霧の夜も、猛暑の日も。<b>危険な環境変化を、早めに知らせます。</b></p>
 			<p class="ag-lead">
 				ハウス・施設園芸・露地・果樹園の空気・光・土壌の状態を、配線不要・バッテリー稼働の無線センサーで自動監視。霜・高温・乾燥などのサインを早めに通知し、大切な作物を守ります。
@@ -74,12 +74,12 @@
 				<span class="ag-tag"><span class="material-symbols-rounded">forest</span>果樹</span>
 				<span class="ag-tag"><span class="material-symbols-rounded">grass</span>土壌管理</span>
 			</div>
-			<div class="ag-hero__ctas">
+			<!-- <div class="ag-hero__ctas">
 				<a href="/contact" class="btn btn--accent btn--lg"
 					>無料デモを予約する <span class="material-symbols-rounded">arrow_forward</span></a
 				>
 				<a href="#sensor" class="btn btn--outline-light btn--lg">推奨センサーを見る</a>
-			</div>
+			</div> -->
 		</div>
 
 		<!-- ライブ・ダッシュボードパネル -->
@@ -90,28 +90,35 @@
 			</div>
 			<ul class="ag-panel__reads">
 				<li>
-					<span class="material-symbols-rounded fill" style="color:#e0763b">device_thermostat</span>
-					<span class="ag-panel__lab">気温</span>
-					<span class="ag-panel__val">22.4<i>°C</i></span>
+					<span class="material-symbols-rounded fill" style="color:#eab308">sunny</span>
+					<div class="ag-panel__cells">
+						<span class="ag-panel__cell"><small>PPFD</small><b>412<i>µmol</i></b></span>
+						<span class="ag-panel__cell"><small>DLI</small><b>18.6<i>mol/日</i></b></span>
+					</div>
 				</li>
 				<li>
-					<span class="material-symbols-rounded fill" style="color:#0ea5e9"
-						>humidity_percentage</span
-					>
-					<span class="ag-panel__lab">湿度</span>
-					<span class="ag-panel__val">68<i>%RH</i></span>
+					<span class="material-symbols-rounded fill" style="color:#e0763b">device_thermostat</span>
+					<div class="ag-panel__cells">
+						<span class="ag-panel__cell"><small>気温</small><b>22.4<i>°C</i></b></span>
+						<span class="ag-panel__cell"><small>湿度</small><b>68<i>%RH</i></b></span>
+						<span class="ag-panel__cell"><small>VPD</small><b>0.92<i>kPa</i></b></span>
+					</div>
 				</li>
 				<li>
 					<span class="material-symbols-rounded fill" style="color:#0e9960">co2</span>
-					<span class="ag-panel__lab">CO₂</span>
-					<span class="ag-panel__val">620<i>ppm</i></span>
+					<div class="ag-panel__cells">
+						<span class="ag-panel__cell"><small>CO₂</small><b>620<i>ppm</i></b></span>
+					</div>
 				</li>
 				<li>
-					<span class="material-symbols-rounded fill" style="color:#2c6cb7">water_drop</span>
-					<span class="ag-panel__lab">土壌水分</span>
-					<span class="ag-panel__val">42<i>%</i></span>
+					<span class="material-symbols-rounded fill" style="color:#8b5e34">grass</span>
+					<div class="ag-panel__cells">
+						<span class="ag-panel__cell"><small>地温</small><b>19.8<i>°C</i></b></span>
+						<span class="ag-panel__cell"><small>土壌水分</small><b>42<i>%</i></b></span>
+						<span class="ag-panel__cell"><small>EC</small><b>1.2<i>mS/cm</i></b></span>
+					</div>
 				</li>
-				<li>
+				<li class="ag-panel__door">
 					<span class="material-symbols-rounded fill" style="color:#2c6cb7">sensor_door</span>
 					<span class="ag-panel__lab">ハウス扉の開閉検知<em>オプション</em></span>
 					<span class="ag-panel__val">開 / 閉</span>
@@ -126,10 +133,10 @@
 	<!-- 実績ストリップ -->
 	<div class="wrap ag-hero__statwrap">
 		<div class="ag-stats" data-reveal>
-			<div><b>いつでも確認</b><span>現場の状態を、手元で確認</span></div>
+			<div><b>リモート監視</b><span>現場の状態を、手元で確認</span></div>
 			<div><b>配線不要</b><span>電源のない畑でも</span></div>
 			<div><b>堅牢設計</b><span>防塵・防水対応</span></div>
-			<div><b>最長10年</b><span>バッテリーのみで稼働</span></div>
+			<div><b>最長5年</b><span>バッテリーのみで稼働</span></div>
 		</div>
 	</div>
 </section>
@@ -146,22 +153,28 @@
 		</div>
 		<div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0">
-				<span class="box__ic box__ic--gold"
-					><span class="material-symbols-rounded">grass</span></span
-				>
-				<h3>土壌</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--gold"
+						><span class="material-symbols-rounded">grass</span></span
+					>
+					<h3>土壌</h3>
+				</div>
 				<p>土の水分・温度を把握。かん水のタイミングや根の環境づくりに役立ちます。</p>
 			</div>
 			<div class="box" data-reveal="1">
-				<span class="box__ic"><span class="material-symbols-rounded">air</span></span>
-				<h3>空気</h3>
+				<div class="box__head">
+					<span class="box__ic"><span class="material-symbols-rounded">air</span></span>
+					<h3>空気</h3>
+				</div>
 				<p>気温・湿度・二酸化炭素を監視。むれ・乾燥・換気の状態が分かります。</p>
 			</div>
 			<div class="box" data-reveal="2">
-				<span class="box__ic box__ic--accent"
-					><span class="material-symbols-rounded">wb_sunny</span></span
-				>
-				<h3>光</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--accent"
+						><span class="material-symbols-rounded">wb_sunny</span></span
+					>
+					<h3>光</h3>
+				</div>
 				<p>作物が受ける光の量を計測。日々の生育管理の目安になります。</p>
 			</div>
 		</div>
@@ -179,10 +192,12 @@
 		</div>
 		<div class="boxgrid boxgrid--3">
 			<div class="box" data-reveal="0">
-				<span class="box__ic box__ic--gold"
-					><span class="material-symbols-rounded">water_drop</span></span
-				>
-				<h3>結露に強い温湿度センサー</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--gold"
+						><span class="material-symbols-rounded">water_drop</span></span
+					>
+					<h3>結露に強い温湿度センサー</h3>
+				</div>
 				<p>
 					高湿度や結露により、センサーが濡れても、乾けば測定状態が戻りやすい<a
 						class="extlink"
@@ -193,19 +208,23 @@
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
-				<span class="box__ic box__ic--gold"
-					><span class="material-symbols-rounded">ac_unit</span></span
-				>
-				<h3>交換可能なセンサー</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--gold"
+						><span class="material-symbols-rounded">ac_unit</span></span
+					>
+					<h3>交換可能なセンサー</h3>
+				</div>
 				<p>
 					万が一の故障時も、本体ごと交換は不要。必要なセンサー部だけを交換でき、コストを抑えながら長く使い続けられます。また、測定したい項目が変わった場合も、用途に合わせてセンサーを追加できます。
 				</p>
 			</div>
 			<div class="box" data-reveal="2">
-				<span class="box__ic box__ic--gold"
-					><span class="material-symbols-rounded">local_fire_department</span></span
-				>
-				<h3>作物に必要な光を見える化</h3>
+				<div class="box__head">
+					<span class="box__ic box__ic--gold"
+						><span class="material-symbols-rounded">local_fire_department</span></span
+					>
+					<h3>作物に必要な光を見える化</h3>
+				</div>
 				<p>
 					PPFDで「今どれくらい光合成に使える光が届いているか」を確認し、DLIで「1日に受け取った光合成に使える光の合計量」を確認できます。光不足や強すぎる日差しに気づきやすくなり、栽培管理の見直しに役立ちます。
 				</p>
@@ -218,20 +237,28 @@
 <section class="section">
 	<div class="wrap split">
 		<div data-reveal>
-			<p class="eyebrow"><span class="material-symbols-rounded">cell_tower</span> 配線いらず</p>
-			<h2>1台の受信機で、農場全体を。</h2>
+			<p class="eyebrow">
+				<span class="material-symbols-rounded">cell_tower</span> 長距離省電力通信
+			</p>
+			<h2>1台の受信機で広範囲をカバー</h2>
 			<p class="split__lead">
 				電波（<a
 					class="extlink"
 					href="https://lora-alliance.org/"
 					target="_blank"
 					rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-				>）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。通信費も工事も抑えられます。
+				>）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。
 			</p>
 			<ul class="checklist">
-				<li><span class="material-symbols-rounded">check</span> 複数のハウス・畑をまとめて監視</li>
-				<li><span class="material-symbols-rounded">check</span> 携帯回線の通信費がかからない</li>
-				<li><span class="material-symbols-rounded">check</span> ケーブルの埋設工事が不要</li>
+				<li>
+					<span class="material-symbols-rounded">check</span> 1台のゲートウェイで広い範囲をカバー
+				</li>
+				<li>
+					<span class="material-symbols-rounded">check</span> 複数のハウス・圃場をまとめて遠隔監視
+				</li>
+				<li>
+					<span class="material-symbols-rounded">check</span> Wi-Fiや携帯電波が届きにくい場所でも安定して通信
+				</li>
 			</ul>
 		</div>
 		<div class="split__media" data-reveal>
@@ -286,7 +313,7 @@
 </section>
 
 <!-- 推奨センサー -->
-<section class="section scroll-pad" id="sensor">
+<section class="section section--soft scroll-pad" id="sensor">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">sensors</span> 提供センサー</p>
@@ -294,20 +321,68 @@
 		</div>
 		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
 			<div class="spec-row">
-				<dt>空気センサー</dt>
-				<dd>CW-AIR-THC（温度・湿度・CO₂）</dd>
+				<dt>測定項目</dt>
+				<dd>気温・湿度・CO₂・VPD・光（PPFD・DLI）・土壌水分・地温・EC</dd>
 			</div>
 			<div class="spec-row">
-				<dt>土壌センサー</dt>
-				<dd>土の水分・温度</dd>
+				<dt>搭載センサー</dt>
+				<dd>
+					<a
+						class="extlink"
+						href="https://sensirion.com/jp"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
+					>
+					<a
+						class="extlink"
+						href="https://sensirion.com/jp/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>・<a
+						class="extlink"
+						href="https://sensirion.com/jp/products/catalog/SCD41"
+						target="_blank"
+						rel="noopener noreferrer">SCD41</a
+					>
+					*校正証明書付き
+					<br />
+					<small>光センサーは CW-PPFD、土壌センサーは CW-SS-TME を採用</small>
+				</dd>
 			</div>
 			<div class="spec-row">
-				<dt>光センサー</dt>
-				<dd>作物が受ける光の量</dd>
+				<dt>温度測定範囲</dt>
+				<dd>-40°C - +85°C</dd>
+				<dt>湿度測定範囲</dt>
+				<dd>0% - 100% RH</dd>
 			</div>
 			<div class="spec-row">
-				<dt>耐環境性</dt>
-				<dd>防塵・防水ケース（IP66）／屋外設置対応</dd>
+				<dt>CO₂測定範囲</dt>
+				<dd>400 - 5000 ppm</dd>
+				<dt>光の波長範囲</dt>
+				<dd>350 - 1000nm（PAR）</dd>
+			</div>
+			<div class="spec-row">
+				<dt>土壌水分測定範囲</dt>
+				<dd>0% - 100%</dd>
+				<dt>地温測定範囲</dt>
+				<dd>-20°C - +70°C</dd>
+				<dt>EC測定範囲</dt>
+				<dd>0 - 8.0 mS/cm</dd>
+			</div>
+			<div class="spec-row">
+				<dt>データ収集</dt>
+				<dd>10分ごと／CSV出力</dd>
+			</div>
+			<div class="spec-row">
+				<dt>通信</dt>
+				<dd>
+					<a
+						class="extlink"
+						href="https://lora-alliance.org/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
+					>／通信断時は内部メモリへ保存し、復旧後に自動送信
+				</dd>
 			</div>
 			<div class="spec-row">
 				<dt>電池寿命</dt>
@@ -320,22 +395,19 @@
 				</dd>
 			</div>
 			<div class="spec-row">
-				<dt>通信</dt>
-				<dd>
-					<a
-						class="extlink"
-						href="https://lora-alliance.org/"
-						target="_blank"
-						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-					>（電波）／受信機1台で最大15km
-				</dd>
+				<dt>堅牢性</dt>
+				<dd>防塵・防水ケース（IP66）／屋外設置対応</dd>
+			</div>
+			<div class="spec-row">
+				<dt>データ連携</dt>
+				<dd>OpenAPI・MCPによる外部システム連携／ユーザー数無制限</dd>
 			</div>
 		</dl>
 	</div>
 </section>
 
 <!-- FAQ -->
-<section class="section section--soft">
+<section class="section">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">quiz</span> よくあるご質問</p>
@@ -364,7 +436,7 @@
 			ハウスや畑の様子をお聞かせください。土壌・空気・光のセンサーと受信機、通知の設定をご提案します。
 		</p>
 		<div class="closing__ctas">
-			<a href="/contact" class="btn btn--accent btn--lg">無料デモを予約する</a>
+			<a href="/technology" class="btn btn--accent btn--lg">クロップウォッチの強み</a>
 		</div>
 	</div>
 </section>
@@ -540,17 +612,53 @@
 	}
 	.ag-panel__reads li {
 		display: grid;
-		grid-template-columns: 24px 1fr auto;
+		grid-template-columns: 24px 1fr;
 		align-items: center;
 		gap: 10px;
-		padding: 12px 2px;
+		padding: 9px 2px;
 		border-top: 1px solid var(--web-border);
+	}
+	.ag-panel__reads li.ag-panel__door {
+		grid-template-columns: 24px 1fr auto;
 	}
 	.ag-panel__reads li:first-child {
 		border-top: 0;
 	}
 	.ag-panel__reads .material-symbols-rounded {
 		font-size: 21px;
+	}
+	/* 1行に複数の計測値（センサー種別ごと） */
+	.ag-panel__cells {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 16px;
+		row-gap: 4px;
+	}
+	.ag-panel__cell {
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
+		min-width: 0;
+	}
+	.ag-panel__cell small {
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		color: var(--web-muted);
+		white-space: nowrap;
+	}
+	.ag-panel__cell b {
+		font-family: var(--cw-font-mono);
+		font-size: 15px;
+		font-weight: 700;
+		color: var(--cw-ink);
+		white-space: nowrap;
+	}
+	.ag-panel__cell b i {
+		font-style: normal;
+		font-size: 10.5px;
+		color: var(--web-muted);
+		margin-left: 2px;
 	}
 	.ag-panel__lab {
 		font-size: 13px;
@@ -576,12 +684,6 @@
 		font-weight: 700;
 		color: var(--cw-ink);
 		white-space: nowrap;
-	}
-	.ag-panel__val i {
-		font-style: normal;
-		font-size: 11px;
-		color: var(--web-muted);
-		margin-left: 2px;
 	}
 	.ag-panel__foot {
 		display: flex;

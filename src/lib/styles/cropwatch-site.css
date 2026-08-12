@@ -207,6 +207,9 @@ a.badgewall__card:hover { border-color: var(--web-border-strong); transform: tra
 .box:hover { transform: translateY(-4px); box-shadow: var(--web-shadow-raised); border-color: var(--web-border-strong); }
 .box__ic { display: inline-flex; align-items: center; justify-content: center; width: 58px; height: 58px; border-radius: 16px;
   background: var(--web-primary-soft); color: var(--web-primary); margin-bottom: 18px; }
+/* icon + title on one line, description below (same look as cold-chain's cc-box__head) */
+.box__head { display: flex; align-items: center; gap: 14px; }
+.box__head .box__ic { margin-bottom: 0; flex: none; }
 .box__ic .material-symbols-rounded { font-size: 30px; }
 .box__ic--accent { background: var(--web-accent-soft); color: var(--web-accent); }
 .box__ic--gold { background: color-mix(in srgb, var(--web-gold) 16%, #fff); color: #b9790a; }
