@@ -1,4 +1,6 @@
 <svg width="100px" height="100px" id="CropWatchSVG" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+    <rect id="cwFaviconBg" width="256" height="256" fill="#1F273B"></rect>
+    <g id="cwFaviconInset" transform="translate(36.25 34.794) scale(0.71408)">
     <g id="CropWatch" clip-path="url(#clip0_1_2)">
         <g id="tree" fill="#B86B40">
             <g id="mainTree" filter="url(#filter0_d_1_2)">
@@ -85,6 +87,7 @@
                 
             </circle>
         </g>
+    </g>
     </g>
     <defs>
         <filter id="filter0_d_1_2" x="116.5" y="42" width="100.728" height="215.576" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">

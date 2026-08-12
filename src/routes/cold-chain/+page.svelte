@@ -17,12 +17,12 @@
 
 <svelte:head>
 	<title
-		>Cold-Chain &amp; Refrigeration Monitoring for Restaurants, Hotels, Schools &amp; Hospitals |
+		>Cold-Chain &amp; Refrigeration Monitoring for Restaurants, Hotels, &amp; Schools |
 		CropWatch</title
 	>
 	<meta
 		name="description"
-		content="Wireless walk-in cooler and freezer temperature monitoring with HACCP-ready logs for restaurants, hotels, schools, hospitals, pharmacies, grocery and cold storage. ISO/IEC 17025 certified, dual-sensor verified, user-replaceable sensors. Unlimited users and reports."
+		content="Wireless walk-in cooler and freezer temperature monitoring with HACCP-ready logs for restaurants, hotels, schools, grocery and cold storage. ISO/IEC 17025 certified, dual-sensor verified, user-replaceable sensors. Unlimited users and reports."
 	/>
 	<meta
 		name="keywords"
@@ -56,7 +56,7 @@
 			<h1>Every cooler and freezer, watched around the clock.</h1>
 			<p class="lead">
 				Continuous wireless temperature and humidity monitoring for restaurants, hotels, schools,
-				hospitals, grocery and cold storage - with <a class="termlink" href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp" target="_blank" rel="noopener noreferrer">HACCP</a>-ready records an inspector can trust.
+				grocery and cold storage - with <a class="termlink" href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp" target="_blank" rel="noopener noreferrer">HACCP</a>-ready records an inspector can trust.
 			</p>
 			<div class="hero__badges">
 				<span><span class="material-symbols-rounded">ac_unit</span> −40 to +185 °F (−40 to +85 °C)</span>
