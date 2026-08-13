@@ -34,7 +34,7 @@
 			label: 'Cold-Chain',
 			icon: 'ac_unit',
 			pricePerDevice: 8,
-			baseFee: 100,
+			baseFee: 85,
 			// Temp/humidity sensor: ¥33,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
 			deviceUnitPrice: 205,
 			defaultLocations: 1,
@@ -337,9 +337,9 @@
 				{cfg.label} pricing is on its way. Pick another sector to run the numbers - unlimited users, alerts,
 				reports and API are always included.
 			{:else}
-				Simple {cfg.label.toLowerCase()} pricing: {usd2.format(cfg.baseFee)}/month base + {usd2.format(
+				Simple {cfg.label.toLowerCase()} pricing: <u>{usd2.format(cfg.baseFee)}/month base</u> + <u>{usd2.format(
 					cfg.pricePerDevice
-				)}/month per monitored unit - unlimited users, alerts, reports and API included. Slide in
+				)}/month per sensor</u> - unlimited users, alerts, reports and API included. Slide in
 				your own numbers and see the ROI for yourself.
 			{/if}
 		</p>
