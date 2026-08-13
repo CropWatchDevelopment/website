@@ -29,7 +29,6 @@
 			<h4>Industries</h4>
 			<a href="/cold-chain">Restaurants &amp; hospitality</a>
 			<a href="/cold-chain">Hotels &amp; schools</a>
-			<a href="/cold-chain">Hospitals &amp; pharma</a>
 			<a href="/livestock">Poultry &amp; livestock</a>
 			<a href="/agriculture">Farming &amp; greenhouse</a>
 		</nav>

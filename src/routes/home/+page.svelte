@@ -9,7 +9,7 @@
 	>
 	<meta
 		name="description"
-		content="CropWatch builds rugged wireless temperature and humidity sensors with audit-ready software for restaurants, hotels, schools, hospitals, cold storage, farming, greenhouses and poultry. User-replaceable, ISO/IEC 17025 certified, dual-sensor verified. Unlimited users, rules, API and reports at no extra cost."
+		content="CropWatch builds rugged wireless temperature and humidity sensors with audit-ready software for restaurants, hotels, schools, cold storage, farming, greenhouses and poultry. User-replaceable, ISO/IEC 17025 certified, dual-sensor verified. Unlimited users, rules, API and reports at no extra cost."
 	/>
 	<meta
 		name="keywords"

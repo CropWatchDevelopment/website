@@ -38,6 +38,7 @@
 <div
 	style="position:absolute; left:{cx - w / 2}px; top:{cy - h / 2}px; width:{w}px; height:{h}px;
 		opacity:{opacity}; transform:translateX({shake}px) scale({scale}); transform-origin:center;
+		z-index:2;
 		background:linear-gradient(180deg, {C.surface2}, {C.surface});
 		border:1.5px solid {state === 'ok' ? C.border : stateColor};
 		border-radius:14px; padding:14px 16px; box-sizing:border-box;

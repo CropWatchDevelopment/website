@@ -46,6 +46,13 @@
 	const RUN_END = 15.2;
 	const pulseRamp = interpolate([RUN_START, RUN_END], [yMerge - 2, res], Easing.easeInOutCubic);
 
+	// Lead-in: one dot per sensor runs inward along its merge line, and the two
+	// meet on the spine exactly where the descending pulse starts — so the pair
+	// reads as merging into that single dot rather than being swapped for it.
+	// Warped time like every other scene timing, and past the last hold at 8.0.
+	const CONVERGE_START = 9.7;
+	const convergeRamp = interpolate([CONVERGE_START, RUN_START], [xA, SPINE], Easing.easeInOutCubic);
+
 	// Time-warp: pause the playhead for DEMO_HOLD at a point inside each failure
 	// demo where its error display is fully assembled (dashes/red card, red gate,
 	// error pill, caption), so each error state sits on screen ~3s longer. All
@@ -61,6 +68,9 @@
 	let sceneFade = $derived(io(t, F0 - 0.1, F0 + 0.5, 28.7 + FLOW_SHIFT, 29.2 + FLOW_SHIFT));
 	let pulseActive = $derived(r >= RUN_START && r <= RUN_END + 0.6);
 	let pulseY = $derived(pulseRamp(r));
+	let convergeActive = $derived(r >= CONVERGE_START && r < RUN_START);
+	// A's x; B is mirrored about the spine so both track inward together.
+	let convergeX = $derived(convergeRamp(r));
 
 	const passed = (y: number) => r >= RUN_START && pulseY >= y - 6;
 
@@ -129,6 +139,14 @@
 		return lit && pt < dur ? 0.032 * s * s : 0;
 	});
 </script>
+
+{#snippet pulseDot(x: number, y: number)}
+	<div
+		style="position:absolute; left:{x}px; top:{y}px; transform:translate(-50%,-50%);
+			width:20px; height:20px; border-radius:20px; background:{C.teal};
+			box-shadow:0 0 20px 6px {C.teal}; z-index:1;"
+	></div>
+{/snippet}
 
 {#if t >= F0 - 0.2 && t <= 29.2 + FLOW_SHIFT}
 	<div style="position:absolute; inset:0; opacity:{sceneFade};">
@@ -320,7 +338,7 @@
 					: `linear-gradient(180deg, ${C.surface2}, ${C.surface})`};
 					border:1.5px solid {lit ? C.teal : C.border}; border-radius:16px; padding:16px 22px;
 					box-shadow:{lit ? `0 0 40px ${C.tealDim}` : '0 12px 30px -14px rgba(11,23,48,0.30)'};
-					box-sizing:border-box; display:flex; align-items:center; gap:16px;"
+					box-sizing:border-box; display:flex; align-items:center; gap:16px; z-index:2;"
 			>
 				<Icon name={lit ? 'verified' : 'lock'} size={40} color={lit ? C.teal : C.faint} />
 				<div>
@@ -340,13 +358,15 @@
 			</div>
 		{/if}
 
-		<!-- travelling pulse dot -->
+		<!-- travelling pulse: one dot per sensor converges on the spine, then a
+		     single dot runs down it. z-index 1 lifts them clear of the connector
+		     lines while the cards sit at 2, so the pulse passes under each gate. -->
+		{#if convergeActive}
+			{@render pulseDot(convergeX, yMerge - 2)}
+			{@render pulseDot(2 * SPINE - convergeX, yMerge - 2)}
+		{/if}
 		{#if pulseActive && pulseY < res - 40}
-			<div
-				style="position:absolute; left:{SPINE}px; top:{pulseY}px; transform:translate(-50%,-50%);
-					width:20px; height:20px; border-radius:20px; background:{C.teal};
-					box-shadow:0 0 20px 6px {C.teal};"
-			></div>
+			{@render pulseDot(SPINE, pulseY)}
 		{/if}
 
 		<!-- caption -->
