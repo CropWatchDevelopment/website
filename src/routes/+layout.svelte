@@ -55,8 +55,31 @@
 		els.forEach((el) => observer!.observe(el));
 	}
 
+	// Deep links to a section eyebrow (/cold-chain#audit-ready-by-default).
+	// The ids are in the prerendered HTML, so the browser handles a cold load on
+	// its own - but reveal targets start at opacity 0 until initReveal() runs,
+	// and on client-side nav SvelteKit restores scroll before that re-scan, so
+	// the landing position drifts. Re-assert it once the DOM has settled.
+	// No behavior argument: that defers to the CSS scroll-behavior, which the
+	// prefers-reduced-motion overrides already switch to `auto`.
+	function scrollToHash() {
+		const hash = window.location.hash;
+		if (hash.length < 2) return;
+
+		let target: Element | null = null;
+		try {
+			target = document.querySelector(hash);
+		} catch {
+			return; // not a valid selector (e.g. a hash that starts with a digit)
+		}
+		if (!target) return;
+
+		target.scrollIntoView();
+	}
+
 	onMount(() => {
 		initReveal();
+		scrollToHash();
 		return () => observer?.disconnect();
 	});
 
@@ -64,6 +87,7 @@
 	afterNavigate(async () => {
 		await tick();
 		initReveal();
+		scrollToHash();
 	});
 </script>
 

@@ -90,10 +90,10 @@
 </section>
 
 <!-- pain / outcome -->
-<section class="section section--tint section--tight">
+<section class="section section--tint section--tight scroll-pad" id="the-problem-with-clipboards">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent">The problem with clipboards</p>
+			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#the-problem-with-clipboards">The problem with clipboards</a></p>
 			<h2>Manual logs fail you exactly when it counts.</h2>
 		</div>
 		<div class="ind-grid" style="grid-template-columns:repeat(3,1fr)">
@@ -126,10 +126,10 @@
 </section>
 
 <!-- how it works -->
-<section class="section">
+<section class="section scroll-pad" id="how-it-works">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">How it works</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#how-it-works">How it works</a></p>
 			<h2>Mounted in minutes. Logging forever.</h2>
 		</div>
 		<div class="steps">
@@ -170,7 +170,7 @@
 </section>
 
 <!-- split: HACCP -->
-<section class="section section--tint">
+<section class="section section--tint scroll-pad" id="audit-ready-by-default">
 	<div class="wrap split">
 		<div class="split__media" data-reveal>
 			<img
@@ -182,7 +182,7 @@
 			/>
 		</div>
 		<div data-reveal>
-			<p class="eyebrow">Audit-ready by default</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#audit-ready-by-default">Audit-ready by default</a></p>
 			<h2><a class="termlink" href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp" target="_blank" rel="noopener noreferrer">HACCP</a> records that defend themselves.</h2>
 			<p class="lead">
 				Continuous, tamper-evident logs with <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable accuracy - and dual-sensor verification
@@ -211,10 +211,10 @@
 </section>
 
 <!-- sensor strengths -->
-<section class="section">
+<section class="section scroll-pad" id="why-the-sensor-wins">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent">Why the sensor wins</p>
+			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#why-the-sensor-wins">Why the sensor wins</a></p>
 			<h2>The strongest sensor in the cold aisle.</h2>
 			<p class="section__intro">
 				Anyone can stick a thermometer in a freezer. CropWatch is engineered so the number you log
@@ -319,10 +319,10 @@
 </section>
 
 <!-- specs -->
-<section class="pspecs">
+<section class="pspecs scroll-pad" id="recommended-sensor">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Recommended sensor</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#recommended-sensor">Recommended sensor</a></p>
 			<h2>CW-AIR-TH - air temperature &amp; humidity</h2>
 		</div>
 		<dl class="pspecs__grid" data-reveal>
@@ -351,10 +351,10 @@
 </section>
 
 <!-- FAQ -->
-<section class="section">
+<section class="section scroll-pad" id="questions">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Questions</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#questions">Questions</a></p>
 			<h2>Cold-chain monitoring FAQ</h2>
 		</div>
 		<div class="faq" data-reveal>

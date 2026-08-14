@@ -173,10 +173,10 @@
 </section>
 
 <!-- sensor module picker -->
-<section class="section section--tint" id="sensorTypes">
+<section class="section section--tint scroll-pad" id="sensorTypes">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent">Four sensors, one platform</p>
+			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#sensorTypes">Four sensors, one platform</a></p>
 			<h2>Pick the module. Keep the workflow.</h2>
 			<p class="section__intro">
 				Every CropWatch sensor shares the same enclosure, socket and dashboard - so you can mix
@@ -219,10 +219,10 @@
 </section>
 
 <!-- swap steps -->
-<section class="section section--tint section--tight">
+<section class="section section--tint section--tight scroll-pad" id="no-truck-roll">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent">No truck roll</p>
+			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#no-truck-roll">No truck roll</a></p>
 			<h2>Anyone on your team can do it.</h2>
 		</div>
 		<div class="steps">
@@ -251,10 +251,10 @@
 </section>
 
 <!-- dual-sensor reassurance -->
-<section class="section section--navy section--tight">
+<section class="section section--navy section--tight scroll-pad" id="why-a-swap-is-safe">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Why a swap is safe</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#why-a-swap-is-safe">Why a swap is safe</a></p>
 			<h2>The new module proves itself before you trust it.</h2>
 		</div>
 		<div class="why4">
@@ -287,10 +287,10 @@
 </section>
 
 <!-- parts origin -->
-<section class="section section--tint">
+<section class="section section--tint scroll-pad" id="built-to-a-bill-of-materials">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Built to a bill of materials</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#built-to-a-bill-of-materials">Built to a bill of materials</a></p>
 			<h2>Where the parts come from.</h2>
 			<p class="section__intro">
 				Every CropWatch sensor board is assembled from 34 part types across 8 countries and 18
@@ -304,10 +304,10 @@
 </section>
 
 <!-- specs -->
-<section class="pspecs">
+<section class="pspecs scroll-pad" id="module-options">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Module options</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#module-options">Module options</a></p>
 			<h2>Specifications</h2>
 		</div>
 		<dl class="pspecs__grid" data-reveal>
@@ -325,10 +325,10 @@
 </section>
 
 <!-- FAQ -->
-<section class="section">
+<section class="section scroll-pad" id="questions">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Questions</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#questions">Questions</a></p>
 			<h2>Replacement sensor FAQ</h2>
 		</div>
 		<div class="faq" data-reveal>
