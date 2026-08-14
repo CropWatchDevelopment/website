@@ -33,10 +33,10 @@
 		'cold-chain': {
 			label: 'Cold-Chain',
 			icon: 'ac_unit',
-			pricePerDevice: 8,
-			baseFee: 85,
+			pricePerDevice: 7,
+			baseFee: 0,
 			// Temp/humidity sensor: ¥33,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
-			deviceUnitPrice: 205,
+			deviceUnitPrice: 198,
 			defaultLocations: 1,
 			defaultUnits: 20,
 			defaultChecksPerDay: 2,
@@ -95,7 +95,7 @@
 			label: 'Kona Micro IoT Gateway',
 			flag: '🇨🇦',
 			madeIn: 'Canada',
-			price: 499,
+			price: 400,
 			description:
 				'(Indoor Recommended) Compact indoor gateway with cellular backhaul and built-in battery backup - keeps recording through power outages.'
 		},
@@ -103,7 +103,7 @@
 			label: 'UG65-L04EU-915M-EA',
 			flag: '🇨🇳',
 			madeIn: 'China',
-			price: 400,
+			price: 300,
 			description:
 				'(Outdoor & Indoor) Milesight indoor gateway (915 MHz) with Ethernet, Wi-Fi or LTE backhaul - the budget pick for sites with reliable power.'
 		},
@@ -163,7 +163,7 @@
 		if (requested && SECTORS[requested]) selectSector(requested);
 		const requestedGw = params.get('gateway');
 		if (requestedGw && GATEWAYS[requestedGw]) gatewayId = requestedGw;
-		locations = readIntParam(params, 'locations', 1, 50) ?? locations;
+		locations = readIntParam(params, 'locations', 1, 100) ?? locations;
 		units = readIntParam(params, 'units', 1, 100) ?? units;
 		checksPerDay = readIntParam(params, 'checks', 1, 12) ?? checksPerDay;
 		minutesPerCheck = readIntParam(params, 'minutes', 1, 30) ?? minutesPerCheck;
@@ -449,7 +449,7 @@
 						<label for="locations">Locations</label>
 						<b>{locations}</b>
 					</div>
-					<input id="locations" type="range" min="1" max="50" step="1" bind:value={locations} />
+					<input id="locations" type="range" min="1" max="100" step="1" bind:value={locations} />
 					<p class="calc-field__hint">
 						Sites, stores, plants or farms. Everything inside applies to each location.
 					</p>
