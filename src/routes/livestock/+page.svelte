@@ -90,10 +90,10 @@
 </section>
 
 <!-- what to monitor & why -->
-<section class="section section--tint">
+<section class="section section--tint scroll-pad" id="what-to-monitor-why">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent">What to monitor &amp; why</p>
+			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#what-to-monitor-why">What to monitor &amp; why</a></p>
 			<h2>Four readings decide flock health, growth and welfare.</h2>
 			<p class="section__intro">
 				Air quality is one of the most underestimated drivers of bird performance - poor conditions
@@ -175,10 +175,10 @@
 </section>
 
 <!-- security: door open/close detection -->
-<section class="section section--navy">
+<section class="section section--navy scroll-pad" id="security-biosecurity">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Security &amp; biosecurity</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#security-biosecurity">Security &amp; biosecurity</a></p>
 			<h2>We watch the doors, too.</h2>
 			<p class="section__intro">
 				The same CropWatch network that tracks your air also tracks your doors. A wireless contact
@@ -226,10 +226,10 @@
 </section>
 
 <!-- why timing matters -->
-<section class="section section--tight">
+<section class="section section--tight scroll-pad" id="why-timing-matters">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent">Why timing matters</p>
+			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#why-timing-matters">Why timing matters</a></p>
 			<h2>The damage is done before anyone walks the barn.</h2>
 		</div>
 		<div class="ind-grid" style="grid-template-columns:repeat(3,1fr)">
@@ -262,10 +262,10 @@
 </section>
 
 <!-- per-zone visibility split -->
-<section class="section">
+<section class="section scroll-pad" id="per-zone-visibility">
 	<div class="wrap split">
 		<div data-reveal>
-			<p class="eyebrow">Per-zone visibility</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#per-zone-visibility">Per-zone visibility</a></p>
 			<h2>Watch every end of a long house.</h2>
 			<p class="lead">
 				One sensor at each end (and the middle) shows you the real climate gradient - not a single
@@ -306,10 +306,10 @@
 </section>
 
 <!-- four advantages -->
-<section class="section section--navy section--tight">
+<section class="section section--navy section--tight scroll-pad" id="built-tough-built-honest">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Built tough, built honest</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#built-tough-built-honest">Built tough, built honest</a></p>
 			<h2>The same four advantages, in the barn.</h2>
 		</div>
 		<div class="why4">
@@ -378,10 +378,10 @@
 </section>
 
 <!-- specs -->
-<section class="pspecs">
+<section class="pspecs scroll-pad" id="recommended-sensor">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Recommended sensor</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#recommended-sensor">Recommended sensor</a></p>
 			<h2>CW-AIR-THC(A)</h2>
 		</div>
 		<dl class="pspecs__grid" data-reveal>
@@ -473,10 +473,10 @@
 </section>
 
 <!-- FAQ -->
-<section class="section">
+<section class="section scroll-pad" id="questions">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Questions</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#questions">Questions</a></p>
 			<h2>Livestock monitoring FAQ</h2>
 		</div>
 		<div class="faq" data-reveal>

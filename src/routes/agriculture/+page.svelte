@@ -99,10 +99,10 @@
 </section>
 
 <!-- Soil -> Air -> Light stack -->
-<section class="section section--tint">
+<section class="section section--tint scroll-pad" id="soil-to-air-to-light">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent">Soil to air to light</p>
+			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#soil-to-air-to-light">Soil to air to light</a></p>
 			<h2>Everything that drives growth, on one device family.</h2>
 			<p class="section__intro">
 				Most systems give you a single number. CropWatch captures the full stack - what the roots
@@ -164,10 +164,10 @@
 </section>
 
 <!-- Why VPD / PPFD / DLI -->
-<section class="section">
+<section class="section scroll-pad" id="why-the-calculated-metrics-matter">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Why the calculated metrics matter</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#why-the-calculated-metrics-matter">Why the calculated metrics matter</a></p>
 			<h2>Temperature and humidity alone will mislead you.</h2>
 			<p class="section__intro">
 				The numbers that actually predict growth aren't raw readings - they're what you derive from
@@ -226,10 +226,10 @@
 </section>
 
 <!-- UI examples (live CWUI chart recreations) -->
-<section class="section section--navy">
+<section class="section section--navy scroll-pad" id="from-the-cropwatch-app">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">From the CropWatch app</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#from-the-cropwatch-app">From the CropWatch app</a></p>
 			<h2>The readings, the way your growers read them.</h2>
 			<p class="section__intro">
 				These are live components from the CropWatch interface - the same PPFD gauge, VPD climate
@@ -292,10 +292,10 @@
 </section>
 
 <!-- Gallery -->
-<section class="section">
+<section class="section scroll-pad" id="in-the-field">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">In the field</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#in-the-field">In the field</a></p>
 			<h2>Deployed where crops grow.</h2>
 		</div>
 		<div class="gallery">
@@ -325,7 +325,7 @@
 </section>
 
 <!-- Coverage split -->
-<section class="section section--tint">
+<section class="section section--tint scroll-pad" id="coverage-without-wires">
 	<div class="wrap split">
 		<div class="split__media split__media--tall" data-reveal>
 			<img
@@ -334,7 +334,7 @@
 			/>
 		</div>
 		<div data-reveal>
-			<p class="eyebrow">Coverage without wires</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#coverage-without-wires">Coverage without wires</a></p>
 			<h2>One gateway covers the whole operation.</h2>
 			<p class="lead">
 				<a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> reaches up to 8 miles line-of-sight, so a single gateway can link greenhouses, fields
@@ -363,10 +363,10 @@
 </section>
 
 <!-- Specs -->
-<section class="pspecs">
+<section class="pspecs scroll-pad" id="recommended-sensors">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Recommended sensors</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#recommended-sensors">Recommended sensors</a></p>
 			<h2>Soil + air + light, one platform</h2>
 		</div>
 		<dl class="pspecs__grid" data-reveal>
@@ -397,10 +397,10 @@
 </section>
 
 <!-- FAQ -->
-<section class="section section--tint">
+<section class="section section--tint scroll-pad" id="questions">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Questions</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#questions">Questions</a></p>
 			<h2>Agriculture monitoring FAQ</h2>
 		</div>
 		<div class="faq" data-reveal>

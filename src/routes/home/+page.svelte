@@ -112,7 +112,7 @@
 <section class="section scroll-pad" id="why">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Why CropWatch</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#why">Why CropWatch</a></p>
 			<h2>It's simple, we are a <u>customer-centric</u> company.</h2>
 			<p class="section__intro">
 				Today way too many companies across all industries ignore the customer. Automate call
@@ -179,7 +179,7 @@
 <section class="section section--tint scroll-pad" id="trusted-parts">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Where our parts come from</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#trusted-parts">Where our parts come from</a></p>
 			<h2>Our <i>trusted</i> device is built with <i>trusted</i> parts from <i>trusted places</i>.</h2>
 			<p class="section__intro">
 				Every CropWatch device is assembled from components we hand-pick for reliability - sourced
@@ -194,10 +194,10 @@
 </section>
 
 <!-- ░░ Dashboard mockup ░░ -->
-<section class="section section--navy section--tight">
+<section class="section section--navy section--tight scroll-pad" id="simple-by-design">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">Simple by design</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#simple-by-design">Simple by design</a></p>
 			<h2>All your locations, grouped and glanceable.</h2>
 			<p class="section__intro">
 				Sensors can easily be organized, filtered and sorted. Anything that needs attention
@@ -276,10 +276,10 @@
 </section>
 
 <!-- ░░ Everything included ░░ -->
-<section class="section">
+<section class="section scroll-pad" id="no-surprise-invoices">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow">No surprise invoices</p>
+			<p class="eyebrow"><a class="eyebrow__link" href="#no-surprise-invoices">No surprise invoices</a></p>
 			<h2>The software is included. We don't hide <a class="termlink" href="/pricing">fees</a></h2>
 			<p class="section__intro">
 				Most platforms charge per seat, per location, per rule, or per export. We don't. Our fees
