@@ -94,7 +94,8 @@
 		<h1>Ready for better monitoring?</h1>
 		<p>
 			Tell us what you need to keep in range. We'll map the sensors, gateways and alerts - and show
-			you the audit trail it produces. We can also connect you to a distributor or integrator partner if you prefer.
+			you the audit trail it produces. We can also connect you to a distributor or integrator
+			partner if you prefer.
 		</p>
 	</div>
 </section>
@@ -106,21 +107,67 @@
 			{#if !submitted}
 				<form class="form-card" method="POST" onsubmit={handleSubmit}>
 					<h2 style="font-size:var(--cw-text-2xl);margin-bottom:6px">Let's chat!</h2>
-					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">Send us a message, and we will get back to you ASAP.</p>
+					<p style="color:var(--web-muted);font-size:14px;margin:0 0 24px">
+						Send us a message, and we will get back to you ASAP.
+					</p>
 					<div class="frow">
-						<div class="ffield"><label for="first">First name <span class="req">*</span></label><input id="first" class="finput" name="first" required /></div>
-						<div class="ffield"><label for="last">Last name <span class="req">*</span></label><input id="last" class="finput" name="last" required /></div>
+						<div class="ffield">
+							<label for="first">First name <span class="req">*</span></label><input
+								id="first"
+								class="finput"
+								name="first"
+								required
+							/>
+						</div>
+						<div class="ffield">
+							<label for="last">Last name <span class="req">*</span></label><input
+								id="last"
+								class="finput"
+								name="last"
+								required
+							/>
+						</div>
 					</div>
 					<div class="frow">
-						<div class="ffield"><label for="email">Work email <span class="req">*</span></label><input id="email" class="finput" type="email" name="email" required /></div>
-						<div class="ffield"><label for="phone">Phone</label><input id="phone" class="finput" type="tel" name="phone" /></div>
+						<div class="ffield">
+							<label for="email">Work email <span class="req">*</span></label><input
+								id="email"
+								class="finput"
+								type="email"
+								name="email"
+								required
+							/>
+						</div>
+						<div class="ffield">
+							<label for="phone">Phone</label><input
+								id="phone"
+								class="finput"
+								type="tel"
+								name="phone"
+							/>
+						</div>
 					</div>
 					<div class="frow">
-						<div class="ffield"><label for="company">Company <span class="req">*</span></label><input id="company" class="finput" name="company" required /></div>
-						<div class="ffield"><label for="role">Role</label><input id="role" class="finput" name="role" placeholder="e.g. QA Manager" /></div>
+						<div class="ffield">
+							<label for="company">Company <span class="req">*</span></label><input
+								id="company"
+								class="finput"
+								name="company"
+								required
+							/>
+						</div>
+						<div class="ffield">
+							<label for="role">Role</label><input
+								id="role"
+								class="finput"
+								name="role"
+								placeholder="e.g. QA Manager"
+							/>
+						</div>
 					</div>
 					<div class="frow">
-						<div class="ffield"><label for="industry">Industry</label>
+						<div class="ffield">
+							<label for="industry">Industry</label>
 							<select id="industry" class="finput" name="industry">
 								<option value="">Select...</option>
 								<option>Restaurant / food service</option>
@@ -135,7 +182,8 @@
 								<option>Other</option>
 							</select>
 						</div>
-						<div class="ffield"><label for="sites">Locations to monitor</label>
+						<div class="ffield">
+							<label for="sites">Locations to monitor</label>
 							<select id="sites" class="finput" name="sites">
 								<option value="">Select...</option>
 								<option>1 site</option>
@@ -145,12 +193,36 @@
 							</select>
 						</div>
 					</div>
-					<div class="ffield"><label for="message">How can we help?</label><textarea id="message" class="finput" name="message" placeholder="What do you need to keep in range? How many coolers, houses or fields?"></textarea></div>
-					<label class="fcheck"><input type="checkbox" name="consent" required /> <span>I'd like CropWatch to contact me about monitoring for my organization. I can unsubscribe at any time.</span></label>
+					<div class="ffield">
+						<label for="message">How can we help?</label><textarea
+							id="message"
+							class="finput"
+							name="message"
+							placeholder="What do you need to keep in range? How many coolers, houses or fields?"
+						></textarea>
+					</div>
+					<label class="fcheck"
+						><input type="checkbox" name="consent" required />
+						<span
+							>I'd like CropWatch to contact me about monitoring for my organization. I can
+							unsubscribe at any time.</span
+						></label
+					>
 					{#if errorMsg}
-						<p role="alert" style="margin:18px 0 0;padding:12px 14px;border-radius:10px;background:#fdecec;border:1px solid #f5b5b5;color:#9b1c1c;font-size:14px">{errorMsg}</p>
+						<p
+							role="alert"
+							style="margin:18px 0 0;padding:12px 14px;border-radius:10px;background:#fdecec;border:1px solid #f5b5b5;color:#9b1c1c;font-size:14px"
+						>
+							{errorMsg}
+						</p>
 					{/if}
-					<button type="submit" disabled={sending} aria-busy={sending} class="cta-pill cta-pill--lg" style="width:100%;justify-content:center;margin-top:22px;border:none;cursor:pointer;font-family:inherit">
+					<button
+						type="submit"
+						disabled={sending}
+						aria-busy={sending}
+						class="cta-pill cta-pill--lg"
+						style="width:100%;justify-content:center;margin-top:22px;border:none;cursor:pointer;font-family:inherit"
+					>
 						{#if sending}
 							<span class="btn-spinner" aria-hidden="true"></span> Sending...
 						{:else}
@@ -160,9 +232,17 @@
 				</form>
 			{:else}
 				<div class="form-card" bind:this={successEl} style="text-align:center">
-					<span class="material-symbols-rounded" style="font-size:56px;color:var(--web-accent)">mark_email_read</span>
+					<span class="material-symbols-rounded" style="font-size:56px;color:var(--web-accent)"
+						>mark_email_read</span
+					>
 					<h2 style="font-size:var(--cw-text-2xl);margin:12px 0 8px">Thanks - request received.</h2>
-					<p style="color:var(--web-muted);max-width:42ch;margin:0 auto">A CropWatch specialist will reach out within one business day to schedule your demo. In the meantime, explore the <a href="/cold-chain" style="color:var(--web-primary);font-weight:600">products</a>.</p>
+					<p style="color:var(--web-muted);max-width:42ch;margin:0 auto">
+						A CropWatch specialist will reach out within one business day to schedule your demo. In
+						the meantime, explore the <a
+							href="/cold-chain"
+							style="color:var(--web-primary);font-weight:600">products</a
+						>.
+					</p>
 				</div>
 			{/if}
 		</div>
@@ -187,9 +267,33 @@
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">apps</span> App &amp; API</h3>
 				<p>
-					<a href="https://app.cropwatch.io">app.cropwatch.io</a> · <a href="https://api.cropwatch.io">api.cropwatch.io</a><br />
+					<a href="https://app.cropwatch.io">app.cropwatch.io</a> ·
+					<a href="https://api.cropwatch.io">api.cropwatch.io</a><br />
 					Unlimited users, rules, API and reports - included.
 				</p>
+			</div>
+			<div class="cinfo__card">
+				<h3><span class="material-symbols-rounded">apartment</span> Office Addresses</h3>
+				<ul class="offices">
+					<li>
+						<p class="offices__label">Japan - head office</p>
+						<address class="offices__addr">
+							CropWatch, LLC.<br />
+							3-2-8 Tachibanadori Higashi<br />
+							Miyazaki-shi, Miyazaki 880-0805<br />
+							Japan
+						</address>
+					</li>
+					<li>
+						<p class="offices__label">United States - US Business Address</p>
+						<address class="offices__addr">
+							CropWatch, LLC.<br />
+							88 Saint Laurent St<br />
+							Epping, NH 03042-3504<br />
+							USA
+						</address>
+					</li>
+				</ul>
 			</div>
 			<div class="cinfo__card">
 				<h3><span class="material-symbols-rounded">language</span> Japan</h3>
@@ -201,6 +305,8 @@
 		</aside>
 	</div>
 	<p style="text-align:center;margin-top:32px">
-		<a href="/home" class="cta-ghost cta-pill--lg"><span class="material-symbols-rounded">arrow_back</span> <span>Back to home</span></a>
+		<a href="/home" class="cta-ghost cta-pill--lg"
+			><span class="material-symbols-rounded">arrow_back</span> <span>Back to home</span></a
+		>
 	</p>
 </section>
