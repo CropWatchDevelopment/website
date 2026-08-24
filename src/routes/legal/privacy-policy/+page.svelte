@@ -343,21 +343,6 @@
 		native app sends authentication and fleet requests directly to CropWatch services.
 	</p>
 	<p>
-		CropWatch uses [INSERT THE CONFIRMED CATEGORIES OF SERVICE PROVIDERS THAT PROCESS API OR ACCOUNT
-		DATA, SUCH AS CLOUD HOSTING OR CUSTOMER SUPPORT PROVIDERS]. Information about those providers
-		and any other disclosure or sharing is governed by Articles 4 and 5 of this Policy.
-	</p>
-	<p>
-		[IF TRUE, ADD: CropWatch does not sell personal or sensitive information and does not share it
-		for third-party advertising.]
-	</p>
-
-	<h3>7. Server retention and deletion</h3>
-	<p>
-		Information stored by CropWatch servers is retained [INSERT THE ACTUAL RETENTION PERIOD OR RULE
-		FOR ACCOUNTS, SENSOR DATA, SECURITY LOGS, AND BACKUPS].
-	</p>
-	<p>
 		A user may request access to, correction of, or deletion of server-held personal information as
 		described in Articles 6 through 8 by contacting
 		<a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a>. [INSERT THE NORMAL COMPLETION TIME
