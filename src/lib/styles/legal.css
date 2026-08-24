@@ -1,0 +1,175 @@
+/* Plain document styling shared by the legal index and policy pages. */
+.legal-doc {
+	width: 100%;
+	max-width: 1180px;
+	margin: 0 auto;
+	padding: 48px 28px 80px;
+	background: #fff;
+	color: #000;
+	font-size: 16px;
+	line-height: 1.9;
+	overflow-wrap: break-word;
+}
+
+.legal-doc h1,
+.legal-doc h2,
+.legal-doc h3 {
+	color: #000;
+	font-weight: 700;
+}
+
+.legal-doc h1 {
+	margin: 0 0 8px;
+	font-size: 1.7rem;
+	line-height: 1.5;
+}
+
+.legal-doc h2 {
+	margin: 36px 0 12px;
+	font-size: 1.25rem;
+	line-height: 1.6;
+}
+
+.legal-doc h3 {
+	margin: 26px 0 10px;
+	font-size: 1.05rem;
+	line-height: 1.6;
+}
+
+.legal-doc p {
+	margin: 0 0 16px;
+}
+
+.legal-doc strong,
+.legal-doc b {
+	font-weight: 700;
+}
+
+.legal-doc sup.reg {
+	font-size: 0.6em;
+	line-height: 0;
+	vertical-align: super;
+}
+
+.legal-doc hr {
+	margin: 32px 0;
+	border: 0;
+	border-top: 1px solid #000;
+}
+
+.legal-doc a {
+	color: inherit;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.legal-doc a:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+}
+
+.legal-doc ul,
+.legal-doc ol {
+	margin: 0 0 16px;
+	padding-left: 1.6em;
+}
+
+.legal-doc ul {
+	list-style: disc;
+}
+
+.legal-doc ol {
+	list-style: decimal;
+}
+
+.legal-doc li {
+	margin: 0 0 8px;
+}
+
+.legal-doc li > ul,
+.legal-doc li > ol {
+	margin-top: 8px;
+	margin-bottom: 0;
+}
+
+/* The translated source retains literal legal numbering such as “(1)”. */
+.legal-doc .list-legal {
+	padding-left: 0;
+	list-style: none;
+}
+
+.legal-doc .list-legal > li {
+	padding-left: 2.6em;
+	text-indent: -2.6em;
+}
+
+.legal-table-wrap {
+	margin: 0 0 16px;
+	overflow-x: auto;
+}
+
+.legal-doc table {
+	width: 100%;
+	min-width: 760px;
+	margin: 0;
+	border-collapse: collapse;
+	table-layout: fixed;
+	font-size: 15px;
+}
+
+.legal-doc .cookie-table th:nth-child(1),
+.legal-doc .cookie-table td:nth-child(1) {
+	width: 18%;
+}
+
+.legal-doc .cookie-table th:nth-child(2),
+.legal-doc .cookie-table td:nth-child(2) {
+	width: 14%;
+}
+
+.legal-doc .cookie-table th:nth-child(3),
+.legal-doc .cookie-table td:nth-child(3) {
+	width: 28%;
+}
+
+.legal-doc .cookie-table th:nth-child(4),
+.legal-doc .cookie-table td:nth-child(4) {
+	width: 40%;
+}
+
+.legal-doc th,
+.legal-doc td {
+	padding: 8px 10px;
+	border: 1px solid #000;
+	text-align: left;
+	vertical-align: top;
+	overflow-wrap: anywhere;
+}
+
+.legal-doc th {
+	font-weight: 700;
+}
+
+.legal-doc td p {
+	margin: 0 0 6px;
+}
+
+.legal-doc td p:last-child {
+	margin-bottom: 0;
+}
+
+.legal-doc td ul {
+	margin: 0;
+	padding-left: 1.3em;
+}
+
+.legal-doc .legal-meta {
+	margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+	.legal-doc {
+		padding: 36px 18px 64px;
+		font-size: 15px;
+	}
+}
