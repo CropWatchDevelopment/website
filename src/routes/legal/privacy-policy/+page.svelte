@@ -345,9 +345,7 @@
 	<p>
 		A user may request access to, correction of, or deletion of server-held personal information as
 		described in Articles 6 through 8 by contacting
-		<a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a>. [INSERT THE NORMAL COMPLETION TIME
-		AND IDENTIFY ANY INFORMATION THAT MUST BE RETAINED FOR LEGAL, SECURITY, CONTRACTUAL, OR BACKUP
-		PURPOSES.]
+		<a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a>.
 	</p>
 
 	<h3>8. Security</h3>
