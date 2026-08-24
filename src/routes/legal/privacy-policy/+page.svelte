@@ -254,5 +254,124 @@
 		Email: <a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a>
 	</p>
 
-	<p class="legal-meta">Established and effective August 1, 2024</p>
+	<hr />
+
+	<h2>Article 15 (CropWatch Android App and Home-Screen Widget)</h2>
+
+	<h3>1. Scope</h3>
+	<p>
+		This section applies to the CropWatch Android app and home-screen widget, package name
+		io.cropwatch.widget. The app signs users into an existing CropWatch account and displays
+		information from their CropWatch devices. The app does not provide an account-creation function.
+	</p>
+
+	<h3>2. Information sent to CropWatch</h3>
+	<p>
+		When a user signs in, the app sends the email address and password entered by the user to
+		https://api.cropwatch.io over HTTPS. The CropWatch API returns an access token, which the app
+		uses to request the user’s device and gateway information.
+	</p>
+	<p>
+		If the API rejects an access token, the app may send the saved email address and password again
+		to obtain a new access token and continue refreshing the widget.
+	</p>
+	<p>
+		The app downloads device names, device identifiers, CropWatch location and group names, current
+		sensor readings, measurement units, last-update times, online and alert status, gateway status,
+		and fleet totals. If the user selects a location or group filter, that selection is included in
+		later API requests. The Android app downloads sensor readings but does not upload sensor
+		readings.
+	</p>
+	<p>
+		CropWatch location names refer to locations assigned to monitoring equipment. The app does not
+		request or access the Android device’s GPS location.
+	</p>
+
+	<h3>3. Information stored on the Android device</h3>
+	<p>
+		The app stores the account email address, reusable password, and access token in encrypted app
+		storage. The encryption key is managed by Android Keystore.
+	</p>
+	<p>
+		The app also stores selected filters and the latest widget display data in Android’s private app
+		storage. This data can include device names and identifiers, CropWatch location or group names,
+		current readings, status and alert information, gateway totals, device-page links, and the last
+		successful update time. The widget cache is separate from the encrypted credential store. The
+		app does not keep a local history of sensor readings.
+	</p>
+	<p>
+		The saved email address and password allow the widget to refresh in the background when the
+		current access token is no longer accepted.
+	</p>
+
+	<h3>4. Local retention and deletion</h3>
+	<p>
+		The app does not use a time-based local deletion schedule while the user remains signed in. A
+		successful sign-out deletes the saved credentials, filters, and widget cache. Removing the final
+		CropWatch widget calls the same local deletion process. Clearing the app’s storage or
+		uninstalling the app also removes its private local data.
+	</p>
+	<p>
+		The app is configured to exclude its data from Android cloud backup and device-to-device
+		transfer.
+	</p>
+	<p>
+		Signing out, removing the widget, or uninstalling the app deletes local Android data only. These
+		actions do not delete the user’s CropWatch account or information stored on CropWatch servers.
+	</p>
+
+	<h3>5. Home-screen display, Autofill, and browser links</h3>
+	<p>
+		Device information is displayed on the Android home screen. Anyone who can view the device’s
+		home screen may be able to see the widget’s contents. The Android launcher receives the widget
+		data needed to display it.
+	</p>
+	<p>
+		The sign-in fields support Android Autofill. If the user enables an Autofill or password-manager
+		service, that service handles the entered information under its own privacy terms.
+	</p>
+	<p>
+		Account, privacy, gateway, and device links open CropWatch pages in the user’s external browser.
+		Device-page links contain the related CropWatch location and device identifiers. The app does
+		not place the user’s password or access token in those browser links. Browser and website
+		activity is governed by the applicable CropWatch website privacy and cookie policies.
+	</p>
+
+	<h3>6. Advertising, analytics, and other recipients</h3>
+	<p>
+		The Android app contains no advertising, analytics, or third-party crash-reporting SDK. The
+		native app sends authentication and fleet requests directly to CropWatch services.
+	</p>
+	<p>
+		CropWatch uses [INSERT THE CONFIRMED CATEGORIES OF SERVICE PROVIDERS THAT PROCESS API OR ACCOUNT
+		DATA, SUCH AS CLOUD HOSTING OR CUSTOMER SUPPORT PROVIDERS]. Information about those providers
+		and any other disclosure or sharing is governed by Articles 4 and 5 of this Policy.
+	</p>
+	<p>
+		[IF TRUE, ADD: CropWatch does not sell personal or sensitive information and does not share it
+		for third-party advertising.]
+	</p>
+
+	<h3>7. Server retention and deletion</h3>
+	<p>
+		Information stored by CropWatch servers is retained [INSERT THE ACTUAL RETENTION PERIOD OR RULE
+		FOR ACCOUNTS, SENSOR DATA, SECURITY LOGS, AND BACKUPS].
+	</p>
+	<p>
+		A user may request access to, correction of, or deletion of server-held personal information as
+		described in Articles 6 through 8 by contacting
+		<a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a>. [INSERT THE NORMAL COMPLETION TIME
+		AND IDENTIFY ANY INFORMATION THAT MUST BE RETAINED FOR LEGAL, SECURITY, CONTRACTUAL, OR BACKUP
+		PURPOSES.]
+	</p>
+
+	<h3>8. Security</h3>
+	<p>
+		The Android app restricts its API traffic to HTTPS and rejects cleartext HTTP. Authentication
+		information is encrypted locally using a key managed by Android Keystore. Cached widget
+		information and filters are kept in Android’s private app storage. App data is excluded from
+		Android cloud backup and device-to-device transfer.
+	</p>
+
+	<p class="legal-meta">Established August 1, 2024. Last updated August 24, 2026.</p>
 </article>
