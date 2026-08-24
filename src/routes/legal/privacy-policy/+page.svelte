@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import '$lib/styles/legal.css';
 </script>
@@ -229,16 +230,14 @@
 		Information occurs, the Company will promptly report it to the relevant supervisory authority in
 		accordance with the APPI and related guidelines. Following the authority’s instructions, the
 		Company will also take necessary action, including measures to prevent similar incidents and
-		recurrence. For details, please see the attached “Security Control Measures for Personal
-		Information.”
+		recurrence.
 	</p>
 
 	<hr />
 
-	<h2>Article 13 (Company Address, Representative, and Personal Information Protection Manager)</h2>
+	<h2>Article 13 (Company Address and Representative)</h2>
 	<p>
-		The Company’s address and the names of its representative and Personal Information Protection
-		Manager are as follows:<br />
+		The Company’s United States address and representative are as follows:<br />
 		Address: 88 Saint Laurent Street, Epping NH 03042 USA<br />
 		Representative: Kevin Cantrell<br />
 	</p>
@@ -247,7 +246,7 @@
 
 	<h2>Article 14 (Contact)</h2>
 	<p>
-		For inquiries regarding the Company’s handling of Personal Information, please contact:<br />
+		For privacy inquiries handled through the Company’s contact in Japan, please contact:<br />
 		CropWatch, LLC<br />
 		806-5 Minamikata, Saito City, Miyazaki Prefecture 881-0027, Japan<br />
 		TEL: 080-4284-3390<br />
@@ -262,7 +261,9 @@
 	<p>
 		This section applies to the CropWatch Android app and home-screen widget, package name
 		io.cropwatch.widget. The app signs users into an existing CropWatch account and displays
-		information from their CropWatch devices. The app does not provide an account-creation function.
+		information from their CropWatch devices. The native Android sign-in screen does not contain a
+		registration form. CropWatch pages opened by the app in an external browser may offer account
+		creation.
 	</p>
 
 	<h3>2. Information sent to CropWatch</h3>
@@ -340,12 +341,31 @@
 	<h3>6. Advertising, analytics, and other recipients</h3>
 	<p>
 		The Android app contains no advertising, analytics, or third-party crash-reporting SDK. The
-		native app sends authentication and fleet requests directly to CropWatch services.
+		native app sends authentication and fleet requests directly to CropWatch services and does not
+		send information to advertising networks.
 	</p>
 	<p>
-		A user may request access to, correction of, or deletion of server-held personal information as
-		described in Articles 6 through 8 by contacting
-		<a href="mailto:sayaka@cropwatch.io">sayaka@cropwatch.io</a>.
+		CropWatch uses Vercel to host the API and Supabase to authenticate accounts and store Service
+		Data. These providers process information on CropWatch’s behalf as described in Article 5 of
+		this Policy.
+	</p>
+
+	<h3 id="account-deletion" class="scroll-pad">7. Server retention and account deletion</h3>
+	<p>
+		CropWatch retains device and sensor Service Data for the period included in the Customer’s plan,
+		up to a maximum of two years, as described in the
+		<a href={resolve('/legal/EULA')}>CropWatch End-User License Agreement</a>.
+	</p>
+	<p>
+		Email
+		<a href="mailto:Kevin@CropWatch.io?subject=CropWatch%20account%20deletion%20request"
+			>Kevin@CropWatch.io</a
+		>
+		to request deletion of a CropWatch account and server-held personal information. Include the email
+		address associated with the account, but do not include a password or access token. CropWatch reviews
+		the request under Articles 6 through 8. If the request is approved, the account is flagged for deletion.
+		Signing out, removing the final widget, or uninstalling the Android app deletes local Android data
+		only and does not submit an account-deletion request.
 	</p>
 
 	<h3>8. Security</h3>

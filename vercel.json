@@ -20,7 +20,7 @@
       "permanent": false
     },
     {
-      "source": "/:path((?!149e9513-01fa-4fb0-aad4-566afd725d1b).*)",
+      "source": "/:path((?!149e9513-01fa-4fb0-aad4-566afd725d1b|legal(?:/.*)?).*)",
       "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
       "destination": "https://cropwatch.co.jp/",
       "permanent": false
