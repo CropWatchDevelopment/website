@@ -17,6 +17,10 @@ const ROUTES: { path: string; changefreq: string; priority: string }[] = [
 	{ path: '/pricing', changefreq: 'monthly', priority: '0.7' },
 	{ path: '/contact', changefreq: 'monthly', priority: '0.7' },
 	{ path: '/news', changefreq: 'weekly', priority: '0.5' },
+	{ path: '/legal', changefreq: 'yearly', priority: '0.2' },
+	{ path: '/legal/privacy-policy', changefreq: 'yearly', priority: '0.2' },
+	{ path: '/legal/terms-of-service', changefreq: 'yearly', priority: '0.2' },
+	{ path: '/legal/EULA', changefreq: 'yearly', priority: '0.2' },
 	// One entry per news article (static/news/*.json), newest first.
 	...listNews().map((n) => ({
 		path: `/news/${n.id}`,
