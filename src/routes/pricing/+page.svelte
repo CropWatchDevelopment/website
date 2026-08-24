@@ -47,8 +47,8 @@
 			label: 'コールドチェーン',
 			icon: 'ac_unit',
 			sensorLabel: '温湿度センサー利用料',
-			baseFee: 19800,
-			sensorFee: 880,
+			baseFee: 0,
+			sensorFee: 980,
 			minutesPerCheck: 3,
 			defaultCount: 10,
 			defaultChecks: 3,
@@ -373,11 +373,6 @@
 						'・'
 					)}は含まれません。{/if}
 			{/if}
-			<br />
-			<small
-				><u>*データ収集のみの特別プランもご用意しております。詳しくはお問い合わせください。</u
-				></small
-			>
 		</p>
 	</div>
 </section>
