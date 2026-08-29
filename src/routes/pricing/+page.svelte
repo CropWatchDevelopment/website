@@ -62,7 +62,7 @@
 				'データ保存2年間'
 			],
 			excluded: [],
-			deviceUnitPrice: 26400,
+			deviceUnitPrice: 26000,
 			deviceLabel: '温湿度センサー',
 			deviceNote: 'CO₂センサー・土壌センサーなど他の機器はお問い合わせください。'
 		},
