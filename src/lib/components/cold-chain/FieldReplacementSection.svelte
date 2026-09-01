@@ -6,7 +6,7 @@
 			</p>
 			<h2>検知部のみの交換が可能</h2>
 			<p class="field-replacement__lead">
-				SHT温湿度センサーは長期安定性にも優れており、温度の年間ドリフトは僅か0.01℃未満です。そのため、通常の使用環境では経年変化による温度測定値への影響はごくわずかですが、必要に応じて検知部のみ交換できる構造を採用しています。
+				SHT43は長期安定性にも優れ、年間ドリフトは<u><b>クラス最高の0.01℃未満</b></u>です。そのため、通常の使用環境では経年変化による温度測定値への影響はごくわずかですが、必要に応じて<u><b>検知部のみ交換</b></u>できる構造を採用しています。
 			</p>
 			<a class="field-replacement__link" href="/replacement-sensors">
 				交換用センサーを見る <span class="material-symbols-rounded">arrow_forward</span>

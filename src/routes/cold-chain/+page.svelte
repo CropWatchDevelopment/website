@@ -81,14 +81,20 @@
 				測る、記録する、残す。<br /><span class="cc-hl">HACCP</span>に沿った温度管理を、<br
 				/>すべて自動で。
 			</h1>
-			<p class="cc-lead">
-				バッテリー駆動の<a
-					class="extlink"
-					href="https://lora-alliance.org/"
-					target="_blank"
-					rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-				>デバイスが温度と湿度を24時間自動で記録。WiFiや携帯がつながらない場所でも、安定したデータ送信を実現します。取得したデータは自動でレポート化され、日々の温度管理からHACCP対応、監査時の記録提出までを効率化します。
-			</p>
+			<div class="cc-devices">
+				<img
+					class="cc-devices__img"
+					src="/assets/imagery/multi-device.svg"
+					alt="スマホ・タブレット・パソコンで確認"
+					width="300"
+					height="120"
+					loading="eager"
+				/>
+				<p class="cc-lead">
+					スマホ・タブレット・パソコン。どのデバイスからでも<br />
+					<span class="cc-hl">24時間365日</span>いつでもどこからでも確認できます。
+				</p>
+			</div>
 		</div>
 
 		<!-- リアルタイム測定パネル -->
@@ -131,10 +137,27 @@
 	<!-- 実績ストリップ -->
 	<div id="header-sub-stat-row" class="wrap cc-hero__statwrap">
 		<div class="cc-stats" data-reveal>
-			<div><b>負担軽減</b><span>確認・記録を自動化</span></div>
-			<div><b>早期対応</b><span>異常をすぐに把握</span></div>
-			<div><b>監査支援</b><span>記録をすぐに提出</span></div>
-			<div><b>省メンテナンス</b><span>電池交換の手間を削減</span></div>
+			<div class="cc-stat">
+				<span class="material-symbols-rounded fill">verified</span>
+				<div class="cc-stat__tx">
+					<b>ISO/IEC 17025:2017認定</b>
+					<span><u>個別証明書付き</u>3点温度校正センサー</span>
+				</div>
+			</div>
+			<div class="cc-stat">
+				<span class="material-symbols-rounded fill">build_circle</span>
+				<div class="cc-stat__tx">
+					<b>最長10年間稼働</b>
+					<span>頻繁な<u>電池交換</u>は不要</span>
+				</div>
+			</div>
+			<div class="cc-stat">
+				<span class="material-symbols-rounded fill">schedule</span>
+				<div class="cc-stat__tx">
+					<b>現場に強い設計</b>
+					<span><u>高湿度・超低温</u>の現場でも安心</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -179,7 +202,8 @@
 				<ul class="cc-alerts">
 					<li><span class="material-symbols-rounded">mail</span>メール</li>
 					<!-- <li><span class="material-symbols-rounded">chat</span>LINE</li> -->
-					<li><span class="material-symbols-rounded">app_badging</span>アプリ内</li>
+					<li><span class="material-symbols-rounded">notifications_active</span>アプリ内</li>
+					<li><span class="material-symbols-rounded">notifications_unread</span>プッシュ通知</li>
 				</ul>
 			</div>
 			<div class="box cc-box" data-reveal="2">
@@ -190,7 +214,7 @@
 					<h3>レポート作成を効率化</h3>
 				</div>
 				<p>
-					日次・週次レポートを自動送信。保存したデータはCSVでも出力でき、監査や社内報告に活用できます。
+					週次・月次レポートを自動送信。監査や社内報告に活用できます。社内指定の報告書や帳票へのデータ反映にも対応可能です。
 				</p>
 				<a
 					id="download-sample-report"
@@ -225,13 +249,13 @@
 					<h3>停電や通信断にも対応</h3>
 				</div>
 				<p>
-					通信できない間は内部メモリに測定データを保存。復旧後に自動送信し、記録の欠損を防ぎます。
+					通信できない間は内部メモリに測定データを保存。復旧後に自動送信し、記録の欠損を防ぎます。輸送中のモニタリングにも対応。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
 				<div class="box__head">
 					<span class="box__ic"><span class="material-symbols-rounded">fact_check</span></span>
-					<h3>スイス製高精度センサー採用</h3>
+					<h3>スイス製高精度センサー</h3>
 				</div>
 				<p>
 					信頼性の高い<a
@@ -274,6 +298,8 @@
 
 <DoubleSensorSection />
 
+<FieldReplacementSection />
+
 <!-- 導入の現場 -->
 <section class="section">
 	<div class="wrap">
@@ -312,8 +338,6 @@
 	</div>
 </section>
 
-<FieldReplacementSection />
-
 <!-- 校正・認証 -->
 <section class="section">
 	<div class="wrap">
@@ -333,7 +357,7 @@
 					href="https://www.jab.or.jp/service/laboratory"
 					target="_blank"
 					rel="noopener noreferrer">ISO/IEC 17025</a
-				>に基づく3点温度校正証明書を発行。
+				>に基づく<u><b>3点温度校正証明書</b></u>を発行。
 			</p>
 		</div>
 		<div class="badgewall">
@@ -536,21 +560,21 @@
 	.cc-alerts {
 		list-style: none;
 		display: flex;
-		flex-wrap: nowrap;
-		gap: 8px;
-		margin: 22px 0 0;
+		flex-wrap: wrap;
+		gap: 4px;
+		margin: 15px 0 0;
 		padding: 0;
 	}
 	.cc-alerts li {
 		display: inline-flex;
 		align-items: center;
 		white-space: nowrap;
-		gap: 6px;
+		gap: 3px;
 		padding: 7px 11px;
 		border-radius: 999px;
 		border: 1px solid var(--web-border);
 		background: var(--web-primary-soft);
-		font-size: 13px;
+		font-size: 11px;
 		font-weight: 700;
 		color: var(--web-heading);
 	}
@@ -629,12 +653,25 @@
 	.cc-hl {
 		color: #34d399;
 	}
+	.cc-devices {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+		margin-top: 22px;
+	}
+	.cc-devices__img {
+		width: 100%;
+		max-width: 220px;
+		height: auto;
+		filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.4));
+	}
 	.cc-lead {
-		margin: 16px 0 0;
-		font-size: clamp(0.95rem, 1.1vw, 1rem);
-		line-height: 1.85;
-		color: rgba(226, 234, 250, 0.94);
-		max-width: 46ch;
+		margin: 0;
+		font-size: clamp(0.875rem, 1vw, 0.95rem);
+		line-height: 1.7;
+		color: rgba(231, 236, 255, 0.86);
+		max-width: 34ch;
 	}
 	/* live-reading glass panel */
 	.cc-panel {
@@ -741,38 +778,50 @@
 		color: #245a9c;
 	}
 
-	/* stats strip (light frosted glass, over the photo — matches .cc-panel) */
+	/* "why us" strip (light green card, ported from the TH sensor flyer) */
 	.cc-stats {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 14px 24px;
 		margin-top: 34px;
-		border: 1px solid rgba(255, 255, 255, 0.6);
+		padding: 16px 22px;
+		border: 1px solid var(--cw-emerald-100);
 		border-radius: 16px;
-		overflow: hidden;
-		background: rgba(255, 255, 255, 0.92);
-		backdrop-filter: blur(8px);
+		background: var(--cw-emerald-50);
 		box-shadow: 0 24px 45px -24px rgba(0, 0, 0, 0.6);
 	}
-	.cc-stats > * {
-		padding: 14px 16px;
-		text-align: center;
-		border-right: 1px solid var(--web-border);
+	.cc-stat {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		min-width: 0;
 	}
-	.cc-stats > :last-child {
-		border-right: none;
+	.cc-stat > .material-symbols-rounded {
+		flex: none;
+		font-size: 32px;
+		color: var(--web-accent);
 	}
-	.cc-stats b {
+	.cc-stat__tx {
+		line-height: 1.3;
+		min-width: 0;
+	}
+	.cc-stat b {
 		display: block;
-		font-family: var(--cw-font-mono);
-		font-size: clamp(19px, 2.8vw, 25px);
-		font-weight: 700;
+		font-size: 18px;
+		font-weight: 800;
 		color: var(--web-heading);
 	}
-	.cc-stats span {
+	.cc-stat span:not(.material-symbols-rounded) {
+		display: block;
+		margin-top: 3px;
 		font-size: 14px;
 		color: var(--web-muted);
-		margin-top: 3px;
-		display: block;
+	}
+	.cc-stat u {
+		text-decoration: underline;
+		text-decoration-color: var(--web-accent);
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 2px;
 	}
 
 	/* ═══ Responsive ═══ */
@@ -797,16 +846,25 @@
 			);
 		}
 	}
-	@media (max-width: 600px) {
+	@media (max-width: 900px) {
 		.cc-stats {
-			grid-template-columns: 1fr 1fr;
+			gap: 12px 14px;
+			padding: 14px 16px;
 		}
-		.cc-stats > :nth-child(2) {
-			border-right: none;
+		.cc-stat b {
+			font-size: 16px;
 		}
-		.cc-stats > :nth-child(1),
-		.cc-stats > :nth-child(2) {
-			border-bottom: 1px solid var(--web-border);
+		.cc-stat span:not(.material-symbols-rounded) {
+			font-size: 13px;
+		}
+		.cc-stat > .material-symbols-rounded {
+			font-size: 28px;
+		}
+	}
+	@media (max-width: 720px) {
+		.cc-stats {
+			grid-template-columns: 1fr;
+			gap: 12px;
 		}
 	}
 </style>
