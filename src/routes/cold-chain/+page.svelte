@@ -91,7 +91,7 @@
 					loading="eager"
 				/>
 				<p class="cc-lead">
-					スマホ・タブレット・パソコン。どのデバイスからでも<br />
+					スマホ・タブレット・パソコン。どのデバイスからでも
 					<span class="cc-hl">24時間365日</span>いつでもどこからでも確認できます。
 				</p>
 			</div>
@@ -123,7 +123,7 @@
 					<span class="material-symbols-rounded fill" style="color:#2c6cb7">sensor_door</span>
 					<span class="cc-panel__tx">
 						<span class="cc-panel__lab">ドア開閉検知<em>オプション</em></span>
-						<span class="cc-panel__note">閉め忘れをすぐ検知</span>
+						<span class="cc-panel__note">閉め忘れを検知</span>
 					</span>
 					<span class="cc-panel__val">開 / 閉</span>
 				</li>
@@ -655,7 +655,7 @@
 	}
 	.cc-devices {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		align-items: flex-start;
 		gap: 12px;
 		margin-top: 22px;
@@ -677,7 +677,7 @@
 	.cc-panel {
 		justify-self: end;
 		width: 100%;
-		max-width: 340px;
+		max-width: 365px;
 		background: rgba(255, 255, 255, 0.94);
 		backdrop-filter: blur(8px);
 		border: 1px solid rgba(255, 255, 255, 0.6);
@@ -689,7 +689,7 @@
 		display: flex;
 		align-items: center;
 		gap: 8px;
-		font-size: 11.5px;
+		font-size: 12.5px;
 		font-weight: 800;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -723,24 +723,27 @@
 	}
 	.cc-panel__tx {
 		display: flex;
-		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: baseline;
+		column-gap: 8px;
+		row-gap: 2px;
 		line-height: 1.25;
 	}
 	.cc-panel__lab {
-		font-size: 13px;
+		font-size: 14.5px;
 		font-weight: 700;
 		color: var(--web-heading);
 	}
 	.cc-panel__note {
-		font-size: 10.5px;
+		font-size: 12px;
 		font-weight: 600;
 		color: var(--web-accent);
-		margin-top: 2px;
+		white-space: nowrap;
 	}
 	/* 「オプション」バッジ（ドア開閉検知の行で使用） */
 	.cc-panel__lab em {
 		font-style: normal;
-		font-size: 9.5px;
+		font-size: 10.5px;
 		font-weight: 700;
 		color: #2c6cb7;
 		margin-left: 6px;
@@ -752,14 +755,14 @@
 	}
 	.cc-panel__val {
 		font-family: var(--cw-font-mono);
-		font-size: 14.5px;
+		font-size: 16px;
 		font-weight: 700;
 		color: var(--cw-ink);
 		white-space: nowrap;
 	}
 	.cc-panel__val i {
 		font-style: normal;
-		font-size: 10.5px;
+		font-size: 11.5px;
 		color: var(--web-muted);
 	}
 	.cc-panel__foot {
@@ -769,7 +772,7 @@
 		margin-top: 6px;
 		padding-top: 12px;
 		border-top: 1px solid var(--web-border);
-		font-size: 11.5px;
+		font-size: 12.5px;
 		font-weight: 600;
 		color: var(--web-muted);
 	}
