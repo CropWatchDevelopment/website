@@ -204,7 +204,14 @@
 				<span class="ls-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>スイス製高精度センサー採用</h3>
 				<p>
-					湿度100%付近で停滞するリスクを抑え、現場の温湿度変化を正確に記録します。採用センサーは<a
+					高湿度環境におけるセンサーの劣化や測定値のずれを抑え、鶏舎内の温湿度とCO₂濃度の変化を正確に記録します。採用センサーは
+					<a
+						class="extlink"
+						href="https://www.macnica.co.jp/business/semiconductor/articles/sensirion/134991/"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
+					>
+					<a
 						class="extlink"
 						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
@@ -216,6 +223,7 @@
 						rel="noopener noreferrer">SCD41</a
 					>です。
 				</p>
+				
 			</article>
 			<article class="ls-card" data-reveal="2">
 				<span class="ls-card__ic"
@@ -488,13 +496,13 @@
 				<dt>温度測定範囲</dt>
 				<dd>-40°C - +85°C</dd>
 				<dt>湿度測定範囲</dt>
-				<dd>0% - 100% RH</dd>
+				<dd>0% - 100% RH (静電容量式)</dd>
 			</div>
 			<div class="spec-row">
 				<dt>CO₂測定範囲</dt>
-				<dd>400 - 5000 ppm</dd>
+				<dd>400 - 5000 ppm (光音響NDIR方式)</dd>
 				<dt>アンモニア測定範囲</dt>
-				<dd>0 - 50 ppm（準備中）</dd>
+				<dd>0 - 50 ppm <small><sup>※</sup>準備中</small></dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ収集</dt>

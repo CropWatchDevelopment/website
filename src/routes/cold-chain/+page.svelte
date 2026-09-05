@@ -422,31 +422,31 @@
 				<dd>
 					<a
 						class="extlink"
-						href="https://sensirion.com/jp"
+						href="https://sensirion.com/jp/products/catalog/SHT43"
 						target="_blank"
-						rel="noopener noreferrer">センシリオン</a
+						rel="noopener noreferrer">SHT43</a
 					>
+					ISO/IEC 17025:2017認定　個体別3点温度校正
+					<br />
 					<a
 						class="extlink"
 						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
 					>
-					/
-					<a
+					国際標準に基づく<a
 						class="extlink"
-						href="https://sensirion.com/jp/products/catalog/SHT43"
+						href="https://sensirion.com/jp"
 						target="_blank"
-						rel="noopener noreferrer">SHT43</a
-					>
-					*校正証明書付き
+						rel="noopener noreferrer">センシリオン</a
+					>工場校正
 				</dd>
 			</div>
 			<div class="spec-row">
 				<dt>温度測定範囲</dt>
 				<dd>-40°C - +85°C</dd>
 				<dt>湿度測定範囲</dt>
-				<dd>0% - 100% RH (結露)</dd>
+				<dd>0% - 100% RH</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ収集</dt>

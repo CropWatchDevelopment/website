@@ -31,7 +31,7 @@
 			icon: 'pets',
 			eyebrow: '畜産・養鶏',
 			title: 'スマート畜産・養鶏',
-			desc: '鶏舎・畜舎の温度・湿度・CO₂を24時間監視。アンモニア測定にも対応予定。異常を早く知らせ、家畜の健康と安定した飼育を支えます。'
+			desc: '鶏舎・畜舎の温度・湿度・CO₂を24時間監視。異常をすばやくお知らせし、家畜の健康と安定した飼育を支えます。'
 		},
 		{
 			href: '/agriculture',
@@ -140,9 +140,9 @@
 					<span class="material-symbols-rounded">explore</span> クロップウォッチへようこそ!
 				</p>
 				<h1 class="intro__title">あなたの現場は、どこですか？</h1>
-				<p class="intro__desc">つながらない。止まる。記録が残らない。</p>
+				<p class="intro__desc"><b>つながらない。機器が止まる。記録が残らない。</b></p>
 				<p class="intro__desc text-nowrap">
-					CropWatchは、そんな現場の課題を前提に設計された産業用環境データ監視システムです。
+					CropWatchは、そんな現場の課題を前提に設計された<b>産業用環境データ監視システム</b>です。
 				</p>
 				<p class="intro__desc">
 					<a
@@ -150,7 +150,7 @@
 						href="https://lora-alliance.org/"
 						target="_blank"
 						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-					>通信と堅牢なハードウェア設計により、厳しい環境でも安定したデータ収集を実現。配線工事は不要で、バッテリーのみで最長10年間の稼働に対応します。
+					>通信と、<u>現場で長く使える丈夫な設計</u>により、厳しい環境でも安定したデータ収集を実現。配線工事は不要で、バッテリーのみで<b>最長10年間の稼働</b>に対応します。
 				</p>
 				<p>&nbsp;</p>
 				<p class="intro__hint">
@@ -317,7 +317,7 @@
 		font-size: clamp(0.95rem, 1.1vw, 1.05rem);
 		line-height: 1.95;
 		color: var(--web-muted);
-		max-width: 40rem;
+		max-width: 42rem;
 	}
 	.intro__hint {
 		display: flex;

@@ -686,7 +686,72 @@
 					</p>
 				</div>
 
-				<!-- ROI: 投資回収ラインチャート -->
+				
+			{/if}
+
+			<!-- 月額に含まれるもの / 含まれないもの（業種プランごと） -->
+			<div class="pr-includes" data-reveal>
+				<span class="pr-includes__label">
+					<span class="material-symbols-rounded">fact_check</span>
+					{cfg.label}プランの月額に含まれるもの:
+				</span>
+				<ul class="pr-includes__list">
+					{#each cfg.included as f (f)}
+						<li class="pr-includes__item">
+							<span class="material-symbols-rounded">check_circle</span>{f}
+						</li>
+					{/each}
+					{#each cfg.excluded as f (f)}
+						<li class="pr-includes__item pr-includes__item--out">
+							<span class="material-symbols-rounded">cancel</span>{f}
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/if}
+
+		<!-- 仕切り + 導入費用の概算 -->
+		<div class="pr-divider" role="separator" aria-label="導入費用の概算（初回のみ）">
+			<span class="pr-divider__chip">
+				<span class="material-symbols-rounded">sell</span> 導入費用の概算（初回のみ）
+			</span>
+		</div>
+
+		<div id="pr-devices" class="pr-devices" data-reveal>
+			<div class="pr-device">
+				<span class="pr-device__ic"><span class="material-symbols-rounded">inventory_2</span></span>
+				<div class="pr-device__tx">
+					<b>導入セット（センサー{num(totalCount)}台）</b>
+					<p>
+						{cfg.deviceLabel}{num(totalCount)}台と、拠点ごとのゲートウェイ・初期導入サポートを含めた
+						{safeLocations === 1
+							? '1拠点分'
+							: `全${num(safeLocations)}拠点分`}の概算です。センサー1台からご利用いただけます。
+						<br />
+						<br />
+						<small>
+							※交通費、設置費および設置に必要な備品は、現地状況により異なるため表示価格には含まれておりません。別途、現地確認のうえお見積りいたします。
+							
+							※ゲートウェイは標準タイプを使用した場合の価格です。</small
+						>
+					</p>
+				</div>
+				{#if volumePrice || deviceSetPrice === null}
+					<strong class="pr-device__price pr-device__price--contact">お見積もり</strong>
+				{:else}
+					<strong class="pr-device__price"
+						>{yen(deviceSetPrice * safeLocations)}<small>税込・初回のみ・概算</small></strong
+					>
+				{/if}
+			</div>
+		</div>
+
+		<p class="pr-note" data-reveal>
+			導入費用は、「1拠点あたりのセンサー台数」と拠点数に合わせて計算した、全拠点分の概算（税込・初回のみ）です。
+		</p>
+
+
+		<!-- ROI: 投資回収ラインチャート -->
 				<div class="pr-roi" data-reveal>
 					<h2 class="pr-card__title">
 						<span class="material-symbols-rounded">show_chart</span> 投資回収（ROI）の見通し
@@ -851,68 +916,6 @@
 						</div>
 					</details>
 				</div>
-			{/if}
-
-			<!-- 月額に含まれるもの / 含まれないもの（業種プランごと） -->
-			<div class="pr-includes" data-reveal>
-				<span class="pr-includes__label">
-					<span class="material-symbols-rounded">fact_check</span>
-					{cfg.label}プランの月額に含まれるもの:
-				</span>
-				<ul class="pr-includes__list">
-					{#each cfg.included as f (f)}
-						<li class="pr-includes__item">
-							<span class="material-symbols-rounded">check_circle</span>{f}
-						</li>
-					{/each}
-					{#each cfg.excluded as f (f)}
-						<li class="pr-includes__item pr-includes__item--out">
-							<span class="material-symbols-rounded">cancel</span>{f}
-						</li>
-					{/each}
-				</ul>
-			</div>
-		{/if}
-
-		<!-- 仕切り + 導入費用の概算 -->
-		<div class="pr-divider" role="separator" aria-label="導入費用の概算（初回のみ）">
-			<span class="pr-divider__chip">
-				<span class="material-symbols-rounded">sell</span> 導入費用の概算（初回のみ）
-			</span>
-		</div>
-
-		<div id="pr-devices" class="pr-devices" data-reveal>
-			<div class="pr-device">
-				<span class="pr-device__ic"><span class="material-symbols-rounded">inventory_2</span></span>
-				<div class="pr-device__tx">
-					<b>導入セット（センサー{num(totalCount)}台）</b>
-					<p>
-						{cfg.deviceLabel}{num(totalCount)}台と、拠点ごとのゲートウェイ・初期導入サポートを含めた
-						{safeLocations === 1
-							? '1拠点分'
-							: `全${num(safeLocations)}拠点分`}の概算です。センサー1台からご利用いただけます。
-						<br />
-						<br />
-						<small>
-							※交通費、設置費および設置に必要な備品は、現地状況により異なるため表示価格には含まれておりません。別途、現地確認のうえお見積りいたします。
-							
-							※ゲートウェイは標準タイプを使用した場合の価格です。</small
-						>
-					</p>
-				</div>
-				{#if volumePrice || deviceSetPrice === null}
-					<strong class="pr-device__price pr-device__price--contact">お見積もり</strong>
-				{:else}
-					<strong class="pr-device__price"
-						>{yen(deviceSetPrice * safeLocations)}<small>税込・初回のみ・概算</small></strong
-					>
-				{/if}
-			</div>
-		</div>
-
-		<p class="pr-note" data-reveal>
-			導入費用は、「1拠点あたりのセンサー台数」と拠点数に合わせて計算した、全拠点分の概算（税込・初回のみ）です。
-		</p>
 
 		<div class="pr-cta" data-reveal>
 			<a href="/contact" class="btn btn--accent btn--lg"

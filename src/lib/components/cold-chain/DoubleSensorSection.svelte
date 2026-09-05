@@ -14,30 +14,17 @@
 		<div class="double-sensor__layout">
 			<div class="double-sensor__copy" data-reveal>
 				<p>
-					2つのセンサーの測定値を相互に比較し、これまでのデータ傾向とも照合することで、通常とは異なるズレを自動で検知します。異常を検知した場合は、その測定値を記録・送信せず、システム上にエラーとして表示します。
+					<b>SHT43</b>は<b>ISO/IEC 17025:2017認定の個体別3点温度校正（−30℃ / 5℃ / 70℃）</b>を実施しており、<b>年間の温度ドリフトはクラス最高水準の0.01℃未満</b>です。
+そのため、<u>SHT43単体で十分に高精度な測定が可能</u>ですが、CropWatchではさらに<b>信頼性を高めるため、もう1台のセンサー(SHT40)を搭載</b>しています。
+
+<u>データ送信のたびに2つのセンサーを用いて健全性チェック（健康診断）を実施し、クリアした場合のみSHT43の測定値を正常データとして送信します。</u>
+
+<br>
+<b>2つのセンサーを搭載する目的は、測定精度を単純に高めるためではなく、センサーの異常を測定のたびに検知し、誤ったデータを記録しないためです。</b>
 				</p>
+				<small>ダブルセンサーによる健全性チェックの流れ - 特許出願中</small>
 			</div>
 
-			<figure class="double-sensor__diagram" data-reveal id="double-sensor-diagram">
-				<!-- The animation is authored on a fixed 1080px grid and scales as a unit,
-				     so legibility is purely a function of how much width it gets. Below
-				     ~900px it drops under ~0.75 scale and the labels stop being readable,
-				     so the purpose-built static diagram stands in instead. -->
-				<div class="double-sensor__anim">
-					<SensorValidationAnimation />
-				</div>
-				<picture class="double-sensor__still">
-					<source
-						media="(max-width: 600px)"
-						srcset="/assets/imagery/double-sensor-check-mobile.svg"
-					/>
-					<img
-						src="/assets/imagery/double-sensor-check.svg"
-						alt="2つの温湿度センサーを回帰分析で照合し、通常データまたはエラーとして処理する流れ"
-					/>
-				</picture>
-				<figcaption>ダブルセンサーによる健全性チェックの流れ - 特許出願中</figcaption>
-			</figure>
 		</div>
 	</div>
 </section>
