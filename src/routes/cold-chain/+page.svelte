@@ -39,7 +39,7 @@
 		},
 		{
 			q: '監査用の記録を出力できますか？',
-			a: 'はい。日次・週次レポートの自動送信に加え、直近2年間分のデータをCSVで出力できます。<a class="extlink" href="https://www.jab.or.jp/service/laboratory" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a>の校正証明書も標準で添付します。'
+			a: 'はい。週次・月次レポートの自動送信に加え、直近2年間分のデータをCSVで出力できます。<a class="extlink" href="https://www.jab.or.jp/service/laboratory" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a>の校正証明書も標準で添付します。'
 		}
 	];
 

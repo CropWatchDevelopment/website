@@ -195,14 +195,14 @@
 		<div class="ls-why__grid">
 			<article class="ls-card" data-reveal="0">
 				<span class="ls-card__ic"><span class="material-symbols-rounded">save</span></span>
-				<h3>過酷な環境でも長く使える</h3>
+				<h3>現場に強い設計</h3>
 				<p>
 					基板を保護する処理を施し、高湿度・粉じん・温度変化による故障リスクを低減。過酷な環境でも長く安定して使える設計です。
 				</p>
 			</article>
 			<article class="ls-card" data-reveal="1">
 				<span class="ls-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
-				<h3>スイス製高精度センサー採用</h3>
+				<h3>スイス製高精度センサー</h3>
 				<p>
 					高湿度環境におけるセンサーの劣化や測定値のずれを抑え、鶏舎内の温湿度とCO₂濃度の変化を正確に記録します。採用センサーは
 					<a
@@ -229,9 +229,9 @@
 				<span class="ls-card__ic"
 					><span class="material-symbols-rounded fill">cell_tower</span></span
 				>
-				<h3>メンテナンス負担を軽減</h3>
+				<h3>広範囲で繋がる・届く</h3>
 				<p>
-					センサーとバッテリーを現場で交換できる構造を採用。保守コストを抑えながら、故障時の早期復旧にもつなげます。
+					LoRaWAN®通信で、Wi-Fiや携帯の電波が届きにく広い畜舎や離れた棟からも安定してデータを送信します。
 				</p>
 			</article>
 		</div>
@@ -330,7 +330,7 @@
 		<p class="ls-fac__note" data-reveal>
 			<span class="material-symbols-rounded">info</span>
 			<span>
-				アンモニアの直接測定は現在準備中です。対応までの間も、発生の主な原因である「湿った敷料」と「換気不足」は湿度とCO₂に表れます。この2つを見ることで、アンモニアが溜まる前に手を打てます。数値は一般的な飼養管理の目安です。
+				数値は一般的な飼養管理の目安です。
 			</span>
 		</p>
 	</div>

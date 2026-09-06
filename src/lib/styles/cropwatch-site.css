@@ -114,7 +114,7 @@ h1, h2, h3, h4 { color: var(--web-heading); margin: 0; line-height: 1.45; letter
 /* ============================================================
    Sections / layout primitives
    ============================================================ */
-.section { padding-block: 88px; }
+.section { padding-block: 50px; }
 .section--tight { padding-block: 64px; }
 .section--soft { background: var(--web-bg-soft); }
 .section--tint { background: var(--web-bg-tint); }

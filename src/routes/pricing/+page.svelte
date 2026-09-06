@@ -118,12 +118,7 @@
 	/** 「1日あたり」の計算に使う年間日数（月あたりは30日）。 */
 	const DAYS_PER_YEAR = 360;
 
-	/** 導入費用の概算（初回のみ・税込）。センサー・ゲートウェイ・初期導入
-	    サポートをまとめた1拠点あたりの価格で、機器単体の価格は表示しません。
-	    1台あたりの価格は業種ごとに SECTORS の deviceUnitPrice で設定。
-	    最安の最低構成（コールドチェーン・センサー1台）の価格はProduct
-	    構造化データ（AggregateOfferのlowPrice）にも使われます。 */
-	/** ゲートウェイ + 初期導入サポートのセット分 */
+	/** ゲートウェイ + GATEWAY PRICE */
 	const DEVICE_BASE_PRICE = 100000;
 	const DEVICE_MIN_PRICE = SECTORS['cold-chain'].deviceUnitPrice! + DEVICE_BASE_PRICE;
 	/* ══════════════════════════════════════════════════════════════════ */
@@ -361,7 +356,7 @@
 <section class="pagehero">
 	<div class="wrap pagehero__in" data-reveal>
 		<p class="eyebrow"><span class="material-symbols-rounded">payments</span> 料金</p>
-		<h1>台数を入れるだけの、かんたん料金シミュレーション</h1>
+		<h1>費用対効果（ROI）の試算</h1>
 		<p class="hero__kicker">
 			{#if cfg.comingSoon}
 				{cfg.label}向けの料金は現在準備中です。他の業種を選ぶと、その場で計算できます。
@@ -392,6 +387,7 @@
 			</div>
 		</div>
 
+		<p class="pb-4 text-xl"><b>台数を入れるだけの、かんたん料金シミュレーション</b></p>
 		<!-- 業種タブ -->
 		<div class="pr-tabs" role="tablist" aria-label="業種で選ぶ" data-reveal>
 			{#each SECTOR_IDS as id (id)}
@@ -440,6 +436,7 @@
 							<span class="material-symbols-rounded">remove</span>
 						</button>
 						<input
+							autofocus
 							id="sensor-count"
 							type="number"
 							min="1"
@@ -685,8 +682,6 @@
 						手書き記録は、1台あたり{safeMinutes}分（移動・読み取り・記入を含む）× 毎日{safeChecks}回、月30日として計算しています。
 					</p>
 				</div>
-
-				
 			{/if}
 
 			<!-- 月額に含まれるもの / 含まれないもの（業種プランごと） -->
@@ -731,7 +726,6 @@
 						<br />
 						<small>
 							※交通費、設置費および設置に必要な備品は、現地状況により異なるため表示価格には含まれておりません。別途、現地確認のうえお見積りいたします。
-							
 							※ゲートウェイは標準タイプを使用した場合の価格です。</small
 						>
 					</p>
@@ -751,171 +745,171 @@
 		</p>
 
 
+		<div class="pr-divider" role="separator" aria-label="投資回収（ROI）の見通し">
+			<span class="pr-divider__chip">
+				<span class="material-symbols-rounded">show_chart</span> 投資回収（ROI）の見通し
+			</span>
+		</div>
 		<!-- ROI: 投資回収ラインチャート -->
-				<div class="pr-roi" data-reveal>
-					<h2 class="pr-card__title">
-						<span class="material-symbols-rounded">show_chart</span> 投資回収（ROI）の見通し
-					</h2>
-					<p class="pr-roi__sub">
-						導入費用の概算（{yen(
-							roiInitial
-						)}）と月額を合わせた累計費用を、手書き記録の人件費の累計と比べたものです。
-					</p>
-					<div class="pr-roi__legend">
-						<span><i class="roi-key roi-key--manual"></i>手書き記録の人件費（累計）</span>
-						<span><i class="roi-key roi-key--cw"></i>CropWatch（導入費用+月額の累計）</span>
-					</div>
-					<div
-						class="pr-roi__chart"
-						role="img"
-						aria-label="累計費用の推移。CropWatchは導入費用{yen(roiInitial)}から始まり月{yen(
-							monthly
-						)}ずつ、手書き記録は月{yen(manualMonthly)}ずつ増えます。数値は下の表でも確認できます。"
-						bind:clientWidth={chartW}
-					>
-						{#if chartW > 0}
-							<svg
-								width={chartW}
-								height={CHART_H}
-								viewBox="0 0 {chartW} {CHART_H}"
-								aria-hidden="true"
+		<div class="pr-roi" data-reveal>
+			<h2 class="pr-card__title">
+				<span class="material-symbols-rounded">show_chart</span> ROIチャート
+			</h2>
+			<p class="pr-roi__sub">
+				導入費用の概算（{yen(
+					roiInitial
+				)}）と月額({yen(monthly)}<small>/月</small>)を合わせた累計費用を、手書き記録の人件費の累計と比べたものです。
+			</p>
+			<div class="pr-roi__legend">
+				<span><i class="roi-key roi-key--manual"></i>手書き記録の人件費（累計）</span>
+				<span><i class="roi-key roi-key--cw"></i>CropWatch（導入費用+月額の累計）</span>
+			</div>
+			<div
+				class="pr-roi__chart"
+				role="img"
+				aria-label="累計費用の推移。CropWatchは導入費用{yen(roiInitial)}から始まり月{yen(
+					monthly
+				)}ずつ、手書き記録は月{yen(manualMonthly)}ずつ増えます。数値は下の表でも確認できます。"
+				bind:clientWidth={chartW}
+			>
+				{#if chartW > 0}
+					<svg width={chartW} height={CHART_H} viewBox="0 0 {chartW} {CHART_H}" aria-hidden="true">
+						{#each yTicks as t (t)}
+							<line
+								x1={PAD.left}
+								x2={chartW - PAD.right}
+								y1={yAt(t)}
+								y2={yAt(t)}
+								class="roi-grid"
+							/>
+							<text x={PAD.left - 8} y={yAt(t) + 3.5} text-anchor="end" class="roi-tick"
+								>{yenCompact(t)}</text
 							>
-								{#each yTicks as t (t)}
-									<line
-										x1={PAD.left}
-										x2={chartW - PAD.right}
-										y1={yAt(t)}
-										y2={yAt(t)}
-										class="roi-grid"
-									/>
-									<text x={PAD.left - 8} y={yAt(t) + 3.5} text-anchor="end" class="roi-tick"
-										>{yenCompact(t)}</text
-									>
-								{/each}
-								{#each xTicks as m (m)}
-									<text x={xAt(m)} y={CHART_H - 8} text-anchor="middle" class="roi-tick"
-										>{monthLabel(m)}</text
-									>
-								{/each}
-								{#if hoverMonth !== null}
-									<line
-										x1={xAt(hoverMonth)}
-										x2={xAt(hoverMonth)}
-										y1={PAD.top}
-										y2={PAD.top + plotH}
-										class="roi-cross"
-									/>
-								{/if}
-								<line
-									x1={xAt(0)}
-									y1={yAt(manualAt(0))}
-									x2={xAt(roiMonths)}
-									y2={yAt(manualAt(roiMonths))}
-									class="roi-line roi-line--manual"
-								/>
-								<line
-									x1={xAt(0)}
-									y1={yAt(cwAt(0))}
-									x2={xAt(roiMonths)}
-									y2={yAt(cwAt(roiMonths))}
-									class="roi-line roi-line--cw"
-								/>
-								{#if breakEvenMonths !== null && breakEvenMonths <= roiMonths}
-									<circle
-										cx={xAt(breakEvenMonths)}
-										cy={yAt(cwAt(breakEvenMonths))}
-										r="4.5"
-										class="roi-be"
-									/>
-									<text
-										x={xAt(breakEvenMonths) + (breakEvenMonths > roiMonths * 0.6 ? -10 : 10)}
-										y={Math.max(yAt(cwAt(breakEvenMonths)) - 12, PAD.top + 12)}
-										text-anchor={breakEvenMonths > roiMonths * 0.6 ? 'end' : 'start'}
-										class="roi-be-label">約{Math.ceil(breakEvenMonths)}ヶ月で投資回収</text
-									>
-								{/if}
-								{#if hoverMonth !== null}
-									<circle
-										cx={xAt(hoverMonth)}
-										cy={yAt(manualAt(hoverMonth))}
-										r="4"
-										class="roi-dot roi-dot--manual"
-									/>
-									<circle
-										cx={xAt(hoverMonth)}
-										cy={yAt(cwAt(hoverMonth))}
-										r="4"
-										class="roi-dot roi-dot--cw"
-									/>
-								{/if}
-								<!-- ホバーは補助情報（同じ数値は下の表にある）。svelteのa11y警告のみ抑止 -->
-								<!-- svelte-ignore a11y_no_static_element_interactions -->
-								<rect
-									x="0"
-									y="0"
-									width={chartW}
-									height={CHART_H}
-									fill="transparent"
-									onpointermove={roiMove}
-									onpointerleave={() => (hoverMonth = null)}
-								/>
-							</svg>
-							{#if hoverMonth !== null}
-								<div
-									class="roi-tip"
-									class:roi-tip--flip={hoverMonth > roiMonths * 0.55}
-									style="left:{xAt(hoverMonth)}px; top:{PAD.top}px;"
-								>
-									<b class="roi-tip__t">{hoverMonth === 0 ? '導入時' : `${hoverMonth}ヶ月後`}</b>
-									<div class="roi-tip__row">
-										<i class="roi-key roi-key--manual"></i>
-										<b>{yen(manualAt(hoverMonth))}</b>
-										<span>手書き記録</span>
-									</div>
-									<div class="roi-tip__row">
-										<i class="roi-key roi-key--cw"></i>
-										<b>{yen(cwAt(hoverMonth))}</b>
-										<span>CropWatch</span>
-									</div>
-									{#if manualAt(hoverMonth) - cwAt(hoverMonth) > 0}
-										<div class="roi-tip__diff">
-											差額 {yen(manualAt(hoverMonth) - cwAt(hoverMonth))}
-										</div>
-									{/if}
+						{/each}
+						{#each xTicks as m (m)}
+							<text x={xAt(m)} y={CHART_H - 8} text-anchor="middle" class="roi-tick"
+								>{monthLabel(m)}</text
+							>
+						{/each}
+						{#if hoverMonth !== null}
+							<line
+								x1={xAt(hoverMonth)}
+								x2={xAt(hoverMonth)}
+								y1={PAD.top}
+								y2={PAD.top + plotH}
+								class="roi-cross"
+							/>
+						{/if}
+						<line
+							x1={xAt(0)}
+							y1={yAt(manualAt(0))}
+							x2={xAt(roiMonths)}
+							y2={yAt(manualAt(roiMonths))}
+							class="roi-line roi-line--manual"
+						/>
+						<line
+							x1={xAt(0)}
+							y1={yAt(cwAt(0))}
+							x2={xAt(roiMonths)}
+							y2={yAt(cwAt(roiMonths))}
+							class="roi-line roi-line--cw"
+						/>
+						{#if breakEvenMonths !== null && breakEvenMonths <= roiMonths}
+							<circle
+								cx={xAt(breakEvenMonths)}
+								cy={yAt(cwAt(breakEvenMonths))}
+								r="4.5"
+								class="roi-be"
+							/>
+							<text
+								x={xAt(breakEvenMonths) + (breakEvenMonths > roiMonths * 0.6 ? -10 : 10)}
+								y={Math.max(yAt(cwAt(breakEvenMonths)) - 12, PAD.top + 12)}
+								text-anchor={breakEvenMonths > roiMonths * 0.6 ? 'end' : 'start'}
+								class="roi-be-label">約{Math.ceil(breakEvenMonths)}ヶ月で投資回収</text
+							>
+						{/if}
+						{#if hoverMonth !== null}
+							<circle
+								cx={xAt(hoverMonth)}
+								cy={yAt(manualAt(hoverMonth))}
+								r="4"
+								class="roi-dot roi-dot--manual"
+							/>
+							<circle
+								cx={xAt(hoverMonth)}
+								cy={yAt(cwAt(hoverMonth))}
+								r="4"
+								class="roi-dot roi-dot--cw"
+							/>
+						{/if}
+						<!-- ホバーは補助情報（同じ数値は下の表にある）。svelteのa11y警告のみ抑止 -->
+						<!-- svelte-ignore a11y_no_static_element_interactions -->
+						<rect
+							x="0"
+							y="0"
+							width={chartW}
+							height={CHART_H}
+							fill="transparent"
+							onpointermove={roiMove}
+							onpointerleave={() => (hoverMonth = null)}
+						/>
+					</svg>
+					{#if hoverMonth !== null}
+						<div
+							class="roi-tip"
+							class:roi-tip--flip={hoverMonth > roiMonths * 0.55}
+							style="left:{xAt(hoverMonth)}px; top:{PAD.top}px;"
+						>
+							<b class="roi-tip__t">{hoverMonth === 0 ? '導入時' : `${hoverMonth}ヶ月後`}</b>
+							<div class="roi-tip__row">
+								<i class="roi-key roi-key--manual"></i>
+								<b>{yen(manualAt(hoverMonth))}</b>
+								<span>手書き記録</span>
+							</div>
+							<div class="roi-tip__row">
+								<i class="roi-key roi-key--cw"></i>
+								<b>{yen(cwAt(hoverMonth))}</b>
+								<span>CropWatch</span>
+							</div>
+							{#if manualAt(hoverMonth) - cwAt(hoverMonth) > 0}
+								<div class="roi-tip__diff">
+									差額 {yen(manualAt(hoverMonth) - cwAt(hoverMonth))}
 								</div>
 							{/if}
-						{/if}
-					</div>
-					<p class="pr-note">
-						{#if breakEvenMonths !== null}
-							手書き記録との差額（月{yen(savingsMonthly)}）により、導入費用は約{Math.ceil(
-								breakEvenMonths
-							)}ヶ月で回収できる計算です。
-						{:else}
-							この条件では手書き記録のほうが安いため、費用面での回収ラインはありません。
-						{/if}
-					</p>
-					<details class="pr-roi__table" bind:open={roiTableOpen}>
-						<summary>数値を表で見る</summary>
-						<div class="pr-roi__tablewrap">
-							<table>
-								<thead>
-									<tr><th>経過</th><th>手書き記録</th><th>CropWatch</th><th>差額</th></tr>
-								</thead>
-								<tbody>
-									{#each xTicks as m (m)}
-										<tr>
-											<th>{monthLabel(m)}</th>
-											<td>{yen(manualAt(m))}</td>
-											<td>{yen(cwAt(m))}</td>
-											<td>{yen(manualAt(m) - cwAt(m))}</td>
-										</tr>
-									{/each}
-								</tbody>
-							</table>
 						</div>
-					</details>
+					{/if}
+				{/if}
+			</div>
+			<p class="pr-note">
+				{#if breakEvenMonths !== null}
+					手書き記録との差額（月{yen(savingsMonthly)}）により、導入費用は約{Math.ceil(
+						breakEvenMonths
+					)}ヶ月で回収できる計算です。
+				{:else}
+					この条件では手書き記録のほうが安いため、費用面での回収ラインはありません。
+				{/if}
+			</p>
+			<details class="pr-roi__table" bind:open={roiTableOpen}>
+				<summary>数値を表で見る</summary>
+				<div class="pr-roi__tablewrap">
+					<table>
+						<thead>
+							<tr><th>経過</th><th>手書き記録</th><th>CropWatch</th><th>差額</th></tr>
+						</thead>
+						<tbody>
+							{#each xTicks as m (m)}
+								<tr>
+									<th>{monthLabel(m)}</th>
+									<td>{yen(manualAt(m))}</td>
+									<td>{yen(cwAt(m))}</td>
+									<td>{yen(manualAt(m) - cwAt(m))}</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
 				</div>
+			</details>
+		</div>
 
 		<div class="pr-cta" data-reveal>
 			<a href="/contact" class="btn btn--accent btn--lg"
