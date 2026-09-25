@@ -1,56 +1,56 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "git": {
-    "deploymentEnabled": {
-      "master": false,
-      "Japan-website": false
-    }
-  },
-  "redirects": [
-    {
-      "source": "/:path(pricing|contact|cold-chain|livestock|agriculture|news|replacement-sensors)",
-      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
-      "destination": "https://cropwatch.co.jp/:path",
-      "permanent": false
-    },
-    {
-      "source": "/news/:rest*",
-      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
-      "destination": "https://cropwatch.co.jp/news",
-      "permanent": false
-    },
-    {
-      "source": "/:path((?!149e9513-01fa-4fb0-aad4-566afd725d1b|legal(?:/.*)?).*)",
-      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
-      "destination": "https://cropwatch.co.jp/",
-      "permanent": false
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/149e9513-01fa-4fb0-aad4-566afd725d1b/2d206a39-8ed7-437e-a3be-862e0f06eea3/a-4-a/c.js",
-      "destination": "https://api.vercel.com/bot-protection/v1/challenge"
-    },
-    {
-      "source": "/149e9513-01fa-4fb0-aad4-566afd725d1b/2d206a39-8ed7-437e-a3be-862e0f06eea3/:path*",
-      "destination": "https://api.vercel.com/bot-protection/v1/proxy/:path*"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/christmas-header.js",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
-      ]
-    },
-    {
-      "source": "/149e9513-01fa-4fb0-aad4-566afd725d1b/2d206a39-8ed7-437e-a3be-862e0f06eea3/:path*",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        }
-      ]
-    }
-  ]
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"git": {
+		"deploymentEnabled": {
+			"master": false,
+			"Japan-website": false
+		}
+	},
+	"redirects": [
+		{
+			"source": "/:path(pricing|contact|cold-chain|livestock|agriculture|news|replacement-sensors)",
+			"has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+			"destination": "https://cropwatch.co.jp/:path",
+			"permanent": false
+		},
+		{
+			"source": "/news/:rest*",
+			"has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+			"destination": "https://cropwatch.co.jp/news",
+			"permanent": false
+		},
+		{
+			"source": "/:path((?!149e9513-01fa-4fb0-aad4-566afd725d1b|legal(?:/.*)?).*)",
+			"has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "JP" }],
+			"destination": "https://cropwatch.co.jp/",
+			"permanent": false
+		}
+	],
+	"rewrites": [
+		{
+			"source": "/149e9513-01fa-4fb0-aad4-566afd725d1b/2d206a39-8ed7-437e-a3be-862e0f06eea3/a-4-a/c.js",
+			"destination": "https://api.vercel.com/bot-protection/v1/challenge"
+		},
+		{
+			"source": "/149e9513-01fa-4fb0-aad4-566afd725d1b/2d206a39-8ed7-437e-a3be-862e0f06eea3/:path*",
+			"destination": "https://api.vercel.com/bot-protection/v1/proxy/:path*"
+		}
+	],
+	"headers": [
+		{
+			"source": "/christmas-header.js",
+			"headers": [
+				{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+			]
+		},
+		{
+			"source": "/149e9513-01fa-4fb0-aad4-566afd725d1b/2d206a39-8ed7-437e-a3be-862e0f06eea3/:path*",
+			"headers": [
+				{
+					"key": "X-Frame-Options",
+					"value": "SAMEORIGIN"
+				}
+			]
+		}
+	]
 }
