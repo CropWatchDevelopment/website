@@ -10,6 +10,7 @@ import { alternatesFor } from '$lib/seo/alternates';
 import JsonLd from '$lib/components/JsonLd.svelte';
 import { organizationSchema, websiteSchema } from '$lib/seo/schema';
 import { isChristmasSeason } from '$lib/christmas';
+import { isHalloweenSeason } from '$lib/halloween';
 import '../app.css';
 import '$lib/styles/cropwatch-tokens.css';
 import '$lib/styles/cropwatch-site.css';
@@ -133,10 +134,21 @@ const loadChristmasDecor = () => {
 	document.head.appendChild(script);
 };
 
+// Same client-side gate for the Halloween logo (Oct 15 - Oct 31).
+const loadHalloweenDecor = () => {
+	if (!isHalloweenSeason() || document.querySelector('script[data-cw-halloween]')) return;
+	const script = document.createElement('script');
+	script.src = `${assets}/halloween-header.js`;
+	script.defer = true;
+	script.dataset.cwHalloween = '';
+	document.head.appendChild(script);
+};
+
 onMount(() => {
 	ensureIcons();
 	scanReveal();
 	loadChristmasDecor();
+	loadHalloweenDecor();
 
 	if (!PUBLIC_GA_MEASUREMENT_ID || typeof window === 'undefined') return;
 
