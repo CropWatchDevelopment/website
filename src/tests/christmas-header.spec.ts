@@ -102,12 +102,16 @@ describe('static/christmas-header.js', () => {
 		const firstSnowflake = snowflakes?.[0];
 
 		expect(style?.textContent).toContain('#cw-christmas-snow');
+		// The fall must survive a global prefers-reduced-motion reset that forces
+		// every animation to one 0.01ms pass with !important.
+		expect(style?.textContent).toContain('animation-iteration-count: infinite !important');
+		expect(firstSnowflake?.style.getPropertyPriority('animation-duration')).toBe('important');
 		expect(snowLayer?.getAttribute('aria-hidden')).toBe('true');
 		expect(snowflakes).toHaveLength(32);
 		expect(firstSnowflake?.textContent).toBe('❄');
 		expect(firstSnowflake?.style.left).toBe('50vw');
 		expect(firstSnowflake?.style.fontSize).toBe('0.875rem');
-		expect(firstSnowflake?.style.opacity).toBe('0.675');
+		expect(firstSnowflake?.style.opacity).toBe('0.775');
 		expect(firstSnowflake?.style.animationDuration).toBe('11.5s');
 		expect(firstSnowflake?.style.animationDelay).toBe('-5.75s');
 		expect(firstSnowflake?.style.getPropertyValue('--drift')).toBe('0px');

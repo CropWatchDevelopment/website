@@ -32,11 +32,21 @@
 				position: absolute;
 				top: -12vh;
 				left: 0;
-				color: rgba(255, 255, 255, 0.95);
-				text-shadow: 0 0 6px rgba(255, 255, 255, 0.45);
+				color: #fff;
+				/* Blue rim so the white flakes still read on white page sections
+				   (cropwatch.io is mostly white), not only over dark heroes. */
+				text-shadow:
+					0 0 1px rgba(23, 62, 122, 0.9),
+					0 0 3px rgba(44, 108, 183, 0.65),
+					0 0 8px rgba(255, 255, 255, 0.6);
 				animation-name: cw-christmas-fall;
 				animation-timing-function: linear;
-				animation-iteration-count: infinite;
+				/* !important (with the per-flake duration set as important inline)
+				   so the snow keeps falling even where a site-wide
+				   prefers-reduced-motion reset forces every animation to a single
+				   0.01ms pass, which would otherwise park each flake off screen at
+				   top:-12vh. The snow is meant to fall for every visitor. */
+				animation-iteration-count: infinite !important;
 				will-change: transform;
 			}
 
@@ -73,12 +83,12 @@
 			const delay = -Math.random() * duration;
 			const left = Math.random() * 100;
 			const drift = -45 + Math.random() * 90;
-			const opacity = 0.4 + Math.random() * 0.55;
+			const opacity = 0.55 + Math.random() * 0.45;
 
 			flake.style.left = `${left}vw`;
 			flake.style.fontSize = `${size}rem`;
 			flake.style.opacity = `${opacity}`;
-			flake.style.animationDuration = `${duration}s`;
+			flake.style.setProperty('animation-duration', `${duration}s`, 'important');
 			flake.style.animationDelay = `${delay}s`;
 			flake.style.setProperty('--drift', `${drift}px`);
 

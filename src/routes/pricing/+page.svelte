@@ -36,7 +36,7 @@
 			pricePerDevice: 7,
 			baseFee: 0,
 			// Temp/humidity sensor: ¥33,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
-			deviceUnitPrice: 198,
+			deviceUnitPrice: 250,
 			defaultLocations: 1,
 			defaultUnits: 20,
 			defaultChecksPerDay: 2,
