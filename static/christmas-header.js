@@ -93,8 +93,11 @@
 		const source = picture?.querySelector('source');
 		const img = picture?.querySelector('img');
 
-		if (source) source.srcset = '/cropwatch_icons/christmas_cropwatch.svg';
-		if (img) img.src = '/cropwatch_icons/christmas_cropwatch.svg';
+		if (source) {
+			source.type = 'image/webp';
+			source.srcset = '/cropwatch_icons/christmas_cropwatch.webp';
+		}
+		if (img) img.src = '/cropwatch_icons/christmas_cropwatch.png';
 	}
 
 	function initChristmasDecor() {

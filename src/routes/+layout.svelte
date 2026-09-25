@@ -9,13 +9,14 @@
 	import { alternatesFor } from '$lib/seo/alternates';
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import { organizationSchema, websiteSchema } from '$lib/seo/schema';
+	import { isChristmasSeason } from '$lib/christmas';
 	// Self-hosted text faces (replace the former Google Fonts <link>s in app.html):
 	// same-origin, immutable-cached, no third-party connection blocking first paint.
 	import '@fontsource-variable/inter';
 	import '@fontsource-variable/jetbrains-mono';
 	import '../app.css';
 
-	let { children, data } = $props();
+	let { children } = $props();
 
 	// hreflang alternates linking this page to its cropwatch.co.jp (ja)
 	// counterpart. This is the .io (en) branch; the Japan-website branch calls
@@ -77,9 +78,22 @@
 		target.scrollIntoView();
 	}
 
+	// Season-gated in the browser, not in a server load: nearly every route is
+	// prerendered, so a server-side check would be frozen at build time and the
+	// decoration would never appear unless someone happened to deploy in season.
+	function loadChristmasDecor() {
+		if (!isChristmasSeason() || document.querySelector('script[data-cw-christmas]')) return;
+		const script = document.createElement('script');
+		script.src = `${assets}/christmas-header.js`;
+		script.defer = true;
+		script.dataset.cwChristmas = '';
+		document.head.appendChild(script);
+	}
+
 	onMount(() => {
 		initReveal();
 		scrollToHash();
+		loadChristmasDecor();
 		return () => observer?.disconnect();
 	});
 
@@ -95,9 +109,6 @@
 	{#each alternates ?? [] as alt (alt.hreflang)}
 		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 	{/each}
-	{#if data.christmas}
-		<script defer src="{assets}/christmas-header.js"></script>
-	{/if}
 </svelte:head>
 
 <!-- Site-wide publisher identity: exactly one Organization + WebSite per page. -->
