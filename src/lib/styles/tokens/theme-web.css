@@ -16,19 +16,19 @@
 	color-scheme: light;
 
 	/* ── Surfaces ──────────────────────────────────────── */
-	--web-bg: #ffffff;                 /* page base */
-	--web-bg-soft: #f5f8fc;            /* alternating section band */
-	--web-bg-tint: #eef4fc;            /* sapphire-tinted callout */
-	--web-surface: #ffffff;           /* cards */
+	--web-bg: #ffffff; /* page base */
+	--web-bg-soft: #f5f8fc; /* alternating section band */
+	--web-bg-tint: #eef4fc; /* sapphire-tinted callout */
+	--web-surface: #ffffff; /* cards */
 	--web-surface-ink: var(--cw-ink); /* dark contrast band / footer */
-	--web-border: #d7e0f5;            /* hairline on light */
+	--web-border: #d7e0f5; /* hairline on light */
 	--web-border-strong: #b4ccf0;
 
 	/* ── Text ──────────────────────────────────────────── */
-	--web-text: #15284a;              /* body */
-	--web-heading: var(--cw-ink);     /* #0b1730 headlines */
-	--web-muted: #4a5d7e;             /* secondary copy */
-	--web-on-ink: #e7ecff;            /* body text on navy bands */
+	--web-text: #15284a; /* body */
+	--web-heading: var(--cw-ink); /* #0b1730 headlines */
+	--web-muted: #4a5d7e; /* secondary copy */
+	--web-on-ink: #e7ecff; /* body text on navy bands */
 	--web-on-ink-muted: rgba(231, 236, 255, 0.72);
 
 	/* ── Sapphire (primary brand blue) ─────────────────── */
@@ -55,11 +55,8 @@
 	--web-radius-pill: var(--cw-radius-pill);
 
 	/* Hero / contrast-band wash */
-	--web-hero-wash: radial-gradient(
-			circle at 12% 0%,
-			rgba(44, 108, 183, 0.10),
-			transparent 55%
-		),
+	--web-hero-wash:
+		radial-gradient(circle at 12% 0%, rgba(44, 108, 183, 0.1), transparent 55%),
 		radial-gradient(circle at 100% 20%, rgba(14, 153, 96, 0.08), transparent 50%); /* @kind other */
 
 	background-color: var(--web-bg);

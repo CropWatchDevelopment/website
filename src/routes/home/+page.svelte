@@ -156,19 +156,24 @@
 				<span class="why-card__ic"><span class="material-symbols-rounded">fact_check</span></span>
 				<h3>Dual-sensor verified</h3>
 				<p>
-					On the same note as calibration, we have also tried other sensors that have given us false readings that looked plausible.
+					On the same note as calibration, we have also tried other sensors that have given us false
+					readings that looked plausible.
 				</p>
 				<p>
-					Our innovative sensors feature dual-sensor verification, which means if one sensor fails, the other sensor will catch it and alert you that the sensor is bad and we don't send any data, because we believe no data is always better than wrong data.
+					Our innovative sensors feature dual-sensor verification, which means if one sensor fails,
+					the other sensor will catch it and alert you that the sensor is bad and we don't send any
+					data, because we believe no data is always better than wrong data.
 				</p>
 			</article>
 			<article class="why-card" data-reveal="3">
-				<span class="why-card__ic"
-					><span class="material-symbols-rounded">support_agent</span></span
+				<span class="why-card__ic"><span class="material-symbols-rounded">support_agent</span></span
 				>
 				<h3>Real Support</h3>
 				<p>
-					Finally, if you ever do run into a problem, we have a real (human) support team that is ready to help you. We don't hide behind a call center, and we don't outsource our support. We are here to help you, and we will do whatever it takes to make sure you are satisfied with our products and services.
+					Finally, if you ever do run into a problem, we have a real (human) support team that is
+					ready to help you. We don't hide behind a call center, and we don't outsource our support.
+					We are here to help you, and we will do whatever it takes to make sure you are satisfied
+					with our products and services.
 				</p>
 			</article>
 		</div>
@@ -179,8 +184,12 @@
 <section class="section section--tint scroll-pad" id="trusted-parts">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#trusted-parts">Where our parts come from</a></p>
-			<h2>Our <i>trusted</i> device is built with <i>trusted</i> parts from <i>trusted places</i>.</h2>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#trusted-parts">Where our parts come from</a>
+			</p>
+			<h2>
+				Our <i>trusted</i> device is built with <i>trusted</i> parts from <i>trusted places</i>.
+			</h2>
 			<p class="section__intro">
 				Every CropWatch device is assembled from components we hand-pick for reliability - sourced
 				from established manufacturers across eight countries, so quality is never left to chance.
@@ -200,10 +209,10 @@
 			<p class="eyebrow"><a class="eyebrow__link" href="#simple-by-design">Simple by design</a></p>
 			<h2>All your locations, grouped and glanceable.</h2>
 			<p class="section__intro">
-				Sensors can easily be organized, filtered and sorted. Anything that needs attention
-				jumps out and everything else fades into the background - the same clean view on the desktop
-				on your wall and the phone in your pocket. Your team spends its day on the work that
-				matters, not on chasing data points.
+				Sensors can easily be organized, filtered and sorted. Anything that needs attention jumps
+				out and everything else fades into the background - the same clean view on the desktop on
+				your wall and the phone in your pocket. Your team spends its day on the work that matters,
+				not on chasing data points.
 			</p>
 		</div>
 
@@ -219,7 +228,8 @@
 					/>
 				</div>
 				<figcaption>
-					<span class="material-symbols-rounded">desktop_windows</span> PC &amp; Mac, tablet &amp; iPhone or Android
+					<span class="material-symbols-rounded">desktop_windows</span> PC &amp; Mac, tablet &amp; iPhone
+					or Android
 				</figcaption>
 			</figure>
 			<figure class="ui-device ui-device--phone">
@@ -279,7 +289,9 @@
 <section class="section scroll-pad" id="no-surprise-invoices">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#no-surprise-invoices">No surprise invoices</a></p>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#no-surprise-invoices">No surprise invoices</a>
+			</p>
 			<h2>The software is included. We don't hide <a class="termlink" href="/pricing">fees</a></h2>
 			<p class="section__intro">
 				Most platforms charge per seat, per location, per rule, or per export. We don't. Our fees
@@ -331,7 +343,8 @@
 						<span class="material-symbols-rounded">check</span> Swap your own sensors - no service contract
 					</li>
 					<li>
-						<span class="material-symbols-rounded">check</span> Your data is YOURS, we allow you to integrate it with any other system that supports API access.
+						<span class="material-symbols-rounded">check</span> Your data is YOURS, we allow you to integrate
+						it with any other system that supports API access.
 					</li>
 				</ul>
 			</div>

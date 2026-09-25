@@ -146,12 +146,18 @@
 			<h1>Calibrated. Certified. Swapped in 60 seconds.</h1>
 			<p class="lead">
 				When a module reaches end of life, you don't ship the unit back or wait for a technician.
-				Snap in a new pre-calibrated module - and download its own <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificate, tied to
-				that exact serial number.
+				Snap in a new pre-calibrated module - and download its own <a
+					class="termlink"
+					href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+					target="_blank"
+					rel="noopener noreferrer">ISO/IEC 17025</a
+				> certificate, tied to that exact serial number.
 			</p>
 			<div class="hero__badges">
 				<span><span class="material-symbols-rounded">cached</span> Tool-free swap</span>
-				<span><span class="material-symbols-rounded">workspace_premium</span> Per-serial certificate</span>
+				<span
+					><span class="material-symbols-rounded">workspace_premium</span> Per-serial certificate</span
+				>
 				<span><span class="material-symbols-rounded">fact_check</span> Dual-sensor</span>
 				<span><span class="material-symbols-rounded">target</span> ±0.9 °F (±0.48 °C)</span>
 			</div>
@@ -176,7 +182,9 @@
 <section class="section section--tint scroll-pad" id="sensorTypes">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#sensorTypes">Four sensors, one platform</a></p>
+			<p class="eyebrow eyebrow--accent">
+				<a class="eyebrow__link" href="#sensorTypes">Four sensors, one platform</a>
+			</p>
 			<h2>Pick the module. Keep the workflow.</h2>
 			<p class="section__intro">
 				Every CropWatch sensor shares the same enclosure, socket and dashboard - so you can mix
@@ -193,7 +201,9 @@
 						aria-pressed={active.id === s.id}
 						onclick={() => (active = s)}
 					>
-						<span class="picker-tab__ic"><span class="material-symbols-rounded">{s.icon}</span></span>
+						<span class="picker-tab__ic"
+							><span class="material-symbols-rounded">{s.icon}</span></span
+						>
 						<span class="picker-tab__tx"><b>{s.name}</b><span>{s.tag}</span></span>
 					</button>
 				{/each}
@@ -207,13 +217,21 @@
 				</div>
 				<dl class="picker-specs">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -- spec values are static strings defined above (may carry termlink anchors) -->
-				{#each active.specs as [k, v] (k)}<div class="picker-spec"><dt>{k}</dt><dd>{@html v}</dd></div>{/each}
+					{#each active.specs as [k, v] (k)}<div class="picker-spec">
+							<dt>{k}</dt>
+							<dd>{@html v}</dd>
+						</div>{/each}
 				</dl>
 			</div>
 		</div>
 		<p style="text-align:center;margin-top:26px;font-size:13px;color:var(--web-muted)" data-reveal>
 			All four modules are pre-calibrated, dual-sensor verified, and ship with an individual
-			<a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificate.
+			<a
+				class="termlink"
+				href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+				target="_blank"
+				rel="noopener noreferrer">ISO/IEC 17025</a
+			> certificate.
 		</p>
 	</div>
 </section>
@@ -222,7 +240,9 @@
 <section class="section section--tint section--tight scroll-pad" id="no-truck-roll">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#no-truck-roll">No truck roll</a></p>
+			<p class="eyebrow eyebrow--accent">
+				<a class="eyebrow__link" href="#no-truck-roll">No truck roll</a>
+			</p>
 			<h2>Anyone on your team can do it.</h2>
 		</div>
 		<div class="steps">
@@ -254,7 +274,9 @@
 <section class="section section--navy section--tight scroll-pad" id="why-a-swap-is-safe">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#why-a-swap-is-safe">Why a swap is safe</a></p>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#why-a-swap-is-safe">Why a swap is safe</a>
+			</p>
 			<h2>The new module proves itself before you trust it.</h2>
 		</div>
 		<div class="why4">
@@ -290,7 +312,11 @@
 <section class="section section--tint scroll-pad" id="built-to-a-bill-of-materials">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#built-to-a-bill-of-materials">Built to a bill of materials</a></p>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#built-to-a-bill-of-materials"
+					>Built to a bill of materials</a
+				>
+			</p>
 			<h2>Where the parts come from.</h2>
 			<p class="section__intro">
 				Every CropWatch sensor board is assembled from 34 part types across 8 countries and 18
@@ -311,15 +337,56 @@
 			<h2>Specifications</h2>
 		</div>
 		<dl class="pspecs__grid" data-reveal>
-			<div class="spec-row"><dt>Air temp / RH</dt><dd>CW-AIR-TH module</dd></div>
-			<div class="spec-row"><dt>Soil / substrate</dt><dd>CW-SS-TME module</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.9 °F (±0.48 °C) / ±1.8 %RH (TH module)</dd></div>
-			<div class="spec-row"><dt>Annual drift</dt><dd>typ. &lt;0.02 °F (0.01 °C)/yr</dd></div>
-			<div class="spec-row"><dt>Calibration</dt><dd><a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> · <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a></dd></div>
-			<div class="spec-row"><dt>Certificate</dt><dd>Per serial number</dd></div>
-			<div class="spec-row"><dt>Install time</dt><dd>&lt; 60 seconds</dd></div>
-			<div class="spec-row"><dt>Tools required</dt><dd>None</dd></div>
-			<div class="spec-row"><dt>Compatibility</dt><dd>All CropWatch enclosures</dd></div>
+			<div class="spec-row">
+				<dt>Air temp / RH</dt>
+				<dd>CW-AIR-TH module</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Soil / substrate</dt>
+				<dd>CW-SS-TME module</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Accuracy</dt>
+				<dd>±0.9 °F (±0.48 °C) / ±1.8 %RH (TH module)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Annual drift</dt>
+				<dd>typ. &lt;0.02 °F (0.01 °C)/yr</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Calibration</dt>
+				<dd>
+					<a
+						class="termlink"
+						href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+						target="_blank"
+						rel="noopener noreferrer">ISO/IEC 17025</a
+					>
+					·
+					<a
+						class="termlink"
+						href="https://www.nist.gov/calibrations/traceability"
+						target="_blank"
+						rel="noopener noreferrer">NIST</a
+					>
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Certificate</dt>
+				<dd>Per serial number</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Install time</dt>
+				<dd>&lt; 60 seconds</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Tools required</dt>
+				<dd>None</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Compatibility</dt>
+				<dd>All CropWatch enclosures</dd>
+			</div>
 		</dl>
 	</div>
 </section>
@@ -348,8 +415,13 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Every module's <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificate is downloadable as a PDF from the device page in
-					the app - matched to its individual serial number, ready to hand an auditor.
+					Every module's <a
+						class="termlink"
+						href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+						target="_blank"
+						rel="noopener noreferrer">ISO/IEC 17025</a
+					> certificate is downloadable as a PDF from the device page in the app - matched to its individual
+					serial number, ready to hand an auditor.
 				</p>
 			</details>
 			<details>
@@ -359,9 +431,9 @@
 				</summary>
 				<p>
 					It depends on your environment and compliance schedule. Annual temperature drift is
-					typically under 0.02 °F (0.01 °C), so drift alone rarely forces a swap. Many customers re-certify on an
-					annual cycle; the self-auditing hardware will also flag a module that has drifted out of
-					spec.
+					typically under 0.02 °F (0.01 °C), so drift alone rarely forces a swap. Many customers
+					re-certify on an annual cycle; the self-auditing hardware will also flag a module that has
+					drifted out of spec.
 				</p>
 			</details>
 		</div>
@@ -384,39 +456,156 @@
 </section>
 
 <style>
-	.picker { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
-	.picker-tabs { display: flex; flex-direction: column; gap: 10px; }
-	.picker-tab { display: flex; align-items: center; gap: 13px; text-align: left; cursor: pointer; font-family: inherit;
-		background: var(--web-surface); border: 1px solid var(--web-border); border-radius: var(--cw-radius-xl); padding: 14px 15px;
-		box-shadow: var(--web-shadow-card); transition: border-color var(--cw-duration-fast), transform var(--cw-duration-fast), background var(--cw-duration-fast); }
-	.picker-tab:hover { transform: translateX(3px); border-color: var(--web-border-strong); }
-	.picker-tab.is-active { border-color: var(--web-primary); background: var(--web-primary-soft); }
-	.picker-tab__ic { display: grid; place-items: center; width: 42px; height: 42px; flex: none; border-radius: var(--cw-radius-lg);
-		background: var(--web-accent-soft); color: var(--web-accent); }
-	.picker-tab.is-active .picker-tab__ic { background: var(--web-primary); color: #fff; }
-	.picker-tab__ic .material-symbols-rounded { font-size: 24px; }
-	.picker-tab__tx b { display: block; font-size: 14px; color: var(--cw-ink); line-height: 1.2; }
-	.picker-tab__tx span { font-size: 12px; color: var(--web-muted); font-family: var(--cw-font-mono); }
+	.picker {
+		display: grid;
+		grid-template-columns: 340px 1fr;
+		gap: 22px;
+		align-items: start;
+	}
+	.picker-tabs {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	.picker-tab {
+		display: flex;
+		align-items: center;
+		gap: 13px;
+		text-align: left;
+		cursor: pointer;
+		font-family: inherit;
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: var(--cw-radius-xl);
+		padding: 14px 15px;
+		box-shadow: var(--web-shadow-card);
+		transition:
+			border-color var(--cw-duration-fast),
+			transform var(--cw-duration-fast),
+			background var(--cw-duration-fast);
+	}
+	.picker-tab:hover {
+		transform: translateX(3px);
+		border-color: var(--web-border-strong);
+	}
+	.picker-tab.is-active {
+		border-color: var(--web-primary);
+		background: var(--web-primary-soft);
+	}
+	.picker-tab__ic {
+		display: grid;
+		place-items: center;
+		width: 42px;
+		height: 42px;
+		flex: none;
+		border-radius: var(--cw-radius-lg);
+		background: var(--web-accent-soft);
+		color: var(--web-accent);
+	}
+	.picker-tab.is-active .picker-tab__ic {
+		background: var(--web-primary);
+		color: #fff;
+	}
+	.picker-tab__ic .material-symbols-rounded {
+		font-size: 24px;
+	}
+	.picker-tab__tx b {
+		display: block;
+		font-size: 14px;
+		color: var(--cw-ink);
+		line-height: 1.2;
+	}
+	.picker-tab__tx span {
+		font-size: 12px;
+		color: var(--web-muted);
+		font-family: var(--cw-font-mono);
+	}
 
-	.picker-panel { display: flex; flex-direction: column; gap: 14px; background: var(--web-surface);
-		border: 1px solid var(--web-border); border-radius: var(--web-radius-card); box-shadow: var(--web-shadow-card);
-		padding: 24px 26px; }
-	.picker-panel__tag { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; font-family: var(--cw-font-mono);
-		color: var(--web-primary); background: var(--web-primary-soft); padding: 5px 11px; border-radius: 9999px; }
-	.picker-panel h3 { font-size: var(--cw-text-xl); margin: 0; line-height: 1.25; }
-	.picker-panel__blurb { font-size: 14px; color: var(--web-muted); line-height: 1.7; margin: 0; }
-	.picker-measures { display: flex; flex-wrap: wrap; gap: 7px; }
-	.picker-chip { font-size: 12px; font-weight: 600; color: var(--web-accent); background: var(--web-accent-soft);
-		border: 1px solid color-mix(in srgb, var(--web-accent) 28%, transparent); border-radius: 9999px; padding: 5px 11px; }
-	.picker-specs { display: grid; gap: 0; margin: 4px 0 0; }
-	.picker-spec { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--web-border); }
-	.picker-spec dt { font-size: 12.5px; color: var(--web-muted); font-weight: 600; }
-	.picker-spec dd { font-size: 12.5px; color: var(--cw-ink); font-weight: 600; font-family: var(--cw-font-mono); margin: 0; text-align: right; }
+	.picker-panel {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		background: var(--web-surface);
+		border: 1px solid var(--web-border);
+		border-radius: var(--web-radius-card);
+		box-shadow: var(--web-shadow-card);
+		padding: 24px 26px;
+	}
+	.picker-panel__tag {
+		align-self: flex-start;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		font-family: var(--cw-font-mono);
+		color: var(--web-primary);
+		background: var(--web-primary-soft);
+		padding: 5px 11px;
+		border-radius: 9999px;
+	}
+	.picker-panel h3 {
+		font-size: var(--cw-text-xl);
+		margin: 0;
+		line-height: 1.25;
+	}
+	.picker-panel__blurb {
+		font-size: 14px;
+		color: var(--web-muted);
+		line-height: 1.7;
+		margin: 0;
+	}
+	.picker-measures {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 7px;
+	}
+	.picker-chip {
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--web-accent);
+		background: var(--web-accent-soft);
+		border: 1px solid color-mix(in srgb, var(--web-accent) 28%, transparent);
+		border-radius: 9999px;
+		padding: 5px 11px;
+	}
+	.picker-specs {
+		display: grid;
+		gap: 0;
+		margin: 4px 0 0;
+	}
+	.picker-spec {
+		display: flex;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 9px 0;
+		border-bottom: 1px solid var(--web-border);
+	}
+	.picker-spec dt {
+		font-size: 12.5px;
+		color: var(--web-muted);
+		font-weight: 600;
+	}
+	.picker-spec dd {
+		font-size: 12.5px;
+		color: var(--cw-ink);
+		font-weight: 600;
+		font-family: var(--cw-font-mono);
+		margin: 0;
+		text-align: right;
+	}
 
 	@media (max-width: 720px) {
-		.picker { grid-template-columns: 1fr; }
-		.picker-tabs { flex-direction: row; overflow-x: auto; }
-		.picker-tab { min-width: 220px; }
-		.picker-panel { padding: 20px 18px; }
+		.picker {
+			grid-template-columns: 1fr;
+		}
+		.picker-tabs {
+			flex-direction: row;
+			overflow-x: auto;
+		}
+		.picker-tab {
+			min-width: 220px;
+		}
+		.picker-panel {
+			padding: 20px 18px;
+		}
 	}
 </style>

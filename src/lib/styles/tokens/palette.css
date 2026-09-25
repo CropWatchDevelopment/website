@@ -95,8 +95,8 @@
 	--cw-success-900: #064e3b;
 
 	/* ── Brand mark colors (the tree logo) ────────────── */
-	--cw-bark: #b86b40;       /* trunk + branches */
-	--cw-leaf: #4eba3d;       /* leaf circles */
+	--cw-bark: #b86b40; /* trunk + branches */
+	--cw-leaf: #4eba3d; /* leaf circles */
 	--cw-green-standard: #006045; /* deep CropWatch green, light-theme header */
 
 	/* ── Public website: Navy / Ice / Gold (current site) */
@@ -106,7 +106,7 @@
 	--cw-navy-800: #11213c;
 	--cw-navy-700: #1f3b64;
 	--cw-navy-600: #2f5387;
-	--cw-ink: #0b1730;        /* primary headline ink on light */
+	--cw-ink: #0b1730; /* primary headline ink on light */
 	--cw-ice-100: #e7ecff;
 	--cw-ice-200: #cfd8ff;
 	--cw-ice-400: #9ab0d6;

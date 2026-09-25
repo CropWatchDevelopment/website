@@ -21,7 +21,9 @@ instance:
   python3 -c "from fontTools.ttLib import TTFont; from fontTools.varLib.instancer import instantiateVariableFont as inst; f=TTFont('/tmp/cwfonts/ms-variable.woff2'); inst(f, {'FILL':0,'wght':400,'GRAD':0,'opsz':24}, inplace=True); f.flavor='woff2'; f.save('/tmp/cwfonts/ms-static.woff2')"
 """
 
+import hashlib
 import re
+import tempfile
 from pathlib import Path
 
 from fontTools.ttLib import TTFont
@@ -30,8 +32,7 @@ from fontTools.subset import Subsetter, Options
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 OUT_DIR = ROOT / "static" / "assets" / "fonts"
-MS_IN = Path("/tmp/cwfonts/ms-static.woff2")
-INTER_IN = Path("/tmp/cwfonts/inter400.woff2")
+MS_IN = Path(tempfile.gettempdir()) / "cwfonts" / "ms-static.woff2"
 
 # ---- 1. Collect every icon name actually rendered -------------------------
 # Matches <span class="...material-symbols-rounded...">name</span>, tolerating
@@ -73,14 +74,10 @@ full_cmap = full.getBestCmap()
 full_glyphs = set(full.getGlyphOrder())
 
 
-def resolve_target(f_cmap, gsub, name):
-    try:
-        glyphs = [f_cmap[ord(c)] for c in name]
-    except KeyError:
-        return None
-    first, rest = glyphs[0], glyphs[1:]
+def find_ligature(gsub, first, rest):
     for lookup in gsub.table.LookupList.Lookup:
         for sub in lookup.SubTable:
+            # Follow extension subtables.
             tgt = getattr(sub, "ExtSubTable", sub)
             ligs = getattr(tgt, "ligatures", None)
             if not ligs or first not in ligs:
@@ -91,11 +88,24 @@ def resolve_target(f_cmap, gsub, name):
     return None
 
 
+def resolve_ligature(cmap, gsub, name):
+    """Return the glyph a name's char-sequence collapses to via GSUB liga, or None."""
+    if not gsub:
+        return None
+    try:
+        glyphs = [cmap[ord(c)] for c in name]
+    except KeyError:
+        return None  # a component char is missing entirely
+    if not glyphs:
+        return None
+    return find_ligature(gsub, glyphs[0], glyphs[1:])
+
+
 gsub = full.get("GSUB")
 target_glyphs = set()
 unresolved = []
 for n in names:
-    g = resolve_target(full_cmap, gsub, n)
+    g = resolve_ligature(full_cmap, gsub, n)
     if g and g in full_glyphs:
         target_glyphs.add(g)
     else:
@@ -131,36 +141,10 @@ print(
 
 # ---- 3. Verify every icon name still resolves to a single ligature glyph ---
 v = TTFont(out_path)
-cmap = v.getBestCmap()
+subset_cmap = v.getBestCmap()
 glyph_set = set(v.getGlyphOrder())
 
-
-def ligature_target(name: str):
-    """Return the glyph a name's char-sequence collapses to via GSUB liga, or None."""
-    try:
-        glyphs = [cmap[ord(c)] for c in name]
-    except KeyError:
-        return None  # a component char is missing entirely
-    if not glyphs:
-        return None
-    gsub = v.get("GSUB")
-    if not gsub:
-        return None
-    first, rest = glyphs[0], glyphs[1:]
-    for lookup in gsub.table.LookupList.Lookup:
-        for sub in lookup.SubTable:
-            # Follow extension subtables.
-            tgt = getattr(sub, "ExtSubTable", sub)
-            ligs = getattr(tgt, "ligatures", None)
-            if not ligs or first not in ligs:
-                continue
-            for lig in ligs[first]:
-                if lig.Component == rest:
-                    return lig.LigGlyph
-    return None
-
-
-missing = [n for n in names if ligature_target(n) not in glyph_set]
+missing = [n for n in names if resolve_ligature(subset_cmap, v.get("GSUB"), n) not in glyph_set]
 if missing:
     print(f"\n!! VERIFICATION FAILED — these icons do not resolve: {missing}")
     raise SystemExit(1)
@@ -172,9 +156,7 @@ print(f"Verified: all {len(names)} icons resolve to a ligature glyph in the subs
 # ("campaign") because the old font lacks the glyph. Stamp a content-hash
 # ?v= query onto every reference (the preload in app.html and the @font-face
 # src in fonts.css must stay byte-identical for the preload to match).
-import hashlib
-
-digest = hashlib.md5(out_path.read_bytes()).hexdigest()[:8]
+digest = hashlib.sha256(out_path.read_bytes()).hexdigest()[:8]
 for target in (ROOT / "src" / "app.html", ROOT / "src" / "lib" / "styles" / "tokens" / "fonts.css"):
     text = target.read_text(encoding="utf-8")
     stamped = re.sub(

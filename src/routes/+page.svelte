@@ -6,7 +6,9 @@
 	nothing competes with the choice. Ported from the design's sectors.html.
 -->
 <svelte:head>
-	<title>Choose Your Industry - Cold-Chain, Agriculture &amp; Livestock Monitoring | CropWatch</title>
+	<title
+		>Choose Your Industry - Cold-Chain, Agriculture &amp; Livestock Monitoring | CropWatch</title
+	>
 	<meta
 		name="description"
 		content="Find the right CropWatch monitoring solution for your business. Cold-chain & refrigeration for restaurants, hotels, schools; agriculture & greenhouse for farms; and climate monitoring for poultry & livestock."
@@ -58,7 +60,8 @@
 					<span class="panel__hic material-symbols-rounded">ac_unit</span>Cold-Chain Insights
 				</h2>
 				<p class="panel__sub">
-					Walk-ins, freezers and display cases for restaurants, hotels, schools - with HACCP-ready records an inspector can trust.
+					Walk-ins, freezers and display cases for restaurants, hotels, schools - with HACCP-ready
+					records an inspector can trust.
 				</p>
 				<div class="panel__tags">
 					<span>Restaurants</span><span>Hospitality</span><span>Schools</span><span
@@ -86,7 +89,8 @@
 			<div class="panel__in">
 				<span class="panel__eyebrow">Agriculture &amp; greenhouse</span>
 				<h2 class="panel__h">
-					<span class="panel__hic material-symbols-rounded">potted_plant</span>Agricultural Monitoring
+					<span class="panel__hic material-symbols-rounded">potted_plant</span>Agricultural
+					Monitoring
 				</h2>
 				<p class="panel__sub">
 					Soil, air and canopy climate across greenhouses, fields, orchards and vineyards - spot

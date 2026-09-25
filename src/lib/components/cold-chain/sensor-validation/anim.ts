@@ -46,13 +46,11 @@ export function interpolate(
 /** Normalised 0..1 progress of `t` across [a, b]. */
 export const seg = (t: number, a: number, b: number) => clamp((t - a) / (b - a || 1e-6), 0, 1);
 
-/** Fade in over [a, b], hold, fade out over [c, d]. */
+/** Fade in over `[a, b]`, hold, fade out over `[c, d]`. */
 export const io = (
 	t: number,
-	a: number,
-	b: number,
-	c: number,
-	d: number,
+	[a, b]: readonly [number, number],
+	[c, d]: readonly [number, number],
 	e: (t: number) => number = Easing.easeOutCubic
 ) => e(seg(t, a, b)) * (1 - Easing.easeInCubic(seg(t, c, d)));
 

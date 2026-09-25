@@ -65,7 +65,7 @@
 	};
 
 	let r = $derived(warp(t - F0));
-	let sceneFade = $derived(io(t, F0 - 0.1, F0 + 0.5, 28.7 + FLOW_SHIFT, 29.2 + FLOW_SHIFT));
+	let sceneFade = $derived(io(t, [F0 - 0.1, F0 + 0.5], [28.7 + FLOW_SHIFT, 29.2 + FLOW_SHIFT]));
 	let pulseActive = $derived(r >= RUN_START && r <= RUN_END + 0.6);
 	let pulseY = $derived(pulseRamp(r));
 	let convergeActive = $derived(r >= CONVERGE_START && r < RUN_START);

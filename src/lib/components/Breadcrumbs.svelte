@@ -51,7 +51,9 @@
 						<span class="pcrumb__current" aria-current="page">{crumb.label}</span>
 					{/if}
 					{#if i !== lastIndex}
-						<span class="pcrumb__sep material-symbols-rounded" aria-hidden="true">chevron_right</span>
+						<span class="pcrumb__sep material-symbols-rounded" aria-hidden="true"
+							>chevron_right</span
+						>
 					{/if}
 				</li>
 			{/each}

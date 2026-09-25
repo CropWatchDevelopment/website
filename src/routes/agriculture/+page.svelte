@@ -26,10 +26,7 @@
 		name="keywords"
 		content="agriculture monitoring, greenhouse monitoring, VPD monitoring, vapor pressure deficit, PPFD sensor, DLI daily light integral, soil moisture monitoring, soil EC sensor, soil temperature, air CO2 greenhouse, crop climate monitoring, vineyard monitoring, orchard monitoring, horticulture sensor, LoRaWAN agriculture"
 	/>
-	<meta
-		property="og:title"
-		content="Agricultural, Greenhouse &amp; Field Monitoring | CropWatch"
-	/>
+	<meta property="og:title" content="Agricultural, Greenhouse &amp; Field Monitoring | CropWatch" />
 	<meta
 		property="og:description"
 		content="Measure soil, air and light - plus calculated VPD, PPFD and DLI - across greenhouses, fields, orchards and vineyards."
@@ -102,7 +99,9 @@
 <section class="section section--tint scroll-pad" id="soil-to-air-to-light">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#soil-to-air-to-light">Soil to air to light</a></p>
+			<p class="eyebrow eyebrow--accent">
+				<a class="eyebrow__link" href="#soil-to-air-to-light">Soil to air to light</a>
+			</p>
 			<h2>Everything that drives growth, on one device family.</h2>
 			<p class="section__intro">
 				Most systems give you a single number. CropWatch captures the full stack - what the roots
@@ -114,7 +113,10 @@
 			<div class="tier tier--light" data-reveal>
 				<div class="tier__head">
 					<span class="tier__ic"><span class="material-symbols-rounded">wb_sunny</span></span>
-					<div><h3>Light</h3><span>Calculated</span></div>
+					<div>
+						<h3>Light</h3>
+						<span>Calculated</span>
+					</div>
 				</div>
 				<div class="tier__metrics">
 					<span class="mchip mchip--calc"
@@ -130,11 +132,18 @@
 			<div class="tier tier--air" data-reveal="1">
 				<div class="tier__head">
 					<span class="tier__ic"><span class="material-symbols-rounded">air</span></span>
-					<div><h3>Air</h3><span>Measured + derived</span></div>
+					<div>
+						<h3>Air</h3>
+						<span>Measured + derived</span>
+					</div>
 				</div>
 				<div class="tier__metrics">
-					<span class="mchip"><span class="material-symbols-rounded">device_thermostat</span> Air temperature</span>
-					<span class="mchip"><span class="material-symbols-rounded">humidity_percentage</span> Air humidity</span>
+					<span class="mchip"
+						><span class="material-symbols-rounded">device_thermostat</span> Air temperature</span
+					>
+					<span class="mchip"
+						><span class="material-symbols-rounded">humidity_percentage</span> Air humidity</span
+					>
 					<span class="mchip"><span class="material-symbols-rounded">cloud</span> Air CO₂</span>
 					<span class="mchip mchip--calc"
 						><span class="material-symbols-rounded">water_drop</span> VPD <small>kPa</small></span
@@ -144,11 +153,18 @@
 			<div class="tier tier--soil" data-reveal="2">
 				<div class="tier__head">
 					<span class="tier__ic"><span class="material-symbols-rounded">grass</span></span>
-					<div><h3>Soil</h3><span>Measured</span></div>
+					<div>
+						<h3>Soil</h3>
+						<span>Measured</span>
+					</div>
 				</div>
 				<div class="tier__metrics">
-					<span class="mchip"><span class="material-symbols-rounded">humidity_low</span> Soil moisture</span>
-					<span class="mchip"><span class="material-symbols-rounded">thermostat</span> Soil temperature</span>
+					<span class="mchip"
+						><span class="material-symbols-rounded">humidity_low</span> Soil moisture</span
+					>
+					<span class="mchip"
+						><span class="material-symbols-rounded">thermostat</span> Soil temperature</span
+					>
 					<span class="mchip"
 						><span class="material-symbols-rounded">bolt</span> Soil EC
 						<small>nutrient/salinity</small></span
@@ -167,7 +183,11 @@
 <section class="section scroll-pad" id="why-the-calculated-metrics-matter">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#why-the-calculated-metrics-matter">Why the calculated metrics matter</a></p>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#why-the-calculated-metrics-matter"
+					>Why the calculated metrics matter</a
+				>
+			</p>
 			<h2>Temperature and humidity alone will mislead you.</h2>
 			<p class="section__intro">
 				The numbers that actually predict growth aren't raw readings - they're what you derive from
@@ -229,7 +249,9 @@
 <section class="section section--navy scroll-pad" id="from-the-cropwatch-app">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#from-the-cropwatch-app">From the CropWatch app</a></p>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#from-the-cropwatch-app">From the CropWatch app</a>
+			</p>
 			<h2>The readings, the way your growers read them.</h2>
 			<p class="section__intro">
 				These are live components from the CropWatch interface - the same PPFD gauge, VPD climate
@@ -242,7 +264,9 @@
 			<div class="chart-card__head">
 				<div>
 					<h3 class="chart-card__title">PPFD - canopy light intensity</h3>
-					<p class="chart-card__sub">Live reading against the crop's optimal band, with today's DLI.</p>
+					<p class="chart-card__sub">
+						Live reading against the crop's optimal band, with today's DLI.
+					</p>
 				</div>
 				<span class="chart-card__tag">CwPPFDChart</span>
 			</div>
@@ -280,7 +304,9 @@
 				<div class="chart-card__head">
 					<div>
 						<h3 class="chart-card__title">Field temperature - last 7 days</h3>
-						<p class="chart-card__sub">Every hour of every day, at a glance. Hover any cell for the reading.</p>
+						<p class="chart-card__sub">
+							Every hour of every day, at a glance. Hover any cell for the reading.
+						</p>
 					</div>
 					<span class="chart-card__tag">CwHeatmap</span>
 				</div>
@@ -311,7 +337,9 @@
 					src="/assets/photos/greenhouse-cucumber.webp"
 					alt="CropWatch sensor mounted in a hydroponic cucumber greenhouse"
 				/>
-				<figcaption><b>Cucumber house</b>Overhead climate and DLI in a hydroponic house.</figcaption>
+				<figcaption>
+					<b>Cucumber house</b>Overhead climate and DLI in a hydroponic house.
+				</figcaption>
 			</figure>
 			<figure data-reveal="2">
 				<img
@@ -334,20 +362,34 @@
 			/>
 		</div>
 		<div data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#coverage-without-wires">Coverage without wires</a></p>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#coverage-without-wires">Coverage without wires</a>
+			</p>
 			<h2>One gateway covers the whole operation.</h2>
 			<p class="lead">
-				<a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> reaches up to 8 miles line-of-sight, so a single gateway can link greenhouses, fields
-				and outbuildings on one farm - no cellular bills, no trenching cable.
+				<a
+					class="termlink"
+					href="https://lora-alliance.org/about-lorawan/"
+					target="_blank"
+					rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+				> reaches up to 8 miles line-of-sight, so a single gateway can link greenhouses, fields and outbuildings
+				on one farm - no cellular bills, no trenching cable.
 			</p>
 			<ul class="diff-list" style="margin-top:8px">
-				<li><span class="material-symbols-rounded">check</span> Battery life measured in years, not weeks</li>
-				<li><span class="material-symbols-rounded">check</span> Rugged IP66 enclosure for sun, rain and dust</li>
+				<li>
+					<span class="material-symbols-rounded">check</span> Battery life measured in years, not weeks
+				</li>
+				<li>
+					<span class="material-symbols-rounded">check</span> Rugged IP66 enclosure for sun, rain and
+					dust
+				</li>
 				<li>
 					<span class="material-symbols-rounded">check</span> Dual-sensor verification &amp; self-auditing
 					hardware
 				</li>
-				<li><span class="material-symbols-rounded">check</span> Swap your own sensors at season's end</li>
+				<li>
+					<span class="material-symbols-rounded">check</span> Swap your own sensors at season's end
+				</li>
 				<li>
 					<span class="material-symbols-rounded">check</span> Condensation-tolerant Sensirion sensors
 					recover even after 100 %RH nights
@@ -366,22 +408,67 @@
 <section class="pspecs scroll-pad" id="recommended-sensors">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#recommended-sensors">Recommended sensors</a></p>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#recommended-sensors">Recommended sensors</a>
+			</p>
 			<h2>Soil + air + light, one platform</h2>
 		</div>
 		<dl class="pspecs__grid" data-reveal>
-			<div class="spec-row"><dt>Air sensor</dt><dd>CW-AIR-THC (T·RH·CO₂)</dd></div>
-			<div class="spec-row"><dt>Soil sensor</dt><dd>CW-SS-TME (moisture·temp·EC)</dd></div>
-			<div class="spec-row"><dt>Calculated</dt><dd>VPD · PPFD · DLI</dd></div>
-			<div class="spec-row"><dt>Air accuracy</dt><dd>±0.4 °F (±0.2 °C) / ±1.8 %RH</dd></div>
-			<div class="spec-row"><dt>CO₂ range</dt><dd>400-5,000 ppm (NDIR)</dd></div>
-			<div class="spec-row"><dt>Soil moisture</dt><dd>0-100 % (±8 %)</dd></div>
-			<div class="spec-row"><dt>Soil temp</dt><dd>−4 to 158 °F (−20 to 70 °C)</dd></div>
-			<div class="spec-row"><dt>Soil EC</dt><dd>0-3.0 mS/cm ±20 % · 3.0-8.0 ±40 %</dd></div>
-			<div class="spec-row"><dt>Connectivity</dt><dd><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> (Class A)</dd></div>
-			<div class="spec-row"><dt>Battery</dt><dd>Up to 5 years (replaceable)</dd></div>
-			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, UV-stable</dd></div>
-			<div class="spec-row"><dt>Range</dt><dd>Up to 8 miles per gateway (in absolute optimal conditions)</dd></div>
+			<div class="spec-row">
+				<dt>Air sensor</dt>
+				<dd>CW-AIR-THC (T·RH·CO₂)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Soil sensor</dt>
+				<dd>CW-SS-TME (moisture·temp·EC)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Calculated</dt>
+				<dd>VPD · PPFD · DLI</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Air accuracy</dt>
+				<dd>±0.4 °F (±0.2 °C) / ±1.8 %RH</dd>
+			</div>
+			<div class="spec-row">
+				<dt>CO₂ range</dt>
+				<dd>400-5,000 ppm (NDIR)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Soil moisture</dt>
+				<dd>0-100 % (±8 %)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Soil temp</dt>
+				<dd>−4 to 158 °F (−20 to 70 °C)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Soil EC</dt>
+				<dd>0-3.0 mS/cm ±20 % · 3.0-8.0 ±40 %</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Connectivity</dt>
+				<dd>
+					<a
+						class="termlink"
+						href="https://lora-alliance.org/about-lorawan/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+					> (Class A)
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Battery</dt>
+				<dd>Up to 5 years (replaceable)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Enclosure</dt>
+				<dd>IP66, UV-stable</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Range</dt>
+				<dd>Up to 8 miles per gateway (in absolute optimal conditions)</dd>
+			</div>
 		</dl>
 		<div class="prelated__grid" style="margin-top:36px">
 			<a class="rel-card" href="/replacement-sensors" data-reveal>
@@ -412,8 +499,7 @@
 				<p>
 					VPD is derived from the sensor's air temperature and relative humidity (optionally leaf
 					temperature). PPFD and DLI are computed from the light reading and accumulated over the
-					day. You get the raw readings <em>and</em> the calculated metrics on one screen - no
-					spreadsheets.
+					day. You get the raw readings <em>and</em> the calculated metrics on one screen - no spreadsheets.
 				</p>
 			</details>
 			<details>
@@ -434,8 +520,13 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Yes. Air, soil and light sensors all report to one <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> gateway, which covers up to 8
-					miles line-of-sight - enough for greenhouses, fields and outbuildings across a whole farm.
+					Yes. Air, soil and light sensors all report to one <a
+						class="termlink"
+						href="https://lora-alliance.org/about-lorawan/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+					> gateway, which covers up to 8 miles line-of-sight - enough for greenhouses, fields and outbuildings
+					across a whole farm.
 				</p>
 			</details>
 			<details>
@@ -464,7 +555,9 @@
 		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="cta-pill cta-pill--lg">Book a demo</a>
-			<a href="/replacement-sensors" class="cta-ghost cta-ghost--light cta-pill--lg">See the sensors</a>
+			<a href="/replacement-sensors" class="cta-ghost cta-ghost--light cta-pill--lg"
+				>See the sensors</a
+			>
 		</div>
 	</div>
 </section>

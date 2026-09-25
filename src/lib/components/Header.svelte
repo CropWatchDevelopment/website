@@ -7,10 +7,30 @@
 	type Product = { href: string; icon: string; t: string; d: string };
 
 	const products: Product[] = [
-		{ href: '/cold-chain', icon: 'ac_unit', t: 'Cold-Chain Monitoring', d: 'Freezers, walk-ins, restaurants, pharma' },
-		{ href: '/livestock', icon: 'pets', t: 'Livestock Monitoring', d: 'Poultry houses, barns, dairy' },
-		{ href: '/agriculture', icon: 'eco', t: 'Agricultural Monitoring', d: 'Greenhouse, field, soil & canopy' },
-		{ href: '/replacement-sensors', icon: 'cable', t: 'Replacement Sensors', d: 'Field-swappable, ISO 17025 certified' }
+		{
+			href: '/cold-chain',
+			icon: 'ac_unit',
+			t: 'Cold-Chain Monitoring',
+			d: 'Freezers, walk-ins, restaurants, pharma'
+		},
+		{
+			href: '/livestock',
+			icon: 'pets',
+			t: 'Livestock Monitoring',
+			d: 'Poultry houses, barns, dairy'
+		},
+		{
+			href: '/agriculture',
+			icon: 'eco',
+			t: 'Agricultural Monitoring',
+			d: 'Greenhouse, field, soil & canopy'
+		},
+		{
+			href: '/replacement-sensors',
+			icon: 'cable',
+			t: 'Replacement Sensors',
+			d: 'Field-swappable, ISO 17025 certified'
+		}
 	];
 
 	const productPaths = products.map((p) => p.href);
@@ -43,10 +63,14 @@
 	<div class="hdr__top">
 		<div class="wrap hdr__top-in">
 			<div class="hdr__welcome">
-				<strong><i>CropWatch<sup><small>®</small></sup></i></strong><span class="sep">|</span><span>United States &amp; Global</span>
+				<strong><i>CropWatch<sup><small>®</small></sup></i></strong><span class="sep">|</span><span
+					>United States &amp; Global</span
+				>
 			</div>
 			<div class="hdr__top-links">
-				<a href="tel:+(978)381-3105"><span class="material-symbols-rounded">call</span> +1 (978) 381-3105</a>
+				<a href="tel:+(978)381-3105"
+					><span class="material-symbols-rounded">call</span> +1 (978) 381-3105</a
+				>
 				<a href="mailto:kevin@cropwatch.io">kevin@cropwatch.io</a>
 			</div>
 		</div>
@@ -57,10 +81,17 @@
 			<a class="brand" href="/home">
 				<!-- <picture> + id are load-bearing: christmas-header.js targets
 			     #header-logo's enclosing <picture> for the seasonal logo swap. -->
-			<picture>
-				<source srcset={LOGO} type="image/svg+xml" />
-				<img id="header-logo" src={LOGO} alt="CropWatch" class="brand__mark" width="46" height="46" />
-			</picture>
+				<picture>
+					<source srcset={LOGO} type="image/svg+xml" />
+					<img
+						id="header-logo"
+						src={LOGO}
+						alt="CropWatch"
+						class="brand__mark"
+						width="46"
+						height="46"
+					/>
+				</picture>
 				<span class="brand__txt">
 					<span class="brand__name">CropWatch<sup><small>®</small></sup></span>
 					<span class="brand__tag">Quality monitoring devices</span>
@@ -83,7 +114,9 @@
 								</a>
 							{/each}
 							<a class="pd__all" href="/">
-								All products &amp; sensors <span class="material-symbols-rounded">arrow_forward</span>
+								All products &amp; sensors <span class="material-symbols-rounded"
+									>arrow_forward</span
+								>
 							</a>
 						</div>
 					</div>
@@ -95,8 +128,12 @@
 			</nav>
 
 			<div class="hdr__actions">
-				<a href="https://app.cropwatch.io" class="util"><span class="material-symbols-rounded">exit_to_app</span> App</a>
-				<a href="https://api.cropwatch.io" class="util"><span class="material-symbols-rounded">api</span> API</a>
+				<a href="https://app.cropwatch.io" class="util"
+					><span class="material-symbols-rounded">exit_to_app</span> App</a
+				>
+				<a href="https://api.cropwatch.io" class="util"
+					><span class="material-symbols-rounded">api</span> API</a
+				>
 				<a href="/contact" class="cta-pill">Book a demo</a>
 			</div>
 
@@ -110,10 +147,16 @@
 <svelte:window onkeydown={onKeydown} />
 
 <div class="m-menu" hidden={!menuOpen} role="dialog" aria-modal="true" aria-label="Site menu">
-	<button class="m-scrim" type="button" aria-label="Close menu" onclick={() => (menuOpen = false)}></button>
+	<button class="m-scrim" type="button" aria-label="Close menu" onclick={() => (menuOpen = false)}
+	></button>
 	<div class="m-menu__head">
 		<span class="brand__name" style="color:#fff">Menu</span>
-		<button class="m-close" type="button" aria-label="Close menu" onclick={() => (menuOpen = false)}>
+		<button
+			class="m-close"
+			type="button"
+			aria-label="Close menu"
+			onclick={() => (menuOpen = false)}
+		>
 			<span class="material-symbols-rounded">close</span>
 		</button>
 	</div>
@@ -123,7 +166,9 @@
 		<div class="m-group">
 			<a class="m-link" href="/cold-chain">Products</a>
 			{#each products as p (p.href)}
-				<a class="m-sub" href={p.href}><span class="material-symbols-rounded">{p.icon}</span>{p.t}</a>
+				<a class="m-sub" href={p.href}
+					><span class="material-symbols-rounded">{p.icon}</span>{p.t}</a
+				>
 			{/each}
 		</div>
 
@@ -132,11 +177,19 @@
 		<a class="m-link" href="/news">News</a>
 		<a class="m-link" href="/contact">Contact</a>
 
-		<a class="cta-pill cta-pill--lg" style="margin-top:18px;justify-content:center" href="/contact">Book a demo</a>
+		<a class="cta-pill cta-pill--lg" style="margin-top:18px;justify-content:center" href="/contact"
+			>Book a demo</a
+		>
 		<div class="m-util">
-			<a href="https://app.cropwatch.io"><span class="material-symbols-rounded">exit_to_app</span> Open the app</a>
-			<a href="https://api.cropwatch.io"><span class="material-symbols-rounded">api</span> API docs</a>
-			<a href="https://cropwatch.co.jp"><span class="material-symbols-rounded">language</span> 日本語 (.co.jp)</a>
+			<a href="https://app.cropwatch.io"
+				><span class="material-symbols-rounded">exit_to_app</span> Open the app</a
+			>
+			<a href="https://api.cropwatch.io"
+				><span class="material-symbols-rounded">api</span> API docs</a
+			>
+			<a href="https://cropwatch.co.jp"
+				><span class="material-symbols-rounded">language</span> 日本語 (.co.jp)</a
+			>
 		</div>
 	</nav>
 </div>
