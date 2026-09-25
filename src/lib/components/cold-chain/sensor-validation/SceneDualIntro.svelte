@@ -5,7 +5,7 @@
 
 	let { t }: { t: number } = $props();
 
-	let appear = $derived(io(t, 6.9, 7.6, 10.3, 10.8));
+	let appear = $derived(io(t, [6.9, 7.6], [10.3, 10.8]));
 	let aIn = $derived(Easing.easeOutBack(seg(t, 7.5, 8.3)));
 	let bIn = $derived(Easing.easeOutBack(seg(t, 7.75, 8.55)));
 	let specIn = $derived(seg(t, 8.6, 9.3));

@@ -337,10 +337,9 @@
 				{cfg.label} pricing is on its way. Pick another sector to run the numbers - unlimited users, alerts,
 				reports and API are always included.
 			{:else}
-				Simple {cfg.label.toLowerCase()} pricing: <u>{usd2.format(cfg.baseFee)}/month base</u> + <u>{usd2.format(
-					cfg.pricePerDevice
-				)}/month per sensor</u> - unlimited users, alerts, reports and API included. Slide in
-				your own numbers and see the ROI for yourself.
+				Simple {cfg.label.toLowerCase()} pricing: <u>{usd2.format(cfg.baseFee)}/month base</u> +
+				<u>{usd2.format(cfg.pricePerDevice)}/month per sensor</u> - unlimited users, alerts, reports and
+				API included. Slide in your own numbers and see the ROI for yourself.
 			{/if}
 		</p>
 	</div>

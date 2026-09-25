@@ -19,7 +19,7 @@ export type NewsArticle = {
 	/**
 	 * Material Symbol name shown as the list thumbnail (e.g. "gavel",
 	 * "campaign", "eco"). See fonts.google.com/icons. Falls back to a default
-	 * when omitted. NOTE: icons used in article JSON must exist in the
+	 * when omitted. Icons used in article JSON must exist in the
 	 * self-hosted subset font — scripts/build-fonts.py scans static/news/*.json
 	 * and includes them; re-run it after introducing a new icon name.
 	 */

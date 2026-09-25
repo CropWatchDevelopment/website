@@ -2,7 +2,7 @@
 // Kept in one place so titles, canonicals, OG tags, structured data and the
 // sitemap all agree on the origin and brand strings.
 //
-// NOTE: this is the ONLY file in the SEO toolkit that legitimately differs
+// This is the ONLY file in the SEO toolkit that legitimately differs
 // between the .io and .co.jp deploy branches — `schema.ts` and `JsonLd.svelte`
 // are byte-identical copies (like src/lib/seo/alternates.ts). Keep them in sync.
 
@@ -51,8 +51,8 @@ export const ORG: Org = {
 	email: 'sales@cropwatch.io',
 	contact: { type: 'sales', areaServed: 'US', availableLanguage: ['en'] },
 	// Official brand profiles that identify the entity. Add ONLY real, verified
-	// URLs — a wrong sameAs hurts. TODO(confirm): verify these represent the .io
-	// (US/global) entity before relying on them.
+	// URLs — a wrong sameAs hurts. These are believed to represent the .io
+	// (US/global) entity; confirm before relying on them.
 	sameAs: [
 		'https://www.linkedin.com/company/71224776',
 		'https://www.youtube.com/@cropwatch4407',

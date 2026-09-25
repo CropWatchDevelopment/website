@@ -12,7 +12,7 @@
 
 	let appear = $derived(seg(p, 29.0, 29.7));
 	let valIn = $derived(Easing.easeOutBack(seg(p, 29.3, 30.2)));
-	let headIn = $derived(io(p, 30.1, 30.8, 34.9, 35.1));
+	let headIn = $derived(io(p, [30.1, 30.8], [34.9, 35.1]));
 	let brandIn = $derived(seg(p, 31.2, 31.9));
 	let eyebrowIn = $derived(seg(p, 29.4, 30.0));
 </script>
@@ -61,8 +61,8 @@
 				style="font-family:{SANS}; font-weight:500; font-size:24px; color:{C.muted};
 					margin-top:26px; line-height:1.5;"
 			>
-				Every reading is cross-checked, and anomalies raise an alert.<br
-				/>A wrong value is never silently published.
+				Every reading is cross-checked, and anomalies raise an alert.<br />A wrong value is never
+				silently published.
 			</div>
 		</div>
 

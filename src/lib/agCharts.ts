@@ -31,7 +31,12 @@ const PPFD_TICKS = [0, 200, 400, 600, 800, 1000, 1200, 1400];
 
 function ppfdStatus(c: PpfdCrop): { cls: string; ic: string; txt: string; note: string } {
 	if (c.cur < c.min)
-		return { cls: 'low', ic: 'south', txt: 'Below target', note: c.min - c.cur + ' µmol below band' };
+		return {
+			cls: 'low',
+			ic: 'south',
+			txt: 'Below target',
+			note: c.min - c.cur + ' µmol below band'
+		};
 	if (c.cur > c.max)
 		return { cls: 'high', ic: 'north', txt: 'Too high', note: c.cur - c.max + ' µmol above band' };
 	return { cls: 'ok', ic: 'check_circle', txt: 'Optimal', note: 'Inside target band' };
@@ -145,7 +150,8 @@ function vpd(t: number, rh: number): number {
 function vpdColor(v: number): string {
 	// hue ramp: 0 kPa → blue(220), ~1.0 → green(130), ~2.2 → red(0)
 	let hue: number;
-	if (v <= 1.0) hue = 220 - (v / 1.0) * 90; // 220 → 130
+	if (v <= 1.0)
+		hue = 220 - (v / 1.0) * 90; // 220 → 130
 	else hue = Math.max(0, 130 - ((v - 1.0) / 1.2) * 130); // 130 → 0
 	return 'hsl(' + hue.toFixed(0) + ' 68% 50%)';
 }
@@ -209,7 +215,8 @@ function renderVPD(card: HTMLElement, prog: VpdProgram): void {
 		}).join('');
 		return '<tr><td class="vpd__rowlab">' + Math.round(cToF(t)) + '°</td>' + cells + '</tr>';
 	}).join('');
-	view.innerHTML = '<div class="vpd__wrap"><table class="vpd__grid">' + head + rows + '</table></div>';
+	view.innerHTML =
+		'<div class="vpd__wrap"><table class="vpd__grid">' + head + rows + '</table></div>';
 }
 
 function initVPD(): void {

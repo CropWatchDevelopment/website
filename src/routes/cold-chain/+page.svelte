@@ -17,8 +17,7 @@
 
 <svelte:head>
 	<title
-		>Cold-Chain &amp; Refrigeration Monitoring for Restaurants, Hotels, &amp; Schools |
-		CropWatch</title
+		>Cold-Chain &amp; Refrigeration Monitoring for Restaurants, Hotels, &amp; Schools | CropWatch</title
 	>
 	<meta
 		name="description"
@@ -56,13 +55,36 @@
 			<h1>Every cooler and freezer, watched around the clock.</h1>
 			<p class="lead">
 				Continuous wireless temperature and humidity monitoring for restaurants, hotels, schools,
-				grocery and cold storage - with <a class="termlink" href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp" target="_blank" rel="noopener noreferrer">HACCP</a>-ready records an inspector can trust.
+				grocery and cold storage - with <a
+					class="termlink"
+					href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp"
+					target="_blank"
+					rel="noopener noreferrer">HACCP</a
+				>-ready records an inspector can trust.
 			</p>
 			<div class="hero__badges">
-				<span><span class="material-symbols-rounded">ac_unit</span> −40 to +185 °F (−40 to +85 °C)</span>
+				<span
+					><span class="material-symbols-rounded">ac_unit</span> −40 to +185 °F (−40 to +85 °C)</span
+				>
 				<span><span class="material-symbols-rounded">target</span> ±0.9 °F (±0.48 °C)</span>
-				<span><span class="material-symbols-rounded">description</span> <a class="termlink" href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp" target="_blank" rel="noopener noreferrer">HACCP</a>-ready</span>
-				<span><span class="material-symbols-rounded">verified</span> <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a></span>
+				<span
+					><span class="material-symbols-rounded">description</span>
+					<a
+						class="termlink"
+						href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp"
+						target="_blank"
+						rel="noopener noreferrer">HACCP</a
+					>-ready</span
+				>
+				<span
+					><span class="material-symbols-rounded">verified</span>
+					<a
+						class="termlink"
+						href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+						target="_blank"
+						rel="noopener noreferrer">ISO/IEC 17025</a
+					></span
+				>
 			</div>
 			<div class="hero__ctas" style="margin-top:26px">
 				<a href="/contact" class="cta-pill cta-pill--lg"
@@ -93,7 +115,9 @@
 <section class="section section--tint section--tight scroll-pad" id="the-problem-with-clipboards">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#the-problem-with-clipboards">The problem with clipboards</a></p>
+			<p class="eyebrow eyebrow--accent">
+				<a class="eyebrow__link" href="#the-problem-with-clipboards">The problem with clipboards</a>
+			</p>
 			<h2>Manual logs fail you exactly when it counts.</h2>
 		</div>
 		<div class="ind-grid" style="grid-template-columns:repeat(3,1fr)">
@@ -137,24 +161,28 @@
 				<div class="step__n">1</div>
 				<h3>Mount the sensor</h3>
 				<p>
-					Magnet, Velcro, or adhesive - a battery-powered sensor inside each cooler, freezer or display case. No
-					wiring, <u>no drilling</u> into the box.
+					Magnet, Velcro, or adhesive - a battery-powered sensor inside each cooler, freezer or
+					display case. No wiring, <u>no drilling</u> into the box.
 				</p>
 			</div>
 			<div class="step" data-reveal="1">
 				<div class="step__n">2</div>
 				<h3>Pair to a gateway</h3>
 				<p>
-					One <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> gateway covers a whole building - even through thick freezer walls - and
-					connects to the cloud.
+					One <a
+						class="termlink"
+						href="https://lora-alliance.org/about-lorawan/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+					> gateway covers a whole building - even through thick freezer walls - and connects to the cloud.
 				</p>
 			</div>
 			<div class="step" data-reveal="2">
 				<div class="step__n">3</div>
 				<h3>Set your limits</h3>
 				<p>
-					Define safe ranges per unit. Pick who gets an SMS, email or call - or trigger a stack light on the floor - with no caps on rules
-					or recipients.
+					Define safe ranges per unit. Pick who gets an SMS, email or call - or trigger a stack
+					light on the floor - with no caps on rules or recipients.
 				</p>
 			</div>
 			<div class="step" data-reveal="3">
@@ -182,11 +210,25 @@
 			/>
 		</div>
 		<div data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#audit-ready-by-default">Audit-ready by default</a></p>
-			<h2><a class="termlink" href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp" target="_blank" rel="noopener noreferrer">HACCP</a> records that defend themselves.</h2>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#audit-ready-by-default">Audit-ready by default</a>
+			</p>
+			<h2>
+				<a
+					class="termlink"
+					href="https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/hazard-analysis-critical-control-point-haccp"
+					target="_blank"
+					rel="noopener noreferrer">HACCP</a
+				> records that defend themselves.
+			</h2>
 			<p class="lead">
-				Continuous, tamper-evident logs with <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable accuracy - and dual-sensor verification
-				so a drifting probe can never quietly corrupt your history.
+				Continuous, tamper-evident logs with <a
+					class="termlink"
+					href="https://www.nist.gov/calibrations/traceability"
+					target="_blank"
+					rel="noopener noreferrer">NIST</a
+				>-traceable accuracy - and dual-sensor verification so a drifting probe can never quietly
+				corrupt your history.
 			</p>
 			<ul class="diff-list" style="margin-top:8px">
 				<li>
@@ -194,12 +236,17 @@
 					to back-fill
 				</li>
 				<li>
-					<span class="material-symbols-rounded">check</span> One-click CSV export plus automatic daily and weekly PDF reports for any date
-					range
+					<span class="material-symbols-rounded">check</span> One-click CSV export plus automatic daily
+					and weekly PDF reports for any date range
 				</li>
 				<li>
-					<span class="material-symbols-rounded">check</span> Per-serial <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificates for
-					every sensor
+					<span class="material-symbols-rounded">check</span> Per-serial
+					<a
+						class="termlink"
+						href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+						target="_blank"
+						rel="noopener noreferrer">ISO/IEC 17025</a
+					> certificates for every sensor
 				</li>
 				<li>
 					<span class="material-symbols-rounded">check</span> Corrective-action notes logged against each
@@ -214,7 +261,9 @@
 <section class="section scroll-pad" id="why-the-sensor-wins">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow eyebrow--accent"><a class="eyebrow__link" href="#why-the-sensor-wins">Why the sensor wins</a></p>
+			<p class="eyebrow eyebrow--accent">
+				<a class="eyebrow__link" href="#why-the-sensor-wins">Why the sensor wins</a>
+			</p>
 			<h2>The strongest sensor in the cold aisle.</h2>
 			<p class="section__intro">
 				Anyone can stick a thermometer in a freezer. CropWatch is engineered so the number you log
@@ -226,11 +275,22 @@
 				<span class="feat__icon"
 					><span class="material-symbols-rounded">workspace_premium</span></span
 				>
-				<h3><a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certified - individually</h3>
+				<h3>
+					<a
+						class="termlink"
+						href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+						target="_blank"
+						rel="noopener noreferrer">ISO/IEC 17025</a
+					> certified - individually
+				</h3>
 				<p>
-					Every sensor is calibrated in an accredited process and ships with its own <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable
-					certificate tied to its exact serial number. Not a batch sheet - proof for the specific
-					device on your wall, downloadable the moment an inspector asks.
+					Every sensor is calibrated in an accredited process and ships with its own <a
+						class="termlink"
+						href="https://www.nist.gov/calibrations/traceability"
+						target="_blank"
+						rel="noopener noreferrer">NIST</a
+					>-traceable certificate tied to its exact serial number. Not a batch sheet - proof for the
+					specific device on your wall, downloadable the moment an inspector asks.
 				</p>
 			</article>
 			<article class="feat" data-reveal="1">
@@ -239,11 +299,28 @@
 				>
 				<h3>Dual-sensor design - error, never a lie</h3>
 				<p>
-					Two independent Sensirion sensors (<a class="termlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a> + <a class="termlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>) cross-check every reading. If they disagree, the device refuses
-					to publish and raises an error code instead. You will never log an inaccurate number - <b><u>"No
-					Data" beats "Wrong Data" every single time.</u></b>
+					Two independent Sensirion sensors (<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT43"
+						target="_blank"
+						rel="noopener noreferrer">SHT43</a
+					>
+					+
+					<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>) cross-check every reading. If they disagree, the device refuses to publish and raises
+					an error code instead. You will never log an inaccurate number -
+					<b><u>"No Data" beats "Wrong Data" every single time.</u></b>
 				</p>
-				<button id="dual-sensor-animation" class="cta-ghost" style="margin-top:14px" onclick={openAnim}>
+				<button
+					id="dual-sensor-animation"
+					class="cta-ghost"
+					style="margin-top:14px"
+					onclick={openAnim}
+				>
 					<span class="material-symbols-rounded">summarize</span> Open Example Animation!
 				</button>
 			</article>
@@ -252,9 +329,9 @@
 				<h3>Field-replaceable - no calibration, no downtime</h3>
 				<p>
 					On-site calibration eats hours and, without lab-grade reference equipment, introduces
-					error. CropWatch skips it entirely: the sensing elements drift less than 0.02 °F (0.01 °C) a year,
-					typical, and when a detector does reach end of life you snap in a pre-calibrated module in
-					under a minute. No truck roll, no guesswork, no gap in your records.
+					error. CropWatch skips it entirely: the sensing elements drift less than 0.02 °F (0.01 °C)
+					a year, typical, and when a detector does reach end of life you snap in a pre-calibrated
+					module in under a minute. No truck roll, no guesswork, no gap in your records.
 				</p>
 			</article>
 			<article class="feat" data-reveal>
@@ -285,9 +362,9 @@
 				<h3>Proven stability &amp; real support</h3>
 				<p>
 					An unmatched track record for long-term sensor stability - annual temperature drift is
-					typically under 0.02 °F (0.01 °C) - backed by people who actually
-					pick up when you need them. The hardware self-audits and flags drift before it misleads
-					you - and we're there when it counts.
+					typically under 0.02 °F (0.01 °C) - backed by people who actually pick up when you need
+					them. The hardware self-audits and flags drift before it misleads you - and we're there
+					when it counts.
 				</p>
 			</article>
 			<article class="feat" data-reveal="1">
@@ -297,10 +374,15 @@
 				<h3>Fail-Safe hardware that recovers itself</h3>
 				<p>
 					Ordinary sensors give up the moment something glitches. CropWatch is built around
-					<a class="termlink" href="https://knowledge.bsigroup.com/products/electrical-apparatus-for-the-detection-and-measurement-of-combustible-gases-toxic-gases-or-oxygen-requirements-and-tests-for-apparatus-using-software-and-or-digital-technologies" target="_blank" rel="noopener noreferrer">EN 50271</a>-compatible safeguard circuitry - the functional-safety discipline used in
-					life-critical gas detection - backed by two independent watchdogs: a software monitor and a
-					separate hardware circuit on the board. If the processor ever hangs or an internal fault
-					hits, the device catches it, holds a safe state and restarts itself back into monitoring
+					<a
+						class="termlink"
+						href="https://knowledge.bsigroup.com/products/electrical-apparatus-for-the-detection-and-measurement-of-combustible-gases-toxic-gases-or-oxygen-requirements-and-tests-for-apparatus-using-software-and-or-digital-technologies"
+						target="_blank"
+						rel="noopener noreferrer">EN 50271</a
+					>-compatible safeguard circuitry - the functional-safety discipline used in life-critical
+					gas detection - backed by two independent watchdogs: a software monitor and a separate
+					hardware circuit on the board. If the processor ever hangs or an internal fault hits, the
+					device catches it, holds a safe state and restarts itself back into monitoring
 					automatically - no manual reset, no service call, no gap in your record.
 				</p>
 			</article>
@@ -310,9 +392,15 @@
 				>
 				<h3>Downloadable Reports and CSV data.</h3>
 				<p>
-					Organized data and reports are available via the web dashboard, and can be downloaded in CSV or PDF format for further analysis or record-keeping. This ensures that you have access to your data whenever you need it, without any restrictions.
+					Organized data and reports are available via the web dashboard, and can be downloaded in
+					CSV or PDF format for further analysis or record-keeping. This ensures that you have
+					access to your data whenever you need it, without any restrictions.
 				</p>
-				<p>While not strictly part of the services we provide, we have previously created custom reports to match existing workflows for customers. Reach out to us on the contact page if this is something you would like to discuss.</p>
+				<p>
+					While not strictly part of the services we provide, we have previously created custom
+					reports to match existing workflows for customers. Reach out to us on the contact page if
+					this is something you would like to discuss.
+				</p>
 			</article>
 		</div>
 	</div>
@@ -322,20 +410,94 @@
 <section class="pspecs scroll-pad" id="recommended-sensor">
 	<div class="wrap">
 		<div class="section__head" data-reveal>
-			<p class="eyebrow"><a class="eyebrow__link" href="#recommended-sensor">Recommended sensor</a></p>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#recommended-sensor">Recommended sensor</a>
+			</p>
 			<h2>CW-AIR-TH - air temperature &amp; humidity</h2>
 		</div>
 		<dl class="pspecs__grid" data-reveal>
-			<div class="spec-row"><dt>Measures</dt><dd>Temp · RH · dew point</dd></div>
-			<div class="spec-row"><dt>Range</dt><dd>−40 to +185 °F (−40 to +85 °C)</dd></div>
-			<div class="spec-row"><dt>Accuracy</dt><dd>±0.9 °F (±0.48 °C) / ±1.8 %RH</dd></div>
-			<div class="spec-row"><dt>Verification</dt><dd>Dual Sensirion sensors (<a class="termlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a> + <a class="termlink" href="https://sensirion.com/products/catalog/SHT40" target="_blank" rel="noopener noreferrer">SHT40</a>)</dd></div>
-			<div class="spec-row"><dt>Connectivity</dt><dd><a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> (Class A)</dd></div>
-			<div class="spec-row"><dt>Battery</dt><dd>Up to 10 years (user-replaceable)</dd></div>
-			<div class="spec-row"><dt>Logging</dt><dd>Every 10 min · 2 years retained · CSV + PDF</dd></div>
-			<div class="spec-row"><dt>Offline buffer</dt><dd>Onboard <a class="termlink" href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FRAM</a> · auto re-send after outage</dd></div>
-			<div class="spec-row"><dt>Enclosure</dt><dd>IP66, food-safe</dd></div>
-			<div class="spec-row"><dt>Calibration</dt><dd><a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a> · <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a></dd></div>
+			<div class="spec-row">
+				<dt>Measures</dt>
+				<dd>Temp · RH · dew point</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Range</dt>
+				<dd>−40 to +185 °F (−40 to +85 °C)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Accuracy</dt>
+				<dd>±0.9 °F (±0.48 °C) / ±1.8 %RH</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Verification</dt>
+				<dd>
+					Dual Sensirion sensors (<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT43"
+						target="_blank"
+						rel="noopener noreferrer">SHT43</a
+					>
+					+
+					<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT40"
+						target="_blank"
+						rel="noopener noreferrer">SHT40</a
+					>)
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Connectivity</dt>
+				<dd>
+					<a
+						class="termlink"
+						href="https://lora-alliance.org/about-lorawan/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+					> (Class A)
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Battery</dt>
+				<dd>Up to 10 years (user-replaceable)</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Logging</dt>
+				<dd>Every 10 min · 2 years retained · CSV + PDF</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Offline buffer</dt>
+				<dd>
+					Onboard <a
+						class="termlink"
+						href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram"
+						target="_blank"
+						rel="noopener noreferrer">FRAM</a
+					> · auto re-send after outage
+				</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Enclosure</dt>
+				<dd>IP66, food-safe</dd>
+			</div>
+			<div class="spec-row">
+				<dt>Calibration</dt>
+				<dd>
+					<a
+						class="termlink"
+						href="https://www.nist.gov/calibrations/traceability"
+						target="_blank"
+						rel="noopener noreferrer">NIST</a
+					>
+					·
+					<a
+						class="termlink"
+						href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+						target="_blank"
+						rel="noopener noreferrer">ISO/IEC 17025</a
+					>
+				</dd>
+			</div>
 		</dl>
 		<div class="prelated__grid" style="margin-top:36px">
 			<a class="rel-card" href="/replacement-sensors" data-reveal>
@@ -364,9 +526,13 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Yes. <a class="termlink" href="https://lora-alliance.org/about-lorawan/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup>™</sup></a> punches through thick freezer walls far better than Wi-Fi or Bluetooth, and a
-					single gateway typically covers an entire building. For very large or below-grade sites we
-					add a second gateway.
+					Yes. <a
+						class="termlink"
+						href="https://lora-alliance.org/about-lorawan/"
+						target="_blank"
+						rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+					> punches through thick freezer walls far better than Wi-Fi or Bluetooth, and a single gateway
+					typically covers an entire building. For very large or below-grade sites we add a second gateway.
 				</p>
 			</details>
 			<details>
@@ -375,11 +541,34 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					That's what they're built for. Readings are logged automatically with <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable
-					accuracy, dual-sensor verification, and per-serial <a class="termlink" href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17025</a> certificates. The
-					primary <a class="termlink" href="https://sensirion.com/products/catalog/SHT43" target="_blank" rel="noopener noreferrer">SHT43</a> sensor's calibration is covered by the <a class="termlink" href="https://ilac.org/about-ilac/mra/" target="_blank" rel="noopener noreferrer">ILAC-MRA</a>, so its certificate is
-					recognized by accreditation bodies worldwide - not just in the country it was issued. You can
-					export a clean, time-stamped report for any range in one click.
+					That's what they're built for. Readings are logged automatically with <a
+						class="termlink"
+						href="https://www.nist.gov/calibrations/traceability"
+						target="_blank"
+						rel="noopener noreferrer">NIST</a
+					>-traceable accuracy, dual-sensor verification, and per-serial
+					<a
+						class="termlink"
+						href="https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+						target="_blank"
+						rel="noopener noreferrer">ISO/IEC 17025</a
+					>
+					certificates. The primary
+					<a
+						class="termlink"
+						href="https://sensirion.com/products/catalog/SHT43"
+						target="_blank"
+						rel="noopener noreferrer">SHT43</a
+					>
+					sensor's calibration is covered by the
+					<a
+						class="termlink"
+						href="https://ilac.org/about-ilac/mra/"
+						target="_blank"
+						rel="noopener noreferrer">ILAC-MRA</a
+					>, so its certificate is recognized by accreditation bodies worldwide - not just in the
+					country it was issued. You can export a clean, time-stamped report for any range in one
+					click.
 				</p>
 			</details>
 			<details>
@@ -389,9 +578,10 @@
 				</summary>
 				<p>
 					The dual-sensor design catches a drifting element and withholds the reading rather than
-					logging a wrong one. You will see an error indication on the web dashboard and receive an alert email or SMS. Annual drift is
-					typically under 0.02 °F (0.01 °C), so most modules never need replacing early - and when one does
-					reach end of life, you swap it yourself in under a minute.
+					logging a wrong one. You will see an error indication on the web dashboard and receive an
+					alert email or SMS. Annual drift is typically under 0.02 °F (0.01 °C), so most modules
+					never need replacing early - and when one does reach end of life, you swap it yourself in
+					under a minute.
 				</p>
 			</details>
 			<details>
@@ -400,10 +590,14 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Readings keep landing in the sensor's onboard <a class="termlink" href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FRAM</a> memory - a storage type rated for more
-					than a trillion write cycles that holds data for decades without power. The device buffers
-					up to 36 readings (about 6 hours at its 10-minute cadence) and re-sends them automatically
-					when the connection returns, so your log has no holes.
+					Readings keep landing in the sensor's onboard <a
+						class="termlink"
+						href="https://www.infineon.com/products/memories/f-ram-ferroelectric-ram"
+						target="_blank"
+						rel="noopener noreferrer">FRAM</a
+					> memory - a storage type rated for more than a trillion write cycles that holds data for decades
+					without power. The device buffers up to 36 readings (about 6 hours at its 10-minute cadence)
+					and re-sends them automatically when the connection returns, so your log has no holes.
 				</p>
 			</details>
 			<details>
@@ -422,9 +616,16 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					Our sensors prioritize long-term stability and <a class="termlink" href="https://www.nist.gov/calibrations/traceability" target="_blank" rel="noopener noreferrer">NIST</a>-traceable accuracy over short-term bragging rights. ±0.9 °F (±0.48 °C) reflects <b>real-world performance</b>, including typical drift, <b>rather than idealized lab conditions</b>.
-					The #1 thing we do NOT want is for an auditor to check our numbers against another device and find a discrepancy.
-					Our ±0.9 °F spec is defensible in an audit.
+					Our sensors prioritize long-term stability and <a
+						class="termlink"
+						href="https://www.nist.gov/calibrations/traceability"
+						target="_blank"
+						rel="noopener noreferrer">NIST</a
+					>-traceable accuracy over short-term bragging rights. ±0.9 °F (±0.48 °C) reflects
+					<b>real-world performance</b>, including typical drift,
+					<b>rather than idealized lab conditions</b>. The #1 thing we do NOT want is for an auditor
+					to check our numbers against another device and find a discrepancy. Our ±0.9 °F spec is
+					defensible in an audit.
 				</p>
 			</details>
 			<details>
@@ -433,7 +634,10 @@
 					<span class="material-symbols-rounded">add</span>
 				</summary>
 				<p>
-					The toughest environment we have installed a sensor in is a walk-in flash freezer. Daily it drops from +21 °C (+70 °F) to around −37 °C (−35 °F) in a matter of minutes and stays at that temp for a few hours. Our sensor was selected for this after others broke within a few weeks.
+					The toughest environment we have installed a sensor in is a walk-in flash freezer. Daily
+					it drops from +21 °C (+70 °F) to around −37 °C (−35 °F) in a matter of minutes and stays
+					at that temp for a few hours. Our sensor was selected for this after others broke within a
+					few weeks.
 				</p>
 			</details>
 		</div>
@@ -451,7 +655,9 @@
 		</p>
 		<div class="closing__ctas">
 			<a href="/contact" class="cta-pill cta-pill--lg">Book a demo</a>
-			<a href="/replacement-sensors" class="cta-ghost cta-ghost--light cta-pill--lg">See the sensors</a>
+			<a href="/replacement-sensors" class="cta-ghost cta-ghost--light cta-pill--lg"
+				>See the sensors</a
+			>
 		</div>
 	</div>
 </section>

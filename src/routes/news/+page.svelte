@@ -22,9 +22,7 @@
 	<div class="wrap" data-reveal>
 		<p class="eyebrow"><span class="material-symbols-rounded">campaign</span> News</p>
 		<h1>News &amp; updates</h1>
-		<p class="lead">
-			Product releases, certification milestones and announcements from CropWatch.
-		</p>
+		<p class="lead">Product releases, certification milestones and announcements from CropWatch.</p>
 	</div>
 </section>
 

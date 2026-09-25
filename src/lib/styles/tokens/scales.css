@@ -23,14 +23,17 @@
 	/* Latin renders in Inter; Japanese glyphs fall through (per-glyph) to the
 	   Japanese default - BIZ UDPGothic (Morisawa BIZ UD Gothic, proportional,
 	   self-hosted & complete) - then Yu Gothic, then Hiragino / Noto Sans JP. */
-	--cw-font-family: 'Inter Variable', 'Inter Fallback', 'BIZ UDPGothic', 'Yu Gothic', YuGothic,
-		'游ゴシック', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-	/* Japanese-only stack (use when an element is known to hold JP text) */
-	--cw-font-jp: 'BIZ UDPGothic', 'Yu Gothic', YuGothic, '游ゴシック',
+	--cw-font-family:
+		'Inter Variable', 'Inter Fallback', 'BIZ UDPGothic', 'Yu Gothic', YuGothic, '游ゴシック',
 		'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+	/* Japanese-only stack (use when an element is known to hold JP text) */
+	--cw-font-jp:
+		'BIZ UDPGothic', 'Yu Gothic', YuGothic, '游ゴシック', 'Hiragino Kaku Gothic ProN',
+		'Noto Sans JP', sans-serif;
 	/* Fixed-width (tategaki/tabular) Japanese - BIZ UDGothic, mono-spaced UD */
-	--cw-font-jp-tabular: 'BIZ UDGothic', 'BIZ UDPGothic', 'Yu Gothic',
-		'Hiragino Kaku Gothic ProN', 'Noto Sans JP', monospace;
+	--cw-font-jp-tabular:
+		'BIZ UDGothic', 'BIZ UDPGothic', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP',
+		monospace;
 	--cw-font-mono: 'JetBrains Mono Variable', 'Fira Mono', 'Cascadia Code', monospace;
 
 	--cw-text-xs: 0.75rem;
@@ -69,12 +72,9 @@
 
 	/* ── Shadows ──────────────────────────────────────── */
 	--cw-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.15);
-	--cw-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.25),
-		0 2px 4px -2px rgb(0 0 0 / 0.15);
-	--cw-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3),
-		0 4px 6px -4px rgb(0 0 0 / 0.2);
-	--cw-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.35),
-		0 8px 10px -6px rgb(0 0 0 / 0.2);
+	--cw-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.25), 0 2px 4px -2px rgb(0 0 0 / 0.15);
+	--cw-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+	--cw-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.35), 0 8px 10px -6px rgb(0 0 0 / 0.2);
 	/* Soft marketing-site shadow (low opacity, navy-tinted) */
 	--cw-shadow-soft: 0 12px 30px -12px rgba(11, 23, 48, 0.18);
 
