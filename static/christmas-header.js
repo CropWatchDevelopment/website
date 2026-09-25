@@ -41,19 +41,13 @@
 					0 0 8px rgba(255, 255, 255, 0.6);
 				animation-name: cw-christmas-fall;
 				animation-timing-function: linear;
-				animation-iteration-count: infinite;
+				/* !important (with the per-flake duration set as important inline)
+				   so the snow keeps falling even where a site-wide
+				   prefers-reduced-motion reset forces every animation to a single
+				   0.01ms pass, which would otherwise park each flake off screen at
+				   top:-12vh. The snow is meant to fall for every visitor. */
+				animation-iteration-count: infinite !important;
 				will-change: transform;
-			}
-
-			/* The site-wide reduced-motion reset shortens every animation to one
-			   0.01ms pass, which would leave each flake parked at top:-12vh, off
-			   screen. Show still flakes scattered down the viewport instead. */
-			@media (prefers-reduced-motion: reduce) {
-				.cw-christmas-snowflake {
-					animation: none !important;
-					top: var(--rest-y, 50vh);
-					transform: translateX(var(--drift, 0px));
-				}
 			}
 
 			@keyframes cw-christmas-fall {
@@ -90,13 +84,11 @@
 			const left = Math.random() * 100;
 			const drift = -45 + Math.random() * 90;
 			const opacity = 0.55 + Math.random() * 0.45;
-			const restY = Math.random() * 95;
 
 			flake.style.left = `${left}vw`;
-			flake.style.setProperty('--rest-y', `${restY}vh`);
 			flake.style.fontSize = `${size}rem`;
 			flake.style.opacity = `${opacity}`;
-			flake.style.animationDuration = `${duration}s`;
+			flake.style.setProperty('animation-duration', `${duration}s`, 'important');
 			flake.style.animationDelay = `${delay}s`;
 			flake.style.setProperty('--drift', `${drift}px`);
 
