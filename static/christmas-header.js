@@ -32,12 +32,28 @@
 				position: absolute;
 				top: -12vh;
 				left: 0;
-				color: rgba(255, 255, 255, 0.95);
-				text-shadow: 0 0 6px rgba(255, 255, 255, 0.45);
+				color: #fff;
+				/* Blue rim so the white flakes still read on white page sections
+				   (cropwatch.io is mostly white), not only over dark heroes. */
+				text-shadow:
+					0 0 1px rgba(23, 62, 122, 0.9),
+					0 0 3px rgba(44, 108, 183, 0.65),
+					0 0 8px rgba(255, 255, 255, 0.6);
 				animation-name: cw-christmas-fall;
 				animation-timing-function: linear;
 				animation-iteration-count: infinite;
 				will-change: transform;
+			}
+
+			/* The site-wide reduced-motion reset shortens every animation to one
+			   0.01ms pass, which would leave each flake parked at top:-12vh, off
+			   screen. Show still flakes scattered down the viewport instead. */
+			@media (prefers-reduced-motion: reduce) {
+				.cw-christmas-snowflake {
+					animation: none !important;
+					top: var(--rest-y, 50vh);
+					transform: translateX(var(--drift, 0px));
+				}
 			}
 
 			@keyframes cw-christmas-fall {
@@ -73,9 +89,11 @@
 			const delay = -Math.random() * duration;
 			const left = Math.random() * 100;
 			const drift = -45 + Math.random() * 90;
-			const opacity = 0.4 + Math.random() * 0.55;
+			const opacity = 0.55 + Math.random() * 0.45;
+			const restY = Math.random() * 95;
 
 			flake.style.left = `${left}vw`;
+			flake.style.setProperty('--rest-y', `${restY}vh`);
 			flake.style.fontSize = `${size}rem`;
 			flake.style.opacity = `${opacity}`;
 			flake.style.animationDuration = `${duration}s`;

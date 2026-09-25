@@ -102,15 +102,18 @@ describe('static/christmas-header.js', () => {
 		const firstSnowflake = snowflakes?.[0];
 
 		expect(style?.textContent).toContain('#cw-christmas-snow');
+		// Reduced motion must show still flakes, not leave them parked off screen.
+		expect(style?.textContent).toMatch(/prefers-reduced-motion: reduce[\s\S]*top: var\(--rest-y/);
 		expect(snowLayer?.getAttribute('aria-hidden')).toBe('true');
 		expect(snowflakes).toHaveLength(32);
 		expect(firstSnowflake?.textContent).toBe('❄');
 		expect(firstSnowflake?.style.left).toBe('50vw');
 		expect(firstSnowflake?.style.fontSize).toBe('0.875rem');
-		expect(firstSnowflake?.style.opacity).toBe('0.675');
+		expect(firstSnowflake?.style.opacity).toBe('0.775');
 		expect(firstSnowflake?.style.animationDuration).toBe('11.5s');
 		expect(firstSnowflake?.style.animationDelay).toBe('-5.75s');
 		expect(firstSnowflake?.style.getPropertyValue('--drift')).toBe('0px');
+		expect(firstSnowflake?.style.getPropertyValue('--rest-y')).toBe('47.5vh');
 		expect(document.querySelector('source')?.getAttribute('srcset')).toBe(CHRISTMAS_LOGO_WEBP);
 		expect(document.querySelector('source')?.getAttribute('type')).toBe('image/webp');
 		expect(document.querySelector('#header-logo')?.getAttribute('src')).toBe(CHRISTMAS_LOGO_PNG);
