@@ -79,8 +79,9 @@
 	<div class="hdr__bar">
 		<div class="wrap hdr__main">
 			<a class="brand" href="/home">
-				<!-- <picture> + id are load-bearing: christmas-header.js targets
-			     #header-logo's enclosing <picture> for the seasonal logo swap. -->
+				<!-- <picture> + id are load-bearing: christmas-header.js and
+			     halloween-header.js target #header-logo's enclosing <picture>
+			     for the seasonal logo swap. -->
 				<picture>
 					<source srcset={LOGO} type="image/svg+xml" />
 					<img

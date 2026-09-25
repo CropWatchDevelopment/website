@@ -10,6 +10,7 @@
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import { organizationSchema, websiteSchema } from '$lib/seo/schema';
 	import { isChristmasSeason } from '$lib/christmas';
+	import { isHalloweenSeason } from '$lib/halloween';
 	// Self-hosted text faces (replace the former Google Fonts <link>s in app.html):
 	// same-origin, immutable-cached, no third-party connection blocking first paint.
 	import '@fontsource-variable/inter';
@@ -90,10 +91,21 @@
 		document.head.appendChild(script);
 	}
 
+	// Same client-side gate for the Halloween logo (Oct 15 - Oct 31).
+	function loadHalloweenDecor() {
+		if (!isHalloweenSeason() || document.querySelector('script[data-cw-halloween]')) return;
+		const script = document.createElement('script');
+		script.src = `${assets}/halloween-header.js`;
+		script.defer = true;
+		script.dataset.cwHalloween = '';
+		document.head.appendChild(script);
+	}
+
 	onMount(() => {
 		initReveal();
 		scrollToHash();
 		loadChristmasDecor();
+		loadHalloweenDecor();
 		return () => observer?.disconnect();
 	});
 
