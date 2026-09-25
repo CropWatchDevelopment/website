@@ -9,12 +9,13 @@ import { onMount, tick } from 'svelte';
 import { alternatesFor } from '$lib/seo/alternates';
 import JsonLd from '$lib/components/JsonLd.svelte';
 import { organizationSchema, websiteSchema } from '$lib/seo/schema';
+import { isChristmasSeason } from '$lib/christmas';
 import '../app.css';
 import '$lib/styles/cropwatch-tokens.css';
 import '$lib/styles/cropwatch-site.css';
 import '$lib/styles/cropwatch-chrome.css';
 
-let { children, data } = $props();
+let { children } = $props();
 
 // hreflang alternates linking this page to its cropwatch.io (en) counterpart.
 // This is the Japan-website branch (ja); the .io branch calls
@@ -120,9 +121,22 @@ const scanReveal = () => {
 	els.forEach((el) => revealObserver!.observe(el));
 };
 
+// Season-gated in the browser, not in a server load: prerendered routes (e.g.
+// /news) would otherwise freeze the check at build time and never show the
+// decoration unless someone happened to deploy in season.
+const loadChristmasDecor = () => {
+	if (!isChristmasSeason() || document.querySelector('script[data-cw-christmas]')) return;
+	const script = document.createElement('script');
+	script.src = `${assets}/christmas-header.js`;
+	script.defer = true;
+	script.dataset.cwChristmas = '';
+	document.head.appendChild(script);
+};
+
 onMount(() => {
 	ensureIcons();
 	scanReveal();
+	loadChristmasDecor();
 
 	if (!PUBLIC_GA_MEASUREMENT_ID || typeof window === 'undefined') return;
 
@@ -201,9 +215,6 @@ afterNavigate(async () => {
 	{#each alternates ?? [] as alt (alt.hreflang)}
 		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 	{/each}
-	{#if data.christmas}
-		<script defer src="{assets}/christmas-header.js"></script>
-	{/if}
 </svelte:head>
 
 <JsonLd data={siteLd} />

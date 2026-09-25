@@ -3,7 +3,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const DEFAULT_LOGO = '/cropwatch_icons/cropwatch.svg';
-const CHRISTMAS_LOGO = '/cropwatch_icons/christmas_cropwatch.svg';
+const CHRISTMAS_LOGO_WEBP = '/cropwatch_icons/christmas_cropwatch.webp';
+const CHRISTMAS_LOGO_PNG = '/cropwatch_icons/christmas_cropwatch.png';
 const SNOW_LAYER_ID = 'cw-christmas-snow';
 const STYLE_ID = 'cw-christmas-style';
 
@@ -44,6 +45,7 @@ function renderHeaderLogo() {
 
 async function runChristmasHeaderScript() {
 	vi.resetModules();
+	// @ts-expect-error - plain IIFE browser script, imported for its side effects
 	await import('../../static/christmas-header.js');
 }
 
@@ -109,8 +111,9 @@ describe('static/christmas-header.js', () => {
 		expect(firstSnowflake?.style.animationDuration).toBe('11.5s');
 		expect(firstSnowflake?.style.animationDelay).toBe('-5.75s');
 		expect(firstSnowflake?.style.getPropertyValue('--drift')).toBe('0px');
-		expect(document.querySelector('source')?.getAttribute('srcset')).toBe(CHRISTMAS_LOGO);
-		expect(document.querySelector('#header-logo')?.getAttribute('src')).toBe(CHRISTMAS_LOGO);
+		expect(document.querySelector('source')?.getAttribute('srcset')).toBe(CHRISTMAS_LOGO_WEBP);
+		expect(document.querySelector('source')?.getAttribute('type')).toBe('image/webp');
+		expect(document.querySelector('#header-logo')?.getAttribute('src')).toBe(CHRISTMAS_LOGO_PNG);
 	});
 
 	it('waits for DOMContentLoaded and uses the mobile snow count at the inclusive season end', async () => {
@@ -134,8 +137,8 @@ describe('static/christmas-header.js', () => {
 		expect(document.querySelectorAll(`#${STYLE_ID}`)).toHaveLength(1);
 		expect(document.querySelectorAll(`#${SNOW_LAYER_ID}`)).toHaveLength(1);
 		expect(document.querySelectorAll(`#${SNOW_LAYER_ID} .cw-christmas-snowflake`)).toHaveLength(20);
-		expect(document.querySelector('source')?.getAttribute('srcset')).toBe(CHRISTMAS_LOGO);
-		expect(document.querySelector('#header-logo')?.getAttribute('src')).toBe(CHRISTMAS_LOGO);
+		expect(document.querySelector('source')?.getAttribute('srcset')).toBe(CHRISTMAS_LOGO_WEBP);
+		expect(document.querySelector('#header-logo')?.getAttribute('src')).toBe(CHRISTMAS_LOGO_PNG);
 
 		document.dispatchEvent(new Event('DOMContentLoaded'));
 
