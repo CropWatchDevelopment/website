@@ -62,7 +62,7 @@
 				'データ保存2年間'
 			],
 			excluded: [],
-			deviceUnitPrice: 35200,
+			deviceUnitPrice: 29800,
 			deviceLabel: '温湿度センサー',
 			deviceNote: 'CO₂センサー・土壌センサーなど他の機器はお問い合わせください。'
 		},
@@ -734,7 +734,7 @@
 					<strong class="pr-device__price pr-device__price--contact">お見積もり</strong>
 				{:else}
 					<strong class="pr-device__price"
-						>{yen(deviceSetPrice * safeLocations)}<small>税込・初回のみ・概算</small></strong
+						>{yen(deviceSetPrice * safeLocations)}<small>税抜・初回のみ・概算</small></strong
 					>
 				{/if}
 			</div>
