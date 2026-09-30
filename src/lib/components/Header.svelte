@@ -3,6 +3,7 @@
 	import { afterNavigate } from '$app/navigation';
 
 	const LOGO = '/assets/logos/cropwatch_static.svg';
+	// const LOGO = 'cropwatch_icons/cropwatch_halloween.svg';
 
 	type Product = { href: string; icon: string; t: string; d: string };
 
