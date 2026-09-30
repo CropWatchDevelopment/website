@@ -2,7 +2,7 @@
 	function isHalloweenSeason() {
 		const now = new Date();
 		const currentYear = now.getFullYear();
-		const startDate = new Date(currentYear, 9, 15, 0, 0, 0, 0); // Oct 15
+		const startDate = new Date(currentYear, 9, 1, 0, 0, 0, 0); // Oct 1
 		const endDate = new Date(currentYear, 10, 1, 0, 0, 0, 0); // Nov 1 (exclusive)
 
 		return now >= startDate && now < endDate;

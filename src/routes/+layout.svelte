@@ -134,7 +134,7 @@ const loadChristmasDecor = () => {
 	document.head.appendChild(script);
 };
 
-// Same client-side gate for the Halloween logo (Oct 15 - Oct 31).
+// Same client-side gate for the Halloween logo (Oct 1 - Oct 31).
 const loadHalloweenDecor = () => {
 	if (!isHalloweenSeason() || document.querySelector('script[data-cw-halloween]')) return;
 	const script = document.createElement('script');
