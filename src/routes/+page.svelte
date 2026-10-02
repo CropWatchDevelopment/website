@@ -1,7 +1,7 @@
 <!--
 	Sectors splitter - the site's first landing page.
 	A full-viewport "choose your industry" funnel that routes visitors into the
-	three product worlds. The shared header renders in its slim, logo-only
+	three product worlds. The shared header renders in its slim (logo + /home link)
 	"splash" variant and the footer is suppressed (handled in +layout.svelte) so
 	nothing competes with the choice. Ported from the design's sectors.html.
 -->

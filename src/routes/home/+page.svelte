@@ -1,5 +1,7 @@
 <script lang="ts">
 	import PartsOrigin from '$lib/components/PartsOrigin.svelte';
+	import LoRaWANFlow from '$lib/components/LoRaWANFlow.svelte';
+	import V25Teardown from '$lib/components/v25-teardown/V25Teardown.svelte';
 </script>
 
 <svelte:head>
@@ -180,6 +182,24 @@
 	</div>
 </section>
 
+<!-- ░░ Inside the V25 - 3D teardown ░░ -->
+<section class="section scroll-pad" id="inside-the-sensor">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#inside-the-sensor">Inside the sensor</a>
+			</p>
+			<h2>Built to be opened, serviced, and mounted anywhere.</h2>
+			<p class="section__intro">
+				Three screws to replace the sensor, an additional 5 to replace the batteries. Our enclosure was built to be maintained and work as hard as your team does.
+			</p>
+		</div>
+		<div class="teardown" data-reveal>
+			<V25Teardown />
+		</div>
+	</div>
+</section>
+
 <!-- ░░ Trusted parts / global sourcing ░░ -->
 <section class="section section--tint scroll-pad" id="trusted-parts">
 	<div class="wrap">
@@ -198,6 +218,30 @@
 
 		<div data-reveal>
 			<PartsOrigin />
+		</div>
+	</div>
+</section>
+
+<!-- ░░ How data travels - LoRaWAN ░░ -->
+<section class="section scroll-pad" id="field-to-screen">
+	<div class="wrap">
+		<div class="section__head" data-reveal>
+			<p class="eyebrow">
+				<a class="eyebrow__link" href="#field-to-screen">From the field to your screen</a>
+			</p>
+			<h2>One reading, four short hops.</h2>
+			<p class="section__intro">
+				The V25 sends each reading over <a
+					class="termlink"
+					href="https://lora-alliance.org/about-lorawan/"
+					target="_blank"
+					rel="noopener noreferrer">LoRaWAN<sup>™</sup></a
+				> radio to a nearby gateway. The gateway passes it over the internet to CropWatch, and you see
+				it in the CropWatch app.
+			</p>
+		</div>
+		<div data-reveal>
+			<LoRaWANFlow />
 		</div>
 	</div>
 </section>
@@ -441,6 +485,11 @@
 </section>
 
 <style>
+	.teardown {
+		max-width: 1080px;
+		margin: 40px auto 0;
+	}
+
 	/* ── App UI showcase (navy section) ──────────────────────────────────────
 	   Each device sits in its own column - no overlap - bottom-aligned on a shared
 	   shelf with a labelled caption. flex-wrap + per-device flex-basis means a

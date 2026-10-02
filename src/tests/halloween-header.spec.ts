@@ -29,8 +29,8 @@ async function runHalloweenHeaderScript() {
 	await import('../../static/halloween-header.js');
 }
 
-const BEFORE = new Date(2026, 9, 14, 23, 59, 59, 999);
-const START = new Date(2026, 9, 15, 0, 0, 0, 0);
+const BEFORE = new Date(2026, 8, 30, 23, 59, 59, 999);
+const START = new Date(2026, 9, 1, 0, 0, 0, 0);
 const LAST_MOMENT = new Date(2026, 9, 31, 23, 59, 59, 999);
 const AFTER = new Date(2026, 10, 1, 0, 0, 0, 0);
 
