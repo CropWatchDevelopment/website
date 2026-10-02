@@ -129,6 +129,12 @@
 				<a class="nav__item" class:is-current={isContact} href="/contact">Contact</a>
 			</nav>
 
+			{#if splash}
+				<a class="nav__item hdr__home" href="/home"
+					>Why CropWatch? <span class="material-symbols-rounded">arrow_forward</span></a
+				>
+			{/if}
+
 			<div class="hdr__actions">
 				<a href="https://app.cropwatch.io" class="util"
 					><span class="material-symbols-rounded">exit_to_app</span> App</a
