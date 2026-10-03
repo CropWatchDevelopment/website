@@ -1,15 +1,38 @@
 /**
- * Synthetic telemetry for the demo device detail page.
+ * Synthetic telemetry for the /demo dashboard and device pages.
  *
- * The real page fetches a device's history from the API for a selected range.
- * There is no API here, so this fabricates a plausible series instead: a daily
- * sine curve (warm afternoons, cool nights) plus deterministic pseudo-noise, so
- * the chart, heatmap, stat cards and table all have something real-shaped to
- * render. Nothing in here is a measurement of anything.
+ * The real app reads a device's history from the API. There is no API here, so
+ * this fabricates one, modelled on what the real fleet looks like rather than
+ * on textbook curves. The daily shapes come from hourly averages of live
+ * CropWatch devices (2 weeks of cw_air_data, Japan time, 2026-10), aggregated
+ * across many sites — no individual device or customer is reproduced:
  *
- * Values are generated from a seeded hash of `(devEui, column, timestamp)`, so a
- * given point is stable across re-renders and range changes — switching from
- * 24h to 72h extends the series rather than redrawing a different history.
+ * - barn (CO₂ sensor in a poultry house): 23 °C / 94 %RH overnight, warming to
+ *   29 °C / 77 %RH at 13:00. CO₂ builds overnight to ~820 ppm at 06:00 and is
+ *   ventilated down to ~580 ppm through the afternoon. A typical house has
+ *   three of these along its length, and they disagree: the spread between
+ *   sensors is ~±350 ppm at night (minimum ventilation, so the exhaust end goes
+ *   stale) and ~±110 ppm at midday with the fans running. `barnPosition` puts a
+ *   sensor along that gradient.
+ * - outdoor: the temperature/humidity sensor a typical farm hangs outside the
+ *   house as a reference — 19.7 °C / 99 %RH at dawn, 29.6 °C / 70 %RH at 13:00,
+ *   a wider swing than inside.
+ * - fridge: holds ~3.5 °C while the compressor cycles it ±0.4 °C, with short
+ *   2-4 °C spikes when the door is opened during working hours.
+ * - freezer: ~-19.5 °C at night, a little warmer by day, with a defrost cycle
+ *   every 6 hours and door spikes in the daytime.
+ * - cucumber: a cucumber greenhouse in October with the combined soil + air +
+ *   light probe. Sun up 05:50-17:20, PPFD peaking ~900 µmol/m²/s around noon;
+ *   house air 17 °C at night, vented to ~28 °C / 70 %RH early afternoon (VPD
+ *   ~1.1 kPa, inside the cucumber band); CO₂ builds overnight, is enriched to
+ *   ~750 ppm after sunrise and falls to ambient once the vents open; drip
+ *   irrigation at 08:00, 11:00, 14:00 and 16:30 lifts soil moisture and EC.
+ *   Its clock is frozen at 13:00 (DemoRow.clockHour) so the page always shows
+ *   the house at its midday peak.
+ *
+ * Values come from a seeded hash of `(devEui, column, timestamp)`, so a given
+ * point is stable across re-renders and range changes, and the dashboard card
+ * for a device shows exactly the reading its device page has at that time.
  */
 
 import type { DemoRow } from './demo-data';
@@ -32,125 +55,34 @@ export function getRangeOptions(): TimeRangeOption[] {
 	];
 }
 
-/** Per-column shape of the generated curve. */
-interface ColumnProfile {
-	/** Mean value. */
-	base: number;
-	/** Peak-to-mean amplitude of the daily cycle. */
-	swing: number;
-	/** Amplitude of the per-sample noise. */
-	noise: number;
-	/** Hour of day (0-23) at which the daily cycle peaks. */
-	peakHour: number;
-	/** Decimal places. */
-	precision: number;
-	min: number;
-	max: number;
-	/**
-	 * Follow the sun instead of a cosine: zero before sunrise and after sunset,
-	 * arcing to `swing` at solar noon. Light does not have a "mean" the way
-	 * temperature does, so `base` is ignored for these columns.
-	 */
-	daylightOnly?: boolean;
-}
+const MS_PER_MIN = 60 * 1000;
+const MS_PER_HOUR = 60 * MS_PER_MIN;
 
-const PROFILES: Record<string, ColumnProfile> = {
-	// Greenhouse air warms through the afternoon and cools overnight.
-	temperature_c: {
-		base: 23.5,
-		swing: 4.2,
-		noise: 0.35,
-		peakHour: 14,
-		precision: 2,
-		min: 14,
-		max: 33
-	},
-	// Humidity runs inverse to temperature.
-	humidity: { base: 63, swing: -9, noise: 1.2, peakHour: 14, precision: 1, min: 38, max: 88 },
-	// CO2 is drawn down by photosynthesis in daylight and builds up at night.
-	co2: { base: 640, swing: -150, noise: 18, peakHour: 14, precision: 0, min: 410, max: 1050 },
-	pressure: {
-		base: 1012,
-		swing: 1.6,
-		noise: 0.3,
-		peakHour: 10,
-		precision: 1,
-		min: 1002,
-		max: 1024
-	},
-	// Soil lags the air: shallower swing, later peak.
-	moisture: { base: 34, swing: -3.4, noise: 0.5, peakHour: 16, precision: 1, min: 20, max: 50 },
-	ec: { base: 1.24, swing: 0.14, noise: 0.03, peakHour: 16, precision: 2, min: 0.7, max: 2.2 },
-	// ── Combined-sensor air columns ──────────────────────────────────────────
-	// The soil probe's forthcoming sibling reports greenhouse air alongside the
-	// ground readings. Kept under `air_*` keys so the device page's CHART_COLUMNS
-	// does not pull them into the soil time series.
-	air_temperature: {
-		base: 23.5,
-		swing: 4.2,
-		noise: 0.35,
-		peakHour: 14,
-		precision: 2,
-		min: 14,
-		max: 33
-	},
-	air_humidity: { base: 63, swing: -9, noise: 1.2, peakHour: 14, precision: 1, min: 38, max: 88 },
-	air_co2: { base: 640, swing: -150, noise: 18, peakHour: 14, precision: 0, min: 410, max: 1050 },
-	// PPFD is zero at night, so it arcs with the sun rather than cycling.
-	// `swing` is the solar-noon peak: a diffused greenhouse under shade screen,
-	// not open field. It sets the DLI too — the day's integral works out near
-	// 21 mol/m²/day, which is where a leafy crop should sit.
-	ppfd: {
-		base: 0,
-		swing: 700,
-		noise: 18,
-		peakHour: 12,
-		precision: 0,
-		min: 0,
-		max: 1000,
-		daylightOnly: true
-	},
-	// Battery drifts down slowly; no daily cycle worth speaking of.
-	battery_level: {
-		base: 3.6,
-		swing: 0.015,
-		noise: 0.006,
-		peakHour: 12,
-		precision: 2,
-		min: 3.4,
-		max: 3.66
-	}
-};
-
-/**
- * Soil is not air. A probe in the ground sits cooler than the greenhouse, swings
- * a fraction as much over the day, and lags the sun by hours — so cw_soil_data
- * overrides the shared temperature curve rather than reusing the air one.
- */
-const SOIL_PROFILES: Record<string, ColumnProfile> = {
-	temperature_c: {
-		base: 18.6,
-		swing: 1.3,
-		noise: 0.12,
-		peakHour: 18,
-		precision: 2,
-		min: 11,
-		max: 26
-	}
-};
-
-function profileFor(dataTable: string, column: string): ColumnProfile | undefined {
-	if (dataTable === 'cw_soil_data' && SOIL_PROFILES[column]) return SOIL_PROFILES[column];
-	return PROFILES[column];
-}
-
-const MS_PER_HOUR = 60 * 60 * 1000;
-const MS_PER_DAY = 24 * MS_PER_HOUR;
-
-/** Daylight window used by `daylightOnly` columns. */
-const SUNRISE_HOUR = 5.5;
-const SUNSET_HOUR = 18.5;
-const SOLAR_NOON_HOUR = (SUNRISE_HOUR + SUNSET_HOUR) / 2;
+/** Fleet hourly averages for poultry-house CO₂ sensors, index = hour (JST). */
+const BARN_TEMPERATURE = [
+	23.7, 23.4, 23.2, 23.1, 22.9, 23.0, 23.0, 23.6, 24.8, 26.2, 27.4, 28.5, 29.1, 29.3, 29.2, 28.7,
+	27.9, 27.0, 26.0, 25.3, 24.8, 24.4, 24.2, 23.9
+];
+const BARN_HUMIDITY = [
+	94, 94, 94, 94, 94, 94, 94, 94, 92, 87, 83, 79, 77, 77, 79, 81, 84, 87, 90, 92, 94, 94, 94, 94
+];
+const BARN_CO2 = [
+	723, 737, 749, 761, 775, 801, 819, 770, 684, 621, 599, 587, 579, 578, 581, 579, 590, 619, 641,
+	663, 673, 689, 701, 711
+];
+/** Fleet hourly standard deviation of CO₂ between sensors in the same house (ppm). */
+const BARN_CO2_SPREAD = [
+	311, 335, 350, 356, 357, 362, 349, 284, 186, 120, 112, 107, 107, 110, 112, 113, 140, 183, 193,
+	210, 232, 257, 274, 289
+];
+/** Fleet hourly averages for the outside-air sensor at poultry farms. */
+const OUTDOOR_TEMPERATURE = [
+	21.2, 20.9, 20.6, 20.3, 20.0, 19.8, 19.7, 20.5, 22.1, 24.5, 26.9, 28.4, 29.2, 29.6, 29.4, 28.6,
+	27.3, 25.9, 24.5, 23.6, 22.9, 22.4, 22.0, 21.6
+];
+const OUTDOOR_HUMIDITY = [
+	97, 98, 98, 98, 99, 99, 99, 98, 95, 87, 79, 74, 71, 70, 73, 76, 80, 85, 90, 93, 95, 96, 97, 97
+];
 
 /** Deterministic [-1, 1] from a string key — a tiny xorshift over an FNV-1a hash. */
 function seededUnit(key: string): number {
@@ -165,56 +97,275 @@ function seededUnit(key: string): number {
 	return ((hash >>> 0) / 0xffffffff) * 2 - 1;
 }
 
-function valueAt(
-	devEui: string,
-	dataTable: string,
-	column: string,
-	timestampMs: number
-): number | null {
-	const profile = profileFor(dataTable, column);
-	if (!profile) return null;
-
-	// Local hour-of-day, not UTC: `peakHour` means "2pm as the viewer sees it".
-	// Taking it modulo the epoch instead shifts the whole daily cycle by the
-	// viewer's UTC offset — 9 hours in Japan, which put the afternoon peak at
-	// 11pm and made the greenhouse look like it warmed up overnight.
-	const at = new Date(timestampMs);
-	const hourOfDay = at.getHours() + at.getMinutes() / 60;
-
-	if (profile.daylightOnly) {
-		if (hourOfDay <= SUNRISE_HOUR || hourOfDay >= SUNSET_HOUR) return 0;
-		const arc = Math.sin((Math.PI * (hourOfDay - SUNRISE_HOUR)) / (SUNSET_HOUR - SUNRISE_HOUR));
-		// Two scales of cloud: a per-day character (so the DLI history strip has
-		// bright and overcast days rather than seven identical bars) and an
-		// hourly variation on top of it, which holds for the hour instead of
-		// flickering sample to sample.
-		const dayKey = Math.floor(timestampMs / MS_PER_DAY);
-		const hourKey = Math.floor(timestampMs / MS_PER_HOUR);
-		const dayCloud = 1 + seededUnit(`${devEui}:${column}:day:${dayKey}`) * 0.3;
-		const hourCloud = 1 + seededUnit(`${devEui}:${column}:cloud:${hourKey}`) * 0.15;
-		const lit =
-			profile.swing * arc * dayCloud * hourCloud +
-			seededUnit(`${devEui}:${column}:${timestampMs}`) * profile.noise;
-		const bounded = Math.min(profile.max, Math.max(profile.min, lit));
-		const scale = 10 ** profile.precision;
-		return Math.round(bounded * scale) / scale;
-	}
-
-	const phase = ((hourOfDay - profile.peakHour) / 24) * Math.PI * 2;
-	const daily = Math.cos(phase) * profile.swing;
-	// Slow multi-day wander so a 72h range doesn't look like three identical days.
-	const drift = Math.sin(timestampMs / (37 * MS_PER_HOUR)) * profile.swing * 0.25;
-	const noise = seededUnit(`${devEui}:${column}:${timestampMs}`) * profile.noise;
-
-	const raw = profile.base + daily + drift + noise;
-	const clamped = Math.min(profile.max, Math.max(profile.min, raw));
-	const factor = 10 ** profile.precision;
-	return Math.round(clamped * factor) / factor;
+/** Deterministic [0, 1). */
+function seeded01(key: string): number {
+	return (seededUnit(key) + 1) / 2;
 }
 
-/** Sampling interval for a range, chosen to keep the row count sane. */
-function stepMinutes(device: DemoRow): number {
-	return device.upload_interval ?? device.device_type.default_upload_interval ?? 10;
+/**
+ * Local hour-of-day as a fraction (14.5 = 14:30). Local, not UTC: the hourly
+ * tables are Japan time, and taking the hour modulo the epoch instead would
+ * shift every curve by the viewer's UTC offset.
+ */
+function hourOf(t: number): number {
+	const at = new Date(t);
+	return at.getHours() + at.getMinutes() / 60;
+}
+
+/** Linear interpolation into a 24-entry hourly table. */
+function hourly(table: number[], hour: number): number {
+	const i = Math.floor(hour) % 24;
+	const frac = hour - Math.floor(hour);
+	return table[i] + (table[(i + 1) % 24] - table[i]) * frac;
+}
+
+/** cos curve peaking at `peakHour`, in [-1, 1]. */
+function daily(hour: number, peakHour: number): number {
+	return Math.cos(((hour - peakHour) / 24) * Math.PI * 2);
+}
+
+/** Slow multi-day wander so a 72h range doesn't look like three identical days. */
+function wander(devEui: string, t: number): number {
+	const phase = seeded01(`${devEui}:wander`) * Math.PI * 2;
+	return Math.sin(t / (37 * MS_PER_HOUR) + phase);
+}
+
+/** Compressor cycle as a triangle wave in [-1, 1]. */
+function compressor(devEui: string, t: number, periodMin: number): number {
+	const offset = seeded01(`${devEui}:compressor`);
+	const phase = (t / (periodMin * MS_PER_MIN) + offset) % 1;
+	return 1 - 4 * Math.abs(phase - 0.5);
+}
+
+/**
+ * Sum of short warming events (door openings) that decay exponentially.
+ * Each 10-minute slot inside `[fromHour, toHour)` gets a seeded chance of one
+ * event at a seeded moment inside the slot.
+ */
+function doorSpikes(
+	devEui: string,
+	t: number,
+	opts: {
+		fromHour: number;
+		toHour: number;
+		chance: number;
+		min: number;
+		max: number;
+		tauMin: number;
+	}
+): number {
+	const slot = 10 * MS_PER_MIN;
+	const lookback = Math.ceil((opts.tauMin * 5) / 10);
+	let sum = 0;
+	for (let k = 0; k <= lookback; k++) {
+		const start = Math.floor(t / slot) * slot - k * slot;
+		const hour = hourOf(start);
+		if (hour < opts.fromHour || hour >= opts.toHour) continue;
+		if (seeded01(`${devEui}:door:${start}`) >= opts.chance) continue;
+		const at = start + seeded01(`${devEui}:door-at:${start}`) * slot;
+		if (t < at) continue;
+		const amp = opts.min + (opts.max - opts.min) * seeded01(`${devEui}:door-amp:${start}`);
+		sum += amp * Math.exp(-(t - at) / (opts.tauMin * MS_PER_MIN));
+	}
+	return sum;
+}
+
+/** Freezer defrost: ramps up for 15 min every 6 hours, then recovers. */
+function defrost(devEui: string, t: number): number {
+	const cycle = 6 * MS_PER_HOUR;
+	const offset = (2 + seeded01(`${devEui}:defrost`)) * MS_PER_HOUR;
+	const since = (((t - offset) % cycle) + cycle) % cycle;
+	const sinceMin = since / MS_PER_MIN;
+	const amp = 8.5;
+	if (sinceMin <= 15) return (amp * sinceMin) / 15;
+	return amp * Math.exp(-(sinceMin - 15) / 12);
+}
+
+/** October daylight for the cucumber house (local hours). */
+const SUNRISE_HOUR = 5.8;
+const SUNSET_HOUR = 17.3;
+
+/** Solar arc: 0 at night, rising to 1 at solar noon. */
+function sunArc(hour: number): number {
+	if (hour <= SUNRISE_HOUR || hour >= SUNSET_HOUR) return 0;
+	return Math.sin((Math.PI * (hour - SUNRISE_HOUR)) / (SUNSET_HOUR - SUNRISE_HOUR));
+}
+
+/** House warmth lags the sun by about an hour, so it peaks early afternoon. */
+function houseWarmth(hour: number): number {
+	return sunArc(hour - 1);
+}
+
+/** Drip-irrigation pulses (local hours) and how long their effect lasts. */
+const IRRIGATION_HOURS = [8, 11, 14, 16.5];
+const IRRIGATION_TAU_HOURS = 3;
+
+/** Summed, decaying effect of the irrigation pulses so far (≈0-1.2). */
+function irrigation(hour: number): number {
+	return IRRIGATION_HOURS.reduce((sum, pulse) => {
+		const since = (hour - pulse + 24) % 24;
+		return sum + Math.exp(-since / IRRIGATION_TAU_HOURS);
+	}, 0);
+}
+
+/** Local calendar-day key, so per-day cloud cover is stable for a whole day. */
+function dayKey(t: number): string {
+	const d = new Date(t);
+	return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+}
+
+/** PPFD (µmol/m²/s) inside the house: the sun through the film, with cloud. */
+function ppfdAt(devEui: string, t: number): number {
+	const arc = sunArc(hourOf(t));
+	if (arc === 0) return 0;
+	const dayCloud = 1 + seededUnit(`${devEui}:cloud:${dayKey(t)}`) * 0.15;
+	const hourCloud = 1 + seededUnit(`${devEui}:cloud:${Math.floor(t / MS_PER_HOUR)}`) * 0.08;
+	const lit = 920 * arc * dayCloud * hourCloud + seededUnit(`${devEui}:ppfd:${t}`) * 15;
+	return Math.round(clamp(lit, 0, 1600));
+}
+
+/** CO₂ in the cucumber house: overnight build-up, morning enrichment, vented midday. */
+function cucumberCo2(hour: number, noise: number): number {
+	if (hour >= 6.5 && hour < 9.5) return 760 + noise * 25;
+	if (hour >= 9.5 && hour < 10.5) return 760 - 340 * (hour - 9.5) + noise * 15;
+	if (hour >= 10.5 && hour < SUNSET_HOUR) return 412 + noise * 10;
+	const sinceClose = (hour - SUNSET_HOUR + 24) % 24;
+	return 420 + 140 * Math.min(1, sinceClose / 13.2) + noise * 15;
+}
+
+function round(value: number, precision: number): number {
+	const factor = 10 ** precision;
+	return Math.round(value * factor) / factor;
+}
+
+function clamp(value: number, min: number, max: number): number {
+	return Math.min(max, Math.max(min, value));
+}
+
+/** One column's value for a device at time `t`, or null if it doesn't report it. */
+function valueAt(device: DemoRow, column: string, t: number): number | null {
+	const { profile, dev_eui: devEui } = device;
+	const hour = hourOf(t);
+	const n = (scale: number) => seededUnit(`${devEui}:${column}:${t}`) * scale;
+	const w = wander(devEui, t);
+
+	switch (profile) {
+		case 'barn': {
+			// -1 = inlet end (fresh air, cooler), +1 = exhaust end (stale, warmer).
+			const pos = device.barnPosition ?? 0;
+			// Sensors in one house share its weather and ventilation, so they wander
+			// together; only their position along the house sets them apart.
+			const w = wander(`barn:${device.location?.location_id ?? devEui}`, t);
+			if (column === 'temperature_c')
+				return round(hourly(BARN_TEMPERATURE, hour) + pos * 0.7 + w * 0.8 + n(0.25), 2);
+			if (column === 'humidity')
+				return round(clamp(hourly(BARN_HUMIDITY, hour) + pos * 1.5 - w * 2 + n(1.2), 40, 100), 1);
+			if (column === 'co2')
+				return round(
+					clamp(
+						hourly(BARN_CO2, hour) + pos * hourly(BARN_CO2_SPREAD, hour) + w * 45 + n(22),
+						400,
+						3000
+					),
+					0
+				);
+			return null;
+		}
+
+		case 'outdoor':
+			if (column === 'temperature_c')
+				return round(hourly(OUTDOOR_TEMPERATURE, hour) + w * 1.2 + n(0.2), 2);
+			if (column === 'humidity')
+				return round(clamp(hourly(OUTDOOR_HUMIDITY, hour) - w * 3 + n(1.5), 20, 100), 1);
+			return null;
+
+		case 'fridge': {
+			const door = doorSpikes(devEui, t, {
+				fromHour: 8,
+				toHour: 21,
+				chance: 0.12,
+				min: 1.8,
+				max: 4.2,
+				tauMin: 9
+			});
+			const comp = compressor(devEui, t, 75);
+			if (column === 'temperature_c') return round(3.5 + comp * 0.4 + door + w * 0.15 + n(0.06), 2);
+			if (column === 'humidity')
+				return round(clamp(85 - comp * 1.2 + door * 1.6 + n(0.6), 40, 100), 1);
+			return null;
+		}
+
+		case 'freezer': {
+			const door = doorSpikes(devEui, t, {
+				fromHour: 8,
+				toHour: 20,
+				chance: 0.08,
+				min: 2.5,
+				max: 6,
+				tauMin: 7
+			});
+			const thaw = defrost(devEui, t);
+			const comp = compressor(devEui, t, 95);
+			if (column === 'temperature_c')
+				return round(
+					-19.4 + daily(hour, 14) * 0.6 + comp * 0.7 + thaw + door + w * 0.3 + n(0.08),
+					2
+				);
+			if (column === 'humidity')
+				return round(clamp(80 + thaw * 0.7 + door * 0.8 + n(1.2), 40, 100), 1);
+			return null;
+		}
+
+		case 'cucumber': {
+			const warm = houseWarmth(hour);
+			const irr = irrigation(hour);
+			// Soil (root zone): lags the air, gentle swing.
+			if (column === 'temperature_c')
+				return round(19.2 + daily(hour, 15) * 2.3 + w * 0.4 + n(0.05), 2);
+			if (column === 'moisture') return round(30 + irr * 6 + w * 0.6 + n(0.15), 1);
+			if (column === 'ec') return round(0.86 + irr * 0.25 + n(0.01), 2);
+			if (column === 'ph') return round(6.3 + w * 0.05 + n(0.02), 2);
+			// House air and light.
+			if (column === 'air_temperature_c') return round(16.8 + warm * 11 + w * 0.5 + n(0.2), 2);
+			if (column === 'air_humidity') return round(clamp(89 - warm * 20 - w + n(1), 40, 98), 1);
+			if (column === 'co2') return round(cucumberCo2(hour, seededUnit(`${devEui}:co2:${t}`)), 0);
+			if (column === 'ppfd') return ppfdAt(devEui, t);
+			return null;
+		}
+	}
+}
+
+/** Upload cadence in ms (every real device reports every 10 minutes). */
+function stepMs(device: DemoRow): number {
+	return (device.upload_interval ?? device.device_type.default_upload_interval ?? 10) * MS_PER_MIN;
+}
+
+/**
+ * What the device's clock reads at real time `now`: `now` itself, or for a
+ * device with a frozen `clockHour`, the most recent HH:00.
+ */
+export function deviceNow(device: DemoRow, now: number): number {
+	if (device.clockHour == null) return now;
+	const at = new Date(now);
+	at.setHours(device.clockHour, 0, 0, 0);
+	if (at.getTime() > now) at.setDate(at.getDate() - 1);
+	return at.getTime();
+}
+
+/** Timestamp of the device's most recent upload at or before `now`. */
+export function latestUploadAt(device: DemoRow, now: number): number {
+	const step = stepMs(device);
+	return Math.floor(deviceNow(device, now) / step) * step;
+}
+
+/** The device's full data row at `t` — the columns it reports and nothing else. */
+export function readingAt(device: DemoRow, t: number): Record<string, number> {
+	const row: Record<string, number> = {};
+	for (const column of Object.keys(device.details)) {
+		const value = valueAt(device, column, t);
+		if (value !== null) row[column] = value;
+	}
+	return row;
 }
 
 export function getRangeBounds(
@@ -238,98 +389,60 @@ export function buildHistory(
 	selection: RangeSelection,
 	now: number
 ): Record<string, number | string>[] {
-	const { start, end } = getRangeBounds(selection, now);
-	const stepMs = stepMinutes(device) * 60 * 1000;
-	const columns = Object.keys(device.details);
-	const dataTable = device.device_type.data_table_v2;
+	const { start } = getRangeBounds(selection, deviceNow(device, now));
+	const step = stepMs(device);
 
 	const rows: Record<string, number | string>[] = [];
-	// Snap to the step grid so timestamps stay stable as `now` advances.
-	for (let t = Math.floor(end / stepMs) * stepMs; t >= start; t -= stepMs) {
-		const row: Record<string, number | string> = { created_at: new Date(t).toISOString() };
-		for (const column of columns) {
-			const value = valueAt(device.dev_eui, dataTable, column, t);
-			if (value !== null) row[column] = value;
-		}
-		rows.push(row);
+	for (let t = latestUploadAt(device, now); t >= start; t -= step) {
+		rows.push({ created_at: new Date(t).toISOString(), ...readingAt(device, t) });
 	}
 	return rows;
 }
 
 /**
- * Daily Light Integral in mol/m²/day.
- *
- * PPFD is a rate (µmol/m²/s), so the day's total is the series integrated over
- * time: sum(ppfd) * seconds-per-sample / 1e6 to get from µmol to mol.
+ * Daily Light Integral in mol/m²/day: PPFD is a rate (µmol/m²/s), so the day's
+ * total is the series integrated over time.
  */
 export function computeDli(ppfdValues: number[], sampleMinutes: number): number {
-	const secondsPerSample = sampleMinutes * 60;
 	const micromoles = ppfdValues.reduce((sum, v) => sum + (Number.isFinite(v) ? v : 0), 0);
-	return (micromoles * secondsPerSample) / 1_000_000;
+	return (micromoles * sampleMinutes * 60) / 1_000_000;
 }
 
 /**
- * DLI for the calendar day containing `dayMs`.
- *
- * Integration stops at `until` so today reports what has actually accumulated so
- * far rather than the whole day's total — otherwise "本日の DLI" would report a
- * finished day at nine in the morning.
+ * DLI for the calendar day containing `dayMs`, integrated up to `until` so
+ * today reports what has accumulated so far, not the finished day.
  */
 function dliForDay(device: DemoRow, dayMs: number, until: number): number {
 	const start = new Date(dayMs);
 	start.setHours(0, 0, 0, 0);
-	const step = stepMinutes(device);
-	const stepMs = step * 60 * 1000;
-	const dataTable = device.device_type.data_table_v2;
-	const end = Math.min(start.getTime() + MS_PER_DAY, until);
-
+	const step = stepMs(device);
+	const end = Math.min(start.getTime() + 24 * MS_PER_HOUR, until);
 	const values: number[] = [];
-	for (let t = start.getTime(); t < end; t += stepMs) {
-		values.push(valueAt(device.dev_eui, dataTable, 'ppfd', t) ?? 0);
-	}
-	return computeDli(values, step);
+	for (let t = start.getTime(); t < end; t += step) values.push(ppfdAt(device.dev_eui, t));
+	return computeDli(values, step / MS_PER_MIN);
 }
 
 /**
- * The PPFD reading at solar noon on the day containing `at`, with the timestamp
- * it was taken from.
- *
- * The generated series is physically honest — zero from sunset to sunrise —
- * which leaves the PPFD gauge pinned at 0 in a "too low" state for anyone
- * opening the demo in the evening. The gauge is anchored to solar noon instead
- * so it always reads a daylight value, and reports that time as its "updated"
- * stamp rather than claiming the midday figure is current.
- *
- * Only the gauge uses this. DLI still integrates the real curve — feeding it a
- * flat midday value would put the day's total near 76 mol/m²/day, which no
- * greenhouse on earth reaches.
- */
-export function solarNoonPpfd(device: DemoRow, at: number): { value: number; at: string } {
-	const noon = new Date(at);
-	noon.setHours(Math.floor(SOLAR_NOON_HOUR), Math.round((SOLAR_NOON_HOUR % 1) * 60), 0, 0);
-	const value =
-		valueAt(device.dev_eui, device.device_type.data_table_v2, 'ppfd', noon.getTime()) ?? 0;
-	return { value, at: noon.toISOString() };
-}
-
-/**
- * Daily DLI totals for the DLI card's history strip, oldest first. The final
- * entry is today, which is still accumulating — the card shows it alongside the
- * completed days the same way the app does.
+ * Daily DLI totals for the DLI card's history strip, oldest first, ending with
+ * today (still accumulating, up to the device's clock).
  */
 export function buildDliHistory(
 	device: DemoRow,
 	now: number,
 	days = 7
 ): { date: string; value: number }[] {
+	const until = deviceNow(device, now);
 	const history: { date: string; value: number }[] = [];
 	for (let i = days - 1; i >= 0; i--) {
-		const dayMs = now - i * MS_PER_DAY;
-		const date = new Date(dayMs);
-		date.setHours(0, 0, 0, 0);
+		const day = new Date(until);
+		day.setDate(day.getDate() - i);
+		day.setHours(0, 0, 0, 0);
+		const y = day.getFullYear();
+		const m = String(day.getMonth() + 1).padStart(2, '0');
+		const d = String(day.getDate()).padStart(2, '0');
 		history.push({
-			date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`,
-			value: Math.round(dliForDay(device, dayMs, now) * 10) / 10
+			date: `${y}-${m}-${d}`,
+			value: Math.round(dliForDay(device, day.getTime(), until) * 10) / 10
 		});
 	}
 	return history;

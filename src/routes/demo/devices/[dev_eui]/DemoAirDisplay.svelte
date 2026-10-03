@@ -1,5 +1,6 @@
 <!--
-  Port of CropWatch's AirDisplay (cw_air_data): KPI stat cards, the reading
+  Port of CropWatch's AirDisplay (cw_air_data): KPI stat cards (temperature,
+  humidity, the derived dew point, and CO₂ when the device has it), the reading
   density heatmap with its metric toggle, and the searchable telemetry table.
 
   Dropped from the original: the per-row notes dialogs (they write to a real
@@ -17,6 +18,7 @@
 	} from '@cropwatchdevelopment/cwui';
 	import { cwDataTableLabels, cwHeatmapLabels, cwStatCardLabels } from '../../cwui-labels';
 	import { computeStatsNewestFirst } from '../../compute-stats';
+	import { computeDewPoint } from '../../dew-point';
 	import { createClientTableLoader } from '../../table-loader';
 
 	interface AirRow {
@@ -102,6 +104,21 @@
 		historicalData.length
 			? computeStatsNewestFirst(historicalData.map((row) => Number(row.humidity) || 0))
 			: EMPTY_STATS
+	);
+	// Dew point is derived per row from temperature + humidity (no stored
+	// column), exactly as the app does. historicalData is newest-first.
+	let dewPointValues = $derived(
+		historicalData
+			.map((row) =>
+				row.temperature_c == null || row.humidity == null
+					? null
+					: computeDewPoint(Number(row.temperature_c), Number(row.humidity))
+			)
+			.filter((value): value is number => value !== null)
+	);
+	let hasDewPoint = $derived(dewPointValues.length > 0);
+	let latestDewPoint = $derived(
+		hasDewPoint ? computeStatsNewestFirst(dewPointValues) : EMPTY_STATS
 	);
 	let latestCo2 = $derived(co2Values.length ? computeStatsNewestFirst(co2Values) : EMPTY_STATS);
 
@@ -203,6 +220,15 @@
 			accentColor="var(--cw-info-500)"
 			labels={cwStatCardLabels()}
 		/>
+		{#if hasDewPoint}
+			<CwStatCard
+				title="露点"
+				stats={latestDewPoint}
+				unit="°C"
+				accentColor="#38bdf8"
+				labels={cwStatCardLabels()}
+			/>
+		{/if}
 		{#if hasCo2}
 			<CwStatCard
 				title="CO₂"

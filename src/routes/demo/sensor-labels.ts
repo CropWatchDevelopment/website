@@ -1,8 +1,8 @@
 /**
  * Column -> label/unit/icon map for the /demo dashboard.
  *
- * Trimmed port of CropWatch/src/lib/sensor-labels/index.ts, covering only the
- * columns the three demo devices report. Labels are the Japanese strings from
+ * Trimmed port of CropWatch/src/lib/sensor-labels/index.ts, covering the
+ * columns the demo devices report plus the derived dew point. Labels are the Japanese strings from
  * the dashboard's messages/ja.json; `thermo` | `drop` | `co2` are named glyphs
  * in CWUI's CwDataIcon.
  */
@@ -21,27 +21,36 @@ const SENSOR_LABELS: Record<string, SensorLabel> = {
 	humidity: { label: '湿度', unit: '%', icon: 'drop', format: 'number' },
 	moisture: { label: '水分', unit: '%', icon: 'drop', format: 'number' },
 	co2: { label: 'CO₂', unit: 'ppm', icon: 'co2', format: 'integer' },
-	pressure: { label: '気圧', unit: 'hPa', format: 'number' },
+	dew_point: { label: '露点', unit: '°C', icon: 'thermo', format: 'number' },
 	ec: { label: 'EC', unit: 'mS/cm', format: 'number' },
-	// Combined-sensor air/light columns on the soil probe.
-	air_temperature: { label: '空気温度', unit: '°C', icon: 'thermo', format: 'number' },
-	air_humidity: { label: '空気湿度', unit: '%', icon: 'drop', format: 'number' },
-	air_co2: { label: 'CO₂', unit: 'ppm', icon: 'co2', format: 'integer' },
-	ppfd: { label: 'PPFD', unit: 'µmol/m²/s', format: 'integer' },
-	battery_level: { label: 'バッテリー', unit: 'V', format: 'number' }
+	ph: { label: 'pH', unit: '', format: 'number' },
+	// Air and light channels of the combined soil probe (cucumber house).
+	air_temperature_c: { label: '気温', unit: '°C', icon: 'thermo', format: 'number' },
+	air_humidity: { label: '湿度', unit: '%', icon: 'drop', format: 'number' },
+	ppfd: { label: 'PPFD', unit: 'µmol/m²/s', format: 'integer' }
 };
 
-/** Mirrors the dashboard: identifiers and bookkeeping columns never render. */
-const HIDDEN_COLUMNS = new Set(['dev_eui', 'id', 'is_simulated', 'last_update', 'created_at']);
+/**
+ * Mirrors the app (sensor-labels HIDDEN_COLUMNS): identifiers, bookkeeping
+ * columns and battery never render — the app shows no battery anywhere.
+ */
+const HIDDEN_COLUMNS = new Set([
+	'dev_eui',
+	'id',
+	'is_simulated',
+	'last_update',
+	'line_number',
+	'created_at',
+	'battery',
+	'battery_level'
+]);
 
 /**
  * Per-data-table label overrides.
  *
  * The same column means different things depending on the device: on a soil
- * probe `temperature_c` is ground temperature, on an air sensor it is the air.
- * The soil probe now reports both families on one page, so its labels have to
- * name the medium they measure — otherwise "温度" and "空気温度" sit side by
- * side with no way to tell which is which.
+ * probe `temperature_c` is ground temperature, on an air sensor it is the air,
+ * so the soil labels name the medium they measure.
  */
 const TABLE_LABEL_OVERRIDES: Record<string, Record<string, string>> = {
 	cw_soil_data: {

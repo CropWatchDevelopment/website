@@ -3,7 +3,8 @@
   (CropWatch/src/routes/locations/[location_id]/devices/[dev_eui]/+page.svelte).
 
   Same composition: back button → header card with the range picker →
-  CwResponsiveLineChart → the display component for the device's data table
+  CwResponsiveLineChart (with the derived 露点 line, off by default, on air
+  devices) → the display component for the device's data table
   (AirDisplay for cw_air_data, SoilDisplay for cw_soil_data). Everything the
   real page does against a live tenant — ApiService, permissions, relay control,
   CSV export, notes — is gone; the history comes from demo-history.ts.
@@ -15,7 +16,6 @@
 		CwCard,
 		CwResponsiveLineChart,
 		CwSpinner,
-		CwStatCard,
 		metricColor,
 		type CwResponsiveLineSeries
 	} from '@cropwatchdevelopment/cwui';
@@ -29,46 +29,50 @@
 		buildHistory,
 		DEFAULT_RANGE_SELECTION,
 		getRangeOptions,
-		solarNoonPpfd,
 		type RangeSelection
 	} from '../../demo-history';
+	import { computeDewPoint } from '../../dew-point';
 	import { isDemoSignedIn } from '../../demo-session';
 	import { labelFor } from '../../sensor-labels';
-	import { cwResponsiveLineChartLabels, cwStatCardLabels } from '../../cwui-labels';
-	import { computeStatsNewestFirst } from '../../compute-stats';
+	import { cwResponsiveLineChartLabels } from '../../cwui-labels';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	/** Columns that belong on the chart. Battery and pressure stay in the table. */
+	/** Columns that belong on the chart — every reading the demo devices send. */
 	const CHART_COLUMNS = [
 		'temperature_c',
 		'humidity',
-		'co2',
 		'moisture',
 		'ec',
-		'air_temperature',
+		'ph',
+		'co2',
+		'air_temperature_c',
 		'air_humidity',
-		'air_co2'
+		'ppfd'
 	];
 
-	/** Combined-sensor air columns, shown as stat cards above the chart. */
-	const AIR_STAT_COLUMNS = ['air_temperature', 'air_humidity', 'air_co2'];
+	/**
+	 * On the soil page these start switched off in the top chart: the air
+	 * readings have their own 空気質 chart below and PPFD its gauge, so the top
+	 * chart opens on the soil itself. They stay one click away in the legend.
+	 */
+	const SOIL_INITIAL_HIDDEN = ['ph', 'co2', 'air_temperature_c', 'air_humidity', 'ppfd'];
 
 	/**
-	 * Column -> the metric key CWUI colors by.
-	 *
-	 * CWUI deliberately splits soil from air (soil temperature is brown, air
-	 * temperature red; soil moisture and humidity are different blues) so the two
-	 * families stay legible on one chart — which matters now that a soil device
-	 * plots both. Two fixes are needed for that to work here: `temperature_c` on
-	 * a soil device is ground temperature, not air, and `air_co2` is not a key
-	 * CWUI knows, so without the mapping it would take a hashed fallback hue
-	 * instead of the CO₂ purple.
+	 * Series id of the derived dew point line. The app adds it to every air
+	 * device's chart, switched off until the viewer turns it on.
+	 */
+	const DEW_POINT_SERIES_ID = 'dew_point';
+
+	/**
+	 * Column -> the metric key CWUI colors by. CWUI colors soil temperature
+	 * differently from air temperature, and on a soil device `temperature_c` is
+	 * ground temperature.
 	 */
 	function colorKeyFor(column: string, dataTable: string): string {
-		if (column === 'air_co2') return 'co2';
 		if (column === 'temperature_c' && dataTable === 'cw_soil_data') return 'soil_temperature';
+		if (column === 'air_temperature_c') return 'air_temperature';
 		return column;
 	}
 
@@ -87,12 +91,12 @@
 	const locationName = $derived(found?.locationName ?? 'ロケーションなし');
 
 	let activeRange = $state<RangeSelection>(DEFAULT_RANGE_SELECTION);
-	// DLI is a per-day total, so it is independent of the selected range and is
-	// built once on mount rather than rebuilt on every range change.
+	const isAirDevice = $derived(device?.device_type.data_table_v2 === 'cw_air_data');
+	const isSoilDevice = $derived(device?.device_type.data_table_v2 === 'cw_soil_data');
+	// DLI is a per-day total, independent of the selected range, so it is built
+	// once on mount rather than on every range change.
 	let dliHistory = $state<{ date: string; value: number }[]>([]);
 	const dliToday = $derived(dliHistory.at(-1)?.value ?? 0);
-	// Gauge reading only; the DLI figures above integrate the real day curve.
-	let ppfdReading = $state<{ value: number; at: string }>({ value: 0, at: '' });
 	// Generated on the client only: the series is anchored to "now", so building
 	// it during SSR would bake in a timestamp the client then disagrees with.
 	let historicalData = $state<Record<string, number | string>[]>([]);
@@ -103,27 +107,11 @@
 		typeof latestData?.created_at === 'string' ? latestData.created_at : null
 	);
 
-	// Stat cards for the combined sensor's air readings. Only devices that
-	// actually report the columns get them, so the air devices — which already
-	// carry their own temperature/humidity/CO₂ cards in DemoAirDisplay — are
-	// left alone.
-	const airStats = $derived.by(() => {
-		if (!device || historicalData.length === 0) return [];
-		return AIR_STAT_COLUMNS.filter((column) => column in device.details).map((column) => {
-			const def = labelFor(column, device.device_type.data_table_v2);
-			return {
-				column,
-				label: def.label,
-				unit: def.unit,
-				color: metricColor(colorKeyFor(column, device.device_type.data_table_v2)).color,
-				stats: computeStatsNewestFirst(historicalData.map((row) => Number(row[column]) || 0))
-			};
-		});
-	});
-
 	const chartSeries = $derived.by<CwResponsiveLineSeries[]>(() => {
 		if (!device || historicalData.length === 0) return [];
-		return CHART_COLUMNS.filter((column) => column in device.details).map((column) => {
+		const series: CwResponsiveLineSeries[] = CHART_COLUMNS.filter(
+			(column) => column in device.details
+		).map((column) => {
 			const def = labelFor(column, device.device_type.data_table_v2);
 			const { color, gradient } = metricColor(
 				colorKeyFor(column, device.device_type.data_table_v2)
@@ -144,6 +132,25 @@
 					.reverse()
 			};
 		});
+		if (isAirDevice) {
+			const { color, gradient } = metricColor(DEW_POINT_SERIES_ID);
+			const def = labelFor(DEW_POINT_SERIES_ID);
+			series.push({
+				id: DEW_POINT_SERIES_ID,
+				label: def.label,
+				unit: def.unit,
+				color,
+				gradient: gradient ?? false,
+				decimals: 2,
+				data: historicalData
+					.map((row) => ({
+						t: new Date(String(row.created_at)).getTime(),
+						v: computeDewPoint(Number(row.temperature_c), Number(row.humidity))
+					}))
+					.reverse()
+			});
+		}
+		return series;
 	});
 
 	function selectRange(selection: RangeSelection) {
@@ -160,8 +167,7 @@
 			return;
 		}
 		if (!device) return;
-		dliHistory = buildDliHistory(device, Date.now());
-		ppfdReading = solarNoonPpfd(device, Date.now());
+		if (isSoilDevice) dliHistory = buildDliHistory(device, Date.now());
 		selectRange(DEFAULT_RANGE_SELECTION);
 	});
 </script>
@@ -195,20 +201,6 @@
 					<CwSpinner size="xl" />
 				</div>
 			{:else}
-				{#if airStats.length > 0}
-					<div class="device-page__airstats">
-						{#each airStats as stat (stat.column)}
-							<CwStatCard
-								title={stat.label}
-								stats={stat.stats}
-								unit={stat.unit}
-								accentColor={stat.color}
-								labels={cwStatCardLabels()}
-							/>
-						{/each}
-					</div>
-				{/if}
-
 				{#if chartSeries.length > 0}
 					<div class="device-page__chart">
 						<CwResponsiveLineChart
@@ -220,6 +212,11 @@
 							showThemeToggle={false}
 							showDataGaps={false}
 							height={480}
+							initialHidden={isAirDevice
+								? [DEW_POINT_SERIES_ID]
+								: isSoilDevice
+									? SOIL_INITIAL_HIDDEN
+									: []}
 							labels={cwResponsiveLineChartLabels()}
 						/>
 					</div>
@@ -227,14 +224,7 @@
 
 				<div class="device-page__display">
 					{#if device.device_type.data_table_v2 === 'cw_soil_data'}
-						<DemoSoilDisplay
-							{latestData}
-							{historicalData}
-							{loading}
-							{dliToday}
-							{dliHistory}
-							{ppfdReading}
-						/>
+						<DemoSoilDisplay {latestData} {historicalData} {loading} {dliToday} {dliHistory} />
 					{:else}
 						<DemoAirDisplay {latestData} {historicalData} {loading} />
 					{/if}
@@ -260,20 +250,6 @@
 	.device-page__chart {
 		width: 100%;
 		min-width: 0;
-	}
-
-	/* Same grid as the display components' .kpi-grid, so the air cards above the
-	   chart line up with the soil cards below it. */
-	.device-page__airstats {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-		gap: 1rem;
-		min-width: 0;
-	}
-
-	/* Match the soil cards below the chart: titles stay on one line. */
-	.device-page__airstats :global(.cw-stat-card__title) {
-		white-space: nowrap;
 	}
 
 	.device-page__loading {

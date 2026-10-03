@@ -9,22 +9,24 @@
   Same CwLocationCard + CwSensorCard composition, same details list, same grid
   and masonry CSS. What is stripped out is everything that talks to a real
   tenant: ApiService, the auth token, paging, the per-device refresh scheduler
-  and the "詳細" deep-link into a device page. Readings come from demo-data.ts
-  and drift on a timer so the cards read as live.
+  and the "詳細" deep-link into a device page. Readings come from the same
+  generator as the device pages (demo-history.ts), refreshed on a timer, so a
+  card always shows the reading its device page has for the latest upload.
 -->
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { CwButton, CwDuration, CwLocationCard, CwSensorCard } from '@cropwatchdevelopment/cwui';
-	import { createDemoGroups, DEMO_DRIFT, type DemoRow } from './demo-data';
+	import { createDemoGroups, type DemoRow } from './demo-data';
+	import { latestUploadAt, readingAt } from './demo-history';
 	import { formatMeasurement, isDisplayableColumn, labelFor } from './sensor-labels';
 
 	interface Filters {
 		name: string;
 	}
 
-	/** How often the demo nudges its readings, in ms. */
-	const DRIFT_INTERVAL_MS = 12_000;
+	/** How often the demo checks for a new upload, in ms. */
+	const REFRESH_INTERVAL_MS = 15_000;
 
 	let { filters, cardLayout = 'grid' }: { filters: Filters; cardLayout?: CardLayout } = $props();
 
@@ -53,30 +55,23 @@
 			);
 	});
 
-	/** Nudge one reading inside its envelope so consecutive ticks look plausible. */
-	function drift(column: string, value: number): number {
-		const envelope = DEMO_DRIFT[column];
-		if (!envelope) return value;
-		const next = value + (Math.random() * 2 - 1) * envelope.step;
-		const clamped = Math.min(envelope.max, Math.max(envelope.min, next));
-		const factor = 10 ** envelope.precision;
-		return Math.round(clamped * factor) / factor;
-	}
-
+	/** Load each device's reading for its most recent 10-minute upload. */
 	function tick() {
-		lastSeenAt = new Date().toISOString();
+		const now = Date.now();
+		// Freshness for the cards: the latest 10-minute upload in real time. The
+		// cucumber house's readings are frozen at 13:00 (to show its midday
+		// peak), but its card should still read as a live, online device.
+		lastSeenAt = new Date(Math.floor(now / (10 * 60_000)) * (10 * 60_000)).toISOString();
 		for (const group of groups) {
 			for (const device of group.devices) {
-				for (const column of Object.keys(device.details)) {
-					const value = device.details[column];
-					if (typeof value === 'number') device.details[column] = drift(column, value);
-				}
+				const uploadedAt = new Date(latestUploadAt(device, now)).toISOString();
+				device.details = readingAt(device, Date.parse(uploadedAt));
 				device.latest = {
-					created_at: lastSeenAt,
+					created_at: uploadedAt,
 					primary: device.details[device.device_type.primary_data_v2] ?? null,
 					secondary: device.details[device.device_type.secondary_data_v2] ?? null
 				};
-				device.last_data_updated_at = lastSeenAt;
+				device.last_data_updated_at = uploadedAt;
 			}
 		}
 	}
@@ -87,24 +82,31 @@
 
 	function secondaryProps(row: DemoRow) {
 		const col = row.device_type.secondary_data_v2;
-		if (!col || col === '-') return { value: null, unit: '', icon: undefined };
+		if (!col || col === '-') return { value: null, unit: '', icon: undefined, label: undefined };
 		return readingProps(col, row.latest?.secondary);
 	}
 
+	// Integer metrics (CO₂) pass their formatted text as the label, as the app
+	// does, so the card doesn't re-format them with its 2-decimal number
+	// formatter ("630.00 ppm").
 	function readingProps(col: string, raw: unknown) {
 		const def = labelFor(col);
+		const value = typeof raw === 'number' ? raw : null;
 		return {
-			value: typeof raw === 'number' ? raw : null,
+			value,
 			unit: def.unit,
-			icon: def.icon
+			icon: def.icon,
+			label: def.format === 'integer' && value !== null ? formatMeasurement(col, value) : undefined
 		};
 	}
 
-	function detailEntries(details: Record<string, number | boolean | string>) {
+	// The data table picks the label, so a soil probe's temperature_c reads as
+	// 土壌温度 next to its 気温 rather than as a second, ambiguous 温度.
+	function detailEntries(details: Record<string, number | boolean | string>, dataTable: string) {
 		return Object.entries(details)
 			.filter(([col, value]) => isDisplayableColumn(col) && value !== null && value !== undefined)
 			.map(([col, value]) => {
-				const def = labelFor(col);
+				const def = labelFor(col, dataTable);
 				return {
 					col,
 					def,
@@ -116,7 +118,7 @@
 
 	onMount(() => {
 		tick();
-		const timer = setInterval(tick, DRIFT_INTERVAL_MS);
+		const timer = setInterval(tick, REFRESH_INTERVAL_MS);
 		return () => clearInterval(timer);
 	});
 </script>
@@ -131,16 +133,18 @@
 					{#each group.devices as row (row.dev_eui)}
 						{@const primary = primaryProps(row)}
 						{@const secondary = secondaryProps(row)}
-						{@const detailRows = detailEntries(row.details)}
+						{@const detailRows = detailEntries(row.details, row.device_type.data_table_v2)}
 						<CwSensorCard
 							label={row.name}
 							status="online"
 							detailsHeading="詳細データ"
 							primaryValue={primary.value}
 							primaryUnit={primary.unit}
+							primaryLabel={primary.label}
 							primary_icon={primary.icon}
 							secondaryValue={secondary.value}
 							secondaryUnit={secondary.unit}
+							secondaryLabel={secondary.label}
 							secondary_icon={secondary.icon}
 							lastSeenAt={lastSeenAt ?? undefined}
 							expireAfterMinutes={row.upload_interval ??

@@ -9,12 +9,12 @@
 
 import type {
 	CwDataTableLabels,
+	CwDliCardLabels,
 	CwHeatmapLabels,
 	CwPPFDChartLabels,
 	CwResponsiveLineChartLabels,
 	CwStatCardLabels,
-	CwVPDChartLabels,
-	DliCardLabels
+	CwVPDChartLabels
 } from '@cropwatchdevelopment/cwui';
 
 export function cwStatCardLabels(): CwStatCardLabels {
@@ -113,7 +113,14 @@ export function cwVpdChartLabels(): CwVPDChartLabels {
 		cellAriaLabel: ({ temperatureC, humidity, vpd, unit, zoneLabel, inTarget, isCurrent }) =>
 			`${temperatureC}°C、相対湿度 ${humidity}%、${vpd} ${unit}、${zoneLabel} ゾーン` +
 			(inTarget ? '、目標範囲内' : '') +
-			(isCurrent ? '、現在の室内環境セル' : '')
+			(isCurrent ? '、現在の室内環境セル' : ''),
+		roomVpd: (temperature, humidity) => `室内VPD · ${temperature} / 湿度 ${humidity}`,
+		target: '目標',
+		onTarget: '目標範囲内',
+		offTarget: '目標範囲外 - 調整が必要',
+		inTargetBand: '目標範囲',
+		now: '現在',
+		loading: 'VPDチャートを読み込み中'
 	};
 }
 
@@ -134,11 +141,15 @@ export function cwPpfdChartLabels(): CwPPFDChartLabels {
 		insideBand: '目標範囲内',
 		deltaBelow: (amount, unit) => `目標まで ${amount} ${unit} 不足`,
 		deltaAbove: (amount, unit) => `目標を ${amount} ${unit} 超過`,
-		updated: (when) => `更新 ${when}`
+		updated: (when) => `更新 ${when}`,
+		low: '低',
+		optimalZone: '最適',
+		high: '高',
+		loading: 'PPFDを読み込み中'
 	};
 }
 
-export function cwDliCardLabels(): DliCardLabels {
+export function cwDliCardLabels(): CwDliCardLabels {
 	return {
 		title: '本日の DLI',
 		statusVeryLow: '非常に低い',

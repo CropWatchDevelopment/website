@@ -1,30 +1,34 @@
 <!--
-  Port of CropWatch's SoilDisplay (cw_soil_data), full composition: KPI stat
-  cards for soil temperature and moisture, latest-reading cards for EC and pH,
-  the combined-sensor visualizations (air quality, VPD, PPFD, DLI), and the
-  searchable telemetry table.
+  Port of CropWatch's current SoilDisplay (cw_soil_data, CWUI 0.1.115), same
+  composition and order:
 
-  The app renders the combined-sensor block permanently empty — the hardware
-  feeding it has not shipped, so every one of those charts sits in its no-data
-  state. The demo supplies the series instead, so the page shows what a fully
-  reporting device looks like. Same components, same order, same layout as the
-  original; only the data is fabricated.
+    KPI cards (soil temperature + moisture stats, EC and pH latest readings)
+    → 空気質 line chart (CO₂ / air temperature / air humidity)
+    → VPD matrix | PPFD gauge + DLI card
+    → soil telemetry table.
+
+  In the app the air-quality, VPD, PPFD and DLI panels wait for the combined
+  sensor and render empty. Here they are fed by the demo's cucumber-house probe
+  (see demo-data.ts), so the page shows what a fully reporting house looks like.
 -->
 <script lang="ts">
 	import {
 		CwCard,
 		CwDataTable,
+		CwDliCard,
 		CwPPFDChart,
+		CwResponsiveLineChart,
 		CwStatCard,
 		CwVPDChart,
-		DliCard,
 		metricColor,
-		type CwColumnDef
+		type CwColumnDef,
+		type CwResponsiveLineSeries
 	} from '@cropwatchdevelopment/cwui';
 	import {
 		cwDataTableLabels,
 		cwDliCardLabels,
 		cwPpfdChartLabels,
+		cwResponsiveLineChartLabels,
 		cwStatCardLabels,
 		cwVpdChartLabels
 	} from '../../cwui-labels';
@@ -44,32 +48,31 @@
 		historicalData,
 		loading,
 		dliToday,
-		dliHistory,
-		ppfdReading
+		dliHistory
 	}: {
 		latestData: Record<string, number | string> | null;
 		historicalData: Record<string, number | string>[];
 		loading: boolean;
-		/** Today's accumulated DLI (mol/m²/day). */
+		/** Today's accumulated DLI (mol/m²/day), up to the device's clock. */
 		dliToday: number;
 		/** Daily DLI totals, oldest first. */
 		dliHistory: { date: string; value: number }[];
-		/**
-		 * PPFD for the gauge, anchored to solar noon so the demo never shows a
-		 * zeroed "too low" gauge after dark, plus the time it was taken from.
-		 */
-		ppfdReading: { value: number; at: string };
 	} = $props();
 
-	// Target bands for a leafy greenhouse crop. The PPFD band brackets the
-	// modelled solar-noon peak — the gauge is anchored to noon, so a band set for
-	// a daily *average* would read "too high" every time.
-	const PPFD_TARGET_MIN = 450;
-	const PPFD_TARGET_MAX = 850;
-	const DLI_TARGET_MIN = 14;
-	const DLI_TARGET_MAX = 28;
+	// Greenhouse cucumber targets: VPD 0.8-1.2 kPa through the day, midday PPFD
+	// 500-1,000 µmol/m²/s, and a DLI of 20-30 mol/m²/day for a full day's light.
+	const CROP_NAME = 'きゅうり';
 	const VPD_TARGET_MIN = 0.8;
 	const VPD_TARGET_MAX = 1.2;
+	const PPFD_TARGET_MIN = 500;
+	const PPFD_TARGET_MAX = 1000;
+	const DLI_TARGET_MIN = 20;
+	const DLI_TARGET_MAX = 30;
+
+	function num(value: number | string | undefined): number | null {
+		const n = Number(value);
+		return value === undefined || !Number.isFinite(n) ? null : n;
+	}
 
 	function toSoilRows(raw: Record<string, number | string>[]): SoilRow[] {
 		return raw.map((row, i) => ({
@@ -85,7 +88,7 @@
 		{ key: 'created_at', header: '日時', sortable: true, width: '13.5rem' },
 		{ key: 'temperature_c', header: '土壌温度', sortable: true, width: '8rem' },
 		{ key: 'moisture', header: '土壌水分', sortable: true, width: '9rem' },
-		{ key: 'ec', header: '土壌EC (mS/cm)', sortable: true, width: '9rem' }
+		{ key: 'ec', header: 'EC (mS/cm)', sortable: true, width: '9rem' }
 	]);
 
 	// Oldest-first for the table (its loader reverses back to newest-first).
@@ -96,21 +99,59 @@
 	);
 
 	let latest = $derived({
-		airTemperature: Number(latestData?.air_temperature) || 0,
-		airHumidity: Number(latestData?.air_humidity) || 0
+		ec: num(latestData?.ec),
+		ph: num(latestData?.ph),
+		airTemperature: num(latestData?.air_temperature_c),
+		airHumidity: num(latestData?.air_humidity),
+		ppfd: num(latestData?.ppfd),
+		at: typeof latestData?.created_at === 'string' ? latestData.created_at : undefined
 	});
 
-	// `historicalData` is newest-first, so the headline figure has to be taken
-	// from the front. (The app's SoilDisplay computes these over the unsorted
-	// rows without that override, which makes its stat cards report the oldest
-	// reading in the range as "last" — worth fixing upstream.)
+	// `historicalData` is newest-first, so the headline figure comes from the front.
 	let temperatureStats = $derived(
 		computeStatsNewestFirst(historicalData.map((row) => Number(row.temperature_c) || 0))
 	);
 	let soilMoistureStats = $derived(
 		computeStatsNewestFirst(historicalData.map((row) => Number(row.moisture) || 0))
 	);
-	let ecStats = $derived(computeStatsNewestFirst(historicalData.map((row) => Number(row.ec) || 0)));
+
+	/**
+	 * Same three series and ids as the app's air-quality chart. The app passes
+	 * CSS variables as colors, which the chart can't resolve when it draws the
+	 * lines (they come out grey; unnoticed in the app because the chart is
+	 * always empty there), so these use CWUI's metric palette instead.
+	 */
+	let airSeries = $derived.by<CwResponsiveLineSeries[]>(() => {
+		const series = (
+			id: string,
+			column: string,
+			label: string,
+			unit: string,
+			color: string,
+			decimals: number
+		): CwResponsiveLineSeries => ({
+			id,
+			label,
+			unit,
+			color,
+			decimals,
+			data: historicalData
+				.map((row) => ({ t: new Date(String(row.created_at)).getTime(), v: num(row[column]) }))
+				.reverse()
+		});
+		return [
+			series('co2', 'co2', 'CO₂', 'ppm', metricColor('co2').color, 0),
+			series(
+				'air_temperature',
+				'air_temperature_c',
+				'気温',
+				'°C',
+				metricColor('air_temperature').color,
+				1
+			),
+			series('air_humidity', 'air_humidity', '湿度', '%', metricColor('air_humidity').color, 1)
+		];
+	});
 
 	// Re-key the table when the row set changes so CwDataTable re-runs loadData
 	// for the new range instead of showing stale rows.
@@ -139,7 +180,6 @@
 			accentColor="var(--cw-danger-500)"
 			labels={cwStatCardLabels()}
 		/>
-
 		<CwStatCard
 			title="土壌水分"
 			stats={soilMoistureStats}
@@ -147,28 +187,34 @@
 			accentColor="var(--cw-info-500)"
 			labels={cwStatCardLabels()}
 		/>
-
-		<!-- EC uses the same stat card as temperature and moisture. Its accent
-		     comes from metricColor so the card matches the EC line in the chart
-		     above rather than picking an unrelated hue. -->
-		<CwStatCard
-			title="土壌EC"
-			stats={ecStats}
-			unit="mS/cm"
-			accentColor={metricColor('ec').color}
-			labels={cwStatCardLabels()}
-		/>
+		<CwCard title="EC" subtitle="最新の読み取り" elevated>
+			<p class="kpi-value">
+				{latest.ec === null ? '—' : latest.ec.toFixed(2)}<span>mS/cm</span>
+			</p>
+		</CwCard>
+		{#if latest.ph !== null}
+			<CwCard title="pH" subtitle="最新の読み取り" elevated>
+				<p class="kpi-value">{latest.ph.toFixed(1)}</p>
+			</CwCard>
+		{/if}
 	</div>
 
-	<!-- Combined-sensor visualizations. The VPD matrix and the PPFD+DLI stack
-	     pair up on desktop and stack on mobile.
+	<CwResponsiveLineChart
+		locale="ja-JP"
+		labels={cwResponsiveLineChartLabels()}
+		series={airSeries}
+		title="空気質"
+		subtitle="CO₂・気温・湿度"
+		ranges={[]}
+		showLegendStats={false}
+		theme="dark"
+		showThemeToggle={false}
+		height={360}
+	/>
 
-	     The app also puts an 空気質 line chart here (CO₂ / air temperature /
-	     humidity). It is left out: the device page already carries a time-series
-	     chart directly above these cards, and a second one reads as a duplicate
-	     of it. The air readings still feed the VPD matrix below. -->
 	<div class="chart-pair">
 		<CwVPDChart
+			locale="ja-JP"
 			labels={cwVpdChartLabels()}
 			airTemperatureC={latest.airTemperature}
 			relativeHumidity={latest.airHumidity}
@@ -177,17 +223,21 @@
 		/>
 		<div class="chart-pair__stack">
 			<CwPPFDChart
+				locale="ja-JP"
 				labels={cwPpfdChartLabels()}
-				current={ppfdReading.value}
+				current={latest.ppfd}
+				plant={CROP_NAME}
 				targetMin={PPFD_TARGET_MIN}
 				targetMax={PPFD_TARGET_MAX}
 				{dliToday}
-				updatedAt={ppfdReading.at || undefined}
+				updatedAt={latest.at}
 			/>
-			<DliCard
+			<CwDliCard
+				locale="ja-JP"
 				labels={cwDliCardLabels()}
 				value={dliToday}
 				history={dliHistory}
+				cropName={CROP_NAME}
 				targetMin={DLI_TARGET_MIN}
 				targetMax={DLI_TARGET_MAX}
 			/>
@@ -195,7 +245,7 @@
 	</div>
 
 	{#if !loading && rows.length > 0}
-		<CwCard title="測定データ" subtitle="検索・並べ替えができます" elevated>
+		<CwCard title="土壌テレメトリ" subtitle="検索・並べ替え可能" elevated>
 			{#key rowSetKey}
 				<CwDataTable
 					labels={cwDataTableLabels()}
@@ -241,16 +291,29 @@
 		gap: 1rem;
 	}
 
-	/* Card titles stay on one line. The soil/air prefixes made these long enough
-	   to wrap, which pushed each card's value down by a line and left the row
-	   ragged. */
+	/* Card titles stay on one line so the KPI row doesn't go ragged. */
 	.soil-display :global(.cw-card__title),
 	.soil-display :global(.cw-stat-card__title) {
 		white-space: nowrap;
 	}
 
-	/* Mirrors SoilDisplay's .chart-pair. Mobile-first single column; the VPD
-	   matrix and the PPFD+DLI stack sit side by side once there is room. */
+	/* From the app's display-shared.css. */
+	.kpi-value {
+		margin: 0 0 0.75rem;
+		font-size: clamp(1.45rem, 2.1vw, 2rem);
+		font-weight: 700;
+		color: var(--cw-text-primary);
+	}
+
+	.kpi-value span {
+		margin-left: 0.35rem;
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: var(--cw-text-muted);
+	}
+
+	/* Mobile-first single column; the VPD matrix and the PPFD+DLI stack pair up
+	   once there is room. */
 	.chart-pair {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -281,6 +344,4 @@
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		}
 	}
-	/* .kpi-value is gone with the EC/pH latest-reading cards — every KPI in this
-	   display is a CwStatCard now. */
 </style>
