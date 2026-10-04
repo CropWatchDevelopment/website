@@ -416,10 +416,10 @@
 		<p class="eyebrow"><span class="material-symbols-rounded">payments</span> 料金</p>
 		<h1>費用対効果（ROI）の試算</h1>
 		<p class="hero__kicker">
-			食品・医療グレードの、信頼できて修理もできるセンサー。<br />
-			レポートとほぼリアルタイムのアラートで、<span class="u">時間と商品のロス</span>を防ぎます。
+			高い信頼性が求められる現場のために設計された、産業グレードのセンサー。<br />
+			リアルタイム監視とアラートで、<span class="u">時間と商品のロス</span>を防ぎます。
 		</p>
-		<p class="pr-hero-sub">台数を入れるだけで、月額と節約できる金額がわかります。</p>
+		<p class="pr-hero-sub">台数を入れるだけで、月額料金とコスト削減の目安がわかります。</p>
 	</div>
 </section>
 
@@ -454,11 +454,11 @@
 					<ul class="pr-prices__perks">
 						<li>
 							<span class="material-symbols-rounded fill" aria-hidden="true">verified</span
-							>ISO17025認証校正証明書つき
+							>ISO17025認証3点温度校正証明書付き
 						</li>
 						<li>
 							<span class="material-symbols-rounded fill" aria-hidden="true">shield</span
-							>3年間の限定保証
+							>3年間のハードウェア保証
 						</li>
 					</ul>
 				</li>
@@ -729,7 +729,7 @@
 			</div>
 
 			<!-- ② 月々の費用と節約額 -->
-			<h2 class="pr-step"><span class="pr-step__n">2</span>月々の費用と節約額</h2>
+			<h2 class="pr-step"><span class="pr-step__n">2</span>月々の費用と削減効果</h2>
 			{#if volumePrice}
 				<!-- 1,001台以上: 金額は出さず、ボリューム価格の個別見積もりへ誘導 -->
 				<div class="pr-soon" id="pr-volume" data-reveal>
@@ -787,12 +787,12 @@
 							{#if savingsMonthly >= 0}
 								<span class="pr-result__label">手書き記録より</span>
 								<strong class="pr-result__value"
-									>{yen(savingsMonthly)}<small> /月 おトク</small></strong
+									>{yen(savingsMonthly)}<small> /月のコスト減</small></strong
 								>
 								<div class="pr-yearsave">
 									<span>1年で</span>
 									<b>{yen(savingsYearly)}</b>
-									<span>おトク</span>
+									<span>のコスト減</span>
 								</div>
 								<ul class="pr-pills">
 									<li>
@@ -865,7 +865,7 @@
 			<div class="pr-plan" data-reveal>
 				<div class="pr-card pr-includes">
 					<span class="pr-card__label pr-card__label--lg"
-						>月額に含まれる機能（センサー + CropWatch アプリ）</span
+						>月額利用料に含まれる機能</span
 					>
 					<ul class="pr-includes__list">
 						{#each cfg.included as f (f)}
