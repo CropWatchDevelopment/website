@@ -2,6 +2,7 @@
 	import { flushSync, onMount } from 'svelte';
 	import { replaceState } from '$app/navigation';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import { SECTOR_PRICING } from '$lib/pricing';
 
 	/* ══════════════════════════════════════════════════════════════════
 	   Pricing knobs - edit these to tune the calculator, per sector.
@@ -33,10 +34,10 @@
 		'cold-chain': {
 			label: 'Cold-Chain',
 			icon: 'ac_unit',
-			pricePerDevice: 7,
-			baseFee: 0,
-			// Temp/humidity sensor: ¥33,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
-			deviceUnitPrice: 250,
+			// Prices live in $lib/pricing (shared with the sector pages' price box + Product JSON-LD).
+			pricePerDevice: SECTOR_PRICING['cold-chain'].monthlyPerSensor,
+			baseFee: SECTOR_PRICING['cold-chain'].baseFee,
+			deviceUnitPrice: SECTOR_PRICING['cold-chain'].unitPrice,
 			defaultLocations: 1,
 			defaultUnits: 20,
 			defaultChecksPerDay: 2,
@@ -46,10 +47,9 @@
 		livestock: {
 			label: 'Livestock',
 			icon: 'pets',
-			pricePerDevice: 8,
-			baseFee: 50,
-			// Temp/humidity + CO2 combo sensor: ¥39,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
-			deviceUnitPrice: 240,
+			pricePerDevice: SECTOR_PRICING.livestock.monthlyPerSensor,
+			baseFee: SECTOR_PRICING.livestock.baseFee,
+			deviceUnitPrice: SECTOR_PRICING.livestock.unitPrice,
 			defaultLocations: 1,
 			defaultUnits: 50,
 			defaultChecksPerDay: 3,
@@ -59,15 +59,14 @@
 		agriculture: {
 			label: 'Agriculture',
 			icon: 'eco',
-			pricePerDevice: 0,
-			baseFee: 0,
-			deviceUnitPrice: null,
-			defaultLocations: 0,
-			defaultUnits: 0,
-			defaultChecksPerDay: 0,
-			minutesPerCheck: 0,
-			unitsHint: '',
-			comingSoon: true
+			pricePerDevice: SECTOR_PRICING.agriculture.monthlyPerSensor,
+			baseFee: SECTOR_PRICING.agriculture.baseFee,
+			deviceUnitPrice: SECTOR_PRICING.agriculture.unitPrice,
+			defaultLocations: 1,
+			defaultUnits: 10,
+			defaultChecksPerDay: 2,
+			minutesPerCheck: 10,
+			unitsHint: 'Greenhouses, fields and orchards.'
 		}
 	};
 	/** Default hourly wage: the average US state minimum wage (federal floor is $7.25). */

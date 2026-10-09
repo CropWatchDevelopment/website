@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	import { initAgCharts } from '$lib/agCharts';
 	// Page-specific stylesheets (kept out of the global bundle). Plain imports,
 	// not a scoped style block, because the chart markup injected by
@@ -482,6 +483,12 @@
 		</div>
 	</div>
 </section>
+
+<SensorPrice
+	sector="agriculture"
+	path="/agriculture"
+	description="Battery-powered LoRaWAN® wireless temperature, humidity and NDIR CO₂ sensor for greenhouses, fields and orchards. Reports every 10 minutes and calculates VPD, IP66 enclosure, ISO/IEC 17025 calibration certificate included. Alerts for frost, heat and poor ventilation."
+/>
 
 <!-- FAQ -->
 <section class="section section--tint scroll-pad" id="questions">

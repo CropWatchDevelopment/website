@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	// Page-specific stylesheet (kept out of the global bundle).
 	import '$lib/styles/product.css';
 </script>
@@ -483,6 +484,13 @@
 		</dl>
 	</div>
 </section>
+
+<SensorPrice
+	sector="livestock"
+	path="/livestock"
+	description="Battery-powered LoRaWAN® wireless temperature, humidity and NDIR CO₂ sensor for poultry houses, barns and dairy rooms. Reports every 10 minutes, IP66 enclosure, ISO/IEC 17025 calibration certificate included. Early alerts for heat stress and poor ventilation."
+	tint
+/>
 
 <!-- FAQ -->
 <section class="section scroll-pad" id="questions">

@@ -41,6 +41,7 @@ export const PAGES: PageEntry[] = [
 		title: 'Cold chain and refrigeration monitoring',
 		summary:
 			'Wireless walk-in cooler and freezer temperature monitoring with HACCP-ready logs for restaurants, hotels, schools, grocery and cold storage.',
+		lastmod: '2026-10-10',
 		section: 'main',
 		priority: '0.8',
 		changefreq: 'monthly'
@@ -50,6 +51,7 @@ export const PAGES: PageEntry[] = [
 		title: 'Agriculture and greenhouse monitoring',
 		summary:
 			'Soil moisture, soil temperature and EC; air temperature, humidity and CO2; calculated VPD, PPFD and DLI for greenhouses, fields, orchards and vineyards.',
+		lastmod: '2026-10-10',
 		section: 'main',
 		priority: '0.8',
 		changefreq: 'monthly'
@@ -59,6 +61,7 @@ export const PAGES: PageEntry[] = [
 		title: 'Poultry and livestock monitoring',
 		summary:
 			'Wireless temperature, CO2, humidity and ammonia (NH3) monitoring for poultry houses, barns and livestock sheds. Catch heat stress and poor ventilation early.',
+		lastmod: '2026-10-10',
 		section: 'main',
 		priority: '0.8',
 		changefreq: 'monthly'
@@ -68,6 +71,7 @@ export const PAGES: PageEntry[] = [
 		title: 'Pricing and savings calculator',
 		summary:
 			'What CropWatch costs and what it saves: compares manual clipboard logging against automated monitoring for your number of units and logging frequency.',
+		lastmod: '2026-10-10',
 		section: 'main',
 		priority: '0.7',
 		changefreq: 'monthly'
