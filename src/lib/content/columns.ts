@@ -88,6 +88,42 @@ export const COLUMNS: Column[] = [
 		keywords: ['LoRaWAN®とは', 'LoRaWAN® 農業', '920MHz', 'ワイヤレス 温度監視'],
 		targetHref: '/technology',
 		targetLabel: 'CropWatchの技術を見る'
+	},
+	{
+		slug: 'reitoko-ondo-kanshi',
+		title: '−40℃の冷凍庫を温度監視するには？センサー選び5つのポイント',
+		description:
+			'業務用冷凍庫・プレハブ冷凍庫・急速冷凍庫の温度監視で失敗しないために。測定範囲、低温での精度と校正、金属の壁を越える無線、霜・結露への強さ、霜取り運転を考えたアラート設定の5点を解説します。',
+		category: 'コールドチェーン',
+		datePublished: '2026-10-10',
+		readMinutes: 7,
+		keywords: ['冷凍庫 温度監視', '冷凍庫 温度センサー', '−40℃ 温度センサー', '急速冷凍庫 温度管理', 'プレハブ冷凍庫'],
+		targetHref: '/cold-chain',
+		targetLabel: '冷蔵・冷凍の温度監視を見る'
+	},
+	{
+		slug: 'haccp-ondo-kiroku-wifi-nashi',
+		title: 'Wi-FiがなくてもHACCPの温度記録は自動化できる？5つの方法を比較',
+		description:
+			'厨房や倉庫にWi-Fiがない、冷凍庫の中まで電波が届かない。そんな現場でHACCPの温度記録を自動化する方法を、手書き・USBロガー・Wi-Fi・LTE・LoRaWAN®の5つで比較し、記録すべき項目とあわせて解説します。',
+		category: 'コールドチェーン',
+		datePublished: '2026-10-10',
+		readMinutes: 7,
+		keywords: ['HACCP 温度記録 自動化', 'Wi-Fiなし 温度監視', '温度ロガー 比較', 'LoRaWAN® 温度センサー'],
+		targetHref: '/cold-chain',
+		targetLabel: '温度記録の自動化を見る'
+	},
+	{
+		slug: 'shimo-taisaku-ondo-alert',
+		title: '霜害を防ぐ温度アラートの使い方｜ハウス・露地・果樹園',
+		description:
+			'霜は晴れて風のない明け方に、地面や作物の近くから冷え込みます。霜が降りやすい条件、作物の高さで測る理由、余裕をもったしきい値の決め方、暖房機の停止にも気づける夜間アラートの使い方を解説します。',
+		category: 'スマート農業',
+		datePublished: '2026-10-10',
+		readMinutes: 6,
+		keywords: ['霜対策', '霜害 対策', '霜 アラート', 'ハウス 温度 通知', '果樹 霜'],
+		targetHref: '/agriculture',
+		targetLabel: 'スマート農業の環境監視を見る'
 	}
 ];
 

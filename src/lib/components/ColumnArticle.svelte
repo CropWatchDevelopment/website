@@ -169,6 +169,45 @@
 	.col-body :global(.col-note p:last-child) {
 		margin-bottom: 0;
 	}
+	/* Comparison tables scroll inside their own box so the page never scrolls sideways. */
+	.col-body :global(.col-table) {
+		overflow-x: auto;
+		margin: 0 0 24px;
+		border: 1px solid var(--web-border);
+		border-radius: 12px;
+	}
+	.col-body :global(.col-table table) {
+		width: 100%;
+		min-width: 560px;
+		border-collapse: collapse;
+		font-size: 14px;
+		line-height: 1.7;
+	}
+	.col-body :global(.col-table th),
+	.col-body :global(.col-table td) {
+		padding: 10px 12px;
+		text-align: left;
+		vertical-align: top;
+		border-bottom: 1px solid var(--web-border);
+		color: var(--web-body, #334155);
+	}
+	.col-body :global(.col-table thead th) {
+		background: var(--web-bg-tint, #f1f5f9);
+		color: var(--cw-ink);
+		font-weight: 700;
+		white-space: nowrap;
+	}
+	.col-body :global(.col-table tbody th) {
+		min-width: 9em;
+		color: var(--cw-ink);
+		font-weight: 700;
+	}
+	.col-body :global(.col-table td:not(:last-child)) {
+		white-space: nowrap;
+	}
+	.col-body :global(.col-table tbody tr:last-child > *) {
+		border-bottom: 0;
+	}
 
 	.col-cta {
 		display: flex;

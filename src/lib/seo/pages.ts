@@ -137,9 +137,9 @@ export const PAGES: PageEntry[] = [
 		path: '/column',
 		title: 'コラム',
 		summary:
-			'HACCP義務化、冷蔵庫の温度記録の自動化、鶏舎の暑熱対策、スマート農業やLoRaWAN®の基礎など、温度監視に役立つ記事の一覧。',
+			'HACCP義務化、冷蔵庫の温度記録の自動化、Wi-FiなしでのHACCP記録、−40℃冷凍庫の温度監視、鶏舎の暑熱対策、霜害対策、スマート農業やLoRaWAN®の基礎など、温度監視に役立つ記事の一覧。',
 		section: 'support',
-		lastmod: LASTMOD,
+		lastmod: '2026-10-10',
 		priority: '0.7',
 		changefreq: 'weekly'
 	},
