@@ -98,10 +98,10 @@ jobs:
           KEY: ${{ steps.target.outputs.indexnow_key }}
         run: |
           for i in $(seq 1 10); do
-            curl -fsS "https://$HOST/$KEY.txt" | grep -qx "$KEY" && break
+            curl -fsSL "https://$HOST/$KEY.txt" | grep -qx "$KEY" && break
             echo "Waiting for key file on $HOST ($i)..."; sleep 15
           done
-          urls="$(curl -fsS "https://$HOST/sitemap.xml" | grep -o '<loc>[^<]*</loc>' | sed -e 's#<loc>##' -e 's#</loc>##')"
+          urls="$(curl -fsSL "https://$HOST/sitemap.xml" | grep -o '<loc>[^<]*</loc>' | sed -e 's#<loc>##' -e 's#</loc>##')"
           [ -n "$urls" ] || { echo "::warning::No sitemap URLs found on $HOST"; exit 0; }
           jq -n --arg host "$HOST" --arg key "$KEY" --arg loc "https://$HOST/$KEY.txt" --arg urls "$urls" \
             '{host: $host, key: $key, keyLocation: $loc, urlList: ($urls | split("\n") | map(select(length > 0)))}' > indexnow.json
