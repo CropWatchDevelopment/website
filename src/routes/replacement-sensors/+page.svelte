@@ -94,7 +94,7 @@
 
 	const title = '交換用センサー｜自分で60秒で交換・校正証明書つき｜CropWatch 日本';
 	const description =
-		'校正済みで、すぐ使える交換用センサーモジュール。業者を呼ばず、だれでも60秒で交換できます。1台ごとにISO/IEC 17025の校正証明書つき。温度・湿度・CO₂・土壌など用途に合わせて選べます。';
+		'校正済みで、すぐ使える交換用センサーモジュール。業者を呼ばず、だれでも60秒で交換できます。1台ごとにISO/IEC 17025の校正証明書つき。温度・湿度・CO₂・PPFD・土壌の4モジュールから用途に合わせて選べます。測定範囲と精度も掲載。';
 
 	// ページ上に価格を表示していないため offers は出さない（見積もりベース）。
 	// 価格をこのページに公開したら price/offerUrl を追加する。
@@ -218,6 +218,7 @@
 						class="picker-tab"
 						class:is-active={active.id === s.id}
 						aria-pressed={active.id === s.id}
+						aria-controls="sensor-{s.id}"
 						onclick={() => (active = s)}
 					>
 						<span class="picker-tab__ic"
@@ -227,20 +228,24 @@
 					</button>
 				{/each}
 			</div>
-			<div class="picker-panel">
-				<span class="picker-panel__tag">{active.tag}</span>
-				<h3>{active.name}</h3>
-				<p class="picker-panel__blurb">{active.blurb}</p>
-				<div class="picker-measures">
-					{#each active.measures as m (m)}<span class="picker-chip">{m}</span>{/each}
+			<!-- 全モジュールの仕様をHTMLに出力し、選択中以外は hidden で隠す。
+			     検索エンジン・AIクローラーが4機種すべての仕様を読めるようにするため。 -->
+			{#each SENSORS as s (s.id)}
+				<div class="picker-panel" id="sensor-{s.id}" hidden={active.id !== s.id}>
+					<span class="picker-panel__tag">{s.tag}</span>
+					<h3>{s.name}</h3>
+					<p class="picker-panel__blurb">{s.blurb}</p>
+					<div class="picker-measures">
+						{#each s.measures as m (m)}<span class="picker-chip">{m}</span>{/each}
+					</div>
+					<dl class="picker-specs">
+						{#each s.specs as [k, v], i (i)}<div class="picker-spec">
+								<dt>{k}</dt>
+								<dd>{v}</dd>
+							</div>{/each}
+					</dl>
 				</div>
-				<dl class="picker-specs">
-					{#each active.specs as [k, v], i (i)}<div class="picker-spec">
-							<dt>{k}</dt>
-							<dd>{v}</dd>
-						</div>{/each}
-				</dl>
-			</div>
+			{/each}
 		</div>
 	</div>
 </section>
@@ -371,6 +376,9 @@
 		border-radius: var(--web-radius-card);
 		box-shadow: var(--web-shadow-card);
 		padding: 24px 26px;
+	}
+	.picker-panel[hidden] {
+		display: none;
 	}
 	.picker-panel__tag {
 		align-self: flex-start;

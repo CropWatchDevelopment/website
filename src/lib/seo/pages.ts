@@ -87,9 +87,9 @@ export const PAGES: PageEntry[] = [
 		path: '/replacement-sensors',
 		title: '交換用センサー',
 		summary:
-			'校正済みの交換用センサーモジュール。だれでも60秒で交換でき、1台ごとにISO/IEC 17025の校正証明書つき。温度・湿度・CO₂・土壌など。',
+			'校正済みの交換用センサーモジュール。だれでも60秒で交換でき、1台ごとにISO/IEC 17025の校正証明書つき。温度・湿度・CO₂・PPFD・土壌の4モジュールの測定範囲と精度を掲載。',
 		section: 'main',
-		lastmod: LASTMOD,
+		lastmod: '2026-10-10',
 		priority: '0.7',
 		changefreq: 'monthly'
 	},
