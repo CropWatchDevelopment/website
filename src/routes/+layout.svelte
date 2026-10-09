@@ -1,10 +1,10 @@
 <script lang="ts">
+import Analytics from '$lib/components/Analytics.svelte';
 import Footer from '$lib/components/Footer.svelte';
 import Header from '$lib/components/Header.svelte';
 import { afterNavigate } from '$app/navigation';
 import { assets } from '$app/paths';
 import { page } from '$app/state';
-import { PUBLIC_GA_MEASUREMENT_ID } from '$env/static/public';
 import { onMount, tick } from 'svelte';
 import { alternatesFor } from '$lib/seo/alternates';
 import JsonLd from '$lib/components/JsonLd.svelte';
@@ -33,32 +33,6 @@ const bare = $derived(page.url.pathname === '/403' || page.url.pathname.startsWi
 
 // Site-wide publisher identity + WebSite entity, emitted on every page.
 const siteLd = [organizationSchema(), websiteSchema()];
-
-type Gtag = (...args: unknown[]) => void;
-type WindowWithGtag = Window & { dataLayer?: unknown[]; gtag?: Gtag };
-
-const ensureGtag = (): Gtag | null => {
-	if (typeof window === 'undefined') return null;
-	const win = window as WindowWithGtag;
-	win.dataLayer = win.dataLayer || [];
-	if (!win.gtag) {
-		win.gtag = function gtag(..._args: unknown[]) {
-			(win.dataLayer as unknown[]).push(arguments);
-		};
-	}
-	return win.gtag ?? null;
-};
-
-const trackPageView = () => {
-	if (!PUBLIC_GA_MEASUREMENT_ID || typeof window === 'undefined') return;
-	const gtag = ensureGtag();
-	if (!gtag) return;
-	gtag('event', 'page_view', {
-		page_location: window.location.href,
-		page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-		page_title: document.title
-	});
-};
 
 // ── Material Symbols icon-font guard ──────────────────────────
 // Reveal icons only once the icon font is confirmed loaded, so raw
@@ -149,87 +123,22 @@ onMount(() => {
 	scanReveal();
 	loadChristmasDecor();
 	loadHalloweenDecor();
-
-	if (!PUBLIC_GA_MEASUREMENT_ID || typeof window === 'undefined') return;
-
-	const gtag = ensureGtag();
-	if (!gtag) return;
-
-	const handleClick = (event: MouseEvent) => {
-		const clickGtag = ensureGtag();
-		if (!clickGtag) return;
-		const target = event.target as HTMLElement | null;
-		if (!target) return;
-
-		const tracked = target.closest('[data-ga-click]') as HTMLElement | null;
-		if (tracked) {
-			const label = tracked.getAttribute('data-ga-click') ?? tracked.textContent?.trim() ?? 'ui_element';
-			clickGtag('event', 'click', {
-				event_category: 'ui',
-				event_label: label.slice(0, 100),
-				element_tag: tracked.tagName.toLowerCase(),
-				element_id: tracked.id || undefined,
-				element_classes: typeof tracked.className === 'string' ? tracked.className : undefined,
-				page_location: window.location.href
-			});
-			return;
-		}
-
-		const link = target.closest('a[href]') as HTMLAnchorElement | null;
-		if (!link) return;
-		const href = link.href;
-		if (!href) return;
-
-		let linkDomain: string | undefined;
-		let outbound = false;
-		try {
-			const url = new URL(href, window.location.href);
-			linkDomain = url.hostname;
-			outbound = url.origin !== window.location.origin;
-		} catch {
-			linkDomain = undefined;
-			outbound = false;
-		}
-
-		const linkLabel = link.textContent?.trim();
-		clickGtag('event', 'click', {
-			event_category: 'link',
-			event_label: linkLabel ? linkLabel.slice(0, 100) : href,
-			link_url: href,
-			link_domain: linkDomain,
-			outbound,
-			page_location: window.location.href,
-			transport_type: 'beacon'
-		});
-	};
-
-	gtag('js', new Date());
-	gtag('config', PUBLIC_GA_MEASUREMENT_ID, { send_page_view: false });
-	trackPageView();
-	document.addEventListener('click', handleClick);
-
-	return () => {
-		document.removeEventListener('click', handleClick);
-	};
 });
 
 afterNavigate(async () => {
 	await tick();
 	scanReveal();
-	trackPageView();
 });
 </script>
 
 <svelte:head>
-	{#if PUBLIC_GA_MEASUREMENT_ID}
-		<script async src="https://www.googletagmanager.com/gtag/js?id={PUBLIC_GA_MEASUREMENT_ID}"></script>
-	{/if}
 	{#each alternates ?? [] as alt (alt.hreflang)}
 		<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 	{/each}
 </svelte:head>
 
 <JsonLd data={siteLd} />
+<Analytics />
 
 <div class="flex min-h-screen flex-col">
 	{#if !bare}

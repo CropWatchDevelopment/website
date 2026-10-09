@@ -5,6 +5,7 @@
 	import { onDestroy } from 'svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import { trackEvent } from '$lib/analytics/gtag';
 
 	const title =
 		'お問い合わせ・無料デモのご予約｜温度監視・スマート農業・スマート畜産｜CropWatch 日本';
@@ -82,6 +83,7 @@
 				headers: { 'x-sveltekit-action': 'true' }
 			});
 			const result = deserialize(await response.text());
+			if (result.type === 'success') trackEvent('generate_lead', { form: 'contact' });
 			await applyAction(result);
 		} catch (error) {
 			console.error('contact form submission error', error);

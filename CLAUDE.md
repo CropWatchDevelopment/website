@@ -49,3 +49,25 @@ path (e.g. the home accordion uses tap-to-expand on touch).
   editing them, re-verify several pages, not just one.
 - Run `npx svelte-check` (expect 0 errors/0 warnings) before finishing.
 - Copy is Japanese; use plain hyphens, avoid em/en dashes in body copy.
+
+## SEO artifacts must stay in sync (no stale SEO)
+Any content or route change must update, **in the same commit**:
+- `src/lib/seo/pages.ts`: the page's `summary` + bump `lastmod`. This one
+  registry feeds `/sitemap.xml` and `/llms.txt`. New public page = new entry
+  (`src/lib/seo/pages.test.ts` fails otherwise).
+- The page's `<Seo>` title/description (keep `summary` in line with it).
+- `src/lib/seo/schema.ts` JSON-LD if prices, products, org facts or FAQ changed.
+- コラム: `src/lib/content/columns.ts` (`dateModified`). News: `static/news/*.json`.
+- `src/lib/seo/alternates.ts` PAIRS for a new cross-site page (identical on
+  both deploy branches).
+Then run `npx vitest --run --project server`. A PostToolUse hook
+(`.claude/hooks/seo-reminder.sh`) prints this reminder when content files change.
+
+## Analytics
+`src/lib/components/Analytics.svelte` (shared with the .io branch) owns GA4:
+lazy gtag load, one `page_view` per navigation, `ai_referral` + `ai_source`
+user property for ChatGPT/Perplexity/etc. visits (`src/lib/analytics/ai-referrer.ts`),
+`contact_click` (tel/mailto/LINE), `generate_lead` (contact form success).
+Don't add gtag calls elsewhere; use `trackEvent` from `$lib/analytics/gtag`.
+IndexNow is pinged from `.github/workflows/deploy.yml` after each prod deploy
+(key file `static/<key>.txt`).

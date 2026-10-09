@@ -2,33 +2,14 @@ import { alternatesFor } from '$lib/seo/alternates';
 import { absUrl } from '$lib/seo/site';
 import { COLUMNS } from '$lib/content/columns';
 import { listNews } from '$lib/server/news';
+import { PAGES } from '$lib/seo/pages';
 
 export const prerender = true;
 
-// Date of the current content set. Bumped when pages change materially; kept
-// stable across rebuilds so <lastmod> doesn't churn on every deploy.
-const STATIC_LASTMOD = '2026-07-05';
-
 type Entry = { path: string; lastmod: string; priority: string; changefreq: string };
 
-const STATIC_ENTRIES: Entry[] = [
-	{ path: '/', lastmod: STATIC_LASTMOD, priority: '1.0', changefreq: 'weekly' },
-	{ path: '/cold-chain', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },
-	{ path: '/agriculture', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },
-	{ path: '/livestock', lastmod: STATIC_LASTMOD, priority: '0.9', changefreq: 'monthly' },
-	{ path: '/technology', lastmod: STATIC_LASTMOD, priority: '0.7', changefreq: 'monthly' },
-	{ path: '/pricing', lastmod: '2026-07-21', priority: '0.8', changefreq: 'monthly' },
-	{ path: '/replacement-sensors', lastmod: STATIC_LASTMOD, priority: '0.7', changefreq: 'monthly' },
-	{ path: '/replacement-case', lastmod: STATIC_LASTMOD, priority: '0.7', changefreq: 'monthly' },
-	{ path: '/testimonials', lastmod: STATIC_LASTMOD, priority: '0.6', changefreq: 'monthly' },
-	{ path: '/help', lastmod: STATIC_LASTMOD, priority: '0.6', changefreq: 'monthly' },
-	{ path: '/contact', lastmod: STATIC_LASTMOD, priority: '0.8', changefreq: 'yearly' },
-	{ path: '/column', lastmod: STATIC_LASTMOD, priority: '0.7', changefreq: 'weekly' },
-	{ path: '/legal', lastmod: '2026-07-30', priority: '0.2', changefreq: 'yearly' },
-	{ path: '/legal/privacy-policy', lastmod: STATIC_LASTMOD, priority: '0.2', changefreq: 'yearly' },
-	{ path: '/legal/terms-of-service', lastmod: STATIC_LASTMOD, priority: '0.2', changefreq: 'yearly' },
-	{ path: '/legal/EULA', lastmod: STATIC_LASTMOD, priority: '0.2', changefreq: 'yearly' }
-];
+// Fallback lastmod for /news when there are no articles.
+const STATIC_LASTMOD = PAGES[0].lastmod;
 
 const NEWS = listNews();
 const NEWS_ENTRIES: Entry[] = [
@@ -67,7 +48,7 @@ function urlBlock({ path, lastmod, priority, changefreq }: Entry): string {
 }
 
 export function GET() {
-	const entries = [...STATIC_ENTRIES, ...COLUMN_ENTRIES, ...NEWS_ENTRIES];
+	const entries: Entry[] = [...PAGES, ...COLUMN_ENTRIES, ...NEWS_ENTRIES];
 	const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries.map(urlBlock).join('\n')}
