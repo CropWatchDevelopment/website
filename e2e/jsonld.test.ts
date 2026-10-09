@@ -21,7 +21,9 @@ const CASES: Array<{ path: string; types: string[]; absent?: string[] }> = [
 	{ path: '/technology', types: ['BreadcrumbList'] },
 	{ path: '/replacement-sensors', types: ['BreadcrumbList', 'Product'] },
 	{ path: '/pricing', types: ['BreadcrumbList', 'Product'] },
-	{ path: '/cold-chain', types: ['BreadcrumbList', 'FAQPage'], absent: ['Product'] },
+	{ path: '/cold-chain', types: ['BreadcrumbList', 'FAQPage', 'Product'] },
+	{ path: '/livestock', types: ['BreadcrumbList', 'FAQPage', 'Product'] },
+	{ path: '/agriculture', types: ['BreadcrumbList', 'FAQPage', 'Product'] },
 	{ path: '/column/haccp-gimuka', types: ['BreadcrumbList', 'BlogPosting'] },
 	{ path: '/legal/privacy-policy', types: ['BreadcrumbList'] },
 	{ path: '/contact', types: ['BreadcrumbList'] }

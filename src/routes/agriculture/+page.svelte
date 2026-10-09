@@ -3,6 +3,7 @@
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { faqSchema } from '$lib/seo/schema';
+	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
 
 	const related = [
@@ -40,9 +41,7 @@
 		}
 	];
 
-	// CW-AIR-THC のProduct構造化データは出さない: 価格未公表のためoffersを
-	// 付けられず、Search Consoleの「offers/review/aggregateRating」警告に
-	// なるだけ。価格を公開したら productSchema({ path, price, offerUrl }) で復活。
+	// CW-AIR-THC の Product 構造化データ（価格つき）は <SensorPrice> が出力する。
 	const ld = faqSchema(faq);
 </script>
 
@@ -425,6 +424,12 @@
 </section>
 
 <RelatedLinks links={related} />
+
+<SensorPrice
+	sector="agriculture"
+	path="/agriculture"
+	description="ハウス・施設園芸の温度・湿度・CO₂を10分ごとに自動送信する電池駆動のLoRaWAN®ワイヤレスセンサー。NDIR方式のCO₂測定とVPD算出、IP66防塵・防水ケース、ISO/IEC 17025認定校正に基づく校正証明書つき。霜・高温・換気不足を早めに通知します。"
+/>
 
 <section class="closing">
 	<div class="wrap closing__in" data-reveal>

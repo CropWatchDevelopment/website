@@ -3,6 +3,7 @@
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { faqSchema } from '$lib/seo/schema';
+	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
 
 	const related = [
@@ -562,6 +563,12 @@
 </section>
 
 <RelatedLinks links={related} />
+
+<SensorPrice
+	sector="livestock"
+	path="/livestock"
+	description="鶏舎・畜舎の温度・湿度・CO₂を10分ごとに自動送信する電池駆動のLoRaWAN®ワイヤレスセンサー。NDIR方式のCO₂測定、IP66防塵・防水ケース、ISO/IEC 17025認定校正に基づく校正証明書つき。暑熱ストレスや換気不良を早期に通知します。"
+/>
 
 <!-- ═══ クロージング ═══ -->
 <section class="closing">

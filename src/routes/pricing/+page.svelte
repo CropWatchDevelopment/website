@@ -6,6 +6,13 @@
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { productSchema } from '$lib/seo/schema';
 	import { absUrl } from '$lib/seo/site';
+	import {
+		GATEWAY_BASE_PRICE,
+		MIN_SEATS,
+		SEAT_FEE,
+		SECTOR_DEVICES,
+		withTax
+	} from '$lib/pricing';
 
 	/* ══════════════════════════════════════════════════════════════════
 	   料金の設定値（すべて税抜・円）- ここを編集すれば表全体が変わります。
@@ -42,19 +49,14 @@
 		saveLine: string;
 		comingSoon?: boolean;
 	};
-	/**
-	 * 1契約あたりの最低シート数。シート = センサー1台をつなぐ月額の利用枠。
-	 * センサーは1台から買えるが、月額は最低この数のシート分になる。
-	 */
-	const MIN_SEATS = 3;
-	/** 消費税率。価格はすべて税抜で持ち、表示時に（税込 ¥…）を添える。 */
-	const TAX_RATE_PERCENT = 10;
+	// 価格（シート月額・機器価格・最低シート数・税率）は $lib/pricing に集約。
+	// 各業種ページの価格表示と Product 構造化データも同じ値を使う。
 	const SECTORS: Record<string, Sector> = {
 		'cold-chain': {
 			label: 'コールドチェーン',
 			icon: 'ac_unit',
 			sensorLabel: '温湿度センサー利用料',
-			sensorFee: 800,
+			sensorFee: SEAT_FEE,
 			minutesPerCheck: 3,
 			defaultCount: 10,
 			defaultChecks: 3,
@@ -71,8 +73,8 @@
 				'複数拠点の一括管理'
 			],
 			excluded: [],
-			deviceUnitPrice: 32000,
-			deviceLabel: '温湿度センサー',
+			deviceUnitPrice: SECTOR_DEVICES['cold-chain'].unitPrice,
+			deviceLabel: SECTOR_DEVICES['cold-chain'].label,
 			deviceNote: 'CO₂センサー・土壌センサーなど他の機器はお問い合わせください。',
 			saveLine: '食品ロスを防ぐ'
 		},
@@ -80,7 +82,7 @@
 			label: '畜産・養鶏',
 			icon: 'pets',
 			sensorLabel: '温湿度・CO₂センサー利用料',
-			sensorFee: 800,
+			sensorFee: SEAT_FEE,
 			minutesPerCheck: 10,
 			defaultCount: 2,
 			defaultChecks: 3,
@@ -99,8 +101,8 @@
 			],
 			excluded: [],
 			// 畜産・養鶏向けの機器はコールドチェーンの1台価格 +6,000円（CO₂センサー分）
-			deviceUnitPrice: 39000,
-			deviceLabel: '温湿度・CO₂センサー',
+			deviceUnitPrice: SECTOR_DEVICES.livestock.unitPrice,
+			deviceLabel: SECTOR_DEVICES.livestock.label,
 			deviceNote:
 				'温湿度センサーのみ（CO₂なし）のご利用をご希望の場合は、個別にお見積もりしますのでお問い合わせください。',
 			saveLine: '鶏の熱中症を防ぐ'
@@ -108,22 +110,29 @@
 		agriculture: {
 			label: '農業・ハウス',
 			icon: 'eco',
-			sensorLabel: '',
-			sensorFee: 0,
-			minutesPerCheck: 0,
-			defaultCount: 0,
-			defaultChecks: 0,
-			defaultLocations: 0,
-			// 準備中のため現状は非表示。公開時は畜産・養鶏と同じ制限（ルール3件まで・
-			// レポート/APIなし）で案内する。
-			included: ['ユーザー数無制限', 'アラート通知（ルールは3件まで）'],
-			excluded: ['自動レポート', 'API利用'],
-			// 農業向けの機器価格は未定（決まったら数値を入れる）
-			deviceUnitPrice: null,
-			deviceLabel: '温湿度センサー',
-			deviceNote: 'CO₂センサー・土壌センサーなど他の機器はお問い合わせください。',
-			saveLine: '',
-			comingSoon: true
+			sensorLabel: '温湿度・CO₂センサー利用料',
+			sensorFee: SEAT_FEE,
+			minutesPerCheck: 10,
+			defaultCount: 4,
+			defaultChecks: 2,
+			defaultLocations: 1,
+			// 料金・機能とも畜産・養鶏と同一（機器もCO₂つきの同じモデル）。
+			included: [
+				'10分ごとの自動記録',
+				'スマホ・PCで確認',
+				'プッシュ通知',
+				'メール通知',
+				'ユーザー数無制限',
+				'CSVダウンロード',
+				'API利用',
+				'データ保存2年間',
+				'複数拠点の一括管理'
+			],
+			excluded: [],
+			deviceUnitPrice: SECTOR_DEVICES.agriculture.unitPrice,
+			deviceLabel: SECTOR_DEVICES.agriculture.label,
+			deviceNote: '土壌センサー・PPFDセンサーなど他の機器はお問い合わせください。',
+			saveLine: '霜や高温から作物を守る'
 		}
 	};
 	/** 時給の既定値: 地域別最低賃金の全国加重平均（令和7年度）。 */
@@ -138,11 +147,7 @@
 	/** SMS通数の既定値・上限（月あたり） */
 	const DEFAULT_SMS = 20;
 	const MAX_SMS = 10000;
-	/** 1拠点あたりのゲートウェイ・初期導入サポートの概算価格（税抜） */
-	const DEVICE_BASE_PRICE = 100000;
-
-	/** 税込金額（1円未満切り捨て）。整数演算なので 800 → 880 のように誤差が出ない。 */
-	const withTax = (v: number) => Math.floor((v * (100 + TAX_RATE_PERCENT)) / 100);
+	const DEVICE_BASE_PRICE = GATEWAY_BASE_PRICE;
 
 	/** 構造化データ用の最低構成価格（センサー1台 + ゲートウェイ、税込） */
 	const DEVICE_MIN_PRICE = withTax(SECTORS['cold-chain'].deviceUnitPrice! + DEVICE_BASE_PRICE);

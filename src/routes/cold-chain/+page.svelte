@@ -5,6 +5,7 @@
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { faqSchema } from '$lib/seo/schema';
+	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
 
 	const related = [
@@ -504,6 +505,12 @@
 </section>
 
 <RelatedLinks links={related} />
+
+<SensorPrice
+	sector="cold-chain"
+	path="/cold-chain"
+	description="冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録する電池駆動のLoRaWAN®ワイヤレスセンサー。測定範囲−40〜+85℃、精度±0.48℃、IP66防塵・防水ケース、ISO/IEC 17025認定校正に基づく3点温度校正証明書つき。HACCPの温度記録を自動化します。"
+/>
 
 <!-- クロージング -->
 <section class="closing">

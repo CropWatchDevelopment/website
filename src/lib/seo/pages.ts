@@ -39,7 +39,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'電池駆動のLoRaWAN®センサーが冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録し、スマホやPCから遠隔監視。HACCP対応の温度記録の自動化、ISO/IEC 17025校正証明書つき。',
 		section: 'main',
-		lastmod: LASTMOD,
+		lastmod: '2026-10-10',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},
@@ -49,7 +49,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'ハウス栽培・施設園芸・露地・果樹の温度・湿度・CO₂・土壌をワイヤレスセンサーで見える化し、霜・高温・乾燥を早めに通知。電池式・配線工事なし。',
 		section: 'main',
-		lastmod: LASTMOD,
+		lastmod: '2026-10-10',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},
@@ -59,7 +59,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'鶏舎・畜舎の温度・湿度を10分ごとに自動送信し、暑熱ストレスや換気不良を早期に発見。LoRaWAN®で配線工事なし、ISO/IEC 17025校正証明書つき。',
 		section: 'main',
-		lastmod: LASTMOD,
+		lastmod: '2026-10-10',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},
@@ -69,7 +69,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'月額は1シートあたり800円（税込880円）、最低3シートから。ユーザー数無制限・アラート通知・API込み。自動レポート（無制限）は月額3,500円（税込3,850円）のオプション。人件費との比較シミュレーションつき。',
 		section: 'main',
-		lastmod: '2026-07-21',
+		lastmod: '2026-10-10',
 		priority: '0.8',
 		changefreq: 'monthly'
 	},

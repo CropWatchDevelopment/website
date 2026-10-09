@@ -107,7 +107,7 @@ export type ProductInput = {
 	description: string;
 	/** Root-relative canonical page for this product (gives it url + stable @id). */
 	path?: string;
-	image?: string;
+	image?: string | string[];
 	sku?: string;
 	category?: string;
 	/**
