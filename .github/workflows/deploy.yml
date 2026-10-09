@@ -37,10 +37,14 @@ jobs:
             echo "project_id=prj_PCZSorn0mGcEaoiLzSGjpev45kft" >> "$GITHUB_OUTPUT"
             echo "node_version=22" >> "$GITHUB_OUTPUT"
             echo "label=website (cropwatch.io)" >> "$GITHUB_OUTPUT"
+            echo "host=cropwatch.io" >> "$GITHUB_OUTPUT"
+            echo "indexnow_key=1df4e71cb35e4273dc1c3851fc8966bb" >> "$GITHUB_OUTPUT"
           elif [ "${{ github.ref_name }}" = "Japan-website" ]; then
             echo "project_id=prj_pKxBByWbBApbUJC4ml66Xt5BffSU" >> "$GITHUB_OUTPUT"
             echo "node_version=24" >> "$GITHUB_OUTPUT"
             echo "label=japan-website (cropwatch.co.jp)" >> "$GITHUB_OUTPUT"
+            echo "host=cropwatch.co.jp" >> "$GITHUB_OUTPUT"
+            echo "indexnow_key=11722b75e38a61865c5379610b9bc751" >> "$GITHUB_OUTPUT"
           else
             echo "::error::Branch ${{ github.ref_name }} has no Vercel project mapping"
             exit 1
@@ -82,3 +86,28 @@ jobs:
           echo "Deployed: $url"
           echo "### Deployed \`${{ github.ref_name }}\` to ${{ steps.target.outputs.label }}" >> "$GITHUB_STEP_SUMMARY"
           echo "$url" >> "$GITHUB_STEP_SUMMARY"
+
+      # Tell Bing (and the other IndexNow engines) the site changed, so
+      # ChatGPT search / Copilot, which draw on Bing's index, pick up new
+      # content fast. The key is public by design: it is served from
+      # static/<key>.txt on each branch. Never fails the deploy.
+      - name: Ping IndexNow
+        continue-on-error: true
+        env:
+          HOST: ${{ steps.target.outputs.host }}
+          KEY: ${{ steps.target.outputs.indexnow_key }}
+        run: |
+          for i in $(seq 1 10); do
+            curl -fsS "https://$HOST/$KEY.txt" | grep -qx "$KEY" && break
+            echo "Waiting for key file on $HOST ($i)..."; sleep 15
+          done
+          urls="$(curl -fsS "https://$HOST/sitemap.xml" | grep -o '<loc>[^<]*</loc>' | sed -e 's#<loc>##' -e 's#</loc>##')"
+          [ -n "$urls" ] || { echo "::warning::No sitemap URLs found on $HOST"; exit 0; }
+          jq -n --arg host "$HOST" --arg key "$KEY" --arg loc "https://$HOST/$KEY.txt" --arg urls "$urls" \
+            '{host: $host, key: $key, keyLocation: $loc, urlList: ($urls | split("\n") | map(select(length > 0)))}' > indexnow.json
+          echo "Submitting $(jq '.urlList | length' indexnow.json) URLs for $HOST"
+          code="$(curl -sS -o indexnow.out -w '%{http_code}' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' --data @indexnow.json)"
+          echo "IndexNow HTTP $code"; cat indexnow.out || true
+          echo "IndexNow: HTTP $code for $HOST" >> "$GITHUB_STEP_SUMMARY"
+          case "$code" in 200|202) ;; *) echo "::warning::IndexNow returned HTTP $code" ;; esac

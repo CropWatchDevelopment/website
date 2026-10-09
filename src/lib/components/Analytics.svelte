@@ -9,14 +9,20 @@
 	// a page_view is fired on every client-side navigation (SPA tracking, since
 	// the browser only performs one real page load). Set PUBLIC_GA_MEASUREMENT_ID per Vercel
 	// project (G-V65DJ4TTV1 for .io, G-K4ZHT9JRY4 for .co.jp) to enable.
+	//
+	// Custom events (mark generate_lead + contact_click as Key events in GA):
+	//   ai_referral    first page view of a visit from ChatGPT/Perplexity/... (+ ai_source user property)
+	//   contact_click  tel: / mailto: / LINE link clicks
+	//   click          every other link click (outbound flag + domain)
+	//   generate_lead  contact form sent (fired from routes/contact via trackEvent)
 	import { afterNavigate } from '$app/navigation';
 	import { onMount, tick } from 'svelte';
 	import { PUBLIC_GA_MEASUREMENT_ID } from '$env/static/public';
-
-	type Gtag = (...args: unknown[]) => void;
-	type WindowWithGtag = Window & { dataLayer?: unknown[]; gtag?: Gtag };
+	import { detectAiSource } from '$lib/analytics/ai-referrer';
+	import { ensureGtag } from '$lib/analytics/gtag';
 
 	let configured = false;
+	let firstView = true;
 
 	// gtag.js is ~160KB of script and the single largest main-thread cost on
 	// these pages (Lighthouse: 490ms TBT on desktop), so it is NOT emitted in
@@ -35,6 +41,48 @@
 		document.head.appendChild(s);
 	}
 
+	function contactMethod(url: URL): 'phone' | 'email' | 'line' | null {
+		if (url.protocol === 'tel:') return 'phone';
+		// `mailto:?subject=...` (no address) is a share link, not a contact.
+		if (url.protocol === 'mailto:') return url.pathname ? 'email' : null;
+		if (/(^|\.)(line\.me|lin\.ee)$/.test(url.hostname)) return 'line';
+		return null;
+	}
+
+	function handleClick(event: MouseEvent) {
+		const gtag = ensureGtag();
+		const link = (event.target as HTMLElement | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
+		if (!gtag || !link?.href) return;
+
+		let url: URL;
+		try {
+			url = new URL(link.href, window.location.href);
+		} catch {
+			return;
+		}
+		const label = link.textContent?.trim().slice(0, 100) || link.href;
+
+		const method = contactMethod(url);
+		if (method) {
+			gtag('event', 'contact_click', {
+				method,
+				link_url: link.href,
+				event_label: label,
+				transport_type: 'beacon'
+			});
+			return;
+		}
+
+		gtag('event', 'click', {
+			event_category: 'link',
+			event_label: label,
+			link_url: link.href,
+			link_domain: url.hostname || undefined,
+			outbound: url.origin !== window.location.origin,
+			transport_type: 'beacon'
+		});
+	}
+
 	onMount(() => {
 		if (!PUBLIC_GA_MEASUREMENT_ID) return;
 		const events = ['pointerdown', 'keydown', 'wheel', 'touchstart', 'scroll'] as const;
@@ -50,24 +98,12 @@
 		for (const e of events) {
 			addEventListener(e, onFirstInteraction, { once: true, passive: true });
 		}
-		return cleanup;
+		document.addEventListener('click', handleClick);
+		return () => {
+			cleanup();
+			document.removeEventListener('click', handleClick);
+		};
 	});
-
-	function ensureGtag(): Gtag | null {
-		if (typeof window === 'undefined') return null;
-		const win = window as WindowWithGtag;
-		win.dataLayer = win.dataLayer || [];
-		if (!win.gtag) {
-			// gtag.js ONLY processes data-layer entries that are the live `arguments`
-			// object — a real array (rest params) is silently ignored, so events
-			// queue but never send. Push `arguments`, like the canonical snippet.
-			// eslint-disable-next-line prefer-rest-params
-			win.gtag = function gtag() {
-				win.dataLayer!.push(arguments);
-			};
-		}
-		return win.gtag ?? null;
-	}
 
 	// afterNavigate fires on the initial mount AND every client-side navigation,
 	// so this single handler covers the first page view and all subsequent ones.
@@ -81,10 +117,21 @@
 			configured = true;
 		}
 		await tick(); // let <svelte:head><title> update before reading document.title
+
+		// Only the landing view carries the external referrer / utm params.
+		const aiSource = firstView
+			? detectAiSource(new URLSearchParams(window.location.search).get('utm_source'), document.referrer)
+			: null;
+		firstView = false;
+		if (aiSource) gtag('set', 'user_properties', { ai_source: aiSource });
+
 		gtag('event', 'page_view', {
 			page_location: window.location.href,
 			page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
 			page_title: document.title
 		});
+		if (aiSource) {
+			gtag('event', 'ai_referral', { ai_source: aiSource, landing_page: window.location.pathname });
+		}
 	});
 </script>

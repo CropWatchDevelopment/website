@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { tick } from 'svelte';
 	import { deserialize } from '$app/forms';
+	import { trackEvent } from '$lib/analytics/gtag';
 	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 
 	// Demo-request form. Native validation gates the submit, then we fetch a
@@ -55,6 +56,7 @@
 			});
 			const result = deserialize(await response.text());
 			if (result.type === 'success') {
+				trackEvent('generate_lead', { form: 'contact' });
 				submitted = true;
 				await tick();
 				successEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });

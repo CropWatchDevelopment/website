@@ -1,4 +1,5 @@
 import { listNews } from '$lib/server/news';
+import { PAGES } from '$lib/seo/pages';
 import type { RequestHandler } from './$types';
 
 // Prerendered so the Vercel adapter emits a static /sitemap.xml asset.
@@ -6,33 +7,24 @@ export const prerender = true;
 
 const SITE = 'https://cropwatch.io';
 
-// Public, indexable routes. Keep this list in sync as pages are added.
-const ROUTES: { path: string; changefreq: string; priority: string }[] = [
-	{ path: '/', changefreq: 'monthly', priority: '1.0' },
-	{ path: '/home', changefreq: 'monthly', priority: '0.9' },
-	{ path: '/agriculture', changefreq: 'monthly', priority: '0.8' },
-	{ path: '/livestock', changefreq: 'monthly', priority: '0.8' },
-	{ path: '/cold-chain', changefreq: 'monthly', priority: '0.8' },
-	{ path: '/replacement-sensors', changefreq: 'monthly', priority: '0.6' },
-	{ path: '/pricing', changefreq: 'monthly', priority: '0.7' },
-	{ path: '/contact', changefreq: 'monthly', priority: '0.7' },
-	{ path: '/news', changefreq: 'weekly', priority: '0.5' },
-	{ path: '/legal', changefreq: 'yearly', priority: '0.2' },
-	{ path: '/legal/privacy-policy', changefreq: 'yearly', priority: '0.2' },
-	{ path: '/legal/terms-of-service', changefreq: 'yearly', priority: '0.2' },
-	{ path: '/legal/EULA', changefreq: 'yearly', priority: '0.2' },
+type Entry = { path: string; changefreq: string; priority: string; lastmod?: string };
+
+// Static pages come from the shared registry (also feeds /llms.txt).
+const ROUTES: Entry[] = [
+	...PAGES,
 	// One entry per news article (static/news/*.json), newest first.
 	...listNews().map((n) => ({
 		path: `/news/${n.id}`,
 		changefreq: 'yearly',
-		priority: '0.4'
+		priority: '0.4',
+		lastmod: n.date
 	}))
 ];
 
 export const GET: RequestHandler = () => {
 	const urls = ROUTES.map(
-		({ path, changefreq, priority }) =>
-			`  <url>\n    <loc>${SITE}${path}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+		({ path, changefreq, priority, lastmod }) =>
+			`  <url>\n    <loc>${SITE}${path}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''}\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
 	).join('\n');
 
 	const body = `<?xml version="1.0" encoding="UTF-8"?>
