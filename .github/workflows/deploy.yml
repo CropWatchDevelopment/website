@@ -35,7 +35,7 @@ jobs:
         run: |
           if [ "${{ github.ref_name }}" = "master" ]; then
             echo "project_id=prj_PCZSorn0mGcEaoiLzSGjpev45kft" >> "$GITHUB_OUTPUT"
-            echo "node_version=22" >> "$GITHUB_OUTPUT"
+            echo "node_version=24" >> "$GITHUB_OUTPUT"
             echo "label=website (cropwatch.io)" >> "$GITHUB_OUTPUT"
             echo "host=cropwatch.io" >> "$GITHUB_OUTPUT"
             echo "indexnow_key=1df4e71cb35e4273dc1c3851fc8966bb" >> "$GITHUB_OUTPUT"
