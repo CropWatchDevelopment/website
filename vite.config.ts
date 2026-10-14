@@ -11,6 +11,10 @@ export default defineConfig({
 	// (vitest 5) if component tests are ever written.
 	test: {
 		environment: 'node',
-		include: ['src/**/*.{test,spec}.{js,ts}']
+		include: ['src/**/*.{test,spec}.{js,ts}'],
+		coverage: {
+			// lcov.info is what CI uploads to Qlty; text keeps the summary in the job log.
+			reporter: ['text', 'lcov']
+		}
 	}
 });
