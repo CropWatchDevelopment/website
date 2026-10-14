@@ -11,6 +11,11 @@ export default defineConfig({
 	// (vitest 5) if component tests are ever written.
 	test: {
 		environment: 'node',
-		include: ['src/**/*.{test,spec}.{js,ts}']
+		include: ['src/**/*.{test,spec}.{js,ts}'],
+		// lcov (coverage/lcov.info) is what Qlty Cloud reads; text keeps the
+		// summary readable in a local `vitest --coverage` run.
+		coverage: {
+			reporter: ['text', 'lcov']
+		}
 	}
 });
