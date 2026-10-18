@@ -58,34 +58,41 @@
 		<div class="sp" data-reveal>
 			<div class="sp__card sp__card--main">
 				<span class="sp__label">{device.label}（{device.sku}）</span>
-				<b class="sp__value">{yen(withTax(device.unitPrice))}<small>/台（税込）</small></b>
-				<span class="sp__tax">税抜 {yen(device.unitPrice)}・初回のみ</span>
+				<b class="sp__value">{yen(device.unitPrice)}<small>/台（税抜）</small></b>
+				<span class="sp__tax">税込 {yen(withTax(device.unitPrice))}・初回のみ</span>
 				<ul class="sp__perks">
 					<li>
-						<span class="material-symbols-rounded fill" aria-hidden="true">verified</span>ISO/IEC
-						17025認定校正に基づく校正証明書つき
+						<span class="material-symbols-rounded fill" aria-hidden="true">verified</span>
+						{#if device.sku === 'CW-AIR-TH'}
+							ISO/IEC17025認定校正に基づく
+						{:else}
+							Sensirion社発行
+						{/if}校正証明書付き
 					</li>
 					<li>
-						<span class="material-symbols-rounded fill" aria-hidden="true">shield</span>3年間のハードウェア保証
+						<span class="material-symbols-rounded fill" aria-hidden="true">shield</span
+						>3年間のハードウェア保証
 					</li>
 				</ul>
 			</div>
 			<div class="sp__card">
 				<span class="sp__label">月額利用料</span>
-				<b class="sp__value">{yen(withTax(SEAT_FEE))}<small>/台・月（税込）</small></b>
-				<span class="sp__tax">税抜 {yen(SEAT_FEE)}・最低{MIN_SEATS}台分から</span>
+				<b class="sp__value">{yen(SEAT_FEE)}<small>/台・月（税抜）</small></b>
+				<span class="sp__tax">税込 {yen(withTax(SEAT_FEE))}・最低{MIN_SEATS}台分から</span>
 				<p class="sp__note">ユーザー数無制限・アラート通知・CSV出力・API・データ保存2年間込み。</p>
 			</div>
 			<div class="sp__card">
 				<span class="sp__label">受信機・初期導入サポート</span>
-				<b class="sp__value">{yen(withTax(GATEWAY_BASE_PRICE))}<small>/拠点（税込・概算）</small></b>
-				<span class="sp__tax">税抜 {yen(GATEWAY_BASE_PRICE)}・初回のみ</span>
+				<b class="sp__value">{yen(GATEWAY_BASE_PRICE)}<small>/拠点（税抜・概算）</small></b>
+				<span class="sp__tax">税込 {yen(withTax(GATEWAY_BASE_PRICE))}・初回のみ</span>
 				<p class="sp__note">設置費・交通費は現地の状況により別途お見積もりします。</p>
 			</div>
 		</div>
 		<p class="sp__cta" data-reveal>
 			<a href="/pricing?sector={sector}" class="btn btn--primary"
-				>台数を入れて料金をシミュレーション <span class="material-symbols-rounded">arrow_forward</span></a
+				>台数を入れて料金をシミュレーション <span class="material-symbols-rounded"
+					>arrow_forward</span
+				></a
 			>
 		</p>
 	</div>
