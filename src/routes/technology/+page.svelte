@@ -13,7 +13,7 @@
 
 	const title = '技術・設計｜現場に強い、センサー基板のつくり｜CropWatch 日本';
 	const description =
-		'CropWatch のセンサー基板の設計と技術。用途ごとに世界から選んだ8か国・18メーカーの部品、2つのセンサーによる測定値の検証、その場で交換できる電池・センサー・ケース、記録を守るFRAMメモリ、ハードウェアとソフトウェアの二重の番犬機能まで。長く使い続けるための設計をご紹介します。';
+		'CropWatch のセンサー基板の設計と技術。用途ごとに世界から選んだ8か国・18メーカーの部品、2つのセンサーによる測定値の検証、その場で交換できる電池・センサー、記録を守るFRAMメモリ、ハードウェアとソフトウェアの二重の番犬機能まで。長く使い続けるための設計をご紹介します。';
 </script>
 
 <Seo {title} {description} />
@@ -87,7 +87,7 @@
 			<span class="callout__ic"><span class="material-symbols-rounded">autorenew</span></span>
 			<div>
 				<h3>交換できるから、使い続けられる。</h3>
-				<p>CropWatchシリーズは、消耗や劣化が生じても本体ごと買い替える必要がないよう、必要な部分だけを交換できる設計にしています。交換できるのは、バッテリー、センサー、ケース。必要な部分を取り替えながら、本体を長く使い続けることができます。導入したときだけでなく、その先の運用まで支えるための設計です。</p>
+				<p>CropWatchシリーズは、消耗や劣化が生じても本体ごと買い替える必要がないよう、必要な部分だけを交換できる設計にしています。交換できるのは、バッテリーとセンサー。必要な部分を取り替えながら、本体を長く使い続けることができます。導入したときだけでなく、その先の運用まで支えるための設計です。</p>
 			</div>
 		</div>
 	</div>
@@ -364,10 +364,10 @@
 			</p>
 			<h2>だめになった部分だけ、取り替える。</h2>
 			<p>
-				本体ごと買い替える必要はありません。消耗する3つの部分は、どれも現場で簡単に交換できます。
+				本体ごと買い替える必要はありません。消耗する2つの部分は、どちらも現場で簡単に交換できます。
 			</p>
 		</div>
-		<div class="boxgrid boxgrid--3">
+		<div class="boxgrid boxgrid--2">
 			<div class="box" data-reveal="0">
 				<div class="box__head">
 					<span class="box__ic box__ic--gold"
@@ -399,18 +399,6 @@
 				</p>
 				<span class="box__go"
 					>交換用センサーを見る <span class="material-symbols-rounded">arrow_forward</span></span
-				>
-			</div>
-			<div class="box" data-reveal="2">
-				<div class="box__head">
-					<span class="box__ic"><span class="material-symbols-rounded">package_2</span></span>
-					<h3>センサーケース</h3>
-				</div>
-				<p>
-					センサーを保護するケースが破損・劣化しても、ケースだけを交換できます。新しいケースに取り替えることで、内部のセンサーをしっかり保護できます。
-				</p>
-				<span class="box__go"
-					>交換用ケースを見る <span class="material-symbols-rounded">arrow_forward</span></span
 				>
 			</div>
 		</div>

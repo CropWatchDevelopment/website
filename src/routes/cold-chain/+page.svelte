@@ -427,7 +427,12 @@
 						target="_blank"
 						rel="noopener noreferrer">SHT43</a
 					>
-					ISO/IEC 17025:2017認定　個体別3点温度校正
+					温度・湿度　<a
+						class="extlink"
+						href="https://sensirion.com/jp"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
+					>製・ISO/IEC 17025:2017認定　<span class="cc-nowrap">個体別3点温度校正証明書付き</span>
 					<br />
 					<a
 						class="extlink"
@@ -435,12 +440,12 @@
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
 					>
-					国際標準に基づく<a
+					温度・湿度　<a
 						class="extlink"
 						href="https://sensirion.com/jp"
 						target="_blank"
 						rel="noopener noreferrer">センシリオン</a
-					>工場校正
+					>製・校正証明書付き
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -465,6 +470,12 @@
 				</dd>
 			</div>
 			<div class="spec-row">
+				<dt>認証</dt>
+				<dd>
+					FCC／IC／CE／MIC／KC／NCC／ANATEL
+				</dd>
+			</div>
+			<div class="spec-row">
 				<dt>電池寿命</dt>
 				<dd>
 					最長10年（交換可能）
@@ -476,7 +487,7 @@
 			</div>
 			<div class="spec-row">
 				<dt>堅牢性</dt>
-				<dd>コンフォーマルコーティング＋ポッティング処理（結露・低温対策）</dd>
+				<dd>コンフォーマルコーティングまたはポッティング処理（結露・低温対策）</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ連携</dt>
@@ -832,6 +843,10 @@
 		text-decoration-color: var(--web-accent);
 		text-decoration-thickness: 1.5px;
 		text-underline-offset: 2px;
+	}
+	/* keep a short spec phrase from breaking mid-word */
+	.cc-nowrap {
+		white-space: nowrap;
 	}
 
 	/* ═══ Responsive ═══ */

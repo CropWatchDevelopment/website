@@ -21,7 +21,7 @@
 	const faq = [
 		{
 			q: '離れた畑でも使えますか？',
-			a: 'はい。電波は見通しで最大15kmまで届くため、母屋から離れた畑やハウスも1台の受信機でつなげます。'
+			a: 'はい。電波は見通しで最大10kmまで届くため、母屋から離れた畑やハウスも1台の受信機でつなげます。'
 		},
 		{
 			q: 'スマート農業やIoTの導入は初めてでも使えますか？',
@@ -246,7 +246,7 @@
 					href="https://lora-alliance.org/"
 					target="_blank"
 					rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-				>）は見通しで最大15kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。
+				>）は見通しで最大10kmまで届きます。1台の受信機で、複数のハウスや離れた畑、倉庫までまとめてつなげます。
 			</p>
 			<ul class="checklist">
 				<li>
@@ -328,24 +328,35 @@
 				<dd>
 					<a
 						class="extlink"
-						href="https://sensirion.com/jp"
-						target="_blank"
-						rel="noopener noreferrer">センシリオン</a
-					>
-					<a
-						class="extlink"
 						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
-					>・<a
+					>
+					温度・湿度　<a
+						class="extlink"
+						href="https://sensirion.com/jp"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
+					>製・校正証明書付き
+					<br />
+					<a
 						class="extlink"
 						href="https://sensirion.com/jp/products/catalog/SCD41"
 						target="_blank"
 						rel="noopener noreferrer">SCD41</a
 					>
-					*校正証明書付き
+					CO₂　<a
+						class="extlink"
+						href="https://sensirion.com/jp"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
+					>製・校正証明書付き
 					<br />
-					<small>光センサーは CW-PPFD、土壌センサーは CW-SS-TME を採用</small>
+					<a class="extlink" href="/replacement-sensors?sensor=ppfd">CW-PPFD</a>
+					光（PPFD・DLI）
+					<br />
+					<a class="extlink" href="/replacement-sensors?sensor=soil">CW-SS-TME</a>
+					土壌水分・地温・EC
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -384,6 +395,12 @@
 				</dd>
 			</div>
 			<div class="spec-row">
+				<dt>認証</dt>
+				<dd>
+					FCC／IC／CE／MIC／KC／NCC／ANATEL
+				</dd>
+			</div>
+			<div class="spec-row">
 				<dt>電池寿命</dt>
 				<dd>
 					最長5年（交換可能）
@@ -395,7 +412,11 @@
 			</div>
 			<div class="spec-row">
 				<dt>堅牢性</dt>
-				<dd>防塵・防水ケース（IP66）／屋外設置対応</dd>
+				<dd>
+					防塵・防水ケース（IP66）／屋外設置対応
+					<br />
+					コンフォーマルコーティングまたはポッティング処理<br />（結露・高湿度対策）
+				</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ連携</dt>

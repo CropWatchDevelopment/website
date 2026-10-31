@@ -36,7 +36,7 @@
 		},
 		{
 			q: '高湿度や粉じんの多い環境でも故障しにくいですか？',
-			a: '基板にコンフォーマルコーティングとポッティング処理を施し、高湿度・粉じん・温度変化による故障リスクを低減しています。畜舎の過酷な環境での長期運用を想定した設計です。'
+			a: '基板にコンフォーマルコーティングまたはポッティング処理を施し、高湿度・粉じん・温度変化による故障リスクを低減しています。畜舎の過酷な環境での長期運用を想定した設計です。'
 		},
 		{
 			q: '通信が途切れた場合、記録は失われますか？',
@@ -130,10 +130,34 @@
 	<!-- 実績ストリップ -->
 	<div class="wrap ls-hero__statwrap">
 		<div class="ls-stats" data-reveal>
-			<div><b>配線不要</b><span>無線タイプ</span></div>
-			<div><b>電源不要</b><span>バッテリーで最長5年稼働</span></div>
-			<div><b>堅牢設計</b><span>メンテナンスフリー</span></div>
-			<div><b>簡単設置</b><span>置くだけ・すぐ稼働</span></div>
+			<div class="ls-stat">
+				<span class="material-symbols-rounded fill">sensors</span>
+				<div class="ls-stat__tx">
+					<b>配線不要</b>
+					<span><u>無線</u>タイプ</span>
+				</div>
+			</div>
+			<div class="ls-stat">
+				<span class="material-symbols-rounded fill">battery_full</span>
+				<div class="ls-stat__tx">
+					<b>電源不要</b>
+					<span>バッテリーで<u>最長5年</u>稼働</span>
+				</div>
+			</div>
+			<div class="ls-stat">
+				<span class="material-symbols-rounded fill">shield</span>
+				<div class="ls-stat__tx">
+					<b>堅牢設計</b>
+					<span><u>高湿度・粉塵環境にも対応</u></span>
+				</div>
+			</div>
+			<div class="ls-stat">
+				<span class="material-symbols-rounded fill">rocket_launch</span>
+				<div class="ls-stat__tx">
+					<b>簡単設置</b>
+					<span><u>置くだけ</u>・すぐ稼働</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -466,31 +490,36 @@
 				<dd>
 					<a
 						class="extlink"
-						href="https://sensirion.com/jp"
-						target="_blank"
-						rel="noopener noreferrer">センシリオン</a
-					>
-					<a
-						class="extlink"
 						href="https://sensirion.com/jp/products/catalog/SHT40"
 						target="_blank"
 						rel="noopener noreferrer">SHT40</a
-					>・<a
+					>
+					温度・湿度　<a
+						class="extlink"
+						href="https://sensirion.com/jp"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
+					>製・校正証明書付き
+					<br />
+					<a
 						class="extlink"
 						href="https://sensirion.com/jp/products/catalog/SCD41"
 						target="_blank"
 						rel="noopener noreferrer">SCD41</a
 					>
-					*校正証明書付き
+					CO₂　<a
+						class="extlink"
+						href="https://sensirion.com/jp"
+						target="_blank"
+						rel="noopener noreferrer">センシリオン</a
+					>製・校正証明書付き
 					<br />
-					<small
-						>アンモニアは<a
-							class="extlink"
-							href="https://www.sgxsensortech.com/"
-							target="_blank"
-							rel="noopener noreferrer">SGXセンサーテック</a
-						> PS1-NH3-50-MOD を採用予定（準備中）</small
-					>
+					PS1-NH3-50-MOD アンモニア　<a
+						class="extlink"
+						href="https://www.sgxsensortech.com/"
+						target="_blank"
+						rel="noopener noreferrer">SGXセンサーテック</a
+					>製 <small><sup>※</sup>準備中</small>
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -521,6 +550,12 @@
 				</dd>
 			</div>
 			<div class="spec-row">
+				<dt>認証</dt>
+				<dd>
+					FCC／IC／CE／MIC／KC／NCC／ANATEL
+				</dd>
+			</div>
+			<div class="spec-row">
 				<dt>電池寿命</dt>
 				<dd>
 					最長5年（交換可能）
@@ -532,7 +567,7 @@
 			</div>
 			<div class="spec-row">
 				<dt>堅牢性</dt>
-				<dd>コンフォーマルコーティング＋ポッティング処理（高湿度・粉じん対策）</dd>
+				<dd>コンフォーマルコーティングまたはポッティング処理（IP65）</dd>
 			</div>
 			<div class="spec-row">
 				<dt>データ連携</dt>
@@ -785,37 +820,50 @@
 		color: #8a5a36;
 	}
 
-	/* stats strip */
+	/* "why us" strip (same light green card as cold-chain's .cc-stats) */
 	.ls-stats {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 14px 24px;
 		margin-top: 34px;
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		padding: 16px 22px;
+		border: 1px solid var(--cw-emerald-100);
 		border-radius: 16px;
-		overflow: hidden;
-		background: rgba(18, 11, 5, 0.42);
-		backdrop-filter: blur(3px);
+		background: var(--cw-emerald-50);
+		box-shadow: 0 24px 45px -24px rgba(0, 0, 0, 0.6);
 	}
-	.ls-stats > div {
-		padding: 14px 16px;
-		text-align: center;
-		border-right: 1px solid rgba(255, 255, 255, 0.16);
+	.ls-stat {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		min-width: 0;
 	}
-	.ls-stats > div:last-child {
-		border-right: none;
+	.ls-stat > .material-symbols-rounded {
+		flex: none;
+		font-size: 32px;
+		color: var(--web-accent);
 	}
-	.ls-stats b {
+	.ls-stat__tx {
+		line-height: 1.3;
+		min-width: 0;
+	}
+	.ls-stat b {
 		display: block;
-		font-family: var(--cw-font-mono);
-		font-size: clamp(19px, 2.8vw, 25px);
-		font-weight: 700;
-		color: #fff;
+		font-size: 18px;
+		font-weight: 800;
+		color: var(--web-heading);
 	}
-	.ls-stats span {
-		font-size: 14px;
-		color: rgba(255, 255, 255, 0.74);
+	.ls-stat span:not(.material-symbols-rounded) {
+		display: block;
 		margin-top: 3px;
-		display: block;
+		font-size: 14px;
+		color: var(--web-muted);
+	}
+	.ls-stat u {
+		text-decoration: underline;
+		text-decoration-color: var(--web-accent);
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 2px;
 	}
 
 	/* ═══ Shared earth kicker (replaces the cool .eyebrow--accent) ═══ */
@@ -1280,6 +1328,22 @@
 			height: 240px;
 		}
 	}
+	@media (max-width: 980px) {
+		.ls-stats {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 12px 14px;
+			padding: 14px 16px;
+		}
+		.ls-stat b {
+			font-size: 16px;
+		}
+		.ls-stat span:not(.material-symbols-rounded) {
+			font-size: 13px;
+		}
+		.ls-stat > .material-symbols-rounded {
+			font-size: 28px;
+		}
+	}
 	@media (max-width: 640px) {
 		.ls-why__grid {
 			grid-template-columns: 1fr;
@@ -1287,14 +1351,8 @@
 	}
 	@media (max-width: 600px) {
 		.ls-stats {
-			grid-template-columns: 1fr 1fr;
-		}
-		.ls-stats > div:nth-child(2) {
-			border-right: none;
-		}
-		.ls-stats > div:nth-child(1),
-		.ls-stats > div:nth-child(2) {
-			border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+			grid-template-columns: 1fr;
+			gap: 12px;
 		}
 		.ls-rows li {
 			grid-template-columns: 44px 1fr;

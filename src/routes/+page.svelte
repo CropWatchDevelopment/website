@@ -140,9 +140,9 @@
 					<span class="material-symbols-rounded">explore</span> クロップウォッチへようこそ!
 				</p>
 				<h1 class="intro__title">あなたの現場は、どこですか？</h1>
-				<p class="intro__desc"><b>つながらない。機器が止まる。記録が残らない。</b></p>
+				<p class="intro__desc"><b>電波が届かない。機器がすぐに壊れる。記録が残らない。</b></p>
 				<p class="intro__desc text-nowrap">
-					CropWatchは、そんな現場の課題を前提に設計された<b>産業用環境データ監視システム</b>です。
+					CropWatchは、そんな現場の課題を解決するために開発された<b>産業用環境データ監視システム</b>です。
 				</p>
 				<p class="intro__desc">
 					<a
