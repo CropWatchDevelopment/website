@@ -33,6 +33,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'Rugged wireless temperature and humidity sensors with audit-ready software. User-replaceable, ISO/IEC 17025 certified, dual-sensor verified. Unlimited users, rules, API and reports at no extra cost.',
 		section: 'main',
+		lastmod: '2026-10-25',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},
