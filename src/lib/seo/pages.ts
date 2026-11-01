@@ -49,7 +49,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'ハウス栽培・施設園芸・露地・果樹の温度・湿度・CO₂・土壌をワイヤレスセンサーで見える化し、霜・高温・乾燥を早めに通知。電池式・配線工事なし。',
 		section: 'main',
-		lastmod: '2026-10-31',
+		lastmod: '2026-11-01',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},
@@ -69,7 +69,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'月額は1シートあたり800円（税込880円）、最低3シートから。ユーザー数無制限・アラート通知・API込み。自動レポート（無制限）は月額3,500円（税込3,850円）のオプション。人件費との比較シミュレーションつき。',
 		section: 'main',
-		lastmod: '2026-10-10',
+		lastmod: '2026-11-01',
 		priority: '0.8',
 		changefreq: 'monthly'
 	},
@@ -97,7 +97,7 @@ export const PAGES: PageEntry[] = [
 		path: '/replacement-case',
 		title: '交換用ケース',
 		summary:
-			'すべてのセンサーが入る防塵・防水（IP66）ケース。冷凍庫の霜・鶏舎の洗浄・畑の直射日光やホコリから中身を守ります。',
+			'コンフォーマルコーティングまたはポッティング処理（IP65）',
 		section: 'main',
 		lastmod: LASTMOD,
 		priority: '0.7',

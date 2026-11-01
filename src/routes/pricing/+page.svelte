@@ -6,13 +6,7 @@
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { productSchema } from '$lib/seo/schema';
 	import { absUrl } from '$lib/seo/site';
-	import {
-		GATEWAY_BASE_PRICE,
-		MIN_SEATS,
-		SEAT_FEE,
-		SECTOR_DEVICES,
-		withTax
-	} from '$lib/pricing';
+	import { GATEWAY_BASE_PRICE, MIN_SEATS, SEAT_FEE, SECTOR_DEVICES, withTax } from '$lib/pricing';
 
 	/* ══════════════════════════════════════════════════════════════════
 	   料金の設定値（すべて税抜・円）- ここを編集すれば表全体が変わります。
@@ -43,6 +37,8 @@
 		deviceUnitPrice: number | null;
 		/** 導入セットに含まれるセンサーの表示名（導入費用カードに出ます） */
 		deviceLabel: string;
+		/** ハードウェア保証の年数（センサー本体カードに出ます） */
+		warrantyYears: number;
 		/** 導入費用の注記の末尾に出す、機器構成に関する案内文 */
 		deviceNote: string;
 		/** 節約額の下に出す、通知で守れるもの（ひと目で読める短い言葉） */
@@ -53,7 +49,7 @@
 	// 各業種ページの価格表示と Product 構造化データも同じ値を使う。
 	const SECTORS: Record<string, Sector> = {
 		'cold-chain': {
-			label: 'コールドチェーン',
+			label: '温湿度 (CW-AIR-TH)',
 			icon: 'ac_unit',
 			sensorLabel: '温湿度センサー利用料',
 			sensorFee: SEAT_FEE,
@@ -75,11 +71,12 @@
 			excluded: [],
 			deviceUnitPrice: SECTOR_DEVICES['cold-chain'].unitPrice,
 			deviceLabel: SECTOR_DEVICES['cold-chain'].label,
+			warrantyYears: SECTOR_DEVICES['cold-chain'].warrantyYears,
 			deviceNote: 'CO₂センサー・土壌センサーなど他の機器はお問い合わせください。',
 			saveLine: '食品ロスを防ぐ'
 		},
 		livestock: {
-			label: '畜産・養鶏',
+			label: '温湿度・CO₂ (CW-AIR-THC)',
 			icon: 'pets',
 			sensorLabel: '温湿度・CO₂センサー利用料',
 			sensorFee: SEAT_FEE,
@@ -103,12 +100,13 @@
 			// 畜産・養鶏向けの機器はコールドチェーンの1台価格 +6,000円（CO₂センサー分）
 			deviceUnitPrice: SECTOR_DEVICES.livestock.unitPrice,
 			deviceLabel: SECTOR_DEVICES.livestock.label,
+			warrantyYears: SECTOR_DEVICES.livestock.warrantyYears,
 			deviceNote:
 				'温湿度センサーのみ（CO₂なし）のご利用をご希望の場合は、個別にお見積もりしますのでお問い合わせください。',
 			saveLine: '鶏の熱中症を防ぐ'
 		},
 		agriculture: {
-			label: '農業・ハウス',
+			label: '土壌・温湿度・CO₂・ライト (CW-SS-THCP)',
 			icon: 'eco',
 			sensorLabel: '温湿度・CO₂センサー利用料',
 			sensorFee: SEAT_FEE,
@@ -131,6 +129,7 @@
 			excluded: [],
 			deviceUnitPrice: SECTOR_DEVICES.agriculture.unitPrice,
 			deviceLabel: SECTOR_DEVICES.agriculture.label,
+			warrantyYears: SECTOR_DEVICES.agriculture.warrantyYears,
 			deviceNote: '土壌センサー・PPFDセンサーなど他の機器はお問い合わせください。',
 			saveLine: '霜や高温から作物を守る'
 		}
@@ -443,6 +442,27 @@
 			</div>
 		</div>
 
+		<h2 class="pr-step pr-step--input"><span class="pr-step__n">1</span>センサーモデルを選択</h2>
+		<!-- 業種タブ -->
+		<div class="pr-tabs" role="tablist" aria-label="業種で選ぶ" data-reveal>
+			{#each SECTOR_IDS as id (id)}
+				{@const s = SECTORS[id]}
+				<button
+					type="button"
+					id="sector-{id}"
+					class="pr-tab"
+					class:is-active={sector === id}
+					role="tab"
+					aria-selected={sector === id}
+					onclick={() => selectSector(id)}
+				>
+					<span class="material-symbols-rounded">{s.icon}</span>
+					<span>{s.label}</span>
+					{#if s.comingSoon}<span class="pr-tab__soon">準備中</span>{/if}
+				</button>
+			{/each}
+		</div>
+
 		<!-- 価格の目安（業種タブに連動） -->
 		{#if !cfg.comingSoon}
 			<ul class="pr-prices" aria-label="{cfg.label}の価格" data-reveal>
@@ -459,11 +479,11 @@
 					<ul class="pr-prices__perks">
 						<li>
 							<span class="material-symbols-rounded fill" aria-hidden="true">verified</span
-							>ISO17025認証3点温度校正証明書付き
+							>校正証明書付き
 						</li>
 						<li>
 							<span class="material-symbols-rounded fill" aria-hidden="true">shield</span
-							>3年間のハードウェア保証
+							>{cfg.warrantyYears}年間のハードウェア保証
 						</li>
 					</ul>
 				</li>
@@ -497,26 +517,7 @@
 		{/if}
 
 		<!-- ① 条件を入れる -->
-		<h2 class="pr-step pr-step--input"><span class="pr-step__n">1</span>条件を入れる</h2>
-		<!-- 業種タブ -->
-		<div class="pr-tabs" role="tablist" aria-label="業種で選ぶ" data-reveal>
-			{#each SECTOR_IDS as id (id)}
-				{@const s = SECTORS[id]}
-				<button
-					type="button"
-					id="sector-{id}"
-					class="pr-tab"
-					class:is-active={sector === id}
-					role="tab"
-					aria-selected={sector === id}
-					onclick={() => selectSector(id)}
-				>
-					<span class="material-symbols-rounded">{s.icon}</span>
-					<span>{s.label}</span>
-					{#if s.comingSoon}<span class="pr-tab__soon">準備中</span>{/if}
-				</button>
-			{/each}
-		</div>
+		<h2 class="pr-step pr-step--input"><span class="pr-step__n">2</span>条件を入れる</h2>
 		{#if cfg.comingSoon}
 			<div class="pr-soon" id="pr-coming-soon" data-reveal>
 				<span class="material-symbols-rounded">{cfg.icon}</span>
@@ -734,7 +735,7 @@
 			</div>
 
 			<!-- ② 月々の費用と節約額 -->
-			<h2 class="pr-step"><span class="pr-step__n">2</span>月々の費用と削減効果</h2>
+			<h2 class="pr-step"><span class="pr-step__n">3</span>月々の費用と削減効果</h2>
 			{#if volumePrice}
 				<!-- 1,001台以上: 金額は出さず、ボリューム価格の個別見積もりへ誘導 -->
 				<div class="pr-soon" id="pr-volume" data-reveal>
@@ -869,9 +870,7 @@
 			<!-- 月額に含まれる機能 + 自動レポート（オプション） -->
 			<div class="pr-plan" data-reveal>
 				<div class="pr-card pr-includes">
-					<span class="pr-card__label pr-card__label--lg"
-						>月額利用料に含まれる機能</span
-					>
+					<span class="pr-card__label pr-card__label--lg">月額利用料に含まれる機能</span>
 					<ul class="pr-includes__list">
 						{#each cfg.included as f (f)}
 							<li class="pr-includes__item">
@@ -962,7 +961,7 @@
 		{/if}
 
 		<!-- ③ 導入費用と投資回収（ROI）の見通し -->
-		<h2 class="pr-step"><span class="pr-step__n">3</span>導入費用と投資回収（ROI）の見通し</h2>
+		<h2 class="pr-step"><span class="pr-step__n">4</span>導入費用と投資回収（ROI）の見通し</h2>
 		<div class="pr-invest">
 			<div id="pr-devices" class="pr-card pr-device" data-reveal>
 				<span class="pr-card__label">導入費用の概算（初回のみ）</span>

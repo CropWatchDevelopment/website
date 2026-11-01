@@ -3,9 +3,9 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 
-	const title = '交換用ケース｜頑丈な防塵防水（IP66）ケース・3Dで見る｜CropWatch 日本';
+	const title = '交換用ケース｜頑丈な防塵防水（IP65）ケース・3Dで見る｜CropWatch 日本';
 	const description =
-		'CropWatchのすべてのセンサーが入る、頑丈な防塵・防水（IP66）ケース。冷凍庫の霜・鶏舎の洗浄・畑の直射日光やホコリから中身を守ります。3Dで回転させて確認できます。校正済みモジュールはそのまま装着可能。';
+		'CropWatchのすべてのセンサーが入る、頑丈な防塵・防水（IP65）ケース。冷凍庫の霜・鶏舎の洗浄・畑の直射日光やホコリから中身を守ります。3Dで回転させて確認できます。校正済みモジュールはそのまま装着可能。';
 
 	// CW-CASE のProduct構造化データは出さない: 価格未公表のためoffersを付けられず、
 	// Search Consoleの「offers/review/aggregateRating」警告になるだけ。
@@ -85,12 +85,12 @@
 				>
 			</p>
 			<p class="hero__lead">
-				CropWatch のすべてのセンサーが収まる<b>防塵・防水（IP66）ケース</b
+				CropWatch のすべてのセンサーが収まる<b>防塵・防水（IP65）ケース</b
 				>。割れたり傷んだりしても、<b>校正済みのモジュールはそのまま新しいケースへ</b
 				>。マウスのドラッグで、3Dでぐるりと確認できます。
 			</p>
 			<div class="spec-chips">
-				<span><span class="material-symbols-rounded">water_drop</span> 防塵防水 IP66</span>
+				<span><span class="material-symbols-rounded">water_drop</span> 防塵防水 IP65</span>
 				<span><span class="material-symbols-rounded">wb_sunny</span> 紫外線に強い</span>
 				<span><span class="material-symbols-rounded">cleaning_services</span> 水洗いOK</span>
 				<span><span class="material-symbols-rounded">cached</span> 工具いらず</span>
@@ -184,7 +184,7 @@
 		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
 			<div class="spec-row">
 				<dt>防塵・防水</dt>
-				<dd>IP66</dd>
+				<dd>IP65</dd>
 			</div>
 			<div class="spec-row">
 				<dt>材質</dt>

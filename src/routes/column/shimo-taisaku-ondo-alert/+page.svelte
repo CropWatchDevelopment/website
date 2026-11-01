@@ -62,7 +62,7 @@
 
 	<div class="col-note">
 		<p>
-			CropWatchのセンサーは電池式・配線工事なしで、IP66の防塵・防水ケースに入っているため露地や果樹園にも設置できます。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>の電波は見通しで最大10kmまで届き、母屋から離れた畑やハウスも1台の受信機でつなげます。温度は10分ごとに送信され、設定した温度を下回るとメールやプッシュ通知でお知らせします。
+			CropWatchのセンサーは電池式・配線工事なしで、IP65の防塵・防水ケースに入っているため露地や果樹園にも設置できます。<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>の電波は見通しで最大10kmまで届き、母屋から離れた畑やハウスも1台の受信機でつなげます。温度は10分ごとに送信され、設定した温度を下回るとメールやプッシュ通知でお知らせします。
 		</p>
 	</div>
 	<p>

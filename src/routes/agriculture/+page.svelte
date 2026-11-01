@@ -37,7 +37,7 @@
 		},
 		{
 			q: '雨や直射日光に当たっても大丈夫ですか？',
-			a: '頑丈な防塵・防水ケース（IP66）に入っており、屋外でも安心して使えます。'
+			a: '頑丈な防塵・防水ケース（IP65）に入っており、屋外でも安心して使えます。'
 		}
 	];
 
@@ -132,10 +132,34 @@
 	<!-- 実績ストリップ -->
 	<div class="wrap ag-hero__statwrap">
 		<div class="ag-stats" data-reveal>
-			<div><b>リモート監視</b><span>現場の状態を、手元で確認</span></div>
-			<div><b>配線不要</b><span>電源のない畑でも</span></div>
-			<div><b>堅牢設計</b><span>防塵・防水対応</span></div>
-			<div><b>最長5年</b><span>バッテリーのみで稼働</span></div>
+			<div class="ag-stat">
+				<span class="material-symbols-rounded fill">visibility</span>
+				<div class="ag-stat__tx">
+					<b>リモート監視</b>
+					<span>現場の状態を、<u>手元で確認</u></span>
+				</div>
+			</div>
+			<div class="ag-stat">
+				<span class="material-symbols-rounded fill">verified_user</span>
+				<div class="ag-stat__tx">
+					<b>堅牢設計</b>
+					<span><u>高湿度環境</u>でも安心</span>
+				</div>
+			</div>
+			<div class="ag-stat">
+				<span class="material-symbols-rounded fill">sensors</span>
+				<div class="ag-stat__tx">
+					<b>配線不要</b>
+					<span><u>無線</u>タイプ</span>
+				</div>
+			</div>
+			<div class="ag-stat">
+				<span class="material-symbols-rounded fill">battery_horiz_075</span>
+				<div class="ag-stat__tx">
+					<b>電源不要</b>
+					<span>バッテリーで<u>最長5年</u>稼働</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -413,9 +437,7 @@
 			<div class="spec-row">
 				<dt>堅牢性</dt>
 				<dd>
-					防塵・防水ケース（IP66）／屋外設置対応
-					<br />
-					コンフォーマルコーティングまたはポッティング処理<br />（結露・高湿度対策）
+					コンフォーマルコーティングまたはポッティング処理（IP65）
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -449,7 +471,7 @@
 <SensorPrice
 	sector="agriculture"
 	path="/agriculture"
-	description="ハウス・施設園芸の温度・湿度・CO₂を10分ごとに自動送信する電池駆動のLoRaWAN®ワイヤレスセンサー。NDIR方式のCO₂測定とVPD算出、IP66防塵・防水ケース、ISO/IEC 17025認定校正に基づく校正証明書つき。霜・高温・換気不足を早めに通知します。"
+	description="ハウス・施設園芸の温度・湿度・CO₂を10分ごとに自動送信する電池駆動のLoRaWAN®ワイヤレスセンサー。NDIR方式のCO₂測定とVPD算出、IP65防塵・防水ケース、ISO/IEC 17025認定校正に基づく校正証明書つき。霜・高温・換気不足を早めに通知します。"
 />
 
 <section class="closing">
@@ -727,37 +749,58 @@
 		color: #0e7a4f;
 	}
 
-	/* stats strip (green dark glass, over the photo) */
+	/* "why us" strip (same light green 4-up card as livestock's .ls-stats) */
 	.ag-stats {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 14px 24px;
 		margin-top: 34px;
-		border: 1px solid rgba(200, 240, 215, 0.22);
+		padding: 16px 22px;
+		border: 1px solid var(--cw-emerald-100);
 		border-radius: 16px;
-		overflow: hidden;
-		background: rgba(4, 22, 14, 0.5);
-		backdrop-filter: blur(3px);
+		background: var(--cw-emerald-50);
+		box-shadow: 0 24px 45px -24px rgba(0, 0, 0, 0.6);
 	}
-	.ag-stats > div {
-		padding: 14px 16px;
-		text-align: center;
-		border-right: 1px solid rgba(200, 240, 215, 0.16);
+	.ag-stat {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		min-width: 0;
 	}
-	.ag-stats > div:last-child {
-		border-right: none;
-	}
-	.ag-stats b {
-		display: block;
-		font-family: var(--cw-font-mono);
-		font-size: clamp(19px, 2.8vw, 25px);
-		font-weight: 700;
+	/* round badge so the glyphs carry the same weight as cold-chain's
+	   circle icons (verified / build_circle / schedule) */
+	.ag-stat > .material-symbols-rounded {
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: var(--web-accent);
 		color: #fff;
+		font-size: 19px;
 	}
-	.ag-stats span {
-		font-size: 14px;
-		color: rgba(215, 240, 225, 0.75);
-		margin-top: 3px;
+	.ag-stat__tx {
+		line-height: 1.3;
+		min-width: 0;
+	}
+	.ag-stat b {
 		display: block;
+		font-size: 18px;
+		font-weight: 800;
+		color: var(--web-heading);
+	}
+	.ag-stat span:not(.material-symbols-rounded) {
+		display: block;
+		margin-top: 3px;
+		font-size: 14px;
+		color: var(--web-muted);
+	}
+	.ag-stat u {
+		text-decoration: underline;
+		text-decoration-color: var(--web-accent);
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 2px;
 	}
 
 	/* ═══ 現場ショーケース — bento ═══ */
@@ -866,16 +909,28 @@
 			height: 240px;
 		}
 	}
+	@media (max-width: 980px) {
+		.ag-stats {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 12px 14px;
+			padding: 14px 16px;
+		}
+		.ag-stat b {
+			font-size: 16px;
+		}
+		.ag-stat span:not(.material-symbols-rounded) {
+			font-size: 13px;
+		}
+		.ag-stat > .material-symbols-rounded {
+			width: 26px;
+			height: 26px;
+			font-size: 16px;
+		}
+	}
 	@media (max-width: 600px) {
 		.ag-stats {
-			grid-template-columns: 1fr 1fr;
-		}
-		.ag-stats > div:nth-child(2) {
-			border-right: none;
-		}
-		.ag-stats > div:nth-child(1),
-		.ag-stats > div:nth-child(2) {
-			border-bottom: 1px solid rgba(200, 240, 215, 0.16);
+			grid-template-columns: 1fr;
+			gap: 12px;
 		}
 	}
 </style>

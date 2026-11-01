@@ -64,14 +64,14 @@
 					<li>
 						<span class="material-symbols-rounded fill" aria-hidden="true">verified</span>
 						{#if device.sku === 'CW-AIR-TH'}
-							ISO/IEC17025認定校正に基づく
+							ISO/IEC17025認定3点温度
 						{:else}
 							Sensirion社発行
 						{/if}校正証明書付き
 					</li>
 					<li>
 						<span class="material-symbols-rounded fill" aria-hidden="true">shield</span
-						>3年間のハードウェア保証
+						>{device.warrantyYears}年間のハードウェア保証
 					</li>
 				</ul>
 			</div>

@@ -30,11 +30,24 @@ export type SectorDevice = {
 	label: string;
 	/** 機器1台あたりの購入価格（税抜・初回のみ） */
 	unitPrice: number;
+	/** ハードウェア保証の年数 */
+	warrantyYears: number;
 };
 
 export const SECTOR_DEVICES: Record<SectorId, SectorDevice> = {
-	'cold-chain': { sku: 'CW-AIR-TH', label: '温湿度センサー', unitPrice: 32000 },
+	'cold-chain': { sku: 'CW-AIR-TH', label: '温湿度センサー', unitPrice: 32000, warrantyYears: 3 },
 	// 温湿度センサーに CO₂ を加えたモデル（+6,000円）。畜産・農業で共通。
-	livestock: { sku: 'CW-AIR-THC', label: '温湿度・CO₂センサー', unitPrice: 37000 },
-	agriculture: { sku: 'CW-AIR-THC', label: '温湿度・CO₂センサー', unitPrice: 39000 }
+	livestock: {
+		sku: 'CW-AIR-THC',
+		label: '温湿度・CO₂センサー',
+		unitPrice: 37000,
+		warrantyYears: 3
+	},
+	// 土壌センサーは保証1年
+	agriculture: {
+		sku: 'CW-SS-THCP',
+		label: '土壌・温湿度・CO₂・ライトセンサー',
+		unitPrice: 80000,
+		warrantyYears: 1
+	}
 };
