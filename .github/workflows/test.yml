@@ -1,0 +1,55 @@
+name: Test
+
+# Runs the vitest suite (src/**/*.{test,spec}.{js,ts}) and publishes line
+# coverage to Qlty Cloud. Deploys stay in deploy.yml: that workflow builds on
+# Vercel's infrastructure and never installs dependencies on the runner, so
+# there is nowhere in it to generate coverage data.
+
+on:
+  push:
+    branches:
+      - master
+      - Japan-website
+  pull_request:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  id-token: write # Qlty coverage uploads authenticate with OIDC
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The project uses pnpm (package.json#packageManager); Corepack provides
+      # the exact pinned version.
+      - name: Enable Corepack (pnpm)
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # `pnpm exec` runs vitest directly, so no flags have to be forwarded
+      # through a package.json script. Writes coverage/lcov.info.
+      - name: Run tests with coverage
+        run: pnpm exec vitest run --coverage
+
+      # Pull requests from forks get no OIDC token, so skip the upload there.
+      - name: Upload coverage to Qlty
+        if: ${{ !github.event.pull_request.head.repo.fork }}
+        uses: qltysh/qlty-action/coverage@v2
+        with:
+          oidc: true
+          files: coverage/lcov.info

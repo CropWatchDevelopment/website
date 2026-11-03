@@ -132,7 +132,7 @@ describe('section eyebrow anchors', () => {
 		expect(counts).toEqual({
 			agriculture: 7,
 			'cold-chain': 6,
-			home: 4,
+			home: 6,
 			livestock: 7,
 			'replacement-sensors': 6
 		});

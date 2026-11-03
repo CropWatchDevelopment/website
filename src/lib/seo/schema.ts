@@ -91,10 +91,16 @@ export function breadcrumbSchema(items: Crumb[]): Json {
 export type ProductInput = {
 	name: string;
 	description: string;
-	image?: string;
+	image?: string | string[];
 	sku?: string;
 	category?: string;
 	url?: string;
+	/**
+	 * Published one-time price in USD. Emits an Offer, which makes the Product
+	 * eligible for Google product snippets. Only set it for prices shown on
+	 * the same page.
+	 */
+	price?: number;
 };
 
 /**
@@ -116,6 +122,15 @@ export function productSchema(p: ProductInput): Json {
 	if (p.sku) out.sku = p.sku;
 	if (p.category) out.category = p.category;
 	if (p.url) out.url = absUrl(p.url);
+	if (p.price !== undefined) {
+		out.offers = {
+			'@type': 'Offer',
+			price: String(p.price),
+			priceCurrency: 'USD',
+			availability: 'https://schema.org/InStock',
+			...(p.url ? { url: absUrl(p.url) } : {})
+		};
+	}
 	return out;
 }
 

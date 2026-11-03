@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	import SensorValidationAnimation from '$lib/components/cold-chain/sensor-validation/SensorValidationAnimation.svelte';
 	// Page-specific stylesheet (kept out of the global bundle).
 	import '$lib/styles/product.css';
@@ -511,6 +512,13 @@
 		</div>
 	</div>
 </section>
+
+<SensorPrice
+	sector="cold-chain"
+	path="/cold-chain"
+	description="Battery-powered LoRaWAN® wireless temperature and humidity sensor for walk-in coolers, freezers and refrigerators. Logs every 10 minutes, measures -40 to +85 °C, dual-sensor verified, IP66 enclosure, ISO/IEC 17025 calibration certificate included. HACCP-ready records."
+	tint
+/>
 
 <!-- FAQ -->
 <section class="section scroll-pad" id="questions">
