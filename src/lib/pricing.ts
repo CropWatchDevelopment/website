@@ -23,7 +23,7 @@ export const SECTOR_PRICING: Record<SectorId, SectorPricing> = {
 		sku: 'CW-AIR-TH',
 		label: 'Temperature & Humidity Sensor',
 		unitPrice: 250,
-		monthlyPerSensor: 7,
+		monthlyPerSensor: 8,
 		baseFee: 0
 	},
 	// Temp/humidity + CO2 combo sensor: ¥39,000 on cropwatch.co.jp/pricing at ~163 JPY/USD (Jul 2026), rounded up.
