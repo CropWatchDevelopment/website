@@ -39,9 +39,10 @@
 
 		<nav class="ftr__col">
 			<h4>その他</h4>
-			<a href="/demo/login">UIデモを見る</a>
-			<a href="https://app.cropwatch.io">アプリを開く</a>
-			<a href="https://api.cropwatch.io">API</a>
+			<a href="/demo/login">🧪 UIデモを見る</a>
+			<a href="https://app.cropwatch.io">📱 アプリを開く</a>
+			<a href="https://api.cropwatch.io">🔌 API</a>
+			<a href="https://kb.cropwatch.io/ja" target="_blank">🎓 ナレッジベース</a>
 			<!-- <a href={JP.telHref}>{JP.tel}</a> -->
 		</nav>
 	</div>

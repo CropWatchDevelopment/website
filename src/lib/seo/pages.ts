@@ -39,7 +39,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'電池駆動のLoRaWAN®センサーが冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録し、スマホやPCから遠隔監視。HACCP対応の温度記録の自動化、ISO/IEC 17025校正証明書つき。',
 		section: 'main',
-		lastmod: '2026-10-31',
+		lastmod: '2026-11-05',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},

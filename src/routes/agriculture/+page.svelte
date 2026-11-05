@@ -219,15 +219,10 @@
 					<span class="box__ic box__ic--gold"
 						><span class="material-symbols-rounded">water_drop</span></span
 					>
-					<h3>結露に強い温湿度センサー</h3>
+					<h3>長期間正確な測定を維持</h3>
 				</div>
 				<p>
-					高湿度や結露により、センサーが濡れても、乾けば測定状態が戻りやすい<a
-						class="extlink"
-						href="https://sensirion.com/jp"
-						target="_blank"
-						rel="noopener noreferrer">センシリオン</a
-					>製センサーを採用。湿度100%付近で停滞するリスクを抑え、農業現場の温湿度変化を安定して記録します。
+					測定精度と長期安定性に優れた、高品質なセンサーを採用。長期間の使用でも測定値のずれを抑え、農業現場の環境変化を正確かつ安定して記録します。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
@@ -238,7 +233,7 @@
 					<h3>交換可能なセンサー</h3>
 				</div>
 				<p>
-					万が一の故障時も、本体ごと交換は不要。必要なセンサー部だけを交換でき、コストを抑えながら長く使い続けられます。また、測定したい項目が変わった場合も、用途に合わせてセンサーを追加できます。
+					万が一の故障時も、本体ごと交換は不要。必要なセンサー部だけを交換でき、コストを抑えながら長く使い続けられます。
 				</p>
 			</div>
 			<div class="box" data-reveal="2">
@@ -249,7 +244,7 @@
 					<h3>作物に必要な光を見える化</h3>
 				</div>
 				<p>
-					PPFDで「今どれくらい光合成に使える光が届いているか」を確認し、DLIで「1日に受け取った光合成に使える光の合計量」を確認できます。光不足や強すぎる日差しに気づきやすくなり、栽培管理の見直しに役立ちます。
+					PPFDで「今どれくらい光合成に使える光が届いているか」を確認し、DLIで「1日に受け取った光合成に使える光の合計量」を確認できます。
 				</p>
 			</div>
 		</div>
@@ -286,7 +281,7 @@
 		</div>
 		<div class="split__media" data-reveal>
 			<img
-				src="/assets/photos/agri-openfield.webp"
+				src="/assets/photos/sensor-cucumber-ppfd.png"
 				alt="露地の畑を見渡す位置に設置されたCropWatchの受信機とセンサー"
 			/>
 		</div>

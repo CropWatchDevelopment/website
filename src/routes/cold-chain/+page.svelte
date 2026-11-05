@@ -322,7 +322,7 @@
 			</figure>
 			<figure data-reveal="2">
 				<img
-					src="/assets/photos/coldchain-door.webp"
+					src="/assets/photos/sensor-in-walkin2.png"
 					alt="冷蔵・冷凍設備の出入口に設置されたCropWatchセンサー"
 				/>
 				<figcaption>
