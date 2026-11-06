@@ -3,6 +3,7 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+	import V25Teardown from '$lib/components/v25-teardown/V25Teardown.svelte';
 
 	const related = [
 		{ href: '/cold-chain', label: 'コールドチェーン温度監視', sub: '冷蔵庫・冷凍庫の遠隔監視' },
@@ -13,7 +14,7 @@
 
 	const title = '技術・設計｜現場に強い、センサー基板のつくり｜CropWatch 日本';
 	const description =
-		'CropWatch のセンサー基板の設計と技術。用途ごとに世界から選んだ8か国・18メーカーの部品、2つのセンサーによる測定値の検証、その場で交換できる電池・センサー、記録を守るFRAMメモリ、ハードウェアとソフトウェアの二重の番犬機能まで。長く使い続けるための設計をご紹介します。';
+		'CropWatch のセンサー基板の設計と技術。用途ごとに世界から選んだ8か国・18メーカーの部品、3Dアニメーションで見る電池・センサーの現場交換、記録を守るFRAMメモリ、ハードウェアとソフトウェアの二重の番犬機能まで。長く使い続けるための設計をご紹介します。';
 </script>
 
 <Seo {title} {description} />
@@ -128,233 +129,6 @@
 	</div>
 </section>
 
-<!-- 2つのセンサー -->
-<section class="section">
-	<div class="wrap split" data-reveal>
-		<div>
-			<p class="eyebrow eyebrow--accent">
-				<span class="material-symbols-rounded">fact_check</span> 測定値の信頼性
-			</p>
-			<h2>2つのセンサーで、確かめ合う。</h2>
-			<p class="split__lead">
-				温度・湿度センサーには、種類の異なる2つの温湿度センサーを搭載しています。同じ空気を同時に測り、測定のたびに2つの値を照らし合わせることで、データに異常がないかを確認します。大きな食い違いが見つかった場合、その測定値は使用せず、センサー異常としてお知らせします。
-			</p>
-			<ul class="checklist">
-				<li>
-					<span class="material-symbols-rounded">check</span
-					>測定のたびに、2つの値の整合性を確認します。
-				</li>
-				<li>
-					<span class="material-symbols-rounded">check</span
-					>過去の傾向と比べ、普段と違うズレを確認します。
-				</li>
-				<li>
-					<span class="material-symbols-rounded">check</span
-					>2つの値が一致しない場合は、エラーとしてお知らせします。
-				</li>
-			</ul>
-		</div>
-		<figure id="tech-figure" class="tech-figure" data-reveal>
-			<svg
-				viewBox="0 0 900 520"
-				xmlns="http://www.w3.org/2000/svg"
-				role="img"
-				aria-label="2つのセンサーで同じ空気を測り、値を照合して正常データと異常を判定する横フロー図"
-			>
-				<defs>
-					<marker id="dsc-gray" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"
-						><path d="M1 1l6 3.5-6 3.5z" fill="#5b6f92"></path></marker
-					>
-					<marker id="dsc-green" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"
-						><path d="M1 1l6 3.5-6 3.5z" fill="#0e9960"></path></marker
-					>
-					<marker id="dsc-red" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"
-						><path d="M1 1l6 3.5-6 3.5z" fill="#dd0f0f"></path></marker
-					>
-				</defs>
-
-				<rect
-					x="1"
-					y="1"
-					width="898"
-					height="518"
-					rx="26"
-					fill="#ffffff"
-					stroke="#d7e0f5"
-					stroke-width="2"
-				></rect>
-				<text x="44" y="52" fill="#245a9c" font-size="13" font-weight="700" letter-spacing="1.8"
-					>DOUBLE-SENSOR CHECK ／ 測定値の信頼性</text
-				>
-				<text x="44" y="88" fill="#0b1730" font-size="26" font-weight="800"
-					>2つのセンサーで、確かめ合う。</text
-				>
-
-				<!-- 同じ空気を測る2つのセンサー -->
-				<rect
-					x="40"
-					y="140"
-					width="250"
-					height="320"
-					rx="20"
-					fill="#f1f6fd"
-					stroke="#d7e0f5"
-					stroke-width="2"
-				></rect>
-				<text x="60" y="178" fill="#0b1730" font-size="15" font-weight="800"
-					>同じ空気を同時に測定</text
-				>
-
-				<rect
-					x="62"
-					y="198"
-					width="206"
-					height="104"
-					rx="14"
-					fill="#ffffff"
-					stroke="#b4ccf0"
-					stroke-width="2"
-				></rect>
-				<circle cx="104" cy="250" r="23" fill="#eef4fc"></circle>
-				<path
-					transform="translate(90.2,236.2) scale(1.15)"
-					d="M15 13V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-1.21.91-2 2.37-2 4 0 2.76 2.24 5 5 5s5-2.24 5-5c0-1.63-.79-3.09-2-4zm-4-8c0-.55.45-1 1-1s1 .45 1 1h-1v1h1v2h-1v1h1v2h-2V5z"
-					fill="#2c6cb7"
-				></path>
-				<text x="146" y="242" fill="#4a5d7e" font-size="12" font-weight="700">センサー A</text>
-				<text x="146" y="268" fill="#0b1730" font-size="20" font-weight="800">SHT43</text>
-
-				<rect
-					x="62"
-					y="320"
-					width="206"
-					height="104"
-					rx="14"
-					fill="#ffffff"
-					stroke="#93e0bd"
-					stroke-width="2"
-				></rect>
-				<circle cx="104" cy="372" r="23" fill="#e9f9f1"></circle>
-				<path
-					transform="translate(90.2,358.2) scale(1.15)"
-					d="M15 13V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-1.21.91-2 2.37-2 4 0 2.76 2.24 5 5 5s5-2.24 5-5c0-1.63-.79-3.09-2-4zm-4-8c0-.55.45-1 1-1s1 .45 1 1h-1v1h1v2h-1v1h1v2h-2V5z"
-					fill="#0e9960"
-				></path>
-				<text x="146" y="364" fill="#4a5d7e" font-size="12" font-weight="700">センサー B</text>
-				<text x="146" y="390" fill="#0b1730" font-size="20" font-weight="800">SHT40</text>
-
-				<path
-					d="M268 250 H322 V290 H352"
-					fill="none"
-					stroke="#5b6f92"
-					stroke-width="2.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				></path>
-				<path
-					d="M268 372 H322 V290 H352"
-					fill="none"
-					stroke="#5b6f92"
-					stroke-width="2.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					marker-end="url(#dsc-gray)"
-				></path>
-
-				<!-- 照合ノード -->
-				<rect x="360" y="200" width="200" height="200" rx="20" fill="#11213c"></rect>
-				<g
-					transform="translate(460,244)"
-					stroke="#7fc9e6"
-					stroke-width="3"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M-22 -6h44M-22 -6l8 -8M-22 -6l8 8M22 10h-44M22 10l-8 -8M22 10l-8 8"></path>
-				</g>
-				<text x="460" y="300" fill="#e7ecff" font-size="22" font-weight="800" text-anchor="middle"
-					>照合</text
-				>
-				<text x="460" y="326" fill="#9ab0d6" font-size="12.5" text-anchor="middle"
-					>2つの値の整合性を確認</text
-				>
-				<line x1="392" y1="344" x2="528" y2="344" stroke="#2f5387" stroke-width="1"></line>
-				<text x="460" y="368" fill="#7fe0be" font-size="12" font-weight="600" text-anchor="middle"
-					>過去の傾向と比較</text
-				>
-
-				<path
-					d="M560 262 H592 V240 H616"
-					fill="none"
-					stroke="#0e9960"
-					stroke-width="2.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					marker-end="url(#dsc-green)"
-				></path>
-				<path
-					d="M560 338 H592 V370 H616"
-					fill="none"
-					stroke="#dd0f0f"
-					stroke-width="2.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					marker-end="url(#dsc-red)"
-				></path>
-
-				<!-- 判定結果 -->
-				<rect
-					x="616"
-					y="190"
-					width="244"
-					height="100"
-					rx="16"
-					fill="#e9f9f1"
-					stroke="#57cd99"
-					stroke-width="2"
-				></rect>
-				<circle cx="656" cy="240" r="19" fill="#0e9960"></circle>
-				<path
-					d="M647 240l6 6 12-14"
-					fill="none"
-					stroke="#fff"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="3.5"
-				></path>
-				<text x="690" y="232" fill="#086241" font-size="13" font-weight="700">一致</text>
-				<text x="690" y="258" fill="#04392a" font-size="17" font-weight="800"
-					>通常データとして記録</text
-				>
-
-				<rect
-					x="616"
-					y="320"
-					width="244"
-					height="100"
-					rx="16"
-					fill="#fff1f1"
-					stroke="#eb2f2f"
-					stroke-width="2"
-				></rect>
-				<circle cx="656" cy="370" r="19" fill="#dd0f0f"></circle>
-				<path
-					d="M649 363l14 14m0-14-14 14"
-					fill="none"
-					stroke="#fff"
-					stroke-linecap="round"
-					stroke-width="3.5"
-				></path>
-				<text x="690" y="362" fill="#a20c0c" font-size="13" font-weight="700">乖離</text>
-				<text x="690" y="388" fill="#741010" font-size="17" font-weight="800">エラーとして通知</text
-				>
-			</svg>
-			<figcaption class="center">*特許出願中</figcaption>
-		</figure>
-	</div>
-</section>
-
 <!-- 交換できる -->
 <section class="section section--soft scroll-pad" id="hardware">
 	<div class="wrap">
@@ -402,6 +176,15 @@
 				>
 			</div>
 		</div>
+
+		<!-- 3D service walkthrough, ported from the cropwatch.io /home "Inside the sensor"
+		     section. three.js and the GLB only load once the stage nears the viewport. -->
+		<figure class="tech-teardown" data-reveal id="inside-the-sensor">
+			<V25Teardown />
+			<figcaption>
+				センサー交換はネジ3本、電池交換はさらに5本。現場でメンテナンスしながら長く使えるよう設計した筐体です。
+			</figcaption>
+		</figure>
 	</div>
 </section>
 
@@ -538,27 +321,28 @@
 		margin-bottom: 0;
 	}
 
-	/* The flow diagram draws its own white card (rounded rect + border), so the
-	   figure adds no frame of its own - just the floating shadow. */
-	.tech-figure {
-		margin: 0;
-	}
-	.tech-figure svg {
-		display: block;
-		width: 100%;
-		height: auto;
-		border-radius: 20px;
-		box-shadow: 0 18px 48px rgba(11, 23, 48, 0.14);
-	}
-	.tech-figure figcaption.center {
-		text-align: center;
-		margin-top: 12px;
-		font-size: 12.5px;
-		color: var(--web-muted);
-	}
-
 	.parts-origin {
 		margin-top: 36px;
+	}
+
+	/* ── 3D teardown (交換できる設計, under the two cards) ── */
+	.tech-teardown {
+		margin: 40px 0 0;
+	}
+	.tech-teardown figcaption {
+		margin-top: 14px;
+		text-align: center;
+		font-size: 14px;
+		line-height: 1.8;
+		color: var(--web-muted);
+	}
+	@media (max-width: 600px) {
+		.tech-teardown {
+			margin-top: 28px;
+		}
+		.tech-teardown figcaption {
+			text-align: left;
+		}
 	}
 
 	/* ── 管理画面（UIデモ） ── */

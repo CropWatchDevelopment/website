@@ -11,7 +11,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { Reflector } from 'three/addons/objects/Reflector.js';
 import { steel, screwGeometry, washerGeometry, makeCell, plugGeometry, QwiicCable } from './parts';
 import { buildFridge } from './fridge';
-import { DURATION, STEPS } from './timeline';
+import { DURATION, STEPS, STORY_DURATION, toStory } from './timeline';
 
 type Vec = [number, number, number];
 
@@ -44,7 +44,7 @@ const FRIDGE0 = 54.5,
 const FADES: [number, number][] = [
 	[FRIDGE0 - 0.5, FRIDGE0 + 0.5],
 	[POLE0 - 0.5, POLE0 + 0.5],
-	[DURATION - 0.5, DURATION]
+	[STORY_DURATION - 0.5, STORY_DURATION]
 ];
 // the cooler and pole scenes swap in at the whitest point of each fade
 const IN_FRIDGE = FRIDGE0 - 0.25,
@@ -536,7 +536,7 @@ export async function mountTeardown(
 		['ステータスLED', cad(16.0, -23.0, 18.5), 84, false],
 		['LoRaWAN無線モジュール', cad(29.7, -19.6, 8.6), 36, false],
 		['STM32マイコン', cad(5.1, -21.2, 8.5), 36, true],
-		['単3電池 2本', cad(-8, 30.8, 23.1), 36, false],
+		['バッテリー', cad(-8, 30.8, 23.1), 36, false],
 		['シリコンパッキン', cad(-45.6, 20, 17.5), 36, true]
 	];
 	const labelPick = LABELS.map(() => 0); // last placement per label, kept while it still fits
@@ -1024,7 +1024,8 @@ export async function mountTeardown(
 			}
 		}
 		if (ready) {
-			apply(t);
+			// t is the player clock; every keyframe in this file is in story time
+			apply(toStory(t));
 			let s = 0;
 			while (s < STEPS.length - 1 && t >= STEPS[s + 1].t) s++;
 			if (s !== step) opts.onStep?.((step = s));

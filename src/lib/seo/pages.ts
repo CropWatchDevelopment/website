@@ -77,9 +77,9 @@ export const PAGES: PageEntry[] = [
 		path: '/technology',
 		title: '技術・設計',
 		summary:
-			'8か国・18メーカーの部品、2つのセンサーによる測定値の検証、その場で交換できる電池・センサー、記録を守るFRAMメモリ、二重の番犬機能など、センサー基板の設計。',
+			'8か国・18メーカーの部品、3Dアニメーションで見る電池・センサーの現場交換、記録を守るFRAMメモリ、二重の番犬機能など、センサー基板の設計。',
 		section: 'main',
-		lastmod: '2026-10-31',
+		lastmod: '2026-11-05',
 		priority: '0.7',
 		changefreq: 'monthly'
 	},
