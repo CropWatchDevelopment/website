@@ -1,4 +1,4 @@
-// V25 service + mounting animation (three.js). Model: REV B.2 of
+// V25 service animation (three.js). Model: REV B.2 of
 // Enclosures-reduction/V25_Plastic/Case.FCStd, exported with its GUI colours and simplified
 // (scripts/v25-model/README.md). CAD is Z-up mm and the GLB is Y-up, so
 // CAD (x, y, z) -> (x, z, -y). Every pose is a pure function of the timeline time, so
@@ -10,7 +10,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { Reflector } from 'three/addons/objects/Reflector.js';
 import { steel, screwGeometry, washerGeometry, makeCell, plugGeometry, QwiicCable } from './parts';
-import { buildFridge } from './fridge';
 import { DURATION, STEPS, STORY_DURATION, toStory } from './timeline';
 
 type Vec = [number, number, number];
@@ -39,16 +38,8 @@ function track(t: number, keys: [number, number][]) {
 }
 
 // ---- timeline (seconds) ----
-const FRIDGE0 = 54.5,
-	POLE0 = 66.0;
-const FADES: [number, number][] = [
-	[FRIDGE0 - 0.5, FRIDGE0 + 0.5],
-	[POLE0 - 0.5, POLE0 + 0.5],
-	[STORY_DURATION - 0.5, STORY_DURATION]
-];
-// the cooler and pole scenes swap in at the whitest point of each fade
-const IN_FRIDGE = FRIDGE0 - 0.25,
-	IN_POLE = POLE0 - 0.25;
+// white dip at the end of the loop (the wrap fades back in from white)
+const FADES: [number, number][] = [[STORY_DURATION - 0.5, STORY_DURATION]];
 const LED_FLASH = 39.75;
 // black epoxy potting poured over the main PCB: stream, then the level rises to the connectors
 const POT0 = 26.0;
@@ -224,47 +215,6 @@ const CAM: CamKey[] = [
 	[53.6, [150, 130, 215], [0, 10, 4], 28],
 	[54.5, [150, 130, 215], [0, 10, 4]]
 ];
-// walk-in cooler, seconds after FRIDGE0: a flight through the door, then a hold on the wall
-const FLY: [Vec, Vec][] = [
-	[
-		[-420, 1700, 3000],
-		[0, 1250, 0]
-	],
-	[
-		[-80, 1600, 1100],
-		[0, 1450, -900]
-	],
-	[
-		[0, 1580, 60],
-		[80, 1500, -1500]
-	],
-	[
-		[120, 1560, -520],
-		[500, 1450, -1600]
-	],
-	[
-		[380, 1530, -560],
-		[1200, 1460, -1000]
-	]
-];
-const FLY_T = 6.2;
-const FRIDGE_CAM: CamKey[] = [
-	[FLY_T, [380, 1530, -560], [1200, 1460, -1000], 40],
-	[8.8, [640, 1530, -640], [1200, 1485, -920], 35],
-	[11.5, [760, 1520, -680], [1199, 1490, -900], 32]
-];
-// pole, seconds after POLE0
-const POLE_Y = 420;
-const POLE_CAM: CamKey[] = [
-	[0.0, [230, 540, 640], [0, POLE_Y, 230], 30],
-	[2.4, [200, 520, 560], [0, POLE_Y - 5, 225]],
-	[3.7, [170, 505, 520], [0, POLE_Y - 5, 225]],
-	[6.0, [330, 500, 250], [0, POLE_Y, 50]],
-	[6.6, [-150, 520, -330], [0, POLE_Y, 10], 30],
-	[9.4, [-250, 470, -250], [0, POLE_Y, 15]],
-	[10.4, [250, 500, 340], [0, POLE_Y, 45], 30],
-	[13.0, [-190, 480, 360], [0, POLE_Y, 45]]
-];
 
 function camKeys(t: number, keys: CamKey[]) {
 	let i = 0;
@@ -343,10 +293,13 @@ export async function mountTeardown(
 	});
 	sun.shadow.bias = -0.0004;
 	const hemi = new THREE.HemisphereLight(0xffffff, 0x8a9a8f, 0.5);
-	const fill = new THREE.DirectionalLight(0xffffff, 0.6); // lifts the side away from the sun
+	const fill = new THREE.DirectionalLight(0xffffff, 0.35); // lifts the side away from the sun
+	const lightOff = new THREE.Vector3(120, 260, 140).multiplyScalar(2.2);
+	sun.position.copy(lightOff);
+	fill.position.copy(lightOff).negate();
 	scene.add(sun, sun.target, hemi, fill, fill.target);
 
-	// studio floor (teardown and pole)
+	// studio floor
 	const floor = new THREE.Mesh(
 		new THREE.PlaneGeometry(1600, 1600),
 		new THREE.ShadowMaterial({ opacity: 0.14 })
@@ -355,18 +308,6 @@ export async function mountTeardown(
 	floor.position.y = -0.6;
 	floor.receiveShadow = true;
 	scene.add(floor);
-
-	const fridge = buildFridge();
-	fridge.group.visible = false;
-	scene.add(fridge.group);
-	const fridgeLights = new THREE.Group();
-	for (const x of [-520, 520]) {
-		const l = new THREE.PointLight(0xf2f7ff, 0.35, 4200, 0);
-		l.position.set(x, 2300, -1500);
-		fridgeLights.add(l);
-	}
-	fridgeLights.visible = false;
-	scene.add(fridgeLights);
 
 	const camera = new THREE.PerspectiveCamera(28, 1, 2, 30000);
 	camera.layers.enable(1); // layer 1: drawn by this camera only, not in the epoxy's reflection
@@ -390,9 +331,6 @@ export async function mountTeardown(
 		dragging = false;
 		idleSince = performance.now();
 	});
-	const flyPos = new THREE.CatmullRomCurve3(FLY.map(([p]) => new THREE.Vector3(...p)));
-	const flyTgt = new THREE.CatmullRomCurve3(FLY.map(([, q]) => new THREE.Vector3(...q)));
-	const fridgeFog = new THREE.Fog(0xb9c3ca, 6500, 20000);
 	let looped = false; // fade in from white only when the loop wraps, not on first play
 
 	let aspect = 1;
@@ -408,7 +346,7 @@ export async function mountTeardown(
 	const ro = new ResizeObserver(resize);
 	ro.observe(stage);
 
-	const device = new THREE.Group(); // moves as one unit in the mounting scenes
+	const device = new THREE.Group(); // the whole case; the part labels project through it
 	scene.add(device);
 	const nodes: Record<string, THREE.Group> = {};
 	const home = (g: THREE.Object3D) => g.userData.home as THREE.Vector3;
@@ -551,7 +489,7 @@ export async function mountTeardown(
 		return el;
 	});
 
-	// ---- mounting props ----
+	// ---- magnets in the base recesses (in view if the viewer drags round underneath) ----
 	const magnets = new THREE.Group();
 	{
 		const nickel = new THREE.MeshStandardMaterial({
@@ -570,127 +508,6 @@ export async function mountTeardown(
 			magnets.add(m);
 		}
 		device.add(magnets);
-	}
-	const bracketScrew = new THREE.Mesh(screwGeometry(0.3, 8), steelMat);
-	bracketScrew.rotation.x = Math.PI; // head at the back, thread up into the base
-	device.add(bracketScrew);
-
-	const poleGroup = new THREE.Group();
-	poleGroup.visible = false;
-	scene.add(poleGroup);
-	const POLE_R = 35; // the WGMB-1 saddle is R35
-	const galv = new THREE.MeshStandardMaterial({ color: 0xcfd4d8, metalness: 0.7, roughness: 0.4 });
-	const pole = new THREE.Mesh(new THREE.CylinderGeometry(POLE_R, POLE_R, 1500, 72), galv);
-	pole.position.y = 749.4;
-	pole.castShadow = pole.receiveShadow = true;
-	poleGroup.add(pole);
-	// stainless band clamp: across the saddle through the bracket's side windows, round the pole
-	const band = (() => {
-		// in the pole's XZ plane (Vector2 x = X, y = Z), pole axis at the origin
-		const Rs = POLE_R + 0.7,
-			L = new THREE.Vector2(-20.7, 37.5),
-			R = new THREE.Vector2(20.7, 37.5);
-		const th = Math.atan2(R.y, R.x) - Math.acos(Rs / R.length()); // tangent point, right side
-		const pts: THREE.Vector2[] = [];
-		for (let i = 0; i <= 20; i++) pts.push(L.clone().lerp(R, i / 20)); // over the saddle, inside
-		const T1 = new THREE.Vector2(Rs * Math.cos(th), Rs * Math.sin(th));
-		for (let i = 1; i <= 8; i++) pts.push(R.clone().lerp(T1, i / 8));
-		const total = 2 * th + Math.PI; // clockwise round the back to the mirror tangent point
-		for (let i = 1; i <= 90; i++) {
-			const a = th - (total * i) / 90;
-			pts.push(new THREE.Vector2(Rs * Math.cos(a), Rs * Math.sin(a)));
-		}
-		const T2 = pts[pts.length - 1].clone();
-		for (let i = 1; i <= 8; i++) pts.push(T2.clone().lerp(L, i / 8));
-		const pos: number[] = [];
-		const hw = 6,
-			thick = 0.6;
-		const quad = (a: Vec, b: Vec, c: Vec, e: Vec) => pos.push(...a, ...b, ...c, ...a, ...c, ...e);
-		const nrm = (k: number) => {
-			const a = pts[Math.max(0, k - 1)],
-				b = pts[Math.min(pts.length - 1, k + 1)];
-			const t = b.clone().sub(a).normalize();
-			return new THREE.Vector2(-t.y, t.x); // outward, away from the pole
-		};
-		const v = (w: THREE.Vector2, y: number): Vec => [w.x, y, w.y];
-		for (let i = 0; i < pts.length - 1; i++) {
-			const p = pts[i],
-				q = pts[i + 1];
-			const po = p.clone().addScaledVector(nrm(i), thick),
-				qo = q.clone().addScaledVector(nrm(i + 1), thick);
-			quad(v(po, hw), v(qo, hw), v(qo, -hw), v(po, -hw));
-			quad(v(p, -hw), v(q, -hw), v(q, hw), v(p, hw));
-			quad(v(p, hw), v(q, hw), v(qo, hw), v(po, hw));
-			quad(v(po, -hw), v(qo, -hw), v(q, -hw), v(p, -hw));
-		}
-		const geo = new THREE.BufferGeometry();
-		geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-		geo.computeVertexNormals();
-		const m = new THREE.Mesh(
-			geo,
-			new THREE.MeshStandardMaterial({
-				color: 0xd9dde0,
-				metalness: 1,
-				roughness: 0.3,
-				side: THREE.DoubleSide
-			})
-		);
-		m.castShadow = true;
-		m.userData.segs = pts.length - 1;
-		return m;
-	})();
-	band.position.y = POLE_Y + 6.7; // through the bracket windows, CAD Y 6.7
-	poleGroup.add(band);
-	const worm = new THREE.Group(); // worm-drive housing at the back of the pole
-	{
-		const housing = new THREE.Mesh(new THREE.BoxGeometry(14, 13, 7), band.material);
-		housing.position.set(0, 0, -POLE_R - 4);
-		const head = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, 5, 6), steelMat);
-		head.rotation.z = Math.PI / 2;
-		head.position.set(10, 0, -POLE_R - 4.5);
-		worm.add(housing, head);
-		worm.userData.head = head;
-		worm.position.y = POLE_Y + 6.7;
-		poleGroup.add(worm);
-	}
-
-	// device orientations for the mounts (sensor end down, as the drawings intend)
-	const basis = (x: Vec, y: Vec, z: Vec) =>
-		new THREE.Quaternion().setFromRotationMatrix(
-			new THREE.Matrix4().makeBasis(
-				new THREE.Vector3(...x),
-				new THREE.Vector3(...y),
-				new THREE.Vector3(...z)
-			)
-		);
-	const Q_WALL_SHOW = basis([0, 0, -1], [1, 0, 0], [0, -1, 0]); // magnets towards the camera
-	const Q_POLE_SHOW = basis([-1, 0, 0], [0, 0, -1], [0, -1, 0]); // back towards the camera
-	const rotY = (a: number) =>
-		new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), a);
-
-	function applyDevice(t: number) {
-		device.position.set(0, 0, 0);
-		device.quaternion.identity();
-		if (t >= IN_FRIDGE && t < IN_POLE) {
-			const f = t - FRIDGE0;
-			const m = fridge.mount;
-			const wallX = m.pos.x - 0.5; // base underside (CAD Z -0.5) on the panel
-			const hover = new THREE.Vector3(1060, m.pos.y, m.pos.z);
-			const enter = new THREE.Vector3(1000, 1180, -760); // rises in from below the frame
-			const a = es(f, 6.0, 7.3);
-			device.position.copy(enter).lerp(hover, a);
-			const turn = es(f, 7.4, 8.4);
-			device.quaternion.copy(rotY(turn * Math.PI).multiply(Q_WALL_SHOW));
-			const snap = seg(f, 8.45, 8.85);
-			device.position.x += (wallX - hover.x) * snap * snap * snap; // magnets pull harder near the wall
-			const k = seg(f, 8.85, 9.6); // a small knock as the magnets land
-			if (k > 0 && k < 1) device.rotateZ(Math.sin(k * 26) * (1 - k) * 0.012);
-		} else if (t >= IN_POLE) {
-			const p = t - POLE0;
-			const turn = es(p, 3.9, 5.8);
-			device.quaternion.copy(rotY(turn * Math.PI).multiply(Q_POLE_SHOW));
-			device.position.set(0, POLE_Y, THREE.MathUtils.lerp(230, 44, es(p, 4.2, 6.0)));
-		}
 	}
 
 	function applyParts(t: number) {
@@ -815,81 +632,19 @@ export async function mountTeardown(
 			if (gloss) {
 				const settled = repour ? seg(pt, 4.2, 5.0) : 1 - seg(t, POT_HIDE[0], POT_HIDE[0] + 0.6);
 				const g = settled * seg(track(t, MC_KEYS), 1.2, 2.0);
-				gloss.visible = g > 0.01 && t < IN_FRIDGE;
+				gloss.visible = g > 0.01;
 				(gloss.material as THREE.ShaderMaterial).uniforms.opacity.value = g;
 			}
 		}
-
-		// pole scene: bracket on, screw in
-		const p = t - POLE0;
-		const inPole = t >= IN_POLE;
-		const br = nodes.bracket;
-		br.visible = inPole && p > 0.6;
-		bracketScrew.visible = inPole && p > 2.0;
-		if (inPole) {
-			const b = es(p, 0.7, 2.0);
-			br.position.copy(home(br)).add(new THREE.Vector3(0, -140 * (1 - b), 0));
-			br.rotation.y = (1 - b) * 0.6;
-			const sIn = es(p, 2.2, 3.6);
-			bracketScrew.position.copy(cad(0, 6.7, -5 - 14 * (1 - es(p, 2.0, 2.4)) - 4 * (1 - sIn)));
-			bracketScrew.rotation.y = -sIn * 8 * Math.PI * 2;
-		}
-		const w = seg(p, 6.4, 8.1);
-		band.geometry.setDrawRange(0, Math.round(w * band.userData.segs) * 24);
-		band.visible = inPole && w > 0;
-		worm.visible = inPole && p > 7.6;
-		(worm.userData.head as THREE.Mesh).rotation.x = es(p, 8.2, 9.4) * Math.PI * 10;
 	}
 
 	function autoCam(t: number) {
-		if (t < IN_FRIDGE) return camKeys(t, CAM);
-		if (t < IN_POLE) {
-			const f = t - FRIDGE0;
-			if (f < FLY_T) {
-				const u = es(f, 0, FLY_T) * 0.65 + seg(f, 0, FLY_T) * 0.35;
-				return {
-					pos: flyPos.getPoint(u),
-					tgt: flyTgt.getPoint(u),
-					fov: 46 - 6 * es(f, 3.5, FLY_T)
-				};
-			}
-			return camKeys(f, FRIDGE_CAM);
-		}
-		return camKeys(t - POLE0, POLE_CAM);
+		return camKeys(t, CAM);
 	}
 
 	function apply(t: number) {
-		const inFridge = t >= IN_FRIDGE && t < IN_POLE;
-		const inPole = t >= IN_POLE;
-		fridge.group.visible = fridgeLights.visible = inFridge;
-		poleGroup.visible = inPole;
-		floor.visible = !inFridge;
-		scene.fog = inFridge ? fridgeFog : null;
-		hemi.intensity = inFridge ? 0.55 : 0.5;
-		hemi.color.set(inFridge ? 0xdcecff : 0xffffff);
-		scene.environmentIntensity = inFridge ? 0.3 : 0.55;
-		renderer.toneMappingExposure = inFridge ? 0.9 : 1;
-
 		applyParts(t);
-		applyDevice(t);
-		device.visible = !inFridge || t - FRIDGE0 > 5.9; // enters after the flight
 		device.updateMatrixWorld(true);
-
-		// sun follows the subject so the shadow map stays sharp
-		const focus = inFridge
-			? device.position
-			: inPole
-				? new THREE.Vector3(0, POLE_Y, 40)
-				: new THREE.Vector3();
-		const off = inFridge
-			? new THREE.Vector3(-420, 380, 170)
-			: new THREE.Vector3(120, 260, 140).multiplyScalar(2.2);
-		sun.position.copy(focus).add(off);
-		sun.target.position.copy(focus);
-		sun.intensity = inFridge ? 1.4 : 1.6;
-		fill.position.copy(focus).sub(off);
-		fill.target.position.copy(focus);
-		fill.intensity = inFridge ? 0 : inPole ? 0.9 : 0.35;
 
 		let fadeA = 0;
 		for (const [a, b] of FADES) {
@@ -927,8 +682,6 @@ export async function mountTeardown(
 		}
 		if (camMode === 'user') controls.update();
 		else camera.lookAt(controls.target);
-
-		fridge.update(t, camera.position);
 
 		// labels while the covers are off
 		const la = seg(t, 22.3, 22.9) * (1 - seg(t, 25.5, 26.0));
@@ -1100,9 +853,7 @@ export async function mountTeardown(
 			'inserts',
 			new THREE.MeshStandardMaterial({ color: 0xc9a24a, metalness: 1, roughness: 0.35 })
 		);
-		const bracketMat = new THREE.MeshStandardMaterial({ roughness: 0.6 });
-		bracketMat.color.setRGB(0.9, 0.9, 0.87, THREE.SRGBColorSpace);
-		setMat('bracket', bracketMat);
+		nodes.bracket?.removeFromParent(); // the pole-mount bracket is not in the service story
 		setMat('potting', epoxy);
 		{
 			const bb = new THREE.Box3().setFromObject(nodes.potting);
@@ -1203,7 +954,6 @@ export async function mountTeardown(
 		boardPlug.position.copy(cad(-29.27, -26.86, 13.37));
 		boardPlug.rotation.y = Math.PI / 2;
 		device.add(boardPlug);
-		bracketScrew.castShadow = true;
 	} catch (err) {
 		destroy();
 		throw err;

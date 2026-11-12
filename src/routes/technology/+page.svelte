@@ -3,6 +3,8 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+	import StorageNote from '$lib/components/StorageNote.svelte';
+	import { STORAGE_NOTE_REF } from '$lib/content/storage-note';
 	import V25Teardown from '$lib/components/v25-teardown/V25Teardown.svelte';
 
 	const related = [
@@ -194,7 +196,7 @@
 		<div class="section__head" data-reveal>
 			<p class="eyebrow"><span class="material-symbols-rounded">memory</span> 記録を守る</p>
 			<h2>通信が止まっても、記録は残ります。</h2>
-			<p>ゲートウェイと通信ができない場合は、本体のFRAM（強誘電体メモリ）にデータを保存します。</p>
+			<p>ゲートウェイと通信ができない場合は、本体のFRAM（強誘電体メモリ）にデータを保存します。{@html STORAGE_NOTE_REF}</p>
 		</div>
 		<div class="framstats" data-reveal>
 			<div class="framstat">
@@ -284,7 +286,7 @@
 			</p>
 			<h2>次に見守るのは、あなたの現場です。</h2>
 			<p>
-				厳しい環境でも測り続ける。測定値に異常がないか自ら確かめる。通信が途切れても、記録を残す。動作が止まっても、自動で立て直す。そして、必要な部分を交換しながら長く使い続ける。
+				厳しい環境でも測り続ける。測定値に異常がないか自ら確かめる。通信が途切れても、記録を残す。{@html STORAGE_NOTE_REF}動作が止まっても、自動で立て直す。そして、必要な部分を交換しながら長く使い続ける。
 			</p>
 			<p>
 				CropWatchは、現場で実際に起こり得る問題を一つひとつ想定し、設置したあとも安心して任せられるハードウェアをつくっています。毎日の見回りや記録作業を、機械に任せられる現場へ。
@@ -294,6 +296,9 @@
 </section>
 
 <RelatedLinks links={related} />
+
+<!-- ※ 通信断時のデータ保存の注記（本文の※から参照） -->
+<StorageNote />
 
 <!-- クロージング -->
 <section class="closing">

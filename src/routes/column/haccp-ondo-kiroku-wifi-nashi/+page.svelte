@@ -1,6 +1,8 @@
 <script lang="ts">
 	import ColumnArticle from '$lib/components/ColumnArticle.svelte';
 	import { columnBySlug } from '$lib/content/columns';
+	import StorageNote from '$lib/components/StorageNote.svelte';
+	import { STORAGE_NOTE_REF } from '$lib/content/storage-note';
 
 	const column = columnBySlug('haccp-ondo-kiroku-wifi-nashi')!;
 </script>
@@ -119,10 +121,11 @@
 
 	<div class="col-note">
 		<p>
-			CropWatchは、電池駆動のLoRaWAN<sup class="reg">®</sup>センサーが冷蔵庫・冷凍庫の温度を10分ごとに自動記録します。センサー側の配線工事やWi-Fi設定は不要で、通信が途切れても本体のメモリに記録を残し、復旧後に自動で送信。直近2年間分の記録をCSVで出力でき、ISO/IEC 17025の校正証明書も付属します。費用は<a href="/pricing">料金ページ</a>でシミュレーションできます。
+			CropWatchは、電池駆動のLoRaWAN<sup class="reg">®</sup>センサーが冷蔵庫・冷凍庫の温度を10分ごとに自動記録します。センサー側の配線工事やWi-Fi設定は不要で、通信が途切れても本体のメモリに記録を残し、復旧後に自動で送信{@html STORAGE_NOTE_REF}。直近2年間分の記録をCSVで出力でき、ISO/IEC 17025の校正証明書も付属します。費用は<a href="/pricing">料金ページ</a>でシミュレーションできます。
 		</p>
 	</div>
 	<p>
 		HACCPの基本は<a href="/column/haccp-gimuka">HACCP義務化とは？</a>、監視の仕組みは<a href="/cold-chain">コールドチェーンの温度監視</a>のページをご覧ください。
 	</p>
+	<StorageNote wrap={false} />
 </ColumnArticle>

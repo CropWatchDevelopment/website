@@ -7,6 +7,8 @@
 	import { faqSchema } from '$lib/seo/schema';
 	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+	import StorageNote from '$lib/components/StorageNote.svelte';
+	import { STORAGE_NOTE_REF, withStorageCaveat } from '$lib/content/storage-note';
 
 	const related = [
 		{ href: '/livestock', label: 'スマート畜産・養鶏', sub: '鶏舎・畜舎の温度監視' },
@@ -24,7 +26,7 @@
 	const faq = [
 		{
 			q: '通信が途切れた場合、記録は失われますか？',
-			a: 'センサーの内部メモリ（<a class="extlink" href="https://www.infineon.com/ja/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FeRAM</a>）に測定データを保存します。通信が復旧すると、保存していたデータを自動送信します。'
+			a: 'センサーの内部メモリ（<a class="extlink" href="https://www.infineon.com/ja/products/memories/f-ram-ferroelectric-ram" target="_blank" rel="noopener noreferrer">FeRAM</a>）に測定データを保存します。通信が復旧すると、保存していたデータを自動送信します。' + STORAGE_NOTE_REF
 		},
 		{
 			q: 'HACCPの義務化に対応できますか？',
@@ -48,7 +50,7 @@
 	// タグを除いたプレーンテキストを渡す。
 	const faqPlain = faq.map((f) => ({
 		...f,
-		a: f.a.replace(/<[^>]+>/g, '')
+		a: withStorageCaveat(f.a).replace(/<[^>]+>/g, '')
 	}));
 
 	// 業種向けランディングページなのでProduct構造化データは出さない（このページ
@@ -250,7 +252,7 @@
 					<h3>停電や通信断にも対応</h3>
 				</div>
 				<p>
-					通信できない間は内部メモリに測定データを保存。復旧後に自動送信し、記録の欠損を防ぎます。輸送中のモニタリングにも対応。
+					通信できない間は内部メモリに測定データを保存。復旧後に自動送信し{@html STORAGE_NOTE_REF}、記録の欠損を防ぎます。輸送中のモニタリングにも対応。
 				</p>
 			</div>
 			<div class="box" data-reveal="1">
@@ -466,7 +468,7 @@
 						href="https://lora-alliance.org/"
 						target="_blank"
 						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-					>／通信断時は内部メモリへ保存し、復旧後に自動送信
+					>／通信断時は内部メモリへ保存し、復旧後に自動送信{@html STORAGE_NOTE_REF}
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -522,6 +524,9 @@
 	path="/cold-chain"
 	description="冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録する電池駆動のLoRaWAN®ワイヤレスセンサー。測定範囲−40〜+85℃、精度±0.48℃、IP65防塵・防水ケース、ISO/IEC 17025認定校正に基づく3点温度校正証明書つき。HACCPの温度記録を自動化します。"
 />
+
+<!-- ※ 通信断時のデータ保存の注記（本文の※から参照） -->
+<StorageNote />
 
 <!-- クロージング -->
 <section class="closing">

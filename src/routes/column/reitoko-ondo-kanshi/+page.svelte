@@ -1,6 +1,8 @@
 <script lang="ts">
 	import ColumnArticle from '$lib/components/ColumnArticle.svelte';
 	import { columnBySlug } from '$lib/content/columns';
+	import StorageNote from '$lib/components/StorageNote.svelte';
+	import { STORAGE_NOTE_REF } from '$lib/content/storage-note';
 
 	const column = columnBySlug('reitoko-ondo-kanshi')!;
 </script>
@@ -77,10 +79,11 @@
 
 	<div class="col-note">
 		<p>
-			CropWatchの温度・湿度センサー（CW-AIR-TH）は、測定範囲−40〜+85℃、精度±0.48℃。1台ごとにISO/IEC 17025認定校正に基づく3点温度校正証明書が付きます。IP65の防塵・防水ケースに入り、LoRaWAN<sup class="reg">®</sup>で冷凍庫の奥から10分ごとにデータを送信。通信が途切れても本体のFRAMメモリに記録を残し、復旧後に自動で送信します。仕様の詳細は<a href="/replacement-sensors">センサーの仕様一覧</a>をご覧ください。
+			CropWatchの温度・湿度センサー（CW-AIR-TH）は、測定範囲−40〜+85℃、精度±0.48℃。1台ごとにISO/IEC 17025認定校正に基づく3点温度校正証明書が付きます。IP65の防塵・防水ケースに入り、LoRaWAN<sup class="reg">®</sup>で冷凍庫の奥から10分ごとにデータを送信。通信が途切れても本体のFRAMメモリに記録を残し、復旧後に自動で送信します。{@html STORAGE_NOTE_REF}仕様の詳細は<a href="/replacement-sensors">センサーの仕様一覧</a>をご覧ください。
 		</p>
 	</div>
 	<p>
 		冷蔵庫・冷凍庫の監視全体については、<a href="/cold-chain">コールドチェーンの温度監視</a>のページで紹介しています。
 	</p>
+	<StorageNote wrap={false} />
 </ColumnArticle>

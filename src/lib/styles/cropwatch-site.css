@@ -341,6 +341,12 @@ a.badgewall__card:hover { border-color: var(--web-border-strong); transform: tra
    ============================================================ */
 sup.reg { font-size: 0.6em; line-height: 0; vertical-align: super; }
 
+/* Footnote marker (※) linking to a bottom-of-page note, e.g. <StorageNote />.
+   sup.… > a:any-link outranks .col-body :global(a) inside コラム articles. */
+sup.fnref { font-size: 0.8em; line-height: 0; vertical-align: super; margin-left: 1px; }
+sup.fnref > a:any-link { color: var(--web-primary); font-weight: 700; text-decoration: none; padding: 0 2px; }
+sup.fnref > a:any-link:hover { text-decoration: underline; }
+
 /* ============================================================
    Breadcrumb
    ============================================================ */

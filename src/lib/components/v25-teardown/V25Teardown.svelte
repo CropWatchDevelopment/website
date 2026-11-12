@@ -1,7 +1,7 @@
 <script lang="ts">
 	// 3D service walkthrough of the V25 (REV B.2): captive screws out, sensor cover off, QWIIC
 	// cable unplugged, sensor out, main cover off, AA cells swapped (one LED flash), covers back
-	// on, then the magnet mount in a walk-in cooler and the pole bracket.
+	// on. (The .io copy goes on to the cooler-wall and pole mounts; co.jp ends at reassembly.)
 	// three.js and the model only load once the stage comes near the viewport.
 	import { onMount } from 'svelte';
 	import type { Teardown } from './scene';
@@ -80,7 +80,7 @@
 		class="v25__stage"
 		bind:this={stage}
 		role="img"
-		aria-label="3Dアニメーション: V25センサーのメンテナンス手順と、プレハブ冷蔵庫の壁面やポールへの取り付け"
+		aria-label="3Dアニメーション: V25センサーのメンテナンス手順（カバーを外し、センサーと電池を交換して組み立て直すまで）"
 	>
 		{#if !ready}<div class="v25__status">{status}</div>{/if}
 		{#if ready}

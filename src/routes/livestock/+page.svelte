@@ -5,6 +5,8 @@
 	import { faqSchema } from '$lib/seo/schema';
 	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+	import StorageNote from '$lib/components/StorageNote.svelte';
+	import { STORAGE_NOTE_REF, withStorageCaveat } from '$lib/content/storage-note';
 
 	const related = [
 		{ href: '/cold-chain', label: 'コールドチェーン温度監視', sub: '冷蔵庫・冷凍庫の遠隔監視' },
@@ -40,7 +42,7 @@
 		},
 		{
 			q: '通信が途切れた場合、記録は失われますか？',
-			a: '本体の内部メモリに測定データを保存します。通信が復旧すると、保存していたデータを自動で送信します。'
+			a: '本体の内部メモリに測定データを保存します。通信が復旧すると、保存していたデータを自動で送信します。' + STORAGE_NOTE_REF
 		}
 	];
 
@@ -49,7 +51,7 @@
 	// visually on the way into the JSON-LD.
 	const faqPlain = faq.map((f) => ({
 		...f,
-		a: f.a.replace(/<[^>]+>/g, '').replace(/&thinsp;/g, '')
+		a: withStorageCaveat(f.a).replace(/<[^>]+>/g, '').replace(/&thinsp;/g, '')
 	}));
 
 	// 業種向けランディングページなのでProduct構造化データは出さない（このページ
@@ -96,14 +98,14 @@
 				<li>
 					<span class="material-symbols-rounded fill" style="color:#d9772f">device_thermostat</span>
 					<span class="ls-panel__lab">温度</span>
-					<span class="ls-panel__val">−40<i>°C</i> 〜 +85<i>°C</i></span>
+					<span class="ls-panel__val">−10<i>°C</i> 〜 +60<i>°C</i></span>
 				</li>
 				<li>
 					<span class="material-symbols-rounded fill" style="color:#0e9960"
 						>humidity_percentage</span
 					>
 					<span class="ls-panel__lab">湿度</span>
-					<span class="ls-panel__val">0 〜 100<i>%RH</i></span>
+					<span class="ls-panel__val">0 〜 95<i>%RH</i></span>
 				</li>
 				<li>
 					<span class="material-symbols-rounded fill" style="color:#2c6cb7">co2</span>
@@ -524,9 +526,9 @@
 			</div>
 			<div class="spec-row">
 				<dt>温度測定範囲</dt>
-				<dd>-40°C - +85°C</dd>
+				<dd>-10°C - +60°C</dd>
 				<dt>湿度測定範囲</dt>
-				<dd>0% - 100% RH (静電容量式)</dd>
+				<dd>0% - 95% RH (静電容量式)</dd>
 			</div>
 			<div class="spec-row">
 				<dt>CO₂測定範囲</dt>
@@ -546,7 +548,7 @@
 						href="https://lora-alliance.org/"
 						target="_blank"
 						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-					>／通信断時は内部メモリへ保存し、復旧後に自動送信
+					>／通信断時は内部メモリへ保存し、復旧後に自動送信{@html STORAGE_NOTE_REF}
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -604,6 +606,9 @@
 	path="/livestock"
 	description="鶏舎・畜舎の温度・湿度・CO₂を10分ごとに自動送信する電池駆動のLoRaWAN®ワイヤレスセンサー。NDIR方式のCO₂測定、IP65防塵・防水ケース、ISO/IEC 17025認定校正に基づく校正証明書つき。暑熱ストレスや換気不良を早期に通知します。"
 />
+
+<!-- ※ 通信断時のデータ保存の注記（本文の※から参照） -->
+<StorageNote />
 
 <!-- ═══ クロージング ═══ -->
 <section class="closing">

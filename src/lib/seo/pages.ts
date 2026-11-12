@@ -39,7 +39,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'電池駆動のLoRaWAN®センサーが冷蔵庫・冷凍庫の温度・湿度を10分ごとに自動記録し、スマホやPCから遠隔監視。HACCP対応の温度記録の自動化、ISO/IEC 17025校正証明書つき。',
 		section: 'main',
-		lastmod: '2026-11-05',
+		lastmod: '2026-11-12',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},
@@ -49,7 +49,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'ハウス栽培・施設園芸・露地・果樹の温度・湿度・CO₂・土壌をワイヤレスセンサーで見える化し、霜・高温・乾燥を早めに通知。電池式・配線工事なし。',
 		section: 'main',
-		lastmod: '2026-11-01',
+		lastmod: '2026-11-12',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},
@@ -59,7 +59,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'鶏舎・畜舎の温度・湿度を10分ごとに自動送信し、暑熱ストレスや換気不良を早期に発見。LoRaWAN®で配線工事なし、ISO/IEC 17025校正証明書つき。',
 		section: 'main',
-		lastmod: '2026-10-31',
+		lastmod: '2026-11-12',
 		priority: '0.9',
 		changefreq: 'monthly'
 	},
@@ -79,7 +79,7 @@ export const PAGES: PageEntry[] = [
 		summary:
 			'8か国・18メーカーの部品、3Dアニメーションで見る電池・センサーの現場交換、記録を守るFRAMメモリ、二重の番犬機能など、センサー基板の設計。',
 		section: 'main',
-		lastmod: '2026-11-05',
+		lastmod: '2026-11-12',
 		priority: '0.7',
 		changefreq: 'monthly'
 	},

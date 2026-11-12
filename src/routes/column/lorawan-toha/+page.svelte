@@ -1,6 +1,8 @@
 <script lang="ts">
 	import ColumnArticle from '$lib/components/ColumnArticle.svelte';
 	import { columnBySlug } from '$lib/content/columns';
+	import StorageNote from '$lib/components/StorageNote.svelte';
+	import { STORAGE_NOTE_REF } from '$lib/content/storage-note';
 
 	const column = columnBySlug('lorawan-toha')!;
 </script>
@@ -30,7 +32,7 @@
 
 	<h2>CropWatchのLoRaWAN<sup class="reg">®</sup>活用</h2>
 	<p>
-		CropWatchのセンサーは<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>に対応し、電波が届きにくい過酷な環境でも安定してデータを送信します。電池は最長10年稼働し、通信が途切れても本体メモリに記録を残すため、データの欠損を防ぎます。
+		CropWatchのセンサーは<a class="extlink" href="https://lora-alliance.org/" target="_blank" rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a>に対応し、電波が届きにくい過酷な環境でも安定してデータを送信します。電池は最長10年稼働し、通信が途切れても本体メモリに記録を残すため{@html STORAGE_NOTE_REF}、データの欠損を防ぎます。
 	</p>
 	<div class="col-note">
 		<p>
@@ -40,4 +42,5 @@
 	<p>
 		くわしくは<a href="/technology">技術・設計</a>のページをご覧ください。
 	</p>
+	<StorageNote wrap={false} />
 </ColumnArticle>

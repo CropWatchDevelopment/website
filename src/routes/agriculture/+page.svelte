@@ -5,6 +5,8 @@
 	import { faqSchema } from '$lib/seo/schema';
 	import SensorPrice from '$lib/components/SensorPrice.svelte';
 	import RelatedLinks from '$lib/components/RelatedLinks.svelte';
+	import StorageNote from '$lib/components/StorageNote.svelte';
+	import { STORAGE_NOTE_REF } from '$lib/content/storage-note';
 
 	const related = [
 		{ href: '/livestock', label: 'スマート畜産・養鶏', sub: '鶏舎・畜舎の温度監視' },
@@ -380,9 +382,9 @@
 			</div>
 			<div class="spec-row">
 				<dt>温度測定範囲</dt>
-				<dd>-40°C - +85°C</dd>
+				<dd>-10°C - +60°C</dd>
 				<dt>湿度測定範囲</dt>
-				<dd>0% - 100% RH</dd>
+				<dd>0% - 95% RH</dd>
 			</div>
 			<div class="spec-row">
 				<dt>CO₂測定範囲</dt>
@@ -410,7 +412,7 @@
 						href="https://lora-alliance.org/"
 						target="_blank"
 						rel="noopener noreferrer">LoRaWAN<sup class="reg">®</sup></a
-					>／通信断時は内部メモリへ保存し、復旧後に自動送信
+					>／通信断時は内部メモリへ保存し、復旧後に自動送信{@html STORAGE_NOTE_REF}
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -468,6 +470,9 @@
 	path="/agriculture"
 	description="ハウス・施設園芸の温度・湿度・CO₂を10分ごとに自動送信する電池駆動のLoRaWAN®ワイヤレスセンサー。NDIR方式のCO₂測定とVPD算出、IP65防塵・防水ケース、ISO/IEC 17025認定校正に基づく校正証明書つき。霜・高温・換気不足を早めに通知します。"
 />
+
+<!-- ※ 通信断時のデータ保存の注記（本文の※から参照） -->
+<StorageNote />
 
 <section class="closing">
 	<div class="wrap closing__in" data-reveal>
