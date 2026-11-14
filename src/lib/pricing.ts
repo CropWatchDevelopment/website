@@ -47,7 +47,7 @@ export const SECTOR_DEVICES: Record<SectorId, SectorDevice> = {
 	agriculture: {
 		sku: 'CW-SS-THCP',
 		label: '土壌・温湿度・CO₂・ライトセンサー',
-		unitPrice: 80000,
+		unitPrice: 98000,
 		warrantyYears: 1
 	}
 };

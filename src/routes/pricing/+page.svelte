@@ -108,13 +108,13 @@
 		agriculture: {
 			label: '土壌・温湿度・CO₂・ライト (CW-SS-THCP)',
 			icon: 'eco',
-			sensorLabel: '温湿度・CO₂センサー利用料',
+			sensorLabel: '土壌・温湿度・CO₂・ライトセンサー利用料',
 			sensorFee: SEAT_FEE,
 			minutesPerCheck: 10,
 			defaultCount: 4,
 			defaultChecks: 2,
 			defaultLocations: 1,
-			// 料金・機能とも畜産・養鶏と同一（機器もCO₂つきの同じモデル）。
+			// 月額の料金・機能は他業種と同一プラン（機器のみ土壌・光センサーつきの CW-SS-THCP で異なる）。
 			included: [
 				'10分ごとの自動記録',
 				'スマホ・PCで確認',
@@ -130,7 +130,7 @@
 			deviceUnitPrice: SECTOR_DEVICES.agriculture.unitPrice,
 			deviceLabel: SECTOR_DEVICES.agriculture.label,
 			warrantyYears: SECTOR_DEVICES.agriculture.warrantyYears,
-			deviceNote: '土壌センサー・PPFDセンサーなど他の機器はお問い合わせください。',
+			deviceNote: '他の構成や機器の追加はお問い合わせください。',
 			saveLine: '霜や高温から作物を守る'
 		}
 	};

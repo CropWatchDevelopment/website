@@ -18,7 +18,7 @@
 	const title =
 		'スマート農業のIoT環境モニタリング｜ハウス・露地・土壌の温度・湿度・CO₂を遠隔監視｜CropWatch 日本';
 	const description =
-		'スマート農業を支える農業IoTの環境モニタリング。ハウス栽培・施設園芸・露地・果樹の温度・湿度・CO₂・土壌の状態をワイヤレスセンサーでまとめて見える化し、霜・高温・乾燥を早めに通知。ビニールハウスの遠隔監視も電池式・配線工事なしで実現します。';
+		'スマート農業を支える農業IoTの環境モニタリング。ハウス栽培・施設園芸・露地・果樹の温度・湿度・CO₂・土壌水分（VWC）・地温・ECをワイヤレスセンサーでまとめて見える化し、霜・高温・乾燥を早めに通知。ビニールハウスの遠隔監視も電池式・配線工事なしで実現します。';
 
 	const faq = [
 		{
@@ -43,7 +43,7 @@
 		}
 	];
 
-	// CW-AIR-THC の Product 構造化データ（価格つき）は <SensorPrice> が出力する。
+	// CW-SS-THCP の Product 構造化データ（価格つき）は <SensorPrice> が出力する。
 	const ld = faqSchema(faq);
 </script>
 
@@ -115,7 +115,7 @@
 					<span class="material-symbols-rounded fill" style="color:#8b5e34">grass</span>
 					<div class="ag-panel__cells">
 						<span class="ag-panel__cell"><small>地温</small><b>19.8<i>°C</i></b></span>
-						<span class="ag-panel__cell"><small>土壌水分</small><b>42<i>%</i></b></span>
+						<span class="ag-panel__cell"><small>土壌水分（VWC）</small><b>42<i>%</i></b></span>
 						<span class="ag-panel__cell"><small>EC</small><b>1.2<i>mS/cm</i></b></span>
 					</div>
 				</li>
@@ -184,7 +184,7 @@
 					>
 					<h3>土壌</h3>
 				</div>
-				<p>土の水分・温度を把握。かん水のタイミングや根の環境づくりに役立ちます。</p>
+				<p>土壌水分（体積含水率 VWC）・地温を把握。かん水のタイミングや根の環境づくりに役立ちます。</p>
 			</div>
 			<div class="box" data-reveal="1">
 				<div class="box__head">
@@ -325,7 +325,7 @@
 					alt="マルチを張った露地畑での定植・育苗の様子"
 				/>
 				<figcaption>
-					<b>定植・育苗期の管理</b><span>地温と土壌水分で活着をサポート</span>
+					<b>定植・育苗期の管理</b><span>地温と土壌水分（VWC）で活着をサポート</span>
 				</figcaption>
 			</figure>
 		</div>
@@ -342,7 +342,7 @@
 		<dl class="specs" data-reveal style="max-width:760px;margin-inline:auto">
 			<div class="spec-row">
 				<dt>測定項目</dt>
-				<dd>気温・湿度・CO₂・VPD・光（PPFD・DLI）・土壌水分・地温・EC</dd>
+				<dd>気温・湿度・CO₂・VPD・光（PPFD・DLI）・土壌水分（VWC）・地温・EC</dd>
 			</div>
 			<div class="spec-row">
 				<dt>搭載センサー</dt>
@@ -377,7 +377,7 @@
 					光（PPFD・DLI）
 					<br />
 					<a class="extlink" href="/replacement-sensors?sensor=soil">CW-SS-TME</a>
-					土壌水分・地温・EC
+					土壌水分（VWC）・地温・EC
 				</dd>
 			</div>
 			<div class="spec-row">
@@ -393,8 +393,8 @@
 				<dd>350 - 1000nm（PAR）</dd>
 			</div>
 			<div class="spec-row">
-				<dt>土壌水分測定範囲</dt>
-				<dd>0% - 100%</dd>
+				<dt>土壌水分（VWC）測定範囲</dt>
+				<dd>0% - 100%（体積含水率）</dd>
 				<dt>地温測定範囲</dt>
 				<dd>-20°C - +70°C</dd>
 				<dt>EC測定範囲</dt>
@@ -468,7 +468,7 @@
 <SensorPrice
 	sector="agriculture"
 	path="/agriculture"
-	description="ハウス・施設園芸の温度・湿度・CO₂を10分ごとに自動送信する電池駆動のLoRaWAN®ワイヤレスセンサー。NDIR方式のCO₂測定とVPD算出、IP65防塵・防水ケース、ISO/IEC 17025認定校正に基づく校正証明書つき。霜・高温・換気不足を早めに通知します。"
+	description="ハウス・施設園芸・露地の気温・湿度・CO₂・光（PPFD・DLI）と、土壌水分（VWC・体積含水率）・地温・ECを10分ごとに自動送信する電池駆動のLoRaWAN®ワイヤレスセンサー。NDIR方式のCO₂測定とVPD算出、IP65防塵・防水ケース、ISO/IEC 17025認定校正に基づく校正証明書つき。霜・高温・乾燥・換気不足を早めに通知します。"
 />
 
 <!-- ※ 通信断時のデータ保存の注記（本文の※から参照） -->
