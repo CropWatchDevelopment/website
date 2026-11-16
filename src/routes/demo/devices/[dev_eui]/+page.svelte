@@ -8,7 +8,8 @@
   the display component for the device's data table (AirDisplay for
   cw_air_data, SoilDisplay for cw_soil_data). Everything the real page does
   against a live tenant (ApiService, permissions, relay control, CSV export,
-  notes, AI advice) is gone; the history comes from demo-history.ts.
+  notes) is gone; the history comes from demo-history.ts and the soil
+  sensor's AI growing report from demo-ai-report.ts.
 -->
 <script lang="ts">
 	import { resolve } from '$app/paths';
@@ -27,6 +28,7 @@
 	import DemoAirDisplay from './DemoAirDisplay.svelte';
 	import DemoSoilDisplay from './DemoSoilDisplay.svelte';
 	import DemoDeviceHeader from './DemoDeviceHeader.svelte';
+	import { buildAiReport, type AiRecommendationDto } from '../../demo-ai-report';
 	import { createDemoGroups, type DemoRow } from '../../demo-data';
 	import {
 		buildDliHistory,
@@ -131,6 +133,9 @@
 	// selected range, so it is built once on mount rather than on every range
 	// change (the app loads it once per device and day).
 	let dliHistory = $state<{ date: string; value: number }[]>([]);
+	// Yesterday's AI growing report: like the DLI history it covers complete
+	// days, so it too is built once on mount (the app loads the newest one).
+	let aiReport = $state<AiRecommendationDto | null>(null);
 	// The device's clock: frozen at 13:00 for the cucumber house.
 	let clockNow = $state(0);
 	// Generated on the client only: the series is anchored to "now", so building
@@ -223,7 +228,11 @@
 			return;
 		}
 		if (!device) return;
-		if (isSoilDevice) dliHistory = buildDliHistory(device, Date.now());
+		if (isSoilDevice) {
+			const now = Date.now();
+			dliHistory = buildDliHistory(device, now);
+			aiReport = buildAiReport(device, now);
+		}
 		selectRange(DEFAULT_RANGE_SELECTION);
 	});
 </script>
@@ -284,6 +293,7 @@
 							coordinates={sunCoordinates(device.location?.coordinates)}
 							now={clockNow}
 							{dliHistory}
+							{aiReport}
 						/>
 					{:else}
 						<DemoAirDisplay {latestData} {historicalData} {loading} />

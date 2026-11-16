@@ -5,12 +5,13 @@
     above / below ground panel (light strip, air readings, soil readings)
     → crop targets card (day or night targets by the sun at the location)
     → VPD matrix | PPFD gauge + DLI card
+    → 栽培アドバイス (the daily AI growing report)
     → 履歴 table.
 
-  What the demo leaves out: the AI growing advice card (it needs a daily
-  report from cw-ai-services), the "set a crop" notice (the demo sensor has
+  What the demo leaves out: the "set a crop" notice (the demo sensor has
   one) and the user's unit preferences (the demo is metric). The boards
-  CropWatch ships do not measure pH, so there is no pH anywhere.
+  CropWatch ships do not measure pH, so there is no pH anywhere. The growing
+  report comes from demo-ai-report.ts, not from the cw-ai-services worker.
 
   The app ticks `now` every minute; the demo passes the device's clock in,
   which for the cucumber house is frozen at 13:00 (see demo-data.ts).
@@ -46,6 +47,7 @@
 		cwPpfdChartLabels,
 		cwVpdChartLabels
 	} from '../../cwui-labels';
+	import type { AiRecommendationDto } from '../../demo-ai-report';
 	import { labelFor } from '../../sensor-labels';
 	import {
 		dliToday,
@@ -58,6 +60,7 @@
 		type SoilRow
 	} from '../../soil-readings';
 	import { createClientTableLoader } from '../../table-loader';
+	import DemoAiRecommendationCard from './DemoAiRecommendationCard.svelte';
 	import {
 		buildCropTargetRows,
 		formatReading,
@@ -73,7 +76,8 @@
 		crop = null,
 		coordinates = null,
 		now,
-		dliHistory = []
+		dliHistory = [],
+		aiReport = null
 	}: {
 		latestData: Record<string, number | string> | null;
 		/** Newest first, as the API returns it. */
@@ -85,6 +89,8 @@
 		now: number;
 		/** Daily DLI totals of the complete days before today, oldest first. */
 		dliHistory?: { date: string; value: number }[];
+		/** The sensor's newest daily growing report. */
+		aiReport?: AiRecommendationDto | null;
 	} = $props();
 
 	const LOCALE = 'ja-JP';
@@ -318,6 +324,11 @@
 			/>
 		</div>
 	</div>
+
+	<!-- The newest AI growing advice, right above the history it was written from. -->
+	{#if aiReport}
+		<DemoAiRecommendationCard report={aiReport} />
+	{/if}
 
 	<!-- History table, always last. -->
 	{#if !loading && rows.length > 0}
