@@ -10,7 +10,7 @@
 -->
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { assets } from '$app/paths';
+	import { assets, resolve } from '$app/paths';
 	import { CwButton, CwCard, CwInput } from '@cropwatchdevelopment/cwui';
 	import DemoIcon from '../DemoIcon.svelte';
 	import { DEMO_PASSWORD, DEMO_USERNAME, signInDemo } from '../demo-session';
@@ -104,7 +104,7 @@
 		clientError = '';
 		loggingIn = true;
 		signInDemo();
-		goto('/demo');
+		goto(resolve('/demo'));
 	}
 </script>
 
@@ -199,7 +199,7 @@
 
 				<p class="security-copy">これは CropWatch のデモ画面です（サンプルデータ）</p>
 				<p class="security-copy">
-					<a class="demo-exit" href="/">← CropWatch のサイトに戻る</a>
+					<a class="demo-exit" href={resolve('/')}>← CropWatch のサイトに戻る</a>
 				</p>
 			</div>
 		</CwCard>

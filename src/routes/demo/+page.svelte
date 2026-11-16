@@ -8,7 +8,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	import { assets } from '$app/paths';
+	import { assets, resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { CwButton, CwSearchInput } from '@cropwatchdevelopment/cwui';
 	import AppPage from './AppPage.svelte';
@@ -49,7 +49,7 @@
 		// The demo's login screen is part of what we are showing, so send people
 		// who deep-link straight here through it first.
 		if (!isDemoSignedIn()) {
-			goto('/demo/login', { replaceState: true });
+			goto(resolve('/demo/login'), { replaceState: true });
 			return;
 		}
 

@@ -4,13 +4,16 @@
 
   Same composition: back button → header card with the range picker →
   CwResponsiveLineChart (with the derived 露点 line, off by default, on air
-  devices) → the display component for the device's data table
-  (AirDisplay for cw_air_data, SoilDisplay for cw_soil_data). Everything the
-  real page does against a live tenant — ApiService, permissions, relay control,
-  CSV export, notes — is gone; the history comes from demo-history.ts.
+  devices, and the crop's target lines on a soil sensor's soil readings) →
+  the display component for the device's data table (AirDisplay for
+  cw_air_data, SoilDisplay for cw_soil_data). Everything the real page does
+  against a live tenant (ApiService, permissions, relay control, CSV export,
+  notes, AI advice) is gone; the history comes from demo-history.ts.
 -->
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import {
 		CwCard,
@@ -19,6 +22,7 @@
 		metricColor,
 		type CwResponsiveLineSeries
 	} from '@cropwatchdevelopment/cwui';
+	import type { CropTypeDetailDto } from '../../agronomy/crop-targets';
 	import AppPage from '../../AppPage.svelte';
 	import DemoAirDisplay from './DemoAirDisplay.svelte';
 	import DemoSoilDisplay from './DemoSoilDisplay.svelte';
@@ -28,10 +32,12 @@
 		buildDliHistory,
 		buildHistory,
 		DEFAULT_RANGE_SELECTION,
+		deviceNow,
 		getRangeOptions,
 		type RangeSelection
 	} from '../../demo-history';
 	import { computeDewPoint } from '../../dew-point';
+	import { sunCoordinates } from '../../demo-crops';
 	import { isDemoSignedIn } from '../../demo-session';
 	import { labelFor } from '../../sensor-labels';
 	import { cwResponsiveLineChartLabels } from '../../cwui-labels';
@@ -39,13 +45,15 @@
 
 	let { data }: PageProps = $props();
 
-	/** Columns that belong on the chart — every reading the demo devices send. */
+	/**
+	 * Columns that belong on the chart: every reading the demo devices send.
+	 * Like the app, all of them start switched on.
+	 */
 	const CHART_COLUMNS = [
 		'temperature_c',
 		'humidity',
 		'moisture',
 		'ec',
-		'ph',
 		'co2',
 		'air_temperature_c',
 		'air_humidity',
@@ -53,11 +61,37 @@
 	];
 
 	/**
-	 * On the soil page these start switched off in the top chart: the air
-	 * readings have their own 空気質 chart below and PPFD its gauge, so the top
-	 * chart opens on the soil itself. They stay one click away in the legend.
+	 * Soil columns whose crop targets hold all day, by target metric (the app's
+	 * CROP_TARGET_SERIES). Air readings get no line: their targets change
+	 * between day and night, which one line cannot show.
 	 */
-	const SOIL_INITIAL_HIDDEN = ['ph', 'co2', 'air_temperature_c', 'air_humidity', 'ppfd'];
+	const CROP_TARGET_SERIES: Record<string, string> = {
+		moisture: 'soil_moisture',
+		temperature_c: 'soil_temperature',
+		ec: 'soil_ec'
+	};
+
+	/** The app's withCropTargetLines: the optimal band's ends as lines on the soil series. */
+	function withCropTargetLines(
+		series: CwResponsiveLineSeries[],
+		crop: CropTypeDetailDto | undefined
+	): CwResponsiveLineSeries[] {
+		if (!crop) return series;
+		return series.map((line) => {
+			const metric = CROP_TARGET_SERIES[line.id];
+			const target = crop.targets.find((t) => t.metric === metric && t.period === 'all');
+			if (!target) return line;
+			const ends = [
+				{ value: target.optimal_min, label: `${crop.name_ja} 下限` },
+				{ value: target.optimal_max, label: `${crop.name_ja} 上限` }
+			].flatMap(({ value, label }) =>
+				value === null ? [] : [{ value, label, color: 'var(--cw-success-500)' }]
+			);
+			return ends.length > 0
+				? { ...line, thresholds: [...(line.thresholds ?? []), ...ends] }
+				: line;
+		});
+	}
 
 	/**
 	 * Series id of the derived dew point line. The app adds it to every air
@@ -93,10 +127,12 @@
 	let activeRange = $state<RangeSelection>(DEFAULT_RANGE_SELECTION);
 	const isAirDevice = $derived(device?.device_type.data_table_v2 === 'cw_air_data');
 	const isSoilDevice = $derived(device?.device_type.data_table_v2 === 'cw_soil_data');
-	// DLI is a per-day total, independent of the selected range, so it is built
-	// once on mount rather than on every range change.
+	// The DLI history covers the complete days before today, independent of the
+	// selected range, so it is built once on mount rather than on every range
+	// change (the app loads it once per device and day).
 	let dliHistory = $state<{ date: string; value: number }[]>([]);
-	const dliToday = $derived(dliHistory.at(-1)?.value ?? 0);
+	// The device's clock: frozen at 13:00 for the cucumber house.
+	let clockNow = $state(0);
 	// Generated on the client only: the series is anchored to "now", so building
 	// it during SSR would bake in a timestamp the client then disagrees with.
 	let historicalData = $state<Record<string, number | string>[]>([]);
@@ -122,7 +158,8 @@
 				unit: def.unit,
 				color,
 				gradient,
-				decimals: def.format === 'integer' ? 0 : 1,
+				// The app's buildSensorChartSeries: two decimals, none for integer metrics.
+				decimals: def.format === 'integer' ? 0 : 2,
 				// Oldest-first for the chart; the display components want newest-first.
 				data: historicalData
 					.map((row) => ({
@@ -132,6 +169,7 @@
 					.reverse()
 			};
 		});
+		if (isSoilDevice) return withCropTargetLines(series, device.crop);
 		if (isAirDevice) {
 			const { color, gradient } = metricColor(DEW_POINT_SERIES_ID);
 			const def = labelFor(DEW_POINT_SERIES_ID);
@@ -153,17 +191,35 @@
 		return series;
 	});
 
+	/**
+	 * Back, as in the app: to where the user came from (`?backTo=`, demo pages
+	 * only, e.g. the dashboard), else to the device's location page.
+	 */
+	function goBack() {
+		const backTo = page.url.searchParams.get('backTo');
+		if (backTo?.startsWith('/demo')) goto(resolve(backTo as '/demo'));
+		else if (device?.location)
+			goto(
+				resolve('/demo/locations/[location_id]', {
+					location_id: String(device.location.location_id)
+				})
+			);
+		else goto(resolve('/demo'));
+	}
+
 	function selectRange(selection: RangeSelection) {
 		if (!device) return;
 		activeRange = selection;
 		loading = true;
-		historicalData = buildHistory(device, selection, Date.now());
+		const now = Date.now();
+		clockNow = deviceNow(device, now);
+		historicalData = buildHistory(device, selection, now);
 		loading = false;
 	}
 
 	onMount(() => {
 		if (!isDemoSignedIn()) {
-			goto('/demo/login', { replaceState: true });
+			goto(resolve('/demo/login'), { replaceState: true });
 			return;
 		}
 		if (!device) return;
@@ -190,7 +246,7 @@
 				{devEui}
 				{lastUpdatedAt}
 				{locationName}
-				onBack={() => goto('/demo')}
+				onBack={goBack}
 				onSelectRange={selectRange}
 				rangeOptions={getRangeOptions()}
 				titleName={device.name}
@@ -212,11 +268,7 @@
 							showThemeToggle={false}
 							showDataGaps={false}
 							height={480}
-							initialHidden={isAirDevice
-								? [DEW_POINT_SERIES_ID]
-								: isSoilDevice
-									? SOIL_INITIAL_HIDDEN
-									: []}
+							initialHidden={isAirDevice ? [DEW_POINT_SERIES_ID] : []}
 							labels={cwResponsiveLineChartLabels()}
 						/>
 					</div>
@@ -224,15 +276,19 @@
 
 				<div class="device-page__display">
 					{#if device.device_type.data_table_v2 === 'cw_soil_data'}
-						<DemoSoilDisplay {latestData} {historicalData} {loading} {dliToday} {dliHistory} />
+						<DemoSoilDisplay
+							{latestData}
+							{historicalData}
+							{loading}
+							crop={device.crop ?? null}
+							coordinates={sunCoordinates(device.location?.coordinates)}
+							now={clockNow}
+							{dliHistory}
+						/>
 					{:else}
 						<DemoAirDisplay {latestData} {historicalData} {loading} />
 					{/if}
 				</div>
-
-				<p class="device-page__demo-note">
-					これはサンプルデータによるデモ画面です。実際の計測値ではありません。
-				</p>
 			{/if}
 		</div>
 	{/if}
@@ -261,13 +317,6 @@
 	.device-page__empty-message {
 		margin: 0;
 		color: var(--cw-text-muted, #475467);
-	}
-
-	.device-page__demo-note {
-		margin: 0;
-		padding-bottom: 0.5rem;
-		font-size: var(--cw-text-xs);
-		color: var(--cw-text-muted);
 	}
 
 	@media (max-width: 720px) {

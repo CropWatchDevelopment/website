@@ -1,4 +1,5 @@
 <script module lang="ts">
+	import { resolve } from '$app/paths';
 	/** Location-card layout: aligned responsive grid, or tightly-packed masonry. */
 	export type CardLayout = 'grid' | 'masonry';
 </script>
@@ -8,8 +9,9 @@
 
   Same CwLocationCard + CwSensorCard composition, same details list, same grid
   and masonry CSS. What is stripped out is everything that talks to a real
-  tenant: ApiService, the auth token, paging, the per-device refresh scheduler
-  and the "詳細" deep-link into a device page. Readings come from the same
+  tenant: ApiService, the auth token, paging and the per-device refresh
+  scheduler. The location header arrow and "詳細" open the demo's location
+  and device pages, as in the app. Readings come from the same
   generator as the device pages (demo-history.ts), refreshed on a timer, so a
   card always shows the reading its device page has for the latest upload.
 -->
@@ -18,7 +20,8 @@
 	import { goto } from '$app/navigation';
 	import { CwButton, CwDuration, CwLocationCard, CwSensorCard } from '@cropwatchdevelopment/cwui';
 	import { createDemoGroups, type DemoRow } from './demo-data';
-	import { latestUploadAt, readingAt } from './demo-history';
+	import { cwLocationCardLabels, cwSensorCardLabels } from './cwui-labels';
+	import { lastHeardAt, latestUploadAt, readingAt } from './demo-history';
 	import { formatMeasurement, isDisplayableColumn, labelFor } from './sensor-labels';
 
 	interface Filters {
@@ -35,8 +38,8 @@
 	// Rendered on the server too, so timestamps must not be baked into the SSR
 	// HTML — they'd disagree with the client and make CwDuration hydrate wrong.
 	// Until this fills in, CwSensorCard has no freshness signal and falls back to
-	// the `status` prop, which the demo always reports as online.
-	let lastSeenAt = $state<string | null>(null);
+	// the `status` prop (online, or offline for a device set up as silent).
+	let lastSeenByDevEui = $state<Record<string, string>>({});
 
 	const visibleGroups = $derived.by(() => {
 		const needle = filters.name.trim().toLowerCase();
@@ -58,12 +61,13 @@
 	/** Load each device's reading for its most recent 10-minute upload. */
 	function tick() {
 		const now = Date.now();
-		// Freshness for the cards: the latest 10-minute upload in real time. The
-		// cucumber house's readings are frozen at 13:00 (to show its midday
-		// peak), but its card should still read as a live, online device.
-		lastSeenAt = new Date(Math.floor(now / (10 * 60_000)) * (10 * 60_000)).toISOString();
+		const lastSeen: Record<string, string> = {};
 		for (const group of groups) {
 			for (const device of group.devices) {
+				// Freshness for the card: when the device was last heard in real time.
+				// The cucumber house's readings are frozen at 13:00 (to show its
+				// midday peak), but its card still reads as a live, online device.
+				lastSeen[device.dev_eui] = new Date(lastHeardAt(device, now)).toISOString();
 				const uploadedAt = new Date(latestUploadAt(device, now)).toISOString();
 				device.details = readingAt(device, Date.parse(uploadedAt));
 				device.latest = {
@@ -74,6 +78,7 @@
 				device.last_data_updated_at = uploadedAt;
 			}
 		}
+		lastSeenByDevEui = lastSeen;
 	}
 
 	function primaryProps(row: DemoRow) {
@@ -129,14 +134,22 @@
 	{:else}
 		<div class="dashboard-cards__groups dashboard-cards__groups--{cardLayout}">
 			{#each visibleGroups as group (group.key)}
-				<CwLocationCard title={group.location.name} class="dashboard-cards__location">
+				<CwLocationCard
+					title={group.location.name}
+					labels={cwLocationCardLabels(group.location.name)}
+					class="dashboard-cards__location"
+					onNavigate={() =>
+						goto(resolve(`/demo/locations/${group.location.location_id}?backTo=/demo` as '/demo'))}
+				>
 					{#each group.devices as row (row.dev_eui)}
 						{@const primary = primaryProps(row)}
 						{@const secondary = secondaryProps(row)}
 						{@const detailRows = detailEntries(row.details, row.device_type.data_table_v2)}
+						{@const lastSeenAt = lastSeenByDevEui[row.dev_eui] ?? null}
 						<CwSensorCard
 							label={row.name}
-							status="online"
+							status={row.silentForMinutes ? 'offline' : 'online'}
+							labels={cwSensorCardLabels()}
 							detailsHeading="詳細データ"
 							primaryValue={primary.value}
 							primaryUnit={primary.unit}
@@ -177,7 +190,8 @@
 								<CwButton
 									variant="secondary"
 									class="w-full"
-									onclick={() => goto(`/demo/devices/${row.dev_eui}`)}
+									onclick={() =>
+										goto(resolve(`/demo/devices/${row.dev_eui}?backTo=/demo` as '/demo'))}
 								>
 									詳細
 								</CwButton>
@@ -262,9 +276,9 @@
 
 	/* ── Demo-only presentation tweak ──────────────────────────────────
 	   Everything above this point is the dashboard's CSS unchanged. A real
-	   tenant fills those 3- and 5-column tracks; this demo has two location
+	   tenant fills those 3- and 5-column tracks; this demo has four location
 	   cards, so from the laptop breakpoint up we hold at two columns and centre
-	   the grid instead of stranding three empty columns on a wide screen.
+	   the grid instead of stranding empty columns on a wide screen.
 	   Placed after the 1280px block so it wins there on source order. */
 	@media (min-width: 1024px) {
 		.dashboard-cards__groups--grid {

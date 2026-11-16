@@ -6,7 +6,7 @@
 -->
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { assets } from '$app/paths';
+	import { assets, resolve } from '$app/paths';
 	import {
 		CwHeader,
 		CwProfileMenu,
@@ -39,6 +39,8 @@
 		<div class="app-header__brand">
 			<img src={CROPWATCH_LOGO} alt="CropWatch" class="app-header__brand-mark" />
 			<span class="app-header__brand-name">CropWatch</span>
+			<!-- Demo-only: not in the app's header. -->
+			<span class="app-header__demo-badge">DEMO</span>
 		</div>
 	{/snippet}
 
@@ -51,7 +53,7 @@
 			onselect={(event) => {
 				if (event.id !== 'logout') return;
 				signOutDemo();
-				goto('/demo/login');
+				goto(resolve('/demo/login'));
 			}}
 		/>
 	{/snippet}
@@ -97,6 +99,18 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+
+	.app-header__demo-badge {
+		flex: none;
+		padding: 0.1rem 0.45rem;
+		border-radius: 0.3rem;
+		background: var(--cw-danger-600, #dc2626);
+		color: #fff;
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.1em;
+		line-height: 1.4;
 	}
 
 	@media (max-width: 639px) {

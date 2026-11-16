@@ -23,10 +23,10 @@ const SENSOR_LABELS: Record<string, SensorLabel> = {
 	co2: { label: 'CO₂', unit: 'ppm', icon: 'co2', format: 'integer' },
 	dew_point: { label: '露点', unit: '°C', icon: 'thermo', format: 'number' },
 	ec: { label: 'EC', unit: 'mS/cm', format: 'number' },
-	ph: { label: 'pH', unit: '', format: 'number' },
+	// No pH: the boards CropWatch ships do not measure it.
 	// Air and light channels of the combined soil probe (cucumber house).
 	air_temperature_c: { label: '気温', unit: '°C', icon: 'thermo', format: 'number' },
-	air_humidity: { label: '湿度', unit: '%', icon: 'drop', format: 'number' },
+	air_humidity: { label: '空気湿度', unit: '%', icon: 'drop', format: 'number' },
 	ppfd: { label: 'PPFD', unit: 'µmol/m²/s', format: 'integer' }
 };
 
@@ -46,7 +46,7 @@ const HIDDEN_COLUMNS = new Set([
 ]);
 
 /**
- * Per-data-table label overrides.
+ * Per-data-table label overrides (the app's TABLE_LABELS).
  *
  * The same column means different things depending on the device: on a soil
  * probe `temperature_c` is ground temperature, on an air sensor it is the air,
@@ -55,8 +55,7 @@ const HIDDEN_COLUMNS = new Set([
 const TABLE_LABEL_OVERRIDES: Record<string, Record<string, string>> = {
 	cw_soil_data: {
 		temperature_c: '土壌温度',
-		moisture: '土壌水分',
-		ec: '土壌EC'
+		moisture: '土壌水分'
 	}
 };
 

@@ -43,6 +43,8 @@
 
 	color-scheme: dark;
 	display: flex;
+	/* Demo-only: the red DemoBanner row sits above the app shell (__body). */
+	flex-direction: column;
 	width: 100%;
 	height: 100dvh;
 	min-height: 0;
@@ -51,6 +53,15 @@
 	color: var(--cw-text-primary);
 	font-family: var(--cw-font-family);
 	line-height: var(--cw-leading-normal);
+}
+
+/* The app's shell row: side nav + content, under the banner. */
+.cw-demo__body {
+	flex: 1;
+	display: flex;
+	min-width: 0;
+	min-height: 0;
+	overflow: hidden;
 }
 
 .cw-demo__content {

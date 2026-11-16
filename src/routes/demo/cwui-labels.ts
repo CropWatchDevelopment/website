@@ -7,12 +7,17 @@
  * they are plain constants.
  */
 
+import type { ComponentProps } from 'svelte';
+import { CW_EMPTY_VALUE } from '@cropwatchdevelopment/cwui';
 import type {
+	CwSensorCard,
+	CwAboveBelowChartLabels,
+	CwCopyLabels,
 	CwDataTableLabels,
-	CwDliCardLabels,
 	CwHeatmapLabels,
 	CwPPFDChartLabels,
 	CwResponsiveLineChartLabels,
+	CwSensorStatusLabels,
 	CwStatCardLabels,
 	CwVPDChartLabels
 } from '@cropwatchdevelopment/cwui';
@@ -149,24 +154,70 @@ export function cwPpfdChartLabels(): CwPPFDChartLabels {
 	};
 }
 
-export function cwDliCardLabels(): CwDliCardLabels {
+export function cwCopyLabels(): CwCopyLabels {
 	return {
-		title: '本日の DLI',
-		statusVeryLow: '非常に低い',
-		statusSlightlyLow: 'やや低い',
-		statusLow: '低い',
-		statusGood: '良好',
-		statusHigh: '高い',
-		statusVeryHigh: '非常に高い',
-		statusPrefix: 'ステータス:',
-		historyTitle: '日別履歴',
-		historyListLabel: '日別 DLI 履歴',
-		historyCount: (days) => `${days} 日`,
-		targetForCrop: (cropName, range) => `${cropName} の目標: ${range}`,
-		target: (range) => `目標: ${range}`,
-		valueAriaLabel: (value, unit, targetText, status) =>
-			`${value} ${unit}、${targetText}、${status}`,
-		barAriaLabel: (scaleMax, value, unit, range, status) =>
-			`0〜${scaleMax} のスケール、現在 ${value} ${unit}、目標 ${range}、${status}`
+		copy: 'クリップボードにコピー',
+		copied: 'コピーしました',
+		copiedFeedback: 'コピーしました！',
+		failedFeedback: 'コピーに失敗しました'
+	};
+}
+
+/** CwSensorCard's labels type is not exported, so read it off the component. */
+export function cwSensorCardLabels(): ComponentProps<typeof CwSensorCard>['labels'] {
+	return {
+		error: 'センサーエラー',
+		details: '詳細',
+		noDetails: '詳細な測定値はまだありません。',
+		noValue: CW_EMPTY_VALUE,
+		lastSeen: '最終受信',
+		ago: '前'
+	};
+}
+
+export function cwLocationCardLabels(
+	name: string
+): CwSensorStatusLabels & { viewLocation?: string } {
+	return {
+		online: 'オンライン',
+		offline: 'オフライン',
+		warning: '警告',
+		loading: '読み込み中',
+		viewLocation: `${name}を表示`
+	};
+}
+
+// CwDliCard needs no labels: since CWUI 0.1.117 it carries its own Japanese
+// text, picked from `locale="ja-JP"` (the app relies on the same).
+
+export function cwAboveBelowChartLabels(): CwAboveBelowChartLabels {
+	return {
+		title: '地上と地中',
+		light: '光',
+		air: '空気',
+		ground: '土壌',
+		// New in CWUI 0.1.118 and not yet in the app's messages (it shows the
+		// English default); this site is Japanese-only, so they get Japanese text.
+		skyLevel: '上空',
+		airLevel: '地上',
+		groundLevel: '地表',
+		ppfdNow: '現在の PPFD',
+		ppfdPeak: 'ピーク',
+		dliToday: '本日の DLI',
+		dliGoal: (crop) => (crop ? `${crop} の目標` : '目標'),
+		low: '最小',
+		average: '平均',
+		high: '最大',
+		target: (range) => `目標 ${range}`,
+		legend: '凡例',
+		legendNow: '現在',
+		legendAverage: '平均',
+		legendRange: '最小〜最大',
+		legendTarget: (crop) => (crop ? `${crop} の目標` : '目標'),
+		statusTooLow: '低すぎ',
+		statusLow: '低め',
+		statusOptimal: '適正',
+		statusHigh: '高め',
+		statusTooHigh: '高すぎ'
 	};
 }

@@ -3,7 +3,7 @@
 
   Same CwSideNav, same nav items and icon paths as the live dashboard. The
   differences are all demo-scoped:
-    - every item except ダッシュボード is inert (the demo is one page)
+    - ダッシュボード and ロケーション work; the rest are inert (not in the demo)
     - the session-expiry countdown in the footer is replaced by a way back to
       the marketing site
     - the mobile utility row (language switcher + CwThemePicker) is dropped:
@@ -11,7 +11,8 @@
       its own `[data-theme="web"]` marketing tokens.
 -->
 <script lang="ts">
-	import { assets } from '$app/paths';
+	import { assets, resolve } from '$app/paths';
+	import { page } from '$app/state';
 	import { CwSideNav, type CwSideNavItem } from '@cropwatchdevelopment/cwui';
 
 	let { mode = $bindable() } = $props();
@@ -28,9 +29,26 @@
 	const GATEWAYS_ICON_PATH =
 		'M3 8.5h10A1.5 1.5 0 0 1 14.5 10v2A1.5 1.5 0 0 1 13 13.5H3A1.5 1.5 0 0 1 1.5 12v-2A1.5 1.5 0 0 1 3 8.5Zm0 2.5h.01M5.5 11h.01M8 11h.01M8 8.5V6M6 4.5a3.2 3.2 0 0 1 4 0M4.5 3a5.5 5.5 0 0 1 7 0';
 
-	const navItems: CwSideNavItem[] = [
-		{ id: 'dashboard', label: 'ダッシュボード', active: true, icon: { path: DASHBOARD_ICON_PATH } },
-		{ id: 'locations', label: 'ロケーション', disabled: true, icon: { path: LOCATIONS_ICON_PATH } },
+	// As in the app, a device page counts as part of ロケーション.
+	const inLocations = $derived(
+		page.url.pathname.startsWith('/demo/locations') || page.url.pathname.startsWith('/demo/devices')
+	);
+
+	const navItems = $derived<CwSideNavItem[]>([
+		{
+			id: 'dashboard',
+			label: 'ダッシュボード',
+			href: '/demo',
+			active: page.url.pathname === '/demo',
+			icon: { path: DASHBOARD_ICON_PATH }
+		},
+		{
+			id: 'locations',
+			label: 'ロケーション',
+			href: '/demo/locations',
+			active: inLocations,
+			icon: { path: LOCATIONS_ICON_PATH }
+		},
 		{
 			id: 'rules',
 			label: 'ルール',
@@ -52,7 +70,7 @@
 			icon: { path: GATEWAYS_ICON_PATH },
 			group: '接続とハードウェア'
 		}
-	];
+	]);
 
 	// Matches the live sidebar: on mobile it overlays the page, so collapse it
 	// once the user picks something.
@@ -76,7 +94,7 @@
 			<p class="app-sidebar__demo-note">
 				これはサンプルデータによるデモ画面です。実際の計測値ではありません。
 			</p>
-			<a class="app-sidebar__demo-exit" href="/">← CropWatch のサイトに戻る</a>
+			<a class="app-sidebar__demo-exit" href={resolve('/')}>← CropWatch のサイトに戻る</a>
 		</span>
 	{/snippet}
 </CwSideNav>

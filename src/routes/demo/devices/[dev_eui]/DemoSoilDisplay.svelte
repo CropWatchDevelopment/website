@@ -1,170 +1,228 @@
 <!--
-  Port of CropWatch's current SoilDisplay (cw_soil_data, CWUI 0.1.115), same
+  Port of CropWatch's current SoilDisplay (cw_soil_data, CWUI 0.1.118), same
   composition and order:
 
-    KPI cards (soil temperature + moisture stats, EC and pH latest readings)
-    → 空気質 line chart (CO₂ / air temperature / air humidity)
+    above / below ground panel (light strip, air readings, soil readings)
+    → crop targets card (day or night targets by the sun at the location)
     → VPD matrix | PPFD gauge + DLI card
-    → soil telemetry table.
+    → 履歴 table.
 
-  In the app the air-quality, VPD, PPFD and DLI panels wait for the combined
-  sensor and render empty. Here they are fed by the demo's cucumber-house probe
-  (see demo-data.ts), so the page shows what a fully reporting house looks like.
+  What the demo leaves out: the AI growing advice card (it needs a daily
+  report from cw-ai-services), the "set a crop" notice (the demo sensor has
+  one) and the user's unit preferences (the demo is metric). The boards
+  CropWatch ships do not measure pH, so there is no pH anywhere.
+
+  The app ticks `now` every minute; the demo passes the device's clock in,
+  which for the cucumber house is frozen at 13:00 (see demo-data.ts).
 -->
 <script lang="ts">
 	import {
+		CwAboveBelowChart,
 		CwCard,
+		CwChip,
 		CwDataTable,
 		CwDliCard,
 		CwPPFDChart,
-		CwResponsiveLineChart,
-		CwStatCard,
 		CwVPDChart,
-		metricColor,
-		type CwColumnDef,
-		type CwResponsiveLineSeries
+		type CwColumnDef
 	} from '@cropwatchdevelopment/cwui';
 	import {
+		cropTarget,
+		vaporPressureDeficit,
+		type CropTypeDetailDto,
+		type DayPeriod
+	} from '../../agronomy/crop-targets';
+	import {
+		dayLightProfile,
+		isDaylight,
+		lightEndsAt,
+		lightShareSoFar,
+		ppfdTargetForHour
+	} from '../../agronomy/light-targets';
+	import type { Coordinates } from '../../agronomy/solar';
+	import {
+		cwAboveBelowChartLabels,
 		cwDataTableLabels,
-		cwDliCardLabels,
 		cwPpfdChartLabels,
-		cwResponsiveLineChartLabels,
-		cwStatCardLabels,
 		cwVpdChartLabels
 	} from '../../cwui-labels';
-	import { computeStatsNewestFirst } from '../../compute-stats';
+	import { labelFor } from '../../sensor-labels';
+	import {
+		dliToday,
+		fieldSeries,
+		latestReading,
+		SOIL_FIELDS,
+		toSoilRows,
+		type LatestReading,
+		type SoilField,
+		type SoilRow
+	} from '../../soil-readings';
 	import { createClientTableLoader } from '../../table-loader';
-
-	interface SoilRow {
-		id: string;
-		created_at: string;
-		temperature_c: number;
-		moisture: number;
-		ec: number;
-	}
+	import {
+		buildCropTargetRows,
+		formatReading,
+		targetStatusLabel,
+		targetStatusTone
+	} from './soil-crop-targets';
+	import { buildSoilLight, buildSoilPanel, soilPanelSubtitle } from './soil-panel';
 
 	let {
 		latestData,
 		historicalData,
 		loading,
-		dliToday,
-		dliHistory
+		crop = null,
+		coordinates = null,
+		now,
+		dliHistory = []
 	}: {
 		latestData: Record<string, number | string> | null;
+		/** Newest first, as the API returns it. */
 		historicalData: Record<string, number | string>[];
 		loading: boolean;
-		/** Today's accumulated DLI (mol/m²/day), up to the device's clock. */
-		dliToday: number;
-		/** Daily DLI totals, oldest first. */
-		dliHistory: { date: string; value: number }[];
+		crop?: CropTypeDetailDto | null;
+		coordinates?: Coordinates | null;
+		/** The device's clock (ms). */
+		now: number;
+		/** Daily DLI totals of the complete days before today, oldest first. */
+		dliHistory?: { date: string; value: number }[];
 	} = $props();
 
-	// Greenhouse cucumber targets: VPD 0.8-1.2 kPa through the day, midday PPFD
-	// 500-1,000 µmol/m²/s, and a DLI of 20-30 mol/m²/day for a full day's light.
-	const CROP_NAME = 'きゅうり';
-	const VPD_TARGET_MIN = 0.8;
-	const VPD_TARGET_MAX = 1.2;
-	const PPFD_TARGET_MIN = 500;
-	const PPFD_TARGET_MAX = 1000;
-	const DLI_TARGET_MIN = 20;
-	const DLI_TARGET_MAX = 30;
+	const LOCALE = 'ja-JP';
 
-	function num(value: number | string | undefined): number | null {
-		const n = Number(value);
-		return value === undefined || !Number.isFinite(n) ? null : n;
+	/** Digits per field in the history table (the app's defaultFractionDigits). */
+	function tableDigits(field: SoilField): number {
+		return labelFor(field).format === 'integer' ? 0 : 2;
 	}
 
-	function toSoilRows(raw: Record<string, number | string>[]): SoilRow[] {
-		return raw.map((row, i) => ({
-			id: String(`${row.created_at}-${i}`),
-			created_at: String(row.created_at ?? ''),
-			temperature_c: Number(row.temperature_c) || 0,
-			moisture: Number(row.moisture) || 0,
-			ec: Number(row.ec) || 0
-		}));
-	}
+	let nowDate = $derived(new Date(now));
+	let lightProfile = $derived(dayLightProfile(nowDate, coordinates));
+	let period = $derived<DayPeriod>(isDaylight(nowDate, coordinates) ? 'day' : 'night');
+	let cropName = $derived(crop?.name_ja ?? '');
 
-	let columns = $derived<CwColumnDef<SoilRow>[]>([
-		{ key: 'created_at', header: '日時', sortable: true, width: '13.5rem' },
-		{ key: 'temperature_c', header: '土壌温度', sortable: true, width: '8rem' },
-		{ key: 'moisture', header: '土壌水分', sortable: true, width: '9rem' },
-		{ key: 'ec', header: 'EC (mS/cm)', sortable: true, width: '9rem' }
-	]);
+	// ---- Derived state ---------------------------------------------------------
 
-	// Oldest-first for the table (its loader reverses back to newest-first).
-	let rows = $derived(
-		toSoilRows(historicalData).sort(
-			(a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+	let rows = $derived(toSoilRows(historicalData));
+	// The panel and the charts read oldest-first; the history is newest-first.
+	let chronologicalRows = $derived([...rows].reverse());
+	let latest = $derived(
+		Object.fromEntries(
+			SOIL_FIELDS.map((field) => [field, latestReading(rows, field, latestData)])
+		) as Record<SoilField, LatestReading | null>
+	);
+	// Air and light fields get table columns only on devices that report them.
+	let reportedExtras = $derived(
+		(['co2', 'air_temperature_c', 'air_humidity', 'ppfd'] as const).filter((field) =>
+			rows.some((row) => row[field] !== null)
 		)
 	);
 
-	let latest = $derived({
-		ec: num(latestData?.ec),
-		ph: num(latestData?.ph),
-		airTemperature: num(latestData?.air_temperature_c),
-		airHumidity: num(latestData?.air_humidity),
-		ppfd: num(latestData?.ppfd),
-		at: typeof latestData?.created_at === 'string' ? latestData.created_at : undefined
-	});
+	let panel = $derived(buildSoilPanel({ rows: chronologicalRows, latest, crop, period }));
 
-	// `historicalData` is newest-first, so the headline figure comes from the front.
-	let temperatureStats = $derived(
-		computeStatsNewestFirst(historicalData.map((row) => Number(row.temperature_c) || 0))
-	);
-	let soilMoistureStats = $derived(
-		computeStatsNewestFirst(historicalData.map((row) => Number(row.moisture) || 0))
-	);
+	// ---- Columns ---------------------------------------------------------------
 
-	/**
-	 * Same three series and ids as the app's air-quality chart. The app passes
-	 * CSS variables as colors, which the chart can't resolve when it draws the
-	 * lines (they come out grey; unnoticed in the app because the chart is
-	 * always empty there), so these use CWUI's metric palette instead.
-	 */
-	let airSeries = $derived.by<CwResponsiveLineSeries[]>(() => {
-		const series = (
-			id: string,
-			column: string,
-			label: string,
-			unit: string,
-			color: string,
-			decimals: number
-		): CwResponsiveLineSeries => ({
-			id,
-			label,
-			unit,
-			color,
-			decimals,
-			data: historicalData
-				.map((row) => ({ t: new Date(String(row.created_at)).getTime(), v: num(row[column]) }))
-				.reverse()
-		});
-		return [
-			series('co2', 'co2', 'CO₂', 'ppm', metricColor('co2').color, 0),
-			series(
-				'air_temperature',
-				'air_temperature_c',
-				'気温',
-				'°C',
-				metricColor('air_temperature').color,
-				1
-			),
-			series('air_humidity', 'air_humidity', '湿度', '%', metricColor('air_humidity').color, 1)
-		];
-	});
+	let columns = $derived<CwColumnDef<SoilRow>[]>([
+		{ key: 'created_at', header: '日時', sortable: true, width: '13.5rem' },
+		{ key: 'temperature_c', header: '土壌温度', sortable: true, width: '9rem' },
+		{ key: 'moisture', header: '土壌水分', sortable: true, width: '9rem' },
+		{ key: 'ec', header: 'EC (mS/cm)', sortable: true, width: '9rem' },
+		...reportedExtras.map((field) => ({
+			key: field,
+			header: labelFor(field).label,
+			sortable: true,
+			width: '9rem'
+		}))
+	]);
 
 	// Re-key the table when the row set changes so CwDataTable re-runs loadData
 	// for the new range instead of showing stale rows.
 	let rowSetKey = $derived(
-		`${rows.length}:${rows[0]?.id ?? ''}:${rows[rows.length - 1]?.id ?? ''}`
+		`${rows.length}:${rows[0]?.id ?? ''}:${rows[rows.length - 1]?.id ?? ''}:${reportedExtras.join(',')}`
 	);
+
+	// ---- VPD and light -----------------------------------------------------------
+
+	let dli = $derived(dliToday(fieldSeries(chronologicalRows, 'ppfd'), nowDate));
+
+	// ---- Crop targets ----------------------------------------------------------
+
+	let vpd = $derived(
+		vaporPressureDeficit(latest.air_temperature_c?.value, latest.air_humidity?.value)
+	);
+	let targetRows = $derived(
+		crop
+			? buildCropTargetRows({
+					crop,
+					period,
+					readings: Object.fromEntries(
+						SOIL_FIELDS.map((field) => [field, latest[field]?.value ?? null])
+					),
+					vpd
+				})
+			: []
+	);
+	let targetsNote = $derived(
+		coordinates
+			? period === 'day'
+				? 'この場所の太陽の位置に基づく日中の目標です。'
+				: 'この場所の太陽の位置に基づく夜間の目標です。'
+			: period === 'day'
+				? '日中の目標（06:00〜16:00。日の出・日の入りを使うには場所の位置を設定してください）。'
+				: '夜間の目標（06:00〜16:00以外。日の出・日の入りを使うには場所の位置を設定してください）。'
+	);
+	let vpdTarget = $derived(cropTarget(crop, 'vpd', 'day'));
+
+	// Light: the daily goal (DLI band), and the PPFD the current hour needs to
+	// stay on course for it. An open-ended goal tops out at light saturation.
+	let dliTarget = $derived.by(() => {
+		const target = cropTarget(crop, 'dli', 'day');
+		return target && (target.optimal_min !== null || target.optimal_max !== null) ? target : null;
+	});
+	let ppfdHour = $derived.by(() => {
+		if (!dliTarget) return null;
+		const hour = ppfdTargetForHour(
+			nowDate,
+			{ min: dliTarget.optimal_min, max: dliTarget.optimal_max },
+			lightProfile
+		);
+		const saturation = cropTarget(crop, 'ppfd', 'day')?.optimal_max ?? null;
+		if (!hour || hour.max !== null || saturation === null) return hour;
+		return { ...hour, max: Math.max(hour.min ?? 0, saturation) };
+	});
+	const clock = new Intl.DateTimeFormat(LOCALE, { hour: '2-digit', minute: '2-digit' });
+	let ppfdLabels = $derived.by(() => {
+		const labels = cwPpfdChartLabels();
+		if (!dliTarget) return labels;
+		return {
+			...labels,
+			targetRange: ppfdHour
+				? `目標 ${clock.format(ppfdHour.from)}〜${clock.format(ppfdHour.to)}`
+				: '目標（夜間）'
+		};
+	});
+
+	// Today's DLI is judged only once the day's light is over; until then the
+	// card says how much should have fallen by now.
+	let lightSoFar = $derived(lightShareSoFar(nowDate, lightProfile));
+	let dayLightOver = $derived(lightProfile.total > 0 && lightSoFar >= 0.999);
+
+	let dayProgress = $derived(
+		dliTarget && latest.ppfd
+			? {
+					lightSoFar,
+					lightEndsAt: lightEndsAt(nowDate, coordinates),
+					assumed: !coordinates
+				}
+			: null
+	);
+
+	// ---- Table loader ----------------------------------------------------------
 
 	let tableLoading = $state(false);
 
+	// Newest first, as the history comes.
 	const loadTableData = createClientTableLoader<SoilRow>(() => rows, {
-		reverse: true,
 		searchText: (r) =>
-			[new Date(r.created_at).toLocaleString('ja-JP'), r.temperature_c, r.moisture, r.ec]
+			[new Date(r.created_at).toLocaleString(LOCALE), ...SOIL_FIELDS.map((field) => r[field] ?? '')]
 				.map(String)
 				.join(' '),
 		onLoadingChange: (value) => (tableLoading = value)
@@ -172,80 +230,98 @@
 </script>
 
 <div class="soil-display">
-	<div class="kpi-grid">
-		<CwStatCard
-			title="土壌温度"
-			stats={temperatureStats}
-			unit="°C"
-			accentColor="var(--cw-danger-500)"
-			labels={cwStatCardLabels()}
-		/>
-		<CwStatCard
-			title="土壌水分"
-			stats={soilMoistureStats}
-			unit="%"
-			accentColor="var(--cw-info-500)"
-			labels={cwStatCardLabels()}
-		/>
-		<CwCard title="EC" subtitle="最新の読み取り" elevated>
-			<p class="kpi-value">
-				{latest.ec === null ? '—' : latest.ec.toFixed(2)}<span>mS/cm</span>
-			</p>
-		</CwCard>
-		{#if latest.ph !== null}
-			<CwCard title="pH" subtitle="最新の読み取り" elevated>
-				<p class="kpi-value">{latest.ph.toFixed(1)}</p>
-			</CwCard>
-		{/if}
-	</div>
-
-	<CwResponsiveLineChart
-		locale="ja-JP"
-		labels={cwResponsiveLineChartLabels()}
-		series={airSeries}
-		title="空気質"
-		subtitle="CO₂・気温・湿度"
-		ranges={[]}
-		showLegendStats={false}
-		theme="dark"
-		showThemeToggle={false}
-		height={360}
+	<!-- Light, air and soil at a glance. -->
+	<CwAboveBelowChart
+		locale={LOCALE}
+		labels={cwAboveBelowChartLabels()}
+		subtitle={soilPanelSubtitle(rows, nowDate)}
+		targetName={cropName}
+		loading={loading && rows.length === 0}
+		noData={!loading && rows.length === 0 ? 'センサーデータ待機中' : undefined}
+		light={buildSoilLight({ rows: chronologicalRows, latest, dli, dliTarget })}
+		air={panel.air}
+		ground={panel.ground}
 	/>
 
+	{#if crop}
+		<CwCard title={`${cropName}の栽培目標`} subtitle={targetsNote} elevated>
+			<div class="crop-targets">
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">項目</th>
+							<th scope="col">現在</th>
+							<th scope="col">目標</th>
+							<th scope="col">状態</th>
+						</tr>
+					</thead>
+					<tbody>
+						{#each targetRows as row (row.key)}
+							<tr>
+								<th scope="row">{row.label}</th>
+								<td>{row.now}</td>
+								<td>{row.target}</td>
+								<td>
+									{#if row.daytimeOnly}
+										<span class="crop-targets__muted">日中のみ</span>
+									{:else if row.status}
+										<CwChip
+											label={targetStatusLabel(row.status)}
+											tone={targetStatusTone(row.status)}
+											variant="soft"
+										/>
+									{:else}
+										<span class="crop-targets__muted">—</span>
+									{/if}
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</div>
+		</CwCard>
+	{/if}
+
+	<!-- VPD and light panels pair up on desktop and stack on mobile. -->
 	<div class="chart-pair">
 		<CwVPDChart
-			locale="ja-JP"
+			locale={LOCALE}
 			labels={cwVpdChartLabels()}
-			airTemperatureC={latest.airTemperature}
-			relativeHumidity={latest.airHumidity}
-			targetMin={VPD_TARGET_MIN}
-			targetMax={VPD_TARGET_MAX}
+			airTemperatureC={latest.air_temperature_c?.value ?? null}
+			relativeHumidity={latest.air_humidity?.value ?? null}
+			targetMin={vpdTarget?.optimal_min ?? null}
+			targetMax={vpdTarget?.optimal_max ?? null}
+			noData={latest.air_temperature_c && latest.air_humidity ? false : 'センサーデータ待機中'}
 		/>
 		<div class="chart-pair__stack">
 			<CwPPFDChart
-				locale="ja-JP"
-				labels={cwPpfdChartLabels()}
-				current={latest.ppfd}
-				plant={CROP_NAME}
-				targetMin={PPFD_TARGET_MIN}
-				targetMax={PPFD_TARGET_MAX}
-				{dliToday}
-				updatedAt={latest.at}
+				locale={LOCALE}
+				labels={ppfdLabels}
+				plant={cropName}
+				current={latest.ppfd?.value ?? null}
+				targetMin={ppfdHour?.min ?? null}
+				targetMax={ppfdHour?.max ?? null}
+				updatedAt={latest.ppfd?.at || undefined}
+				dliToday={dli}
+				noData={latest.ppfd ? undefined : 'センサーデータ待機中'}
 			/>
 			<CwDliCard
-				locale="ja-JP"
-				labels={cwDliCardLabels()}
-				value={dliToday}
-				history={dliHistory}
-				cropName={CROP_NAME}
-				targetMin={DLI_TARGET_MIN}
-				targetMax={DLI_TARGET_MAX}
+				locale={LOCALE}
+				{cropName}
+				value={dli}
+				targetMin={dliTarget?.optimal_min ?? null}
+				targetMax={dliTarget?.optimal_max ?? null}
+				showStatus={!dliTarget || dayLightOver}
+				day={dayProgress}
+				history={dliHistory.length > 0 ? dliHistory : undefined}
+				noData={dli === null ? 'センサーデータ待機中' : false}
 			/>
 		</div>
 	</div>
 
+	<!-- History table, always last. -->
 	{#if !loading && rows.length > 0}
-		<CwCard title="土壌テレメトリ" subtitle="検索・並べ替え可能" elevated>
+		<CwCard title="履歴" subtitle="検索・並べ替え可能" elevated>
 			{#key rowSetKey}
 				<CwDataTable
 					labels={cwDataTableLabels()}
@@ -255,17 +331,12 @@
 					rowKey="id"
 					searchable
 				>
-					{#snippet cell(row: SoilRow, col: CwColumnDef<SoilRow>, defaultValue: string)}
+					{#snippet cell(row: SoilRow, col: CwColumnDef<SoilRow>)}
 						{#if col.key === 'created_at'}
-							{new Date(row.created_at).toLocaleString('ja-JP')}
-						{:else if col.key === 'temperature_c'}
-							{row.temperature_c.toFixed(2)} °C
-						{:else if col.key === 'moisture'}
-							{row.moisture.toFixed(1)} %
-						{:else if col.key === 'ec'}
-							{row.ec.toFixed(2)}
+							{new Date(row.created_at).toLocaleString(LOCALE)}
 						{:else}
-							{defaultValue}
+							{@const field = col.key as SoilField}
+							{formatReading(field, row[field], tableDigits(field))}
 						{/if}
 					{/snippet}
 				</CwDataTable>
@@ -273,7 +344,7 @@
 		</CwCard>
 	{:else if !loading}
 		<CwCard title="データなし" elevated>
-			<p>選択した期間のデータがありません。</p>
+			<p>選択した範囲の土壌データはありません。</p>
 		</CwCard>
 	{/if}
 </div>
@@ -283,33 +354,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-	}
-
-	.kpi-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-		gap: 1rem;
-	}
-
-	/* Card titles stay on one line so the KPI row doesn't go ragged. */
-	.soil-display :global(.cw-card__title),
-	.soil-display :global(.cw-stat-card__title) {
-		white-space: nowrap;
-	}
-
-	/* From the app's display-shared.css. */
-	.kpi-value {
-		margin: 0 0 0.75rem;
-		font-size: clamp(1.45rem, 2.1vw, 2rem);
-		font-weight: 700;
-		color: var(--cw-text-primary);
-	}
-
-	.kpi-value span {
-		margin-left: 0.35rem;
-		font-size: 0.9rem;
-		font-weight: 500;
-		color: var(--cw-text-muted);
 	}
 
 	/* Mobile-first single column; the VPD matrix and the PPFD+DLI stack pair up
@@ -335,7 +379,7 @@
 	}
 
 	/* DLI grows to meet the VPD's bottom edge on desktop; no-op when stacked. */
-	.chart-pair__stack > :global(:last-child) {
+	.chart-pair__stack > :global(.cw-dli-card) {
 		flex: 1;
 	}
 
@@ -343,5 +387,42 @@
 		.chart-pair {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		}
+	}
+
+	.crop-targets {
+		overflow-x: auto;
+	}
+
+	.crop-targets table {
+		border-collapse: collapse;
+		font-variant-numeric: tabular-nums;
+		width: 100%;
+	}
+
+	.crop-targets th,
+	.crop-targets td {
+		border-bottom: 1px solid var(--cw-border-default);
+		padding: 0.5rem 0.75rem;
+		text-align: left;
+		white-space: nowrap;
+	}
+
+	.crop-targets thead th {
+		color: var(--cw-text-muted);
+		font-size: var(--cw-text-xs);
+		font-weight: var(--cw-font-semibold);
+		letter-spacing: 0.05em;
+	}
+
+	.crop-targets tbody th {
+		font-weight: var(--cw-font-semibold);
+	}
+
+	.crop-targets tbody tr:last-child > * {
+		border-bottom: none;
+	}
+
+	.crop-targets__muted {
+		color: var(--cw-text-muted);
 	}
 </style>
