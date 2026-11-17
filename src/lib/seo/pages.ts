@@ -77,9 +77,9 @@ export const PAGES: PageEntry[] = [
 		path: '/technology',
 		title: '技術・設計',
 		summary:
-			'8か国・18メーカーの部品、3Dアニメーションで見る電池・センサーの現場交換、記録を守るFRAMメモリ、二重の番犬機能など、センサー基板の設計。',
+			'8か国・18メーカーの部品、3Dアニメーションで見る電池・センサーの現場交換、記録を守るFRAMメモリ、二重の番犬機能、冷蔵設備につながらない測定専用のセキュリティ設計など、センサー基板の設計。',
 		section: 'main',
-		lastmod: '2026-11-12',
+		lastmod: '2026-11-17',
 		priority: '0.7',
 		changefreq: 'monthly'
 	},

@@ -16,7 +16,7 @@
 
 	const title = '技術・設計｜現場に強い、センサー基板のつくり｜CropWatch 日本';
 	const description =
-		'CropWatch のセンサー基板の設計と技術。用途ごとに世界から選んだ8か国・18メーカーの部品、3Dアニメーションで見る電池・センサーの現場交換、記録を守るFRAMメモリ、ハードウェアとソフトウェアの二重の番犬機能まで。長く使い続けるための設計をご紹介します。';
+		'CropWatch のセンサー基板の設計と技術。用途ごとに世界から選んだ8か国・18メーカーの部品、3Dアニメーションで見る電池・センサーの現場交換、記録を守るFRAMメモリ、ハードウェアとソフトウェアの二重の番犬機能、冷蔵設備につながらない測定専用のセキュリティ設計まで。長く使い続けるための設計をご紹介します。';
 </script>
 
 <Seo {title} {description} />
@@ -295,6 +295,34 @@
 	</div>
 </section>
 
+<!-- セキュリティ（2026年10月のフランスの冷蔵設備ハッキングを受けて） -->
+<section class="section secure scroll-pad" id="security">
+	<div class="wrap">
+		<div class="secure__card" data-reveal>
+			<img
+				class="secure__shield"
+				src="/assets/imagery/cropwatch-shield.png"
+				width="192"
+				height="192"
+				alt="セキュリティを表す盾"
+				loading="lazy"
+				decoding="async"
+			/>
+			<div class="secure__txt">
+				<p class="eyebrow"><span class="material-symbols-rounded">lock</span> セキュリティ</p>
+				<h2>
+					<span>CropWatchは、</span><span>問題を解決します。</span><br /><span>新たな問題は</span><span
+						>つくりません。</span
+					>
+				</h2>
+				<p>
+					2026年10月、フランスのスーパー数百店で、何者かがインターネットにつながる冷蔵設備の制御装置に侵入し、夜間に冷蔵ケースを加熱しました。50°Cに達したケースもあり、大量の食品が廃棄されました。CropWatchのセンサーは本体の電池で動き、測定だけを行います。冷蔵庫や制御盤にはつながっていないため、CropWatchを通じて設備を遠隔操作することはできません。温度が変われば、原因にかかわらずCropWatchがお知らせします。
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
 <RelatedLinks links={related} />
 
 <!-- ※ 通信断時のデータ保存の注記（本文の※から参照） -->
@@ -328,6 +356,81 @@
 
 	.parts-origin {
 		margin-top: 36px;
+	}
+
+	/* ── セキュリティ: shield vertically centred on the left, centred text on the right ── */
+	/* The section above is head-only, so this one starts tight beneath it. */
+	.secure {
+		padding-top: 0;
+	}
+	.secure__card {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		gap: 40px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 40px 48px;
+		background: var(--web-bg-tint);
+		border: 1px solid var(--web-border-strong);
+		border-radius: 24px;
+	}
+	.secure__shield {
+		display: block;
+		width: 136px;
+		height: auto;
+	}
+	.secure__txt {
+		min-width: 0;
+		text-align: center;
+	}
+	.secure__txt .eyebrow {
+		justify-content: center;
+	}
+	.secure__txt h2 {
+		font-size: clamp(22px, 2.8vw, 30px);
+		line-height: 1.5;
+	}
+	/* One sentence per line; on phones the heading only breaks between phrases,
+	   never mid-word (Safari has no word-break: auto-phrase). */
+	.secure__txt h2 span {
+		display: inline-block;
+	}
+	.secure__txt p:not(.eyebrow) {
+		margin: 14px 0 0;
+		font-size: 16px;
+		line-height: 1.9;
+		color: var(--web-muted);
+		/* Centred text: break at phrase boundaries and avoid a lone 「す。」 last line. */
+		word-break: auto-phrase;
+		text-wrap: pretty;
+	}
+	@media (max-width: 980px) {
+		.secure__card {
+			gap: 28px;
+			padding: 32px;
+		}
+		.secure__shield {
+			width: 112px;
+		}
+	}
+	@media (max-width: 600px) {
+		/* Too narrow for a side column: shield sits centred above the text. */
+		.secure__card {
+			grid-template-columns: 1fr;
+			justify-items: center;
+			gap: 16px;
+			padding: 28px 20px;
+		}
+		.secure__shield {
+			width: 88px;
+		}
+		.secure__txt h2 {
+			font-size: 21px;
+		}
+		.secure__txt p:not(.eyebrow) {
+			font-size: 15px;
+		}
 	}
 
 	/* ── 3D teardown (交換できる設計, under the two cards) ── */
